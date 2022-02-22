@@ -7,8 +7,9 @@
 
 &nbsp;
 
-[![NPM](https://img.shields.io/npm/v/@innet/server.svg)](https://github.com/d8corp/innet-server/blob/main/CHANGELOG.md)
-[![downloads](https://img.shields.io/npm/dm/@innet/server.svg)](https://www.npmjs.com/package/@innet/server)
+[![NPM](https://img.shields.io/npm/v/@innet/server.svg)](https://www.npmjs.com/package/@innet/server)
+[![downloads](https://img.shields.io/npm/dm/@innet/server.svg)](https://www.npmtrends.com/@innet/server)
+[![changelog](https://img.shields.io/badge/Changelog-⋮-brightgreen)](https://changelogs.xyz/@innet/server)
 [![license](https://img.shields.io/npm/l/@innet/server)](https://github.com/d8corp/innet-server/blob/main/LICENSE)
 
 ## Abstract

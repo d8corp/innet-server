@@ -1,6 +1,6 @@
 {
   "name": "@innet/server",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Create server-side application with innet",
   "main": "index.js",
   "module": "index.es6.js",
@@ -24,6 +24,7 @@
   "dependencies": {
     "@cantinc/utils": "^1.0.0",
     "@innet/html": "^1.0.0",
+    "@innet/jsx": "^0.1.0",
     "@innet/switch": "^1.0.0",
     "@innet/utils": "^1.0.0",
     "cookie": "^0.4.2",
