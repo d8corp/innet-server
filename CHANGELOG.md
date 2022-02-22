@@ -2,5 +2,5 @@
 
 ## v1.0
 
-### v1.0.0 [![22.02.2022](https://img.shields.io/date/1645540670)](https://github.com/d8corp/watch-state/tree/v1.0.0)
+### v1.0.0 [![22.02.2022](https://img.shields.io/date/1645540670)](https://github.com/d8corp/innet-server/tree/v1.0.0)
 - first implementation
