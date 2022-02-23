@@ -14,19 +14,21 @@ export function file ({ props, children = null }, handler) {
   if (fs.existsSync(path)) {
     const stat = fs.statSync(path)
 
-    res.writeHead(200, {
-      'Content-Type': mime.getType(path),
-      'Content-Length': stat.size,
-    })
+    if (stat.isFile()) {
+      res.writeHead(200, {
+        'Content-Type': mime.getType(path),
+        'Content-Length': stat.size,
+      })
 
-    const readStream = fs.createReadStream(path)
+      const readStream = fs.createReadStream(path)
 
-    readStream.pipe(res)
+      readStream.pipe(res)
 
-    return new Promise((resolve, reject) => {
-      readStream.once('end', () => resolve(children))
-      readStream.once('error', reject)
-    })
+      return new Promise((resolve, reject) => {
+        readStream.once('end', () => resolve(children))
+        readStream.once('error', reject)
+      })
+    }
   }
 
   res.statusCode = 404

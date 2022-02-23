@@ -2,6 +2,9 @@
 
 ## v1.0
 
+### v1.0.4 [![23.02.2022](https://img.shields.io/date/1645636911)](https://github.com/d8corp/innet-server/tree/v1.0.4)
+- fix bug of `file`
+
 ### v1.0.3 [![22.02.2022](https://img.shields.io/date/1645546911)](https://github.com/d8corp/innet-server/tree/v1.0.3)
 - fix cookie prop types
 
