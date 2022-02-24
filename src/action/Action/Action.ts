@@ -32,7 +32,7 @@ export interface File {
 
 export const URL_PARSER = /^(?<path>[^?]+)(\?(?<search>.*))?/
 
-export default class Action<O extends ActionOptions = ActionOptions> {
+export class Action<O extends ActionOptions = ActionOptions> {
   constructor (public readonly req: Request, public readonly res: Response) {}
 
   @once get cookies (): O['cookies'] {

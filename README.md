@@ -414,6 +414,47 @@ export default (
 In this case, if you have a file in cms folder then the file will return
 else makes request to the `site.com`.
 
+## redirect
+You can redirect users to another resource.
+
+```typescript jsx
+export default (
+  <server>
+    <switch>
+      <cms dir='cms' />
+      <redirect to='https://site.com' />
+    </switch>
+  </server>
+)
+```
+
+### status
+By default, status is `301`, you can change it with `status` prop.
+
+```typescript jsx
+export default (
+  <server>
+    <switch>
+      <cms dir='cms' />
+      <redirect to='https://site.com' status={302} />
+    </switch>
+  </server>
+)
+```
+
+Also, you can use string key of status.
+
+```typescript jsx
+export default (
+  <server>
+    <switch>
+      <cms dir='cms' />
+      <redirect to='https://site.com' status='found'/>
+    </switch>
+  </server>
+)
+```
+
 ## Templates
 
 Any template is just a function which returns content that should be run.

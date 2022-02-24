@@ -4,7 +4,7 @@ import http2 from 'https'
 import innet, { Handler } from 'innet'
 const isInvalidPath = require('is-invalid-path')
 
-import Action, { ACTION } from '../action'
+import { Action, ACTION } from '../action'
 import { CONTINUE } from '../constants'
 
 export interface SSL {
@@ -85,5 +85,3 @@ export function server ({ props = {} as ServerProps, children }, handler: Handle
 
   return promise
 }
-
-export default server

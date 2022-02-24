@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.1
+
+### v1.1.0 [![24.02.2022](https://img.shields.io/date/1645687821)](https://github.com/d8corp/innet-server/tree/v1.1.0)
+- refactor exports
+- add `redirect`
+
 ## v1.0
 
 ### v1.0.4 [![23.02.2022](https://img.shields.io/date/1645636911)](https://github.com/d8corp/innet-server/tree/v1.0.4)

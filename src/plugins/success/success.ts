@@ -1,6 +1,6 @@
 import innet from 'innet'
 
-import Action, { ACTION } from '../../action'
+import { Action, ACTION } from '../../action'
 
 export const successStatuses = {
   ok: 200,

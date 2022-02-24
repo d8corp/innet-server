@@ -1,6 +1,6 @@
 import { Children, Component, Props } from '@innet/jsx';
 import { Handler } from 'innet';
-import Action from '../../action';
+import { Action } from '../../action';
 export declare type Methods = 'GET' | 'HEAD' | 'POST' | 'DELETE' | 'PUT' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH';
 export interface RouterProps {
     method?: Methods;

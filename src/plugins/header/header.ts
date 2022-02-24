@@ -1,6 +1,6 @@
 import innet, { Handler } from 'innet'
 
-import Action, { ACTION } from '../../action'
+import { Action, ACTION } from '../../action'
 
 export interface HeaderProps {
   name: string

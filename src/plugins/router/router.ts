@@ -1,7 +1,7 @@
 import { Children, Component, Props } from '@innet/jsx'
 import innet, { Handler } from 'innet'
 
-import Action, { ACTION } from '../../action'
+import { Action, ACTION } from '../../action'
 
 export type Methods = 'GET' | 'HEAD' | 'POST' | 'DELETE' | 'PUT' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH'
 

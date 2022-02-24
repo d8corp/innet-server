@@ -1,7 +1,7 @@
 import html from '@innet/html';
 import { switchAsync, SwitchProps } from '@innet/switch';
 import { arrayAsync } from '@innet/utils';
-import { cms, CmsProps, cookie, CookieProps, error, ErrorProps, file, FileProps, header, HeaderProps, proxy, ProxyProps, router, RouterProps, success, SuccessProps } from '../plugins';
+import { cms, CmsProps, cookie, CookieProps, error, ErrorProps, file, FileProps, header, HeaderProps, proxy, ProxyProps, router, RouterProps, success, SuccessProps, redirect, RedirectProps } from '../plugins';
 import { server, ServerProps } from '../server';
 export declare const arrayPlugins: (typeof arrayAsync)[];
 export declare const JSXPlugins: {
@@ -16,6 +16,7 @@ export declare const JSXPlugins: {
     cms: typeof cms;
     file: typeof file;
     proxy: typeof proxy;
+    redirect: typeof redirect;
 };
 export declare const objectPlugins: ((handler: any) => import("innet").PluginHandler)[];
 declare const _default: import("innet").Handler;
@@ -25,6 +26,7 @@ declare global {
         interface IntrinsicElements {
             server: ServerProps;
             router: RouterProps;
+            redirect: RedirectProps;
             cookie: CookieProps;
             success: SuccessProps;
             error: ErrorProps;

@@ -1,5 +1,5 @@
 import { Handler } from 'innet';
-import Action from '../action';
+import { Action } from '../action';
 export interface SSL {
     cert: string;
     key: string;
@@ -16,4 +16,3 @@ export declare function server({ props, children }: {
     props?: ServerProps;
     children: any;
 }, handler: Handler): Promise<unknown>;
-export default server;

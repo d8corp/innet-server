@@ -1,7 +1,7 @@
 import { Props } from '@innet/jsx'
 import path from 'path'
 
-import Action, { ACTION } from '../../action'
+import { Action, ACTION } from '../../action'
 import { file } from '../file'
 
 export interface CmsProps extends Props {

@@ -13,6 +13,7 @@ import {
   proxy, ProxyProps,
   router, RouterProps,
   success, SuccessProps,
+  redirect, RedirectProps,
 } from '../plugins'
 import { server, ServerProps } from '../server'
 
@@ -34,6 +35,7 @@ export const JSXPlugins = {
   cms,
   file,
   proxy,
+  redirect,
 }
 
 export const objectPlugins = [
@@ -53,6 +55,7 @@ declare global {
     interface IntrinsicElements {
       server: ServerProps
       router: RouterProps
+      redirect: RedirectProps
       cookie: CookieProps
       success: SuccessProps
       error: ErrorProps

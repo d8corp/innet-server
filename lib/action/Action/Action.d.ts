@@ -23,7 +23,7 @@ export interface File {
     size: number;
 }
 export declare const URL_PARSER: RegExp;
-export default class Action<O extends ActionOptions = ActionOptions> {
+export declare class Action<O extends ActionOptions = ActionOptions> {
     readonly req: Request;
     readonly res: Response;
     constructor(req: Request, res: Response);
