@@ -2,6 +2,9 @@
 
 ## v1.1
 
+### v1.1.1 [![03.03.2022](https://img.shields.io/date/1646305103)](https://github.com/d8corp/innet-server/tree/v1.1.1)
+- remove 404 status for non exist file
+
 ### v1.1.0 [![24.02.2022](https://img.shields.io/date/1645687821)](https://github.com/d8corp/innet-server/tree/v1.1.0)
 - refactor exports
 - add `redirect`

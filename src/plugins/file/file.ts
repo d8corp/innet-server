@@ -30,6 +30,4 @@ export function file ({ props, children = null }, handler) {
       })
     }
   }
-
-  res.statusCode = 404
 }
