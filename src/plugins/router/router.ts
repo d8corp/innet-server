@@ -34,6 +34,10 @@ export interface RouterComponentConstructor {
   [key: string]: any
 }
 
+export function getRouter (handler: Handler): Router {
+  return handler[ROUTER]
+}
+
 export function withRouter <T extends RouterComponentConstructor> (target: T): T {
   const originInit = target.prototype.init
   target.prototype.init = function init (...args) {

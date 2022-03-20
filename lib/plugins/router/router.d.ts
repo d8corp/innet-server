@@ -22,6 +22,7 @@ export interface RouterComponentConstructor {
     new (props?: Props, children?: Children, handler?: Handler): RouterComponent;
     [key: string]: any;
 }
+export declare function getRouter(handler: Handler): Router;
 export declare function withRouter<T extends RouterComponentConstructor>(target: T): T;
 export declare function router({ props, children }: {
     props: any;

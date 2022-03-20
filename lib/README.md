@@ -696,19 +696,19 @@ export default (
 )
 ```
 
-## ACTION
+## getAction
 Action is an object which contains `request` and `response`.
 Also, it contains a couple of fields and methods.
 
 Action available in templates and components.
 
 ```typescript jsx
-import { ACTION } from '@innet/server'
+import { getAction } from '@innet/server'
 
 const Test = (props, child, handler) => {
-  const action = handler[ACTION]
+  const action = getAction(handler)
   const { req, res } = action
-  
+
   console.log(req, res)
 }
 ```
@@ -717,10 +717,10 @@ const Test = (props, child, handler) => {
 You can get cookies as an object from an action.
 
 ```typescript jsx
-import { ACTION } from '@innet/server'
+import { getAction } from '@innet/server'
 
 const Cookies = (props, child, handler) => {
-  const { cookies } = handler[ACTION]
+  const { cookies } = getAction(handler)
 
   return <success>{cookies}</success>
 }
@@ -730,12 +730,11 @@ const Cookies = (props, child, handler) => {
 You can set cookie with action.
 
 ```typescript jsx
-import { ACTION } from '@innet/server'
+import { getAction } from '@innet/server'
 
 const Login = (props, child, handler) => {
-  const action = handler[ACTION]
-
-  action.setCookie('user', 'token')
+  getAction(handler)
+    .setCookie('user', 'token')
 }
 ```
 
@@ -743,10 +742,10 @@ const Login = (props, child, handler) => {
 You can get current path with action.
 
 ```typescript jsx
-import { ACTION } from '@innet/server'
+import { getAction } from '@innet/server'
 
 const Path = (props, child, handler) => {
-  const { path } = handler[ACTION]
+  const { path } = getAction(handler)
 
   return path
 }
@@ -756,10 +755,10 @@ const Path = (props, child, handler) => {
 You can get current search as an object.
 
 ```typescript jsx
-import { ACTION } from '@innet/server'
+import { getAction } from '@innet/server'
 
 const Search = (props, child, handler) => {
-  const { search } = handler[ACTION]
+  const { search } = getAction(handler)
 
   return <success>{search}</success>
 }
@@ -769,10 +768,10 @@ const Search = (props, child, handler) => {
 You can parse body, and get values.
 
 ```typescript jsx
-import { ACTION } from '@innet/server'
+import { getAction } from '@innet/server'
 
 const Body = async (props, child, handler) => {
-  const action = handler[ACTION]
+  const action = getAction(handler)
   
   await action.parseBody()
 
@@ -784,10 +783,10 @@ const Body = async (props, child, handler) => {
 You can get files from a user.
 
 ```typescript jsx
-import { ACTION } from '@innet/server'
+import { getAction } from '@innet/server'
 
 const Body = async (props, child, handler) => {
-  const action = handler[ACTION]
+  const action = getAction(handler)
   
   await action.parseBody()
 
@@ -795,15 +794,15 @@ const Body = async (props, child, handler) => {
 }
 ```
 
-## ROUTER
+## getRouter
 
 You can get router data in a template or component
 
 ```typescript jsx
-import { ROUTER } from '@innet/server'
+import { getRouter } from '@innet/server'
 
 const Router = async (props, child, handler) => {
-  const { prefix, params } = handler[ROUTER]
+  const { prefix, params } = getRouter(handler)
 
   return <success>{{ prefix, params }}</success>
 }
