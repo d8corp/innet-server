@@ -1,7 +1,7 @@
 import html from '@innet/html'
 import { jsxComponent, jsxPlugins, jsxTemplate } from '@innet/jsx'
 import { switchAsync, SwitchProps } from '@innet/switch'
-import { array, arrayAsync, arrayClear, arraySingleLess, async, object } from '@innet/utils'
+import { array, arrayAsync, arrayClear, arraySingleLess, async, object, promise } from '@innet/utils'
 import { createHandler } from 'innet'
 
 import {
@@ -44,8 +44,12 @@ export const objectPlugins = [
   jsxTemplate,
 ]
 
-export default createHandler([
+export const promisePlugins = [
   async,
+]
+
+export default createHandler([
+  promise(promisePlugins),
   array(arrayPlugins),
   object(objectPlugins),
 ])

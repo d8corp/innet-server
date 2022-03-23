@@ -1,6 +1,6 @@
 import html from '@innet/html';
 import { switchAsync, SwitchProps } from '@innet/switch';
-import { arrayAsync } from '@innet/utils';
+import { arrayAsync, async } from '@innet/utils';
 import { cms, CmsProps, cookie, CookieProps, error, ErrorProps, file, FileProps, header, HeaderProps, proxy, ProxyProps, router, RouterProps, success, SuccessProps, redirect, RedirectProps } from '../plugins';
 import { server, ServerProps } from '../server';
 export declare const arrayPlugins: (typeof arrayAsync)[];
@@ -19,6 +19,7 @@ export declare const JSXPlugins: {
     redirect: typeof redirect;
 };
 export declare const objectPlugins: ((handler: any) => import("innet").PluginHandler)[];
+export declare const promisePlugins: (typeof async)[];
 declare const _default: import("innet").Handler;
 export default _default;
 declare global {

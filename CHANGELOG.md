@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.2
+
+### v1.2.0 [![23.03.2022](https://img.shields.io/date/1648057022)](https://github.com/d8corp/innet-server/tree/v1.2.0)
+- update dependencies for new features
+
 ## v1.1
 
 ### v1.1.2 [![20.03.2022](https://img.shields.io/date/1647785446)](https://github.com/d8corp/innet-server/tree/v1.1.2)
