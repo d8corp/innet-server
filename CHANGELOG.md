@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.3
+
+### v1.3.0 [![23.04.2022](https://img.shields.io/date/1650705021)](https://github.com/d8corp/innet-server/tree/v1.3.0)
+- remove class components support
+- add experimental features
+
 ## v1.2
 
 ### v1.2.0 [![23.03.2022](https://img.shields.io/date/1648057022)](https://github.com/d8corp/innet-server/tree/v1.2.0)

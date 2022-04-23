@@ -1,7 +1,7 @@
 import html from '@innet/html'
-import { jsxComponent, jsxPlugins, jsxTemplate } from '@innet/jsx'
+import { jsxPlugins, jsxTemplate } from '@innet/jsx'
 import { switchAsync, SwitchProps } from '@innet/switch'
-import { array, arrayAsync, arrayClear, arraySingleLess, async, object, promise } from '@innet/utils'
+import { array, arrayAsync, arrayClear, arraySingleLess, async, fn, object, promise } from '@innet/utils'
 import { createHandler } from 'innet'
 
 import {
@@ -16,6 +16,8 @@ import {
   redirect, RedirectProps,
 } from '../plugins'
 import { server, ServerProps } from '../server'
+
+import { serverFn } from '../experimental/serverFn'
 
 export const arrayPlugins = [
   arrayAsync,
@@ -38,9 +40,12 @@ export const JSXPlugins = {
   redirect,
 }
 
+export const fnPlugins = [
+  serverFn,
+]
+
 export const objectPlugins = [
   jsxPlugins(JSXPlugins),
-  jsxComponent,
   jsxTemplate,
 ]
 
@@ -52,6 +57,7 @@ export default createHandler([
   promise(promisePlugins),
   array(arrayPlugins),
   object(objectPlugins),
+  fn(fnPlugins),
 ])
 
 declare global {

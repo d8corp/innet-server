@@ -11,6 +11,7 @@ export interface ServerProps {
     onStart?: (url: string) => any;
     onRequest?: (action: Action) => any;
     onError?: (e: Error) => any;
+    onDestroy?: () => any;
 }
 export declare function server({ props, children }: {
     props?: ServerProps;

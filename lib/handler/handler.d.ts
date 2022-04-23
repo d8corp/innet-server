@@ -3,6 +3,7 @@ import { switchAsync, SwitchProps } from '@innet/switch';
 import { arrayAsync, async } from '@innet/utils';
 import { cms, CmsProps, cookie, CookieProps, error, ErrorProps, file, FileProps, header, HeaderProps, proxy, ProxyProps, router, RouterProps, success, SuccessProps, redirect, RedirectProps } from '../plugins';
 import { server, ServerProps } from '../server';
+import { serverFn } from '../experimental/serverFn';
 export declare const arrayPlugins: (typeof arrayAsync)[];
 export declare const JSXPlugins: {
     server: typeof server;
@@ -18,6 +19,7 @@ export declare const JSXPlugins: {
     proxy: typeof proxy;
     redirect: typeof redirect;
 };
+export declare const fnPlugins: (typeof serverFn)[];
 export declare const objectPlugins: ((handler: any) => import("innet").PluginHandler)[];
 export declare const promisePlugins: (typeof async)[];
 declare const _default: import("innet").Handler;

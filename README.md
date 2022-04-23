@@ -124,6 +124,18 @@ export default (
 )
 ```
 
+### onDestroy
+You can react on destroy the server with `onDestroy` prop.
+
+```typescript jsx
+export default (
+  <server
+    onDestroy={() => console.log('destroy')}>
+    Hello World!
+  </server>
+)
+```
+
 ## HTML
 You can use `html` element to return html content.
 
@@ -455,9 +467,9 @@ export default (
 )
 ```
 
-## Templates
+## Components
 
-Any template is just a function which returns content that should be run.
+Any component is just a function which returns content that should be run.
 
 `server.tsx`
 ```typescript jsx
@@ -508,39 +520,7 @@ export default (
 
 The first argument is props, the second is children and the last one is a handler.
 
-You can use templates inside other templates and components.
-
-## Components
-Component has the same functionality as template but this is a class.
-
-```typescript jsx
-class Html {
-  init ({ title }, children) {
-    return (
-      <header name='content-type' value='text/html'>
-        <html>
-          <head>
-            <title>{title}</title>
-          </head>
-          <body>
-            {children}
-          </body>
-        </html>
-      </header>
-    )
-  }
-}
-
-export default (
-  <server>
-    <Html title='main'>
-      Hello World!
-    </Html>
-  </server>  
-)
-```
-
-constructor of the class gets the same arguments as init method and the same as a template.
+You can use components inside another component.
 
 ## success
 If you work on REST API, you can use `success` or `error` as an answer
@@ -700,7 +680,7 @@ export default (
 Action is an object which contains `request` and `response`.
 Also, it contains a couple of fields and methods.
 
-Action available in templates and components.
+Action available in components.
 
 ```typescript jsx
 import { getAction } from '@innet/server'
@@ -796,7 +776,7 @@ const Body = async (props, child, handler) => {
 
 ## getRouter
 
-You can get router data in a template or component
+You can get router data in a component
 
 ```typescript jsx
 import { getRouter } from '@innet/server'

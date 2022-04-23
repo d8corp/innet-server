@@ -2,6 +2,7 @@ import fs from 'fs'
 import http from 'http'
 import http2 from 'https'
 import innet, { Handler } from 'innet'
+import { onDestroy } from 'watch-state'
 const isInvalidPath = require('is-invalid-path')
 
 import { Action, ACTION } from '../action'
@@ -18,6 +19,7 @@ export interface ServerProps {
   onStart?: (url: string) => any
   onRequest?: (action: Action) => any
   onError?: (e: Error) => any
+  onDestroy?: () => any
 }
 
 export function server ({ props = {} as ServerProps, children }, handler: Handler) {
@@ -35,6 +37,10 @@ export function server ({ props = {} as ServerProps, children }, handler: Handle
   const { port = env.PORT || (https ? 442 : 80), unknownError = '', onStart, onError, onRequest } = props
 
   const server = https ? http2.createServer({ key, cert }) : http.createServer()
+  onDestroy(() => {
+    props.onDestroy?.()
+    server.close()
+  })
 
   server.on('request', async (req, res) => {
     const childHandler = Object.create(handler)
