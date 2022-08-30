@@ -1,5 +1,4 @@
-import { Props } from '@innet/jsx';
-export interface CmsProps extends Props {
+export interface CmsProps {
     dir?: string;
     prefix?: string;
 }

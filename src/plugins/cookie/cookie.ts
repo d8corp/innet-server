@@ -1,7 +1,7 @@
-import { CookieSerializeOptions } from 'cookie'
 import innet, { Handler } from 'innet'
+import { CookieSerializeOptions } from 'cookie'
 
-import { Action, ACTION } from '../../action'
+import { ACTION, Action } from '../../action'
 
 export interface CookieProps extends CookieSerializeOptions {
   key: string

@@ -1,7 +1,3 @@
-export interface RedirectProps {
-    to: string;
-    status?: number | keyof typeof redirectStatuses;
-}
 export declare const redirectStatuses: {
     multipleChoices: number;
     movedPermanently: number;
@@ -12,6 +8,10 @@ export declare const redirectStatuses: {
     temporaryRedirect: number;
     permanentRedirect: number;
 };
+export interface RedirectProps {
+    to: string;
+    status?: number | keyof typeof redirectStatuses;
+}
 export declare function redirect({ props, children }: {
     props: any;
     children: any;

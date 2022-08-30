@@ -1,7 +1,7 @@
 import fs from 'fs'
 import mime from 'mime'
 
-import { Action, ACTION } from '../../action'
+import { ACTION, Action } from '../../action'
 
 export interface FileProps {
   path: string

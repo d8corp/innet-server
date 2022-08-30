@@ -2,6 +2,12 @@
 
 ## v1.3
 
+### v1.4.0 [![30.08.2022](https://img.shields.io/date/1661860921)](https://github.com/d8corp/innet-server/tree/v1.4.0)
+- update `@innet/jsx` (new way of components)
+- change `getAction` to `useAction`
+- change `getRouter` to `useRouter`
+- update dependencies
+
 ### v1.3.0 [![23.04.2022](https://img.shields.io/date/1650705021)](https://github.com/d8corp/innet-server/tree/v1.3.0)
 - remove class components support
 - add experimental features

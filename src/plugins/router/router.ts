@@ -1,7 +1,7 @@
-import { Children, Component, Props } from '@innet/jsx'
-import innet, { Handler } from 'innet'
+import innet from 'innet'
+import { useHandler } from '@innet/jsx'
 
-import { Action, ACTION } from '../../action'
+import { ACTION, Action } from '../../action'
 
 export type Methods = 'GET' | 'HEAD' | 'POST' | 'DELETE' | 'PUT' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH'
 
@@ -25,26 +25,8 @@ export interface Router {
 
 export const ROUTER = Symbol('Parent Router') as unknown as string
 
-export interface RouterComponent extends Component {
-  router: Router
-}
-
-export interface RouterComponentConstructor {
-  new (props?: Props, children?: Children, handler?: Handler): RouterComponent
-  [key: string]: any
-}
-
-export function getRouter (handler: Handler): Router {
-  return handler[ROUTER]
-}
-
-export function withRouter <T extends RouterComponentConstructor> (target: T): T {
-  const originInit = target.prototype.init
-  target.prototype.init = function init (...args) {
-    this.router = args[2][ROUTER]
-    return originInit.apply(this, args)
-  }
-  return target
+export function useRouter (): Router {
+  return useHandler()[ROUTER]
 }
 
 export function router ({ props, children }, handler) {

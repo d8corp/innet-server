@@ -1,4 +1,5 @@
 import { once } from '@cantinc/utils'
+import { useHandler } from '@innet/jsx'
 import cookie, { CookieSerializeOptions } from 'cookie'
 import { IncomingMessage, ServerResponse } from 'http'
 import multiparty from 'multiparty'
@@ -10,6 +11,14 @@ export type Resources = 'search' | 'body' | 'cookies' | 'files'
 export type Body = Record<string, any>
 export type Search = Record<string, any>
 export type Cookies = Record<string, string | string[]>
+
+export interface File {
+  fieldName: string
+  headers: Record<string, string>
+  originalFilename: string
+  path: string
+  size: number
+}
 export type Files = Record<string, File | File[]>
 
 export type Request = IncomingMessage
@@ -20,14 +29,6 @@ export interface ActionOptions {
   search?: Search
   cookies?: Cookies
   files?: Files
-}
-
-export interface File {
-  fieldName: string
-  headers: Record<string, string>
-  originalFilename: string
-  path: string
-  size: number
 }
 
 export const URL_PARSER = /^(?<path>[^?]+)(\?(?<search>.*))?/
@@ -120,4 +121,8 @@ export class Action<O extends ActionOptions = ActionOptions> {
   get path () {
     return this.parsedUrl.path
   }
+}
+
+export function useAction<O extends ActionOptions> (): Action<O> {
+  return useHandler()[ACTION]
 }

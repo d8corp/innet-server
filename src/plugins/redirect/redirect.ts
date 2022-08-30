@@ -1,10 +1,5 @@
 import { ACTION, Action } from '../../action'
 
-export interface RedirectProps {
-  to: string
-  status?: number | keyof typeof redirectStatuses
-}
-
 export const redirectStatuses = {
   multipleChoices: 300,
   movedPermanently: 301,
@@ -14,6 +9,11 @@ export const redirectStatuses = {
   useProxy: 305,
   temporaryRedirect: 307,
   permanentRedirect: 308,
+}
+
+export interface RedirectProps {
+  to: string
+  status?: number | keyof typeof redirectStatuses
 }
 
 function getStatus (status: number | string): number {

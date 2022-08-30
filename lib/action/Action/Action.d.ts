@@ -6,6 +6,13 @@ export declare type Resources = 'search' | 'body' | 'cookies' | 'files';
 export declare type Body = Record<string, any>;
 export declare type Search = Record<string, any>;
 export declare type Cookies = Record<string, string | string[]>;
+export interface File {
+    fieldName: string;
+    headers: Record<string, string>;
+    originalFilename: string;
+    path: string;
+    size: number;
+}
 export declare type Files = Record<string, File | File[]>;
 export declare type Request = IncomingMessage;
 export declare type Response = ServerResponse;
@@ -14,13 +21,6 @@ export interface ActionOptions {
     search?: Search;
     cookies?: Cookies;
     files?: Files;
-}
-export interface File {
-    fieldName: string;
-    headers: Record<string, string>;
-    originalFilename: string;
-    path: string;
-    size: number;
 }
 export declare const URL_PARSER: RegExp;
 export declare class Action<O extends ActionOptions = ActionOptions> {
@@ -39,3 +39,4 @@ export declare class Action<O extends ActionOptions = ActionOptions> {
     };
     get path(): string;
 }
+export declare function useAction<O extends ActionOptions>(): Action<O>;

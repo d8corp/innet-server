@@ -1,9 +1,10 @@
+import { createHandler } from 'innet'
 import html from '@innet/html'
-import { jsxPlugins, jsxTemplate } from '@innet/jsx'
+import { jsxComponent, jsxPlugins } from '@innet/jsx'
 import { switchAsync, SwitchProps } from '@innet/switch'
 import { array, arrayAsync, arrayClear, arraySingleLess, async, fn, object, promise } from '@innet/utils'
-import { createHandler } from 'innet'
 
+import { serverFn } from '../experimental/serverFn'
 import {
   cms, CmsProps,
   cookie, CookieProps,
@@ -11,13 +12,11 @@ import {
   file, FileProps,
   header, HeaderProps,
   proxy, ProxyProps,
+  redirect, RedirectProps,
   router, RouterProps,
   success, SuccessProps,
-  redirect, RedirectProps,
 } from '../plugins'
 import { server, ServerProps } from '../server'
-
-import { serverFn } from '../experimental/serverFn'
 
 export const arrayPlugins = [
   arrayAsync,
@@ -45,15 +44,15 @@ export const fnPlugins = [
 ]
 
 export const objectPlugins = [
-  jsxPlugins(JSXPlugins),
-  jsxTemplate,
+  jsxPlugins(JSXPlugins as any),
+  jsxComponent,
 ]
 
 export const promisePlugins = [
   async,
 ]
 
-export default createHandler([
+export const handler = createHandler([
   promise(promisePlugins),
   array(arrayPlugins),
   object(objectPlugins),

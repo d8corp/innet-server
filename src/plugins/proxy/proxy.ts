@@ -1,7 +1,7 @@
-import httpProxy from 'http-proxy'
 import { Handler } from 'innet'
+import httpProxy from 'http-proxy'
 
-import { Action, ACTION } from '../../action'
+import { ACTION, Action } from '../../action'
 import { CONTINUE } from '../../constants'
 
 export interface ProxyProps {

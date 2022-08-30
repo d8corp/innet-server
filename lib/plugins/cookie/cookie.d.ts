@@ -1,5 +1,5 @@
-import { CookieSerializeOptions } from 'cookie';
 import { Handler } from 'innet';
+import { CookieSerializeOptions } from 'cookie';
 export interface CookieProps extends CookieSerializeOptions {
     key: string;
     value?: string;

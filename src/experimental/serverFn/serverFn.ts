@@ -5,7 +5,7 @@ export function serverFn (): PluginHandler {
   return (fn, next, handler) => {
     let result
 
-    new Watch(update => result = innet(fn(update), handler))
+    new Watch(update => (result = innet(fn(update), handler)))
 
     return result
   }

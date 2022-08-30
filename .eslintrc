@@ -1,0 +1,39 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "simple-import-sort"
+  ],
+  "extends": [
+    "standard",
+    "standard-jsx"
+  ],
+  "env": {
+    "jest": true
+  },
+  "rules": {
+    "no-new": "off",
+    "no-unused-vars": "off",
+    "no-useless-constructor": "off",
+    "one-var": "off",
+    "react/jsx-key": "off",
+    "import/no-absolute-path": "off",
+    "react/no-children-prop": "off",
+    "comma-dangle": ["error", "always-multiline"],
+    "react/jsx-closing-bracket-location": ["error", {
+      "nonEmpty": "after-props"
+    }],
+    "simple-import-sort/imports": ["error", {
+      "groups": [
+        ["^\\u0000"],
+        ["^innet$", "^@?\\w"],
+        ["^"],
+        ["^\\.+(/[^/.]+|/[^.]+/[^/.]+)$"],
+        ["^\\..+"],
+        ["^\\.$"],
+        ["^\\..+.s?css$"]
+      ]
+    }]
+  }
+}

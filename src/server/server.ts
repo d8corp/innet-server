@@ -1,12 +1,12 @@
+import innet, { Handler } from 'innet'
 import fs from 'fs'
 import http from 'http'
 import http2 from 'https'
-import innet, { Handler } from 'innet'
 import { onDestroy } from 'watch-state'
-const isInvalidPath = require('is-invalid-path')
 
-import { Action, ACTION } from '../action'
+import { ACTION, Action } from '../action'
 import { CONTINUE } from '../constants'
+const isInvalidPath = require('is-invalid-path')
 
 export interface SSL {
   cert: string
@@ -33,7 +33,7 @@ export function server ({ props = {} as ServerProps, children }, handler: Handle
     cert = fs.readFileSync(cert).toString()
   }
 
-  const https = (key && cert) as unknown as boolean
+  const https = Boolean(key && cert)
   const { port = env.PORT || (https ? 442 : 80), unknownError = '', onStart, onError, onRequest } = props
 
   const server = https ? http2.createServer({ key, cert }) : http.createServer()

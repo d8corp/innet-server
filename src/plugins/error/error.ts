@@ -1,6 +1,6 @@
 import innet from 'innet'
 
-import { Action, ACTION } from '../../action'
+import { ACTION, Action } from '../../action'
 
 export const errorStatuses = {
   badRequest: 400,

@@ -1,10 +1,10 @@
-import { Props } from '@innet/jsx'
 import path from 'path'
 
-import { Action, ACTION } from '../../action'
 import { file } from '../file'
 
-export interface CmsProps extends Props {
+import { ACTION, Action } from '../../action'
+
+export interface CmsProps {
   dir?: string
   prefix?: string
 }

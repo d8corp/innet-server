@@ -1,5 +1,3 @@
-import { Children, Component, Props } from '@innet/jsx';
-import { Handler } from 'innet';
 import { Action } from '../../action';
 export declare type Methods = 'GET' | 'HEAD' | 'POST' | 'DELETE' | 'PUT' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH';
 export interface RouterProps {
@@ -15,15 +13,7 @@ export interface Router {
     params?: Record<string, string>;
 }
 export declare const ROUTER: string;
-export interface RouterComponent extends Component {
-    router: Router;
-}
-export interface RouterComponentConstructor {
-    new (props?: Props, children?: Children, handler?: Handler): RouterComponent;
-    [key: string]: any;
-}
-export declare function getRouter(handler: Handler): Router;
-export declare function withRouter<T extends RouterComponentConstructor>(target: T): T;
+export declare function useRouter(): Router;
 export declare function router({ props, children }: {
     props: any;
     children: any;
