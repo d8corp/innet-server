@@ -3,13 +3,14 @@ import { useHandler } from '@innet/jsx'
 import cookie, { CookieSerializeOptions } from 'cookie'
 import { IncomingMessage, ServerResponse } from 'http'
 import multiparty from 'multiparty'
+import { ParsedQs } from 'qs'
+
+import { parseSearch } from '../../utils'
 
 export const ACTION = Symbol('Action') as unknown as string
 
-export type Resources = 'search' | 'body' | 'cookies' | 'files'
-
 export type Body = Record<string, any>
-export type Search = Record<string, any>
+export type Search = ParsedQs
 export type Cookies = Record<string, string | string[]>
 
 export interface File {
@@ -30,6 +31,8 @@ export interface ActionOptions {
   cookies?: Cookies
   files?: Files
 }
+
+export type Resources = Exclude<keyof ActionOptions, undefined>
 
 export const URL_PARSER = /^(?<path>[^?]+)(\?(?<search>.*))?/
 
@@ -88,26 +91,7 @@ export class Action<O extends ActionOptions = ActionOptions> {
   files?: O['files']
 
   @once get search (): O['search'] {
-    const result = Object.create(null)
-    const search = this.parsedUrl.search || ''
-
-    for (const option of search.split('&')) {
-      const [key, ...value] = option.split('=')
-      if (key) {
-        const normValue = value.join('=')
-        if (key in result) {
-          if (Array.isArray(result[key])) {
-            result[key].push(normValue)
-          } else {
-            result[key] = [result[key], normValue]
-          }
-        } else {
-          result[key] = normValue
-        }
-      }
-    }
-
-    return result
+    return parseSearch(this.parsedUrl.search)
   }
 
   @once get parsedUrl () {

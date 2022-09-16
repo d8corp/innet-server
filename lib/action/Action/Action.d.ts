@@ -1,10 +1,10 @@
 /// <reference types="node" />
 import { CookieSerializeOptions } from 'cookie';
 import { IncomingMessage, ServerResponse } from 'http';
+import { ParsedQs } from 'qs';
 export declare const ACTION: string;
-export declare type Resources = 'search' | 'body' | 'cookies' | 'files';
 export declare type Body = Record<string, any>;
-export declare type Search = Record<string, any>;
+export declare type Search = ParsedQs;
 export declare type Cookies = Record<string, string | string[]>;
 export interface File {
     fieldName: string;
@@ -22,6 +22,7 @@ export interface ActionOptions {
     cookies?: Cookies;
     files?: Files;
 }
+export declare type Resources = Exclude<keyof ActionOptions, undefined>;
 export declare const URL_PARSER: RegExp;
 export declare class Action<O extends ActionOptions = ActionOptions> {
     readonly req: Request;
