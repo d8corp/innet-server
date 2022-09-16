@@ -13,6 +13,7 @@ export const redirectStatuses = {
 
 export interface RedirectProps {
   to: string
+  encode?: boolean
   status?: number | keyof typeof redirectStatuses
 }
 
@@ -23,10 +24,10 @@ function getStatus (status: number | string): number {
 
 export function redirect ({ props, children }, handler) {
   const { res }: Action = handler[ACTION]
-  const { to, status = 301 }: RedirectProps = props
+  const { to, status = 301, encode }: RedirectProps = props
 
   res.writeHead(getStatus(status), {
-    location: to,
+    location: encode ? encodeURI(to) : to,
   })
 
   return null

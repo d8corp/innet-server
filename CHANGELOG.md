@@ -2,6 +2,10 @@
 
 ## v1.4
 
+### v1.4.3 [![16.09.2022](https://img.shields.io/date/1663325198)](https://github.com/d8corp/innet-server/tree/v1.4.3)
+
+- add `encode` prop of `redirect`
+
 ### v1.4.1 [![16.09.2022](https://img.shields.io/date/1663317250)](https://github.com/d8corp/innet-server/tree/v1.4.1)
 
 - improve search parsing

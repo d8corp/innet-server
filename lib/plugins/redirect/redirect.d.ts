@@ -10,6 +10,7 @@ export declare const redirectStatuses: {
 };
 export interface RedirectProps {
     to: string;
+    encode?: boolean;
     status?: number | keyof typeof redirectStatuses;
 }
 export declare function redirect({ props, children }: {
