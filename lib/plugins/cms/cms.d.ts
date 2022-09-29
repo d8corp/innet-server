@@ -4,5 +4,6 @@ export interface CmsProps {
 }
 export interface CmsJsxElement {
     props: CmsProps;
+    children?: any;
 }
-export declare function cms({ props }: CmsJsxElement, handler: any): Promise<unknown>;
+export declare function cms({ props, children }: CmsJsxElement, handler: any): Promise<unknown>;

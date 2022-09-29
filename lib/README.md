@@ -213,14 +213,14 @@ You can return a file as a response.
 ```typescript jsx
 export default (
   <server>
-    <header name='content-type' value='text/html'>
+    <header name='cache-control' value='max-age=300'>
       <file path='index.html' />
     </header>
   </server>
 )
 ```
 
-In this case `content-type` will be equal to `text/html` even if the file does not exist.
+In this case `cache-control` will be equal to `max-age=300` even if the file does not exist.
 
 You can put content into the file to apply it only if the file does exist.
 
@@ -228,7 +228,7 @@ You can put content into the file to apply it only if the file does exist.
 export default (
   <server>
     <file path='index.html'>
-      <header name='content-type' value='text/html' />
+      <header name='cache-control' value='max-age=300' />
     </file>
   </server>
 )
@@ -394,7 +394,7 @@ export default (
 
 It will check if the file exist in cms folder then returns the file else returns `404.html`.
 
-You can add prefix with router to handle specific path.
+You can use prefix with router to handle specific path.
 
 ```typescript jsx
 export default (
@@ -403,6 +403,21 @@ export default (
       <router path='/cms' ish>
         <cms dir='cms' prefix='/cms' />
       </router>
+      <file path='404.html' />
+    </switch>
+  </server>
+)
+```
+
+You can input something into `cms`, if requested file is exist then the content should be used.
+
+```typescript jsx
+export default (
+  <server>
+    <switch>
+      <cms dir='cms'>
+        <header name='cache-control' value='max-age=300' />
+      </cms>
       <file path='404.html' />
     </switch>
   </server>

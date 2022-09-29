@@ -2,6 +2,11 @@
 
 ## v1.4
 
+### v1.4.4 [![29.09.2022](https://img.shields.io/date/1664456868)](https://github.com/d8corp/innet-server/tree/v1.4.4)
+
+- fix `file` plugin
+- improve `cms` plugin
+
 ### v1.4.3 [![16.09.2022](https://img.shields.io/date/1663325198)](https://github.com/d8corp/innet-server/tree/v1.4.3)
 
 - add `encode` prop of `redirect`

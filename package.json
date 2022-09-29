@@ -1,6 +1,6 @@
 {
   "name": "@innet/server",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Create server-side application with innet",
   "main": "index.js",
   "module": "index.es6.js",
@@ -43,7 +43,7 @@
     "@typescript-eslint/eslint-plugin": "^5.36.0",
     "@typescript-eslint/parser": "^5.36.0",
     "core-js": "^3.25.0",
-    "eslint": "^8.21.0",
+    "eslint": "^8.23.1",
     "eslint-config-standard": "^17.0.0",
     "eslint-config-standard-jsx": "^11.0.0",
     "eslint-plugin-import": "^2.26.0",

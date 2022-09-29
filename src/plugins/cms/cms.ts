@@ -11,9 +11,10 @@ export interface CmsProps {
 
 export interface CmsJsxElement {
   props: CmsProps
+  children?: any
 }
 
-export function cms ({ props }: CmsJsxElement, handler) {
+export function cms ({ props, children }: CmsJsxElement, handler) {
   const action: Action = handler[ACTION]
   const { req } = action
 
@@ -34,5 +35,5 @@ export function cms ({ props }: CmsJsxElement, handler) {
 
   const filePath = path.join(dir, url)
 
-  return file({ props: { path: filePath } }, handler)
+  return file({ props: { path: filePath }, children }, handler)
 }
