@@ -9,3 +9,4 @@ export * from './proxy';
 export * from './redirect';
 export * from './validation';
 export * from './formatter';
+export * from './access';

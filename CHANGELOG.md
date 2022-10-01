@@ -2,6 +2,11 @@
 
 ## v1.5
 
+### v1.5.3 [![01.10.2022](https://img.shields.io/date/1664637312)](https://github.com/d8corp/innet-server/tree/v1.5.3)
+
+- fix `validation` plugin
+- add `access` plugin
+
 ### v1.5.2 [![01.10.2022](https://img.shields.io/date/1664633276)](https://github.com/d8corp/innet-server/tree/v1.5.2)
 
 - fix `validation` plugin

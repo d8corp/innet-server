@@ -15,12 +15,10 @@ export interface ValidationJsxElement<T> {
 }
 
 export interface ValidationContext {
-  handleError: (e: ValidationResponse<any>) => any
+  handleError?: (e: ValidationResponse<any>) => any
 }
 
-export const validationContext = new Context<ValidationContext>({
-  handleError: () => {},
-})
+export const validationContext = new Context<ValidationContext>({})
 
 export function validation <T extends object, E extends object> ({ props, children }: ValidationJsxElement<T>, handler) {
   const action: Action = handler[ACTION]
@@ -38,7 +36,8 @@ export function validation <T extends object, E extends object> ({ props, childr
 
     return validate<T, E>(map, data as T).then(e => {
       if (e) {
-        return innet(validationContext.get(handler).handleError(e), handler)
+        const { handleError } = validationContext.get(handler)
+        return handleError ? innet(handleError(e), handler) : undefined
       }
 
       return innet(children, handler)

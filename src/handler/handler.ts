@@ -11,6 +11,7 @@ import { array, arrayAsync, arrayClear, arraySingleLess, async, fn, object, prom
 
 import { serverFn } from '../experimental/serverFn'
 import {
+  access, AccessProps,
   cms, CmsProps,
   cookie, CookieProps,
   error, ErrorProps,
@@ -49,6 +50,7 @@ export const JSXPlugins = {
   context,
   slot,
   slots,
+  access,
 }
 
 export const fnPlugins = [
@@ -90,6 +92,7 @@ declare global {
       context: ContextProps
       slot: SlotProps
       slots: SlotsProps
+      access: AccessProps
     }
   }
 }

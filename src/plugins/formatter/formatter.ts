@@ -24,7 +24,7 @@ export function formatter <T extends object, E extends object> ({ props, childre
   const action: Action = handler[ACTION]
 
   if (!action) {
-    throw Error('`validation` should be inside `server`')
+    throw Error('`formatter` should be inside `server`')
   }
 
   const { map, resource = 'body' } = props
