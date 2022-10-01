@@ -15,6 +15,7 @@ import {
   cookie, CookieProps,
   error, ErrorProps,
   file, FileProps,
+  formatter, FormatterProps,
   header, HeaderProps,
   proxy, ProxyProps,
   redirect, RedirectProps,
@@ -44,6 +45,7 @@ export const JSXPlugins = {
   proxy,
   redirect,
   validation,
+  formatter,
   context,
   slot,
   slots,
@@ -84,6 +86,7 @@ declare global {
       switch: SwitchProps
       proxy: ProxyProps
       validation: ValidationProps<any>
+      formatter: FormatterProps<any>
       context: ContextProps
       slot: SlotProps
       slots: SlotsProps

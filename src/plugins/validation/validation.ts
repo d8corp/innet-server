@@ -1,3 +1,4 @@
+import innet from 'innet'
 import { validation as validate, ValidationMap, ValidationResponse } from '@cantinc/utils'
 import { Context } from '@innet/jsx'
 
@@ -37,10 +38,10 @@ export function validation <T extends object, E extends object> ({ props, childr
 
     return validate<T, E>(map, data as T).then(e => {
       if (e) {
-        return validationContext.get(handler).handleError(e)
+        return innet(validationContext.get(handler).handleError(e), handler)
       }
 
-      return children
+      return innet(children, handler)
     })
   }
 

@@ -3,7 +3,7 @@ import { context, ContextProps, slot, SlotProps, slots, SlotsProps } from '@inne
 import { switchAsync, SwitchProps } from '@innet/switch';
 import { arrayAsync, async } from '@innet/utils';
 import { serverFn } from '../experimental/serverFn';
-import { cms, CmsProps, cookie, CookieProps, error, ErrorProps, file, FileProps, header, HeaderProps, proxy, ProxyProps, redirect, RedirectProps, router, RouterProps, success, SuccessProps, validation, ValidationProps } from '../plugins';
+import { cms, CmsProps, cookie, CookieProps, error, ErrorProps, file, FileProps, formatter, FormatterProps, header, HeaderProps, proxy, ProxyProps, redirect, RedirectProps, router, RouterProps, success, SuccessProps, validation, ValidationProps } from '../plugins';
 import { server, ServerProps } from '../server';
 export declare const arrayPlugins: (typeof arrayAsync)[];
 export declare const JSXPlugins: {
@@ -20,6 +20,7 @@ export declare const JSXPlugins: {
     proxy: typeof proxy;
     redirect: typeof redirect;
     validation: typeof validation;
+    formatter: typeof formatter;
     context: typeof context;
     slot: typeof slot;
     slots: typeof slots;
@@ -43,6 +44,7 @@ declare global {
             switch: SwitchProps;
             proxy: ProxyProps;
             validation: ValidationProps<any>;
+            formatter: FormatterProps<any>;
             context: ContextProps;
             slot: SlotProps;
             slots: SlotsProps;
