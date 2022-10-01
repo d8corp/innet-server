@@ -1,6 +1,11 @@
 import { createHandler } from 'innet'
 import html from '@innet/html'
-import { jsxComponent, jsxPlugins } from '@innet/jsx'
+import {
+  context, ContextProps,
+  jsxComponent, jsxPlugins,
+  slot, SlotProps,
+  slots, SlotsProps,
+} from '@innet/jsx'
 import { switchAsync, SwitchProps } from '@innet/switch'
 import { array, arrayAsync, arrayClear, arraySingleLess, async, fn, object, promise } from '@innet/utils'
 
@@ -15,6 +20,7 @@ import {
   redirect, RedirectProps,
   router, RouterProps,
   success, SuccessProps,
+  validation, ValidationProps,
 } from '../plugins'
 import { server, ServerProps } from '../server'
 
@@ -37,6 +43,10 @@ export const JSXPlugins = {
   file,
   proxy,
   redirect,
+  validation,
+  context,
+  slot,
+  slots,
 }
 
 export const fnPlugins = [
@@ -73,6 +83,10 @@ declare global {
       file: FileProps
       switch: SwitchProps
       proxy: ProxyProps
+      validation: ValidationProps<any>
+      context: ContextProps
+      slot: SlotProps
+      slots: SlotsProps
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@innet/server",
-  "version": "1.4.4",
+  "version": "1.5.0",
   "description": "Create server-side application with innet",
   "main": "index.js",
   "module": "index.es6.js",
@@ -22,21 +22,21 @@
   },
   "homepage": "https://github.com/d8corp/innet-server",
   "dependencies": {
-    "@cantinc/utils": "^1.0.1",
+    "@cantinc/utils": "^1.2.4",
     "@innet/html": "^1.0.1",
-    "@innet/jsx": "^1.0.4",
+    "@innet/jsx": "^1.1.0",
     "@innet/switch": "^1.0.0",
     "@innet/utils": "^1.1.1",
     "@types/cookie": "^0.5.1",
     "@types/qs": "^6.9.7",
     "cookie": "^0.5.0",
     "http-proxy": "^1.18.1",
-    "innet": "^1.0.0",
+    "innet": "^1.0.1",
     "is-invalid-path": "^1.0.2",
     "mime": "^3.0.0",
     "multiparty": "^4.2.3",
     "qs": "^6.11.0",
     "tslib": "^2.4.0",
-    "watch-state": "^3.4.4"
+    "watch-state": "^3.4.5"
   }
 }

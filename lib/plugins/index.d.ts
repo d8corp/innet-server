@@ -7,3 +7,4 @@ export * from './cms';
 export * from './file';
 export * from './proxy';
 export * from './redirect';
+export * from './validation';
