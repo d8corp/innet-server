@@ -17,7 +17,7 @@ export interface ValidationContext {
   handleError: (e: ValidationResponse<any>) => any
 }
 
-const validationContext = new Context<ValidationContext>({
+export const validationContext = new Context<ValidationContext>({
   handleError: () => {},
 })
 
@@ -28,7 +28,7 @@ export function validation <T extends object, E extends object> ({ props, childr
     throw Error('`validation` should be inside `server`')
   }
 
-  const { map, resource } = props
+  const { map, resource = 'body' } = props
 
   const run = () => {
     const data = action[resource]
