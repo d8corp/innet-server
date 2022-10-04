@@ -26,9 +26,9 @@ export type Request = IncomingMessage
 export type Response = ServerResponse
 
 export interface ActionOptions {
+  search: Search
+  cookies: Cookies
   body?: Body
-  search?: Search
-  cookies?: Cookies
   files?: Files
 }
 

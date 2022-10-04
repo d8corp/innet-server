@@ -2,6 +2,10 @@
 
 ## v1.5
 
+### v1.5.4 [![04.10.2022](https://img.shields.io/date/1664889168)](https://github.com/d8corp/innet-server/tree/v1.5.4)
+
+- improve `action` types
+
 ### v1.5.3 [![01.10.2022](https://img.shields.io/date/1664637312)](https://github.com/d8corp/innet-server/tree/v1.5.3)
 
 - fix `validation` plugin

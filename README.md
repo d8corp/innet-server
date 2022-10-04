@@ -795,14 +795,14 @@ async function Body () {
 }
 ```
 
-## getRouter
+## useRouter
 
 You can get router data in a component
 
 ```typescript jsx
 import { useRouter } from '@innet/server'
 
-async function Router () {
+function Router () {
   const { prefix, params } = useRouter()
 
   return <success>{{ prefix, params }}</success>

@@ -17,9 +17,9 @@ export declare type Files = Record<string, File | File[]>;
 export declare type Request = IncomingMessage;
 export declare type Response = ServerResponse;
 export interface ActionOptions {
+    search: Search;
+    cookies: Cookies;
     body?: Body;
-    search?: Search;
-    cookies?: Cookies;
     files?: Files;
 }
 export declare type Resources = Exclude<keyof ActionOptions, undefined>;
