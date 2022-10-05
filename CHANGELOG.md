@@ -2,6 +2,10 @@
 
 ## v1.5
 
+### v1.5.5 [![05.10.2022](https://img.shields.io/date/1664967350)](https://github.com/d8corp/innet-server/tree/v1.5.5)
+
+- fix a bug of `null` usage
+
 ### v1.5.4 [![04.10.2022](https://img.shields.io/date/1664889168)](https://github.com/d8corp/innet-server/tree/v1.5.4)
 
 - improve `action` types

@@ -7,7 +7,7 @@ import {
   slots, SlotsProps,
 } from '@innet/jsx'
 import { switchAsync, SwitchProps } from '@innet/switch'
-import { array, arrayAsync, arrayClear, arraySingleLess, async, fn, object, promise } from '@innet/utils'
+import { array, arrayAsync, arrayClear, arraySingleLess, async, fn, nullish, object, promise, stop } from '@innet/utils'
 
 import { serverFn } from '../experimental/serverFn'
 import {
@@ -69,6 +69,7 @@ export const promisePlugins = [
 export const handler = createHandler([
   promise(promisePlugins),
   array(arrayPlugins),
+  nullish([stop]),
   object(objectPlugins),
   fn(fnPlugins),
 ])
