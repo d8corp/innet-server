@@ -1,5 +1,12 @@
 # Changelog
 
+## v1.6
+
+### v1.6.0 [![06.10.2022](https://img.shields.io/date/1665050954)](https://github.com/d8corp/innet-server/tree/v1.6.0)
+
+- remove `search` from `router` prop of `path`
+- improve `useAction` types
+
 ## v1.5
 
 ### v1.5.5 [![05.10.2022](https://img.shields.io/date/1664967350)](https://github.com/d8corp/innet-server/tree/v1.5.5)

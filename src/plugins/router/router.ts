@@ -15,7 +15,7 @@ export interface RouterProps {
 
 export function getMatchReg (props: RouterProps) {
   const { ish, path } = props
-  return `^${path ? `${path}${ish ? '(/[^?]*)?' : ''}` : '[^?]*'}(\\?.*)?$`
+  return `^${path}${ish ? '(?<rest>/.*)?' : ''}$`
 }
 
 export interface Router {
@@ -34,11 +34,12 @@ export function router ({ props, children }, handler) {
   if (!props) return children
 
   const action: Action = handler[ACTION]
-  const { req } = action
 
-  if (!req) {
+  if (!action) {
     throw Error('`router` should be used inside `server`')
   }
+
+  const { req, path } = action
 
   if (props.method && props.method !== req.method) {
     return
@@ -47,11 +48,11 @@ export function router ({ props, children }, handler) {
   const parent = handler[ROUTER] as Router
   const parentPrefix = parent?.prefix || ''
 
-  if (parentPrefix && !req.url.startsWith(parentPrefix)) {
+  if (parentPrefix && !path.startsWith(parentPrefix)) {
     return
   }
 
-  const url = parentPrefix ? req.url.slice(parentPrefix.length) : req.url
+  const url = parentPrefix ? path.slice(parentPrefix.length) : path
 
   const newHandler = Object.create(handler)
 
@@ -61,7 +62,7 @@ export function router ({ props, children }, handler) {
     current.prefix = parentPrefix + props.prefix
   }
 
-  if (props.path || props.search) {
+  if (props.path) {
     const urlReg = new RegExp(getMatchReg(props))
 
     if (urlReg.test(url)) {

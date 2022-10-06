@@ -107,6 +107,6 @@ export class Action<O extends ActionOptions = ActionOptions> {
   }
 }
 
-export function useAction<O extends ActionOptions> (): Action<O> {
+export function useAction<T extends Partial<ActionOptions>, O extends ActionOptions = ActionOptions & T> (): Action<O> {
   return useHandler()[ACTION]
 }
