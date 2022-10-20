@@ -22,12 +22,16 @@ function getStatus (status: number | string): number {
   return redirectStatuses[status] || 301
 }
 
+function customEncode (url: string) {
+  return encodeURI(url.replaceAll('%20', ' '))
+}
+
 export function redirect ({ props, children }, handler) {
   const { res }: Action = handler[ACTION]
   const { to, status = 301, encode }: RedirectProps = props
 
   res.writeHead(getStatus(status), {
-    location: encode ? encodeURI(to) : to,
+    location: encode ? customEncode(to) : to,
   })
 
   return null
