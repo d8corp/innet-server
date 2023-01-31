@@ -1,6 +1,6 @@
 {
   "name": "@innet/server",
-  "version": "1.6.2",
+  "version": "1.6.3",
   "description": "Create server-side application with innet",
   "main": "index.js",
   "module": "index.es6.js",
@@ -38,7 +38,6 @@
     "@types/http-proxy": "^1.17.9",
     "@types/jest": "^29.1.1",
     "@types/mime": "^3.0.1",
-    "@types/multiparty": "^0.0.33",
     "@types/node": "^18.7.23",
     "@typescript-eslint/eslint-plugin": "^5.38.1",
     "@typescript-eslint/parser": "^5.38.1",
@@ -61,6 +60,7 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
+    "@types/multiparty": "^0.0.33",
     "@cantinc/utils": "^1.2.7",
     "@innet/html": "^1.0.1",
     "@innet/jsx": "^1.1.0",

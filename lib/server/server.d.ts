@@ -1,10 +1,11 @@
 import { Handler } from 'innet';
-import { Action } from '../action';
+import { Action, ActionParams } from '../action';
 export interface SSL {
     cert: string;
     key: string;
 }
 export interface ServerProps {
+    actionParams?: ActionParams;
     port?: number;
     ssl?: SSL;
     unknownError?: string;

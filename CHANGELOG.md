@@ -2,6 +2,10 @@
 
 ## v1.6
 
+### v1.6.3 [![31.01.2023](https://img.shields.io/date/1675186207)](https://github.com/d8corp/innet-server/tree/v1.6.3)
+
+- add form parsing sets
+
 ### v1.6.2 [![31.01.2023](https://img.shields.io/date/1675178303)](https://github.com/d8corp/innet-server/tree/v1.6.2)
 
 - fix `@cantinc/utils` validation changes bug

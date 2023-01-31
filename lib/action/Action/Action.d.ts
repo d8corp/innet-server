@@ -1,6 +1,7 @@
 /// <reference types="node" />
 import { CookieSerializeOptions } from 'cookie';
 import { IncomingMessage, ServerResponse } from 'http';
+import { FormOptions } from 'multiparty';
 import { ParsedQs } from 'qs';
 export declare const ACTION: string;
 export declare type Body = Record<string, any>;
@@ -22,12 +23,16 @@ export interface ActionOptions {
     body?: Body;
     files?: Files;
 }
+export interface ActionParams {
+    multipartyForm?: FormOptions;
+}
 export declare type Resources = Exclude<keyof ActionOptions, undefined>;
 export declare const URL_PARSER: RegExp;
 export declare class Action<O extends ActionOptions = ActionOptions> {
     readonly req: Request;
     readonly res: Response;
-    constructor(req: Request, res: Response);
+    params: ActionParams;
+    constructor(req: Request, res: Response, params?: ActionParams);
     get cookies(): O['cookies'];
     setCookie(key: string, value?: string, opt?: CookieSerializeOptions): void;
     parseBody(): Promise<unknown>;

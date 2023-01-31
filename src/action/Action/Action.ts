@@ -2,7 +2,7 @@ import { once } from '@cantinc/utils'
 import { useHandler } from '@innet/jsx'
 import cookie, { CookieSerializeOptions } from 'cookie'
 import { IncomingMessage, ServerResponse } from 'http'
-import multiparty from 'multiparty'
+import multiparty, { FormOptions } from 'multiparty'
 import { ParsedQs } from 'qs'
 
 import { parseSearch } from '../../utils'
@@ -32,12 +32,16 @@ export interface ActionOptions {
   files?: Files
 }
 
+export interface ActionParams {
+  multipartyForm?: FormOptions
+}
+
 export type Resources = Exclude<keyof ActionOptions, undefined>
 
 export const URL_PARSER = /^(?<path>[^?]+)(\?(?<search>.*))?/
 
 export class Action<O extends ActionOptions = ActionOptions> {
-  constructor (public readonly req: Request, public readonly res: Response) {}
+  constructor (public readonly req: Request, public readonly res: Response, public params: ActionParams = {}) {}
 
   @once get cookies (): O['cookies'] {
     return cookie.parse(this.req.headers.cookie || '')
@@ -63,7 +67,7 @@ export class Action<O extends ActionOptions = ActionOptions> {
 
   @once parseBody () {
     return new Promise((resolve, reject) => {
-      new multiparty.Form().parse(this.req, (err, fields, files) => {
+      new multiparty.Form(this.params.multipartyForm).parse(this.req, (err, fields, files) => {
         if (err) {
           reject(err)
         } else {

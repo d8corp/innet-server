@@ -4,7 +4,7 @@ import http from 'http'
 import http2 from 'https'
 import { onDestroy } from 'watch-state'
 
-import { ACTION, Action } from '../action'
+import { ACTION, Action, ActionParams } from '../action'
 import { CONTINUE } from '../constants'
 const isInvalidPath = require('is-invalid-path')
 
@@ -13,6 +13,7 @@ export interface SSL {
   key: string
 }
 export interface ServerProps {
+  actionParams?: ActionParams
   port?: number
   ssl?: SSL
   unknownError?: string
@@ -24,7 +25,7 @@ export interface ServerProps {
 
 export function server ({ props = {} as ServerProps, children }, handler: Handler) {
   const { env } = process
-  let { ssl: { key = env.SSL_KEY, cert = env.SSL_CRT } = {} } = props
+  let { ssl: { key = env.SSL_KEY, cert = env.SSL_CRT } = {}, actionParams } = props
 
   if (!isInvalidPath(key)) {
     key = fs.readFileSync(key).toString()
@@ -45,7 +46,7 @@ export function server ({ props = {} as ServerProps, children }, handler: Handle
   server.on('request', async (req, res) => {
     const childHandler = Object.create(handler)
 
-    childHandler[ACTION] = new Action(req, res)
+    childHandler[ACTION] = new Action(req, res, actionParams)
 
     if (onRequest) {
       await onRequest(childHandler[ACTION])
