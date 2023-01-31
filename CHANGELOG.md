@@ -2,6 +2,10 @@
 
 ## v1.6
 
+### v1.6.2 [![31.01.2023](https://img.shields.io/date/1675178303)](https://github.com/d8corp/innet-server/tree/v1.6.2)
+
+- fix `@cantinc/utils` validation changes bug
+
 ### v1.6.1 [![06.10.2022](https://img.shields.io/date/1666253898)](https://github.com/d8corp/innet-server/tree/v1.6.1)
 
 - fix `redirect` encoding bug

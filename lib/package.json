@@ -1,6 +1,6 @@
 {
   "name": "@innet/server",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "description": "Create server-side application with innet",
   "main": "index.js",
   "module": "index.es6.js",
@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/d8corp/innet-server",
   "dependencies": {
-    "@cantinc/utils": "^1.2.4",
+    "@cantinc/utils": "^1.2.7",
     "@innet/html": "^1.0.1",
     "@innet/jsx": "^1.1.0",
     "@innet/switch": "^1.0.0",

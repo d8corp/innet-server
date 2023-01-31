@@ -34,14 +34,14 @@ export function validation <T extends object, E extends object> ({ props, childr
 
     if (!data) throw Error(`cannot find ${resource} in action`)
 
-    return validate<T, E>(map, data as T).then(e => {
-      if (e) {
-        const { handleError } = validationContext.get(handler)
-        return handleError ? innet(handleError(e), handler) : undefined
-      }
+    const result = validate<T, E>(map, data as T)
 
-      return innet(children, handler)
-    })
+    if (result) {
+      const { handleError } = validationContext.get(handler)
+      return handleError ? innet(handleError(result), handler) : undefined
+    }
+
+    return innet(children, handler)
   }
 
   if (resource === 'body' || resource === 'files') {

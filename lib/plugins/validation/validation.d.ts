@@ -13,4 +13,4 @@ export interface ValidationContext {
     handleError?: (e: ValidationResponse<any>) => any;
 }
 export declare const validationContext: Context<ValidationContext, ValidationContext>;
-export declare function validation<T extends object, E extends object>({ props, children }: ValidationJsxElement<T>, handler: any): Promise<any>;
+export declare function validation<T extends object, E extends object>({ props, children }: ValidationJsxElement<T>, handler: any): any;
