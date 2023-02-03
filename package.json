@@ -1,6 +1,6 @@
 {
   "name": "@innet/server",
-  "version": "1.6.3",
+  "version": "1.6.4",
   "description": "Create server-side application with innet",
   "main": "index.js",
   "module": "index.es6.js",

@@ -3,7 +3,7 @@ import { context, ContextProps, slot, SlotProps, slots, SlotsProps } from '@inne
 import { switchAsync, SwitchProps } from '@innet/switch';
 import { arrayAsync, async } from '@innet/utils';
 import { serverFn } from '../experimental/serverFn';
-import { access, AccessProps, cms, CmsProps, cookie, CookieProps, error, ErrorProps, file, FileProps, formatter, FormatterProps, header, HeaderProps, proxy, ProxyProps, redirect, RedirectProps, router, RouterProps, success, SuccessProps, validation, ValidationProps } from '../plugins';
+import { access, AccessProps, cms, CmsProps, cookie, CookieProps, error, ErrorProps, file, FileProps, formatter, FormatterProps, header, HeaderProps, parseBody, ParseBodyProps, proxy, ProxyProps, redirect, RedirectProps, router, RouterProps, success, SuccessProps, validation, ValidationProps } from '../plugins';
 import { server, ServerProps } from '../server';
 export declare const arrayPlugins: (typeof arrayAsync)[];
 export declare const JSXPlugins: {
@@ -25,6 +25,7 @@ export declare const JSXPlugins: {
     slot: typeof slot;
     slots: typeof slots;
     access: typeof access;
+    'parse-body': typeof parseBody;
 };
 export declare const fnPlugins: (typeof serverFn)[];
 export declare const objectPlugins: ((handler: any) => import("innet").PluginHandler)[];
@@ -50,6 +51,7 @@ declare global {
             slot: SlotProps;
             slots: SlotsProps;
             access: AccessProps;
+            'parse-body': ParseBodyProps;
         }
     }
 }

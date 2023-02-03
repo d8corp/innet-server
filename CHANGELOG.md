@@ -2,6 +2,10 @@
 
 ## v1.6
 
+### v1.6.4 [![03.02.2023](https://img.shields.io/date/1675435945)](https://github.com/d8corp/innet-server/tree/v1.6.4)
+
+- add `parse-body` plugin
+
 ### v1.6.3 [![31.01.2023](https://img.shields.io/date/1675186207)](https://github.com/d8corp/innet-server/tree/v1.6.3)
 
 - add form parsing sets

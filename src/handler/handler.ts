@@ -18,6 +18,7 @@ import {
   file, FileProps,
   formatter, FormatterProps,
   header, HeaderProps,
+  parseBody, ParseBodyProps,
   proxy, ProxyProps,
   redirect, RedirectProps,
   router, RouterProps,
@@ -51,6 +52,7 @@ export const JSXPlugins = {
   slot,
   slots,
   access,
+  'parse-body': parseBody,
 }
 
 export const fnPlugins = [
@@ -94,6 +96,7 @@ declare global {
       slot: SlotProps
       slots: SlotsProps
       access: AccessProps
+      'parse-body': ParseBodyProps
     }
   }
 }
