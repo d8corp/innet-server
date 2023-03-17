@@ -2,6 +2,11 @@
 
 ## v1.6
 
+### v1.6.5 [![17.03.2023](https://img.shields.io/date/1679044635)](https://github.com/d8corp/innet-server/tree/v1.6.5)
+
+- improve body and files parsing algorithm
+- add hooks `useBody`, `useCookies`, `useFiles`, `useSearch`
+
 ### v1.6.4 [![03.02.2023](https://img.shields.io/date/1675435945)](https://github.com/d8corp/innet-server/tree/v1.6.4)
 
 - add `parse-body` plugin

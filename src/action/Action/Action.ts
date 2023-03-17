@@ -39,6 +39,93 @@ export interface ActionParams {
 export type Resources = Exclude<keyof ActionOptions, undefined>
 
 export const URL_PARSER = /^(?<path>[^?]+)(\?(?<search>.*))?/
+export const KEY_FIELD = /^(?<field>[^[]+)(?<rest>.*)$/
+export const KEY_KEYS = /^\[(?<key>[^\]]+)\](?<rest>.*)$/
+
+interface ParsedKey {
+  field: string
+  keys: string[]
+}
+
+function getKeys (keys: string): string[] {
+  const match = keys.match(KEY_KEYS)
+
+  if (!match) return [keys]
+  if (!match.groups.rest) return [match.groups.key]
+
+  return [match.groups.key, ...getKeys(match.groups.rest)]
+}
+
+function parseKey (key: string): ParsedKey {
+  const fieldMatch = key.match(KEY_FIELD)
+
+  if (!fieldMatch?.groups.field) {
+    return {
+      field: key,
+      keys: [],
+    }
+  }
+
+  return {
+    field: fieldMatch.groups.field,
+    keys: fieldMatch?.groups.rest ? getKeys(fieldMatch.groups.rest) : [],
+  }
+}
+
+function addField (key: ParsedKey, value: any, fields: Record<string, any>) {
+  if (!key.keys.length) {
+    if (!(key.field in fields)) {
+      fields[key.field] = value
+      return
+    }
+
+    const oldValue = fields[key.field]
+
+    if (Array.isArray(oldValue)) {
+      if (Array.isArray(value)) {
+        oldValue.push(...value)
+        return
+      }
+
+      oldValue.push(value)
+      return
+    }
+
+    if (Array.isArray(value)) {
+      fields[key.field] = [oldValue, ...value]
+      return
+    }
+
+    fields[key.field] = [oldValue, value]
+    return
+  }
+
+  const [field, ...keys] = key.keys
+  const oldValue = fields[key.field]
+
+  if (Array.isArray(oldValue)) {
+    throw Error('invalid keys')
+  }
+
+  if (!oldValue) {
+    fields[key.field] = {}
+  } else if (typeof oldValue !== 'object') {
+    throw Error('invalid keys')
+  }
+
+  addField({ field, keys }, value, fields[key.field])
+}
+
+function formatFields (fields: any) {
+  const result = {}
+
+  for (const key in fields) {
+    const value = fields[key]
+    addField(parseKey(key), Array.isArray(value) && value.length === 1 ? value[0] : value, result)
+  }
+
+  return result
+}
 
 export class Action<O extends ActionOptions = ActionOptions> {
   constructor (public readonly req: Request, public readonly res: Response, public params: ActionParams = {}) {}
@@ -70,23 +157,12 @@ export class Action<O extends ActionOptions = ActionOptions> {
       new multiparty.Form(this.params.multipartyForm).parse(this.req, (err, fields, files) => {
         if (err) {
           reject(err)
-        } else {
-          for (const key in fields) {
-            if (fields[key].length === 1) {
-              fields[key] = fields[key][0]
-            }
-          }
-
-          for (const key in files) {
-            if (files[key].length === 1) {
-              files[key] = files[key][0]
-            }
-          }
-
-          this.body = fields
-          this.files = files
-          resolve(fields)
+          return
         }
+
+        this.body = formatFields(fields)
+        this.files = formatFields(files)
+        resolve(fields)
       })
     })
   }
@@ -109,8 +185,4 @@ export class Action<O extends ActionOptions = ActionOptions> {
   get path () {
     return this.parsedUrl.path
   }
-}
-
-export function useAction<T extends Partial<ActionOptions>, O extends ActionOptions = ActionOptions & T> (): Action<O> {
-  return useHandler()[ACTION]
 }

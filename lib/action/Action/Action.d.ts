@@ -28,6 +28,8 @@ export interface ActionParams {
 }
 export declare type Resources = Exclude<keyof ActionOptions, undefined>;
 export declare const URL_PARSER: RegExp;
+export declare const KEY_FIELD: RegExp;
+export declare const KEY_KEYS: RegExp;
 export declare class Action<O extends ActionOptions = ActionOptions> {
     readonly req: Request;
     readonly res: Response;
@@ -45,4 +47,3 @@ export declare class Action<O extends ActionOptions = ActionOptions> {
     };
     get path(): string;
 }
-export declare function useAction<T extends Partial<ActionOptions>, O extends ActionOptions = ActionOptions & T>(): Action<O>;
