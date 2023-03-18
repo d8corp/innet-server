@@ -19,7 +19,7 @@ export interface ServerProps {
   unknownError?: string
   onStart?: (url: string) => any
   onRequest?: (action: Action) => any
-  onError?: (e: Error) => any
+  onError?: (e: Error, action?: Action) => any
   onDestroy?: () => any
 }
 
@@ -65,7 +65,7 @@ export function server ({ props = {} as ServerProps, children }, handler: Handle
         }
       } catch (e) {
         res.statusCode = 520
-        onError?.(e)
+        onError?.(e, childHandler[ACTION])
         res.write(unknownError)
       }
     }

@@ -11,7 +11,7 @@ export interface ServerProps {
     unknownError?: string;
     onStart?: (url: string) => any;
     onRequest?: (action: Action) => any;
-    onError?: (e: Error) => any;
+    onError?: (e: Error, action?: Action) => any;
     onDestroy?: () => any;
 }
 export declare function server({ props, children }: {

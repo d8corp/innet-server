@@ -2,6 +2,10 @@
 
 ## v1.6
 
+### v1.6.6 [![18.03.2023](https://img.shields.io/date/1679130866)](https://github.com/d8corp/innet-server/tree/v1.6.6)
+
+- add `Action` for `server` `onError`
+
 ### v1.6.5 [![17.03.2023](https://img.shields.io/date/1679044635)](https://github.com/d8corp/innet-server/tree/v1.6.5)
 
 - improve body and files parsing algorithm
