@@ -1,6 +1,6 @@
 import innet from 'innet'
 
-import { ACTION, Action } from '../../action'
+import { actionContext } from '../../hooks'
 
 export const errorStatuses = {
   badRequest: 400,
@@ -63,7 +63,13 @@ export interface ErrorProps {
 }
 
 export function error ({ props, children }, handler) {
-  const { res }: Action = handler[ACTION]
+  const action = actionContext.get(handler)
+
+  if (!action) {
+    throw Error('Use <error> inside <action>')
+  }
+
+  const { res } = action
   const status = props?.status
 
   res.statusCode = status ? errorStatuses[status] || status : 520

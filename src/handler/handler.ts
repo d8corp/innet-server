@@ -12,6 +12,7 @@ import { array, arrayAsync, arrayClear, arraySingleLess, async, fn, nullish, obj
 import { serverFn } from '../experimental/serverFn'
 import {
   access, AccessProps,
+  action, ActionProps,
   cms, CmsProps,
   cookie, CookieProps,
   error, ErrorProps,
@@ -22,10 +23,10 @@ import {
   proxy, ProxyProps,
   redirect, RedirectProps,
   router, RouterProps,
+  server, ServerProps,
   success, SuccessProps,
   validation, ValidationProps,
 } from '../plugins'
-import { server, ServerProps } from '../server'
 
 export const arrayPlugins = [
   arrayAsync,
@@ -35,6 +36,7 @@ export const arrayPlugins = [
 
 export const JSXPlugins = {
   server,
+  action,
   html,
   switch: switchAsync,
   router,
@@ -80,6 +82,7 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       server: ServerProps
+      action: ActionProps
       router: RouterProps
       redirect: RedirectProps
       cookie: CookieProps

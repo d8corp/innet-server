@@ -1,6 +1,6 @@
 import innet from 'innet'
 
-import { ACTION, Action } from '../../action'
+import { actionContext } from '../../hooks'
 
 export const successStatuses = {
   ok: 200,
@@ -21,10 +21,15 @@ export interface SuccessProps {
 }
 
 export function success ({ props, children }, handler) {
-  const { res }: Action = handler[ACTION]
+  const action = actionContext.get(handler)
+
+  if (!action) {
+    throw Error('Use <success> inside <action>')
+  }
+
   const status = props?.status
 
-  res.statusCode = status
+  action.res.statusCode = status
     ? successStatuses[status] || status
     : children
       ? 200

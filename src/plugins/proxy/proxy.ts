@@ -1,8 +1,8 @@
 import { Handler } from 'innet'
 import httpProxy from 'http-proxy'
 
-import { ACTION, Action } from '../../action'
 import { CONTINUE } from '../../constants'
+import { actionContext } from '../../hooks'
 
 export interface ProxyProps {
   to: string
@@ -11,7 +11,13 @@ export interface ProxyProps {
 const proxyServer = httpProxy.createProxyServer({})
 
 export function proxy ({ props: { to, secure = false } }, handler: Handler) {
-  const { req, res }: Action = handler[ACTION]
+  const action = actionContext.get(handler)
+
+  if (!action) {
+    throw Error('Use <proxy> inside <action>')
+  }
+
+  const { req, res } = action
 
   delete req.headers.host
 

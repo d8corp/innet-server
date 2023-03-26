@@ -1,7 +1,8 @@
 import innet from 'innet'
 import { useHandler } from '@innet/jsx'
+import { type Action } from 'src/utils'
 
-import { ACTION, Action } from '../../action'
+import { actionContext } from '../../hooks'
 
 export type Methods = 'GET' | 'HEAD' | 'POST' | 'DELETE' | 'PUT' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH'
 
@@ -33,10 +34,10 @@ export function router ({ props, children }, handler) {
   if (!children) return
   if (!props) return children
 
-  const action: Action = handler[ACTION]
+  const action = actionContext.get(handler)
 
   if (!action) {
-    throw Error('`router` should be used inside `server`')
+    throw Error('Use <router> inside <action>')
   }
 
   const { req, path } = action

@@ -2,7 +2,7 @@ import path from 'path'
 
 import { file } from '../file'
 
-import { ACTION, Action } from '../../action'
+import { actionContext } from '../../hooks'
 
 export interface CmsProps {
   dir?: string
@@ -15,11 +15,10 @@ export interface CmsJsxElement {
 }
 
 export function cms ({ props, children }: CmsJsxElement, handler) {
-  const action: Action = handler[ACTION]
-  const { req } = action
+  const action = actionContext.get(handler)
 
-  if (!req) {
-    throw Error('`cms` should be used inside `server`')
+  if (!action) {
+    throw Error('Use <cms> inside <action>')
   }
 
   const { prefix, dir } = props

@@ -1,4 +1,4 @@
-import { ACTION, Action } from '../../action'
+import { actionContext } from '../../hooks'
 
 export const redirectStatuses = {
   multipleChoices: 300,
@@ -27,10 +27,15 @@ function customEncode (url: string) {
 }
 
 export function redirect ({ props, children }, handler) {
-  const { res }: Action = handler[ACTION]
+  const action = actionContext.get(handler)
+
+  if (!action) {
+    throw Error('Use <redirect> inside <action>')
+  }
+
   const { to, status = 301, encode }: RedirectProps = props
 
-  res.writeHead(getStatus(status), {
+  action.res.writeHead(getStatus(status), {
     location: encode ? customEncode(to) : to,
   })
 

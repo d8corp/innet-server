@@ -1,6 +1,6 @@
 import innet, { Handler } from 'innet'
 
-import { ACTION, Action } from '../../action'
+import { actionContext } from '../../hooks'
 
 export interface HeaderProps {
   name: string
@@ -8,7 +8,12 @@ export interface HeaderProps {
 }
 
 export function header ({ props: { name, value }, children }, handler: Handler) {
-  const { res }: Action = handler[ACTION]
-  res.setHeader(name, value)
+  const action = actionContext.get(handler)
+
+  if (!action) {
+    throw Error('Use <header> inside <action>')
+  }
+
+  action.res.setHeader(name, value)
   return innet(children, handler)
 }

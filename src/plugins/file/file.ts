@@ -2,14 +2,19 @@ import innet from 'innet'
 import fs from 'fs'
 import mime from 'mime'
 
-import { ACTION, Action } from '../../action'
+import { actionContext } from '../../hooks'
 
 export interface FileProps {
   path: string
 }
 
 export function file ({ props, children = null }, handler) {
-  const { res }: Action = handler[ACTION]
+  const action = actionContext.get(handler)
+
+  if (!action) {
+    throw Error('Use <file> inside <action>')
+  }
+
   const { path }: FileProps = props
 
   if (fs.existsSync(path)) {
@@ -21,11 +26,11 @@ export function file ({ props, children = null }, handler) {
       const result = innet(children, handler)
 
       const run = () => {
-        res.writeHead(200, {
+        action.res.writeHead(200, {
           'Content-Type': mime.getType(path),
           'Content-Length': stat.size,
         })
-        readStream.pipe(res)
+        readStream.pipe(action.res)
       }
 
       if (result instanceof Promise) {

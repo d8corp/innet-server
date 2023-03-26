@@ -2,7 +2,8 @@ import innet from 'innet'
 import { validation as validate, ValidationMap, ValidationResponse } from '@cantinc/utils'
 import { Context } from '@innet/jsx'
 
-import { ACTION, Action, Resources } from '../../action'
+import { actionContext } from '../../hooks'
+import { Resources } from '../../utils'
 
 export interface ValidationProps <T> {
   map: ValidationMap<T>
@@ -21,10 +22,10 @@ export interface ValidationContext {
 export const validationContext = new Context<ValidationContext>({})
 
 export function validation <T extends object, E extends object> ({ props, children }: ValidationJsxElement<T>, handler) {
-  const action: Action = handler[ACTION]
+  const action = actionContext.get(handler)
 
   if (!action) {
-    throw Error('`validation` should be inside `server`')
+    throw Error('Use <validation> inside <action>')
   }
 
   const { map, resource = 'body' } = props

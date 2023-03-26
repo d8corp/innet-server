@@ -1,7 +1,7 @@
 import innet, { Handler } from 'innet'
 import { Context } from '@innet/jsx'
 
-import { ACTION, Action } from '../../action'
+import { actionContext } from '../../hooks'
 
 export interface AccessProps {
   role?: any
@@ -19,10 +19,10 @@ export interface AccessContext {
 export const accessContext = new Context<AccessContext>({})
 
 export function access ({ props, children }: AccessJsxElement, handler) {
-  const action: Action = handler[ACTION]
+  const action = actionContext.get(handler)
 
   if (!action) {
-    throw Error('`access` should be inside `server`')
+    throw Error('Use <access> inside <action>')
   }
 
   const { handleRole } = accessContext.get(handler)

@@ -1,7 +1,8 @@
 import innet, { Handler } from 'innet'
 import { CookieSerializeOptions } from 'cookie'
 
-import { ACTION, Action } from '../../action'
+import { actionContext } from '../../hooks'
+import { Action } from '../../utils'
 
 export interface CookieProps extends CookieSerializeOptions {
   key: string
@@ -9,7 +10,11 @@ export interface CookieProps extends CookieSerializeOptions {
 }
 
 export function cookie ({ props: { key, value, ...opt }, children }, handler: Handler) {
-  const action: Action = handler[ACTION]
+  const action: Action = actionContext.get(handler)
+
+  if (!action) {
+    throw Error('Use <cookie> inside <action>')
+  }
 
   if (value === undefined) {
     action.setCookie(key, '', {

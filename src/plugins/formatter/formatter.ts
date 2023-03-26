@@ -1,6 +1,7 @@
 import innet from 'innet'
 
-import { ACTION, Action, Resources } from '../../action'
+import { actionContext } from '../../hooks'
+import { Resources } from '../../utils'
 
 export interface Formatter<V> {
   (value?: any): V
@@ -21,10 +22,10 @@ export interface FormatterJsxElement<T> {
 }
 
 export function formatter <T extends object, E extends object> ({ props, children }: FormatterJsxElement<T>, handler) {
-  const action: Action = handler[ACTION]
+  const action = actionContext.get(handler)
 
   if (!action) {
-    throw Error('`formatter` should be inside `server`')
+    throw Error('Use <formatter> inside <action>')
   }
 
   const { map, resource = 'body' } = props

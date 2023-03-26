@@ -1,13 +1,10 @@
 import { once } from '@cantinc/utils'
-import { useHandler } from '@innet/jsx'
 import cookie, { CookieSerializeOptions } from 'cookie'
 import { IncomingMessage, ServerResponse } from 'http'
 import multiparty, { FormOptions } from 'multiparty'
 import { ParsedQs } from 'qs'
 
-import { parseSearch } from '../../utils'
-
-export const ACTION = Symbol('Action') as unknown as string
+import { parseSearch } from '../../parseSearch'
 
 export type Body = Record<string, any>
 export type Search = ParsedQs

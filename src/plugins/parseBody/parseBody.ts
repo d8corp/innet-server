@@ -1,6 +1,6 @@
 import innet from 'innet'
 
-import { ACTION } from '../../action'
+import { actionContext } from '../../hooks'
 
 export interface ParseBodyProps {}
 
@@ -10,5 +10,5 @@ export interface ParseBodyJsxElement {
 }
 
 export function parseBody ({ props, children }: ParseBodyJsxElement, handler) {
-  return handler[ACTION].parseBody().then(() => innet(children, handler))
+  return actionContext.get(handler).parseBody().then(() => innet(children, handler))
 }
