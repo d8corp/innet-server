@@ -1,6 +1,6 @@
 import { ValidationMap, ValidationResponse } from '@cantinc/utils';
 import { Context } from '@innet/jsx';
-import { Resources } from '../../action';
+import { Resources } from '../../utils';
 export interface ValidationProps<T> {
     map: ValidationMap<T>;
     resource?: Resources;

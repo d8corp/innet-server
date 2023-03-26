@@ -1,4 +1,4 @@
-import { Action } from '../../action';
+import { type Action } from 'src/utils';
 export declare type Methods = 'GET' | 'HEAD' | 'POST' | 'DELETE' | 'PUT' | 'CONNECT' | 'OPTIONS' | 'TRACE' | 'PATCH';
 export interface RouterProps {
     method?: Methods;

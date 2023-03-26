@@ -1,4 +1,4 @@
-import { Resources } from '../../action';
+import { Resources } from '../../utils';
 export interface Formatter<V> {
     (value?: any): V;
 }

@@ -3,7 +3,6 @@ import { CookieSerializeOptions } from 'cookie';
 import { IncomingMessage, ServerResponse } from 'http';
 import { FormOptions } from 'multiparty';
 import { ParsedQs } from 'qs';
-export declare const ACTION: string;
 export declare type Body = Record<string, any>;
 export declare type Search = ParsedQs;
 export declare type Cookies = Record<string, string | string[]>;

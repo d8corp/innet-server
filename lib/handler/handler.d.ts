@@ -3,11 +3,11 @@ import { context, ContextProps, slot, SlotProps, slots, SlotsProps } from '@inne
 import { switchAsync, SwitchProps } from '@innet/switch';
 import { arrayAsync, async } from '@innet/utils';
 import { serverFn } from '../experimental/serverFn';
-import { access, AccessProps, cms, CmsProps, cookie, CookieProps, error, ErrorProps, file, FileProps, formatter, FormatterProps, header, HeaderProps, parseBody, ParseBodyProps, proxy, ProxyProps, redirect, RedirectProps, router, RouterProps, success, SuccessProps, validation, ValidationProps } from '../plugins';
-import { server, ServerProps } from '../server';
+import { access, AccessProps, action, ActionProps, cms, CmsProps, cookie, CookieProps, error, ErrorProps, file, FileProps, formatter, FormatterProps, header, HeaderProps, parseBody, ParseBodyProps, proxy, ProxyProps, redirect, RedirectProps, router, RouterProps, server, ServerProps, success, SuccessProps, validation, ValidationProps } from '../plugins';
 export declare const arrayPlugins: (typeof arrayAsync)[];
 export declare const JSXPlugins: {
     server: typeof server;
+    action: typeof action;
     html: typeof html;
     switch: typeof switchAsync;
     router: typeof router;
@@ -35,6 +35,7 @@ declare global {
     namespace JSX {
         interface IntrinsicElements {
             server: ServerProps;
+            action: ActionProps;
             router: RouterProps;
             redirect: RedirectProps;
             cookie: CookieProps;

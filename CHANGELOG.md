@@ -1,5 +1,11 @@
 # Changelog
 
+## v1.7
+
+### v1.7.0 [![26.03.2023](https://img.shields.io/date/1679854139)](https://github.com/d8corp/innet-server/tree/v1.7.0)
+
+- add `action` plugin
+
 ## v1.6
 
 ### v1.6.6 [![18.03.2023](https://img.shields.io/date/1679130866)](https://github.com/d8corp/innet-server/tree/v1.6.6)
