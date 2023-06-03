@@ -1,10 +1,9 @@
 import { Handler } from 'innet';
+import { JSXElement } from '@innet/jsx';
+import httpProxy from 'http-proxy';
 export interface ProxyProps {
     to: string;
+    secure?: boolean;
 }
-export declare function proxy({ props: { to, secure } }: {
-    props: {
-        to: any;
-        secure?: boolean;
-    };
-}, handler: Handler): symbol;
+export declare const proxyServer: httpProxy;
+export declare function proxy({ props: { to, secure } }: JSXElement<string, ProxyProps>, handler: Handler): symbol;

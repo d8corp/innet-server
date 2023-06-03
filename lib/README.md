@@ -51,7 +51,9 @@ Try it out in `app.tsx`
 ```typescript jsx
 export default (
   <server>
-    Hello World!
+    <action>
+      Hello World!
+    </action>
   </server>
 )
 ```
@@ -67,7 +69,9 @@ To change the port of the web server you can use `port` prop.
 ```typescript jsx
 export default (
   <server port={80}>
-    Hello World!
+    <action>
+      Hello World!
+    </action>
   </server>
 )
 ```
@@ -85,7 +89,9 @@ const ssl = {
 
 export default (
   <server ssl={ssl}>
-    Hello World!
+    <action>
+      Hello World!
+    </action>
   </server>
 )
 ```
@@ -97,7 +103,9 @@ You can show some message or do something right after the server starts.
 ```typescript jsx
 export default (
   <server onStart={console.log}>
-    Hello World!
+    <action>
+      Hello World!
+    </action>
   </server>
 )
 ```
@@ -108,7 +116,9 @@ You can log errors or do something else, when the server get an error.
 ```typescript jsx
 export default (
   <server onError={console.error}>
-    Hello World!
+    <action>
+      Hello World!
+    </action>
   </server>
 )
 ```
@@ -119,7 +129,9 @@ You can log any request with `onRequest` prop.
 ```typescript jsx
 export default (
   <server onRequest={console.log}>
-    Hello World!
+    <action>
+      Hello World!
+    </action>
   </server>
 )
 ```
@@ -131,7 +143,9 @@ You can react on destroy the server with `onDestroy` prop.
 export default (
   <server
     onDestroy={() => console.log('destroy')}>
-    Hello World!
+    <action>
+      Hello World!
+    </action>
   </server>
 )
 ```
@@ -142,14 +156,16 @@ You can use `html` element to return html content.
 ```typescript jsx
 export default (
   <server>
-    <html>
-      <head>
-        <title>Innet App</title>
-      </head>
-      <body>
-        Hello World!
-      </body>
-    </html>
+    <action>
+      <html>
+        <head>
+          <title>Innet App</title>
+        </head>
+        <body>
+          Hello World!
+        </body>
+      </html>
+    </action>
   </server>
 )
 ```
@@ -170,7 +186,9 @@ const content = (
 
 export default (
   <server>
-    {content}
+    <action>
+      {content}
+    </action>
   </server>
 )
 ```
@@ -185,9 +203,11 @@ const content = (
 
 export default (
   <server>
-    <header name='content-type' value='text/html'>
-      {content}
-    </header>
+    <action>
+      <header name='content-type' value='text/html'>
+        {content}
+      </header>
+    </action>
   </server>
 )
 ```
@@ -201,8 +221,10 @@ const content = (
 
 export default (
   <server>
-    <header name='content-type' value='text/html' />
-    {content}
+    <action>
+      <header name='content-type' value='text/html' />
+      {content}
+    </action>
   </server>
 )
 ```
@@ -213,9 +235,11 @@ You can return a file as a response.
 ```typescript jsx
 export default (
   <server>
-    <header name='cache-control' value='max-age=300'>
-      <file path='index.html' />
-    </header>
+    <action>
+      <header name='cache-control' value='max-age=300'>
+        <file path='index.html' />
+      </header>
+    </action>
   </server>
 )
 ```
@@ -227,9 +251,11 @@ You can put content into the file to apply it only if the file does exist.
 ```typescript jsx
 export default (
   <server>
-    <file path='index.html'>
-      <header name='cache-control' value='max-age=300' />
-    </file>
+    <action>
+      <file path='index.html'>
+        <header name='cache-control' value='max-age=300' />
+      </file>
+    </action>
   </server>
 )
 ```
@@ -241,9 +267,11 @@ The router helps to handle requests by route.
 ```typescript jsx
 export default (
   <server>
-    <router>
-      <file path='index.html' />
-    </router>
+    <action>
+      <router>
+        <file path='index.html' />
+      </router>
+    </action>
   </server>
 )
 ```
@@ -257,9 +285,11 @@ This property says that the content of the route should be run if the request me
 ```typescript jsx
 export default (
   <server>
-    <router method='GET'>
-      <file path='index.html' />
-    </router>
+    <action>
+      <router method='GET'>
+        <file path='index.html' />
+      </router>
+    </action>
   </server>
 )
 ```
@@ -270,9 +300,11 @@ You can set `path` to match with it.
 ```typescript jsx
 export default (
   <server>
-    <router method='GET' path='/'>
-      <file path='index.html' />
-    </router>
+    <action>
+      <router method='GET' path='/'>
+        <file path='index.html' />
+      </router>
+    </action>
   </server>
 )
 ```
@@ -284,9 +316,11 @@ This prop has regex like syntax, so you can set the path as you wish.
 ```typescript jsx
 export default (
   <server>
-    <router path='/user/[0-9]+'>
-      <file path='index.html' />
-    </router>
+    <action>
+      <router path='/user/[0-9]+'>
+        <file path='index.html' />
+      </router>
+    </action>
   </server>
 )
 ```
@@ -296,9 +330,11 @@ To provide named params from url, use named capturing groups of regex.
 ```typescript jsx
 export default (
   <server>
-    <router path='/user/(?<id>[\w-]+)'>
-      <file path='index.html' />
-    </router>
+    <action>
+      <router path='/user/(?<id>[\w-]+)'>
+        <file path='index.html' />
+      </router>
+    </action>
   </server>
 )
 ```
@@ -309,9 +345,11 @@ You can react on any path which starts with provided one.
 ```typescript jsx
 export default (
   <server>
-    <router path='/test' ish>
-      <file path='index.html' />
-    </router>
+    <action>
+      <router path='/test' ish>
+        <file path='index.html' />
+      </router>
+    </action>
   </server>
 )
 ```
@@ -326,14 +364,16 @@ You can use a router inside another one and `prefix` helps reduce path prop.
 ```typescript jsx
 export default (
   <server>
-    <router path='/test' prefix='/test' ish>
-      <router path='/'>
-        <file path='index.html' />
+    <action>
+      <router path='/test' prefix='/test' ish>
+        <router path='/'>
+          <file path='index.html' />
+        </router>
+        <router path='/404'>
+          <file path='404.html' />
+        </router>
       </router>
-      <router path='/404'>
-        <file path='404.html' />
-      </router>
-    </router>
+    </action>
   </server>
 )
 ```
@@ -347,9 +387,11 @@ You can log the requests of any router.
 ```typescript jsx
 export default (
   <server>
-    <router path='/test' onMatch={console.log}>
-      <file path='index.html' />
-    </router>
+    <action>
+      <router path='/test' onMatch={console.log}>
+        <file path='index.html' />
+      </router>
+    </action>
   </server>
 )
 ```
@@ -364,12 +406,14 @@ To avoid this you can use switch element.
 ```typescript jsx
 export default (
   <server>
-    <switch>
-      <router path='/'>
-        <file path='index.html' />
-      </router>
-      <file path='404.html' />
-    </switch>
+    <action>
+      <switch>
+        <router path='/'>
+          <file path='index.html' />
+        </router>
+        <file path='404.html' />
+      </switch>
+    </action>
   </server>
 )
 ```
@@ -384,10 +428,12 @@ CMS helps to return files from a folder by path.
 ```typescript jsx
 export default (
   <server>
-    <switch>
-      <cms dir='cms' />
-      <file path='404.html' />
-    </switch>
+    <action>
+      <switch>
+        <cms dir='cms' />
+        <file path='404.html' />
+      </switch>
+    </action>
   </server>
 )
 ```
@@ -399,12 +445,14 @@ You can use prefix with router to handle specific path.
 ```typescript jsx
 export default (
   <server>
-    <switch>
-      <router path='/cms' ish>
-        <cms dir='cms' prefix='/cms' />
-      </router>
-      <file path='404.html' />
-    </switch>
+    <action>
+      <switch>
+        <router path='/cms' ish>
+          <cms dir='cms' prefix='/cms' />
+        </router>
+        <file path='404.html' />
+      </switch>
+    </action>
   </server>
 )
 ```
@@ -414,12 +462,14 @@ You can input something into `cms`, if requested file is exist then the content 
 ```typescript jsx
 export default (
   <server>
-    <switch>
-      <cms dir='cms'>
-        <header name='cache-control' value='max-age=300' />
-      </cms>
-      <file path='404.html' />
-    </switch>
+    <action>
+      <switch>
+        <cms dir='cms'>
+          <header name='cache-control' value='max-age=300' />
+        </cms>
+        <file path='404.html' />
+      </switch>
+    </action>
   </server>
 )
 ```
@@ -430,10 +480,12 @@ You can proxy request.
 ```typescript jsx
 export default (
   <server>
-    <switch>
-      <cms dir='cms' />
-      <proxy to='https://site.com' />
-    </switch>
+    <action>
+      <switch>
+        <cms dir='cms' />
+        <proxy to='https://site.com' />
+      </switch>
+    </action>
   </server>
 )
 ```
@@ -447,10 +499,12 @@ You can redirect users to another resource.
 ```typescript jsx
 export default (
   <server>
-    <switch>
-      <cms dir='cms' />
-      <redirect to='https://site.com' />
-    </switch>
+    <action>
+      <switch>
+        <cms dir='cms' />
+        <redirect to='https://site.com' />
+      </switch>
+    </action>
   </server>
 )
 ```
@@ -461,10 +515,12 @@ By default, status is `301`, you can change it with `status` prop.
 ```typescript jsx
 export default (
   <server>
-    <switch>
-      <cms dir='cms' />
-      <redirect to='https://site.com' status={302} />
-    </switch>
+    <action>
+      <switch>
+        <cms dir='cms' />
+        <redirect to='https://site.com' status={302} />
+      </switch>
+    </action>
   </server>
 )
 ```
@@ -474,10 +530,12 @@ Also, you can use string key of status.
 ```typescript jsx
 export default (
   <server>
-    <switch>
-      <cms dir='cms' />
-      <redirect to='https://site.com' status='found'/>
-    </switch>
+    <action>
+      <switch>
+        <cms dir='cms' />
+        <redirect to='https://site.com' status='found'/>
+      </switch>
+    </action>
   </server>
 )
 ```
@@ -490,12 +548,14 @@ Any component is just a function which returns content that should be run.
 ```typescript jsx
 export const Server = ({ cmsPrefix }) => (
   <server>
-    <switch>
-      <router path={cmsPrefix} ish>
-        <cms dir='cms' prefix={cmsPrefix} />
-      </router>
-      <file path='404.html' />
-    </switch>
+    <action>
+      <switch>
+        <router path={cmsPrefix} ish>
+          <cms dir='cms' prefix={cmsPrefix} />
+        </router>
+        <file path='404.html' />
+      </switch>
+    </action>
   </server>
 )
 ```
@@ -532,9 +592,11 @@ function Html ({ title }) {
 
 export default (
   <server>
-    <Html title='main'>
-      Hello World!
-    </Html>
+    <action>
+      <Html title='main'>
+        Hello World!
+      </Html>
+    </action>
   </server>  
 )
 ```
@@ -549,7 +611,9 @@ If you work on REST API, you can use `success` or `error` as an answer
 ```typescript jsx
 export default (
   <server>
-    <success />
+    <action>
+      <success />
+    </action>
   </server>  
 )
 ```
@@ -564,9 +628,11 @@ const data = {
 
 export default (
   <server>
-    <success>
-      {data}
-    </success>
+    <action>
+      <success>
+        {data}
+      </success>
+    </action>
   </server>
 )
 ```
@@ -582,9 +648,11 @@ const data = {
 
 export default (
   <server>
-    <success status='created'>
-      {data}
-    </success>
+    <action>
+      <success status='created'>
+        {data}
+      </success>
+    </action>
   </server>  
 )
 ```
@@ -600,9 +668,11 @@ const data = {
 
 export default (
   <server>
-    <success status={201}>
-      {data}
-    </success>
+    <action>
+      <success status={201}>
+        {data}
+      </success>
+    </action>
   </server>  
 )
 ```
@@ -613,7 +683,9 @@ You can return an error to the user.
 ```typescript jsx
 export default (
   <server>
-    <error />
+    <action>
+      <error />
+    </action>
   </server>  
 )
 ```
@@ -629,9 +701,11 @@ const data = {
 
 export default (
   <server>
-    <error>
-      {data}
-    </error>
+    <action>
+      <error>
+        {data}
+      </error>
+    </action>
   </server>  
 )
 ```
@@ -646,9 +720,11 @@ const data = {
 
 export default (
   <server>
-    <error status='notFound'>
-      {data}
-    </error>
+    <action>
+      <error status='notFound'>
+        {data}
+      </error>
+    </action>
   </server>
 )
 ```
@@ -661,9 +737,11 @@ const data = {
 
 export default (
   <server>
-    <error status={404}>
-      {data}
-    </error>
+    <action>
+      <error status={404}>
+        {data}
+      </error>
+    </action>
   </server>
 )
 ```
@@ -680,7 +758,9 @@ const Login = ({ token }) => (
 
 export default (
   <server>
-    <Login token='test' />
+    <action>
+      <Login token='test' />
+    </action>
   </server>  
 )
 ```
@@ -690,9 +770,11 @@ To remove cookie just provide key without value.
 ```typescript jsx
 export default (
   <server>
-    <cookie key='token'>
-      <success />
-    </cookie>
+    <action>
+      <cookie key='token'>
+        <success />
+      </cookie>
+    </action>
   </server>  
 )
 ```
@@ -814,9 +896,11 @@ Use named capturing groups of regex in a route path prop to add the `params`.
 ```typescript jsx
 export default (
   <server>
-    <router path='/user/(?<id>[\w-]+)'>
-      <Router />
-    </router>
+    <action>
+      <router path='/user/(?<id>[\w-]+)'>
+        <Router />
+      </router>
+    </action>
   </server>
 )
 ```

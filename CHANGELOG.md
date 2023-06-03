@@ -2,6 +2,10 @@
 
 ## v1.7
 
+### v1.7.1 [![03.06.2023](https://img.shields.io/date/1685806146)](https://github.com/d8corp/innet-server/tree/v1.7.1)
+
+- fix for `proxy`
+
 ### v1.7.0 [![26.03.2023](https://img.shields.io/date/1679854139)](https://github.com/d8corp/innet-server/tree/v1.7.0)
 
 - add `action` plugin

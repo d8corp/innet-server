@@ -1,4 +1,5 @@
 import { Handler } from 'innet'
+import { JSXElement } from '@innet/jsx'
 import httpProxy from 'http-proxy'
 
 import { CONTINUE } from '../../constants'
@@ -6,11 +7,12 @@ import { actionContext } from '../../hooks'
 
 export interface ProxyProps {
   to: string
+  secure?: boolean
 }
 
-const proxyServer = httpProxy.createProxyServer({})
+export const proxyServer = httpProxy.createProxyServer({})
 
-export function proxy ({ props: { to, secure = false } }, handler: Handler) {
+export function proxy ({ props: { to, secure = false } }: JSXElement<string, ProxyProps>, handler: Handler) {
   const action = actionContext.get(handler)
 
   if (!action) {
