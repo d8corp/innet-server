@@ -24,5 +24,5 @@ export interface RootEndpoint extends EndpointNode {
   children: Record<string, Endpoint>
 }
 
-export type EndpointsMethods = 'get' | 'post' | 'put' | 'patch' | 'delete'
+export type EndpointsMethods = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'options' | 'head' | 'trace'
 export type Endpoints = Partial<Record<EndpointsMethods, Record<string, RootEndpoint>>>
