@@ -24,13 +24,20 @@ export interface GetProps {
    * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
    * */
   description?: string
+
+  /**
+   * Declares this operation to be deprecated.
+   * Consumers SHOULD refrain from usage of the declared operation.
+   * Default value is false.
+   * */
+  deprecated?: boolean
 }
 
 export const get: HandlerPlugin = () => {
   const handler = useNewHandler()
   const tag = useTag()
   const { docs, endpoints } = useApi()
-  const { path, summary, description } = useProps<GetProps>()
+  const { path, summary, description, deprecated } = useProps<GetProps>()
   const children = useChildren()
   const { paths } = docs
 
@@ -42,6 +49,10 @@ export const get: HandlerPlugin = () => {
 
   if (description) {
     operation.description = description
+  }
+
+  if (deprecated) {
+    operation.deprecated = deprecated
   }
 
   if (tag) {
