@@ -1,6 +1,2 @@
-export * from './useAction'
-export * from './useBody'
-export * from './useCookies'
-export * from './useFiles'
-export * from './useSearch'
 export * from './useServer'
+export * from './useApi'

@@ -2,7 +2,12 @@ import { Context, useContext } from '@innet/jsx'
 import { type Server as HttpServer } from 'http'
 import { type Server as HttpsServer } from 'https'
 
-export const serverContext = new Context<HttpServer | HttpsServer>()
+export interface ServerContext {
+  server: HttpServer | HttpsServer
+  port: number
+}
+
+export const serverContext = new Context<ServerContext>()
 
 export function useServer () {
   const server = useContext(serverContext)
