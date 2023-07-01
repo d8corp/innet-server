@@ -9,8 +9,6 @@ function getLog () {
   const Log = () => {
     const { docs } = useApi()
 
-    // console.log(JSON.stringify(docs, null, 2))
-
     fn(docs)
   }
 

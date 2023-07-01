@@ -26,3 +26,13 @@ export interface RootEndpoint extends EndpointNode {
 
 export type EndpointsMethods = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'options' | 'head' | 'trace'
 export type Endpoints = Partial<Record<EndpointsMethods, Record<string, RootEndpoint>>>
+
+export interface SSL {
+  cert: string
+  key: string
+}
+
+export interface ServerStartParams {
+  port: number
+  https: boolean
+}

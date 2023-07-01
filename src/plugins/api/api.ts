@@ -1,6 +1,9 @@
 import innet, { HandlerPlugin, useApp, useNewHandler } from 'innet'
 import { JSXElement } from '@innet/jsx'
+import { ServerResponse } from 'http'
+import { onDestroy } from 'watch-state'
 
+import { useServer } from '../../hooks'
 import { apiContext } from '../../hooks/useApi'
 import { Document, Endpoints } from '../../types'
 
@@ -12,8 +15,10 @@ export interface ApiProps {
    * The version of the OpenAPI document (which is distinct from the
    * [OpenAPI Specification version](https://swagger.io/specification/#oas-version)
    * or the API implementation version).
+   * @example: 0.0.1
+   * @default: 0.0.0
    * */
-  version: string
+  version?: string
 
   /** A short summary of the API. */
   summary?: string
@@ -28,17 +33,31 @@ export interface ApiProps {
 export const api: HandlerPlugin = () => {
   const handler = useNewHandler()
   const { props, children } = useApp<JSXElement<string, ApiProps>>()
+  const { server } = useServer()
 
   const endpoints: Endpoints = {}
   const docs: Document = {
     openapi: '3.1.0',
-    info: props,
+    info: { ...props, version: props.version || '0.0.0' },
     components: {},
     paths: {},
     servers: [],
   }
 
   handler[apiContext.key] = { docs, endpoints }
+
+  const listener = (req: Request, res: ServerResponse) => {
+    if (req.url === '/') {
+      res.setHeader('Content-Type', 'application/json')
+      res.write(JSON.stringify(docs))
+      res.end()
+    }
+  }
+
+  server.on('request', listener)
+  onDestroy(() => {
+    server.off('request', listener)
+  })
 
   innet(children, handler)
 }

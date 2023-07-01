@@ -1,4 +1,4 @@
-import innet, { HandlerPlugin, useApp, useHandler } from 'innet'
+import innet, { HandlerPlugin, useApp, useNewHandler } from 'innet'
 import { JSXElement } from '@innet/jsx'
 import fs from 'fs'
 import http from 'http'
@@ -6,19 +6,10 @@ import http2 from 'https'
 import { onDestroy } from 'watch-state'
 
 import { serverContext } from '../../hooks'
+import { ServerStartParams, SSL } from '../../types'
 import { Request, Response } from '../../utils'
 
 const isInvalidPath = require('is-invalid-path')
-
-export interface SSL {
-  cert: string
-  key: string
-}
-
-export interface ServerStartParams {
-  port: number
-  https: boolean
-}
 
 export interface ServerProps {
   port?: number
@@ -30,11 +21,10 @@ export interface ServerProps {
 }
 
 export const server: HandlerPlugin = () => {
-  const handler = useHandler()
+  const handler = useNewHandler()
   const { props = {}, children } = useApp<JSXElement<string, ServerProps>>()
   const { env } = process
   let { ssl: { key = env.SSL_KEY, cert = env.SSL_CRT } = {} } = props
-  const childHandler = Object.create(handler)
 
   if (!isInvalidPath(key)) {
     key = fs.readFileSync(key).toString()
@@ -53,7 +43,7 @@ export const server: HandlerPlugin = () => {
 
   const server = https ? http2.createServer({ key, cert }) : http.createServer()
 
-  childHandler[serverContext.key] = { server, port }
+  handler[serverContext.key] = { server, port }
 
   onDestroy(() => {
     props.onDestroy?.()
@@ -68,7 +58,7 @@ export const server: HandlerPlugin = () => {
     server.on('request', onRequest)
   }
 
-  innet(children, childHandler)
+  innet(children, handler)
 
   server.listen(port, () => {
     onStart?.({ port, https })
