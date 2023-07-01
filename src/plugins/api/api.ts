@@ -1,8 +1,8 @@
-import innet, { HandlerPlugin, useApp, useHandler, useNewHandler } from 'innet'
+import innet, { HandlerPlugin, useApp, useNewHandler } from 'innet'
 import { JSXElement } from '@innet/jsx'
-import { OpenAPIV3_1 as OpenApi } from 'openapi-types'
 
 import { apiContext } from '../../hooks/useApi'
+import { Document } from '../../types'
 
 export interface ApiProps {
   /** The title of the API. */
@@ -29,7 +29,7 @@ export const api: HandlerPlugin = () => {
   const handler = useNewHandler()
   const { props, children } = useApp<JSXElement<string, ApiProps>>()
 
-  const docs: OpenApi.Document = {
+  const docs: Document = {
     openapi: '3.1.0',
     info: props,
     components: {},

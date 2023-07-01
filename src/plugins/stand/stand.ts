@@ -1,9 +1,8 @@
 import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
-import { OpenAPIV3_1 as OpenApi } from 'openapi-types'
 
-import { useApi } from '../../hooks'
-import { standContext } from '../../hooks/useStand'
+import { standContext, useApi } from '../../hooks'
+import { ServerObject } from '../../types'
 
 export interface StandProps {
   /**
@@ -28,7 +27,7 @@ export const stand: HandlerPlugin = () => {
   const children = useChildren()
   const { servers } = docs
 
-  const server: OpenApi.ServerObject = {
+  const server: ServerObject = {
     ...props,
   }
 

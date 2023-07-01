@@ -1,7 +1,7 @@
-import innet, { HandlerPlugin, useHandler, useNewHandler } from 'innet'
+import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useContext, useProps } from '@innet/jsx'
 
-import { tagsContext, useApi } from '../../hooks'
+import { tagContext, useApi } from '../../hooks'
 
 export interface TagProps {
   /** The name of the tag. */
@@ -15,27 +15,25 @@ export interface TagProps {
 }
 
 export const tag: HandlerPlugin = () => {
-  const tags = useContext(tagsContext)
-  const { name, description } = useProps<TagProps>()
-  const children = useChildren()
-
-  if (description) {
-    const { docs } = useApi()
-
-    if (!docs.tags) {
-      docs.tags = [{ name, description }]
-    } else if (!docs.tags.find(({ name: tagName }) => tagName === name)) {
-      docs.tags.push({ name, description })
-    }
+  if (useContext(tagContext)) {
+    throw Error('You cannot use a <tag> inside another one')
   }
 
-  if (tags.includes(name)) {
-    innet(children, useHandler())
-    return
+  const { name, description } = useProps<TagProps>()
+  const children = useChildren()
+  const { docs } = useApi()
+  const tag = description ? { name, description } : { name }
+
+  if (!docs.tags) {
+    docs.tags = [tag]
+  } else if (!docs.tags.find(({ name: tagName }) => tagName === name)) {
+    docs.tags.push(tag)
+  } else {
+    throw Error(`You cannot use two tags with the same name (${name})`)
   }
 
   const handler = useNewHandler()
-  handler[tagsContext.key] = [...tags, name]
+  handler[tagContext.key] = tag
 
   innet(children, handler)
 }

@@ -1,8 +1,9 @@
 import { Context, useContext } from '@innet/jsx'
-import { OpenAPIV3_1 as OpenApi } from 'openapi-types'
+
+import { ServerObject } from '../../types'
 
 export interface StandContext {
-  server: OpenApi.ServerObject
+  server: ServerObject
 }
 
 export const standContext = new Context<StandContext>()

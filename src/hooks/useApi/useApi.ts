@@ -1,12 +1,13 @@
 import { Children, Context, useContext } from '@innet/jsx'
-import { OpenAPIV3_1 as OpenApi } from 'openapi-types'
+
+import { Document } from '../../types'
 
 export interface Endpoint {
   [key: string]: Endpoint | Children
 }
 
 export interface ApiContext {
-  docs: OpenApi.Document
+  docs: Document
   endpoints: Endpoint
 }
 

@@ -10,7 +10,6 @@ describe('server', () => {
     const Log = () => {
       const { docs } = useApi()
 
-      console.log(JSON.stringify(docs, null, 2))
       fn(docs)
     }
 
@@ -21,7 +20,7 @@ describe('server', () => {
           <stand url='https://stage.cantinc.com' description='Stage' />
           <license name='MIT' />
           <contact name='Mike' email='d8corp@mail.ru' />
-          <tag name='user' description='Any users of the service'>
+          <tag name='user' description='Any users on the service'>
             <get path='/user/{id}'>
               <response>
                 <object>
@@ -53,6 +52,37 @@ describe('server', () => {
 
     server.destroy()
 
-    expect(fn).toBeCalledWith({})
+    expect(fn).toBeCalledWith({
+      openapi: '3.1.0',
+      info: {
+        title: 'CANT inc. API',
+        version: '0.0.1',
+        license: {
+          name: 'MIT',
+        },
+        contact: {
+          name: 'Mike',
+          email: 'd8corp@mail.ru',
+        },
+      },
+      components: {},
+      paths: {},
+      servers: [
+        {
+          url: 'https://cantinc.com',
+          description: 'Production',
+        },
+        {
+          url: 'https://stage.cantinc.com',
+          description: 'Stage',
+        },
+      ],
+      tags: [
+        {
+          name: 'user',
+          description: 'Any users on the service',
+        },
+      ],
+    })
   })
 })
