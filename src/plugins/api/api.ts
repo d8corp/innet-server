@@ -30,9 +30,10 @@ export const api: HandlerPlugin = () => {
   const { props, children } = useApp<JSXElement<string, ApiProps>>()
 
   const docs: OpenApi.Document = {
-    openapi: 'v3.1',
+    openapi: '3.1.0',
     info: props,
     components: {},
+    paths: {},
     servers: [],
   }
 

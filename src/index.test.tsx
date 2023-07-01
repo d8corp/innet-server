@@ -8,7 +8,10 @@ describe('server', () => {
   test('main', () => {
     const fn = jest.fn()
     const Log = () => {
-      fn(useApi())
+      const { docs } = useApi()
+
+      console.log(JSON.stringify(docs, null, 2))
+      fn(docs)
     }
 
     const app = (
@@ -18,8 +21,7 @@ describe('server', () => {
           <stand url='https://stage.cantinc.com' description='Stage' />
           <license name='MIT' />
           <contact name='Mike' email='d8corp@mail.ru' />
-          <Log />
-          <tag name='user'>
+          <tag name='user' description='Any users of the service'>
             <get path='/user/{id}'>
               <response>
                 <object>
@@ -40,6 +42,7 @@ describe('server', () => {
               </request>
             </get>
           </tag>
+          <Log />
         </api>
       </server>
     )

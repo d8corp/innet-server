@@ -14,6 +14,7 @@ import {
   license, LicenseProps,
   server, ServerProps,
   stand, StandProps,
+  tag, TagProps,
   variable, VariableProps,
 } from '../plugins'
 
@@ -31,6 +32,7 @@ export const JSXPlugins = {
   api,
   contact,
   license,
+  tag,
 }
 
 export const fnPlugins = [
@@ -67,6 +69,7 @@ declare global {
       license: LicenseProps,
       stand: StandProps,
       variable: VariableProps,
+      tag: TagProps,
     }
   }
 }
