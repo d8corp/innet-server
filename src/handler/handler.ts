@@ -11,6 +11,7 @@ import { serverFn } from '../handlerPlugins'
 import {
   api, ApiProps,
   contact, ContactProps,
+  get, GetProps,
   license, LicenseProps,
   server, ServerProps,
   stand, StandProps,
@@ -33,6 +34,7 @@ export const JSXPlugins = {
   contact,
   license,
   tag,
+  get,
 }
 
 export const fnPlugins = [
@@ -70,6 +72,7 @@ declare global {
       stand: StandProps,
       variable: VariableProps,
       tag: TagProps,
+      get: GetProps,
     }
   }
 }

@@ -2,7 +2,7 @@ import innet, { HandlerPlugin, useApp, useNewHandler } from 'innet'
 import { JSXElement } from '@innet/jsx'
 
 import { apiContext } from '../../hooks/useApi'
-import { Document } from '../../types'
+import { Document, Endpoints } from '../../types'
 
 export interface ApiProps {
   /** The title of the API. */
@@ -29,6 +29,7 @@ export const api: HandlerPlugin = () => {
   const handler = useNewHandler()
   const { props, children } = useApp<JSXElement<string, ApiProps>>()
 
+  const endpoints: Endpoints = {}
   const docs: Document = {
     openapi: '3.1.0',
     info: props,
@@ -37,7 +38,7 @@ export const api: HandlerPlugin = () => {
     servers: [],
   }
 
-  handler[apiContext.key] = { docs, endpoints: {} }
+  handler[apiContext.key] = { docs, endpoints }
 
   innet(children, handler)
 }

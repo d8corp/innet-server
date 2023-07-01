@@ -1,14 +1,10 @@
-import { Children, Context, useContext } from '@innet/jsx'
+import { Context, useContext } from '@innet/jsx'
 
-import { Document } from '../../types'
-
-export interface Endpoint {
-  [key: string]: Endpoint | Children
-}
+import { Document, Endpoints } from '../../types'
 
 export interface ApiContext {
   docs: Document
-  endpoints: Endpoint
+  endpoints: Endpoints
 }
 
 export const apiContext = new Context<ApiContext>()
