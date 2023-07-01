@@ -4,16 +4,52 @@ import { Watch } from 'watch-state'
 import { handler } from './handler'
 import { useApi } from './hooks'
 
+function getLog () {
+  const fn = jest.fn()
+  const Log = () => {
+    const { docs } = useApi()
+
+    fn(docs)
+  }
+
+  return [Log, fn]
+}
+
+function run (app: any) {
+  const server = new Watch(() => {
+    innet(app, handler)
+  })
+
+  server.destroy()
+}
+
 describe('server', () => {
+  test('minimal setup', () => {
+    const [Log, fn] = getLog()
+
+    run(
+      <server port={3000}>
+        <api title='CANT inc. API' version='0.0.1'>
+          <Log />
+        </api>
+      </server>,
+    )
+
+    expect(fn).toBeCalledWith({
+      openapi: '3.1.0',
+      info: {
+        title: 'CANT inc. API',
+        version: '0.0.1',
+      },
+      components: {},
+      paths: {},
+      servers: [],
+    })
+  })
   test('main', () => {
-    const fn = jest.fn()
-    const Log = () => {
-      const { docs } = useApi()
+    const [Log, fn] = getLog()
 
-      fn(docs)
-    }
-
-    const app = (
+    run(
       <server port={3000}>
         <api title='CANT inc. API' version='0.0.1'>
           <stand url='https://cantinc.com' description='Production' />
@@ -43,14 +79,8 @@ describe('server', () => {
           </tag>
           <Log />
         </api>
-      </server>
+      </server>,
     )
-
-    const server = new Watch(() => {
-      innet(app, handler)
-    })
-
-    server.destroy()
 
     expect(fn).toBeCalledWith({
       openapi: '3.1.0',
