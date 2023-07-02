@@ -1,3 +1,4 @@
+import { Handler } from 'innet'
 import { OpenAPIV3_1 as API } from 'openapi-types'
 
 // Open API
@@ -17,24 +18,17 @@ export type ObjectType = ArraySchemaObjectType | NonArraySchemaObjectType
 
 // Custom
 
-export interface EndpointNode {
-  deep: number
-  children?: Record<string, EndpointNode>
-}
-
-export interface Endpoint extends EndpointNode {
-  slot: string
-  param?: string
+export interface Endpoint {
+  key: string
   content?: any
-}
-
-export interface RootEndpoint extends EndpointNode {
-  children: Record<string, Endpoint>
+  handler?: Handler
+  static?: Record<string, Endpoint>
+  dynamic?: Endpoint[]
 }
 
 export type IntegerFormats = 'int32' | 'int64'
 export type EndpointsMethods = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'options' | 'head' | 'trace'
-export type Endpoints = Partial<Record<EndpointsMethods, Record<string, RootEndpoint>>>
+export type Endpoints = Partial<Record<EndpointsMethods, Endpoint>>
 
 export interface SSL {
   cert: string

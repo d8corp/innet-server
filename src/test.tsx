@@ -3,7 +3,7 @@ import { useChildren } from '@innet/jsx'
 
 import { handler } from './handler'
 import { useNewRef } from './hooks'
-import { dts } from './plugins'
+import { dts, success } from './plugins'
 import { defaultOnStart } from './utils'
 
 const Address = () => {
@@ -73,18 +73,30 @@ const app = (
             </List>
           </response>
           <request>
-            <log />
+            <success>
+              {{ test: 'get partners' }}
+            </success>
           </request>
         </endpoint>
         <endpoint method='get' path='/partners/{id}'>
           <response description='Partner Response Description'>
             <Partner />
           </response>
+          <request>
+            <success>
+              {{ test: 'get partner' }}
+            </success>
+          </request>
         </endpoint>
         <endpoint method='patch' path='/partners/{id}'>
           <response description='Partner Response Description'>
             <Partner />
           </response>
+          <request>
+            <success>
+              {{ test: 'patch partner' }}
+            </success>
+          </request>
         </endpoint>
       </tag>
       <dts path='src/api.d.ts' />

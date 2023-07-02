@@ -3,9 +3,9 @@ import { JSXElement } from '@innet/jsx'
 import { ServerResponse } from 'http'
 import { onDestroy } from 'watch-state'
 
-import { useServer } from '../../hooks'
+import { requestContext, responseContext, useServer } from '../../hooks'
 import { apiContext } from '../../hooks/useApi'
-import { Document, Endpoints } from '../../types'
+import { Document, Endpoint, Endpoints } from '../../types'
 
 export interface ApiProps {
   /** The title of the API. */
@@ -54,11 +54,64 @@ export const api: HandlerPlugin = () => {
   const listener = (req: Request, res: ServerResponse) => {
     if (res.writableEnded) return
 
-    if (req.url === (prefix || '/')) {
+    const url = req.url.endsWith('/') ? req.url.slice(0, -1) : req.url
+
+    if (url === (prefix || '')) {
       res.setHeader('Content-Type', 'application/json')
       res.write(JSON.stringify(docs))
       res.end()
+      return
     }
+
+    if (!url.startsWith(prefix)) {
+      res.end()
+      return
+    }
+
+    const splitPath = req.url.slice(prefix.length).split('/').slice(1)
+    const endpoint = endpoints[req.method.toLowerCase()]
+    const endpointQueue: [number, Endpoint][] = endpoint ? [[0, endpoint]] : []
+
+    let currentEndpoint: Endpoint
+    let deep: number
+    while (endpointQueue.length) {
+      ;[deep, currentEndpoint] = endpointQueue.shift()
+      const key = splitPath[deep]
+
+      if (deep + 1 === splitPath.length) {
+        if (currentEndpoint.static?.[key]?.content) {
+          const newHandler = Object.create(currentEndpoint.static[key].handler)
+          newHandler[responseContext.key] = res
+          newHandler[requestContext.key] = req
+
+          innet(currentEndpoint.static[key].content, newHandler)
+          return
+        }
+
+        if (currentEndpoint.dynamic?.[0].content) {
+          const newHandler = Object.create(currentEndpoint.dynamic[0].handler)
+          newHandler[responseContext.key] = res
+          newHandler[requestContext.key] = req
+
+          innet(currentEndpoint.dynamic[0].content, newHandler)
+          return
+        }
+        break
+      }
+
+      if (currentEndpoint.static?.[key]) {
+        endpointQueue.push([deep + 1, currentEndpoint.static[key]])
+      }
+
+      if (currentEndpoint.dynamic) {
+        for (const dynamicEndpoint of currentEndpoint.dynamic) {
+          endpointQueue.push([deep + 1, dynamicEndpoint])
+        }
+      }
+    }
+
+    res.statusCode = 404
+    res.end()
   }
 
   server.on('request', listener)

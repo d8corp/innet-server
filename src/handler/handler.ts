@@ -21,10 +21,12 @@ import {
   nullPlugin, NullProps,
   number, NumberProps,
   object, ObjectProps,
+  request, RequestProps,
   response, ResponseProps,
   server, ServerProps,
   stand, StandProps,
   string, StringProps,
+  success, SuccessProps,
   swagger, SwaggerProps,
   tag, TagProps,
   variable, VariableProps,
@@ -57,6 +59,8 @@ export const JSXPlugins = {
   boolean,
   null: nullPlugin,
   dts,
+  request,
+  success,
 }
 
 export const fnPlugins = [
@@ -106,6 +110,8 @@ declare global {
       boolean: BooleanProps,
       null: NullProps,
       dts: DtsProps,
+      request: RequestProps,
+      success: SuccessProps,
     }
   }
 }

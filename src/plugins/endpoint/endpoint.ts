@@ -45,6 +45,14 @@ export const endpoint: HandlerPlugin = () => {
   const children = useChildren()
   const { paths } = docs
 
+  if (!paths[path]) {
+    paths[path] = {}
+  }
+
+  if (paths[path][method]) {
+    throw Error(`You cannot use the same endpoints ${method}:${path}`)
+  }
+
   const operation: OperationObject = {}
 
   if (summary) {
@@ -63,17 +71,9 @@ export const endpoint: HandlerPlugin = () => {
     operation.tags = [tag.name]
   }
 
-  if (!paths[path]) {
-    paths[path] = {}
-  }
-
-  if (paths[path][method]) {
-    throw Error(`You cannot use the same endpoints ${method}:${path}`)
-  }
-
   paths[path][method] = operation as any
 
-  handler[operationContext.key] = { operation, path }
+  handler[operationContext.key] = { operation, path, method }
 
   innet(children, handler)
 }
