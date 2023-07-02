@@ -1,7 +1,8 @@
 import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { responseContext, useApi, useOperation } from '../../hooks'
+import { responseContext, schemaContext, useOperation } from '../../hooks'
+import { ResponseObject, SchemaObject } from '../../types'
 
 export interface ResponseProps {
   /**
@@ -33,8 +34,15 @@ export const response: HandlerPlugin = () => {
     throw Error(`status ${status} for '${path}' already used`)
   }
 
-  const response = {
+  const schema: SchemaObject = {}
+
+  const response: ResponseObject = {
     description,
+    content: {
+      'application/json': {
+        schema,
+      },
+    },
   }
 
   operation.responses[status] = response
@@ -42,6 +50,8 @@ export const response: HandlerPlugin = () => {
   handler[responseContext.key] = {
     response,
   }
+
+  handler[schemaContext.key] = schema
 
   innet(children, handler)
 }

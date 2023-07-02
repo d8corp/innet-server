@@ -7,6 +7,7 @@ export type Document = API.Document
 export type ServerObject = API.ServerObject
 export type OperationObject = API.OperationObject
 export type ResponseObject = API.ResponseObject
+export type SchemaObject = API.SchemaObject
 
 // Custom
 
