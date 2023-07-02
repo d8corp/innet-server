@@ -13,6 +13,7 @@ import {
   array, ArrayProps,
   boolean, BooleanProps,
   contact, ContactProps,
+  dts, DtsProps,
   endpoint, EndpointProps,
   field, FieldProps,
   integer, IntegerProps,
@@ -55,6 +56,7 @@ export const JSXPlugins = {
   string,
   boolean,
   null: nullPlugin,
+  dts,
 }
 
 export const fnPlugins = [
@@ -103,6 +105,7 @@ declare global {
       array: ArrayProps,
       boolean: BooleanProps,
       null: NullProps,
+      dts: DtsProps,
     }
   }
 }

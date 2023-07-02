@@ -1,0 +1,4 @@
+node_modules
+release
+jest.config.js
+src/api.d.ts

@@ -3,6 +3,7 @@ import { useChildren } from '@innet/jsx'
 
 import { handler } from './handler'
 import { useNewRef } from './hooks'
+import { dts } from './plugins'
 import { defaultOnStart } from './utils'
 
 const Address = () => {
@@ -25,6 +26,7 @@ const Partner = () => {
     <object ref={ref}>
       <field key='id'><string example='cantent' /></field>
       <field key='name'><string example='CANTent.' /></field>
+      <field key='gift'><boolean /></field>
       <field optional key='addresses'>
         <array>
           <Address />
@@ -53,7 +55,7 @@ const List = () => {
 
 const app = (
   <server port={3000} onStart={defaultOnStart}>
-    <api prefix='/api' title='CANT inc. API' version='0.0.1'>
+    <api description='Test CANT inc. API' prefix='/api' title='CANT inc. API' version='0.0.1'>
       <swagger path='/' />
       <stand url='https://cantinc.com/api' description='Production' />
       <stand url='https://stage.cantinc.com/api' description='Stage' />
@@ -85,6 +87,7 @@ const app = (
           </response>
         </endpoint>
       </tag>
+      <dts path='src/api.d.ts' />
     </api>
   </server>
 )

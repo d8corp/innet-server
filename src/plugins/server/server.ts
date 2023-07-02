@@ -1,13 +1,12 @@
 import innet, { HandlerPlugin, useApp, useNewHandler } from 'innet'
 import { JSXElement } from '@innet/jsx'
 import fs from 'fs'
-import http from 'http'
+import http, { ServerResponse } from 'http'
 import http2 from 'https'
 import { onDestroy } from 'watch-state'
 
 import { serverContext } from '../../hooks'
 import { ServerStartParams, SSL } from '../../types'
-import { Request, Response } from '../../utils'
 
 const isInvalidPath = require('is-invalid-path')
 
@@ -15,7 +14,7 @@ export interface ServerProps {
   port?: number
   ssl?: SSL
   onStart?: (params: ServerStartParams) => any
-  onRequest?: (req: Request, res: Response) => any
+  onRequest?: (req: Request, res: ServerResponse) => any
   onError?: (e: Error) => any
   onDestroy?: () => any
 }
