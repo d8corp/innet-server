@@ -39,6 +39,9 @@ const app = (
           description='You cant use partners as you wish!'>
           <response description='Response Description'>
             <object>
+              <field key='page'><number default={1} /></field>
+              <field key='pageSize'><number default={10} /></field>
+              <field key='count'><number default={11} /></field>
               <field key='partners'>
                 <array>
                   <Partner />

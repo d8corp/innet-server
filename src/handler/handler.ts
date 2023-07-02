@@ -14,6 +14,7 @@ import {
   endpoint, EndpointProps,
   field, FieldProps,
   license, LicenseProps,
+  number, NumberProps,
   object, ObjectProps,
   response, ResponseProps,
   server, ServerProps,
@@ -43,6 +44,7 @@ export const JSXPlugins = {
   response,
   object,
   field,
+  number,
 }
 
 export const fnPlugins = [
@@ -85,6 +87,7 @@ declare global {
       response: ResponseProps,
       object: ObjectProps,
       field: FieldProps,
+      number: NumberProps,
     }
   }
 }
