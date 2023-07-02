@@ -1,23 +1,13 @@
 import { HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
-import { useSchema } from '../../hooks'
+import { useSchemaType } from '../../hooks'
+import { SchemaTypeOptions } from '../../types'
 
-export interface NumberProps {
-  default?: number
+export interface NumberProps extends SchemaTypeOptions <number>{
+
 }
 
 export const number: HandlerPlugin = () => {
-  const props = useProps<NumberProps>()
-  const schema = useSchema()
-
-  if (!schema) {
-    throw Error('Use <number> inside <response>')
-  }
-
-  schema.type = 'number'
-
-  if (props?.default) {
-    schema.default = props.default
-  }
+  useSchemaType('number', useProps<NumberProps>())
 }

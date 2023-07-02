@@ -8,6 +8,10 @@ export type ServerObject = API.ServerObject
 export type OperationObject = API.OperationObject
 export type ResponseObject = API.ResponseObject
 export type SchemaObject = API.SchemaObject
+export type ArraySchemaObjectType = API.ArraySchemaObjectType
+export type NonArraySchemaObjectType = API.NonArraySchemaObjectType
+
+export type ObjectType = ArraySchemaObjectType | NonArraySchemaObjectType
 
 // Custom
 
@@ -38,4 +42,9 @@ export interface SSL {
 export interface ServerStartParams {
   port: number
   https: boolean
+}
+
+export interface SchemaTypeOptions <T> {
+  default?: T
+  example?: T
 }

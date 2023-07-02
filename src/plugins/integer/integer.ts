@@ -1,30 +1,16 @@
 import { HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
-import { useSchema } from '../../hooks'
-import { IntegerFormats } from '../../types'
+import { useSchemaType } from '../../hooks'
+import { IntegerFormats, SchemaTypeOptions } from '../../types'
 
-export interface IntegerProps {
-  default?: number
+export interface IntegerProps extends SchemaTypeOptions<number> {
   format?: IntegerFormats
 }
 
 export const integer: HandlerPlugin = () => {
-  const props = useProps<IntegerProps>()
-  const schema = useSchema()
+  const { format = 'int64', ...props } = useProps<IntegerProps>() || {}
+  const schema = useSchemaType('integer', props)
 
-  if (!schema) {
-    throw Error('Use <integer> inside <response>')
-  }
-
-  if (schema.type) {
-    throw Error('Already typed')
-  }
-
-  schema.type = 'integer'
-  schema.format = props?.format ?? 'int64'
-
-  if (props?.default) {
-    schema.default = props.default
-  }
+  schema.format = format
 }

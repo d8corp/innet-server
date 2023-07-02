@@ -1,23 +1,19 @@
 import innet, { HandlerPlugin, useHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { useSchema } from '../../hooks'
+import { useSchemaType } from '../../hooks'
+import { SchemaTypeOptions } from '../../types'
 
-export interface ObjectProps {
+export interface ObjectProps extends SchemaTypeOptions <object> {
   ref?: string
 }
 
 export const object: HandlerPlugin = () => {
   const handler = useHandler()
-  const props = useProps<ObjectProps>()
-  const schema = useSchema()
+  const { ref, ...props } = useProps<ObjectProps>() || {}
   const children = useChildren()
 
-  if (!schema) {
-    throw Error('Use <object> inside <response>')
-  }
-
-  schema.type = 'object'
+  useSchemaType('object', props)
 
   innet(children, handler)
 }
