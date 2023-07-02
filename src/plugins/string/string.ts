@@ -5,9 +5,14 @@ import { useSchemaType } from '../../hooks'
 import { SchemaTypeOptions } from '../../types'
 
 export interface StringProps extends SchemaTypeOptions <string>{
-
+  values?: string[]
 }
 
 export const string: HandlerPlugin = () => {
-  useSchemaType('string', useProps<StringProps>())
+  const { values, ...props } = useProps<StringProps>() || {}
+  const schema = useSchemaType('string', props)
+
+  if (values) {
+    schema.enum = values
+  }
 }

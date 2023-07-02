@@ -48,4 +48,5 @@ export interface ServerStartParams {
 export interface SchemaTypeOptions <T> {
   default?: T
   example?: T
+  description?: string
 }
