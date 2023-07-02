@@ -20,6 +20,7 @@ import {
   response, ResponseProps,
   server, ServerProps,
   stand, StandProps,
+  string, StringProps,
   swagger, SwaggerProps,
   tag, TagProps,
   variable, VariableProps,
@@ -47,6 +48,7 @@ export const JSXPlugins = {
   field,
   number,
   integer,
+  string,
 }
 
 export const fnPlugins = [
@@ -91,6 +93,7 @@ declare global {
       field: FieldProps,
       number: NumberProps,
       integer: IntegerProps,
+      string: StringProps,
     }
   }
 }
