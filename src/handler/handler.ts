@@ -15,6 +15,7 @@ import {
   license, LicenseProps,
   server, ServerProps,
   stand, StandProps,
+  swagger, SwaggerProps,
   tag, TagProps,
   variable, VariableProps,
 } from '../plugins'
@@ -35,6 +36,7 @@ export const JSXPlugins = {
   license,
   tag,
   get,
+  swagger,
 }
 
 export const fnPlugins = [
@@ -73,6 +75,7 @@ declare global {
       variable: VariableProps,
       tag: TagProps,
       get: GetProps,
+      swagger: SwaggerProps,
     }
   }
 }

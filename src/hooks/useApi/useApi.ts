@@ -5,6 +5,7 @@ import { Document, Endpoints } from '../../types'
 export interface ApiContext {
   docs: Document
   endpoints: Endpoints
+  prefix: string
 }
 
 export const apiContext = new Context<ApiContext>()
