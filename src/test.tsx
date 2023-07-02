@@ -15,6 +15,7 @@ const Partner = () => {
         <array>
           <object>
             <field key='id'><number /></field>
+            <field key='active'><null /></field>
             <field key='city'><string description='City description' values={['msk', 'sml']} /></field>
             <field key='location'><typle><number /><number /></typle></field>
           </object>

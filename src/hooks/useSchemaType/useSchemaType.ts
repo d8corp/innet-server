@@ -13,7 +13,11 @@ type TypeMap <T extends ObjectType> = T extends 'number' | 'integer'
       ? object
       : T extends 'array'
         ? any[]
-        : unknown
+        : T extends 'boolean'
+          ? boolean
+          : T extends 'null'
+            ? null
+            : unknown
 
 export function useSchemaType <T extends ObjectType> (type: T, options?: SchemaTypeOptions<TypeMap<T>>) {
   const schema = useSchema()

@@ -11,11 +11,13 @@ import { serverFn } from '../handlerPlugins'
 import {
   api, ApiProps,
   array, ArrayProps,
+  boolean, BooleanProps,
   contact, ContactProps,
   endpoint, EndpointProps,
   field, FieldProps,
   integer, IntegerProps,
   license, LicenseProps,
+  nullPlugin, NullProps,
   number, NumberProps,
   object, ObjectProps,
   response, ResponseProps,
@@ -51,6 +53,8 @@ export const JSXPlugins = {
   number,
   integer,
   string,
+  boolean,
+  null: nullPlugin,
 }
 
 export const fnPlugins = [
@@ -97,6 +101,8 @@ declare global {
       integer: IntegerProps,
       string: StringProps,
       array: ArrayProps,
+      boolean: BooleanProps,
+      null: NullProps,
     }
   }
 }
