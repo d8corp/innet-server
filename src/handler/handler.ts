@@ -13,6 +13,7 @@ import {
   contact, ContactProps,
   endpoint, EndpointProps,
   field, FieldProps,
+  integer, IntegerProps,
   license, LicenseProps,
   number, NumberProps,
   object, ObjectProps,
@@ -45,6 +46,7 @@ export const JSXPlugins = {
   object,
   field,
   number,
+  integer,
 }
 
 export const fnPlugins = [
@@ -88,6 +90,7 @@ declare global {
       object: ObjectProps,
       field: FieldProps,
       number: NumberProps,
+      integer: IntegerProps,
     }
   }
 }
