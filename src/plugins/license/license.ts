@@ -1,7 +1,7 @@
 import { HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
-import { useApi } from '../../hooks'
+import { useApi, useOneElementError } from '../../hooks'
 
 export interface LicenseProps {
   /**
@@ -28,5 +28,10 @@ export interface LicenseProps {
 export const license: HandlerPlugin = () => {
   const { docs } = useApi()
   const props = useProps<LicenseProps>()
-  docs.info.license = { ...props }
+
+  if (docs.info.license) {
+    useOneElementError()
+  }
+
+  docs.info.license = props
 }

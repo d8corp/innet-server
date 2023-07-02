@@ -1,7 +1,7 @@
 import { HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
-import { useApi } from '../../hooks'
+import { useApi, useOneElementError } from '../../hooks'
 
 export interface ContactProps {
   /** The identifying name of the contact person/organization. */
@@ -20,8 +20,8 @@ export const contact: HandlerPlugin = () => {
   const { contact } = docs.info
 
   if (contact) {
-    Object.assign(contact, props)
-  } else {
-    docs.info.contact = { ...props }
+    useOneElementError()
   }
+
+  docs.info.contact = props
 }
