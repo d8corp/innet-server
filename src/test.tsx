@@ -9,15 +9,16 @@ const Partner = () => {
 
   return (
     <object ref={ref}>
-      <field key='id'><number /></field>
-      <field key='name'><string /></field>
-      <field key='roles'><array><number /></array></field>
-      <field nullable key='addresses'>
-        <object>
-          <field key='id'><number /></field>
-          <field key='city'><enum values={['Moscow', 'Smolensk']} /></field>
-          <field key='location'><typle><number /><number /></typle></field>
-        </object>
+      <field key='id'><string example='cantent' /></field>
+      <field key='name'><string example='CANTent.' /></field>
+      <field optional key='addresses'>
+        <array>
+          <object>
+            <field key='id'><number /></field>
+            <field key='city'><enum values={['Moscow', 'Smolensk']} /></field>
+            <field key='location'><typle><number /><number /></typle></field>
+          </object>
+        </array>
       </field>
     </object>
   )
@@ -44,20 +45,7 @@ const app = (
               <field key='count'><number default={11} /></field>
               <field key='partners'>
                 <array>
-                  <object>
-                    <field key='id'><number /></field>
-                    <field key='name'><string /></field>
-                    <field key='roles'><array><number example={1} /></array></field>
-                    <field optional key='addresses'>
-                      <array>
-                        <object>
-                          <field key='id'><number /></field>
-                          <field key='city'><enum values={['Moscow', 'Smolensk']} /></field>
-                          <field key='location'><typle><number /><number /></typle></field>
-                        </object>
-                      </array>
-                    </field>
-                  </object>
+                  <Partner />
                 </array>
               </field>
             </object>
