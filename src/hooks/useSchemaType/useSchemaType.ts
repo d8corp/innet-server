@@ -20,15 +20,27 @@ type TypeMap <T extends ObjectType> = T extends 'number' | 'integer'
             : unknown
 
 export function useSchemaType <T extends ObjectType> (type: T, options?: SchemaTypeOptions<TypeMap<T>>) {
-  const schema = useSchema()
+  let schema = useSchema()
 
   if (!schema) {
     const { type } = useApp<JSXElement>()
     throw Error(`Use <${type}> inside <response>`)
   }
 
-  if (schema.type) {
-    throw Error('Already typed')
+  if (schema.oneOf) {
+    const parent = schema
+    schema = {}
+    parent.oneOf.push(schema)
+  } else if (schema.type) {
+    const parent = schema
+    const oldSchema = { ...parent }
+    schema = {}
+
+    for (const key in parent) {
+      delete parent[key]
+    }
+
+    parent.oneOf = [oldSchema, schema]
   }
 
   schema.type = type
