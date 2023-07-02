@@ -15,7 +15,7 @@ export const dts: HandlerPlugin = () => {
   const { docs } = useApi()
 
   dtsGenerator({
-    contents: [parseSchema(docs as any)],
+    contents: [parseSchema(JSON.parse(JSON.stringify(docs)))],
     config,
   }).then(content => fs.promises.writeFile(path, content)).catch(error => {
     console.error(error)

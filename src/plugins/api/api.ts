@@ -64,7 +64,6 @@ export const api: HandlerPlugin = () => {
     }
 
     if (!url.startsWith(prefix)) {
-      res.end()
       return
     }
 
