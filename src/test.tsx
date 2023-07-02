@@ -44,7 +44,20 @@ const app = (
               <field key='count'><number default={11} /></field>
               <field key='partners'>
                 <array>
-                  <Partner />
+                  <object>
+                    <field key='id'><number /></field>
+                    <field key='name'><string /></field>
+                    <field key='roles'><array><number example={1} /></array></field>
+                    <field optional key='addresses'>
+                      <array>
+                        <object>
+                          <field key='id'><number /></field>
+                          <field key='city'><enum values={['Moscow', 'Smolensk']} /></field>
+                          <field key='location'><typle><number /><number /></typle></field>
+                        </object>
+                      </array>
+                    </field>
+                  </object>
                 </array>
               </field>
             </object>

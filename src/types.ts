@@ -10,6 +10,7 @@ export type ResponseObject = API.ResponseObject
 export type SchemaObject = API.SchemaObject
 export type ArraySchemaObjectType = API.ArraySchemaObjectType
 export type NonArraySchemaObjectType = API.NonArraySchemaObjectType
+export type ArraySchemaObject = API.ArraySchemaObject
 
 export type ObjectType = ArraySchemaObjectType | NonArraySchemaObjectType
 

@@ -5,11 +5,12 @@ import {
   slot, SlotProps,
   slots, SlotsProps,
 } from '@innet/jsx'
-import { array, arraySync, async, fn, nullish, object as isObject, promise } from '@innet/utils'
+import { array as isArray, arraySync, async, fn, nullish, object as isObject, promise } from '@innet/utils'
 
 import { serverFn } from '../handlerPlugins'
 import {
   api, ApiProps,
+  array, ArrayProps,
   contact, ContactProps,
   endpoint, EndpointProps,
   field, FieldProps,
@@ -45,6 +46,7 @@ export const JSXPlugins = {
   swagger,
   response,
   object,
+  array,
   field,
   number,
   integer,
@@ -66,7 +68,7 @@ export const promisePlugins = [
 
 export const handler = createHandler([
   promise(promisePlugins),
-  array(arrayPlugins),
+  isArray(arrayPlugins),
   nullish([]),
   isObject(objectPlugins),
   fn(fnPlugins),
@@ -94,6 +96,7 @@ declare global {
       number: NumberProps,
       integer: IntegerProps,
       string: StringProps,
+      array: ArrayProps,
     }
   }
 }
