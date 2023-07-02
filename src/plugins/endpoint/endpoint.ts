@@ -2,9 +2,13 @@ import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
 import { operationContext, useApi, useTag } from '../../hooks'
-import { OperationObject } from '../../types'
+import { EndpointsMethods, OperationObject } from '../../types'
 
-export interface GetProps {
+export interface EndpointProps {
+  /**
+   * A method of the endpoint.
+   * */
+  method: EndpointsMethods
   /**
    * A relative path to an individual endpoint.
    * The property MUST begin with a forward slash (/).
@@ -33,11 +37,11 @@ export interface GetProps {
   deprecated?: boolean
 }
 
-export const get: HandlerPlugin = () => {
+export const endpoint: HandlerPlugin = () => {
   const handler = useNewHandler()
   const tag = useTag()
   const { docs, endpoints } = useApi()
-  const { path, summary, description, deprecated } = useProps<GetProps>()
+  const { path, summary, description, deprecated, method } = useProps<EndpointProps>()
   const children = useChildren()
   const { paths } = docs
 
@@ -63,11 +67,11 @@ export const get: HandlerPlugin = () => {
     paths[path] = {}
   }
 
-  if (paths[path].get) {
-    throw Error(`You cannot use the same endpoints GET:${path}`)
+  if (paths[path][method]) {
+    throw Error(`You cannot use the same endpoints ${method}:${path}`)
   }
 
-  paths[path].get = operation as any
+  paths[path][method] = operation as any
 
   handler[operationContext.key] = { operation, path }
 

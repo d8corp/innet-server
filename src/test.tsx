@@ -32,21 +32,34 @@ const app = (
       <license name='MIT' />
       <contact name='Mike' email='d8corp@mail.ru' />
       <tag name='partner' description='Partners of CANT inc.'>
-        <get path='/partners' summary='Returns a list of partners' description='You cant use partners as you wish!'>
+        <endpoint
+          method='get'
+          path='/partners'
+          summary='Returns a list of partners'
+          description='You cant use partners as you wish!'>
           <response description='Response Description'>
-            <array>
-              <Partner />
-            </array>
+            <object>
+              <field key='partners'>
+                <array>
+                  <Partner />
+                </array>
+              </field>
+            </object>
           </response>
           <request>
             <log />
           </request>
-        </get>
-        <get path='/partners/{id}'>
+        </endpoint>
+        <endpoint method='get' path='/partners/{id}'>
           <response description='Partner Response Description'>
             <Partner />
           </response>
-        </get>
+        </endpoint>
+        <endpoint method='patch' path='/partners/{id}'>
+          <response description='Partner Response Description'>
+            <Partner />
+          </response>
+        </endpoint>
       </tag>
     </api>
   </server>
