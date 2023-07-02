@@ -25,11 +25,9 @@ export const success: HandlerPlugin = () => {
   const children = useChildren()
   const props = useProps<SuccessProps>()
   const res = useResponse()
+  const status = props?.status
 
-  if (props?.status) {
-    const { status } = props
-    res.statusCode = typeof status === 'string' ? successStatuses[status] : status
-  }
+  res.statusCode = typeof status === 'string' ? successStatuses[status] : status ?? (children ? 200 : 204)
 
   if (children) {
     res.write(JSON.stringify(children[0]))

@@ -15,6 +15,7 @@ import {
   contact, ContactProps,
   dts, DtsProps,
   endpoint, EndpointProps,
+  error, ErrorProps,
   field, FieldProps,
   integer, IntegerProps,
   license, LicenseProps,
@@ -61,6 +62,7 @@ export const JSXPlugins = {
   dts,
   request,
   success,
+  error,
 }
 
 export const fnPlugins = [
@@ -112,6 +114,7 @@ declare global {
       dts: DtsProps,
       request: RequestProps,
       success: SuccessProps,
+      error: ErrorProps,
     }
   }
 }

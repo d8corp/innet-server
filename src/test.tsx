@@ -83,9 +83,7 @@ const app = (
             <Partner />
           </response>
           <request>
-            <success>
-              {{ test: 'get partner' }}
-            </success>
+            <error status='badRequest' />
           </request>
         </endpoint>
         <endpoint method='patch' path='/partners/{id}'>
@@ -93,9 +91,9 @@ const app = (
             <Partner />
           </response>
           <request>
-            <success>
+            <error>
               {{ test: 'patch partner' }}
-            </success>
+            </error>
           </request>
         </endpoint>
       </tag>
