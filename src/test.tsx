@@ -1,11 +1,14 @@
 import innet from 'innet'
 
 import { handler } from './handler'
+import { useNewRef } from './hooks'
 import { defaultOnStart } from './utils'
 
 const Partner = () => {
+  const ref = useNewRef()
+
   return (
-    <object>
+    <object ref={ref}>
       <field key='id'><number /></field>
       <field key='name'><string /></field>
       <field key='roles'><array><number /></array></field>
@@ -30,7 +33,7 @@ const app = (
       <contact name='Mike' email='d8corp@mail.ru' />
       <tag name='partner' description='Partners of CANT inc.'>
         <get path='/partners' summary='Returns a list of partners' description='You cant use partners as you wish!'>
-          <response>
+          <response description='Response Description'>
             <array>
               <Partner />
             </array>
@@ -40,7 +43,7 @@ const app = (
           </request>
         </get>
         <get path='/partners/{id}'>
-          <response>
+          <response description='Partner Response Description'>
             <Partner />
           </response>
         </get>

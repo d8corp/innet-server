@@ -25,7 +25,7 @@ export const stand: HandlerPlugin = () => {
   const { docs } = useApi()
   const props = useProps<StandProps>()
   const children = useChildren()
-  const operation = useOperation()
+  const { operation } = useOperation() || {}
   const target = operation || docs
 
   if (!target.servers) {

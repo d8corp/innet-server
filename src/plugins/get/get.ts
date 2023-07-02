@@ -69,7 +69,7 @@ export const get: HandlerPlugin = () => {
 
   paths[path].get = operation as any
 
-  handler[operationContext.key] = operation
+  handler[operationContext.key] = { operation, path }
 
   innet(children, handler)
 }

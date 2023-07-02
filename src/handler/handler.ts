@@ -13,6 +13,7 @@ import {
   contact, ContactProps,
   get, GetProps,
   license, LicenseProps,
+  response, ResponseProps,
   server, ServerProps,
   stand, StandProps,
   swagger, SwaggerProps,
@@ -37,6 +38,7 @@ export const JSXPlugins = {
   tag,
   get,
   swagger,
+  response,
 }
 
 export const fnPlugins = [
@@ -76,6 +78,7 @@ declare global {
       tag: TagProps,
       get: GetProps,
       swagger: SwaggerProps,
+      response: ResponseProps,
     }
   }
 }
