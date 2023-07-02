@@ -1,7 +1,4 @@
-import { useApp } from 'innet'
-import { JSXElement } from '@innet/jsx'
-
-import { useSchema } from '../useSchema'
+import { useSchemaBase } from '../useSchemaBase'
 
 import { ObjectType, SchemaTypeOptions } from '../../types'
 
@@ -20,28 +17,7 @@ type TypeMap <T extends ObjectType> = T extends 'number' | 'integer'
             : unknown
 
 export function useSchemaType <T extends ObjectType> (type: T, options?: SchemaTypeOptions<TypeMap<T>>) {
-  let schema = useSchema()
-
-  if (!schema) {
-    const { type } = useApp<JSXElement>()
-    throw Error(`Use <${type}> inside <response>`)
-  }
-
-  if (schema.oneOf) {
-    const parent = schema
-    schema = {}
-    parent.oneOf.push(schema)
-  } else if (schema.type) {
-    const parent = schema
-    const oldSchema = { ...parent }
-    schema = {}
-
-    for (const key in parent) {
-      delete parent[key]
-    }
-
-    parent.oneOf = [oldSchema, schema]
-  }
+  const schema = useSchemaBase()
 
   schema.type = type
 

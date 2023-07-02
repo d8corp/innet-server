@@ -1,8 +1,22 @@
 import innet from 'innet'
+import { useChildren } from '@innet/jsx'
 
 import { handler } from './handler'
 import { useNewRef } from './hooks'
 import { defaultOnStart } from './utils'
+
+const Address = () => {
+  const ref = useNewRef()
+
+  return (
+    <object ref={ref}>
+      <field key='id'><number /></field>
+      <field key='active'><null /></field>
+      <field key='city'><string description='City description' values={['msk', 'sml']} /></field>
+      <field key='location'><typle><number /><number /></typle></field>
+    </object>
+  )
+}
 
 const Partner = () => {
   const ref = useNewRef()
@@ -13,12 +27,24 @@ const Partner = () => {
       <field key='name'><string example='CANTent.' /></field>
       <field optional key='addresses'>
         <array>
-          <object>
-            <field key='id'><number /></field>
-            <field key='active'><null /></field>
-            <field key='city'><string description='City description' values={['msk', 'sml']} /></field>
-            <field key='location'><typle><number /><number /></typle></field>
-          </object>
+          <Address />
+        </array>
+      </field>
+    </object>
+  )
+}
+
+const List = () => {
+  const children = useChildren()
+
+  return (
+    <object>
+      <field key='page'><integer default={1} /></field>
+      <field key='pageSize'><number example={10} /></field>
+      <field key='count'><number default={11} /></field>
+      <field key='partners'>
+        <array>
+          {children}
         </array>
       </field>
     </object>
@@ -40,16 +66,9 @@ const app = (
           summary='Returns a list of partners'
           description='You cant use partners as you wish!'>
           <response description='Response Description'>
-            <object>
-              <field key='page'><integer default={1} /></field>
-              <field key='pageSize'><number example={10} /></field>
-              <field key='count'><number default={11} /></field>
-              <field key='partners'>
-                <array>
-                  <Partner />
-                </array>
-              </field>
-            </object>
+            <List>
+              <Partner />
+            </List>
           </response>
           <request>
             <log />

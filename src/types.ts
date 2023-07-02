@@ -11,6 +11,7 @@ export type SchemaObject = API.SchemaObject
 export type ArraySchemaObjectType = API.ArraySchemaObjectType
 export type NonArraySchemaObjectType = API.NonArraySchemaObjectType
 export type ArraySchemaObject = API.ArraySchemaObject
+export type ReferenceObject = API.ReferenceObject
 
 export type ObjectType = ArraySchemaObjectType | NonArraySchemaObjectType
 

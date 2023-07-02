@@ -1,3 +1,7 @@
+import { useApp } from 'innet'
+import { JSXElement } from '@innet/jsx'
+
 export function useNewRef () {
-  return ''
+  const { type } = useApp<JSXElement>()
+  return type.name
 }
