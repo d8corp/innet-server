@@ -67,6 +67,10 @@ const app = (
           path='/partners'
           summary='Returns a list of partners'
           description='You cant use partners as you wish!'>
+          <param in='query' name='id'>
+            <string />
+            <array><string /></array>
+          </param>
           <response description='Response Description'>
             <List>
               <Partner />
@@ -79,6 +83,7 @@ const app = (
           </request>
         </endpoint>
         <endpoint method='get' path='/partners/{id}'>
+          <param in='path' name='id'><string /></param>
           <response description='Partner Response Description'>
             <Partner />
           </response>
@@ -87,6 +92,18 @@ const app = (
           </request>
         </endpoint>
         <endpoint method='patch' path='/partners/{id}'>
+          <param in='path' name='id'><string /></param>
+          <body type='application/json'>
+            <object>
+              <field key='name'><string example='CANTent.' /></field>
+              <field key='gift'><boolean /></field>
+              <field optional key='addresses'>
+                <array>
+                  <number description='address id' />
+                </array>
+              </field>
+            </object>
+          </body>
           <response description='Partner Response Description'>
             <Partner />
           </response>

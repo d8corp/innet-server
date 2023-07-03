@@ -28,6 +28,12 @@ declare namespace Components {
 declare namespace Paths {
     namespace Partners {
         namespace Get {
+            namespace Parameters {
+                export type Id = string | string[];
+            }
+            export interface QueryParameters {
+                id?: Parameters.Id;
+            }
             namespace Responses {
                 export interface Default {
                     page: number; // int64
@@ -44,11 +50,23 @@ declare namespace Paths {
     }
     namespace Partners$Id {
         namespace Get {
+            namespace Parameters {
+                export type Id = string;
+            }
+            export interface PathParameters {
+                id?: Parameters.Id;
+            }
             namespace Responses {
                 export type Default = Components.Schemas.Partner;
             }
         }
         namespace Patch {
+            namespace Parameters {
+                export type Id = string;
+            }
+            export interface PathParameters {
+                id?: Parameters.Id;
+            }
             namespace Responses {
                 export type Default = Components.Schemas.Partner;
             }
