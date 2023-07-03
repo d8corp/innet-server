@@ -67,6 +67,15 @@ declare namespace Paths {
             export interface PathParameters {
                 id?: Parameters.Id;
             }
+            export interface RequestBody {
+                /**
+                 * example:
+                 * CANTent.
+                 */
+                name: string;
+                gift: boolean;
+                addresses?: number[];
+            }
             namespace Responses {
                 export type Default = Components.Schemas.Partner;
             }

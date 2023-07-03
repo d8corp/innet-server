@@ -13,6 +13,7 @@
     "jest": true
   },
   "rules": {
+    "react/no-string-refs": "off",
     "no-new": "off",
     "no-unused-vars": "off",
     "no-useless-constructor": "off",

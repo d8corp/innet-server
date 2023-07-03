@@ -14,6 +14,7 @@ export type NonArraySchemaObjectType = API.NonArraySchemaObjectType
 export type ArraySchemaObject = API.ArraySchemaObject
 export type ReferenceObject = API.ReferenceObject
 export type ParameterObject = API.ParameterObject
+export type RequestBodyObject = API.RequestBodyObject
 
 export type ObjectType = ArraySchemaObjectType | NonArraySchemaObjectType
 
@@ -30,6 +31,7 @@ export interface Endpoint {
 export type IntegerFormats = 'int32' | 'int64'
 export type EndpointsMethods = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'options' | 'head' | 'trace'
 export type InParam = 'query' | 'header' | 'path' | 'cookie'
+export type BodyType = 'application/x-www-form-urlencoded' | 'application/json'
 export type Endpoints = Partial<Record<EndpointsMethods, Endpoint>>
 
 export interface SSL {

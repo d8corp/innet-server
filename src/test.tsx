@@ -104,6 +104,15 @@ const app = (
               </field>
             </object>
           </body>
+          <body type='application/x-www-form-urlencoded'>
+            <object>
+              <field key='name'><string example='CANTent.' /></field>
+              <field key='gift'><boolean /></field>
+              <field optional key='addresses[]'>
+                <number description='address id' />
+              </field>
+            </object>
+          </body>
           <response description='Partner Response Description'>
             <Partner />
           </response>

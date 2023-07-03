@@ -11,6 +11,7 @@ import { serverFn } from '../handlerPlugins'
 import {
   api, ApiProps,
   array, ArrayProps,
+  body, BodyProps,
   boolean, BooleanProps,
   contact, ContactProps,
   dts, DtsProps,
@@ -65,6 +66,7 @@ export const JSXPlugins = {
   success,
   error,
   param,
+  body,
 }
 
 export const fnPlugins = [
@@ -118,6 +120,7 @@ declare global {
       success: SuccessProps,
       error: ErrorProps,
       param: ParamProps,
+      body: BodyProps,
     }
   }
 }
