@@ -25,6 +25,7 @@ import {
   object, ObjectProps,
   param, ParamProps,
   proxy, ProxyProps,
+  redirect, RedirectProps,
   request, RequestProps,
   response, ResponseProps,
   server, ServerProps,
@@ -69,6 +70,7 @@ export const JSXPlugins = {
   param,
   body,
   proxy,
+  redirect,
 }
 
 export const fnPlugins = [
@@ -124,6 +126,7 @@ declare global {
       param: ParamProps,
       body: BodyProps,
       proxy: ProxyProps,
+      redirect: RedirectProps,
     }
   }
 }
