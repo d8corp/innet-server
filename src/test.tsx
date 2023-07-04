@@ -2,11 +2,11 @@ import innet from 'innet'
 import { useChildren } from '@innet/jsx'
 
 import { handler } from './handler'
-import { useNewRef } from './hooks'
+import { useNewRef, useParams } from './hooks'
 import { dts, success } from './plugins'
 import { defaultOnStart } from './utils'
 
-const Address = () => {
+const AddressSchema = () => {
   const ref = useNewRef()
 
   return (
@@ -19,7 +19,7 @@ const Address = () => {
   )
 }
 
-const Partner = () => {
+const PartnerSchema = () => {
   const ref = useNewRef()
 
   return (
@@ -29,14 +29,14 @@ const Partner = () => {
       <field key='gift'><boolean /></field>
       <field optional key='addresses'>
         <array>
-          <Address />
+          <AddressSchema />
         </array>
       </field>
     </object>
   )
 }
 
-const List = () => {
+const ListSchema = () => {
   const children = useChildren()
 
   return (
@@ -52,6 +52,8 @@ const List = () => {
     </object>
   )
 }
+
+const Test = () => (<success>{useParams()}</success>)
 
 const app = (
   <server port={3000} onStart={defaultOnStart}>
@@ -73,9 +75,9 @@ const app = (
             <array><string /></array>
           </param>
           <response description='Response Description'>
-            <List>
-              <Partner />
-            </List>
+            <ListSchema>
+              <PartnerSchema />
+            </ListSchema>
           </response>
           <request>
             <proxy to='https://cantinc.com' />
@@ -84,10 +86,10 @@ const app = (
         <endpoint method='get' path='/partners/{id}'>
           <param in='path' name='id'><string /></param>
           <response description='Partner Response Description'>
-            <Partner />
+            <PartnerSchema />
           </response>
           <request>
-            <error status='badRequest' />
+            <Test />
           </request>
         </endpoint>
         <endpoint method='patch' path='/partners/{id}'>
@@ -113,7 +115,7 @@ const app = (
             </object>
           </body>
           <response description='Partner Response Description'>
-            <Partner />
+            <PartnerSchema />
           </response>
           <request>
             <error>

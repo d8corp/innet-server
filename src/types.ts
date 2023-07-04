@@ -33,6 +33,7 @@ export type EndpointsMethods = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'op
 export type InParam = 'query' | 'header' | 'path' | 'cookie'
 export type BodyType = 'application/x-www-form-urlencoded' | 'application/json'
 export type Endpoints = Partial<Record<EndpointsMethods, Endpoint>>
+export type Params = Record<string, string | number>
 
 export interface SSL {
   cert: string

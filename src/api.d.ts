@@ -1,6 +1,6 @@
 declare namespace Components {
     namespace Schemas {
-        export interface Address {
+        export interface AddressSchema {
             id: number;
             active: null;
             /**
@@ -9,7 +9,7 @@ declare namespace Components {
             city: "msk" | "sml";
             location: any;
         }
-        export interface Partner {
+        export interface PartnerSchema {
             /**
              * example:
              * cantent
@@ -21,7 +21,7 @@ declare namespace Components {
              */
             name: string;
             gift: boolean;
-            addresses?: Address[];
+            addresses?: AddressSchema[];
         }
     }
 }
@@ -43,7 +43,7 @@ declare namespace Paths {
                      */
                     pageSize: number;
                     count: number;
-                    partners: Components.Schemas.Partner[];
+                    partners: Components.Schemas.PartnerSchema[];
                 }
             }
         }
@@ -57,7 +57,7 @@ declare namespace Paths {
                 id?: Parameters.Id;
             }
             namespace Responses {
-                export type Default = Components.Schemas.Partner;
+                export type Default = Components.Schemas.PartnerSchema;
             }
         }
         namespace Patch {
@@ -77,7 +77,7 @@ declare namespace Paths {
                 addresses?: number[];
             }
             namespace Responses {
-                export type Default = Components.Schemas.Partner;
+                export type Default = Components.Schemas.PartnerSchema;
             }
         }
     }

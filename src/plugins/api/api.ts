@@ -3,9 +3,9 @@ import { JSXElement } from '@innet/jsx'
 import { ServerResponse } from 'http'
 import { onDestroy } from 'watch-state'
 
-import { requestContext, responseContext, useServer } from '../../hooks'
+import { paramsContext, requestContext, responseContext, useServer } from '../../hooks'
 import { apiContext } from '../../hooks/useApi'
-import { Document, Endpoint, Endpoints } from '../../types'
+import { Document, Endpoint, Endpoints, Params } from '../../types'
 
 export interface ApiProps {
   /** The title of the API. */
@@ -69,12 +69,10 @@ export const api: HandlerPlugin = () => {
 
     const splitPath = req.url.slice(prefix.length).split('/').slice(1)
     const endpoint = endpoints[req.method.toLowerCase()]
-    const endpointQueue: [number, Endpoint][] = endpoint ? [[0, endpoint]] : []
+    const endpointQueue: [number, Endpoint, Params][] = endpoint ? [[0, endpoint, {}]] : []
 
-    let currentEndpoint: Endpoint
-    let deep: number
     while (endpointQueue.length) {
-      ;[deep, currentEndpoint] = endpointQueue.shift()
+      const [deep, currentEndpoint, params] = endpointQueue.shift()
       const key = splitPath[deep]
 
       if (deep + 1 === splitPath.length) {
@@ -82,29 +80,37 @@ export const api: HandlerPlugin = () => {
           const newHandler = Object.create(currentEndpoint.static[key].handler)
           newHandler[responseContext.key] = res
           newHandler[requestContext.key] = req
+          newHandler[paramsContext.key] = params
 
           innet(currentEndpoint.static[key].content, newHandler)
           return
         }
 
-        if (currentEndpoint.dynamic?.[0].content) {
-          const newHandler = Object.create(currentEndpoint.dynamic[0].handler)
-          newHandler[responseContext.key] = res
-          newHandler[requestContext.key] = req
+        if (currentEndpoint.dynamic) {
+          for (const dynamicEndpoint of currentEndpoint.dynamic) {
+            if (dynamicEndpoint.content) {
+              const newHandler = Object.create(dynamicEndpoint.handler)
+              newHandler[responseContext.key] = res
+              newHandler[requestContext.key] = req
+              newHandler[paramsContext.key] = params
 
-          innet(currentEndpoint.dynamic[0].content, newHandler)
-          return
+              params[dynamicEndpoint.key.slice(1, -1)] = key
+
+              innet(dynamicEndpoint.content, newHandler)
+              return
+            }
+          }
         }
         break
       }
 
       if (currentEndpoint.static?.[key]) {
-        endpointQueue.push([deep + 1, currentEndpoint.static[key]])
+        endpointQueue.push([deep + 1, currentEndpoint.static[key], params])
       }
 
       if (currentEndpoint.dynamic) {
         for (const dynamicEndpoint of currentEndpoint.dynamic) {
-          endpointQueue.push([deep + 1, dynamicEndpoint])
+          endpointQueue.push([deep + 1, dynamicEndpoint, { ...params, [dynamicEndpoint.key.slice(1, -1)]: key }])
         }
       }
     }
