@@ -59,6 +59,7 @@ const app = (
       <swagger path='/' />
       <stand url='https://cantinc.com/api' description='Production' />
       <stand url='https://stage.cantinc.com/api' description='Stage' />
+      <stand url='http://localhost:3000/api' description='Localhost' />
       <license name='MIT' />
       <contact name='Mike' email='d8corp@mail.ru' />
       <tag name='partner' description='Partners of CANT inc.'>
@@ -77,9 +78,7 @@ const app = (
             </List>
           </response>
           <request>
-            <success>
-              {{ test: 'get partners' }}
-            </success>
+            <proxy to='https://cantinc.com' />
           </request>
         </endpoint>
         <endpoint method='get' path='/partners/{id}'>

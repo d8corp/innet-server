@@ -24,6 +24,7 @@ import {
   number, NumberProps,
   object, ObjectProps,
   param, ParamProps,
+  proxy, ProxyProps,
   request, RequestProps,
   response, ResponseProps,
   server, ServerProps,
@@ -67,6 +68,7 @@ export const JSXPlugins = {
   error,
   param,
   body,
+  proxy,
 }
 
 export const fnPlugins = [
@@ -121,6 +123,7 @@ declare global {
       error: ErrorProps,
       param: ParamProps,
       body: BodyProps,
+      proxy: ProxyProps,
     }
   }
 }
