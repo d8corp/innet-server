@@ -84,7 +84,7 @@ const app = (
           </request>
         </endpoint>
         <endpoint method='get' path='/partners/{id}'>
-          <param in='path' name='id'><string /></param>
+          <param in='path' name='id'><number /></param>
           <response description='Partner Response Description'>
             <PartnerSchema />
           </response>

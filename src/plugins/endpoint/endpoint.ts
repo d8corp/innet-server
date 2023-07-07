@@ -40,7 +40,7 @@ export interface EndpointProps {
 export const endpoint: HandlerPlugin = () => {
   const handler = useNewHandler()
   const tag = useTag()
-  const { docs, endpoints } = useApi()
+  const { docs } = useApi()
   const { path, summary, description, deprecated, method } = useProps<EndpointProps>()
   const children = useChildren()
   const { paths } = docs

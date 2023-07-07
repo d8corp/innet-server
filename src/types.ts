@@ -1,4 +1,5 @@
 import { Handler } from 'innet'
+import { ValidationMap } from '@cantinc/utils'
 import { OpenAPIV3_1 as API } from 'openapi-types'
 
 // Open API
@@ -23,6 +24,7 @@ export type ObjectType = ArraySchemaObjectType | NonArraySchemaObjectType
 export interface Endpoint {
   key: string
   content?: any
+  pathValidation?: ValidationMap<unknown>
   handler?: Handler
   static?: Record<string, Endpoint>
   dynamic?: Endpoint[]

@@ -1,4 +1,5 @@
 import innet, { HandlerPlugin, useApp, useNewHandler } from 'innet'
+import { validation } from '@cantinc/utils'
 import { JSXElement } from '@innet/jsx'
 import { ServerResponse } from 'http'
 import { onDestroy } from 'watch-state'
@@ -67,8 +68,9 @@ export const api: HandlerPlugin = () => {
       return
     }
 
+    const method = req.method.toLowerCase()
     const splitPath = req.url.slice(prefix.length).split('/').slice(1)
-    const endpoint = endpoints[req.method.toLowerCase()]
+    const endpoint = endpoints[method]
     const endpointQueue: [number, Endpoint, Params][] = endpoint ? [[0, endpoint, {}]] : []
 
     while (endpointQueue.length) {
@@ -89,6 +91,8 @@ export const api: HandlerPlugin = () => {
         if (currentEndpoint.dynamic) {
           for (const dynamicEndpoint of currentEndpoint.dynamic) {
             if (dynamicEndpoint.content) {
+              if (dynamicEndpoint.pathValidation && validation(dynamicEndpoint.pathValidation, params)) continue
+
               const newHandler = Object.create(dynamicEndpoint.handler)
               newHandler[responseContext.key] = res
               newHandler[requestContext.key] = req
