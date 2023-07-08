@@ -36,6 +36,12 @@ export interface EndpointProps {
    * Default value is false.
    * */
   deprecated?: boolean
+
+  /**
+   * Declares this operation to make an endpoint private.
+   * That means the endpoint should not be described and will not be shown in the Open API documentation.
+   * */
+  private?: boolean
 }
 
 export const endpoint: HandlerPlugin = () => {
@@ -43,7 +49,7 @@ export const endpoint: HandlerPlugin = () => {
   const tag = useTag()
   const { docs, endpoints } = useApi()
   const props = useProps<EndpointProps>()
-  const { path, summary, description, deprecated, method } = props
+  const { path, summary, description, deprecated, method, private: privateMode } = props
   const children = useChildren()
   const { paths } = docs
 
@@ -73,7 +79,9 @@ export const endpoint: HandlerPlugin = () => {
     operation.tags = [tag.name]
   }
 
-  paths[path][method] = operation as any
+  if (!privateMode) {
+    paths[path][method] = operation as any
+  }
 
   if (!endpoints[method]) {
     endpoints[method] = { key: '' }
