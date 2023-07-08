@@ -14,6 +14,7 @@ import {
   body, BodyProps,
   boolean, BooleanProps,
   contact, ContactProps,
+  date, DateProps,
   dts, DtsProps,
   endpoint, EndpointProps,
   error, ErrorProps,
@@ -71,6 +72,7 @@ export const JSXPlugins = {
   body,
   proxy,
   redirect,
+  date,
 }
 
 export const fnPlugins = [
@@ -127,6 +129,7 @@ declare global {
       body: BodyProps,
       proxy: ProxyProps,
       redirect: RedirectProps,
+      date: DateProps,
     }
   }
 }
