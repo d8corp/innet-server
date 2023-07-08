@@ -26,7 +26,6 @@ export function usePatchRules (rules?: PathRuleControllers) {
   const props = useProps<StringProps>()
 
   if (props?.values) {
-    const key = endpoint.key.slice(1, -1)
     getOrAdd(endpoint, `rules.path.validation.${key}`, [{}, {}, {}, []])
       .push(isValues(props.values))
   } else {

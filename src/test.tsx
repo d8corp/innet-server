@@ -84,7 +84,7 @@ const app = (
           </request>
         </endpoint>
         <endpoint method='get' path='/partners/{id}'>
-          <param in='path' name='id'><number /></param>
+          <param in='path' name='id'><number minimum={10} maximum={13} /></param>
           <response description='Partner Response Description'>
             <PartnerSchema />
           </response>
