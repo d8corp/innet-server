@@ -1,7 +1,19 @@
 import { Context, useContext } from '@innet/jsx'
 
-export const paramContext = new Context(false)
+import { ParamProps } from '../../plugins'
+
+export interface ParamContext {
+  props: ParamProps
+}
+
+export const paramContext = new Context<ParamContext>()
 
 export function useParam () {
-  return useContext(paramContext)
+  const param = useContext(paramContext)
+
+  if (!param) {
+    throw Error('`useParam` MUST be used in <param>')
+  }
+
+  return param
 }

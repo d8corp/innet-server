@@ -1,7 +1,7 @@
 import { HandlerPlugin } from 'innet'
-import { useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 
-import { useEndpoint, useParam, useSchemaType } from '../../hooks'
+import { paramContext, useEndpoint, useSchemaType } from '../../hooks'
 import { SchemaValuesTypeOptions } from '../../types'
 import { getOrAdd, isValues } from '../../utils'
 
@@ -9,9 +9,11 @@ export interface StringProps extends SchemaValuesTypeOptions <string>{}
 
 export const string: HandlerPlugin = () => {
   const props = useProps<StringProps>()
+  const param = useContext(paramContext)
+
   useSchemaType('string', props)
 
-  if (useParam()) {
+  if (param?.props.in === 'path') {
     if (props?.values) {
       const { endpoint } = useEndpoint()
       const key = endpoint.key.slice(1, -1)

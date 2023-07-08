@@ -62,7 +62,7 @@ export const param: HandlerPlugin = () => {
   params.schema = schema as any
 
   handler[schemaContext.key] = schema
-  handler[paramContext.key] = true
+  handler[paramContext.key] = { props }
 
   innet(children, handler)
 }

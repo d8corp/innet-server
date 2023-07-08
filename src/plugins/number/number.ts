@@ -1,7 +1,7 @@
 import { HandlerPlugin } from 'innet'
-import { useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 
-import { useEndpoint, useParam, useSchemaType } from '../../hooks'
+import { paramContext, useEndpoint, useSchemaType } from '../../hooks'
 import { SchemaValuesTypeOptions } from '../../types'
 import { getOrAdd, isNumber, isValues } from '../../utils'
 
@@ -11,9 +11,11 @@ export interface NumberProps extends SchemaValuesTypeOptions <number>{
 
 export const number: HandlerPlugin = () => {
   const props = useProps<NumberProps>()
+  const param = useContext(paramContext)
+
   useSchemaType('number', props)
 
-  if (useParam()) {
+  if (param?.props.in === 'path') {
     const { endpoint } = useEndpoint()
 
     if (!endpoint.key.startsWith('{')) return
