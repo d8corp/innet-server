@@ -79,38 +79,41 @@ export const api: HandlerPlugin = () => {
       const key = splitPath[deep]
 
       if (deep + 1 === splitPath.length) {
-        if (currentEndpoint.static?.[key]?.content) {
-          const newHandler = Object.create(currentEndpoint.static[key].handler)
+        function run (runEndpoint: Endpoint, params: Params) {
+          const formatter = runEndpoint.rules?.path?.formatter
+
+          if (formatter) {
+            format(params, formatter)
+          }
+
+          if (runEndpoint.rules?.path?.validation && validation(runEndpoint.rules.path.validation, params)) return false
+
+          const newHandler = Object.create(runEndpoint.handler)
           newHandler[responseContext.key] = res
           newHandler[requestContext.key] = req
           newHandler[paramsContext.key] = params
 
-          innet(currentEndpoint.static[key].content, newHandler)
+          innet(runEndpoint.content, newHandler)
+
+          return true
+        }
+
+        if (currentEndpoint.static?.[key]?.content) {
+          if (!run(currentEndpoint.static?.[key], params)) continue
+
           return
         }
 
         if (currentEndpoint.dynamic) {
           for (const dynamicEndpoint of currentEndpoint.dynamic) {
             if (dynamicEndpoint.content) {
-              const formatter = dynamicEndpoint.rules?.path?.formatter
-              params[dynamicEndpoint.key.slice(1, -1)] = key
+              if (!run(dynamicEndpoint, { ...params, [dynamicEndpoint.key.slice(1, -1)]: key })) continue
 
-              if (formatter) {
-                format(params, formatter)
-              }
-
-              if (dynamicEndpoint.rules?.path?.validation && validation(dynamicEndpoint.rules.path.validation, params)) continue
-
-              const newHandler = Object.create(dynamicEndpoint.handler)
-              newHandler[responseContext.key] = res
-              newHandler[requestContext.key] = req
-              newHandler[paramsContext.key] = params
-
-              innet(dynamicEndpoint.content, newHandler)
               return
             }
           }
         }
+
         break
       }
 

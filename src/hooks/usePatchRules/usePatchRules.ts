@@ -19,7 +19,7 @@ export function usePatchRules (rules?: PathRuleControllers) {
   if (param?.props.in !== 'path') return
 
   const { endpoint } = useEndpoint()
-  const key = endpoint.key.slice(1, -1)
+  const key = param.props.name
 
   rules?.formatter?.(getOrAdd(endpoint, `rules.path.formatter.${key}`, [{}, {}, {}, []]))
 
