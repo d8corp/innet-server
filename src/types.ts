@@ -73,3 +73,8 @@ export interface SchemaTypeOptions <T> {
 export interface SchemaValuesTypeOptions <T> extends SchemaTypeOptions<T> {
   values?: T[]
 }
+
+export interface Fallback {
+  children: any
+  handler: Handler
+}

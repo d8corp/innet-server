@@ -1,11 +1,12 @@
 import { Context, useContext } from '@innet/jsx'
 
-import { Document, Endpoints } from '../../types'
+import { Document, Endpoints, Fallback } from '../../types'
 
 export interface ApiContext {
   docs: Document
   endpoints: Endpoints
   prefix: string
+  fallback?: Fallback
 }
 
 export const apiContext = new Context<ApiContext>()

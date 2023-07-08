@@ -4,7 +4,7 @@ import { JSXElement } from '@innet/jsx'
 import { ServerResponse } from 'http'
 import { onDestroy } from 'watch-state'
 
-import { apiContext, paramsContext, requestContext, responseContext, useServer } from '../../../hooks'
+import { ApiContext, apiContext, paramsContext, requestContext, responseContext, useServer } from '../../../hooks'
 import { Document, Endpoint, Endpoints, Params } from '../../../types'
 import { format } from '../../../utils'
 
@@ -50,7 +50,9 @@ export const api: HandlerPlugin = () => {
     servers: [],
   }
 
-  handler[apiContext.key] = { docs, endpoints, prefix }
+  const context: ApiContext = { docs, endpoints, prefix }
+
+  handler[apiContext.key] = context
 
   const listener = (req: Request, res: ServerResponse) => {
     if (res.writableEnded) return
@@ -142,8 +144,15 @@ export const api: HandlerPlugin = () => {
       }
     }
 
-    res.statusCode = 404
-    res.end()
+    if (context.fallback) {
+      const newHandler = Object.create(context.fallback.handler)
+      newHandler[responseContext.key] = res
+      newHandler[requestContext.key] = req
+      innet(context.fallback.children, newHandler)
+    } else {
+      res.statusCode = 404
+      res.end()
+    }
   }
 
   server.on('request', listener)

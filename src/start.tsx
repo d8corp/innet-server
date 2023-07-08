@@ -64,6 +64,9 @@ const app = (
       <stand url='http://localhost:3000/api' description='Localhost' />
       <license name='MIT' />
       <contact name='Mike' email='d8corp@mail.ru' />
+      <fallback>
+        <error code='unknownRequest' status={404} />
+      </fallback>
       <tag name='partner' description='Partners of CANT inc.'>
         <endpoint
           method='get'

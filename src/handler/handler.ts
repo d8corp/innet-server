@@ -18,6 +18,7 @@ import {
   dts, DtsProps,
   endpoint, EndpointProps,
   error, ErrorProps,
+  fallback, FallbackProps,
   field, FieldProps,
   integer, IntegerProps,
   license, LicenseProps,
@@ -73,6 +74,7 @@ export const JSXPlugins = {
   proxy,
   redirect,
   date,
+  fallback,
 }
 
 export const fnPlugins = [
@@ -130,6 +132,7 @@ declare global {
       proxy: ProxyProps,
       redirect: RedirectProps,
       date: DateProps,
+      fallback: FallbackProps,
     }
   }
 }

@@ -60,20 +60,18 @@ export const errorStatuses = {
 export type ErrorStatuses = keyof typeof errorStatuses
 
 export interface ErrorProps {
+  code?: string
   status?: ErrorStatuses | number
 }
 
 export const error: HandlerPlugin = () => {
-  const children = useChildren()
+  const [children] = useChildren() || []
   const props = useProps<ErrorProps>()
   const res = useResponse()
 
-  const { status = 520 } = props || {}
+  const { status = 520, code = 'undefined' } = props || {}
   res.statusCode = typeof status === 'string' ? errorStatuses[status] : status
 
-  if (children) {
-    res.write(JSON.stringify(children[0]))
-  }
-
+  res.write(JSON.stringify({ error: code, children }))
   res.end()
 }

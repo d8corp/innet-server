@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "build": "innetjs release -e",
-    "start": "innetjs start -n -i test",
+    "start": "innetjs start -n -i start",
     "test": "jest",
     "api": "jest",
     "lint": "eslint src --ext .ts,.tsx",
