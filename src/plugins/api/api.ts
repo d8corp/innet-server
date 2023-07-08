@@ -4,9 +4,9 @@ import { JSXElement } from '@innet/jsx'
 import { ServerResponse } from 'http'
 import { onDestroy } from 'watch-state'
 
-import { paramsContext, requestContext, responseContext, useServer } from '../../hooks'
-import { apiContext } from '../../hooks/useApi'
+import { apiContext, paramsContext, requestContext, responseContext, useServer } from '../../hooks'
 import { Document, Endpoint, Endpoints, Params } from '../../types'
+import { format } from '../../utils'
 
 export interface ApiProps {
   /** The title of the API. */
@@ -92,7 +92,12 @@ export const api: HandlerPlugin = () => {
         if (currentEndpoint.dynamic) {
           for (const dynamicEndpoint of currentEndpoint.dynamic) {
             if (dynamicEndpoint.content) {
+              const formatter = dynamicEndpoint.rules?.path?.formatter
               params[dynamicEndpoint.key.slice(1, -1)] = key
+
+              if (formatter) {
+                format(params, formatter)
+              }
 
               if (dynamicEndpoint.rules?.path?.validation && validation(dynamicEndpoint.rules.path.validation, params)) continue
 

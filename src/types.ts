@@ -72,3 +72,7 @@ export interface SchemaTypeOptions <T> {
   example?: T
   description?: string
 }
+
+export interface SchemaValuesTypeOptions <T> extends SchemaTypeOptions<T> {
+  values?: T[]
+}

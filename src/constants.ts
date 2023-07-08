@@ -1,3 +1,4 @@
 export enum ApiValidationError {
-  number = 'number'
+  number = 'number',
+  values = 'values',
 }

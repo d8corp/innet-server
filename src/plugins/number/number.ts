@@ -2,10 +2,10 @@ import { HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
 import { useEndpoint, useParam, useSchemaType } from '../../hooks'
-import { SchemaTypeOptions } from '../../types'
-import { getOrAdd, isNumber } from '../../utils'
+import { SchemaValuesTypeOptions } from '../../types'
+import { getOrAdd, isNumber, isValues } from '../../utils'
 
-export interface NumberProps extends SchemaTypeOptions <number>{
+export interface NumberProps extends SchemaValuesTypeOptions <number>{
 
 }
 
@@ -19,8 +19,15 @@ export const number: HandlerPlugin = () => {
     if (!endpoint.key.startsWith('{')) return
 
     const key = endpoint.key.slice(1, -1)
+    const validation = getOrAdd(endpoint, `rules.path.validation.${key}`, [{}, {}, {}, []])
+    const formatter = getOrAdd(endpoint, `rules.path.formatter.${key}`, [{}, {}, {}, []])
 
-    const validators = getOrAdd(endpoint, `rules.path.validation.${key}`, [{}, {}, {}, []])
-    validators.push(isNumber)
+    formatter.push(Number)
+
+    if (props?.values) {
+      validation.push(isValues(props.values))
+    } else {
+      validation.push(isNumber)
+    }
   }
 }
