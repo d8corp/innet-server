@@ -94,7 +94,7 @@ export const api: HandlerPlugin = () => {
             if (dynamicEndpoint.content) {
               params[dynamicEndpoint.key.slice(1, -1)] = key
 
-              if (dynamicEndpoint.pathValidation && validation(dynamicEndpoint.pathValidation, params)) continue
+              if (dynamicEndpoint.rules?.path?.validation && validation(dynamicEndpoint.rules.path.validation, params)) continue
 
               const newHandler = Object.create(dynamicEndpoint.handler)
               newHandler[responseContext.key] = res

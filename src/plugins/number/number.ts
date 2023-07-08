@@ -3,22 +3,15 @@ import { useProps } from '@innet/jsx'
 
 import { useEndpoint, useParam, useSchemaType } from '../../hooks'
 import { SchemaTypeOptions } from '../../types'
+import { get, isNumber } from '../../utils'
 
 export interface NumberProps extends SchemaTypeOptions <number>{
 
 }
 
-const isNumber = (value: string, key: string) => {
-  if (isNaN(value as any)) {
-    return {
-      error: 'test',
-      key,
-    }
-  }
-}
-
 export const number: HandlerPlugin = () => {
-  useSchemaType('number', useProps<NumberProps>())
+  const props = useProps<NumberProps>()
+  useSchemaType('number', props)
 
   if (useParam()) {
     const { endpoint } = useEndpoint()
@@ -27,14 +20,7 @@ export const number: HandlerPlugin = () => {
 
     const key = endpoint.key.slice(1, -1)
 
-    if (!endpoint.pathValidation) {
-      endpoint.pathValidation = {}
-    }
-
-    if (!endpoint.pathValidation[key]) {
-      endpoint.pathValidation[key] = []
-    }
-
-    endpoint.pathValidation[key].push(isNumber)
+    const validators = get(endpoint, `rules.path.validation.${key}`, [{}, {}, {}, []])
+    validators.push(isNumber)
   }
 }

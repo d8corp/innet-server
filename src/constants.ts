@@ -1,1 +1,3 @@
-export const CONTINUE = Symbol('continue')
+export enum ApiValidationError {
+  number = 'number'
+}

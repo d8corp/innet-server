@@ -21,10 +21,30 @@ export type ObjectType = ArraySchemaObjectType | NonArraySchemaObjectType
 
 // Custom
 
+export interface Formatter<V> {
+  (value?: any): V;
+}
+export declare type FormatterMap<B> = {
+  [K in keyof B]?: Formatter<B[K]>[];
+};
+
+export interface EndpointRule {
+  validation?: ValidationMap<unknown>
+  formatter?: FormatterMap<unknown>
+}
+
+export interface EndpointRules {
+  path?: EndpointRule
+  search?: EndpointRule
+  body?: EndpointRule
+  cookie?: EndpointRule
+  header?: EndpointRule
+}
+
 export interface Endpoint {
   key: string
   content?: any
-  pathValidation?: ValidationMap<unknown>
+  rules?: EndpointRules
   handler?: Handler
   static?: Record<string, Endpoint>
   dynamic?: Endpoint[]
