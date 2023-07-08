@@ -1,9 +1,11 @@
 import { Context, useContext } from '@innet/jsx'
 
 import { ParamProps } from '../../plugins'
+import { EndpointRule } from '../../types'
 
 export interface ParamContext {
   props: ParamProps
+  rules: EndpointRule[]
 }
 
 export const paramContext = new Context<ParamContext>()

@@ -2,7 +2,8 @@ import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
 import { paramContext, schemaContext, useEndpoint } from '../../../hooks'
-import { InParam, ParameterObject, SchemaObject } from '../../../types'
+import { EndpointRule, InParam, ParameterObject, SchemaObject } from '../../../types'
+import { getOrAdd } from '../../../utils'
 
 export interface ParamProps {
   /**
@@ -42,7 +43,7 @@ export interface ParamProps {
 }
 
 export const param: HandlerPlugin = () => {
-  const { operation } = useEndpoint()
+  const { operation, endpoint } = useEndpoint()
 
   if (!operation.parameters) {
     operation.parameters = []
@@ -61,8 +62,10 @@ export const param: HandlerPlugin = () => {
 
   params.schema = schema as any
 
+  const rules: EndpointRule[] = getOrAdd(endpoint, `rules.${props.in}`, [{}, []])
+
   handler[schemaContext.key] = schema
-  handler[paramContext.key] = { props }
+  handler[paramContext.key] = { props, rules }
 
   innet(children, handler)
 }

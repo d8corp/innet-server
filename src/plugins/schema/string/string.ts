@@ -1,5 +1,5 @@
 import { HandlerPlugin } from 'innet'
-import { maxLength, minLength } from '@cantinc/utils'
+import { maxLength, minLength, Validator } from '@cantinc/utils'
 import { useProps } from '@innet/jsx'
 
 import { usePatchRules, useSchemaType } from '../../../hooks'
@@ -17,15 +17,17 @@ export const string: HandlerPlugin = () => {
   schema.minimum = min
   schema.maximum = max
 
-  usePatchRules({
-    validator: validators => {
-      if (min !== undefined) {
-        validators.push(minLength(min))
-      }
+  const validator: Validator<any, any>[] = []
 
-      if (max !== undefined) {
-        validators.push(maxLength(max))
-      }
-    },
+  if (min !== undefined) {
+    validator.push(minLength(min))
+  }
+
+  if (max !== undefined) {
+    validator.push(maxLength(max))
+  }
+
+  usePatchRules({
+    validator,
   })
 }

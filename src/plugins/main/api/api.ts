@@ -1,5 +1,5 @@
 import innet, { HandlerPlugin, useApp, useNewHandler } from 'innet'
-import { validation } from '@cantinc/utils'
+import { validation as validate } from '@cantinc/utils'
 import { JSXElement } from '@innet/jsx'
 import { ServerResponse } from 'http'
 import { onDestroy } from 'watch-state'
@@ -80,13 +80,27 @@ export const api: HandlerPlugin = () => {
 
       if (deep + 1 === splitPath.length) {
         function run (runEndpoint: Endpoint, params: Params) {
-          const formatter = runEndpoint.rules?.path?.formatter
+          const rules = runEndpoint.rules?.path
 
-          if (formatter) {
-            format(params, formatter)
+          if (rules) {
+            let ok = false
+            for (const [formatter, validation] of rules) {
+              let currentParams = params
+
+              if (formatter) {
+                currentParams = { ...params }
+                format(currentParams, formatter)
+              }
+
+              if (!validation || !validate(validation, currentParams)) {
+                params = currentParams
+                ok = true
+                break
+              }
+            }
+
+            if (!ok) return false
           }
-
-          if (runEndpoint.rules?.path?.validation && validation(runEndpoint.rules.path.validation, params)) return false
 
           const newHandler = Object.create(runEndpoint.handler)
           newHandler[responseContext.key] = res

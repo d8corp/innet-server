@@ -28,17 +28,14 @@ export declare type FormatterMap<B> = {
   [K in keyof B]?: Formatter<B[K]>[];
 };
 
-export interface EndpointRule {
-  validation?: ValidationMap<unknown>
-  formatter?: FormatterMap<unknown>
-}
+export type EndpointRule = [FormatterMap<unknown>, ValidationMap<unknown>]
 
 export interface EndpointRules {
-  path?: EndpointRule
-  search?: EndpointRule
-  body?: EndpointRule
-  cookie?: EndpointRule
-  header?: EndpointRule
+  path?: EndpointRule[]
+  search?: EndpointRule[]
+  body?: EndpointRule[]
+  cookie?: EndpointRule[]
+  header?: EndpointRule[]
 }
 
 export interface Endpoint {

@@ -27,18 +27,18 @@ export const date: HandlerPlugin = () => {
     schema['x-maximum'] = normMax.toISOString()
   }
 
+  const validator = [isDate]
+
+  if (normMin) {
+    validator.push(minDate(normMin))
+  }
+
+  if (normMax) {
+    validator.push(maxDate(normMax))
+  }
+
   usePatchRules({
-    formatter: formatters => formatters.push(value => new Date(value)),
-    validator: validators => {
-      validators.push(isDate)
-
-      if (normMin) {
-        validators.push(minDate(normMin))
-      }
-
-      if (normMax) {
-        validators.push(maxDate(normMax))
-      }
-    },
+    formatter: [value => new Date(value)],
+    validator,
   })
 }

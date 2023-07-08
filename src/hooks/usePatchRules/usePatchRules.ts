@@ -1,16 +1,15 @@
-import { Validator } from '@cantinc/utils'
+import { ValidationMap, Validator } from '@cantinc/utils'
 import { useContext, useProps } from '@innet/jsx'
 
-import { useEndpoint } from '../useEndpoint'
 import { paramContext } from '../useParam'
 
 import { StringProps } from '../../plugins'
-import { Formatter } from '../../types'
-import { getOrAdd, isValues } from '../../utils'
+import { Formatter, FormatterMap } from '../../types'
+import { isValues } from '../../utils'
 
 export interface PathRuleControllers {
-  formatter?: (formatters: Formatter<any>[]) => void
-  validator?: (validators: Validator<any, any>[]) => void
+  formatter?: Formatter<any>[]
+  validator?: Validator<any, any>[]
 }
 
 export function usePatchRules (rules?: PathRuleControllers) {
@@ -18,17 +17,22 @@ export function usePatchRules (rules?: PathRuleControllers) {
 
   if (param?.props.in !== 'path') return
 
-  const { endpoint } = useEndpoint()
-  const key = param.props.name
+  const { props: { name: key }, rules: paramRules } = param
 
-  rules?.formatter?.(getOrAdd(endpoint, `rules.path.formatter.${key}`, [{}, {}, {}, []]))
+  const formatter: FormatterMap<any> = {}
+  const validator: ValidationMap<any> = {}
+
+  if (rules?.formatter) {
+    formatter[key] = rules.formatter
+  }
 
   const props = useProps<StringProps>()
 
   if (props?.values) {
-    getOrAdd(endpoint, `rules.path.validation.${key}`, [{}, {}, {}, []])
-      .push(isValues(props.values))
-  } else {
-    rules?.validator?.(getOrAdd(endpoint, `rules.path.validation.${key}`, [{}, {}, {}, []]))
+    validator[key] = [isValues(props.values)]
+  } else if (rules?.validator) {
+    validator[key] = rules.validator
   }
+
+  paramRules.push([formatter, validator])
 }

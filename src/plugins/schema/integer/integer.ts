@@ -1,4 +1,5 @@
 import { HandlerPlugin } from 'innet'
+import { Validator } from '@cantinc/utils'
 import { useProps } from '@innet/jsx'
 
 import { usePatchRules, useSchemaType } from '../../../hooks'
@@ -19,18 +20,18 @@ export const integer: HandlerPlugin = () => {
   schema.minimum = min
   schema.maximum = max
 
+  const validator: Validator<any, any>[] = [isInteger(format)]
+
+  if (min !== undefined) {
+    validator.push(minimum(min))
+  }
+
+  if (max !== undefined) {
+    validator.push(maximum(max))
+  }
+
   usePatchRules({
-    formatter: formatters => formatters.push(format === 'int32' ? Number : BigInt),
-    validator: validators => {
-      validators.push(isInteger(format))
-
-      if (min !== undefined) {
-        validators.push(minimum(min))
-      }
-
-      if (max !== undefined) {
-        validators.push(maximum(max))
-      }
-    },
+    formatter: [format === 'int32' ? Number : BigInt],
+    validator,
   })
 }
