@@ -1,4 +1,4 @@
-export function get <R = any> (target: object, path: string, defaultValues: any[]): R {
+export function getOrAdd <R = any> (target: object, path: string, defaultValues: any[]): R {
   const pathKeys = path.split('.')
 
   let currentTarget: any = target

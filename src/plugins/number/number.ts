@@ -3,7 +3,7 @@ import { useProps } from '@innet/jsx'
 
 import { useEndpoint, useParam, useSchemaType } from '../../hooks'
 import { SchemaTypeOptions } from '../../types'
-import { get, isNumber } from '../../utils'
+import { getOrAdd, isNumber } from '../../utils'
 
 export interface NumberProps extends SchemaTypeOptions <number>{
 
@@ -20,7 +20,7 @@ export const number: HandlerPlugin = () => {
 
     const key = endpoint.key.slice(1, -1)
 
-    const validators = get(endpoint, `rules.path.validation.${key}`, [{}, {}, {}, []])
+    const validators = getOrAdd(endpoint, `rules.path.validation.${key}`, [{}, {}, {}, []])
     validators.push(isNumber)
   }
 }
