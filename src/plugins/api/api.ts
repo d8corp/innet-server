@@ -69,7 +69,8 @@ export const api: HandlerPlugin = () => {
     }
 
     const method = req.method.toLowerCase()
-    const splitPath = req.url.slice(prefix.length).split('/').slice(1)
+    const rawSplitPath = req.url.slice(prefix.length).split('/').slice(1)
+    const splitPath = rawSplitPath.at(-1) ? rawSplitPath : rawSplitPath.slice(0, -1)
     const endpoint = endpoints[method]
     const endpointQueue: [number, Endpoint, Params][] = endpoint ? [[0, endpoint, {}]] : []
 
@@ -91,14 +92,14 @@ export const api: HandlerPlugin = () => {
         if (currentEndpoint.dynamic) {
           for (const dynamicEndpoint of currentEndpoint.dynamic) {
             if (dynamicEndpoint.content) {
+              params[dynamicEndpoint.key.slice(1, -1)] = key
+
               if (dynamicEndpoint.pathValidation && validation(dynamicEndpoint.pathValidation, params)) continue
 
               const newHandler = Object.create(dynamicEndpoint.handler)
               newHandler[responseContext.key] = res
               newHandler[requestContext.key] = req
               newHandler[paramsContext.key] = params
-
-              params[dynamicEndpoint.key.slice(1, -1)] = key
 
               innet(dynamicEndpoint.content, newHandler)
               return

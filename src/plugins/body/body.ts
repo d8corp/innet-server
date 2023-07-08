@@ -1,7 +1,7 @@
 import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { schemaContext, useOperation } from '../../hooks'
+import { schemaContext, useEndpoint } from '../../hooks'
 import { BodyType, RequestBodyObject, SchemaObject } from '../../types'
 
 export interface BodyProps {
@@ -10,18 +10,13 @@ export interface BodyProps {
 }
 
 export const body: HandlerPlugin = () => {
-  const operationContext = useOperation()
   const children = useChildren()
-
-  if (!operationContext) {
-    throw Error('Use <body> inside <endpoint>')
-  }
 
   if (!children) {
     throw Error('<body> MUST contain type elements')
   }
 
-  const { operation } = operationContext
+  const { operation } = useEndpoint()
 
   if (!operation.requestBody) {
     operation.requestBody = {

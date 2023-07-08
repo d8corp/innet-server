@@ -1,7 +1,7 @@
 import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { schemaContext, useOperation } from '../../hooks'
+import { schemaContext, useEndpoint } from '../../hooks'
 import { ResponseObject, SchemaObject } from '../../types'
 
 export interface ResponseProps {
@@ -22,7 +22,7 @@ export interface ResponseProps {
 
 export const response: HandlerPlugin = () => {
   const { description, status = 'default' } = useProps<ResponseProps>()
-  const { operation, path } = useOperation()
+  const { operation, props: { path } } = useEndpoint()
   const children = useChildren()
   const handler = useNewHandler()
 

@@ -1,32 +1,27 @@
-import { HandlerPlugin, useApp, useHandler } from 'innet'
-import { JSXElement, useChildren } from '@innet/jsx'
+import { HandlerPlugin, useHandler } from 'innet'
+import { useChildren } from '@innet/jsx'
 
-import { useMapEndpoints, useOperation } from '../../hooks'
+import { useEndpoint } from '../../hooks'
 
 export interface RequestProps {
 
 }
 
 export const request: HandlerPlugin = () => {
-  const operationContext = useOperation()
+  const endpointContext = useEndpoint()
 
-  if (!operationContext) {
-    const { type } = useApp<JSXElement>()
-    throw Error(`Use <${type}> inside <endpoint>`)
+  if (!endpointContext) {
+    throw Error('Use <request> inside <endpoint>')
   }
 
   const children = useChildren()
   const handler = useHandler()
-  const { path, method } = operationContext
+  const { endpoint, props } = endpointContext
 
-  useMapEndpoints((endpoint, dynamic) => {
-    if (dynamic) {
-      if (endpoint.content) {
-        throw Error(`You cannot use the same endpoints ${method}:${path}`)
-      }
-    }
+  if (endpoint.content) {
+    throw Error(`You cannot use the same endpoints ${props.method}:${props.path}`)
+  }
 
-    endpoint.content = children
-    endpoint.handler = handler
-  })
+  endpoint.content = children
+  endpoint.handler = handler
 }

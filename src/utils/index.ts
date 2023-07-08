@@ -1,4 +1,4 @@
 export * from './parseSearch'
 export * from './stringifySearch'
 export * from './defaultOnStart'
-export * from './mapEndpoints'
+export * from './getEndpoint'

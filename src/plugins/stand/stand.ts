@@ -1,7 +1,7 @@
 import innet, { HandlerPlugin, useNewHandler } from 'innet'
-import { useChildren, useProps } from '@innet/jsx'
+import { useChildren, useContext, useProps } from '@innet/jsx'
 
-import { standContext, useApi, useOperation } from '../../hooks'
+import { endpointContext, standContext, useApi } from '../../hooks'
 import { ServerObject } from '../../types'
 
 export interface StandProps {
@@ -25,7 +25,7 @@ export const stand: HandlerPlugin = () => {
   const { docs } = useApi()
   const props = useProps<StandProps>()
   const children = useChildren()
-  const { operation } = useOperation() || {}
+  const { operation } = useContext(endpointContext) || {}
   const target = operation || docs
 
   if (!target.servers) {

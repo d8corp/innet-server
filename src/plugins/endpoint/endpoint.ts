@@ -1,8 +1,9 @@
 import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { operationContext, useApi, useTag } from '../../hooks'
+import { EndpointContext, endpointContext, useApi, useTag } from '../../hooks'
 import { EndpointsMethods, OperationObject } from '../../types'
+import { getEndpoint } from '../../utils'
 
 export interface EndpointProps {
   /**
@@ -40,8 +41,9 @@ export interface EndpointProps {
 export const endpoint: HandlerPlugin = () => {
   const handler = useNewHandler()
   const tag = useTag()
-  const { docs } = useApi()
-  const { path, summary, description, deprecated, method } = useProps<EndpointProps>()
+  const { docs, endpoints } = useApi()
+  const props = useProps<EndpointProps>()
+  const { path, summary, description, deprecated, method } = props
   const children = useChildren()
   const { paths } = docs
 
@@ -73,7 +75,13 @@ export const endpoint: HandlerPlugin = () => {
 
   paths[path][method] = operation as any
 
-  handler[operationContext.key] = { operation, path, method }
+  if (!endpoints[method]) {
+    endpoints[method] = { key: '' }
+  }
+
+  const endpoint = getEndpoint(path, endpoints[method])
+
+  handler[endpointContext.key] = { operation, props, endpoint } satisfies EndpointContext
 
   innet(children, handler)
 }
