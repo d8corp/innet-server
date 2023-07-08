@@ -36,7 +36,7 @@ declare namespace Paths {
             }
             namespace Responses {
                 export interface Default {
-                    page: number; // int64
+                    page: number; // int32
                     /**
                      * example:
                      * 10
