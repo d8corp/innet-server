@@ -7,27 +7,29 @@ import { isInteger, maximum, minimum } from '../../utils'
 
 export interface IntegerProps extends SchemaValuesTypeOptions<number> {
   format?: IntegerFormats
-  minimum?: number
-  maximum?: number
+  min?: number
+  max?: number
 }
 
 export const integer: HandlerPlugin = () => {
-  const { format = 'int32', ...props } = useProps<IntegerProps>() || {}
+  const { format = 'int32', min, max, ...props } = useProps<IntegerProps>() || {}
   const schema = useSchemaType('integer', props)
 
   schema.format = format
+  schema.minimum = min
+  schema.maximum = max
 
   usePatchRules({
     formatter: formatters => formatters.push(format === 'int32' ? Number : BigInt),
     validator: validators => {
       validators.push(isInteger(format))
 
-      if (props?.minimum) {
-        validators.push(minimum(props.minimum))
+      if (min !== undefined) {
+        validators.push(minimum(min))
       }
 
-      if (props?.maximum) {
-        validators.push(maximum(props.maximum))
+      if (max !== undefined) {
+        validators.push(maximum(max))
       }
     },
   })

@@ -6,26 +6,28 @@ import { SchemaValuesTypeOptions } from '../../types'
 import { isNumber, maximum, minimum } from '../../utils'
 
 export interface NumberProps extends SchemaValuesTypeOptions <number>{
-  minimum?: number
-  maximum?: number
+  min?: number
+  max?: number
 }
 
 export const number: HandlerPlugin = () => {
-  const props = useProps<NumberProps>()
+  const { min, max, ...props } = useProps<NumberProps>() || {}
 
-  useSchemaType('number', props)
+  const schema = useSchemaType('number', props)
+  schema.minimum = min
+  schema.maximum = max
 
   usePatchRules({
     formatter: formatters => formatters.push(Number),
     validator: validators => {
       validators.push(isNumber)
 
-      if (props?.minimum) {
-        validators.push(minimum(props.minimum))
+      if (min !== undefined) {
+        validators.push(minimum(min))
       }
 
-      if (props?.maximum) {
-        validators.push(maximum(props.maximum))
+      if (max !== undefined) {
+        validators.push(maximum(max))
       }
     },
   })

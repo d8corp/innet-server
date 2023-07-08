@@ -51,7 +51,7 @@ declare namespace Paths {
     namespace Partners$Id {
         namespace Get {
             namespace Parameters {
-                export type Id = number;
+                export type Id = string;
             }
             export interface PathParameters {
                 id?: Parameters.Id;
