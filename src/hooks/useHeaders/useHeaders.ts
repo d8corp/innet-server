@@ -1,7 +1,11 @@
-import { Context, useContext } from '@innet/jsx'
+import { useAction } from '../useAction'
 
-export const headersContext = new Context({})
+export function useHeaders <D> (): D {
+  const action = useAction()
 
-export function useHeaders () {
-  return useContext(headersContext)
+  if (!action) {
+    throw Error('`useHeaders` MUST be used in <request>')
+  }
+
+  return action.headers
 }

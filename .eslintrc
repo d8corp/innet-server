@@ -13,6 +13,7 @@
     "jest": true
   },
   "rules": {
+    "no-redeclare": "off",
     "react/no-string-refs": "off",
     "no-new": "off",
     "no-unused-vars": "off",

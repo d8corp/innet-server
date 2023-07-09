@@ -1,20 +1,20 @@
 import innet, { HandlerPlugin, useApp, useNewHandler } from 'innet'
 import { validation as validate } from '@cantinc/utils'
 import { JSXElement } from '@innet/jsx'
-import { ServerResponse } from 'http'
+import http, { ServerResponse } from 'http'
 import { onDestroy } from 'watch-state'
 
 import {
+  actionContext,
   ApiContext,
   apiContext,
-  headersContext,
   paramsContext,
   requestContext,
   responseContext,
   useServer,
 } from '../../../hooks'
 import { Document, Endpoint, Endpoints, Params } from '../../../types'
-import { format } from '../../../utils'
+import { Action, format } from '../../../utils'
 
 export interface ApiProps {
   /** The title of the API. */
@@ -62,7 +62,7 @@ export const api: HandlerPlugin = () => {
 
   handler[apiContext.key] = context
 
-  const listener = (req: Request, res: ServerResponse) => {
+  const listener = (req: http.IncomingMessage, res: ServerResponse) => {
     if (res.writableEnded) return
 
     const url = req.url.endsWith('/') ? req.url.slice(0, -1) : req.url
@@ -92,7 +92,8 @@ export const api: HandlerPlugin = () => {
         function run (runEndpoint: Endpoint, params: Params) {
           const pathRules = runEndpoint.rules?.path
           const headerRules = runEndpoint.rules?.header
-          let headers = { ...req.headers }
+          const cookieRules = runEndpoint.rules?.cookie
+          const action = new Action(req)
 
           if (pathRules) {
             let isValid = false
@@ -119,17 +120,17 @@ export const api: HandlerPlugin = () => {
             const errors = []
 
             for (const [formatter, validation] of headerRules) {
-              let currentParams: object = headers
+              let currentParams: object = action.headers
 
               if (formatter) {
-                currentParams = { ...headers }
+                currentParams = { ...action.headers }
                 format(currentParams, formatter)
               }
 
               const error = !validation || validate(validation, currentParams)
 
               if (!error) {
-                headers = currentParams as any
+                action.headers = currentParams as any
                 ok = true
                 break
               }
@@ -154,11 +155,51 @@ export const api: HandlerPlugin = () => {
             }
           }
 
+          if (cookieRules) {
+            let ok = false
+            const errors = []
+
+            for (const [formatter, validation] of cookieRules) {
+              let currentData: object = action.cookies
+
+              if (formatter) {
+                currentData = { ...action.cookies }
+                format(currentData, formatter)
+              }
+
+              const error = !validation || validate(validation, currentData)
+
+              if (!error) {
+                action.cookies = currentData as any
+                ok = true
+                break
+              }
+
+              errors.push(error)
+            }
+
+            if (!ok) {
+              res.statusCode = 400
+              res.setHeader('Content-Type', 'application/json')
+              res.write(JSON.stringify({
+                error: 'requestValidation',
+                data: {
+                  ...errors[0],
+                  in: 'cookies',
+                  or: errors.length > 1 ? errors.slice(1) : undefined,
+                },
+              }))
+              res.end()
+
+              return true
+            }
+          }
+
           const newHandler = Object.create(runEndpoint.handler)
           newHandler[responseContext.key] = res
           newHandler[requestContext.key] = req
           newHandler[paramsContext.key] = params
-          newHandler[headersContext.key] = headers
+          newHandler[actionContext.key] = action
 
           innet(runEndpoint.content, newHandler)
 
