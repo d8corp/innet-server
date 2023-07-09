@@ -15,6 +15,7 @@ import {
   boolean, BooleanProps,
   contact, ContactProps,
   date, DateProps,
+  dev, DevProps,
   dts, DtsProps,
   endpoint, EndpointProps,
   error, ErrorProps,
@@ -26,6 +27,7 @@ import {
   number, NumberProps,
   object, ObjectProps,
   param, ParamProps,
+  prod, ProdProps,
   proxy, ProxyProps,
   redirect, RedirectProps,
   request, RequestProps,
@@ -77,6 +79,8 @@ export const JSXPlugins = {
   date,
   fallback,
   tuple,
+  dev,
+  prod,
 }
 
 export const fnPlugins = [
@@ -108,34 +112,36 @@ declare global {
       slot: SlotProps
       slots: SlotsProps
       server: ServerProps
-      api: ApiProps,
-      contact: ContactProps,
-      license: LicenseProps,
-      stand: StandProps,
-      variable: VariableProps,
-      tag: TagProps,
-      endpoint: EndpointProps,
-      swagger: SwaggerProps,
-      response: ResponseProps,
-      object: ObjectProps,
-      field: FieldProps,
-      number: NumberProps,
-      integer: IntegerProps,
-      string: StringProps,
-      array: ArrayProps,
-      boolean: BooleanProps,
-      null: NullProps,
-      dts: DtsProps,
-      request: RequestProps,
-      success: SuccessProps,
-      error: ErrorProps,
-      param: ParamProps,
-      body: BodyProps,
-      proxy: ProxyProps,
-      redirect: RedirectProps,
-      date: DateProps,
-      fallback: FallbackProps,
-      tuple: TupleProps,
+      api: ApiProps
+      contact: ContactProps
+      license: LicenseProps
+      stand: StandProps
+      variable: VariableProps
+      tag: TagProps
+      endpoint: EndpointProps
+      swagger: SwaggerProps
+      response: ResponseProps
+      object: ObjectProps
+      field: FieldProps
+      number: NumberProps
+      integer: IntegerProps
+      string: StringProps
+      array: ArrayProps
+      boolean: BooleanProps
+      null: NullProps
+      dts: DtsProps
+      request: RequestProps
+      success: SuccessProps
+      error: ErrorProps
+      param: ParamProps
+      body: BodyProps
+      proxy: ProxyProps
+      redirect: RedirectProps
+      date: DateProps
+      fallback: FallbackProps
+      tuple: TupleProps
+      dev: DevProps
+      prod: ProdProps
     }
   }
 }
