@@ -127,7 +127,9 @@ const app = (
           </request>
         </endpoint>
       </tag>
-      <dts path='src/api.d.ts' />
+      <dev>
+        <dts path='src/api.d.ts' />
+      </dev>
     </api>
   </server>
 )
