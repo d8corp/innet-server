@@ -2,8 +2,15 @@ import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
 import { paramContext, SchemaContext, schemaContext, useEndpoint } from '../../../hooks'
-import { EndpointRule, InParam, ParameterObject, SchemaObject } from '../../../types'
+import { EndpointRule, EndpointRules, InParam, ParameterObject, SchemaObject } from '../../../types'
 import { getOrAdd } from '../../../utils'
+
+const inMap: Record<InParam, keyof EndpointRules> = {
+  query: 'search',
+  path: 'path',
+  cookie: 'cookie',
+  header: 'header',
+}
 
 export interface ParamProps {
   /**
@@ -66,7 +73,7 @@ export const param: HandlerPlugin = () => {
 
   params.schema = schema as any
 
-  const rules: EndpointRule[] = getOrAdd(endpoint, `rules.${props.in}`, [{}, []])
+  const rules: EndpointRule[] = getOrAdd(endpoint, `rules.${inMap[props.in]}`, [{}, []])
 
   handler[schemaContext.key] = { schema } satisfies SchemaContext
   handler[paramContext.key] = { props, rules }

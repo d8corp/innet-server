@@ -1,5 +1,9 @@
 const secretKey = Symbol('once')
 
+function getCacheObject (target: object) {
+  return target[secretKey] || (target[secretKey] = {})
+}
+
 export function once <This, Args extends any[], Result = unknown> (
   target: (this: This, ...args: Args) => Result,
   context: ClassMethodDecoratorContext<This, (this: This, ...args: Args) => Result>
@@ -34,10 +38,11 @@ export function once <This, Args extends any[], Result = unknown> (
       }
     }
     : function once (): Args {
-      if (secretKey in this) {
-        return this[secretKey]
+      const map = getCacheObject(this)
+      if (map[context.name]) {
+        return map[context.name]
       }
 
-      return (this[secretKey] = target.apply(this, arguments))
+      return (map[context.name] = target.apply(this, arguments))
     }
 }

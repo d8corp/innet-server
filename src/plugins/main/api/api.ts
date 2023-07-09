@@ -13,7 +13,7 @@ import {
   responseContext,
   useServer,
 } from '../../../hooks'
-import { Document, Endpoint, Endpoints, Params } from '../../../types'
+import { Document, Endpoint, EndpointRule, Endpoints, Params } from '../../../types'
 import { Action, format } from '../../../utils'
 
 export interface ApiProps {
@@ -65,7 +65,10 @@ export const api: HandlerPlugin = () => {
   const listener = (req: http.IncomingMessage, res: ServerResponse) => {
     if (res.writableEnded) return
 
-    const url = req.url.endsWith('/') ? req.url.slice(0, -1) : req.url
+    const action = new Action(req)
+
+    const path = action.parsedUrl.path
+    const url = path.endsWith('/') ? path.slice(0, -1) : path
 
     if (url === (prefix || '')) {
       res.setHeader('Content-Type', 'application/json')
@@ -79,7 +82,7 @@ export const api: HandlerPlugin = () => {
     }
 
     const method = req.method.toLowerCase()
-    const rawSplitPath = req.url.slice(prefix.length).split('/').slice(1)
+    const rawSplitPath = url.slice(prefix.length).split('/').slice(1)
     const splitPath = rawSplitPath.at(-1) ? rawSplitPath : rawSplitPath.slice(0, -1)
     const endpoint = endpoints[method]
     const endpointQueue: [number, Endpoint, Params][] = endpoint ? [[0, endpoint, {}]] : []
@@ -93,7 +96,7 @@ export const api: HandlerPlugin = () => {
           const pathRules = runEndpoint.rules?.path
           const headerRules = runEndpoint.rules?.header
           const cookieRules = runEndpoint.rules?.cookie
-          const action = new Action(req)
+          const searchRules = runEndpoint.rules?.search
 
           if (pathRules) {
             let isValid = false
@@ -115,85 +118,53 @@ export const api: HandlerPlugin = () => {
             if (!isValid) return false
           }
 
-          if (headerRules) {
-            let ok = false
-            const errors = []
+          function checkActionRules (rules: EndpointRule[], key: 'search' | 'cookies' | 'headers') {
+            if (rules) {
+              let ok = false
+              const errors = []
 
-            for (const [formatter, validation] of headerRules) {
-              let currentParams: object = action.headers
+              for (const [formatter, validation] of rules) {
+                let currentData: object = action[key]
 
-              if (formatter) {
-                currentParams = { ...action.headers }
-                format(currentParams, formatter)
+                if (formatter) {
+                  currentData = { ...action[key] }
+                  format(currentData, formatter)
+                }
+
+                const error = !validation || validate(validation, currentData)
+
+                if (!error) {
+                  action[key] = currentData as any
+                  ok = true
+                  break
+                }
+
+                errors.push(error)
               }
 
-              const error = !validation || validate(validation, currentParams)
+              if (!ok) {
+                res.statusCode = 400
+                res.setHeader('Content-Type', 'application/json')
+                res.write(JSON.stringify({
+                  error: 'requestValidation',
+                  data: {
+                    ...errors[0],
+                    in: key,
+                    or: errors.length > 1 ? errors.slice(1) : undefined,
+                  },
+                }))
+                res.end()
 
-              if (!error) {
-                action.headers = currentParams as any
-                ok = true
-                break
+                return true
               }
-
-              errors.push(error)
             }
 
-            if (!ok) {
-              res.statusCode = 400
-              res.setHeader('Content-Type', 'application/json')
-              res.write(JSON.stringify({
-                error: 'requestValidation',
-                data: {
-                  ...errors[0],
-                  in: 'header',
-                  or: errors.length > 1 ? errors.slice(1) : undefined,
-                },
-              }))
-              res.end()
-
-              return true
-            }
+            return false
           }
 
-          if (cookieRules) {
-            let ok = false
-            const errors = []
-
-            for (const [formatter, validation] of cookieRules) {
-              let currentData: object = action.cookies
-
-              if (formatter) {
-                currentData = { ...action.cookies }
-                format(currentData, formatter)
-              }
-
-              const error = !validation || validate(validation, currentData)
-
-              if (!error) {
-                action.cookies = currentData as any
-                ok = true
-                break
-              }
-
-              errors.push(error)
-            }
-
-            if (!ok) {
-              res.statusCode = 400
-              res.setHeader('Content-Type', 'application/json')
-              res.write(JSON.stringify({
-                error: 'requestValidation',
-                data: {
-                  ...errors[0],
-                  in: 'cookies',
-                  or: errors.length > 1 ? errors.slice(1) : undefined,
-                },
-              }))
-              res.end()
-
-              return true
-            }
-          }
+          if (checkActionRules(headerRules, 'headers')) return true
+          if (checkActionRules(cookieRules, 'cookies')) return true
+          if (checkActionRules(searchRules, 'search')) return true
 
           const newHandler = Object.create(runEndpoint.handler)
           newHandler[responseContext.key] = res
