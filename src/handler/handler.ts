@@ -36,6 +36,7 @@ import {
   success, SuccessProps,
   swagger, SwaggerProps,
   tag, TagProps,
+  tuple, TupleProps,
   variable, VariableProps,
 } from '../plugins'
 
@@ -75,6 +76,7 @@ export const JSXPlugins = {
   redirect,
   date,
   fallback,
+  tuple,
 }
 
 export const fnPlugins = [
@@ -133,6 +135,7 @@ declare global {
       redirect: RedirectProps,
       date: DateProps,
       fallback: FallbackProps,
+      tuple: TupleProps,
     }
   }
 }

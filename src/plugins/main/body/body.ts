@@ -1,7 +1,7 @@
 import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { schemaContext, useEndpoint } from '../../../hooks'
+import { SchemaContext, schemaContext, useEndpoint } from '../../../hooks'
 import { BodyType, RequestBodyObject, SchemaObject } from '../../../types'
 
 export interface BodyProps {
@@ -36,7 +36,7 @@ export const body: HandlerPlugin = () => {
 
   requestBody.content[type] = { schema }
 
-  handler[schemaContext.key] = schema
+  handler[schemaContext.key] = { schema } satisfies SchemaContext
 
   innet(children, handler)
 }

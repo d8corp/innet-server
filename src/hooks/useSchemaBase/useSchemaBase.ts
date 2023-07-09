@@ -4,14 +4,21 @@ import { JSXElement } from '@innet/jsx'
 import { useSchema } from '../useSchema'
 
 export function useSchemaBase () {
-  let schema = useSchema()
+  const schemaContext = useSchema()
 
-  if (!schema) {
+  if (!schemaContext) {
     const { type } = useApp<JSXElement>()
-    throw Error(`Use <${type}> inside <response>`)
+    throw Error(`Use <${type}> inside one of <response>, <param>, <body>, <headers>, <cookies>, <search>`)
   }
 
-  if (schema.oneOf) {
+  let { schema, schemas } = schemaContext
+
+  if (!schema) {
+    if (schemas) {
+      schema = {}
+      schemas.push(schema)
+    }
+  } else if (schema.oneOf) {
     const parent = schema
     schema = {}
     parent.oneOf.push(schema)

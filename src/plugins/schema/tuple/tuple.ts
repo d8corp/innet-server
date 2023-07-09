@@ -4,21 +4,22 @@ import { useChildren, useProps } from '@innet/jsx'
 import { SchemaContext, schemaContext, useBlockPatch, useSchemaType } from '../../../hooks'
 import { ArraySchemaObject, SchemaObject, SchemaTypeOptions } from '../../../types'
 
-export interface ArrayProps extends SchemaTypeOptions <any[]>{
+export interface TupleProps extends SchemaTypeOptions <any[]>{
 
 }
 
-export const array: HandlerPlugin = () => {
+export const tuple: HandlerPlugin = () => {
   useBlockPatch()
 
   const handler = useNewHandler()
-  const schema = useSchemaType('array', useProps<ArrayProps>()) as ArraySchemaObject
+  const schema = useSchemaType('array', useProps<TupleProps>()) as ArraySchemaObject
   const children = useChildren()
 
-  const fieldSchema: SchemaObject = {}
-  handler[schemaContext.key] = { schema: fieldSchema } satisfies SchemaContext
+  const schemas: SchemaObject[] = []
+  handler[schemaContext.key] = { schemas } satisfies SchemaContext
 
-  schema.items = fieldSchema
+  // @ts-ignore
+  schema.prefixItems = schemas
 
   innet(children, handler)
 }

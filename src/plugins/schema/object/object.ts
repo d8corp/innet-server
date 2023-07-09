@@ -1,7 +1,7 @@
 import innet, { HandlerPlugin, useHandler, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { schemaContext, useApi, useBlockPatch, useSchemaBase, useSchemaType } from '../../../hooks'
+import { SchemaContext, schemaContext, useApi, useBlockPatch, useSchemaBase, useSchemaType } from '../../../hooks'
 import { ReferenceObject, SchemaObject, SchemaTypeOptions } from '../../../types'
 
 export interface ObjectProps extends SchemaTypeOptions <object> {
@@ -35,7 +35,7 @@ export const object: HandlerPlugin = () => {
       const handler = useNewHandler()
       const children = useChildren()
 
-      handler[schemaContext.key] = childSchema
+      handler[schemaContext.key] = { schema: childSchema } satisfies SchemaContext
 
       innet(children, handler)
     }
