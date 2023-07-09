@@ -1,4 +1,4 @@
-import { ValidationMap, Validator } from '@cantinc/utils'
+import { optional, required, ValidationMap, Validator } from '@cantinc/utils'
 import { useContext, useProps } from '@innet/jsx'
 
 import { paramContext } from '../useParam'
@@ -15,9 +15,10 @@ export interface PathRuleControllers {
 export function usePatchRules (rules?: PathRuleControllers) {
   const param = useContext(paramContext)
 
-  if (param?.props.in !== 'path') return
+  if (!param) return
 
-  const { props: { name: key }, rules: paramRules } = param
+  const { props: { name: key, required: req }, rules: paramRules } = param
+  const requiredRule = req ? required : optional
 
   const formatter: FormatterMap<any> = {}
   const validator: ValidationMap<any> = {}
@@ -29,9 +30,9 @@ export function usePatchRules (rules?: PathRuleControllers) {
   const props = useProps<StringProps>()
 
   if (props?.values) {
-    validator[key] = [isValues(props.values)]
+    validator[key] = requiredRule([isValues(props.values)])
   } else if (rules?.validator) {
-    validator[key] = rules.validator
+    validator[key] = requiredRule(rules.validator)
   }
 
   paramRules.push([formatter, validator])

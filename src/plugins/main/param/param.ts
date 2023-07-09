@@ -53,6 +53,10 @@ export const param: HandlerPlugin = () => {
   const props = useProps<ParamProps>()
   const params: ParameterObject = { ...props }
 
+  if (props.in === 'path') {
+    params.required = params.required ?? true
+  }
+
   operation.parameters.push(params)
 
   if (!children) return

@@ -54,7 +54,7 @@ declare namespace Paths {
                 export type Id = string;
             }
             export interface PathParameters {
-                id?: Parameters.Id;
+                id: Parameters.Id;
             }
             namespace Responses {
                 export type Default = Components.Schemas.PartnerSchema;
@@ -65,7 +65,7 @@ declare namespace Paths {
                 export type Id = string;
             }
             export interface PathParameters {
-                id?: Parameters.Id;
+                id: Parameters.Id;
             }
             export interface RequestBody {
                 /**

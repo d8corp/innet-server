@@ -4,7 +4,15 @@ import { JSXElement } from '@innet/jsx'
 import { ServerResponse } from 'http'
 import { onDestroy } from 'watch-state'
 
-import { ApiContext, apiContext, paramsContext, requestContext, responseContext, useServer } from '../../../hooks'
+import {
+  ApiContext,
+  apiContext,
+  headersContext,
+  paramsContext,
+  requestContext,
+  responseContext,
+  useServer,
+} from '../../../hooks'
 import { Document, Endpoint, Endpoints, Params } from '../../../types'
 import { format } from '../../../utils'
 
@@ -82,11 +90,13 @@ export const api: HandlerPlugin = () => {
 
       if (deep + 1 === splitPath.length) {
         function run (runEndpoint: Endpoint, params: Params) {
-          const rules = runEndpoint.rules?.path
+          const pathRules = runEndpoint.rules?.path
+          const headerRules = runEndpoint.rules?.header
+          let headers = { ...req.headers }
 
-          if (rules) {
-            let ok = false
-            for (const [formatter, validation] of rules) {
+          if (pathRules) {
+            let isValid = false
+            for (const [formatter, validation] of pathRules) {
               let currentParams = params
 
               if (formatter) {
@@ -96,18 +106,59 @@ export const api: HandlerPlugin = () => {
 
               if (!validation || !validate(validation, currentParams)) {
                 params = currentParams
-                ok = true
+                isValid = true
                 break
               }
             }
 
-            if (!ok) return false
+            if (!isValid) return false
+          }
+
+          if (headerRules) {
+            let ok = false
+            const errors = []
+
+            for (const [formatter, validation] of headerRules) {
+              let currentParams: object = headers
+
+              if (formatter) {
+                currentParams = { ...headers }
+                format(currentParams, formatter)
+              }
+
+              const error = !validation || validate(validation, currentParams)
+
+              if (!error) {
+                headers = currentParams as any
+                ok = true
+                break
+              }
+
+              errors.push(error)
+            }
+
+            if (!ok) {
+              res.statusCode = 400
+              res.setHeader('Content-Type', 'application/json')
+              res.write(JSON.stringify({
+                error: 'requestValidation',
+                data: {
+                  ...errors[0],
+                  in: 'header',
+                  or: errors.length > 1 ? errors.slice(1) : undefined,
+                },
+              }))
+              res.end()
+
+              return true
+            }
           }
 
           const newHandler = Object.create(runEndpoint.handler)
           newHandler[responseContext.key] = res
           newHandler[requestContext.key] = req
           newHandler[paramsContext.key] = params
+          newHandler[headersContext.key] = headers
 
           innet(runEndpoint.content, newHandler)
 
