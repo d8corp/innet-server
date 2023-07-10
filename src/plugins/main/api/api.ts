@@ -1,7 +1,7 @@
 import innet, { HandlerPlugin, useApp, useNewHandler } from 'innet'
 import { validation as validate } from '@cantinc/utils'
 import { JSXElement } from '@innet/jsx'
-import http, { ServerResponse } from 'http'
+import { IncomingMessage, ServerResponse } from 'http'
 import { onDestroy } from 'watch-state'
 
 import {
@@ -13,7 +13,7 @@ import {
   responseContext,
   useServer,
 } from '../../../hooks'
-import { Document, Endpoint, EndpointRule, Endpoints, Params } from '../../../types'
+import { Document, Endpoint, EndpointRule, Endpoints, Params, RequestPlugin } from '../../../types'
 import { Action, format } from '../../../utils'
 
 export interface ApiProps {
@@ -57,12 +57,13 @@ export const api: HandlerPlugin = () => {
     paths: {},
     servers: [],
   }
+  const requestPlugins = new Set<RequestPlugin>()
 
-  const context: ApiContext = { docs, endpoints, prefix }
+  const context: ApiContext = { docs, endpoints, prefix, requestPlugins }
 
   handler[apiContext.key] = context
 
-  const listener = (req: http.IncomingMessage, res: ServerResponse) => {
+  const listener = (req: IncomingMessage, res: ServerResponse) => {
     if (res.writableEnded) return
 
     const action = new Action(req)
@@ -205,6 +206,10 @@ export const api: HandlerPlugin = () => {
           endpointQueue.push([deep + 1, dynamicEndpoint, { ...params, [dynamicEndpoint.key.slice(1, -1)]: key }])
         }
       }
+    }
+
+    for (const requestPlugin of requestPlugins) {
+      if (requestPlugin(req, res)) return
     }
 
     if (context.fallback) {

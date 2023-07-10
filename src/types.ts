@@ -1,5 +1,6 @@
 import { Handler } from 'innet'
 import { ValidationMap } from '@cantinc/utils'
+import { IncomingMessage, ServerResponse } from 'http'
 import { OpenAPIV3_1 as API } from 'openapi-types'
 
 // Open API
@@ -78,3 +79,5 @@ export interface Fallback {
   children: any
   handler: Handler
 }
+
+export type RequestPlugin = (req: IncomingMessage, res: ServerResponse) => boolean | void

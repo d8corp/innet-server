@@ -1,9 +1,9 @@
 import { HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
-import { ServerResponse } from 'http'
 import { onDestroy } from 'watch-state'
 
-import { useApi, useServer } from '../../../hooks'
+import { useApi } from '../../../hooks'
+import { RequestPlugin } from '../../../types'
 import html from './swagger.html'
 
 export interface SwaggerProps {
@@ -12,23 +12,25 @@ export interface SwaggerProps {
 
 export const swagger: HandlerPlugin = () => {
   const { path } = useProps<SwaggerProps>()
-  const { server } = useServer()
-  const { docs } = useApi()
+  const { docs, requestPlugins } = useApi()
 
-  const listener = (req: Request, res: ServerResponse) => {
+  let swaggerResponse: string
+
+  const listener: RequestPlugin = (req, res) => {
     if (req.url === path) {
-      if (res.writableEnded) {
-        return console.error(`<swagger path="${path}"> The path already used.`)
+      if (!swaggerResponse) {
+        swaggerResponse = html.replace('spec: {},', `spec: ${JSON.stringify(docs)},`)
       }
 
       res.statusCode = 200
-      res.write(html.replace('spec: {},', `spec: ${JSON.stringify(docs)},`))
+      res.write(swaggerResponse)
       res.end()
+      return true
     }
   }
 
-  server.on('request', listener)
+  requestPlugins.add(listener)
   onDestroy(() => {
-    server.off('request', listener)
+    requestPlugins.delete(listener)
   })
 }
