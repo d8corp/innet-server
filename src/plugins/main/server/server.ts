@@ -23,7 +23,12 @@ export const server: HandlerPlugin = () => {
   const handler = useNewHandler()
   const { props = {}, children } = useApp<JSXElement<string, ServerProps>>()
   const { env } = process
-  let { ssl: { key = env.SSL_KEY, cert = env.SSL_CRT } = {} } = props
+  let {
+    ssl: {
+      key = env.SSL_KEY ?? 'localhost.key',
+      cert = env.SSL_CRT ?? 'localhost.crt',
+    } = {},
+  } = props
 
   if (!isInvalidPath(key)) {
     key = fs.readFileSync(key).toString()

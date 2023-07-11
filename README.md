@@ -13,11 +13,9 @@
 [![license](https://img.shields.io/npm/l/@innet/server)](https://github.com/d8corp/innet-server/blob/main/LICENSE)
 
 ## Abstract
-This package helps to create server-side application.
+This package helps to create server-side application based on [innet](https://www.npmjs.com/package/innet).
 
-Here you find **JSX components on back-end side** 🎉, cms, routing, proxy, html rendering and more.
-
-Based on [innet](https://www.npmjs.com/package/innet).
+Here you find **JSX components on back-end side** 🎉, Open API generation, Swagger UI in the box, cms, proxy, html rendering and more.
 
 [![stars](https://img.shields.io/github/stars/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/stargazers)
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
@@ -26,7 +24,7 @@ Based on [innet](https://www.npmjs.com/package/innet).
 The simplest way is using `innetjs`
 
 ```shell
-npx innetjs init my-app -t be
+npx innetjs init my-app -t api
 ```
 *change my-app to work folder name*
 
@@ -35,6 +33,8 @@ Go into `my-app` and check `README.md`
 ## Handler
 
 Use `server` handler to start an application.
+
+*src/index.ts*
 ```typescript
 import innet from 'innet'
 import server from '@innet/server'
@@ -44,111 +44,199 @@ import app from './app'
 innet(app, server)
 ```
 
-## Server
-To start http(s) server, use `server` element.
+## Usage
 
-Try it out in `app.tsx`
+Here is a **Hello World** example:
+
+*src/app.tsx*
+```typescript jsx
+import { defaultOnStart } from '@innet/server'
+
+export default (
+  <server onStart={defaultOnStart}>
+    <api title='Hello World!' />
+  </server>
+)
+```
+
+*Use `npm start` to run this server.*
+
+Open URL from the console message.
+You will see a base Open API JSON structure.
+
+```json
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Hello World!",
+    "version": "0.0.0"
+  },
+  "components": {},
+  "paths": {},
+  "servers": []
+}
+```
+
+## Swagger
+
+Use `<swagger>` element to add Swagger UI documentation.
+
+*src/app.tsx*
 ```typescript jsx
 export default (
   <server>
-    <action>
-      Hello World!
-    </action>
+    <api title='Hello World!'>
+      <swagger />
+    </api>
   </server>
 )
 ```
 
-Any content inside the server will be turned back to user.
-In this case the user will get `Hello World` on any request.
+Open that URL you used before (http://localhost:80), but on the next path: `/swagger-ui` (http://localhost:80/swagger-ui).
+You will see Swagger UI documentation.
 
-Use `npm start` to run this server.
+You can change the path by `path` property of `<swagger>` element.
 
-### Port
-To change the port of the web server you can use `port` prop.
-
+*src/app.tsx*
 ```typescript jsx
 export default (
-  <server port={80}>
-    <action>
-      Hello World!
-    </action>
+  <server>
+    <api title='Hello World!'>
+      <swagger path='/swagger' />
+    </api>
   </server>
 )
 ```
 
-or you can use `PORT` environment variable.
+## Server
+To start http(s) server, use `<server>` element:
 
-### SSL
-To have https connection you should provide SSL certificate.
-
+*src/app.tsx*
 ```typescript jsx
-const ssl = {
-  key: 'local.key',
-  cert: 'local.crt'
-}
-
 export default (
-  <server ssl={ssl}>
-    <action>
-      Hello World!
-    </action>
-  </server>
+  <server />
 )
 ```
 
-or you can use `SSL_CRT` and `SSL_KEY` environment variables.
+### port
+
+The element has `port` property to set up the server port:
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server port={3000} />
+)
+```
+
+- By default, it uses port `80` for `http` and port `442` for `https`.
+- You can use `PORT` environment variable to set it up on CI level.
+- [innetjs](https://www.npmjs.com/package/innetjs) allows you to use `PORT` in `.env` file.
+
+### ssl
+
+To start `https` server, use `ssl` property:
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server
+    ssl={{
+      cert: 'url_to_file.crt',
+      key: 'url_to_file.key',
+    }}
+  />
+)
+```
+
+- You can use `SSL_KEY` and `SSL_CRT` environment variables to set it up on CI level.
+- [innetjs](https://www.npmjs.com/package/innetjs) allows you to use `SSL_KEY` and `SSL_CRT` in `.env` file.
+- You can add `localhost.key` and `localhost.crt` files in your project folder.
 
 ### onStart
-You can show some message or do something right after the server starts.
-```typescript jsx
-export default (
-  <server onStart={console.log}>
-    <action>
-      Hello World!
-    </action>
-  </server>
-)
-```
 
-### onError
-You can log errors or do something else, when the server get an error.
+`<server>` element has `onStart` prop. Use it to handle server start event.
+You can put `defaultOnStart` to the prop.
+This will log URL into console after start the server.
+The URL opens the server app.
 
+*src/app.tsx*
 ```typescript jsx
+import { defaultOnStart } from '@innet/server'
+
 export default (
-  <server onError={console.error}>
-    <action>
-      Hello World!
-    </action>
-  </server>
+  <server
+    onStart={defaultOnStart}
+  />
 )
 ```
 
 ### onRequest
-You can log any request with `onRequest` prop.
 
+Use `onRequest` to handle any request of the server.
+
+*src/app.tsx*
 ```typescript jsx
-export default (
-  <server onRequest={console.log}>
-    <action>
-      Hello World!
-    </action>
-  </server>
-)
-```
+import { defaultOnStart } from '@innet/server'
 
-### onDestroy
-You can react on destroy the server with `onDestroy` prop.
-
-```typescript jsx
 export default (
   <server
-    onDestroy={() => console.log('destroy')}>
-    <action>
-      Hello World!
-    </action>
+    onRequest={(req, res) => console.log({
+      req,
+      res,
+    })}
+  />
+)
+```
+
+### onError
+
+Use `onError` to handle any request error on the server.
+
+*src/app.tsx*
+```typescript jsx
+import { defaultOnStart } from '@innet/server'
+
+export default (
+  <server
+      onError={error => console.error(error)}
+  />
+)
+```
+
+## Api
+
+`<api>` element MUST be placed in `<server>` element.
+It has a required prop of `title`. This is just a title of the API.
+
+### description
+
+You can add a `description` of the API.
+[CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
+
+*src/app.tsx*
+```typescript jsx
+import { defaultOnStart } from '@innet/server'
+
+export default (
+  <server onStart={defaultOnStart}>
+    <api
+      title='@innet/server API'
+      description='**MARKDOWN** is available'
+    />
   </server>
 )
 ```
+
+
+
+
+
+
+
+
+
+
 
 ## HTML
 You can use `html` element to return html content.

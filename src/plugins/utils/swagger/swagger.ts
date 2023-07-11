@@ -7,17 +7,17 @@ import { RequestPlugin } from '../../../types'
 import html from './swagger.html'
 
 export interface SwaggerProps {
-  path: string
+  path?: string
 }
 
 export const swagger: HandlerPlugin = () => {
-  const { path } = useProps<SwaggerProps>()
-  const { docs, requestPlugins } = useApi()
+  const { path = '/swagger-ui' } = useProps<SwaggerProps>() || {}
+  const { docs, requestPlugins, prefix } = useApi()
 
   let swaggerResponse: string
 
   const listener: RequestPlugin = (req, res) => {
-    if (req.url === path) {
+    if (req.url === prefix + path) {
       if (!swaggerResponse) {
         swaggerResponse = html.replace('spec: {},', `spec: ${JSON.stringify(docs)},`)
       }
