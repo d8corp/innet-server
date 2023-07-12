@@ -69,8 +69,8 @@ describe('server', () => {
     run(
       <server port={3000}>
         <api title='CANT inc. API' version='0.0.1'>
-          <stand url='https://cantinc.com/api' description='Production' />
-          <stand url='https://stage.cantinc.com/api' description='Stage' />
+          <host url='https://cantinc.com/api' description='Production' />
+          <host url='https://stage.cantinc.com/api' description='Stage' />
           <license name='MIT' />
           <contact name='Mike' email='d8corp@mail.ru' />
           <tag name='partner' description='Any users on the service'>

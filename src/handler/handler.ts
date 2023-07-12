@@ -21,6 +21,7 @@ import {
   error, ErrorProps,
   fallback, FallbackProps,
   field, FieldProps,
+  host, HostProps,
   integer, IntegerProps,
   license, LicenseProps,
   nullPlugin, NullProps,
@@ -33,7 +34,6 @@ import {
   request, RequestProps,
   response, ResponseProps,
   server, ServerProps,
-  stand, StandProps,
   string, StringProps,
   success, SuccessProps,
   swagger, SwaggerProps,
@@ -51,7 +51,7 @@ export const JSXPlugins = {
   slot,
   slots,
   server,
-  stand,
+  host,
   variable,
   api,
   contact,
@@ -115,7 +115,7 @@ declare global {
       api: ApiProps
       contact: ContactProps
       license: LicenseProps
-      stand: StandProps
+      host: HostProps
       variable: VariableProps
       tag: TagProps
       endpoint: EndpointProps

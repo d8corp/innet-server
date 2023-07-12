@@ -1,10 +1,10 @@
 import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useContext, useProps } from '@innet/jsx'
 
-import { endpointContext, standContext, useApi } from '../../../hooks'
+import { endpointContext, hostContext, useApi } from '../../../hooks'
 import { ServerObject } from '../../../types'
 
-export interface StandProps {
+export interface HostProps {
   /**
    * A URL to the target host.
    * This URL supports Server Variables and MAY be relative,
@@ -20,10 +20,10 @@ export interface StandProps {
   description?: string
 }
 
-export const stand: HandlerPlugin = () => {
+export const host: HandlerPlugin = () => {
   const handler = useNewHandler()
   const { docs } = useApi()
-  const props = useProps<StandProps>()
+  const props = useProps<HostProps>()
   const children = useChildren()
   const { operation } = useContext(endpointContext) || {}
   const target = operation || docs
@@ -40,7 +40,7 @@ export const stand: HandlerPlugin = () => {
 
   servers.push(server)
 
-  handler[standContext.key] = { server }
+  handler[hostContext.key] = { server }
 
   innet(children, handler)
 }

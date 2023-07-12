@@ -38,7 +38,7 @@ export interface ApiProps {
   /** A URL to the Terms of Service for the API. This MUST be in the form of a URL. */
   termsOfService?: string
 
-  /** A URL prefix for paths. */
+  /** URL path prefix scopes the API. */
   prefix?: string
 }
 

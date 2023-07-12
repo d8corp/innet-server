@@ -216,10 +216,8 @@ You can add a `description` of the API.
 
 *src/app.tsx*
 ```typescript jsx
-import { defaultOnStart } from '@innet/server'
-
 export default (
-  <server onStart={defaultOnStart}>
+  <server>
     <api
       title='@innet/server API'
       description='**MARKDOWN** is available'
@@ -227,6 +225,365 @@ export default (
   </server>
 )
 ```
+
+### summary
+
+Add a short summary of the API.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api
+      title='@innet/server API'
+      summary='Hello World!'
+    />
+  </server>
+)
+```
+
+### version
+
+The version of the OpenAPI document (which is distinct from the
+[OpenAPI Specification version](https://swagger.io/specification/#oas-version)
+or the API implementation version).
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api
+      title='@innet/server API'
+      version='1.0.1'
+    />
+  </server>
+)
+```
+
+*default: 0.0.0*
+
+### prefix
+
+URL path prefix scopes the API.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api
+      title='@innet/server API'
+      prefix='/api'
+    />
+  </server>
+)
+```
+
+## License
+
+Use `<license>` element to define the API license.
+
+### name
+
+REQUIRED prop. The license name used for the API.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api title='My API'>
+      <license
+        name='Apache 2.0'
+      />
+    </api>
+  </server>
+)
+```
+
+### identifier
+
+An [SPDX](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) license expression for the API.
+The `identifier` field is mutually exclusive of the `url` prop.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api title='My API'>
+      <license
+        name='Apache 2.0'
+        identifier='Apache-2.0'
+      />
+    </api>
+  </server>
+)
+```
+
+### url
+
+A URL to the license used for the API.
+This MUST be in the form of a URL.
+The `url` field is mutually exclusive of the `identifier` field.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api title='My API'>
+      <license
+        name='Apache 2.0'
+        url='https://www.apache.org/licenses/LICENSE-2.0.html'
+      />
+    </api>
+  </server>
+)
+```
+
+## Contact
+
+Contact information for the exposed API.
+
+### name
+
+The identifying name of the contact person/organization.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api title='My API'>
+      <contact name='Mike' />
+    </api>
+  </server>
+)
+```
+
+### email
+
+The email address of the contact person/organization.
+This MUST be in the form of an email address.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api title='My API'>
+      <contact
+        email='d8@cantinc.com'
+      />
+    </api>
+  </server>
+)
+```
+
+### url
+
+The URL pointing to the contact information.
+This MUST be in the form of a URL.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api title='My API'>
+      <contact
+        url='https://...'
+      />
+    </api>
+  </server>
+)
+```
+
+## Host
+
+This element adds a link to related documentation API.
+You can provide many stands like dev, stage or prod.
+
+### url
+
+REQUIRED prop of URL to the target host.
+
+This URL supports Server Variables and MAY be relative,
+to indicate that the host location is relative to the location where the OpenAPI document is being served.
+Variable substitutions will be made when a variable is named in {brackets}.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api title='My API'>
+      <host
+        url='https://your.address/api'
+      />
+    </api>
+  </server>
+)
+```
+
+### description
+
+An optional string describing the host designated by the URL.
+[CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api title='My API'>
+      <host
+        url='https://your.address/api'
+        description='Production server'
+      />
+    </api>
+  </server>
+)
+```
+
+## Variable
+
+This element MUST be placed in `<host>` element and defines a variable from the `<host>`.
+
+### key, default
+
+Those are REQUIRED props.
+`key` is a server url parameter.
+
+The `default` value to use for substitution,
+which SHALL be sent if an alternate value is not supplied.
+If the enum is defined, the value MUST exist in the enum's values.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api title='My API'>
+      <host
+        url='https://{env}.your.address/api'
+        description='Test servers'>
+          <variable
+            key='env'
+            default='stage'
+          />
+      </host>
+    </api>
+  </server>
+)
+```
+
+### enum
+
+An enumeration of string values to be used if the substitution options are from a limited set.
+The array MUST NOT be empty.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api title='My API'>
+      <host
+        url='https://{env}.your.address/api'
+        description='Test servers'>
+          <variable
+            key='env'
+            default='stage'
+            enum={[
+              'stage',
+              'dev',
+              'qa',
+            ]}
+          />
+      </host>
+    </api>
+  </server>
+)
+```
+
+### description
+
+An optional description for the server variable.
+[CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api title='My API'>
+      <host
+        url='https://{env}.your.address/api'
+        description='Test servers'>
+          <variable
+            key='env'
+            default='stage'
+            enum={[
+              'stage',
+              'dev',
+              'qa',
+            ]}
+            description='Server environment'
+          />
+      </host>
+    </api>
+  </server>
+)
+```
+
+## Fallback
+
+By default, `<api>` server returns 404 with empty body.
+`<fallback>` element defines default server response.
+This element MUST be placed in `<api>`.
+You MUST use one `<fallback>` per `<api>`.
+Can contains `<request>` elements.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api title='My API'>
+      <fallback>
+        <error>
+          {{
+            error: 'unknownEndpoint',
+            message: 'api not found'
+          }}
+        </error>
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+If you open the application on any URL except for `/`, you can see the next response.
+
+```json
+{
+  "error": "unknownEndpoint",
+  "message": "api not found"
+}
+```
+
+## Endpoint
+
+## Param
+
+## Body
+
+## Response
+
+## Request
+
+## Tag
+
+## Error
+
+## Success
+
+## Proxy
+
+## Redirect
+
+
+
+
 
 
 
@@ -349,165 +706,6 @@ export default (
 ```
 
 Put `index.html` in the root of the project (`my-app` folder).
-
-## Router
-The router helps to handle requests by route.
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <router>
-        <file path='index.html' />
-      </router>
-    </action>
-  </server>
-)
-```
-
-The router does nothing and returns self content.
-It starts work only with the next props.
-
-### method
-This property says that the content of the route should be run if the request method equals to the prop.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <router method='GET'>
-        <file path='index.html' />
-      </router>
-    </action>
-  </server>
-)
-```
-
-### path
-You can set `path` to match with it.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <router method='GET' path='/'>
-        <file path='index.html' />
-      </router>
-    </action>
-  </server>
-)
-```
-
-You will get the `index.html` only on the root path with `GET` method.
-
-This prop has regex like syntax, so you can set the path as you wish.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <router path='/user/[0-9]+'>
-        <file path='index.html' />
-      </router>
-    </action>
-  </server>
-)
-```
-
-To provide named params from url, use named capturing groups of regex.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <router path='/user/(?<id>[\w-]+)'>
-        <file path='index.html' />
-      </router>
-    </action>
-  </server>
-)
-```
-
-### ish
-You can react on any path which starts with provided one.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <router path='/test' ish>
-        <file path='index.html' />
-      </router>
-    </action>
-  </server>
-)
-```
-
-`/`, `/something`, `/test1` do not match.  
-`/test`, `/test/something` matches.
-
-### prefix
-
-You can use a router inside another one and `prefix` helps reduce path prop.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <router path='/test' prefix='/test' ish>
-        <router path='/'>
-          <file path='index.html' />
-        </router>
-        <router path='/404'>
-          <file path='404.html' />
-        </router>
-      </router>
-    </action>
-  </server>
-)
-```
-
-Here you can get `index.html` on `/test` and `404.html` on `/test/404`.
-
-### onMatch
-
-You can log the requests of any router.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <router path='/test' onMatch={console.log}>
-        <file path='index.html' />
-      </router>
-    </action>
-  </server>
-)
-```
-
-## switch
-
-By default,
-routers in the same router runs one by one
-independent to result of the previous route.
-
-To avoid this you can use switch element.
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <switch>
-        <router path='/'>
-          <file path='index.html' />
-        </router>
-        <file path='404.html' />
-      </switch>
-    </action>
-  </server>
-)
-```
-
-You will get `index.html` only on the root path,
-any other path will return `404.html`.
 
 ## cms
 

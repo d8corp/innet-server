@@ -1,6 +1,6 @@
 export * from './useServer'
 export * from './useApi'
-export * from './useStand'
+export * from './useHost'
 export * from './useTag'
 export * from './useNewRef'
 export * from './useOneElementError'
