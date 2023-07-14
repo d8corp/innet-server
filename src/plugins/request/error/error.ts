@@ -72,6 +72,6 @@ export const error: HandlerPlugin = () => {
   const { status = 520, code = 'undefined' } = props || {}
   res.statusCode = typeof status === 'string' ? errorStatuses[status] : status
 
-  res.write(JSON.stringify({ error: code, children }))
+  res.write(JSON.stringify({ error: code, data: children }))
   res.end()
 }

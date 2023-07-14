@@ -50,10 +50,10 @@ Here is a **Hello World** example:
 
 *src/app.tsx*
 ```typescript jsx
-import { defaultOnStart } from '@innet/server'
+import { httpOnStart } from '@innet/server'
 
 export default (
-  <server onStart={defaultOnStart}>
+  <server onStart={httpOnStart}>
     <api title='Hello World!' />
   </server>
 )
@@ -109,7 +109,7 @@ export default (
 ```
 
 ## Server
-To start http(s) server, use `<server>` element:
+`<server>` element helps to start http(s) server.
 
 *src/app.tsx*
 ```typescript jsx
@@ -120,7 +120,7 @@ export default (
 
 ### port
 
-The element has `port` property to set up the server port:
+Use `port` property to set up the server port:
 
 *src/app.tsx*
 ```typescript jsx
@@ -131,7 +131,7 @@ export default (
 
 - By default, it uses port `80` for `http` and port `442` for `https`.
 - You can use `PORT` environment variable to set it up on CI level.
-- [innetjs](https://www.npmjs.com/package/innetjs) allows you to use `PORT` in `.env` file.
+- [innetjs](https://www.npmjs.com/package/innetjs) allows you to use `PORT` in `.env` file of local environment.
 
 ### ssl
 
@@ -155,18 +155,18 @@ export default (
 
 ### onStart
 
-`<server>` element has `onStart` prop. Use it to handle server start event.
-You can put `defaultOnStart` to the prop.
+Use `onStart` prop to handle server start event.
+You can put `httpOnStart` to the prop.
 This will log URL into console after start the server.
 The URL opens the server app.
 
 *src/app.tsx*
 ```typescript jsx
-import { defaultOnStart } from '@innet/server'
+import { httpOnStart } from '@innet/server'
 
 export default (
   <server
-    onStart={defaultOnStart}
+    onStart={httpOnStart}
   />
 )
 ```
@@ -177,7 +177,7 @@ Use `onRequest` to handle any request of the server.
 
 *src/app.tsx*
 ```typescript jsx
-import { defaultOnStart } from '@innet/server'
+import { httpOnStart } from '@innet/server'
 
 export default (
   <server
@@ -195,7 +195,7 @@ Use `onError` to handle any request error on the server.
 
 *src/app.tsx*
 ```typescript jsx
-import { defaultOnStart } from '@innet/server'
+import { httpOnStart } from '@innet/server'
 
 export default (
   <server
@@ -280,6 +280,7 @@ export default (
 
 ## License
 
+`<license>` element MUST be placed in `<api>` element.
 Use `<license>` element to define the API license.
 
 ### name
@@ -340,7 +341,8 @@ export default (
 
 ## Contact
 
-Contact information for the exposed API.
+`<contact>` element MUST be placed in `<api>` element.
+The contact information for the exposed API.
 
 ### name
 
@@ -395,6 +397,8 @@ export default (
 
 ## Host
 
+`<host>` element MUST be placed in `<api>` element.
+
 This element adds a link to related documentation API.
 You can provide many stands like dev, stage or prod.
 
@@ -442,14 +446,29 @@ export default (
 
 This element MUST be placed in `<host>` element and defines a variable from the `<host>`.
 
-### key, default
+### key
 
-Those are REQUIRED props.
-`key` is a server url parameter.
+REQUIRED props. `key` is a server url parameter.
 
-The `default` value to use for substitution,
-which SHALL be sent if an alternate value is not supplied.
-If the enum is defined, the value MUST exist in the enum's values.
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api title='My API'>
+      <host
+        url='https://{env}.your.address/api'
+        description='Test servers'>
+          <variable key='env' />
+      </host>
+    </api>
+  </server>
+)
+```
+
+### value
+
+The `value` prop uses for substitution by default.
+If the `values` is defined, the `value` MUST exist in the `values`.
 
 *src/app.tsx*
 ```typescript jsx
@@ -461,7 +480,7 @@ export default (
         description='Test servers'>
           <variable
             key='env'
-            default='stage'
+            value='stage'
           />
       </host>
     </api>
@@ -469,7 +488,7 @@ export default (
 )
 ```
 
-### enum
+### values
 
 An enumeration of string values to be used if the substitution options are from a limited set.
 The array MUST NOT be empty.
@@ -484,8 +503,7 @@ export default (
         description='Test servers'>
           <variable
             key='env'
-            default='stage'
-            enum={[
+            values={[
               'stage',
               'dev',
               'qa',
@@ -512,8 +530,7 @@ export default (
         description='Test servers'>
           <variable
             key='env'
-            default='stage'
-            enum={[
+            values={[
               'stage',
               'dev',
               'qa',
@@ -540,12 +557,9 @@ export default (
   <server>
     <api title='My API'>
       <fallback>
-        <error>
-          {{
-            error: 'unknownEndpoint',
-            message: 'api not found'
-          }}
-        </error>
+        <error
+          code='unknownEndpoint'
+        />
       </fallback>
     </api>
   </server>
@@ -556,8 +570,7 @@ If you open the application on any URL except for `/`, you can see the next resp
 
 ```json
 {
-  "error": "unknownEndpoint",
-  "message": "api not found"
+  "error": "unknownEndpoint"
 }
 ```
 
