@@ -18,7 +18,7 @@ import { Action, format } from '../../../utils'
 
 export interface ApiProps {
   /** The title of the API. */
-  title: string
+  title?: string
 
   /**
    * The version of the OpenAPI document (which is distinct from the
@@ -44,10 +44,10 @@ export interface ApiProps {
 
 export const api: HandlerPlugin = () => {
   const handler = useNewHandler()
-  const { props, children } = useApp<JSXElement<string, ApiProps>>()
+  const { props = {}, children } = useApp<JSXElement<string, ApiProps>>()
   const { server } = useServer()
-  const { prefix = '', ...rest } = props
-  const info = { ...rest, version: rest.version || '0.0.0' }
+  const { prefix = '', title = '', ...rest } = props
+  const info = { ...rest, version: rest.version || '0.0.0', title }
 
   const endpoints: Endpoints = {}
   const docs: Document = {

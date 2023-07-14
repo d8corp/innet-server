@@ -50,25 +50,23 @@ Here is a **Hello World** example:
 
 *src/app.tsx*
 ```typescript jsx
-import { httpOnStart } from '@innet/server'
-
 export default (
-  <server onStart={httpOnStart}>
-    <api title='Hello World!' />
+  <server>
+    <api />
   </server>
 )
 ```
 
 *Use `npm start` to run this server.*
 
-Open URL from the console message.
+Open http://localhost:80
 You will see a base Open API JSON structure.
 
 ```json
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Hello World!",
+    "title": "",
     "version": "0.0.0"
   },
   "components": {},
@@ -80,28 +78,29 @@ You will see a base Open API JSON structure.
 ## Swagger
 
 Use `<swagger>` element to add Swagger UI documentation.
+`<swagger>` element MUST be placed in `<api>` element.
 
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
-    <api title='Hello World!'>
+    <api>
       <swagger />
     </api>
   </server>
 )
 ```
 
-Open that URL you used before (http://localhost:80), but on the next path: `/swagger-ui` (http://localhost:80/swagger-ui).
+Open http://localhost:80/swagger-ui
 You will see Swagger UI documentation.
 
-You can change the path by `path` property of `<swagger>` element.
+You can change the Swagger UI URL path by `path` property of `<swagger>` element.
 
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
-    <api title='Hello World!'>
+    <api>
       <swagger path='/swagger' />
     </api>
   </server>
@@ -199,7 +198,7 @@ import { httpOnStart } from '@innet/server'
 
 export default (
   <server
-      onError={error => console.error(error)}
+    onError={error => console.error(error)}
   />
 )
 ```
@@ -207,7 +206,21 @@ export default (
 ## Api
 
 `<api>` element MUST be placed in `<server>` element.
-It has a required prop of `title`. This is just a title of the API.
+
+### title
+
+This is just a title of the API.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api
+      title='@innet/server API'
+    />
+  </server>
+)
+```
 
 ### description
 
@@ -219,7 +232,6 @@ You can add a `description` of the API.
 export default (
   <server>
     <api
-      title='@innet/server API'
       description='**MARKDOWN** is available'
     />
   </server>
@@ -235,7 +247,6 @@ Add a short summary of the API.
 export default (
   <server>
     <api
-      title='@innet/server API'
       summary='Hello World!'
     />
   </server>
@@ -271,7 +282,6 @@ URL path prefix scopes the API.
 export default (
   <server>
     <api
-      title='@innet/server API'
       prefix='/api'
     />
   </server>
@@ -291,7 +301,7 @@ REQUIRED prop. The license name used for the API.
 ```typescript jsx
 export default (
   <server>
-    <api title='My API'>
+    <api>
       <license
         name='Apache 2.0'
       />
@@ -309,7 +319,7 @@ The `identifier` field is mutually exclusive of the `url` prop.
 ```typescript jsx
 export default (
   <server>
-    <api title='My API'>
+    <api>
       <license
         name='Apache 2.0'
         identifier='Apache-2.0'
@@ -329,7 +339,7 @@ The `url` field is mutually exclusive of the `identifier` field.
 ```typescript jsx
 export default (
   <server>
-    <api title='My API'>
+    <api>
       <license
         name='Apache 2.0'
         url='https://www.apache.org/licenses/LICENSE-2.0.html'
@@ -352,7 +362,7 @@ The identifying name of the contact person/organization.
 ```typescript jsx
 export default (
   <server>
-    <api title='My API'>
+    <api>
       <contact name='Mike' />
     </api>
   </server>
@@ -368,7 +378,7 @@ This MUST be in the form of an email address.
 ```typescript jsx
 export default (
   <server>
-    <api title='My API'>
+    <api>
       <contact
         email='d8@cantinc.com'
       />
@@ -386,7 +396,7 @@ This MUST be in the form of a URL.
 ```typescript jsx
 export default (
   <server>
-    <api title='My API'>
+    <api>
       <contact
         url='https://...'
       />
@@ -414,7 +424,7 @@ Variable substitutions will be made when a variable is named in {brackets}.
 ```typescript jsx
 export default (
   <server>
-    <api title='My API'>
+    <api>
       <host
         url='https://your.address/api'
       />
@@ -432,7 +442,7 @@ An optional string describing the host designated by the URL.
 ```typescript jsx
 export default (
   <server>
-    <api title='My API'>
+    <api>
       <host
         url='https://your.address/api'
         description='Production server'
@@ -454,7 +464,7 @@ REQUIRED props. `key` is a server url parameter.
 ```typescript jsx
 export default (
   <server>
-    <api title='My API'>
+    <api>
       <host
         url='https://{env}.your.address/api'
         description='Test servers'>
@@ -474,7 +484,7 @@ If the `values` is defined, the `value` MUST exist in the `values`.
 ```typescript jsx
 export default (
   <server>
-    <api title='My API'>
+    <api>
       <host
         url='https://{env}.your.address/api'
         description='Test servers'>
@@ -497,7 +507,7 @@ The array MUST NOT be empty.
 ```typescript jsx
 export default (
   <server>
-    <api title='My API'>
+    <api>
       <host
         url='https://{env}.your.address/api'
         description='Test servers'>
@@ -524,7 +534,7 @@ An optional description for the server variable.
 ```typescript jsx
 export default (
   <server>
-    <api title='My API'>
+    <api>
       <host
         url='https://{env}.your.address/api'
         description='Test servers'>
@@ -555,7 +565,7 @@ Can contains `<request>` elements.
 ```typescript jsx
 export default (
   <server>
-    <api title='My API'>
+    <api>
       <fallback>
         <error
           code='unknownEndpoint'
