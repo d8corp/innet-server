@@ -1083,15 +1083,275 @@ export default (
 )
 ```
 
-### array
+## array
 
-### integer
+`<array>` element specifies schema parameter as an array of children elements.
 
-### string
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
 
-### boolean
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <array>
+            <number min={1} max={5} />
+          </array>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
 
-### date
+This example defines that, `/products?rating=3&rating=4` is valid and `rating` MUST be `3` or `4`.
+Also supports formats `/products?rating[]=3&rating[]=4` and `/products?rating[0]=3&rating[1]=4`.
+
+`/products?rating=3` and `/products?rating=1&rating=2&rating=3` also support.
+
+### default
+
+Defines default `<array>` value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <array default={[1, 2, 3, 4, 5]}>
+            <number min={1} max={5} />
+          </array>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### example
+
+Defines an example of the `<array>` value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <array example={[1, 3, 5]}>
+            <number min={1} max={5} />
+          </array>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### description
+
+Defines the `<array>` description.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <array
+            description='Values of rating score'
+            example={[3, 5]}>
+            <number min={1} max={5} />
+          </array>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+## integer
+
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+It defines `integer` value for a parent element.
+`@innet/server` formats and validate the value automatically (real-time).
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <integer />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+*This example defines a `GET` endpoint on `/users` which has an optional query `integer` parameter of `minAge`.*
+
+### format
+
+You can set up the `integer` format.
+Possible values are `int32` or `int64`.
+By default, there are `int32` used.
+
+The format of `int32` means a number from `-2147483647` to `2147483647`.
+The format of `int64` converts the value to `BigInt` and placed between `-9223372036854775807` and `9223372036854775807`
+
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <integer format='int64' />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### default
+
+A default value for the `integer`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <integer default={18} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+*By default, `minAge` query param equals `18`*
+
+### example
+
+An example value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <integer example={18} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### description
+
+A description of the `integer`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <integer
+            example={18}
+            description='Age value'
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### values
+
+The enumeration of available `values`.
+If you provide the parameter value, which is not in the `values`, the server returns an error.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <integer
+            example={18}
+            values={[
+              12,
+              16,
+              18,
+              21,
+            ]}
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### min, max
+
+Those two props validate the number value by minimum and maximum values.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <integer min={1} max={5} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+*In this example `/products?rating=5` is valid and `/products?rating=6` is not*
+
+## string
+
+## boolean
+
+## date
 
 
 
