@@ -466,7 +466,7 @@ export default (
       <host
         url='https://{env}.your.address/api'
         description='Test servers'>
-          <variable key='env' />
+        <variable key='env' />
       </host>
     </api>
   </server>
@@ -486,10 +486,10 @@ export default (
       <host
         url='https://{env}.your.address/api'
         description='Test servers'>
-          <variable
-            key='env'
-            value='stage'
-          />
+        <variable
+          key='env'
+          value='stage'
+        />
       </host>
     </api>
   </server>
@@ -509,14 +509,14 @@ export default (
       <host
         url='https://{env}.your.address/api'
         description='Test servers'>
-          <variable
-            key='env'
-            values={[
-              'stage',
-              'dev',
-              'qa',
-            ]}
-          />
+        <variable
+          key='env'
+          values={[
+            'stage',
+            'dev',
+            'qa',
+          ]}
+        />
       </host>
     </api>
   </server>
@@ -536,15 +536,15 @@ export default (
       <host
         url='https://{env}.your.address/api'
         description='Test servers'>
-          <variable
-            key='env'
-            values={[
-              'stage',
-              'dev',
-              'qa',
-            ]}
-            description='Server environment'
-          />
+        <variable
+          key='env'
+          values={[
+            'stage',
+            'dev',
+            'qa',
+          ]}
+          description='Server environment'
+        />
       </host>
     </api>
   </server>
