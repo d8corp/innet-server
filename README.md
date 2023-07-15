@@ -192,8 +192,6 @@ Use `onError` to handle any request error on the server.
 
 *src/app.tsx*
 ```typescript jsx
-import { httpOnStart } from '@innet/server'
-
 export default (
   <server
     onError={error => console.error(error)}
