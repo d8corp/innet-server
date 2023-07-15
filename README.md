@@ -21,7 +21,7 @@ Here you find **JSX components on back-end side** 🎉, Open API generation, Swa
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
 
 ## Install
-The simplest way is using `innetjs`
+The simplest way to start working with `@innet/server`, it is `innetjs` usage.
 
 ```shell
 npx innetjs init my-app -t api
@@ -176,8 +176,6 @@ Use `onRequest` to handle any request of the server.
 
 *src/app.tsx*
 ```typescript jsx
-import { httpOnStart } from '@innet/server'
-
 export default (
   <server
     onRequest={(req, res) => console.log({
