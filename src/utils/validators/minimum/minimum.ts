@@ -1,16 +1,14 @@
-import { ValidationResponse } from '@cantinc/utils'
-
-import { ApiValidationError } from '../../../constants'
+import { ApiValidationErrorData } from '../../../types'
 
 export interface MinimumValidationErrorData {
   min: number
 }
 
 export function minimum <K> (min: number) {
-  return (value: number, key: K): ValidationResponse<K, MinimumValidationErrorData> => {
+  return (value: number, key: K): ApiValidationErrorData<K, MinimumValidationErrorData> | undefined => {
     if (value < min) {
       return {
-        error: ApiValidationError.minimum,
+        error: 'minimum',
         data: {
           key,
           min,

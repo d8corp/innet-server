@@ -1,16 +1,14 @@
-import { ValidationResponse } from '@cantinc/utils'
-
-import { ApiValidationError } from '../../../constants'
+import { ApiValidationErrorData } from '../../../types'
 
 export interface MaximumValidationErrorData {
   max: number
 }
 
 export function maximum <K> (max: number) {
-  return (value: number, key: K): ValidationResponse<K, MaximumValidationErrorData> => {
+  return (value: number, key: K): ApiValidationErrorData<K, MaximumValidationErrorData> | undefined => {
     if (value > max) {
       return {
-        error: ApiValidationError.maximum,
+        error: 'maximum',
         data: {
           key,
           max,

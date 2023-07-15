@@ -1,10 +1,18 @@
-export enum ApiValidationError {
-  number = 'number',
-  date = 'date',
-  integer = 'integer',
-  minimum = 'minimum',
-  minDate = 'minDate',
-  maxDate = 'maxDate',
-  maximum = 'maximum',
-  values = 'values',
-}
+export const apiErrors = [
+  'requestValidation',
+] as const
+
+export const apiValidationErrors = [
+  'number',
+  'date',
+  'uuid',
+  'integer',
+  'minimum',
+  'minDate',
+  'maxDate',
+  'maximum',
+  'values',
+] as const
+
+export type ApiErrorValue = typeof apiErrors[number];
+export type ApiValidationErrorValue = typeof apiValidationErrors[number];

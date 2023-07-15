@@ -101,12 +101,12 @@ export const api: HandlerPlugin = () => {
 
           if (pathRules) {
             let isValid = false
-            for (const [formatter, validation] of pathRules) {
+            for (const [formatter, validation, defaultValues] of pathRules) {
               let currentParams = params
 
               if (formatter) {
                 currentParams = { ...params }
-                format(currentParams, formatter)
+                format(currentParams, formatter, defaultValues)
               }
 
               if (!validation || !validate(validation, currentParams)) {
@@ -124,12 +124,12 @@ export const api: HandlerPlugin = () => {
               let ok = false
               const errors = []
 
-              for (const [formatter, validation] of rules) {
+              for (const [formatter, validation, defaultValues] of rules) {
                 let currentData: object = action[key]
 
                 if (formatter) {
                   currentData = { ...action[key] }
-                  format(currentData, formatter)
+                  format(currentData, formatter, defaultValues)
                 }
 
                 const error = !validation || validate(validation, currentData)

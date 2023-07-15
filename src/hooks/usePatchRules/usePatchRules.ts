@@ -3,13 +3,13 @@ import { useContext, useProps } from '@innet/jsx'
 
 import { paramContext } from '../useParam'
 
-import { StringProps } from '../../plugins'
-import { Formatter, FormatterMap } from '../../types'
+import { Formatter, FormatterMap, SchemaValuesTypeOptions } from '../../types'
 import { isValues } from '../../utils'
 
 export interface PathRuleControllers {
   formatter?: Formatter<any>[]
   validator?: Validator<any, any>[]
+  defaultValue?: any
 }
 
 export function usePatchRules (rules?: PathRuleControllers) {
@@ -22,12 +22,17 @@ export function usePatchRules (rules?: PathRuleControllers) {
 
   const formatter: FormatterMap<any> = {}
   const validator: ValidationMap<any> = {}
+  const defaultValues: Record<string, any> = {}
 
   if (rules?.formatter) {
     formatter[key] = rules.formatter
   }
 
-  const props = useProps<StringProps>()
+  const props = useProps<SchemaValuesTypeOptions<any>>()
+
+  if (props && 'default' in props) {
+    defaultValues[key] = props.default
+  }
 
   if (props?.values) {
     validator[key] = requiredRule([isValues(props.values)])
@@ -35,5 +40,5 @@ export function usePatchRules (rules?: PathRuleControllers) {
     validator[key] = requiredRule(rules.validator)
   }
 
-  paramRules.push([formatter, validator])
+  paramRules.push([formatter, validator, defaultValues])
 }

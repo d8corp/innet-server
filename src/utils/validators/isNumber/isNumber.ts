@@ -1,11 +1,9 @@
-import { ValidationResponse } from '@cantinc/utils'
+import { ApiValidationErrorData } from '../../../types'
 
-import { ApiValidationError } from '../../../constants'
-
-export function isNumber<K> (value: number, key: K): ValidationResponse<K> {
-  if (isNaN(value) || value > Number.MAX_SAFE_INTEGER) {
+export function isNumber<K> (value: number, key: K): ApiValidationErrorData<K> | undefined {
+  if (isNaN(value) || value > Number.MAX_SAFE_INTEGER || value < -Number.MAX_SAFE_INTEGER) {
     return {
-      error: ApiValidationError.number,
+      error: 'number',
       data: {
         key,
       },

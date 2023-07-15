@@ -1,16 +1,14 @@
-import { ValidationResponse } from '@cantinc/utils'
-
-import { ApiValidationError } from '../../../constants'
+import { ApiValidationErrorData } from '../../../types'
 
 export interface ValuesData <V> {
   values: V[]
 }
 
 export function isValues<K, V> (values: V[]) {
-  return (value: V, key: K): ValidationResponse<K, ValuesData<V>> => {
+  return (value: V, key: K): ApiValidationErrorData<K, ValuesData<V>> | undefined => {
     if (!values.includes(value)) {
       return {
-        error: ApiValidationError.values,
+        error: 'values',
         data: {
           key,
           values,

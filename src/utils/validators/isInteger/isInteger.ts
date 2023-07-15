@@ -1,7 +1,4 @@
-import { ValidationResponse } from '@cantinc/utils'
-
-import { ApiValidationError } from '../../../constants'
-import { IntegerFormats } from '../../../types'
+import { ApiValidationErrorData, IntegerFormats } from '../../../types'
 
 export interface IntegerData {
   format: IntegerFormats
@@ -15,10 +12,10 @@ const sizes: Record<IntegerFormats, number | bigint> = {
 export function isInteger<K> (format: IntegerFormats) {
   const validator = format === 'int32' ? isNaN : (value: any) => isNaN(parseInt(value))
 
-  return (value: number, key: K): ValidationResponse<K, IntegerData> => {
-    if (validator(value) || value > sizes[format]) {
+  return (value: number, key: K): ApiValidationErrorData<K, IntegerData> | undefined => {
+    if (validator(value) || value > sizes[format] || value < -sizes[format]) {
       return {
-        error: ApiValidationError.integer,
+        error: 'integer',
         data: {
           key,
           format,

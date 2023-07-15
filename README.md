@@ -75,7 +75,7 @@ You will see a base Open API JSON structure.
 }
 ```
 
-## Swagger
+## swagger
 
 Use `<swagger>` element to add Swagger UI documentation.
 `<swagger>` element MUST be placed in `<api>` element.
@@ -107,7 +107,7 @@ export default (
 )
 ```
 
-## Server
+## server
 `<server>` element helps to start http(s) server.
 
 *src/app.tsx*
@@ -199,13 +199,15 @@ export default (
 )
 ```
 
-## Api
+## api
 
 `<api>` element MUST be placed in `<server>` element.
 
 ### title
 
-This is just a title of the API.
+This is a title of the API.
+Open API specifies the parameter is REQUIRED.
+But it's NOT REQUIRED in `<api>` element, it equals empty string by default.
 
 *src/app.tsx*
 ```typescript jsx
@@ -284,7 +286,7 @@ export default (
 )
 ```
 
-## License
+## license
 
 `<license>` element MUST be placed in `<api>` element.
 Use `<license>` element to define the API license.
@@ -345,7 +347,7 @@ export default (
 )
 ```
 
-## Contact
+## contact
 
 `<contact>` element MUST be placed in `<api>` element.
 The contact information for the exposed API.
@@ -401,7 +403,7 @@ export default (
 )
 ```
 
-## Host
+## host
 
 `<host>` element MUST be placed in `<api>` element.
 
@@ -448,7 +450,7 @@ export default (
 )
 ```
 
-## Variable
+## variable
 
 This element MUST be placed in `<host>` element and defines a variable from the `<host>`.
 
@@ -549,7 +551,7 @@ export default (
 )
 ```
 
-## Fallback
+## fallback
 
 By default, `<api>` server returns 404 with empty body.
 `<fallback>` element defines default server response.
@@ -580,7 +582,7 @@ If you open the application on any URL except for `/`, you can see the next resp
 }
 ```
 
-## Endpoint
+## endpoint
 
 `<endpoint>` defines an endpoint of the API.
 
@@ -697,7 +699,7 @@ export default (
 )
 ```
 
-## Param
+## param
 
 Describes a single operation parameter.
 
@@ -811,7 +813,10 @@ export default (
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
 It defines `number` value for a parent element.
-`@innet/server` formats and validate the value automatically in real time.
+`@innet/server` formats and validate the value automatically (real-time).
+
+Correct numbers are from `-9007199254740991` to `9007199254740991`.
+This is a value of `Number.MAX_SAFE_INTEGER`.
 
 *src/app.tsx*
 ```typescript jsx

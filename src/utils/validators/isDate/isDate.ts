@@ -1,11 +1,9 @@
-import { ValidationResponse } from '@cantinc/utils'
+import { ApiValidationErrorData } from '../../../types'
 
-import { ApiValidationError } from '../../../constants'
-
-export function isDate<K> (value: Date, key: K): ValidationResponse<K> {
+export function isDate<K> (value: Date, key: K): ApiValidationErrorData<K> | undefined {
   if (isNaN(value as any)) {
     return {
-      error: ApiValidationError.date,
+      error: 'date',
       data: {
         key,
       },
