@@ -1349,9 +1349,224 @@ export default (
 
 ## string
 
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+It defines `string` value for a parent element.
+`@innet/server` formats and validate the value automatically (real-time).
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='search'>
+          <string />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### default
+
+A default value for the `string`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='status'>
+          <string default='active' />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+*By default, `status` query param equals `active`*
+
+### example
+
+An example value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param
+          in='query'
+          name='search'>
+          <string example='red socks' />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### description
+
+A description of the `string`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param
+          in='query'
+          name='search'>
+          <string
+            description='A search string'
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### values
+
+The enumeration of available `values`.
+If you provide the parameter value, which is not in the `values`, the server returns an error.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='status'>
+          <string
+            default='active'
+            values={[
+              'active',
+              'inactive',
+            ]}
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### min, max
+
+Those two props validate the `string` value by minimum and maximum length.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='name'>
+          <string min={1} max={128} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### pattern
+
+A `string` of `RegExp` or `RegExp`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='friendly-name'>
+          <string pattern='^[a-z_0-9]+$' />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+If you make a request to the API endpoint,
+with query parameter of `friendly-name` equals `no-friendly` (as example),
+you get an error:
+
+```json
+{
+  "error": "requestValidation",
+  "data": {
+    "error": "reg",
+    "data": {
+      "key": "friendly-name"
+    },
+    "in": "search"
+  }
+}
+```
+
+### patternId
+
+This property adds an id of the pattern expression in error response.
+For example, You can use the id to load error message translations.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='friendly-name'>
+          <string
+            pattern='^[a-z_0-9]+$'
+            patternID='fname'
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+If you make a request to the API endpoint,
+with query parameter of `friendly-name` equals `no-friendly` (as example),
+you get an error:
+
+```json
+{
+  "error": "requestValidation",
+  "data": {
+    "error": "reg",
+    "data": {
+      "key": "friendly-name",
+      "regId": "fname"
+    },
+    "in": "search"
+  }
+}
+```
+
+
 ## boolean
 
 ## date
+
+## uuid
 
 
 
