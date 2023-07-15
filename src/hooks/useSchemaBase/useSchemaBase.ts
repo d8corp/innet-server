@@ -8,7 +8,7 @@ export function useSchemaBase () {
 
   if (!schemaContext) {
     const { type } = useApp<JSXElement>()
-    throw Error(`Use <${type}> inside one of <response>, <param>, <body>, <headers>, <cookies>, <search>`)
+    throw Error(`Use <${type}> inside one of <response>, <param>, <body>`)
   }
 
   let { schema, schemas } = schemaContext

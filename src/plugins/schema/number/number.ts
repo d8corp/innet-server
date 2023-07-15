@@ -7,7 +7,10 @@ import { SchemaValuesTypeOptions } from '../../../types'
 import { isNumber, maximum, minimum } from '../../../utils'
 
 export interface NumberProps extends SchemaValuesTypeOptions <number>{
+  /** Validate the number value by minimum. */
   min?: number
+
+  /** Validate the number value by maximum. */
   max?: number
 }
 

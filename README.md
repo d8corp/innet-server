@@ -15,7 +15,7 @@
 ## Abstract
 This package helps to create server-side application based on [innet](https://www.npmjs.com/package/innet).
 
-Here you find **JSX components on back-end side** 🎉, Open API generation, Swagger UI in the box, cms, proxy, html rendering and more.
+Here you find **JSX components on back-end side** 🎉, Open API generation, Swagger UI in the box, validation, formatting, cms, proxy, html rendering and more.
 
 [![stars](https://img.shields.io/github/stars/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/stargazers)
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
@@ -586,7 +586,513 @@ If you open the application on any URL except for `/`, you can see the next resp
 
 ## Endpoint
 
+`<endpoint>` defines an endpoint of the API.
+
+This element MUST be placed in `<api>`
+
+### method
+
+A method of the endpoint.
+
+MUST be one of `'get' | 'post' | 'put' | 'patch' | 'delete' | 'options' | 'head' | 'trace'`
+
+### path
+
+A relative path to an individual endpoint.
+
+The property MUST begin with a forward slash (/).
+
+Path templating is allowed.
+
+When matching URLs, concrete (non-templated) paths would be matched before their templated counterparts.
+Templated paths with the same hierarchy but different templated names MUST NOT exist as they are identical.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint
+        method='get'
+        path='/users'
+      />
+    </api>
+  </server>
+)
+```
+
+### summary
+
+An optional, string summary, intended to apply to all operations in this path.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint
+        method='get'
+        path='/users'
+        summary='Returns users'
+      />
+    </api>
+  </server>
+)
+```
+
+### description
+
+An optional, string description, intended to apply to all operations in this path.
+[CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint
+        method='get'
+        path='/users'
+        description='Users list query'
+      />
+    </api>
+  </server>
+)
+```
+
+### deprecated
+
+Declares this operation to be deprecated.
+Consumers SHOULD refrain from usage of the declared operation.
+Default value is `false`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint
+        method='get'
+        path='/users'
+        deprecated
+      />
+    </api>
+  </server>
+)
+```
+
+### private
+
+Declares this operation to make an endpoint private.
+That means the endpoint should not be described and will not be shown in the Open API documentation.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint
+        method='get'
+        path='/users'
+        private
+      />
+    </api>
+  </server>
+)
+```
+
 ## Param
+
+Describes a single operation parameter.
+
+A unique parameter is defined by a combination of a `name` and location.
+
+#### Parameter Locations
+
+There are four possible parameter locations specified by the `in` prop:
+
+- **path** - Used together with [Path Templating](https://swagger.io/specification/#path-templating), where the parameter value is actually part of the operation's URL.
+  This does not include the host or base path of the API. For example, in `/items/{itemId}`, the path parameter is `itemId`.
+- **query** - Parameters that are appended to the URL. For example, in `/items?id=###`, the query parameter is `id`.
+- **header** - Custom headers that are expected as part of the request. Note that RFC7230 states header names are case insensitive.
+- **cookie** - Used to pass a specific cookie value to the API.
+
+### in
+
+The location of the parameter.
+Possible values are `"query"`, `"header"`, `"path"` or `"cookie"`.
+
+### name
+
+The name of the parameter. Parameter names are *case sensitive*.
+
+- If `in` is "path", the `name` field MUST correspond to a template expression occurring within the `path` field in the `endpoint`. See [Path Templating](https://swagger.io/specification/#path-templating) for further information.
+- If `in` is "header" and the `name` field is "Accept", "Content-Type" or "Authorization", the parameter definition SHALL be ignored.
+- For all other cases, the `name` corresponds to the parameter name used by the `in` property.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users/{userId}'>
+        <param in='path' name='userId' />
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### description
+
+A brief description of the parameter.
+This could contain examples of use.
+[CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users/{userId}'>
+        <param
+          in='path'
+          name='userId'
+          description='User identification number'
+        />
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### required
+
+Determines whether this parameter is mandatory.
+If the parameter location is "path", this property is `true` and its value MUST be `true`.
+Otherwise, the property MAY be included and its default value is `false`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='cookie'
+          name='token'
+          required
+        />
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### deprecated
+
+Specifies that a parameter is deprecated and SHOULD be transitioned out of usage.
+Default value is `false`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='status'
+          deprecated
+        />
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+## number
+
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+It defines `number` value for a parent element.
+`@innet/server` formats and validate the value automatically in real time.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <number />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+*This example defines a `GET` endpoint on `/users` which has an optional query `number` parameter of `minAge`.*
+
+### default
+
+A default value for the `number`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <number default={18} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+*By default, `minAge` query param equals `18`*
+
+### example
+
+An example value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <number example={18} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### description
+
+A description of the `number`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <number
+            example={18}
+            description='Age value'
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### values
+
+The enumeration of available `values`.
+If you provide the parameter value, which is not in the `values`, the server returns an error.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <number
+            example={18}
+            values={[
+              12,
+              16,
+              18,
+              21,
+            ]}
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### min, max
+
+Those two props validate the number value by minimum and maximum values.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <number min={1} max={5} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+*In this example `/products?rating=5` is valid and `/products?rating=6` is not*
+
+## tuple
+
+`<tuple>` element specifies schema parameter as a tuple of children elements.
+
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <tuple>
+            <number min={1} max={5} />
+            <number min={1} max={5} />
+          </tuple>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+This example defines that, `/products?rating=3&rating=4` is valid and `rating` MUST be from `3` to `4`.
+Also supports formats `/products?rating[]=3&rating[]=4` and `/products?rating[0]=3&rating[1]=4`.
+
+`/products?rating=3` or `/products?rating=1&rating=2&rating=3` returns an error.
+
+You can add several elements in `<response>`, `<param>` or `<body>` to define that one of the element is valid.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <number min={1} max={5} />
+          <tuple>
+            <number min={1} max={5} />
+            <number min={1} max={5} />
+          </tuple>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+This example defines that, `/products?rating=3&rating=4` is valid and `rating` MUST be from `3` to `4`.
+Also supports `/products?rating=3`, returns products have `rating` equals `3`.
+
+`/products?rating=text` or `/products?rating=1&rating=2&rating=3` returns an error.
+
+### default
+
+Defines default `<tuple>` value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <number min={1} max={5} />
+          <tuple default={[1, 5]}>
+            <number min={1} max={5} />
+            <number min={1} max={5} />
+          </tuple>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### example
+
+Defines an example of the `<tuple>` value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <number min={1} max={5} />
+          <tuple default={[1, 5]} example={[3, 5]}>
+            <number min={1} max={5} />
+            <number min={1} max={5} />
+          </tuple>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### description
+
+Defines the `<tuple>` description.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <number min={1} max={5} />
+          <tuple
+            description='A range of rating score'
+            default={[1, 5]}
+            example={[3, 5]}>
+            <number min={1} max={5} />
+            <number min={1} max={5} />
+          </tuple>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### array
+
+### integer
+
+### string
+
+### boolean
+
+### date
+
+
 
 ## Body
 

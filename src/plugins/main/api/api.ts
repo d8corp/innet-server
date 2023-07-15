@@ -224,6 +224,7 @@ export const api: HandlerPlugin = () => {
   }
 
   server.on('request', listener)
+
   onDestroy(() => {
     server.off('request', listener)
   })
