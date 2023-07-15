@@ -2,7 +2,7 @@ import { HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 import { v5 } from 'uuid'
 
-import { usePatchRules, useSchemaType } from '../../../hooks'
+import { useRules, useSchemaType } from '../../../hooks'
 import { SchemaValuesTypeOptions } from '../../../types'
 import { isUuid } from '../../../utils/validators/isUuid'
 
@@ -16,7 +16,7 @@ export const uuid: HandlerPlugin = () => {
 
   schema.format = 'uuid'
 
-  usePatchRules({
+  useRules({
     formatter: [String],
     validator: [isUuid],
   })

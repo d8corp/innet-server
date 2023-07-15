@@ -1,8 +1,9 @@
 import { HandlerPlugin } from 'innet'
-import { useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 
-import { useBlockPatch, useSchemaType } from '../../../hooks'
+import { paramContext, useBlockPatch, useRules, useSchemaType } from '../../../hooks'
 import { SchemaTypeOptions } from '../../../types'
+import { isBoolean } from '../../../utils'
 
 export interface BooleanProps extends SchemaTypeOptions <boolean>{
 
@@ -11,4 +12,10 @@ export interface BooleanProps extends SchemaTypeOptions <boolean>{
 export const boolean: HandlerPlugin = () => {
   useBlockPatch()
   useSchemaType('boolean', useProps<BooleanProps>())
+  const param = useContext(paramContext)
+
+  useRules({
+    formatter: [param ? val => val === 'true' || (val === 'false' ? false : val) : Boolean],
+    validator: param && [isBoolean],
+  })
 }

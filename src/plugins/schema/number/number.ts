@@ -2,7 +2,7 @@ import { HandlerPlugin } from 'innet'
 import { Validator } from '@cantinc/utils'
 import { useProps } from '@innet/jsx'
 
-import { usePatchRules, useSchemaType } from '../../../hooks'
+import { useRules, useSchemaType } from '../../../hooks'
 import { SchemaValuesTypeOptions } from '../../../types'
 import { isNumber, maximum, minimum } from '../../../utils'
 
@@ -31,7 +31,7 @@ export const number: HandlerPlugin = () => {
     validator.push(maximum(max))
   }
 
-  usePatchRules({
+  useRules({
     formatter: [Number],
     validator,
   })

@@ -8,6 +8,7 @@ export const apiValidationErrors = [
   'uuid',
   'integer',
   'minimum',
+  'boolean',
   'minDate',
   'maxDate',
   'maximum',

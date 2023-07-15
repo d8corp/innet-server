@@ -1561,8 +1561,93 @@ you get an error:
 }
 ```
 
-
 ## boolean
+
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+It defines `boolean` value for a parent element.
+`@innet/server` formats and validate the value automatically (real-time).
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='active'>
+          <boolean />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### default
+
+A default value for the `boolean`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='active'>
+          <boolean default={false} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### example
+
+An example value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param
+          in='query'
+          name='active'>
+          <boolean example={false} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### description
+
+A description of the `boolean`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param
+          in='query'
+          name='active'>
+          <boolean
+            description='Active products param'
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
 
 ## date
 

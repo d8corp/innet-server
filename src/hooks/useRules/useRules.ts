@@ -6,13 +6,13 @@ import { paramContext } from '../useParam'
 import { Formatter, FormatterMap, SchemaValuesTypeOptions } from '../../types'
 import { isValues } from '../../utils'
 
-export interface PathRuleControllers {
+export interface RuleControllers {
   formatter?: Formatter<any>[]
   validator?: Validator<any, any>[]
   defaultValue?: any
 }
 
-export function usePatchRules (rules?: PathRuleControllers) {
+export function useRules (rules?: RuleControllers) {
   const param = useContext(paramContext)
 
   if (!param) return
