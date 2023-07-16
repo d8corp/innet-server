@@ -2,9 +2,9 @@ import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
 import { SchemaContext, schemaContext, useBlockPatch, useSchemaType } from '../../../hooks'
-import { ArraySchemaObject, SchemaObject, SchemaTypeOptions } from '../../../types'
+import { ArraySchemaObject, BaseSchemaProps, SchemaObject } from '../../../types'
 
-export interface ArrayProps extends SchemaTypeOptions <any[]>{
+export interface ArrayProps extends BaseSchemaProps <any[]>{
 
 }
 
@@ -16,7 +16,7 @@ export const array: HandlerPlugin = () => {
   const children = useChildren()
 
   const fieldSchema: SchemaObject = {}
-  handler[schemaContext.key] = { schema: fieldSchema } satisfies SchemaContext
+  handler[schemaContext.key] = fieldSchema satisfies SchemaContext
 
   schema.items = fieldSchema
 

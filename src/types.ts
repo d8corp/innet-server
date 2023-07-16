@@ -87,13 +87,13 @@ export interface ServerStartParams {
   https: boolean
 }
 
-export interface SchemaTypeOptions <T> {
+export interface BaseSchemaProps<T> {
   default?: T
   example?: T
   description?: string
 }
 
-export interface SchemaValuesTypeOptions <T> extends SchemaTypeOptions<T> {
+export interface ValuesSchemaProps<T> extends BaseSchemaProps<T> {
   values?: T[]
 }
 

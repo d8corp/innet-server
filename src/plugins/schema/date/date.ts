@@ -2,10 +2,10 @@ import { HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
 import { useRulesPlugin, useSchemaType } from '../../../hooks'
-import { SchemaValuesTypeOptions } from '../../../types'
+import { ValuesSchemaProps } from '../../../types'
 import { DateFormat, dateFormat, isDate, maxDate, minDate } from '../../../utils'
 
-export interface DateProps extends SchemaValuesTypeOptions <DateFormat>{
+export interface DateProps extends ValuesSchemaProps <DateFormat>{
   min?: DateFormat
   max?: DateFormat
 }

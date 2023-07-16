@@ -47,7 +47,7 @@ export const response: HandlerPlugin = () => {
 
   operation.responses[status] = response
 
-  handler[schemaContext.key] = { schema } satisfies SchemaContext
+  handler[schemaContext.key] = schema satisfies SchemaContext
 
   innet(children, handler)
 }

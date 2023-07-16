@@ -83,7 +83,7 @@ export const param: HandlerPlugin = () => {
 
   const rules: EndpointRule[] = getOrAdd(endpoint, `rules.${inMap[props.in]}`, [{}, []])
 
-  handler[schemaContext.key] = { schema } satisfies SchemaContext
+  handler[schemaContext.key] = schema satisfies SchemaContext
   handler[paramContext.key] = { props } satisfies ParamContext
   handler[rulesContext.key] = { rules, key: props.name, required: props.required || false } satisfies RulesContext
 

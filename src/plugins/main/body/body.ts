@@ -46,7 +46,7 @@ export const body: HandlerPlugin = () => {
 
   const rules: EndpointRule[] = getOrAdd(endpoint, 'rules.body', [{}, []])
 
-  handler[schemaContext.key] = { schema } satisfies SchemaContext
+  handler[schemaContext.key] = schema satisfies SchemaContext
   // handler[rulesContext.key] = { rules, key: props.name, required: props.required || false } satisfies RulesContext
 
   innet(children, handler)

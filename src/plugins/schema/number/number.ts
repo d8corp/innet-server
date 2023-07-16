@@ -3,10 +3,10 @@ import { Validator } from '@cantinc/utils'
 import { useProps } from '@innet/jsx'
 
 import { useRulesPlugin, useSchemaType } from '../../../hooks'
-import { SchemaValuesTypeOptions } from '../../../types'
+import { ValuesSchemaProps } from '../../../types'
 import { isNumber, maximum, minimum } from '../../../utils'
 
-export interface NumberProps extends SchemaValuesTypeOptions <number>{
+export interface NumberProps extends ValuesSchemaProps <number>{
   /** Validate the number value by minimum. */
   min?: number
 

@@ -2,9 +2,9 @@ import { HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
 import { useBlockPatch, useSchemaType } from '../../../hooks'
-import { SchemaTypeOptions } from '../../../types'
+import { BaseSchemaProps } from '../../../types'
 
-export interface NullProps extends SchemaTypeOptions <null>{
+export interface NullProps extends BaseSchemaProps <null>{
 
 }
 

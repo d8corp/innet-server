@@ -1,6 +1,6 @@
-import { useSchemaBase } from '../useSchemaBase'
+import { useNewSchema } from '../useNewSchema'
 
-import { ObjectType, SchemaValuesTypeOptions } from '../../types'
+import { ObjectType, SchemaObject, ValuesSchemaProps } from '../../types'
 
 type TypeMap <T extends ObjectType> = T extends 'number' | 'integer'
   ? number
@@ -16,8 +16,8 @@ type TypeMap <T extends ObjectType> = T extends 'number' | 'integer'
             ? null
             : unknown
 
-export function useSchemaType <T extends ObjectType> (type: T, { values, ...options }: SchemaValuesTypeOptions<TypeMap<T>> = {}) {
-  const schema = useSchemaBase()
+export function useSchemaType <T extends ObjectType> (type: T, { values, ...options }: ValuesSchemaProps<TypeMap<T>> = {}) {
+  const schema = useNewSchema<SchemaObject>()
 
   schema.type = type
 

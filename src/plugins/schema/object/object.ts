@@ -1,52 +1,52 @@
-import innet, { HandlerPlugin, useHandler, useNewHandler } from 'innet'
+import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { SchemaContext, schemaContext, useApi, useBlockPatch, useSchemaBase, useSchemaType } from '../../../hooks'
-import { ReferenceObject, SchemaObject, SchemaTypeOptions } from '../../../types'
+import { SchemaContext, schemaContext, useApi, useBlockPatch, useNewSchema, useSchemaType } from '../../../hooks'
+import { BaseSchemaProps, SchemaObject } from '../../../types'
 
-export interface ObjectProps extends SchemaTypeOptions <object> {
+export interface ObjectProps extends BaseSchemaProps <object> {
   ref?: string
 }
 
 export const object: HandlerPlugin = () => {
   useBlockPatch()
 
+  const children = useChildren()
   const { ref, ...props } = useProps<ObjectProps>() || {}
 
-  if (ref) {
-    const schema = useSchemaBase() as ReferenceObject
-    const { docs } = useApi()
+  if (!ref) {
+    const handler = useNewHandler()
+    const schema = useSchemaType('object', props)
 
-    schema.$ref = `#/components/schemas/${ref}`
+    handler[schemaContext.key] = schema satisfies SchemaContext
 
-    if (!docs.components.schemas) {
-      docs.components.schemas = {}
-    }
-
-    if (!docs.components.schemas[ref]) {
-      const childSchema: SchemaObject = {}
-      docs.components.schemas[ref] = childSchema
-      childSchema.type = 'object'
-
-      if (props) {
-        Object.assign(childSchema, props)
-      }
-
-      const handler = useNewHandler()
-      const children = useChildren()
-
-      handler[schemaContext.key] = { schema: childSchema } satisfies SchemaContext
-
-      innet(children, handler)
-    }
-
+    innet(children, handler)
     return
   }
 
-  const handler = useHandler()
-  const children = useChildren()
+  const { docs } = useApi()
 
-  useSchemaType('object', props)
+  if (docs.components.schemas?.[ref]) return
+
+  if (!docs.components.schemas) {
+    docs.components.schemas = {}
+  }
+
+  useNewSchema({
+    $ref: `#/components/schemas/${ref}`,
+  })
+
+  const handler = useNewHandler()
+
+  const childSchema: SchemaObject = {}
+  docs.components.schemas[ref] = childSchema
+  childSchema.type = 'object'
+
+  if (props) {
+    Object.assign(childSchema, props)
+  }
+
+  handler[schemaContext.key] = childSchema satisfies SchemaContext
 
   innet(children, handler)
 }

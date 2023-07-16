@@ -71,31 +71,32 @@ export class Action {
     this.#cookie = value
   }
 
-  body: object
-
-  @once async parseBody () {
-    let type: string
+  @once get bodyType (): BodyType {
     const headerType = this.req.headers['content-type']
+
     for (const bodyType of allBodyTypes) {
       if (headerType.startsWith(bodyType)) {
-        type = bodyType
-        break
+        return bodyType
       }
     }
+  }
 
-    if (!type) {
+  body?: object
+
+  @once async parseBody () {
+    if (!this.bodyType) {
       return
     }
 
-    if (type === 'multipart/form-data') {
+    if (this.bodyType === 'multipart/form-data') {
       this.body = parseFormBody(this.req)
     }
 
-    if (type === 'application/x-www-form-urlencoded') {
+    if (this.bodyType === 'application/x-www-form-urlencoded') {
       this.body = parseSearch(await parseBody(this.req))
     }
 
-    if (type === 'application/json') {
+    if (this.bodyType === 'application/json') {
       this.body = JSON.parse(await parseBody(this.req))
     }
   }

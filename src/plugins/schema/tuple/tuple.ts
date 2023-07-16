@@ -2,9 +2,9 @@ import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
 import { SchemaContext, schemaContext, useBlockPatch, useSchemaType } from '../../../hooks'
-import { ArraySchemaObject, SchemaObject, SchemaTypeOptions } from '../../../types'
+import { ArraySchemaObject, BaseSchemaProps, SchemaObject } from '../../../types'
 
-export interface TupleProps extends SchemaTypeOptions <any[]>{
+export interface TupleProps extends BaseSchemaProps <any[]>{
 
 }
 
@@ -16,7 +16,7 @@ export const tuple: HandlerPlugin = () => {
   const children = useChildren()
 
   const schemas: SchemaObject[] = []
-  handler[schemaContext.key] = { schemas } satisfies SchemaContext
+  handler[schemaContext.key] = schemas satisfies SchemaContext
 
   // @ts-ignore
   schema.prefixItems = schemas

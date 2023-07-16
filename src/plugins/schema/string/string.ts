@@ -3,9 +3,9 @@ import { maxLength, minLength, reg, Validator } from '@cantinc/utils'
 import { useProps } from '@innet/jsx'
 
 import { useRulesPlugin, useSchemaType } from '../../../hooks'
-import { SchemaValuesTypeOptions } from '../../../types'
+import { ValuesSchemaProps } from '../../../types'
 
-export interface StringProps extends SchemaValuesTypeOptions <string>{
+export interface StringProps extends ValuesSchemaProps <string>{
   min?: number
   max?: number
   pattern?: string | RegExp

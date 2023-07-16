@@ -3,12 +3,12 @@ import { Validator } from '@cantinc/utils'
 import { useProps } from '@innet/jsx'
 
 import { useRulesPlugin, useSchemaType } from '../../../hooks'
-import { IntegerFormats, SchemaValuesTypeOptions } from '../../../types'
+import { IntegerFormats, ValuesSchemaProps } from '../../../types'
 import { isInteger, maximum, minimum } from '../../../utils'
 
 type GetType<F extends IntegerFormats> = F extends 'int32' ? number : BigInt
 
-export interface IntegerProps<F extends IntegerFormats = IntegerFormats> extends SchemaValuesTypeOptions<GetType<F>> {
+export interface IntegerProps<F extends IntegerFormats = IntegerFormats> extends ValuesSchemaProps<GetType<F>> {
   format?: F
   min?: GetType<F>
   max?: GetType<F>

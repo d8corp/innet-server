@@ -1,7 +1,7 @@
 import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { SchemaContext, schemaContext, useSchema } from '../../../hooks'
+import { SchemaContext, schemaContext, useSchemaContext } from '../../../hooks'
 import { SchemaObject } from '../../../types'
 
 export interface FieldProps {
@@ -12,10 +12,10 @@ export interface FieldProps {
 export const field: HandlerPlugin = () => {
   const handler = useNewHandler()
   const { key, optional } = useProps<FieldProps>()
-  const { schema } = useSchema() || {}
+  const schema = useSchemaContext()
   const children = useChildren()
 
-  if (schema?.type !== 'object') {
+  if (Array.isArray(schema) || schema?.type !== 'object') {
     throw Error('Use <field> inside <object>')
   }
 
@@ -28,7 +28,7 @@ export const field: HandlerPlugin = () => {
   }
 
   const fieldSchema: SchemaObject = {}
-  handler[schemaContext.key] = { schema: fieldSchema } satisfies SchemaContext
+  handler[schemaContext.key] = fieldSchema satisfies SchemaContext
 
   schema.properties[key] = fieldSchema
 
