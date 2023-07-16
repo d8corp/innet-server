@@ -4,14 +4,14 @@ export interface MaximumValidationErrorData {
   max: number
 }
 
-export function maximum <K> (max: number) {
-  return (value: number, key: K): ApiValidationErrorData<K, MaximumValidationErrorData> | undefined => {
+export function maximum <K> (max: number | BigInt) {
+  return (value: number | BigInt, key: K): ApiValidationErrorData<K, MaximumValidationErrorData> | undefined => {
     if (value > max) {
       return {
         error: 'maximum',
         data: {
           key,
-          max,
+          max: Number(max),
         },
       }
     }

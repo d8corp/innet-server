@@ -1,18 +1,20 @@
 import { optional, required, ValidationMap, Validator } from '@cantinc/utils'
-import { useContext, useProps } from '@innet/jsx'
+import { useContext } from '@innet/jsx'
 
 import { paramContext } from '../useParam'
 
-import { Formatter, FormatterMap, SchemaValuesTypeOptions } from '../../types'
-import { isValues } from '../../utils'
+import { ApiValidationErrorData, Formatter, FormatterMap } from '../../types'
+import { isValues, ValuesData } from '../../utils'
 
-export interface RuleControllers {
-  formatter?: Formatter<any>[]
-  validator?: Validator<any, any>[]
-  defaultValue?: any
+export interface RuleControllers<V, D, DV, K extends string = string> {
+  formatter?: Formatter<V>[]
+  validator?: Validator<any, K>[]
+  defaultValue?: V | (() => V)
+  values?: V[]
+  isValues?: (values: V[]) => (value: V, key: K) => ApiValidationErrorData<K, ValuesData<DV>> | undefined
 }
 
-export function useRules (rules?: RuleControllers) {
+export function useRules<V, D, DV, K extends string = string> (rules?: RuleControllers<V, D, DV, K>) {
   const param = useContext(paramContext)
 
   if (!param) return
@@ -28,14 +30,13 @@ export function useRules (rules?: RuleControllers) {
     formatter[key] = rules.formatter
   }
 
-  const props = useProps<SchemaValuesTypeOptions<any>>()
-
-  if (props && 'default' in props) {
-    defaultValues[key] = props.default
+  if (rules && 'defaultValue' in rules) {
+    defaultValues[key] = rules.defaultValue
   }
 
-  if (props?.values) {
-    validator[key] = requiredRule([isValues(props.values)])
+  if (rules?.values) {
+    const currentIsValues = rules.isValues || isValues
+    validator[key] = requiredRule([currentIsValues(rules.values)])
   } else if (rules?.validator) {
     validator[key] = requiredRule(rules.validator)
   }

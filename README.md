@@ -1651,8 +1651,261 @@ export default (
 
 ## date
 
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+It defines `date` value for a parent element.
+`@innet/server` formats and validate the value automatically (real-time).
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='birthday'>
+          <date />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### default
+
+A default value for the `date`.
+Available values:
+- `string` - the date in ISO format
+- `number` - date timestamp
+- `Date` - JavaScript `Date` format
+- `'now'` - the string defines current date as default value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='birthday'>
+          <date default='1950-02-15' />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### values
+
+The enumeration of available `values`.
+If you provide the parameter value, which is not in the `values`, the server returns an error.
+
+Available values:
+- `string` - the date in ISO format
+- `number` - date timestamp
+- `Date` - JavaScript `Date` format
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='birthday'>
+          <date
+            values={[
+              1,
+              new Date(),
+              '1950-02-15',
+            ]}
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### example
+
+An example value.
+
+Available values:
+- `string` - the date in ISO format
+- `number` - date timestamp
+- `Date` - JavaScript `Date` format
+- `'now'` - the string defines current date as default value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='birthday'>
+          <date example={0} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### description
+
+A description of the `date`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='birthday'>
+          <date
+            description='The user birthday'
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
 ## uuid
 
+Universally unique identifier.
+
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+It defines `string` value in `uuid` format for a parent element.
+`@innet/server` formats and validate the value automatically (real-time).
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/users'>
+        <param
+          in='cookie'
+          name='userId'>
+          <uuid />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### default
+
+A default value for the `uuid`.
+
+Available values:
+- string in uuid format
+- `new` generates a new uuid
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/users'>
+        <param
+          in='cookie'
+          name='userId'>
+          <uuid default='new' />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### values
+
+The enumeration of available `values`.
+If you provide the parameter value, which is not in the `values`, the server returns an error.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/users'>
+        <param
+          in='header'
+          name='uuid'>
+          <uuid
+            values={[
+              '123e4567-e89b-12d3-a456-426655440000',
+              '123e4567-e89b-12d3-a456-426614174000',
+            ]}
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### example
+
+An example value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/users'>
+        <param
+          in='query'
+          name='active'>
+          <uuid
+            default='new'
+            example='123e4567-e89b-12d3-a456-426655440000'
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### description
+
+A description of the `boolean`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/users'>
+        <param
+          in='cookie'
+          name='userId'>
+          <uuid
+            default='new'
+            example='123e4567-e89b-12d3-a456-426655440000'
+            description='User ID for a new user'
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
 
 
 ## Body

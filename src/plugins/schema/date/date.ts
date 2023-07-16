@@ -3,19 +3,35 @@ import { useProps } from '@innet/jsx'
 
 import { useRules, useSchemaType } from '../../../hooks'
 import { SchemaValuesTypeOptions } from '../../../types'
-import { isDate, maxDate, minDate } from '../../../utils'
+import { DateFormat, dateFormat, isDate, maxDate, minDate } from '../../../utils'
 
-export interface DateProps extends SchemaValuesTypeOptions <string>{
-  min?: string | number | Date
-  max?: string | number | Date
+export interface DateProps extends SchemaValuesTypeOptions <DateFormat>{
+  min?: DateFormat
+  max?: DateFormat
 }
 
 export const date: HandlerPlugin = () => {
-  const { min, max, ...props } = useProps<DateProps>() || {}
-  const schema = useSchemaType('string', props)
+  const {
+    min,
+    max,
+    default: defaultValue,
+    example,
+    values,
+    ...props
+  } = useProps<DateProps>() || {}
+  const normMin = dateFormat(min)
+  const normMax = dateFormat(max)
+  const normDefault = dateFormat(defaultValue)
+  const normExample = dateFormat(example)
+  const normValues = values?.map(dateFormat)
+  const stringValues = normValues?.map(value => value.toISOString())
 
-  const normMin = min === undefined ? undefined : ['string', 'number'].includes(typeof min) ? new Date(min) : min as Date
-  const normMax = max === undefined ? undefined : ['string', 'number'].includes(typeof max) ? new Date(max) : max as Date
+  const schema = useSchemaType('string', {
+    ...props,
+    values: stringValues,
+    example: normExample?.toISOString(),
+    default: defaultValue === 'now' ? undefined : normDefault?.toISOString(),
+  })
 
   schema.format = 'date-time'
 
@@ -25,6 +41,10 @@ export const date: HandlerPlugin = () => {
 
   if (normMax) {
     schema['x-maximum'] = normMax.toISOString()
+  }
+
+  if (defaultValue === 'now') {
+    schema['x-default'] = 'now'
   }
 
   const validator = [isDate]
@@ -38,7 +58,23 @@ export const date: HandlerPlugin = () => {
   }
 
   useRules({
+    defaultValue: defaultValue === 'now' ? () => new Date(Date.now()) : normDefault,
     formatter: [value => new Date(value)],
     validator,
+    values: normValues,
+    isValues: dates => {
+      const values = dates.map(date => date.toISOString())
+      return (value, key) => {
+        if (isNaN(value as any) || !values.includes(value.toISOString())) {
+          return {
+            error: 'values',
+            data: {
+              key,
+              values,
+            },
+          }
+        }
+      }
+    },
   })
 }

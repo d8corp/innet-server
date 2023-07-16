@@ -39,6 +39,7 @@ export const string: HandlerPlugin = () => {
   }
 
   useRules({
+    defaultValue: props.default,
     formatter: [String],
     validator,
   })

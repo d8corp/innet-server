@@ -39,6 +39,7 @@ import {
   swagger, SwaggerProps,
   tag, TagProps,
   tuple, TupleProps,
+  uuid, UuidProps,
   variable, VariableProps,
 } from '../plugins'
 
@@ -81,6 +82,7 @@ export const JSXPlugins = {
   tuple,
   dev,
   prod,
+  uuid,
 }
 
 export const fnPlugins = [
@@ -142,6 +144,7 @@ declare global {
       tuple: TupleProps
       dev: DevProps
       prod: ProdProps
+      uuid: UuidProps
     }
   }
 }

@@ -7,7 +7,8 @@ export function format <B extends object> (target: B, map: FormatterMap<B>, defa
         target[key] = format(target[key])
       }
     } else if (key in defaultValues) {
-      target[key] = defaultValues[key]
+      const value = defaultValues[key]
+      target[key] = typeof value === 'function' ? value() : value
     }
   }
 }
