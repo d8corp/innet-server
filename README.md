@@ -1739,7 +1739,7 @@ Available values:
 - `string` - the date in ISO format
 - `number` - date timestamp
 - `Date` - JavaScript `Date` format
-- `'now'` - the string defines current date as default value.
+- `'now'` - the string defines server start date as example.
 
 *src/app.tsx*
 ```typescript jsx
