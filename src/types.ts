@@ -59,7 +59,7 @@ export interface Endpoint {
 export type IntegerFormats = 'int32' | 'int64'
 export type EndpointsMethods = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'options' | 'head' | 'trace'
 export type InParam = 'query' | 'header' | 'path' | 'cookie'
-export type BodyType = 'application/x-www-form-urlencoded' | 'application/json'
+export type BodyType = 'application/x-www-form-urlencoded' | 'application/json' | 'multipart/form-data'
 export type Endpoints = Partial<Record<EndpointsMethods, Endpoint>>
 export type Params = Record<string, string | number>
 

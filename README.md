@@ -1910,6 +1910,36 @@ export default (
 
 ## Body
 
+The element MUST be placed inside one of `<endpoint>`.
+It defines request body for the endpoint.
+`@innet/server` formats and validate the value automatically (real-time).
+
+```typescript jsx
+return (
+  <server>
+    <api>
+      <endpoint method='post' path='/partners'>
+        <body>
+          <object>
+            <field key='name'>
+              <string example='CANTent.' />
+            </field>
+            <field key='gift'>
+              <boolean />
+            </field>
+            <field optional key='addresses'>
+              <array>
+                <number description='address id' />
+              </array>
+            </field>
+          </object>
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
 ## Response
 
 ## Request
