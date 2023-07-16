@@ -5,7 +5,6 @@ import { EndpointRule } from '../../types'
 
 export interface ParamContext {
   props: ParamProps
-  rules: EndpointRule[]
 }
 
 export const paramContext = new Context<ParamContext>()

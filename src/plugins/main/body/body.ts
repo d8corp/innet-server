@@ -1,19 +1,15 @@
 import innet, { HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useContext, useProps } from '@innet/jsx'
 
-import { endpointContext, SchemaContext, schemaContext, useEndpoint } from '../../../hooks'
-import { BodyType, RequestBodyObject, SchemaObject } from '../../../types'
+import { allBodyTypes } from '../../../constants'
+import { endpointContext, RulesContext, rulesContext, SchemaContext, schemaContext } from '../../../hooks'
+import { BodyType, EndpointRule, RequestBodyObject, SchemaObject } from '../../../types'
+import { getOrAdd } from '../../../utils'
 
 export interface BodyProps {
   /** A media type, one of `application/x-www-form-urlencoded`, `application/json` or `multipart/form-data` */
   type?: BodyType | BodyType[]
 }
-
-const allBodyTypes: BodyType[] = [
-  'application/json',
-  'application/x-www-form-urlencoded',
-  'multipart/form-data',
-]
 
 export const body: HandlerPlugin = () => {
   const endpoint = useContext(endpointContext)
@@ -48,7 +44,10 @@ export const body: HandlerPlugin = () => {
     requestBody.content[type] = { schema }
   }
 
+  const rules: EndpointRule[] = getOrAdd(endpoint, 'rules.body', [{}, []])
+
   handler[schemaContext.key] = { schema } satisfies SchemaContext
+  // handler[rulesContext.key] = { rules, key: props.name, required: props.required || false } satisfies RulesContext
 
   innet(children, handler)
 }

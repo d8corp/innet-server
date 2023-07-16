@@ -2,7 +2,7 @@ import { HandlerPlugin } from 'innet'
 import { maxLength, minLength, reg, Validator } from '@cantinc/utils'
 import { useProps } from '@innet/jsx'
 
-import { useRules, useSchemaType } from '../../../hooks'
+import { useRulesPlugin, useSchemaType } from '../../../hooks'
 import { SchemaValuesTypeOptions } from '../../../types'
 
 export interface StringProps extends SchemaValuesTypeOptions <string>{
@@ -38,7 +38,7 @@ export const string: HandlerPlugin = () => {
     validator.push(reg(typeof pattern === 'string' ? new RegExp(pattern) : pattern, patternID))
   }
 
-  useRules({
+  useRulesPlugin({
     defaultValue: props.default,
     formatter: [String],
     validator,

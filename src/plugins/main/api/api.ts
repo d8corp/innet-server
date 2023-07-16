@@ -63,7 +63,7 @@ export const api: HandlerPlugin = () => {
 
   handler[apiContext.key] = context
 
-  const listener = (req: IncomingMessage, res: ServerResponse) => {
+  const listener = async (req: IncomingMessage, res: ServerResponse) => {
     if (res.writableEnded) return
 
     const action = new Action(req)
@@ -93,11 +93,12 @@ export const api: HandlerPlugin = () => {
       const key = splitPath[deep]
 
       if (deep + 1 === splitPath.length) {
-        function run (runEndpoint: Endpoint, params: Params) {
+        async function run (runEndpoint: Endpoint, params: Params) {
           const pathRules = runEndpoint.rules?.path
           const headerRules = runEndpoint.rules?.header
           const cookieRules = runEndpoint.rules?.cookie
           const searchRules = runEndpoint.rules?.search
+          const bodyRules = runEndpoint.rules?.body
 
           if (pathRules) {
             let isValid = false
@@ -119,7 +120,7 @@ export const api: HandlerPlugin = () => {
             if (!isValid) return false
           }
 
-          function checkActionRules (rules: EndpointRule[], key: 'search' | 'cookies' | 'headers') {
+          function checkActionRules (rules: EndpointRule[], key: 'search' | 'cookies' | 'headers' | 'body') {
             if (rules) {
               let ok = false
               const errors = []
@@ -167,6 +168,23 @@ export const api: HandlerPlugin = () => {
           if (checkActionRules(cookieRules, 'cookies')) return true
           if (checkActionRules(searchRules, 'search')) return true
 
+          if (bodyRules) {
+            await action.parseBody()
+
+            if (!action.body) {
+              res.statusCode = 400
+              res.setHeader('Content-Type', 'application/json')
+              res.write(JSON.stringify({
+                error: 'requestBodyContentType',
+              }))
+              res.end()
+
+              return true
+            }
+
+            if (checkActionRules(bodyRules, 'body')) return true
+          }
+
           const newHandler = Object.create(runEndpoint.handler)
           newHandler[responseContext.key] = res
           newHandler[requestContext.key] = req
@@ -179,7 +197,7 @@ export const api: HandlerPlugin = () => {
         }
 
         if (currentEndpoint.static?.[key]?.content) {
-          if (!run(currentEndpoint.static?.[key], params)) continue
+          if (!await run(currentEndpoint.static?.[key], params)) continue
 
           return
         }
@@ -187,7 +205,7 @@ export const api: HandlerPlugin = () => {
         if (currentEndpoint.dynamic) {
           for (const dynamicEndpoint of currentEndpoint.dynamic) {
             if (dynamicEndpoint.content) {
-              if (!run(dynamicEndpoint, { ...params, [dynamicEndpoint.key.slice(1, -1)]: key })) continue
+              if (!await run(dynamicEndpoint, { ...params, [dynamicEndpoint.key.slice(1, -1)]: key })) continue
 
               return
             }

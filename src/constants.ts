@@ -1,5 +1,8 @@
+import { BodyType } from './types'
+
 export const apiErrors = [
   'requestValidation',
+  'requestBodyContentType',
 ] as const
 
 export const apiValidationErrors = [
@@ -13,7 +16,14 @@ export const apiValidationErrors = [
   'maxDate',
   'maximum',
   'values',
+  'object',
 ] as const
 
 export type ApiErrorValue = typeof apiErrors[number];
 export type ApiValidationErrorValue = typeof apiValidationErrors[number];
+
+export const allBodyTypes: BodyType[] = [
+  'application/json',
+  'application/x-www-form-urlencoded',
+  'multipart/form-data',
+]

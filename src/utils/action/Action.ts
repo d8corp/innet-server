@@ -2,7 +2,12 @@ import cookie from 'cookie'
 import http from 'http'
 
 import { once } from '../decorators'
+import { parseBody } from '../parseBody'
+import { parseFormBody } from '../parseFormBody'
 import { parseSearch } from '../parseSearch'
+
+import { allBodyTypes } from '../../constants'
+import { BodyType } from '../../types'
 
 export const URL_PARSER = /^(?<path>[^?]+)(\?(?<search>.*))?/
 
@@ -66,7 +71,32 @@ export class Action {
     this.#cookie = value
   }
 
-  @once async getBody () {
+  body: object
 
+  @once async parseBody () {
+    let type: string
+    const headerType = this.req.headers['content-type']
+    for (const bodyType of allBodyTypes) {
+      if (headerType.startsWith(bodyType)) {
+        type = bodyType
+        break
+      }
+    }
+
+    if (!type) {
+      return
+    }
+
+    if (type === 'multipart/form-data') {
+      this.body = parseFormBody(this.req)
+    }
+
+    if (type === 'application/x-www-form-urlencoded') {
+      this.body = parseSearch(await parseBody(this.req))
+    }
+
+    if (type === 'application/json') {
+      this.body = JSON.parse(await parseBody(this.req))
+    }
   }
 }

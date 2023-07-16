@@ -1,7 +1,7 @@
 import { HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
-import { useRules, useSchemaType } from '../../../hooks'
+import { useRulesPlugin, useSchemaType } from '../../../hooks'
 import { SchemaValuesTypeOptions } from '../../../types'
 import { DateFormat, dateFormat, isDate, maxDate, minDate } from '../../../utils'
 
@@ -57,7 +57,7 @@ export const date: HandlerPlugin = () => {
     validator.push(maxDate(normMax))
   }
 
-  useRules({
+  useRulesPlugin({
     defaultValue: defaultValue === 'now' ? () => new Date(Date.now()) : normDefault,
     formatter: [value => new Date(value)],
     validator,

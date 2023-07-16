@@ -2,7 +2,7 @@ import { HandlerPlugin } from 'innet'
 import { Validator } from '@cantinc/utils'
 import { useProps } from '@innet/jsx'
 
-import { useRules, useSchemaType } from '../../../hooks'
+import { useRulesPlugin, useSchemaType } from '../../../hooks'
 import { IntegerFormats, SchemaValuesTypeOptions } from '../../../types'
 import { isInteger, maximum, minimum } from '../../../utils'
 
@@ -45,7 +45,7 @@ export const integer: HandlerPlugin = <F extends IntegerFormats>() => {
     validator.push(maximum(max))
   }
 
-  useRules<GetType<F>, any, any>({
+  useRulesPlugin<GetType<F>, any, any>({
     formatter: [format === 'int32' ? Number : BigInt as any],
     validator,
     defaultValue,
