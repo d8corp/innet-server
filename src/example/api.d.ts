@@ -7,8 +7,25 @@ declare namespace Components {
              * City description
              */
             city: "msk" | "sml";
-            location: any;
+            location: /**
+             * GPS Coordinates
+             * example:
+             * [
+             *   40.741895,
+             *   -73.989308
+             * ]
+             */
+            LocationSchema;
         }
+        /**
+         * GPS Coordinates
+         * example:
+         * [
+         *   40.741895,
+         *   -73.989308
+         * ]
+         */
+        export type LocationSchema = any[];
         export interface PartnerSchema {
             /**
              * example:
@@ -29,12 +46,23 @@ declare namespace Paths {
     namespace Partners {
         namespace Get {
             namespace Parameters {
-                export type Id = string | string[];
+                /**
+                 * example:
+                 * 2023-07-22T22:36:54.183Z
+                 */
+                export type Test = string; // date-time
             }
             export interface QueryParameters {
-                id?: Parameters.Id;
+                test?: /**
+                 * example:
+                 * 2023-07-22T22:36:54.183Z
+                 */
+                Parameters.Test /* date-time */;
             }
             namespace Responses {
+                /**
+                 * test1
+                 */
                 export interface Default {
                     page: number; // int32
                     /**
@@ -77,7 +105,7 @@ declare namespace Paths {
                 addresses?: number[];
             }
             namespace Responses {
-                export type Default = Components.Schemas.PartnerSchema;
+                export type $220 = Components.Schemas.PartnerSchema;
             }
         }
     }

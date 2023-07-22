@@ -21,6 +21,7 @@ export const integer: HandlerPlugin = <F extends IntegerFormats>() => {
     max,
     values,
     example,
+    examples,
     default: defaultValue,
     ...props
   } = useProps<IntegerProps<F>>() || {}
@@ -28,6 +29,7 @@ export const integer: HandlerPlugin = <F extends IntegerFormats>() => {
     ...props,
     default: defaultValue !== undefined ? Number(defaultValue) : undefined,
     example: example !== undefined ? Number(example) : undefined,
+    examples: examples?.map(Number),
     values: values?.map(Number),
   })
 

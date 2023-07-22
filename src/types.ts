@@ -22,6 +22,7 @@ export type ParameterObject = API.ParameterObject
 export type RequestBodyObject = API.RequestBodyObject
 
 export type ObjectType = ArraySchemaObjectType | NonArraySchemaObjectType
+export type RefSchemaObject = SchemaObject | ReferenceObject
 
 // Custom
 
@@ -90,7 +91,9 @@ export interface ServerStartParams {
 export interface BaseSchemaProps<T> {
   default?: T
   example?: T
+  examples?: T[]
   description?: string
+  ref?: string
 }
 
 export interface ValuesSchemaProps<T> extends BaseSchemaProps<T> {

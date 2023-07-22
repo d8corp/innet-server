@@ -1,9 +1,9 @@
 import { useSchemaContext } from '../useSchemaContext'
 import { useThrow } from '../useThrow'
 
-import { ReferenceObject, SchemaObject } from '../../types'
+import { RefSchemaObject, SchemaObject } from '../../types'
 
-export function useNewSchema <T extends SchemaObject | ReferenceObject> (schema: T = {} as T): T {
+export function useNewSchema <T extends RefSchemaObject = SchemaObject> (schema: T = {} as T): T {
   const parentSchema = useSchemaContext()
 
   if (!parentSchema) {
@@ -22,6 +22,9 @@ export function useNewSchema <T extends SchemaObject | ReferenceObject> (schema:
     }
 
     parentSchema.oneOf = [oldSchema, schema]
+  } else {
+    Object.assign(parentSchema, schema)
+    return parentSchema as T
   }
 
   return schema

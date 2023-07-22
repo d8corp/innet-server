@@ -1,6 +1,7 @@
+import { useApi } from '../useApi'
 import { useNewSchema } from '../useNewSchema'
 
-import { ObjectType, SchemaObject, ValuesSchemaProps } from '../../types'
+import { ObjectType, RefSchemaObject, SchemaObject, ValuesSchemaProps } from '../../types'
 
 type TypeMap <T extends ObjectType> = T extends 'number' | 'integer'
   ? number
@@ -16,16 +17,39 @@ type TypeMap <T extends ObjectType> = T extends 'number' | 'integer'
             ? null
             : unknown
 
-export function useSchemaType <T extends ObjectType> (type: T, { values, ...options }: ValuesSchemaProps<TypeMap<T>> = {}) {
-  const schema = useNewSchema<SchemaObject>()
+export function useSchemaType <T extends ObjectType> (
+  type: T,
+  { values, ref, example, examples, ...options }: undefined | ValuesSchemaProps<TypeMap<T>> = {},
+): SchemaObject {
+  if (ref) {
+    const { docs } = useApi()
 
-  schema.type = type
+    if (!docs.components.schemas) {
+      docs.components.schemas = {}
+    }
 
-  Object.assign(schema, options)
+    useNewSchema({
+      $ref: `#/components/schemas/${ref}`,
+    })
 
-  if (values) {
-    schema.enum = values
+    if (docs.components.schemas?.[ref]) {
+      return
+    }
+
+    return (docs.components.schemas[ref] = {
+      ...options,
+      example,
+      examples,
+      type,
+      enum: values,
+    } as any)
   }
 
-  return schema
+  return useNewSchema({
+    ...options,
+    example,
+    examples,
+    enum: values,
+    type: type as any,
+  })
 }

@@ -16,6 +16,7 @@ export const date: HandlerPlugin = () => {
     max,
     default: defaultValue,
     example,
+    examples,
     values,
     ...props
   } = useProps<DateProps>() || {}
@@ -25,11 +26,13 @@ export const date: HandlerPlugin = () => {
   const normExample = dateFormat(example)
   const normValues = values?.map(dateFormat)
   const stringValues = normValues?.map(value => value.toISOString())
+  const normExamples = examples?.map(dateFormat)
 
   const schema = useSchemaType('string', {
     ...props,
     values: stringValues,
     example: normExample?.toISOString(),
+    examples: normExamples?.map(example => example.toISOString()),
     default: defaultValue === 'now' ? undefined : normDefault?.toISOString(),
   })
 
