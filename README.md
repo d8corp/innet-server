@@ -1910,7 +1910,7 @@ export default (
 
 ## Body
 
-The element MUST be placed inside one of `<endpoint>`.
+This element MUST be placed inside `<endpoint>`.
 It defines request body for the endpoint.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1941,6 +1941,9 @@ return (
 ```
 
 ## Response
+
+This element MUST be placed inside `<endpoint>`.
+It defines response body for the endpoint.
 
 ## Request
 
