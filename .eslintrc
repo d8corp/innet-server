@@ -7,12 +7,25 @@
   ],
   "extends": [
     "standard",
+    "standard-with-typescript",
     "standard-jsx"
   ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
   "env": {
     "jest": true
   },
   "rules": {
+    "@typescript-eslint/array-type": ["error", {
+      "default": "array"
+    }],
+    "@typescript-eslint/no-dynamic-delete": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/no-namespace": "off",
+    "@typescript-eslint/comma-dangle": "off",
     "no-redeclare": "off",
     "react/no-string-refs": "off",
     "no-new": "off",

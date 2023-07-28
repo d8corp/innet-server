@@ -1,6 +1,6 @@
 import { Context, useContext } from '@innet/jsx'
 
-import { TagObject } from '../../types'
+import { type TagObject } from '../../types'
 
 export const tagContext = new Context<TagObject>()
 

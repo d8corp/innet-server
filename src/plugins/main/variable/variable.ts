@@ -1,4 +1,4 @@
-import { HandlerPlugin } from 'innet'
+import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
 import { useHost } from '../../../hooks'
@@ -36,6 +36,6 @@ export const variable: HandlerPlugin = () => {
   if (!server.variables) {
     server.variables = {}
   }
-
+  // @ts-expect-error: FIXME
   server.variables[key] = { ...rest, default: value, enum: values }
 }

@@ -1,4 +1,4 @@
-import innet, { HandlerPlugin, useHandler } from 'innet'
+import innet, { type HandlerPlugin, useHandler } from 'innet'
 import { useChildren } from '@innet/jsx'
 
 export interface DevProps {

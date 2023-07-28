@@ -1,4 +1,4 @@
-import { HandlerPlugin, useHandler } from 'innet'
+import { type HandlerPlugin, useHandler } from 'innet'
 import { useChildren } from '@innet/jsx'
 
 import { useApi } from '../../../hooks'

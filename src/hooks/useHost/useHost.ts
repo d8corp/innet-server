@@ -1,6 +1,6 @@
 import { Context, useContext } from '@innet/jsx'
 
-import { ServerObject } from '../../types'
+import { type ServerObject } from '../../types'
 
 export interface HostContext {
   server: ServerObject

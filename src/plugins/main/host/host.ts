@@ -1,8 +1,8 @@
-import innet, { HandlerPlugin, useNewHandler } from 'innet'
+import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useContext, useProps } from '@innet/jsx'
 
 import { endpointContext, hostContext, useApi } from '../../../hooks'
-import { ServerObject } from '../../../types'
+import { type ServerObject } from '../../../types'
 
 export interface HostProps {
   /**
@@ -38,6 +38,7 @@ export const host: HandlerPlugin = () => {
     ...props,
   }
 
+  // @ts-expect-error: FIXME
   servers.push(server)
 
   handler[hostContext.key] = { server }

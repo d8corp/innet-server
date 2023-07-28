@@ -1,4 +1,4 @@
-import { Endpoint } from '../../types'
+import { type Endpoint } from '../../types'
 
 export function getEndpoint (path: string, parentEndpoint: Endpoint) {
   const splitPath = path.split('/').slice(1)

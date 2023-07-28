@@ -1,7 +1,6 @@
 import { Context, useContext } from '@innet/jsx'
 
-import { ParamProps } from '../../plugins'
-import { EndpointRule } from '../../types'
+import { type ParamProps } from '../../plugins'
 
 export interface ParamContext {
   props: ParamProps

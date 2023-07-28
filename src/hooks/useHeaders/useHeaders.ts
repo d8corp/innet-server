@@ -7,5 +7,6 @@ export function useHeaders <D> (): D {
     throw Error('`useHeaders` MUST be used in <request>')
   }
 
+  // @ts-expect-error: FIXME
   return action.headers
 }

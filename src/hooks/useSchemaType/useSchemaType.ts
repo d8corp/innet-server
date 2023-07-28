@@ -1,7 +1,7 @@
 import { useApi } from '../useApi'
 import { useNewSchema } from '../useNewSchema'
 
-import { ObjectType, RefSchemaObject, SchemaObject, ValuesSchemaProps } from '../../types'
+import { type ObjectType, type SchemaObject, type ValuesSchemaProps } from '../../types'
 
 type TypeMap <T extends ObjectType> = T extends 'number' | 'integer'
   ? number
@@ -20,9 +20,13 @@ type TypeMap <T extends ObjectType> = T extends 'number' | 'integer'
 export function useSchemaType <T extends ObjectType> (
   type: T,
   { values, ref, example, examples, ...options }: undefined | ValuesSchemaProps<TypeMap<T>> = {},
-): SchemaObject {
+): SchemaObject | undefined {
   if (ref) {
     const { docs } = useApi()
+
+    if (!docs.components) {
+      docs.components = {}
+    }
 
     if (!docs.components.schemas) {
       docs.components.schemas = {}

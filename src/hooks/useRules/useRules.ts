@@ -1,6 +1,6 @@
 import { Context, useContext } from '@innet/jsx'
 
-import { EndpointRule } from '../../types'
+import { type EndpointRule } from '../../types'
 
 export interface RulesContext {
   rules: EndpointRule[]

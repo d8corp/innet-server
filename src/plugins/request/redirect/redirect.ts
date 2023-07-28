@@ -1,4 +1,4 @@
-import innet, { HandlerPlugin, useHandler } from 'innet'
+import innet, { type HandlerPlugin, useHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 import { callHandler } from '@innet/utils'
 
@@ -23,6 +23,7 @@ export interface RedirectProps {
 
 function getStatus (status: number | string): number {
   if (typeof status === 'number') return status
+  // @ts-expect-error: FIXME
   return redirectStatuses[status] || 301
 }
 

@@ -1,4 +1,4 @@
-import { ApiValidationErrorData } from '../../../types'
+import { type ApiValidationErrorData } from '../../../types'
 
 const UUID_REG = /^[a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12}$/
 

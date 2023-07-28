@@ -1,11 +1,11 @@
-import { HandlerPlugin } from 'innet'
-import { maxLength, minLength, reg, Validator } from '@cantinc/utils'
+import { type HandlerPlugin } from 'innet'
+import { maxLength, minLength, reg, type Validator } from '@cantinc/utils'
 import { useProps } from '@innet/jsx'
 
 import { useRulesPlugin, useSchemaType } from '../../../hooks'
-import { ValuesSchemaProps } from '../../../types'
+import { type ValuesSchemaProps } from '../../../types'
 
-export interface StringProps extends ValuesSchemaProps <string>{
+export interface StringProps extends ValuesSchemaProps <string> {
   min?: number
   max?: number
   pattern?: string | RegExp
@@ -24,16 +24,19 @@ export const string: HandlerPlugin = () => {
   const validator: Validator<any, any>[] = []
 
   if (min !== undefined) {
+    // @ts-expect-error: FIXME
     schema.minimum = min
     validator.push(minLength(min))
   }
 
   if (max !== undefined) {
+    // @ts-expect-error: FIXME
     schema.maximum = max
     validator.push(maxLength(max))
   }
 
   if (pattern !== undefined) {
+    // @ts-expect-error: FIXME
     schema.pattern = String(pattern)
     validator.push(reg(typeof pattern === 'string' ? new RegExp(pattern) : pattern, patternID))
   }

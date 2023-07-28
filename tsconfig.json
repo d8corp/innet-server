@@ -13,9 +13,10 @@
     "esModuleInterop": true,
     "skipDefaultLibCheck": true,
     "allowSyntheticDefaultImports": true,
-    "strict": false,
+    "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
+    "strictNullChecks": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "declaration": true,
@@ -23,10 +24,5 @@
   },
   "include": [
     "src"
-  ],
-  "exclude": [
-    "**/*.test.ts",
-    "**/*.test.tsx",
-    "node_modules",
   ]
 }

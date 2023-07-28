@@ -1,13 +1,12 @@
-import { optional, required, ValidationMap, Validator } from '@cantinc/utils'
+import { optional, required, type ValidationMap, type Validator } from '@cantinc/utils'
 import { useContext } from '@innet/jsx'
 
-import { paramContext } from '../useParam'
 import { rulesContext } from '../useRules'
 
-import { ApiValidationErrorData, Formatter, FormatterMap } from '../../types'
-import { isValues, ValuesData } from '../../utils'
+import { type ApiValidationErrorData, type Formatter, type FormatterMap } from '../../types'
+import { isValues, type ValuesData } from '../../utils'
 
-export interface RuleControllers<V, D, DV, K extends string = string> {
+export interface RuleControllers<V, DV, K extends string = string> {
   formatter?: Formatter<V>[]
   validator?: Validator<any, K>[]
   defaultValue?: V | (() => V)
@@ -15,7 +14,7 @@ export interface RuleControllers<V, D, DV, K extends string = string> {
   isValues?: (values: V[]) => (value: V, key: K) => ApiValidationErrorData<K, ValuesData<DV>> | undefined
 }
 
-export function useRulesPlugin<V, D, DV, K extends string = string> (rules?: RuleControllers<V, D, DV, K>) {
+export function useRulesPlugin<V, DV, K extends string = string> (rules?: RuleControllers<V, DV, K>) {
   const contextRules = useContext(rulesContext)
 
   if (!contextRules) return
@@ -36,10 +35,10 @@ export function useRulesPlugin<V, D, DV, K extends string = string> (rules?: Rul
   }
 
   if (rules?.values) {
-    const currentIsValues = rules.isValues || isValues
-    validator[key] = requiredRule([currentIsValues(rules.values)])
+    const currentIsValues = rules.isValues ?? isValues
+    validator[key] = requiredRule([currentIsValues(rules.values) as any])
   } else if (rules?.validator) {
-    validator[key] = requiredRule(rules.validator)
+    validator[key] = requiredRule(rules.validator as any)
   }
 
   paramRules.push([formatter, validator, defaultValues])

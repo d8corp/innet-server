@@ -1,8 +1,8 @@
-import innet, { HandlerPlugin, useNewHandler } from 'innet'
+import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { EndpointContext, endpointContext, useApi, useTag } from '../../../hooks'
-import { EndpointsMethods, OperationObject } from '../../../types'
+import { type EndpointContext, endpointContext, useApi, useTag } from '../../../hooks'
+import { type EndpointsMethods, type OperationObject } from '../../../types'
 import { getEndpoint } from '../../../utils'
 
 export interface EndpointProps {
@@ -53,10 +53,13 @@ export const endpoint: HandlerPlugin = () => {
   const children = useChildren()
   const { paths } = docs
 
+  if (!paths) throw Error('cannot find paths in docs')
+
   if (!paths[path]) {
     paths[path] = {}
   }
 
+  // @ts-expect-error: it's always an object
   if (paths[path][method]) {
     throw Error(`You cannot use the same endpoints ${method}:${path}`)
   }
@@ -80,6 +83,7 @@ export const endpoint: HandlerPlugin = () => {
   }
 
   if (!privateMode) {
+    // @ts-expect-error: it's always an object
     paths[path][method] = operation as any
   }
 
@@ -87,8 +91,10 @@ export const endpoint: HandlerPlugin = () => {
     endpoints[method] = { key: '' }
   }
 
+  // @ts-expect-error: it's always an object
   const endpoint = getEndpoint(path, endpoints[method])
 
+  // @ts-expect-error: it's always an object
   handler[endpointContext.key] = { operation, props, endpoint } satisfies EndpointContext
 
   innet(children, handler)

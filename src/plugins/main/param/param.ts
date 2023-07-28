@@ -1,16 +1,16 @@
-import innet, { HandlerPlugin, useNewHandler } from 'innet'
+import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
 import {
-  ParamContext,
+  type ParamContext,
   paramContext,
-  RulesContext,
+  type RulesContext,
   rulesContext,
-  SchemaContext,
+  type SchemaContext,
   schemaContext,
   useEndpoint,
 } from '../../../hooks'
-import { EndpointRule, EndpointRules, InParam, ParameterObject, SchemaObject } from '../../../types'
+import { type EndpointRule, type EndpointRules, type InParam, type ParameterObject, type SchemaObject } from '../../../types'
 import { getOrAdd } from '../../../utils'
 
 const inMap: Record<InParam, keyof EndpointRules> = {
@@ -85,7 +85,7 @@ export const param: HandlerPlugin = () => {
 
   handler[schemaContext.key] = schema satisfies SchemaContext
   handler[paramContext.key] = { props } satisfies ParamContext
-  handler[rulesContext.key] = { rules, key: props.name, required: props.required || false } satisfies RulesContext
+  handler[rulesContext.key] = { rules, key: props.name, required: props.required ?? false } satisfies RulesContext
 
   innet(children, handler)
 }

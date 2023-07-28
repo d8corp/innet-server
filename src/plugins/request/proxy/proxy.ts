@@ -1,4 +1,4 @@
-import { HandlerPlugin } from 'innet'
+import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 import httpProxy from 'http-proxy'
 

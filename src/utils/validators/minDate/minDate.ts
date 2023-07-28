@@ -1,4 +1,4 @@
-import { ApiValidationErrorData } from '../../../types'
+import { type ApiValidationErrorData } from '../../../types'
 
 export interface MinDateValidationErrorData {
   min: string

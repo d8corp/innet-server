@@ -1,8 +1,8 @@
-import innet, { HandlerPlugin, useNewHandler } from 'innet'
+import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { SchemaContext, schemaContext, useSchemaContext } from '../../../hooks'
-import { SchemaObject } from '../../../types'
+import { type SchemaContext, schemaContext, useSchemaContext } from '../../../hooks'
+import { type SchemaObject } from '../../../types'
 
 export interface FieldProps {
   key: string

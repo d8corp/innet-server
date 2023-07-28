@@ -7,5 +7,6 @@ export function useSearch <D> (): D {
     throw Error('`useSearch` MUST be used in <request>')
   }
 
+  // @ts-expect-error: FIXME
   return action.search
 }

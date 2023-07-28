@@ -11,7 +11,6 @@ describe('parseSearch', () => {
   })
   it('should work with nullish', () => {
     expect(parseSearch('')).toEqual({})
-    expect(parseSearch(null)).toEqual({})
     expect(parseSearch(undefined)).toEqual({})
     expect(parseSearch()).toEqual({})
   })

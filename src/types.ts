@@ -1,10 +1,10 @@
-import { Handler } from 'innet'
-import { ValidationError, ValidationMap } from '@cantinc/utils'
-import { ValidationErrorData } from '@cantinc/utils/validation/types'
-import { IncomingMessage, ServerResponse } from 'http'
-import { OpenAPIV3_1 as API } from 'openapi-types'
+import type { ValidationError, ValidationMap } from '@cantinc/utils'
+import type { ValidationErrorData } from '@cantinc/utils/validation/types'
+import type { IncomingMessage, ServerResponse } from 'http'
+import type { Handler } from 'innet'
+import type { OpenAPIV3_1 as API } from 'openapi-types'
 
-import { ApiErrorValue, ApiValidationErrorValue } from './constants'
+import type { ApiErrorValue, ApiValidationErrorValue } from './constants'
 
 // Open API
 
@@ -26,16 +26,14 @@ export type RefSchemaObject = SchemaObject | ReferenceObject
 
 // Custom
 
-export interface Formatter<V> {
-  (value?: any): V;
-}
+export type Formatter<V> = (value?: any) => V
 export declare type FormatterMap<B> = {
   [K in keyof B]?: Formatter<B[K]>[];
-};
+}
 
-export interface ApiError<K, D = {}> extends Partial<ValidationError<K, D>> {
+export interface ApiError<K, D = unknown> extends Partial<ValidationError<K, D>> {
   error: ApiErrorValue | string
-  data?: ValidationErrorData<K> & D;
+  data?: ValidationErrorData<K> & D
 }
 
 export type EndpointRule = [FormatterMap<unknown>, ValidationMap<unknown>, Record<string, any>]
@@ -64,19 +62,19 @@ export type BodyType = 'application/x-www-form-urlencoded' | 'application/json' 
 export type Endpoints = Partial<Record<EndpointsMethods, Endpoint>>
 export type Params = Record<string, string | number>
 
-export interface ApiValidationErrorData<K, D = {}> extends ValidationError <K, D>{
+export interface ApiValidationErrorData<K, D = unknown> extends ValidationError <K, D> {
   error: ApiValidationErrorValue
   data: ValidationErrorData<K> & D
 }
 
-export interface ApiValidationError<K, D = {}> extends ApiError<K, ApiValidationErrorData<K, D> & {
+export interface ApiValidationError<K, D = unknown> extends ApiError<K, ApiValidationErrorData<K, D> & {
   in: InParam
   or?: ApiValidationError<K>
 }> {
   error: ApiErrorValue
 }
 
-export type ApiErrorResponse<K, D = {}> = ApiError<K, D> | ApiValidationError<K> | undefined | void
+export type ApiErrorResponse<K, D = unknown> = ApiError<K, D> | ApiValidationError<K> | undefined
 
 export interface SSL {
   cert: string
@@ -105,4 +103,4 @@ export interface Fallback {
   handler: Handler
 }
 
-export type RequestPlugin = (req: IncomingMessage, res: ServerResponse) => boolean | void
+export type RequestPlugin = (req: IncomingMessage, res: ServerResponse) => boolean | undefined

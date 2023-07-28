@@ -1,4 +1,3 @@
-import { dts } from '../../../plugins'
 import { httpOnStart } from '../../../utils'
 import { Partner } from '../../tags'
 

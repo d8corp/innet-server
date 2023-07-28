@@ -1,4 +1,4 @@
-import { FormatterMap } from '../../types'
+import { type FormatterMap } from '../../types'
 
 export function format <B extends object> (target: B, map: FormatterMap<B>, defaultValues: Record<string, any>) {
   for (const key in map) {

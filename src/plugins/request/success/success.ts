@@ -1,4 +1,4 @@
-import { HandlerPlugin } from 'innet'
+import { type HandlerPlugin } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
 import { useResponse } from '../../../hooks'
@@ -27,7 +27,7 @@ export const success: HandlerPlugin = () => {
   const res = useResponse()
   const status = props?.status
 
-  res.statusCode = typeof status === 'string' ? successStatuses[status] : status ?? (children ? 200 : 204)
+  res.statusCode = typeof status === 'string' ? successStatuses[status] : status ?? ((children) ? 200 : 204)
 
   if (children) {
     res.write(JSON.stringify(children[0]))

@@ -1,7 +1,7 @@
 import { useApp } from 'innet'
-import { JSXElement } from '@innet/jsx'
+import { type JSXElement } from '@innet/jsx'
 
 export function useOneElementError () {
-  const { type } = useApp<JSXElement>()
+  const { type } = useApp<JSXElement<string>>()
   throw Error(`You can use only one <${type}> in <api>`)
 }

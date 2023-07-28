@@ -48,14 +48,14 @@ declare namespace Paths {
             namespace Parameters {
                 /**
                  * example:
-                 * 2023-07-22T22:36:54.183Z
+                 * 2023-07-28T18:59:05.697Z
                  */
                 export type Test = string; // date-time
             }
             export interface QueryParameters {
                 test?: /**
                  * example:
-                 * 2023-07-22T22:36:54.183Z
+                 * 2023-07-28T18:59:05.697Z
                  */
                 Parameters.Test /* date-time */;
             }

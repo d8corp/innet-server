@@ -36,8 +36,9 @@ describe('once', () => {
   it('should decorate setter', () => {
     const fn = jest.fn()
     class Test {
+      readonly #test = 0
       get test () {
-        return null
+        return this.#test
       }
 
       @once set test (value) {

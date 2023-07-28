@@ -1,5 +1,5 @@
 import { useApp } from 'innet'
-import { JSXElement } from '@innet/jsx'
+import { type JSXElement } from '@innet/jsx'
 
 export function useComponentName () {
   const { type } = useApp<JSXElement>()

@@ -1,11 +1,11 @@
-import { ApiValidationErrorData } from '../../../types'
+import { type ApiValidationErrorData } from '../../../types'
 
 export interface MaximumValidationErrorData {
   max: number
 }
 
-export function maximum <K> (max: number | BigInt) {
-  return (value: number | BigInt, key: K): ApiValidationErrorData<K, MaximumValidationErrorData> | undefined => {
+export function maximum <K> (max: number | bigint) {
+  return (value: number | bigint, key: K): ApiValidationErrorData<K, MaximumValidationErrorData> | undefined => {
     if (value > max) {
       return {
         error: 'maximum',

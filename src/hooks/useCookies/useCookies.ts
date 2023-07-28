@@ -7,5 +7,6 @@ export function useCookies <D> (): D {
     throw Error('`useCookies` MUST be used in <request>')
   }
 
+  // @ts-expect-error: FIXME
   return action.cookies
 }

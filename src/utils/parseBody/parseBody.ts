@@ -1,8 +1,8 @@
-import http from 'http'
+import type http from 'http'
 import { StringDecoder } from 'string_decoder'
 
-export function parseBody (req: http.IncomingMessage) {
-  return new Promise<string>((resolve, reject) => {
+export async function parseBody (req: http.IncomingMessage) {
+  return await new Promise<string>((resolve, reject) => {
     const decoder = new StringDecoder('utf-8')
     let buffer = ''
 

@@ -1,4 +1,4 @@
-import { ApiValidationErrorData } from '../../../types'
+import { type ApiValidationErrorData } from '../../../types'
 
 export function isDate<K> (value: Date, key: K): ApiValidationErrorData<K> | undefined {
   if (isNaN(value as any)) {

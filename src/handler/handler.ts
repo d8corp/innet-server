@@ -1,46 +1,46 @@
 import { createHandler } from 'innet'
 import {
-  context, ContextProps,
+  context, type ContextProps,
   jsxComponent, jsxPlugins,
-  slot, SlotProps,
-  slots, SlotsProps,
+  slot, type SlotProps,
+  slots, type SlotsProps,
 } from '@innet/jsx'
 import { array as isArray, arraySync, async, fn, nullish, object as isObject, promise } from '@innet/utils'
 
 import { serverFn } from '../handlerPlugins'
 import {
-  api, ApiProps,
-  array, ArrayProps,
-  body, BodyProps,
-  boolean, BooleanProps,
-  contact, ContactProps,
-  date, DateProps,
-  dev, DevProps,
-  dts, DtsProps,
-  endpoint, EndpointProps,
-  error, ErrorProps,
-  fallback, FallbackProps,
-  field, FieldProps,
-  host, HostProps,
-  integer, IntegerProps,
-  license, LicenseProps,
-  nullPlugin, NullProps,
-  number, NumberProps,
-  object, ObjectProps,
-  param, ParamProps,
-  prod, ProdProps,
-  proxy, ProxyProps,
-  redirect, RedirectProps,
-  request, RequestProps,
-  response, ResponseProps,
-  server, ServerProps,
-  string, StringProps,
-  success, SuccessProps,
-  swagger, SwaggerProps,
-  tag, TagProps,
-  tuple, TupleProps,
-  uuid, UuidProps,
-  variable, VariableProps,
+  api, type ApiProps,
+  array, type ArrayProps,
+  body, type BodyProps,
+  boolean, type BooleanProps,
+  contact, type ContactProps,
+  date, type DateProps,
+  dev, type DevProps,
+  dts, type DtsProps,
+  endpoint, type EndpointProps,
+  error, type ErrorProps,
+  fallback, type FallbackProps,
+  field, type FieldProps,
+  host, type HostProps,
+  integer, type IntegerProps,
+  license, type LicenseProps,
+  nullPlugin, type NullProps,
+  number, type NumberProps,
+  object, type ObjectProps,
+  param, type ParamProps,
+  prod, type ProdProps,
+  proxy, type ProxyProps,
+  redirect, type RedirectProps,
+  request, type RequestProps,
+  response, type ResponseProps,
+  server, type ServerProps,
+  string, type StringProps,
+  success, type SuccessProps,
+  swagger, type SwaggerProps,
+  tag, type TagProps,
+  tuple, type TupleProps,
+  uuid, type UuidProps,
+  variable, type VariableProps,
 } from '../plugins'
 
 export const arrayPlugins = [
@@ -108,7 +108,7 @@ export const handler = createHandler([
 
 declare global {
   namespace JSX {
-    // @ts-ignore
+    // @ts-expect-error: FIXME
     interface IntrinsicElements {
       context: ContextProps
       slot: SlotProps

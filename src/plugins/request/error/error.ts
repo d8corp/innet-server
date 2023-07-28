@@ -1,4 +1,4 @@
-import { HandlerPlugin } from 'innet'
+import { type HandlerPlugin } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
 import { useResponse } from '../../../hooks'
@@ -65,7 +65,7 @@ export interface ErrorProps {
 }
 
 export const error: HandlerPlugin = () => {
-  const [children] = useChildren() || []
+  const [children] = (useChildren()) || []
   const props = useProps<ErrorProps>()
   const res = useResponse()
 

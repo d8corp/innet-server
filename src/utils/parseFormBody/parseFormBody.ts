@@ -1,10 +1,10 @@
-import http from 'http'
+import type http from 'http'
 import { Form } from 'multiparty'
 
 import { parseSearch } from '../parseSearch'
 
-export function parseFormBody (req: http.IncomingMessage) {
-  return new Promise<object>((resolve, reject) => {
+export async function parseFormBody (req: http.IncomingMessage) {
+  return await new Promise<object>((resolve, reject) => {
     const form = new Form()
     form.parse(req, (error, fields, files) => {
       if (error) {
@@ -13,7 +13,7 @@ export function parseFormBody (req: http.IncomingMessage) {
       }
 
       let query = ''
-      const queryFiles = []
+      const queryFiles: any[] = []
 
       for (const key in fields) {
         for (const value of fields[key]) {

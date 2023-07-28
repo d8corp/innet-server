@@ -1,8 +1,8 @@
-import innet, { HandlerPlugin, useNewHandler } from 'innet'
+import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { SchemaContext, schemaContext, useBlockPatch, useNewSchema, useSchemaType } from '../../../hooks'
-import { BaseSchemaProps } from '../../../types'
+import { type SchemaContext, schemaContext, useBlockPatch, useSchemaType } from '../../../hooks'
+import { type BaseSchemaProps } from '../../../types'
 
 export interface ObjectProps extends BaseSchemaProps <object> {
 

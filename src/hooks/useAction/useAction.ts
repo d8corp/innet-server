@@ -1,10 +1,10 @@
 import { Context, useContext } from '@innet/jsx'
 
-import { Action } from '../../utils'
+import { type Action } from '../../utils'
 
 export const actionContext = new Context<Action>()
 
-export function useAction () {
+export function useAction (): Action {
   const action = useContext(actionContext)
 
   if (!action) {

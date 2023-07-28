@@ -1,6 +1,6 @@
 import { Context, useContext } from '@innet/jsx'
 
-import { SchemaObject } from '../../types'
+import { type SchemaObject } from '../../types'
 
 export type SchemaContext = SchemaObject | SchemaObject[]
 

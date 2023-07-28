@@ -1,9 +1,9 @@
-import { HandlerPlugin } from 'innet'
+import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 import { onDestroy } from 'watch-state'
 
 import { useApi } from '../../../hooks'
-import { RequestPlugin } from '../../../types'
+import { type RequestPlugin } from '../../../types'
 import html from './swagger.html'
 
 export interface SwaggerProps {

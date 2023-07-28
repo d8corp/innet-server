@@ -1,7 +1,7 @@
-import { HandlerPlugin } from 'innet'
+import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 import dtsGenerator, { parseSchema } from 'dtsgenerator'
-import { Config } from 'dtsgenerator/dist/core/config'
+import { type Config } from 'dtsgenerator/dist/core/config'
 import fs from 'fs'
 
 import { useApi } from '../../../hooks'
@@ -17,7 +17,7 @@ export const dts: HandlerPlugin = () => {
   dtsGenerator({
     contents: [parseSchema(JSON.parse(JSON.stringify(docs)))],
     config,
-  }).then(content => fs.promises.writeFile(path, content)).catch(error => {
+  }).then(async content => { await fs.promises.writeFile(path, content) }).catch(error => {
     console.error(error)
   })
 }

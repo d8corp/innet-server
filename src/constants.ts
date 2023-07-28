@@ -1,4 +1,4 @@
-import { BodyType } from './types'
+import { type BodyType } from './types'
 
 export const apiErrors = [
   'requestValidation',
@@ -19,8 +19,8 @@ export const apiValidationErrors = [
   'object',
 ] as const
 
-export type ApiErrorValue = typeof apiErrors[number];
-export type ApiValidationErrorValue = typeof apiValidationErrors[number];
+export type ApiErrorValue = typeof apiErrors[number]
+export type ApiValidationErrorValue = typeof apiValidationErrors[number]
 
 export const allBodyTypes: BodyType[] = [
   'application/json',

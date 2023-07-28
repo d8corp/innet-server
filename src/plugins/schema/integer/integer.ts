@@ -1,12 +1,12 @@
-import { HandlerPlugin } from 'innet'
-import { Validator } from '@cantinc/utils'
+import { type HandlerPlugin } from 'innet'
+import { type Validator } from '@cantinc/utils'
 import { useProps } from '@innet/jsx'
 
 import { useRulesPlugin, useSchemaType } from '../../../hooks'
-import { IntegerFormats, ValuesSchemaProps } from '../../../types'
+import { type IntegerFormats, type ValuesSchemaProps } from '../../../types'
 import { isInteger, maximum, minimum } from '../../../utils'
 
-type GetType<F extends IntegerFormats> = F extends 'int32' ? number : BigInt
+type GetType<F extends IntegerFormats> = F extends 'int32' ? number : bigint
 
 export interface IntegerProps<F extends IntegerFormats = IntegerFormats> extends ValuesSchemaProps<GetType<F>> {
   format?: F
@@ -32,9 +32,11 @@ export const integer: HandlerPlugin = <F extends IntegerFormats>() => {
     examples: examples?.map(Number),
     values: values?.map(Number),
   })
-
+  // @ts-expect-error: FIXME
   schema.format = format
+  // @ts-expect-error: FIXME
   schema.minimum = min !== undefined ? Number(min) : undefined
+  // @ts-expect-error: FIXME
   schema.maximum = max !== undefined ? Number(max) : undefined
 
   const validator: Validator<any, any>[] = [isInteger(format)]

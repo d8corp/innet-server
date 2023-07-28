@@ -1,6 +1,6 @@
 import { Context, useContext } from '@innet/jsx'
 
-import { Document, Endpoints, Fallback, RequestPlugin } from '../../types'
+import { type Document, type Endpoints, type Fallback, type RequestPlugin } from '../../types'
 
 export interface ApiContext {
   docs: Document

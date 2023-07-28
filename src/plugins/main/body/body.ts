@@ -1,9 +1,9 @@
-import innet, { HandlerPlugin, useNewHandler } from 'innet'
+import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useContext, useProps } from '@innet/jsx'
 
 import { allBodyTypes } from '../../../constants'
-import { endpointContext, RulesContext, rulesContext, SchemaContext, schemaContext } from '../../../hooks'
-import { BodyType, EndpointRule, RequestBodyObject, SchemaObject } from '../../../types'
+import { endpointContext, /* RulesContext, rulesContext, */ type SchemaContext, schemaContext } from '../../../hooks'
+import { type BodyType, type EndpointRule, type RequestBodyObject, type SchemaObject } from '../../../types'
 import { getOrAdd } from '../../../utils'
 
 export interface BodyProps {
@@ -44,6 +44,8 @@ export const body: HandlerPlugin = () => {
     requestBody.content[type] = { schema }
   }
 
+  // FIXME
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const rules: EndpointRule[] = getOrAdd(endpoint, 'rules.body', [{}, []])
 
   handler[schemaContext.key] = schema satisfies SchemaContext

@@ -1,19 +1,27 @@
-import innet, { HandlerPlugin, useApp, useNewHandler } from 'innet'
+import innet, { type Handler, type HandlerPlugin, useApp, useNewHandler } from 'innet'
 import { validation as validate } from '@cantinc/utils'
-import { JSXElement } from '@innet/jsx'
-import { IncomingMessage, ServerResponse } from 'http'
+import { type JSXElement } from '@innet/jsx'
+import { type IncomingMessage, type ServerResponse } from 'http'
 import { onDestroy } from 'watch-state'
 
 import {
   actionContext,
-  ApiContext,
+  type ApiContext,
   apiContext,
   paramsContext,
   requestContext,
   responseContext,
   useServer,
 } from '../../../hooks'
-import { Document, Endpoint, EndpointRule, Endpoints, Params, RequestPlugin } from '../../../types'
+import {
+  type Document,
+  type Endpoint,
+  type EndpointRule,
+  type Endpoints,
+  type EndpointsMethods,
+  type Params,
+  type RequestPlugin,
+} from '../../../types'
 import { Action, format } from '../../../utils'
 
 export interface ApiProps {
@@ -47,13 +55,12 @@ export const api: HandlerPlugin = () => {
   const { props = {}, children } = useApp<JSXElement<string, ApiProps>>()
   const { server } = useServer()
   const { prefix = '', title = '', ...rest } = props
-  const info = { ...rest, version: rest.version || '0.0.0', title }
+  const info = { ...rest, version: rest.version ?? '0.0.0', title }
 
   const endpoints: Endpoints = {}
   const docs: Document = {
     openapi: '3.1.0',
     info,
-    components: {},
     paths: {},
     servers: [],
   }
@@ -82,14 +89,15 @@ export const api: HandlerPlugin = () => {
       return
     }
 
-    const method = req.method.toLowerCase()
+    const method = (req.method?.toLowerCase() ?? 'get') as EndpointsMethods
     const rawSplitPath = url.slice(prefix.length).split('/').slice(1)
     const splitPath = rawSplitPath.at(-1) ? rawSplitPath : rawSplitPath.slice(0, -1)
     const endpoint = endpoints[method]
     const endpointQueue: [number, Endpoint, Params][] = endpoint ? [[0, endpoint, {}]] : []
 
-    while (endpointQueue.length) {
-      const [deep, currentEndpoint, params] = endpointQueue.shift()
+    while (endpointQueue.length > 0) {
+      const [deep, currentEndpoint, params] =
+        endpointQueue.shift() as [number, Endpoint, Params]
       const key = splitPath[deep]
 
       if (deep + 1 === splitPath.length) {
@@ -102,7 +110,13 @@ export const api: HandlerPlugin = () => {
 
           if (pathRules) {
             let isValid = false
-            for (const [formatter, validation, defaultValues] of pathRules) {
+            for (
+              const [
+                formatter,
+                validation,
+                defaultValues,
+              ] of pathRules
+            ) {
               let currentParams = params
 
               if (formatter) {
@@ -120,13 +134,13 @@ export const api: HandlerPlugin = () => {
             if (!isValid) return false
           }
 
-          function checkActionRules (rules: EndpointRule[], key: 'search' | 'cookies' | 'headers' | 'body') {
+          function checkActionRules (rules?: EndpointRule[], key: 'search' | 'cookies' | 'headers' | 'body' = 'search') {
             if (rules) {
               let ok = false
               const errors = []
 
               for (const [formatter, validation, defaultValues] of rules) {
-                let currentData: object = action[key]
+                let currentData = action[key] as object
 
                 if (formatter) {
                   currentData = { ...action[key] }
@@ -185,7 +199,7 @@ export const api: HandlerPlugin = () => {
             if (checkActionRules(bodyRules, 'body')) return true
           }
 
-          const newHandler = Object.create(runEndpoint.handler)
+          const newHandler = Object.create(runEndpoint.handler as Handler)
           newHandler[responseContext.key] = res
           newHandler[requestContext.key] = req
           newHandler[paramsContext.key] = params
@@ -241,10 +255,10 @@ export const api: HandlerPlugin = () => {
     }
   }
 
-  server.on('request', listener)
+  server.on('request', listener as any)
 
   onDestroy(() => {
-    server.off('request', listener)
+    server.off('request', listener as any)
   })
 
   innet(children, handler)

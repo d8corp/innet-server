@@ -1,13 +1,14 @@
-import innet, { HandlerPlugin, useApp, useNewHandler } from 'innet'
-import { JSXElement } from '@innet/jsx'
+import innet, { type HandlerPlugin, useApp, useNewHandler } from 'innet'
+import { type JSXElement } from '@innet/jsx'
 import fs from 'fs'
-import http, { ServerResponse } from 'http'
+import http, { type ServerResponse } from 'http'
 import http2 from 'https'
 import { onDestroy } from 'watch-state'
 
 import { serverContext } from '../../../hooks'
-import { ServerStartParams, SSL } from '../../../types'
+import { type ServerStartParams, type SSL } from '../../../types'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const isInvalidPath = require('is-invalid-path')
 
 export interface ServerProps {
@@ -39,7 +40,7 @@ export const server: HandlerPlugin = () => {
 
   const https = Boolean(key && cert)
   const {
-    port = Number(env.PORT || (https ? 442 : 80)),
+    port = Number(env.PORT ?? (https ? 442 : 80)),
     onStart,
     onError,
     onRequest,

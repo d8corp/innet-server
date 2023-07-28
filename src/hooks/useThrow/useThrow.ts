@@ -1,6 +1,6 @@
 import { useApp } from 'innet'
 import { placeholder } from '@cantinc/utils'
-import { JSXElement } from '@innet/jsx'
+import { type JSXElement } from '@innet/jsx'
 
 export function useThrow (message: string) {
   const { type } = useApp<JSXElement>()

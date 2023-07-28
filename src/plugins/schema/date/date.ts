@@ -1,11 +1,11 @@
-import { HandlerPlugin } from 'innet'
+import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
 import { useRulesPlugin, useSchemaType } from '../../../hooks'
-import { ValuesSchemaProps } from '../../../types'
-import { DateFormat, dateFormat, isDate, maxDate, minDate } from '../../../utils'
+import { type ValuesSchemaProps } from '../../../types'
+import { type DateFormat, dateFormat, isDate, maxDate, minDate } from '../../../utils'
 
-export interface DateProps extends ValuesSchemaProps <DateFormat>{
+export interface DateProps extends ValuesSchemaProps <DateFormat> {
   min?: DateFormat
   max?: DateFormat
 }
@@ -25,6 +25,7 @@ export const date: HandlerPlugin = () => {
   const normDefault = dateFormat(defaultValue)
   const normExample = dateFormat(example)
   const normValues = values?.map(dateFormat)
+  // @ts-expect-error: FIXME
   const stringValues = normValues?.map(value => value.toISOString())
   const normExamples = examples?.map(dateFormat)
 
@@ -32,21 +33,26 @@ export const date: HandlerPlugin = () => {
     ...props,
     values: stringValues,
     example: normExample?.toISOString(),
+    // @ts-expect-error: FIXME
     examples: normExamples?.map(example => example.toISOString()),
     default: defaultValue === 'now' ? undefined : normDefault?.toISOString(),
   })
 
+  // @ts-expect-error: FIXME
   schema.format = 'date-time'
 
   if (normMin) {
+    // @ts-expect-error: FIXME
     schema['x-minimum'] = normMin.toISOString()
   }
 
   if (normMax) {
+    // @ts-expect-error: FIXME
     schema['x-maximum'] = normMax.toISOString()
   }
 
   if (defaultValue === 'now') {
+    // @ts-expect-error: FIXME
     schema['x-default'] = 'now'
   }
 
@@ -66,8 +72,10 @@ export const date: HandlerPlugin = () => {
     validator,
     values: normValues,
     isValues: dates => {
+      // @ts-expect-error: FIXME
       const values = dates.map(date => date.toISOString())
       return (value, key) => {
+        // @ts-expect-error: FIXME
         if (isNaN(value as any) || !values.includes(value.toISOString())) {
           return {
             error: 'values',

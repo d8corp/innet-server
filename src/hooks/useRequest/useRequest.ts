@@ -1,7 +1,7 @@
 import { Context, useContext } from '@innet/jsx'
-import http from 'http'
+import { type IncomingMessage } from 'http'
 
-export const requestContext = new Context<http.IncomingMessage>()
+export const requestContext = new Context<IncomingMessage>()
 
 export function useRequest () {
   return useContext(requestContext)

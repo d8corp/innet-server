@@ -1,4 +1,4 @@
-import { ApiValidationErrorData, IntegerFormats } from '../../../types'
+import { type ApiValidationErrorData, type IntegerFormats } from '../../../types'
 
 export interface IntegerData {
   format: IntegerFormats

@@ -1,8 +1,8 @@
-import innet, { HandlerPlugin, useNewHandler } from 'innet'
+import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { SchemaContext, schemaContext, useEndpoint } from '../../../hooks'
-import { ResponseObject, SchemaObject } from '../../../types'
+import { type SchemaContext, schemaContext, useEndpoint } from '../../../hooks'
+import { type ResponseObject, type SchemaObject } from '../../../types'
 
 export interface ResponseProps {
   /**

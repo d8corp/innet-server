@@ -1,9 +1,9 @@
 import { useSchemaContext } from '../useSchemaContext'
 import { useThrow } from '../useThrow'
 
-import { RefSchemaObject, SchemaObject } from '../../types'
+import { type RefSchemaObject, type SchemaObject } from '../../types'
 
-export function useNewSchema <T extends RefSchemaObject = SchemaObject> (schema: T = {} as T): T {
+export function useNewSchema <T extends RefSchemaObject = SchemaObject> (schema: T = Object.create(null) as T): T {
   const parentSchema = useSchemaContext()
 
   if (!parentSchema) {
@@ -18,6 +18,7 @@ export function useNewSchema <T extends RefSchemaObject = SchemaObject> (schema:
     const oldSchema = { ...parentSchema }
 
     for (const key in parentSchema) {
+      // @ts-expect-error: FIXME
       delete parentSchema[key]
     }
 
