@@ -20,7 +20,9 @@ export const dts: HandlerPlugin = () => {
   }).then(async content => {
     await fs.promises.writeFile(
       path,
-      content.replaceAll('string; // date-time', 'Date; // date-time'),
+      content
+        .replaceAll('number; // int64', 'bigint; // int64')
+        .replaceAll('string; // date-time', 'Date; // date-time'),
     )
   }).catch(error => {
     console.error(error)
