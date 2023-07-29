@@ -17,7 +17,12 @@ export const dts: HandlerPlugin = () => {
   dtsGenerator({
     contents: [parseSchema(JSON.parse(JSON.stringify(docs)))],
     config,
-  }).then(async content => { await fs.promises.writeFile(path, content) }).catch(error => {
+  }).then(async content => {
+    await fs.promises.writeFile(
+      path,
+      content.replaceAll('string; // date-time', 'Date; // date-time'),
+    )
+  }).catch(error => {
     console.error(error)
   })
 }

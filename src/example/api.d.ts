@@ -55,7 +55,7 @@ declare namespace Paths {
     namespace Partners {
         namespace Get {
             namespace Parameters {
-                export type Test = string; // date-time
+                export type Test = Date; // date-time
             }
             export interface QueryParameters {
                 test?: Parameters.Test /* date-time */;
