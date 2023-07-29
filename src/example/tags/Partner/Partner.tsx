@@ -1,4 +1,4 @@
-import { GetPartner } from '../../requests'
+import { GetPartner, GetPartners } from '../../requests'
 import { EditPartnerSchema, ListSchema, PartnerSchema } from '../../schemas'
 
 export function Partner () {
@@ -18,7 +18,7 @@ export function Partner () {
           </ListSchema>
         </response>
         <request>
-          <GetPartner />
+          <GetPartners />
         </request>
       </endpoint>
       <endpoint method='get' path='/partners/{id}'>

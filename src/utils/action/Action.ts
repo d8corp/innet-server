@@ -35,7 +35,7 @@ export class Action {
     return parseSearch(this.parsedUrl.search)
   }
 
-  #search: ParsedQs = {}
+  #search: ParsedQs | undefined
   get search (): ParsedQs {
     if (this.#search) return this.#search
     this.#search = this.originSearch
