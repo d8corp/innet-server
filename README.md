@@ -69,9 +69,7 @@ You will see a base Open API JSON structure.
     "title": "",
     "version": "0.0.0"
   },
-  "components": {},
-  "paths": {},
-  "servers": []
+  "paths": {}
 }
 ```
 
@@ -232,6 +230,19 @@ export default (
     <api
       description='**MARKDOWN** is available'
     />
+  </server>
+)
+```
+
+[innetjs](https://www.npmjs.com/package/innetjs) can help to use a separate file of description:
+
+*src/app.tsx*
+```typescript jsx
+import desc from './desc.md'
+
+export default (
+  <server>
+    <api description={desc} />
   </server>
 )
 ```

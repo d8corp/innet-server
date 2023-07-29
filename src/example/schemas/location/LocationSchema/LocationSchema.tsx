@@ -1,4 +1,4 @@
-import { useComponentName } from '../../../hooks'
+import { useComponentName } from '../../../../hooks'
 
 export function LocationSchema () {
   const ref = useComponentName()

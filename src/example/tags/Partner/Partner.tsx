@@ -1,5 +1,5 @@
 import { GetPartner } from '../../requests'
-import { ListSchema, PartnerSchema } from '../../schemas'
+import { EditPartnerSchema, ListSchema, PartnerSchema } from '../../schemas'
 
 export function Partner () {
   return (
@@ -33,15 +33,7 @@ export function Partner () {
       <endpoint method='patch' path='/partners/{id}'>
         <param in='path' name='id'><string /></param>
         <body type='application/json'>
-          <object>
-            <field key='name'><string example='CANTent.' /></field>
-            <field key='gift'><boolean /></field>
-            <field optional key='addresses'>
-              <array>
-                <number description='address id' />
-              </array>
-            </field>
-          </object>
+          <EditPartnerSchema />
         </body>
         <response status={220} description='Partner Response Description'>
           <PartnerSchema />

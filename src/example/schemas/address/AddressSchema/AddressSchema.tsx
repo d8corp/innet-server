@@ -1,6 +1,5 @@
-import { LocationSchema } from '../LocationSchema'
-
-import { useComponentName } from '../../../hooks'
+import { useComponentName } from '../../../../hooks'
+import { LocationSchema } from '../../location/LocationSchema'
 
 export function AddressSchema () {
   const ref = useComponentName()

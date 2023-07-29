@@ -17,6 +17,15 @@ declare namespace Components {
              */
             LocationSchema;
         }
+        export interface EditPartnerSchema {
+            /**
+             * example:
+             * CANTent.
+             */
+            name: string;
+            gift: boolean;
+            addresses?: number[];
+        }
         /**
          * GPS Coordinates
          * example:
@@ -87,15 +96,7 @@ declare namespace Paths {
             export interface PathParameters {
                 id: Parameters.Id;
             }
-            export interface RequestBody {
-                /**
-                 * example:
-                 * CANTent.
-                 */
-                name: string;
-                gift: boolean;
-                addresses?: number[];
-            }
+            export type RequestBody = Components.Schemas.EditPartnerSchema;
             namespace Responses {
                 export type $220 = Components.Schemas.PartnerSchema;
             }

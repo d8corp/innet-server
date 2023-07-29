@@ -1,10 +1,11 @@
 import { httpOnStart } from '../../../utils'
 import { Partner } from '../../tags'
+import description from './description.md'
 
 export function App () {
   return (
     <server port={3000} onStart={httpOnStart}>
-      <api description='Test CANT inc. API' prefix='/api' title='CANT inc. API' version='0.0.1'>
+      <api description={description} prefix='/api' title='CANT inc. API' version='0.0.1'>
         <swagger path='/swagger' />
         <host url='https://cantinc.com/api' description='Production' />
         <host url='https://stage.cantinc.com/api' description='Stage' />

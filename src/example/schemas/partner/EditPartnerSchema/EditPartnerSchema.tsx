@@ -1,18 +1,15 @@
-import { AddressSchema } from '../AddressSchema'
+import { useComponentName } from '../../../../hooks'
 
-import { useComponentName } from '../../../hooks'
-
-export function PartnerSchema () {
+export function EditPartnerSchema () {
   const ref = useComponentName()
 
   return (
     <object ref={ref}>
-      <field key='id'><string example='cantent' /></field>
       <field key='name'><string example='CANTent.' /></field>
       <field key='gift'><boolean /></field>
       <field optional key='addresses'>
         <array>
-          <AddressSchema />
+          <number description='address id' />
         </array>
       </field>
     </object>
