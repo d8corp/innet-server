@@ -1,5 +1,6 @@
-import { useSearch } from '../../../../hooks'
+import { useParams } from '../../../../hooks'
 
 export function GetPartner () {
-  return <success>{useSearch()}</success>
+  const { id } = useParams<Paths.Partners$Id.Get.PathParameters>()
+  return <success>{{ id }}</success>
 }
