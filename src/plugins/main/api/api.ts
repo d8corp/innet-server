@@ -62,7 +62,6 @@ export const api: HandlerPlugin = () => {
     openapi: '3.1.0',
     info,
     paths: {},
-    servers: [],
   }
   const requestPlugins = new Set<RequestPlugin>()
 

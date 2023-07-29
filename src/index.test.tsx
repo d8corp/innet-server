@@ -28,8 +28,8 @@ describe('server', () => {
     const [Log, fn] = getLog()
 
     run(
-      <server port={3000}>
-        <api title='CANT inc. API' version='0.0.1'>
+      <server>
+        <api>
           <Log />
         </api>
       </server>,
@@ -38,12 +38,10 @@ describe('server', () => {
     expect(fn).toBeCalledWith({
       openapi: '3.1.0',
       info: {
-        title: 'CANT inc. API',
-        version: '0.0.1',
+        title: '',
+        version: '0.0.0',
       },
-      components: {},
       paths: {},
-      servers: [],
     })
   })
   test('main', () => {

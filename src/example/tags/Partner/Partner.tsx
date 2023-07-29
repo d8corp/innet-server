@@ -10,7 +10,7 @@ export function Partner () {
         summary='Returns a list of partners'
         description='You cant use partners as you wish!'>
         <param in='query' name='test'>
-          <date example='now' default='now' />
+          <date />
         </param>
         <response description='Response Description'>
           <ListSchema>

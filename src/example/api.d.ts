@@ -46,18 +46,10 @@ declare namespace Paths {
     namespace Partners {
         namespace Get {
             namespace Parameters {
-                /**
-                 * example:
-                 * 2023-07-28T18:59:05.697Z
-                 */
                 export type Test = string; // date-time
             }
             export interface QueryParameters {
-                test?: /**
-                 * example:
-                 * 2023-07-28T18:59:05.697Z
-                 */
-                Parameters.Test /* date-time */;
+                test?: Parameters.Test /* date-time */;
             }
             namespace Responses {
                 /**
