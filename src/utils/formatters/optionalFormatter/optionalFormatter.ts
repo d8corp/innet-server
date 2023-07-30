@@ -2,7 +2,7 @@ import { type ReturnFormatterType } from '../types'
 
 import { type Formatter } from '../../../types'
 
-export function optional <
+export function optionalFormatter <
   F extends Formatter<any, any>,
 > (format: F): <
   I,
