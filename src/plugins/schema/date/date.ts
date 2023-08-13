@@ -6,6 +6,7 @@ import { type ValuesSchemaProps } from '../../../types'
 import {
   type DateFormat,
   dateFormat,
+  dateFormatter,
   defaultFormatter,
   isDate,
   isEach,
@@ -75,10 +76,14 @@ export const date: HandlerPlugin = () => {
     validator.push(maxDate(normMax))
   }
 
-  useFormatter(defaultFormatter(
-    defaultValue === 'now' ? () => new Date(Date.now()) : normDefault,
-    value => new Date(value),
-  ))
+  if (defaultValue === undefined) {
+    useFormatter(dateFormatter)
+  } else {
+    useFormatter(defaultFormatter(
+      defaultValue === 'now' ? () => new Date(Date.now()) : normDefault,
+      dateFormatter,
+    ))
+  }
 
   if (normValues) {
     useValidator(isValues(normValues))

@@ -65,7 +65,7 @@ export const api: HandlerPlugin = () => {
 
   const context: ApiContext = { docs, endpoints, prefix, requestPlugins, refFormatters: {}, refValidators: {} }
 
-  handler[apiContext.key] = context
+  apiContext.set(handler, context)
 
   const listener = async (req: IncomingMessage, res: ServerResponse) => {
     if (res.writableEnded) return

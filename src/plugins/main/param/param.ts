@@ -14,7 +14,7 @@ import {
   type ParameterObject,
   type SchemaObject, type Validator,
 } from '../../../types'
-import { getOrAdd, isObject, objectFormatter } from '../../../utils'
+import { getOrAdd, isObject, isOptional, isRequired, objectFormatter, optionalFormatter } from '../../../utils'
 
 const inMap: Record<InParam, keyof EndpointRules> = {
   query: 'search',
@@ -98,13 +98,19 @@ export const param: HandlerPlugin = () => {
     }
 
     // @ts-expect-error: FIXME
-    rules[formatterIndex][0] = objectFormatter({ [props.name]: formatter })
+    rules[formatterIndex][0] = objectFormatter({ [props.name]: optionalFormatter(formatter) })
     formatterIndex++
   })
 
   validatorContext.set(handler, validator => {
     if (!rules[validatorIndex]) {
       rules[validatorIndex] = [] as any
+    }
+
+    if (params.required) {
+      validator = isRequired(validator)
+    } else {
+      validator = isOptional(validator)
     }
 
     // @ts-expect-error: FIXME
