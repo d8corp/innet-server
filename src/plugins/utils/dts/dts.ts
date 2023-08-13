@@ -25,6 +25,6 @@ export const dts: HandlerPlugin = () => {
         .replaceAll('string; // date-time', 'Date; // date-time'),
     )
   }).catch(error => {
-    console.error(error)
+    console.warn(error)
   })
 }

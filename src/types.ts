@@ -1,5 +1,3 @@
-import type { ValidationError, ValidationMap } from '@cantinc/utils'
-import type { ValidationErrorData } from '@cantinc/utils/validation/types'
 import type { IncomingMessage, ServerResponse } from 'http'
 import type { Handler } from 'innet'
 import type { OpenAPIV3_1 as API } from 'openapi-types'
@@ -26,55 +24,78 @@ export type RefSchemaObject = SchemaObject | ReferenceObject
 
 // Custom
 
-export type Formatter<V> = (value?: any) => V
-export declare type FormatterMap<B> = {
-  [K in keyof B]?: Formatter<B[K]>[];
+export type Formatter<I, O> = (value: I) => O
+
+export interface IValidationErrorData extends Record<string, any> {
+  error: ApiValidationErrorValue
 }
 
-export interface ApiError<K, D = unknown> extends Partial<ValidationError<K, D>> {
-  error: ApiErrorValue | string
-  data?: ValidationErrorData<K> & D
+export type ValidationErrorData = IValidationErrorData | undefined
+
+export interface ValidationError<E extends string, P extends InValidationErrorParam, D extends ValidationErrorData> {
+  error: E
+  in: P
+  data?: D
+  or?: ValidationError<E, P, D>
 }
 
-export type EndpointRule = [FormatterMap<unknown>, ValidationMap<unknown>, Record<string, any>]
+export type ValidationResponse<
+  E extends ApiErrorValue,
+  P extends InValidationErrorParam,
+  D extends ValidationErrorData
+> = ValidationError<E, P, D> | undefined
 
-export interface EndpointRules {
-  path?: EndpointRule[]
-  search?: EndpointRule[]
-  body?: EndpointRule[]
-  cookie?: EndpointRule[]
-  header?: EndpointRule[]
+export type Validator<
+  V,
+  D extends ValidationErrorData
+> = (value: V, data?: D) => ValidationErrorData
+
+export type EndpointRule<
+  I,
+  O,
+  D extends ValidationErrorData
+> = [Formatter<I, O> | undefined, Validator<O, D> | undefined]
+
+export interface EndpointRules<
+  I = any,
+  O = any,
+  D extends ValidationErrorData = ValidationErrorData
+> {
+  path?: EndpointRule<I, O, D>[]
+  search?: EndpointRule<I, O, D>[]
+  body?: EndpointRule<I, O, D>[]
+  cookie?: EndpointRule<I, O, D>[]
+  header?: EndpointRule<I, O, D>[]
+  response?: EndpointRule<I, O, D>[]
 }
 
-export interface Endpoint {
+export interface Endpoint<
+  I = unknown,
+  O = unknown,
+  E extends ApiErrorValue = ApiErrorValue,
+  P extends InValidationErrorParam = InValidationErrorParam,
+  D extends ValidationErrorData = ValidationErrorData
+> {
   key: string
   content?: any
-  rules?: EndpointRules
+  rules?: EndpointRules<I, O, D>
   handler?: Handler
-  static?: Record<string, Endpoint>
-  dynamic?: Endpoint[]
+  static?: Record<string, Endpoint<I, O, E, P, D>>
+  dynamic?: Endpoint<I, O, E, P, D>[]
 }
 
 export type IntegerFormats = 'int32' | 'int64'
 export type EndpointsMethods = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'options' | 'head' | 'trace'
 export type InParam = 'query' | 'header' | 'path' | 'cookie'
+export type InValidationErrorParam = InParam | 'body'
 export type BodyType = 'application/x-www-form-urlencoded' | 'application/json' | 'multipart/form-data'
-export type Endpoints = Partial<Record<EndpointsMethods, Endpoint>>
-export type Params = Record<string, string | number>
-
-export interface ApiValidationErrorData<K, D = unknown> extends ValidationError <K, D> {
-  error: ApiValidationErrorValue
-  data: ValidationErrorData<K> & D
-}
-
-export interface ApiValidationError<K, D = unknown> extends ApiError<K, ApiValidationErrorData<K, D> & {
-  in: InParam
-  or?: ApiValidationError<K>
-}> {
-  error: ApiErrorValue
-}
-
-export type ApiErrorResponse<K, D = unknown> = ApiError<K, D> | ApiValidationError<K> | undefined
+export type Endpoints<
+  I = unknown,
+  O = unknown,
+  E extends ApiErrorValue = ApiErrorValue,
+  P extends InValidationErrorParam = InValidationErrorParam,
+  D extends ValidationErrorData = ValidationErrorData
+> = Partial<Record<EndpointsMethods, Endpoint<I, O, E, P, D>>>
 
 export interface SSL {
   cert: string

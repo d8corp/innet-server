@@ -1,18 +1,12 @@
-import { type ApiValidationErrorData } from '../../../types'
+import { type ValidationErrorData } from '../../../types'
 
-export interface MinimumValidationErrorData {
-  min: number
-}
-
-export function minimum <K> (min: number | bigint) {
-  return (value: number | bigint, key: K): ApiValidationErrorData<K, MinimumValidationErrorData> | undefined => {
+export function minimum (min: number | bigint) {
+  return (value: number | bigint, data?: object): ValidationErrorData => {
     if (value < min) {
       return {
         error: 'minimum',
-        data: {
-          key,
-          min: Number(min),
-        },
+        min: Number(min),
+        ...data,
       }
     }
   }

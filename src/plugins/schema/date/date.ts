@@ -1,9 +1,18 @@
 import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
-import { useRulesPlugin, useSchemaType } from '../../../hooks'
+import { useFormatter, useSchemaType, useValidator } from '../../../hooks'
 import { type ValuesSchemaProps } from '../../../types'
-import { type DateFormat, dateFormat, isDate, maxDate, minDate } from '../../../utils'
+import {
+  type DateFormat,
+  dateFormat,
+  defaultFormatter,
+  isDate,
+  isEach,
+  isValues,
+  maxDate,
+  minDate,
+} from '../../../utils'
 
 export interface DateProps extends ValuesSchemaProps <DateFormat> {
   min?: DateFormat
@@ -66,26 +75,14 @@ export const date: HandlerPlugin = () => {
     validator.push(maxDate(normMax))
   }
 
-  useRulesPlugin({
-    defaultValue: defaultValue === 'now' ? () => new Date(Date.now()) : normDefault,
-    formatter: [value => new Date(value)],
-    validator,
-    values: normValues,
-    isValues: dates => {
-      // @ts-expect-error: FIXME
-      const values = dates.map(date => date.toISOString())
-      return (value, key) => {
-        // @ts-expect-error: FIXME
-        if (isNaN(value as any) || !values.includes(value.toISOString())) {
-          return {
-            error: 'values',
-            data: {
-              key,
-              values,
-            },
-          }
-        }
-      }
-    },
-  })
+  useFormatter(defaultFormatter(
+    defaultValue === 'now' ? () => new Date(Date.now()) : normDefault,
+    value => new Date(value),
+  ))
+
+  if (normValues) {
+    useValidator(isValues(normValues))
+  } else {
+    useValidator(isEach(validator))
+  }
 }

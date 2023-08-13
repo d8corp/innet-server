@@ -1,4 +1,4 @@
-import { optional } from '../optionalFormatter'
+import { optionalFormatter } from '../optionalFormatter'
 import { objectFormatter } from './objectFormatter'
 
 describe('objectFormatter', () => {
@@ -12,46 +12,57 @@ describe('objectFormatter', () => {
       test2: test1,
     })
 
-    expect(format({
+    const result1 = format({
       test1: '123',
-      asd: 123,
-    })).toEqual({
-      test1: 123,
     })
 
-    expect(format({
+    const result2 = format({
       test1: '123',
       asd: 123,
-      test2: '',
-    })).toEqual({
+      test2: { field1: true },
+    })
+
+    expect(result1).toEqual({
       test1: 123,
-      test2: false,
+      test2: {
+        field1: 'undefined',
+      },
+    })
+
+    expect(result2).toEqual({
+      test1: 123,
+      test2: {
+        field1: 'true',
+      },
     })
   })
   test('optional inside', () => {
     const format = objectFormatter({
       test1: Number,
-      test2: optional(Boolean),
+      test2: optionalFormatter(Boolean),
     })
 
-    expect(format({
+    const result1 = format({
       test1: '123',
-      asd: 123,
-    })).toEqual({
+      test2: undefined,
+    })
+
+    const result2 = format({
+      test1: '123',
+      test2: '',
+    })
+
+    expect(result1).toEqual({
       test1: 123,
     })
 
-    expect(format({
-      test1: '123',
-      asd: 123,
-      test2: '',
-    })).toEqual({
+    expect(result2).toEqual({
       test1: 123,
       test2: false,
     })
   })
   test('optional outside', () => {
-    const format = optional(objectFormatter({
+    const format = optionalFormatter(objectFormatter({
       test1: Number,
       test2: Boolean,
     }))

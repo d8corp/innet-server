@@ -2,16 +2,19 @@ import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
 import {
-  type ParamContext,
+  formatterContext,
   paramContext,
-  type RulesContext,
-  rulesContext,
-  type SchemaContext,
   schemaContext,
-  useEndpoint,
+  useEndpoint, validatorContext,
 } from '../../../hooks'
-import { type EndpointRule, type EndpointRules, type InParam, type ParameterObject, type SchemaObject } from '../../../types'
-import { getOrAdd } from '../../../utils'
+import {
+  type EndpointRules,
+  type Formatter,
+  type InParam,
+  type ParameterObject,
+  type SchemaObject, type Validator,
+} from '../../../types'
+import { getOrAdd, isObject, objectFormatter } from '../../../utils'
 
 const inMap: Record<InParam, keyof EndpointRules> = {
   query: 'search',
@@ -81,11 +84,33 @@ export const param: HandlerPlugin = () => {
 
   params.schema = schema as any
 
-  const rules: EndpointRule[] = getOrAdd(endpoint, `rules.${inMap[props.in]}`, [{}, []])
+  schemaContext.set(handler, schema)
 
-  handler[schemaContext.key] = schema satisfies SchemaContext
-  handler[paramContext.key] = { props } satisfies ParamContext
-  handler[rulesContext.key] = { rules, key: props.name, required: props.required ?? false } satisfies RulesContext
+  const rules: [Formatter<any, any> | undefined, Validator<any, any> | undefined] = getOrAdd(endpoint, `rules.${inMap[props.in]}`, [{}, []])
+  let formatterIndex = 0
+  let validatorIndex = 0
+
+  paramContext.set(handler, { props })
+
+  formatterContext.set(handler, formatter => {
+    if (!rules[formatterIndex]) {
+      rules[formatterIndex] = [] as any
+    }
+
+    // @ts-expect-error: FIXME
+    rules[formatterIndex][0] = objectFormatter({ [props.name]: formatter })
+    formatterIndex++
+  })
+
+  validatorContext.set(handler, validator => {
+    if (!rules[validatorIndex]) {
+      rules[validatorIndex] = [] as any
+    }
+
+    // @ts-expect-error: FIXME
+    rules[validatorIndex][1] = isObject({ [props.name]: validator })
+    validatorIndex++
+  })
 
   innet(children, handler)
 }

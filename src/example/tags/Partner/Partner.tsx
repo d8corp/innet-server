@@ -1,4 +1,5 @@
 import { GetPartner, GetPartners } from '../../requests'
+import { PatchPartner } from '../../requests/partners/PatchPartner'
 import { EditPartnerSchema, ListSchema, PartnerSchema } from '../../schemas'
 
 export function Partner () {
@@ -39,9 +40,7 @@ export function Partner () {
           <PartnerSchema />
         </response>
         <request>
-          <error>
-            {{ test: 'patch partner' }}
-          </error>
+          <PatchPartner />
         </request>
       </endpoint>
     </tag>

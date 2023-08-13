@@ -1,10 +1,9 @@
 import { type HandlerPlugin } from 'innet'
-import { type Validator } from '@cantinc/utils'
 import { useProps } from '@innet/jsx'
 
-import { useRulesPlugin, useSchemaType } from '../../../hooks'
-import { type ValuesSchemaProps } from '../../../types'
-import { isNumber, maximum, minimum } from '../../../utils'
+import { useFormatter, useSchemaType, useValidator } from '../../../hooks'
+import { type Validator, type ValuesSchemaProps } from '../../../types'
+import { isEach, isNumber, maximum, minimum } from '../../../utils'
 
 export interface NumberProps extends ValuesSchemaProps <number> {
   /** Validate the number value by minimum. */
@@ -33,8 +32,6 @@ export const number: HandlerPlugin = () => {
     validator.push(maximum(max))
   }
 
-  useRulesPlugin({
-    formatter: [Number],
-    validator,
-  })
+  useFormatter(Number)
+  useValidator(isEach(validator))
 }

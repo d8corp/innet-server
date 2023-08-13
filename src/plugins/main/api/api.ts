@@ -1,5 +1,4 @@
 import innet, { type Handler, type HandlerPlugin, useApp, useNewHandler } from 'innet'
-import { validation as validate } from '@cantinc/utils'
 import { type JSXElement } from '@innet/jsx'
 import { type IncomingMessage, type ServerResponse } from 'http'
 import { onDestroy } from 'watch-state'
@@ -19,10 +18,9 @@ import {
   type EndpointRule,
   type Endpoints,
   type EndpointsMethods,
-  type Params,
   type RequestPlugin,
 } from '../../../types'
-import { Action, format } from '../../../utils'
+import { Action } from '../../../utils'
 
 export interface ApiProps {
   /** The title of the API. */
@@ -40,7 +38,7 @@ export interface ApiProps {
   /** A short summary of the API. */
   summary?: string
 
-  /** A description of the API. [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation. */
+  /** A description of the API. [CommonMark syntax](https://spec.commonmark.or.org) MAY be used for rich text representation. */
   description?: string
 
   /** A URL to the Terms of Service for the API. This MUST be in the form of a URL. */
@@ -92,15 +90,15 @@ export const api: HandlerPlugin = () => {
     const rawSplitPath = url.slice(prefix.length).split('/').slice(1)
     const splitPath = rawSplitPath.at(-1) ? rawSplitPath : rawSplitPath.slice(0, -1)
     const endpoint = endpoints[method]
-    const endpointQueue: [number, Endpoint, Params][] = endpoint ? [[0, endpoint, {}]] : []
+    const endpointQueue: [number, Endpoint, any][] = endpoint ? [[0, endpoint, {}]] : []
 
     while (endpointQueue.length > 0) {
       const [deep, currentEndpoint, params] =
-        endpointQueue.shift() as [number, Endpoint, Params]
+        endpointQueue.shift() as [number, Endpoint, any]
       const key = splitPath[deep]
 
       if (deep + 1 === splitPath.length) {
-        async function run (runEndpoint: Endpoint, params: Params) {
+        async function run (runEndpoint: Endpoint, params: any) {
           const pathRules = runEndpoint.rules?.path
           const headerRules = runEndpoint.rules?.header
           const cookieRules = runEndpoint.rules?.cookie
@@ -113,17 +111,15 @@ export const api: HandlerPlugin = () => {
               const [
                 formatter,
                 validation,
-                defaultValues,
               ] of pathRules
             ) {
               let currentParams = params
 
-              if (formatter) {
-                currentParams = { ...params }
-                format(currentParams, formatter, defaultValues)
+              if (currentParams && formatter) {
+                currentParams = formatter(currentParams)
               }
 
-              if (!validation || !validate(validation, currentParams)) {
+              if (!validation?.(currentParams)) {
                 params = currentParams
                 isValid = true
                 break
@@ -133,20 +129,20 @@ export const api: HandlerPlugin = () => {
             if (!isValid) return false
           }
 
-          function checkActionRules (rules?: EndpointRule[], key: 'search' | 'cookies' | 'headers' | 'body' = 'search') {
+          function checkActionRules (rules?: EndpointRule<any, any, any>[], key: 'search' | 'cookies' | 'headers' | 'body' = 'search') {
             if (rules) {
               let ok = false
-              const errors = []
+              const errors: any[] = []
 
-              for (const [formatter, validation, defaultValues] of rules) {
+              for (const [formatter, validator] of rules) {
                 let currentData = action[key] as object
 
                 if (formatter) {
                   currentData = { ...action[key] }
-                  format(currentData, formatter, defaultValues)
+                  currentData = formatter(currentData)
                 }
 
-                const error = !validation || validate(validation, currentData)
+                const error = validator?.(currentData)
 
                 if (!error) {
                   action[key] = currentData as any

@@ -2,8 +2,9 @@ import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 import { v4 } from 'uuid'
 
-import { useRulesPlugin, useSchemaType } from '../../../hooks'
+import { useFormatter, useSchemaType, useValidator } from '../../../hooks'
 import { type ValuesSchemaProps } from '../../../types'
+import { defaultFormatter } from '../../../utils'
 import { isUuid } from '../../../utils/validators/isUuid'
 
 export interface UuidProps extends ValuesSchemaProps <string> {
@@ -24,9 +25,6 @@ export const uuid: HandlerPlugin = () => {
     schema['x-default'] = defaultValue
   }
 
-  useRulesPlugin({
-    defaultValue: defaultValue === 'new' ? v4 : defaultValue,
-    formatter: [String],
-    validator: [isUuid],
-  })
+  useFormatter(defaultFormatter(defaultValue === 'new' ? v4 : defaultValue, String))
+  useValidator(isUuid)
 }

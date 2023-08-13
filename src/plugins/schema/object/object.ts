@@ -1,8 +1,16 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { type SchemaContext, schemaContext, useBlockPatch, useSchemaType } from '../../../hooks'
+import {
+  formatterContext, objectFormatterContext, objectValidatorContext,
+  type SchemaContext,
+  schemaContext,
+  useBlockPatch,
+  useFormatter,
+  useSchemaType, useValidator, validatorContext,
+} from '../../../hooks'
 import { type BaseSchemaProps } from '../../../types'
+import { isObject, objectFormatter, type ObjectFormatterMap, type ObjectValidatorMap } from '../../../utils'
 
 export interface ObjectProps extends BaseSchemaProps <object> {
 
@@ -15,11 +23,23 @@ export const object: HandlerPlugin = () => {
   const props = useProps<ObjectProps>() || {}
 
   const schema = useSchemaType('object', props)
+  const handler = useNewHandler()
 
   if (schema) {
-    const handler = useNewHandler()
     handler[schemaContext.key] = schema satisfies SchemaContext
-
-    innet(children, handler)
   }
+
+  const formatterMap: ObjectFormatterMap = {}
+  const validatorMap: ObjectValidatorMap = {}
+
+  useFormatter(objectFormatter(formatterMap))
+  useValidator(isObject(validatorMap))
+
+  objectFormatterContext.set(handler, formatterMap)
+  objectValidatorContext.set(handler, validatorMap)
+
+  formatterContext.set(handler, null)
+  validatorContext.set(handler, null)
+
+  innet(children, handler)
 }

@@ -1,8 +1,15 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
-import { useChildren, useProps } from '@innet/jsx'
+import { useChildren, useContext, useProps } from '@innet/jsx'
 
-import { type SchemaContext, schemaContext, useEndpoint } from '../../../hooks'
-import { type ResponseObject, type SchemaObject } from '../../../types'
+import {
+  endpointContext,
+  formatterContext,
+  schemaContext,
+  useEndpoint,
+  useThrow, validatorContext,
+} from '../../../hooks'
+import { type EndpointRule, type ResponseObject, type SchemaObject } from '../../../types'
+import { getOrAdd } from '../../../utils'
 
 export interface ResponseProps {
   /**
@@ -25,6 +32,11 @@ export const response: HandlerPlugin = () => {
   const { operation, props: { path } } = useEndpoint()
   const children = useChildren()
   const handler = useNewHandler()
+  const endpoint = useContext(endpointContext)
+
+  if (!endpoint) {
+    useThrow('<{type}> MUST be placed in <endpoint> element')
+  }
 
   if (!operation.responses) {
     operation.responses = {}
@@ -47,7 +59,17 @@ export const response: HandlerPlugin = () => {
 
   operation.responses[status] = response
 
-  handler[schemaContext.key] = schema satisfies SchemaContext
+  schemaContext.set(handler, schema)
+
+  const rules: EndpointRule<any, any, any> = getOrAdd(endpoint, 'rules.response', [{}, []])
+
+  formatterContext.set(handler, formatter => {
+    rules[0] = formatter
+  })
+
+  validatorContext.set(handler, validator => {
+    rules[1] = validator
+  })
 
   innet(children, handler)
 }

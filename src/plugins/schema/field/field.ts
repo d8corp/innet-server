@@ -1,7 +1,17 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { type SchemaContext, schemaContext, useSchemaContext } from '../../../hooks'
+import {
+  formatterContext,
+  objectFormatterContext,
+  objectValidatorContext,
+  type SchemaContext,
+  schemaContext,
+  useSchemaContext,
+  useSetObjectFormatter,
+  useSetObjectValidator,
+  validatorContext,
+} from '../../../hooks'
 import { type SchemaObject } from '../../../types'
 
 export interface FieldProps {
@@ -11,6 +21,8 @@ export interface FieldProps {
 
 export const field: HandlerPlugin = () => {
   const handler = useNewHandler()
+  const setObjectFormatter = useSetObjectFormatter()
+  const setObjectValidator = useSetObjectValidator()
   const { key, optional } = useProps<FieldProps>()
   const schema = useSchemaContext()
   const children = useChildren()
@@ -39,6 +51,17 @@ export const field: HandlerPlugin = () => {
 
     schema.required.push(key)
   }
+
+  formatterContext.set(handler, formatter => {
+    setObjectFormatter({ [key]: formatter })
+  })
+
+  validatorContext.set(handler, validator => {
+    setObjectValidator({ [key]: validator })
+  })
+
+  objectFormatterContext.set(handler, null)
+  objectValidatorContext.set(handler, null)
 
   innet(children, handler)
 }

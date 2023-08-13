@@ -1,7 +1,7 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { type EndpointContext, endpointContext, useApi, useTag } from '../../../hooks'
+import { endpointContext, useApi, useTag } from '../../../hooks'
 import { type EndpointsMethods, type OperationObject } from '../../../types'
 import { getEndpoint } from '../../../utils'
 
@@ -95,7 +95,7 @@ export const endpoint: HandlerPlugin = () => {
   const endpoint = getEndpoint(path, endpoints[method])
 
   // @ts-expect-error: it's always an object
-  handler[endpointContext.key] = { operation, props, endpoint } satisfies EndpointContext
+  endpointContext.set(handler, { operation, props, endpoint })
 
   innet(children, handler)
 }

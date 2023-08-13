@@ -1,18 +1,12 @@
-import { type ApiValidationErrorData } from '../../../types'
+import { type ValidationErrorData } from '../../../types'
 
-export interface MaxDateValidationErrorData {
-  max: string
-}
-
-export function maxDate <K> (max: Date) {
-  return (value: Date, key: K): ApiValidationErrorData<K, MaxDateValidationErrorData> | undefined => {
+export function maxDate (max: Date) {
+  return (value: Date, data?: object): ValidationErrorData => {
     if (value > max) {
       return {
         error: 'maxDate',
-        data: {
-          key,
-          max: max.toISOString(),
-        },
+        max: max.toISOString(),
+        ...data,
       }
     }
   }

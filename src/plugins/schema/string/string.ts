@@ -1,9 +1,10 @@
 import { type HandlerPlugin } from 'innet'
-import { maxLength, minLength, reg, type Validator } from '@cantinc/utils'
 import { useProps } from '@innet/jsx'
 
-import { useRulesPlugin, useSchemaType } from '../../../hooks'
-import { type ValuesSchemaProps } from '../../../types'
+import { useSchemaType, useValidator } from '../../../hooks'
+import { useFormatter } from '../../../hooks/useFormatter'
+import { type Validator, type ValuesSchemaProps } from '../../../types'
+import { defaultFormatter, isEach, isPattern, maxLength, minLength } from '../../../utils'
 
 export interface StringProps extends ValuesSchemaProps <string> {
   min?: number
@@ -38,12 +39,14 @@ export const string: HandlerPlugin = () => {
   if (pattern !== undefined) {
     // @ts-expect-error: FIXME
     schema.pattern = String(pattern)
-    validator.push(reg(typeof pattern === 'string' ? new RegExp(pattern) : pattern, patternID))
+    validator.push(isPattern(pattern, patternID))
   }
 
-  useRulesPlugin({
-    defaultValue: props.default,
-    formatter: [String],
-    validator,
-  })
+  if (props.default) {
+    useFormatter(defaultFormatter(props.default, String))
+  } else {
+    useFormatter(String)
+  }
+
+  useValidator(isEach(validator))
 }

@@ -1,12 +1,10 @@
-import { type ApiValidationErrorData } from '../../../types'
+import { type ValidationErrorData } from '../../../types'
 
-export function isNumber<K> (value: number, key: K): ApiValidationErrorData<K> | undefined {
+export function isNumber (value: number, data?: object): ValidationErrorData {
   if (isNaN(value) || value > Number.MAX_SAFE_INTEGER || value < -Number.MAX_SAFE_INTEGER) {
     return {
       error: 'number',
-      data: {
-        key,
-      },
+      ...data,
     }
   }
 }

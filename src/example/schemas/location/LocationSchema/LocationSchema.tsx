@@ -6,8 +6,7 @@ export function LocationSchema () {
   return (
     <tuple
       example={[40.741895, -73.989308]}
-      description='GPS Coordinates'
-      ref={ref}>
+      description='GPS Coordinates'>
       <number
         description='Latitude'
         example={40.741895}

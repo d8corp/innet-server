@@ -33,4 +33,20 @@ describe('optionalFormatter', () => {
     expect(result9).toBe(NaN)
     expect(result10).toBe(NaN)
   })
+  test('complex formatter', () => {
+    const num = <I>(value: I): I extends string ? number : never => {
+      if (typeof value === 'string') {
+        // @ts-expect-error: FIXME
+        return Number(value)
+      }
+
+      throw Error('')
+    }
+
+    const format = optionalFormatter(num)
+
+    const result = format('1')
+
+    expect(result).toBe(1)
+  })
 })

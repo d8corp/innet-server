@@ -2,8 +2,18 @@ import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useContext, useProps } from '@innet/jsx'
 
 import { allBodyTypes } from '../../../constants'
-import { endpointContext, /* RulesContext, rulesContext, */ type SchemaContext, schemaContext } from '../../../hooks'
-import { type BodyType, type EndpointRule, type RequestBodyObject, type SchemaObject } from '../../../types'
+import {
+  endpointContext,
+  formatterContext,
+  schemaContext,
+  validatorContext,
+} from '../../../hooks'
+import {
+  type BodyType,
+  type EndpointRule,
+  type RequestBodyObject,
+  type SchemaObject,
+} from '../../../types'
 import { getOrAdd } from '../../../utils'
 
 export interface BodyProps {
@@ -44,12 +54,17 @@ export const body: HandlerPlugin = () => {
     requestBody.content[type] = { schema }
   }
 
-  // FIXME
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const rules: EndpointRule[] = getOrAdd(endpoint, 'rules.body', [{}, []])
+  schemaContext.set(handler, schema)
 
-  handler[schemaContext.key] = schema satisfies SchemaContext
-  // handler[rulesContext.key] = { rules, key: props.name, required: props.required || false } satisfies RulesContext
+  const rules: EndpointRule<any, any, any> = getOrAdd(endpoint, 'rules.body', [{}, []])
+
+  formatterContext.set(handler, formatter => {
+    rules[0] = formatter
+  })
+
+  validatorContext.set(handler, validator => {
+    rules[1] = validator
+  })
 
   innet(children, handler)
 }

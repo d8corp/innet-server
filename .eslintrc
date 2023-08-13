@@ -20,6 +20,8 @@
     "@typescript-eslint/array-type": ["error", {
       "default": "array"
     }],
+    "@typescript-eslint/no-confusing-void-expression": "off",
+    "@typescript-eslint/consistent-type-assertions": "off",
     "@typescript-eslint/no-dynamic-delete": "off",
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/explicit-function-return-type": "off",

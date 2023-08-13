@@ -1,4 +1,4 @@
-import { optional } from '../optionalFormatter'
+import { optionalFormatter } from '../optionalFormatter'
 import { arrayFormatter } from './arrayFormatter'
 
 describe('arrayFormatter', () => {
@@ -30,14 +30,14 @@ describe('arrayFormatter', () => {
     expect(result1).toEqual([1, 0])
   })
   test('optional inside', () => {
-    const format = arrayFormatter(optional(Number))
+    const format = arrayFormatter(optionalFormatter(Number))
 
     const result = format(['1', false, undefined] as const)
 
     expect(result).toEqual([1, 0, undefined])
   })
   test('optional outside', () => {
-    const format = optional(arrayFormatter(Number))
+    const format = optionalFormatter(arrayFormatter(Number))
 
     const result1 = format(undefined)
     expect(result1).toEqual(undefined)

@@ -1,18 +1,12 @@
-import { type ApiValidationErrorData } from '../../../types'
+import { type ValidationErrorData } from '../../../types'
 
-export interface MinDateValidationErrorData {
-  min: string
-}
-
-export function minDate <K> (min: Date) {
-  return (value: Date, key: K): ApiValidationErrorData<K, MinDateValidationErrorData> | undefined => {
+export function minDate (min: Date) {
+  return (value: Date, data?: object): ValidationErrorData => {
     if (value < min) {
       return {
         error: 'minDate',
-        data: {
-          key,
-          min: min.toISOString(),
-        },
+        min: min.toISOString(),
+        ...data,
       }
     }
   }

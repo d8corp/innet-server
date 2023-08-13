@@ -15,8 +15,15 @@ export const apiValidationErrors = [
   'minDate',
   'maxDate',
   'maximum',
+  'minLength',
+  'maxLength',
   'values',
   'object',
+  'array',
+  'tuple',
+  'required',
+  'null',
+  'pattern',
 ] as const
 
 export type ApiErrorValue = typeof apiErrors[number]
