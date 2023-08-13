@@ -1,3 +1,56 @@
+declare namespace Components {
+    namespace Schemas {
+        export interface AddressSchema {
+            id: number;
+            active: null;
+            /**
+             * City description
+             */
+            city: "msk" | "sml";
+            location: /**
+             * GPS Coordinates
+             * example:
+             * [
+             *   40.741895,
+             *   -73.989308
+             * ]
+             */
+            LocationSchema;
+        }
+        export interface EditPartnerSchema {
+            /**
+             * example:
+             * CANTent.
+             */
+            name: string;
+            gift: boolean;
+            addresses?: number[];
+        }
+        /**
+         * GPS Coordinates
+         * example:
+         * [
+         *   40.741895,
+         *   -73.989308
+         * ]
+         */
+        export type LocationSchema = any[];
+        export interface PartnerSchema {
+            /**
+             * example:
+             * cantent
+             */
+            id: string;
+            /**
+             * example:
+             * CANTent.
+             */
+            name: string;
+            gift: boolean;
+            addresses?: AddressSchema[];
+        }
+    }
+}
 declare namespace Paths {
     namespace Partners {
         namespace Get {
@@ -19,36 +72,7 @@ declare namespace Paths {
                      */
                     pageSize: number;
                     count: number;
-                    partners: {
-                        /**
-                         * example:
-                         * cantent
-                         */
-                        id: string;
-                        /**
-                         * example:
-                         * CANTent.
-                         */
-                        name: string;
-                        gift: boolean;
-                        addresses?: {
-                            id: number;
-                            active: null;
-                            /**
-                             * City description
-                             */
-                            city: "msk" | "sml";
-                            /**
-                             * GPS Coordinates
-                             * example:
-                             * [
-                             *   40.741895,
-                             *   -73.989308
-                             * ]
-                             */
-                            location: any[];
-                        }[];
-                    }[];
+                    partners: Components.Schemas.PartnerSchema[];
                 }
             }
         }
@@ -62,36 +86,7 @@ declare namespace Paths {
                 id: Parameters.Id;
             }
             namespace Responses {
-                export interface Default {
-                    /**
-                     * example:
-                     * cantent
-                     */
-                    id: string;
-                    /**
-                     * example:
-                     * CANTent.
-                     */
-                    name: string;
-                    gift: boolean;
-                    addresses?: {
-                        id: number;
-                        active: null;
-                        /**
-                         * City description
-                         */
-                        city: "msk" | "sml";
-                        /**
-                         * GPS Coordinates
-                         * example:
-                         * [
-                         *   40.741895,
-                         *   -73.989308
-                         * ]
-                         */
-                        location: any[];
-                    }[];
-                }
+                export type Default = Components.Schemas.PartnerSchema;
             }
         }
         namespace Patch {
@@ -101,46 +96,9 @@ declare namespace Paths {
             export interface PathParameters {
                 id: Parameters.Id;
             }
-            export interface RequestBody {
-                /**
-                 * example:
-                 * CANTent.
-                 */
-                name: string;
-                gift: boolean;
-                addresses?: number[];
-            }
+            export type RequestBody = Components.Schemas.EditPartnerSchema;
             namespace Responses {
-                export interface $220 {
-                    /**
-                     * example:
-                     * cantent
-                     */
-                    id: string;
-                    /**
-                     * example:
-                     * CANTent.
-                     */
-                    name: string;
-                    gift: boolean;
-                    addresses?: {
-                        id: number;
-                        active: null;
-                        /**
-                         * City description
-                         */
-                        city: "msk" | "sml";
-                        /**
-                         * GPS Coordinates
-                         * example:
-                         * [
-                         *   40.741895,
-                         *   -73.989308
-                         * ]
-                         */
-                        location: any[];
-                    }[];
-                }
+                export type $220 = Components.Schemas.PartnerSchema;
             }
         }
     }

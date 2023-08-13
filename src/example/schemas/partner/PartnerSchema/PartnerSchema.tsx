@@ -5,7 +5,7 @@ export function PartnerSchema () {
   const ref = useComponentName()
 
   return (
-    <object>
+    <object ref={ref}>
       <field key='id'><string example='cantent' /></field>
       <field key='name'><string example='CANTent.' /></field>
       <field key='gift'><boolean /></field>

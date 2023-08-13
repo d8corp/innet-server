@@ -63,7 +63,7 @@ export const api: HandlerPlugin = () => {
   }
   const requestPlugins = new Set<RequestPlugin>()
 
-  const context: ApiContext = { docs, endpoints, prefix, requestPlugins }
+  const context: ApiContext = { docs, endpoints, prefix, requestPlugins, refFormatters: {}, refValidators: {} }
 
   handler[apiContext.key] = context
 
@@ -195,10 +195,10 @@ export const api: HandlerPlugin = () => {
           }
 
           const newHandler = Object.create(runEndpoint.handler as Handler)
-          newHandler[responseContext.key] = res
-          newHandler[requestContext.key] = req
-          newHandler[paramsContext.key] = params
-          newHandler[actionContext.key] = action
+          responseContext.set(newHandler, res)
+          requestContext.set(newHandler, req)
+          paramsContext.set(newHandler, params)
+          actionContext.set(newHandler, action)
 
           innet(runEndpoint.content, newHandler)
 

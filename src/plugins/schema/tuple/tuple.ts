@@ -31,25 +31,27 @@ export const tuple: HandlerPlugin = () => {
   const schema = useSchemaType('array', useProps<TupleProps>()) as ArraySchemaObject
   const children = useChildren()
 
-  const schemas: SchemaObject[] = []
-  handler[schemaContext.key] = schemas satisfies SchemaContext
+  if (schema) {
+    const schemas: SchemaObject[] = []
+    handler[schemaContext.key] = schemas satisfies SchemaContext
 
-  // @ts-expect-error: FIXME
-  schema.prefixItems = schemas
+    // @ts-expect-error: FIXME
+    schema.prefixItems = schemas
 
-  const tupleFormatterMap: Formatter<any, any>[] = []
-  const tupleValidatorMap: Validator<any, any>[] = []
+    const tupleFormatterMap: Formatter<any, any>[] = []
+    const tupleValidatorMap: Validator<any, any>[] = []
 
-  useFormatter(tupleFormatter(tupleFormatterMap))
-  useValidator(isTuple(tupleValidatorMap))
+    useFormatter(tupleFormatter(tupleFormatterMap))
+    useValidator(isTuple(tupleValidatorMap))
 
-  formatterContext.set(handler, formatter => {
-    tupleFormatterMap.push(formatter)
-  })
+    formatterContext.set(handler, formatter => {
+      tupleFormatterMap.push(formatter)
+    })
 
-  validatorContext.set(handler, validator => {
-    tupleValidatorMap.push(validator)
-  })
+    validatorContext.set(handler, validator => {
+      tupleValidatorMap.push(validator)
+    })
 
-  innet(children, handler)
+    innet(children, handler)
+  }
 }

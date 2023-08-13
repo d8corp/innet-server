@@ -5,7 +5,6 @@ import {
   formatterContext,
   objectFormatterContext,
   objectValidatorContext,
-  type SchemaContext,
   schemaContext,
   useSchemaContext,
   useSetObjectFormatter,
@@ -40,7 +39,7 @@ export const field: HandlerPlugin = () => {
   }
 
   const fieldSchema: SchemaObject = {}
-  handler[schemaContext.key] = fieldSchema satisfies SchemaContext
+  schemaContext.set(handler, fieldSchema)
 
   schema.properties[key] = fieldSchema
 
