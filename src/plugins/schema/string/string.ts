@@ -10,7 +10,7 @@ export interface StringProps extends ValuesSchemaProps <string> {
   min?: number
   max?: number
   pattern?: string | RegExp
-  patternID?: string
+  patternId?: string
 }
 
 export const string: HandlerPlugin = () => {
@@ -18,7 +18,7 @@ export const string: HandlerPlugin = () => {
     min,
     max,
     pattern,
-    patternID,
+    patternId,
     ...props
   } = useProps<StringProps>() || {}
   const schema = useSchemaType('string', props)
@@ -39,7 +39,7 @@ export const string: HandlerPlugin = () => {
   if (pattern !== undefined) {
     // @ts-expect-error: FIXME
     schema.pattern = String(pattern)
-    validator.push(isPattern(pattern, patternID))
+    validator.push(isPattern(pattern, patternId))
   }
 
   if (props.default) {

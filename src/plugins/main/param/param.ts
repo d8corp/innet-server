@@ -5,16 +5,26 @@ import {
   formatterContext,
   paramContext,
   schemaContext,
-  useEndpoint, validatorContext,
+  useEndpoint,
+  validatorContext,
 } from '../../../hooks'
 import {
+  type EndpointRule,
   type EndpointRules,
-  type Formatter,
   type InParam,
   type ParameterObject,
-  type SchemaObject, type Validator,
+  type SchemaObject,
 } from '../../../types'
-import { getOrAdd, isObject, isOptional, isRequired, objectFormatter, optionalFormatter } from '../../../utils'
+import {
+  getOrAdd,
+  isObject,
+  isOptional,
+  isRequired,
+  objectFormatter,
+  type ObjectFormatterMap,
+  type ObjectValidatorMap,
+  optionalFormatter,
+} from '../../../utils'
 
 const inMap: Record<InParam, keyof EndpointRules> = {
   query: 'search',
@@ -86,26 +96,30 @@ export const param: HandlerPlugin = () => {
 
   schemaContext.set(handler, schema)
 
-  const rules: [Formatter<any, any> | undefined, Validator<any, any> | undefined] = getOrAdd(endpoint, `rules.${inMap[props.in]}`, [{}, []])
+  const rules: EndpointRule<any, any, any>[] = getOrAdd(endpoint, `rules.${inMap[props.in]}`, [{}, []])
+  const rulesMaps: [ObjectFormatterMap, ObjectValidatorMap][] = getOrAdd(endpoint, `rulesMaps.${inMap[props.in]}`, [{}, []])
   let formatterIndex = 0
   let validatorIndex = 0
 
   paramContext.set(handler, { props })
 
   formatterContext.set(handler, formatter => {
-    if (!rules[formatterIndex]) {
-      rules[formatterIndex] = [] as any
+    const rule = getOrAdd(rules, formatterIndex, [[]])
+    const ruleMaps = getOrAdd(rulesMaps, formatterIndex, [[]])
+
+    if (!rule[0]) {
+      ruleMaps[0] = { [props.name]: params.required ? optionalFormatter(formatter) : formatter }
+      rule[0] = objectFormatter(ruleMaps[0])
+    } else {
+      ruleMaps[0][props.name] = params.required ? optionalFormatter(formatter) : formatter
     }
 
-    // @ts-expect-error: FIXME
-    rules[formatterIndex][0] = objectFormatter({ [props.name]: optionalFormatter(formatter) })
     formatterIndex++
   })
 
   validatorContext.set(handler, validator => {
-    if (!rules[validatorIndex]) {
-      rules[validatorIndex] = [] as any
-    }
+    const rule = getOrAdd(rules, validatorIndex, [[]])
+    const ruleMaps = getOrAdd(rulesMaps, validatorIndex, [[]])
 
     if (params.required) {
       validator = isRequired(validator)
@@ -113,8 +127,13 @@ export const param: HandlerPlugin = () => {
       validator = isOptional(validator)
     }
 
-    // @ts-expect-error: FIXME
-    rules[validatorIndex][1] = isObject({ [props.name]: validator })
+    if (!rule[1]) {
+      ruleMaps[1] = { [props.name]: validator }
+      rule[1] = isObject(ruleMaps[1])
+    } else {
+      ruleMaps[1][props.name] = validator
+    }
+
     validatorIndex++
   })
 

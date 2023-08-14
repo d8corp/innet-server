@@ -3,6 +3,7 @@ import type { Handler } from 'innet'
 import type { OpenAPIV3_1 as API } from 'openapi-types'
 
 import type { ApiErrorValue, ApiValidationErrorValue } from './constants'
+import { type ObjectFormatterMap, type ObjectValidatorMap } from './utils'
 
 // Open API
 
@@ -63,10 +64,17 @@ export interface EndpointRules<
 > {
   path?: EndpointRule<I, O, D>[]
   search?: EndpointRule<I, O, D>[]
-  body?: EndpointRule<I, O, D>[]
   cookie?: EndpointRule<I, O, D>[]
   header?: EndpointRule<I, O, D>[]
+  body?: EndpointRule<I, O, D>[]
   response?: EndpointRule<I, O, D>[]
+}
+
+export interface EndpointRulesMaps {
+  path?: [ObjectFormatterMap, ObjectValidatorMap][]
+  search?: [ObjectFormatterMap, ObjectValidatorMap][]
+  cookie?: [ObjectFormatterMap, ObjectValidatorMap][]
+  header?: [ObjectFormatterMap, ObjectValidatorMap][]
 }
 
 export interface Endpoint<
@@ -79,6 +87,7 @@ export interface Endpoint<
   key: string
   content?: any
   rules?: EndpointRules<I, O, D>
+  rulesMaps?: EndpointRulesMaps
   handler?: Handler
   static?: Record<string, Endpoint<I, O, E, P, D>>
   dynamic?: Endpoint<I, O, E, P, D>[]
