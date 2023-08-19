@@ -15,6 +15,7 @@ import {
 } from '../../../types'
 import {
   getOrAdd,
+  oneOf,
 } from '../../../utils'
 import { type ObjectOf, objectOf, optional, required } from '../../../utils/rules'
 
@@ -94,7 +95,13 @@ export const param: HandlerPlugin = () => {
 
   paramContext.set(handler, { props })
   ruleContext.set(handler, rule => {
-    rulesMap[props.name] = params.required ? required(rule) : optional(rule)
+    const override = params.required ? required : optional
+
+    if (props.name in rulesMap) {
+      rulesMap[props.name] = override(oneOf([rulesMap[props.name], rule]))
+    } else {
+      rulesMap[props.name] = override(rule)
+    }
   })
 
   innet(children, handler)
