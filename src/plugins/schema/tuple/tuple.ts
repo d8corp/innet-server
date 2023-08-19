@@ -2,23 +2,19 @@ import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
 import {
+  ruleContext,
   type SchemaContext,
   schemaContext,
   useBlockPatch,
+  useRule,
   useSchemaType,
-  useValidator,
-  validatorContext,
 } from '../../../hooks'
-import { formatterContext, useFormatter } from '../../../hooks/useFormatter'
 import {
   type ArraySchemaObject,
   type BaseSchemaProps,
-  type Formatter,
   type SchemaObject,
-  type Validator,
 } from '../../../types'
-import { isTuple } from '../../../utils'
-import { tupleFormatter } from '../../../utils/formatters/tupleFormatter'
+import { type Rule, tupleOf } from '../../../utils'
 
 export interface TupleProps extends BaseSchemaProps <any[]> {
 
@@ -38,18 +34,12 @@ export const tuple: HandlerPlugin = () => {
     // @ts-expect-error: FIXME
     schema.prefixItems = schemas
 
-    const tupleFormatterMap: Formatter<any, any>[] = []
-    const tupleValidatorMap: Validator<any, any>[] = []
+    const rulesMap: Rule[] = []
 
-    useFormatter(tupleFormatter(tupleFormatterMap))
-    useValidator(isTuple(tupleValidatorMap))
+    useRule(tupleOf(rulesMap))
 
-    formatterContext.set(handler, formatter => {
-      tupleFormatterMap.push(formatter)
-    })
-
-    validatorContext.set(handler, validator => {
-      tupleValidatorMap.push(validator)
+    ruleContext.set(handler, rule => {
+      rulesMap.push(rule)
     })
 
     innet(children, handler)

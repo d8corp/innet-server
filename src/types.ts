@@ -2,8 +2,8 @@ import type { IncomingMessage, ServerResponse } from 'http'
 import type { Handler } from 'innet'
 import type { OpenAPIV3_1 as API } from 'openapi-types'
 
-import type { ApiErrorValue, ApiValidationErrorValue } from './constants'
-import { type ObjectFormatterMap, type ObjectValidatorMap } from './utils'
+import type { ApiErrorValue } from './constants'
+import { type Rule, type RulesErrors } from './utils/rules'
 
 // Open API
 
@@ -25,56 +25,26 @@ export type RefSchemaObject = SchemaObject | ReferenceObject
 
 // Custom
 
-export type Formatter<I, O> = (value: I) => O
-
 export interface IValidationErrorData extends Record<string, any> {
-  error: ApiValidationErrorValue
+  error: RulesErrors
 }
 
 export type ValidationErrorData = IValidationErrorData | undefined
 
-export interface ValidationError<E extends string, P extends InValidationErrorParam, D extends ValidationErrorData> {
-  error: E
-  in: P
-  data?: D
-  or?: ValidationError<E, P, D>
-}
-
-export type ValidationResponse<
-  E extends ApiErrorValue,
-  P extends InValidationErrorParam,
-  D extends ValidationErrorData
-> = ValidationError<E, P, D> | undefined
-
-export type Validator<
-  V,
-  D extends ValidationErrorData
-> = (value: V, data?: D) => ValidationErrorData
-
-export type EndpointRule<
-  I,
-  O,
-  D extends ValidationErrorData
-> = [Formatter<I, O> | undefined, Validator<O, D> | undefined]
-
-export interface EndpointRules<
-  I = any,
-  O = any,
-  D extends ValidationErrorData = ValidationErrorData
-> {
-  path?: EndpointRule<I, O, D>[]
-  search?: EndpointRule<I, O, D>[]
-  cookie?: EndpointRule<I, O, D>[]
-  header?: EndpointRule<I, O, D>[]
-  body?: EndpointRule<I, O, D>[]
-  response?: EndpointRule<I, O, D>[]
+export interface EndpointRules {
+  path?: Rule
+  search?: Rule
+  cookie?: Rule
+  header?: Rule
+  body?: Rule
+  response?: Rule
 }
 
 export interface EndpointRulesMaps {
-  path?: [ObjectFormatterMap, ObjectValidatorMap][]
-  search?: [ObjectFormatterMap, ObjectValidatorMap][]
-  cookie?: [ObjectFormatterMap, ObjectValidatorMap][]
-  header?: [ObjectFormatterMap, ObjectValidatorMap][]
+  path?: Record<string, Rule>
+  search?: Record<string, Rule>
+  cookie?: Record<string, Rule>
+  header?: Record<string, Rule>
 }
 
 export interface Endpoint<
@@ -86,7 +56,7 @@ export interface Endpoint<
 > {
   key: string
   content?: any
-  rules?: EndpointRules<I, O, D>
+  rules?: EndpointRules
   rulesMaps?: EndpointRulesMaps
   handler?: Handler
   static?: Record<string, Endpoint<I, O, E, P, D>>

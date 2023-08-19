@@ -4,13 +4,11 @@ import { useChildren, useContext, useProps } from '@innet/jsx'
 import { allBodyTypes } from '../../../constants'
 import {
   endpointContext,
-  formatterContext,
+  ruleContext,
   schemaContext,
-  validatorContext,
 } from '../../../hooks'
 import {
-  type BodyType,
-  type EndpointRule,
+  type BodyType, type EndpointRules,
   type RequestBodyObject,
   type SchemaObject,
 } from '../../../types'
@@ -56,14 +54,10 @@ export const body: HandlerPlugin = () => {
 
   schemaContext.set(handler, schema)
 
-  const rules: EndpointRule<any, any, any> = getOrAdd(endpoint, 'rules.body', [{}, []])
+  const rules: EndpointRules = getOrAdd(endpoint, 'endpoint.rules', [{}, {}])
 
-  formatterContext.set(handler, formatter => {
-    rules[0] = formatter
-  })
-
-  validatorContext.set(handler, validator => {
-    rules[1] = validator
+  ruleContext.set(handler, rule => {
+    rules.body = rule
   })
 
   innet(children, handler)

@@ -6,8 +6,8 @@ export class RulesError extends Error {
   constructor (error: RulesErrors, data?: object) {
     super(`Validation Error: ${error}`)
     this.data = {
-      ...data,
       error,
+      ...data,
     }
   }
 }

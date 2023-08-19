@@ -1,9 +1,9 @@
 import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
-import { useFormatter, useSchemaType, useValidator } from '../../../hooks'
-import { type IntegerFormats, type Validator, type ValuesSchemaProps } from '../../../types'
-import { defaultFormatter, isEach, isInteger, maximum, minimum } from '../../../utils'
+import { useRule, useSchemaType } from '../../../hooks'
+import { type IntegerFormats, type ValuesSchemaProps } from '../../../types'
+import { defaultTo, int, max as maximum, min as minimum, pipe, type Rule } from '../../../utils'
 
 type GetType<F extends IntegerFormats> = F extends 'int32' ? number : bigint
 
@@ -38,16 +38,21 @@ export const integer: HandlerPlugin = <F extends IntegerFormats>() => {
   // @ts-expect-error: FIXME
   schema.maximum = max !== undefined ? Number(max) : undefined
 
-  const validator: Validator<any, any>[] = [isInteger(format)]
+  const rules: Rule[] = []
+
+  if (defaultValue !== undefined) {
+    rules.push(defaultTo(defaultValue))
+  }
+
+  rules.push(int(format))
 
   if (min !== undefined) {
-    validator.push(minimum(min))
+    rules.push(minimum(min))
   }
 
   if (max !== undefined) {
-    validator.push(maximum(max))
+    rules.push(maximum(max))
   }
 
-  useFormatter(defaultFormatter(defaultValue, format === 'int32' ? Number : BigInt))
-  useValidator(isEach(validator))
+  useRule(pipe(...rules))
 }

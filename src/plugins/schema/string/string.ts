@@ -1,10 +1,9 @@
 import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
-import { useSchemaType, useValidator } from '../../../hooks'
-import { useFormatter } from '../../../hooks/useFormatter'
-import { type Validator, type ValuesSchemaProps } from '../../../types'
-import { defaultFormatter, isEach, isPattern, maxLength, minLength } from '../../../utils'
+import { useRule, useSchemaType } from '../../../hooks'
+import { type ValuesSchemaProps } from '../../../types'
+import { defaultTo, maxLength, minLength, pattern as patternTo, pipe, type Rule } from '../../../utils'
 
 export interface StringProps extends ValuesSchemaProps <string> {
   min?: number
@@ -22,31 +21,31 @@ export const string: HandlerPlugin = () => {
     ...props
   } = useProps<StringProps>() || {}
   const schema = useSchemaType('string', props)
-  const validator: Validator<any, any>[] = []
+  const rules: Rule[] = []
+
+  if (props.default) {
+    rules.push(defaultTo(props.default))
+  }
+
+  rules.push(String)
 
   if (min !== undefined) {
     // @ts-expect-error: FIXME
     schema.minimum = min
-    validator.push(minLength(min))
+    rules.push(minLength(min))
   }
 
   if (max !== undefined) {
     // @ts-expect-error: FIXME
     schema.maximum = max
-    validator.push(maxLength(max))
+    rules.push(maxLength(max))
   }
 
   if (pattern !== undefined) {
     // @ts-expect-error: FIXME
     schema.pattern = String(pattern)
-    validator.push(isPattern(pattern, patternId))
+    rules.push(patternTo(pattern, patternId))
   }
 
-  if (props.default) {
-    useFormatter(defaultFormatter(props.default, String))
-  } else {
-    useFormatter(String)
-  }
-
-  useValidator(isEach(validator))
+  useRule(pipe(...rules))
 }

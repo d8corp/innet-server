@@ -3,12 +3,12 @@ import { useChildren, useContext, useProps } from '@innet/jsx'
 
 import {
   endpointContext,
-  formatterContext,
+  ruleContext,
   schemaContext,
   useEndpoint,
-  useThrow, validatorContext,
+  useThrow,
 } from '../../../hooks'
-import { type EndpointRule, type ResponseObject, type SchemaObject } from '../../../types'
+import { type EndpointRules, type ResponseObject, type SchemaObject } from '../../../types'
 import { getOrAdd } from '../../../utils'
 
 export interface ResponseProps {
@@ -61,14 +61,10 @@ export const response: HandlerPlugin = () => {
 
   schemaContext.set(handler, schema)
 
-  const rules: EndpointRule<any, any, any> = getOrAdd(endpoint, 'rules.response', [{}, []])
+  const rules: EndpointRules = getOrAdd(endpoint, 'endpoint.rules', [{}, {}])
 
-  formatterContext.set(handler, formatter => {
-    rules[0] = formatter
-  })
-
-  validatorContext.set(handler, validator => {
-    rules[1] = validator
+  ruleContext.set(handler, rule => {
+    rules.response = rule
   })
 
   innet(children, handler)

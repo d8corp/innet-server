@@ -1,18 +1,15 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
-import { useChildren, useProps } from '@innet/jsx'
+import { useChildren, useContext, useProps } from '@innet/jsx'
 
 import {
-  formatterContext,
+  ruleContext,
   type SchemaContext,
   schemaContext,
   useBlockPatch,
   useSchemaType,
-  useSetFormatter,
-  useSetValidator,
-  validatorContext,
 } from '../../../hooks'
 import { type ArraySchemaObject, type BaseSchemaProps, type SchemaObject } from '../../../types'
-import { arrayFormatter, isArray } from '../../../utils'
+import { arrayOf } from '../../../utils'
 
 export interface ArrayProps extends BaseSchemaProps <any[]> {
 
@@ -21,8 +18,7 @@ export interface ArrayProps extends BaseSchemaProps <any[]> {
 export const array: HandlerPlugin = () => {
   useBlockPatch()
 
-  const setFormatter = useSetFormatter()
-  const setValidator = useSetValidator()
+  const setRule = useContext(ruleContext)
   const handler = useNewHandler()
   const schema = useSchemaType('array', useProps<ArrayProps>()) as ArraySchemaObject
   const children = useChildren()
@@ -32,13 +28,9 @@ export const array: HandlerPlugin = () => {
 
   schema.items = fieldSchema
 
-  formatterContext.set(handler, formatter => {
-    setFormatter(arrayFormatter(formatter))
-  })
-
-  validatorContext.set(handler, validator => {
-    setValidator(isArray(validator))
-  })
+  if (setRule) {
+    ruleContext.set(handler, rule => setRule(arrayOf(rule)))
+  }
 
   innet(children, handler)
 }

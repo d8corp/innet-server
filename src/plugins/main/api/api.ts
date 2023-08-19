@@ -15,12 +15,12 @@ import {
 import {
   type Document,
   type Endpoint,
-  type EndpointRule,
   type Endpoints,
   type EndpointsMethods,
   type RequestPlugin,
 } from '../../../types'
 import { Action } from '../../../utils'
+import { type Rule, RulesError } from '../../../utils/rules'
 
 export interface ApiProps {
   /** The title of the API. */
@@ -63,7 +63,7 @@ export const api: HandlerPlugin = () => {
   }
   const requestPlugins = new Set<RequestPlugin>()
 
-  const context: ApiContext = { docs, endpoints, prefix, requestPlugins, refFormatters: {}, refValidators: {} }
+  const context: ApiContext = { docs, endpoints, prefix, requestPlugins, refRules: {} }
 
   apiContext.set(handler, context)
 
@@ -106,66 +106,38 @@ export const api: HandlerPlugin = () => {
           const bodyRules = runEndpoint.rules?.body
 
           if (pathRules) {
-            let isValid = false
-            for (
-              const [
-                formatter,
-                validation,
-              ] of pathRules
-            ) {
-              let currentParams = params
-
-              if (currentParams && formatter) {
-                currentParams = formatter(currentParams)
-              }
-
-              if (!validation?.(currentParams)) {
-                params = currentParams
-                isValid = true
-                break
-              }
+            try {
+              Object.assign(params, pathRules(params, { in: 'path' }))
+            } catch {
+              return false
             }
-
-            if (!isValid) return false
           }
 
-          function checkActionRules (rules?: EndpointRule<any, any, any>[], key: 'search' | 'cookies' | 'headers' | 'body' = 'search') {
+          function checkActionRules (rules?: Rule, key: 'search' | 'cookies' | 'headers' | 'body' = 'search') {
             if (rules) {
-              let ok = false
-              const errors: any[] = []
-
-              for (const [formatter, validator] of rules) {
-                let currentData = action[key] as object
-
-                if (formatter) {
-                  currentData = { ...action[key] }
-                  currentData = formatter(currentData)
-                }
-
-                const error = validator?.(currentData)
-
-                if (!error) {
-                  action[key] = currentData as any
-                  ok = true
-                  break
-                }
-
-                errors.push(error)
-              }
-
-              if (!ok) {
-                res.statusCode = 400
+              try {
+                action[key] = rules(action[key])
+              } catch (e: unknown) {
                 res.setHeader('Content-Type', 'application/json')
-                res.write(JSON.stringify({
-                  error: 'requestValidation',
-                  data: {
-                    ...errors[0],
-                    in: key,
-                    or: errors.length > 1 ? errors.slice(1) : undefined,
-                  },
-                }))
-                res.end()
-
+                if (e instanceof RulesError) {
+                  res.statusCode = 400
+                  res.write(JSON.stringify({
+                    error: 'requestValidation',
+                    data: {
+                      ...e.data,
+                      in: key,
+                    },
+                  }))
+                  res.end()
+                } else {
+                  console.error(e)
+                  res.statusCode = 500
+                  res.write(JSON.stringify({
+                    error: 'unknown',
+                    data: { in: key },
+                  }))
+                  res.end()
+                }
                 return true
               }
             }

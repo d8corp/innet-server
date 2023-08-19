@@ -1,6 +1,7 @@
 import { Context, useContext } from '@innet/jsx'
 
-import { type Document, type Endpoints, type Fallback, type Formatter, type RequestPlugin, type Validator } from '../../types'
+import { type Document, type Endpoints, type Fallback, type RequestPlugin } from '../../types'
+import { type Rule } from '../../utils'
 
 export interface ApiContext {
   docs: Document
@@ -8,8 +9,7 @@ export interface ApiContext {
   prefix: string
   requestPlugins: Set<RequestPlugin>
   fallback?: Fallback
-  refFormatters: Record<string, Formatter<any, any>>
-  refValidators: Record<string, Validator<any, any>>
+  refRules: Record<string, Rule>
 }
 
 export const apiContext = new Context<ApiContext>()

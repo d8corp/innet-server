@@ -1,9 +1,9 @@
 import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
-import { useFormatter, useSchemaType, useValidator } from '../../../hooks'
-import { type Validator, type ValuesSchemaProps } from '../../../types'
-import { isEach, isNumber, maximum, minimum } from '../../../utils'
+import { useRule, useSchemaType } from '../../../hooks'
+import { type ValuesSchemaProps } from '../../../types'
+import { max as maximum, min as minimum, num, pipe, type Rule } from '../../../utils'
 
 export interface NumberProps extends ValuesSchemaProps <number> {
   /** Validate the number value by minimum. */
@@ -22,16 +22,15 @@ export const number: HandlerPlugin = () => {
   // @ts-expect-error: FIXME
   schema.maximum = max
 
-  const validator: Validator<any, any>[] = [isNumber]
+  const rules: Rule[] = [num]
 
   if (min !== undefined) {
-    validator.push(minimum(min))
+    rules.push(minimum(min))
   }
 
   if (max !== undefined) {
-    validator.push(maximum(max))
+    rules.push(maximum(max))
   }
 
-  useFormatter(Number)
-  useValidator(isEach(validator))
+  useRule(pipe(...rules))
 }

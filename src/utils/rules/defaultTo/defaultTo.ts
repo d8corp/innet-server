@@ -1,3 +1,7 @@
 export function defaultTo (defaultValue: any) {
-  return (value: any) => value === undefined ? defaultValue : value
+  return (value: any) => value !== undefined
+    ? value
+    : typeof defaultValue === 'function'
+      ? defaultValue()
+      : defaultValue
 }

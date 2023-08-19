@@ -1,6 +1,6 @@
 import { RulesError } from '../helpers'
 
-export function max (max: number) {
+export function max (max: number | bigint) {
   return (value: any, data?: object) => {
     if (typeof value !== 'number') {
       throw new RulesError('number', data)

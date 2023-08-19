@@ -2,14 +2,12 @@ import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
 import {
-  formatterContext,
   paramContext,
+  ruleContext,
   schemaContext,
   useEndpoint,
-  validatorContext,
 } from '../../../hooks'
 import {
-  type EndpointRule,
   type EndpointRules,
   type InParam,
   type ParameterObject,
@@ -17,14 +15,8 @@ import {
 } from '../../../types'
 import {
   getOrAdd,
-  isObject,
-  isOptional,
-  isRequired,
-  objectFormatter,
-  type ObjectFormatterMap,
-  type ObjectValidatorMap,
-  optionalFormatter,
 } from '../../../utils'
+import { type ObjectOf, objectOf, optional, required } from '../../../utils/rules'
 
 const inMap: Record<InParam, keyof EndpointRules> = {
   query: 'search',
@@ -96,45 +88,13 @@ export const param: HandlerPlugin = () => {
 
   schemaContext.set(handler, schema)
 
-  const rules: EndpointRule<any, any, any>[] = getOrAdd(endpoint, `rules.${inMap[props.in]}`, [{}, []])
-  const rulesMaps: [ObjectFormatterMap, ObjectValidatorMap][] = getOrAdd(endpoint, `rulesMaps.${inMap[props.in]}`, [{}, []])
-  let formatterIndex = 0
-  let validatorIndex = 0
+  const rulesMap: ObjectOf = getOrAdd(endpoint, `rulesMaps.${inMap[props.in]}`, [{}, {}])
+
+  getOrAdd(endpoint, `rules.${inMap[props.in]}`, [{}, objectOf(rulesMap)])
 
   paramContext.set(handler, { props })
-
-  formatterContext.set(handler, formatter => {
-    const rule = getOrAdd(rules, formatterIndex, [[]])
-    const ruleMaps = getOrAdd(rulesMaps, formatterIndex, [[]])
-
-    if (!rule[0]) {
-      ruleMaps[0] = { [props.name]: params.required ? optionalFormatter(formatter) : formatter }
-      rule[0] = objectFormatter(ruleMaps[0])
-    } else {
-      ruleMaps[0][props.name] = params.required ? optionalFormatter(formatter) : formatter
-    }
-
-    formatterIndex++
-  })
-
-  validatorContext.set(handler, validator => {
-    const rule = getOrAdd(rules, validatorIndex, [[]])
-    const ruleMaps = getOrAdd(rulesMaps, validatorIndex, [[]])
-
-    if (params.required) {
-      validator = isRequired(validator)
-    } else {
-      validator = isOptional(validator)
-    }
-
-    if (!rule[1]) {
-      ruleMaps[1] = { [props.name]: validator }
-      rule[1] = isObject(ruleMaps[1])
-    } else {
-      ruleMaps[1][props.name] = validator
-    }
-
-    validatorIndex++
+  ruleContext.set(handler, rule => {
+    rulesMap[props.name] = params.required ? required(rule) : optional(rule)
   })
 
   innet(children, handler)
