@@ -16,6 +16,7 @@ import {
 import {
   getOrAdd,
   oneOf,
+  type Rule,
 } from '../../../utils'
 import { type ObjectOf, objectOf, optional, required } from '../../../utils/rules'
 
@@ -90,6 +91,8 @@ export const param: HandlerPlugin = () => {
   schemaContext.set(handler, schema)
 
   const rulesMap: ObjectOf = getOrAdd(endpoint, `rulesMaps.${inMap[props.in]}`, [{}, {}])
+  const oneOfRulesMap: Record<string, Rule[]> = {}
+  const key = props.name
 
   getOrAdd(endpoint, `rules.${inMap[props.in]}`, [{}, objectOf(rulesMap)])
 
@@ -97,10 +100,15 @@ export const param: HandlerPlugin = () => {
   ruleContext.set(handler, rule => {
     const override = params.required ? required : optional
 
-    if (props.name in rulesMap) {
-      rulesMap[props.name] = override(oneOf([rulesMap[props.name], rule]))
+    if (key in rulesMap) {
+      if (key in oneOfRulesMap) {
+        oneOfRulesMap[key].push(rule)
+      } else {
+        oneOfRulesMap[key] = [rulesMap[key], rule]
+        rulesMap[key] = override(oneOf(oneOfRulesMap[key]))
+      }
     } else {
-      rulesMap[props.name] = override(rule)
+      rulesMap[key] = override(rule)
     }
   })
 
