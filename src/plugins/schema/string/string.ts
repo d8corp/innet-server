@@ -3,7 +3,16 @@ import { useProps } from '@innet/jsx'
 
 import { useRule, useSchemaType } from '../../../hooks'
 import { type ValuesSchemaProps } from '../../../types'
-import { defaultTo, maxLength, minLength, pattern as patternTo, pipe, type Rule } from '../../../utils'
+import {
+  defaultTo,
+  maxLength,
+  minLength,
+  optional,
+  pattern as patternTo,
+  pipe,
+  type Rule,
+  values,
+} from '../../../utils'
 
 export interface StringProps extends ValuesSchemaProps <string> {
   min?: number
@@ -29,6 +38,10 @@ export const string: HandlerPlugin = () => {
 
   rules.push(String)
 
+  if (props.values) {
+    rules.push(values(props.values))
+  }
+
   if (min !== undefined) {
     // @ts-expect-error: FIXME
     schema.minimum = min
@@ -47,5 +60,9 @@ export const string: HandlerPlugin = () => {
     rules.push(patternTo(pattern, patternId))
   }
 
-  useRule(pipe(...rules))
+  if (props.default) {
+    useRule(pipe(...rules))
+  } else {
+    useRule(optional(pipe(...rules)))
+  }
 }

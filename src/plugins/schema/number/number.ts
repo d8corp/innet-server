@@ -3,7 +3,7 @@ import { useProps } from '@innet/jsx'
 
 import { useRule, useSchemaType } from '../../../hooks'
 import { type ValuesSchemaProps } from '../../../types'
-import { max as maximum, min as minimum, num, pipe, type Rule } from '../../../utils'
+import { defaultTo, max as maximum, min as minimum, num, optional, pipe, type Rule, values } from '../../../utils'
 
 export interface NumberProps extends ValuesSchemaProps <number> {
   /** Validate the number value by minimum. */
@@ -22,7 +22,17 @@ export const number: HandlerPlugin = () => {
   // @ts-expect-error: FIXME
   schema.maximum = max
 
-  const rules: Rule[] = [num]
+  const rules: Rule[] = []
+
+  if (props.default) {
+    rules.push(defaultTo(props.default))
+  }
+
+  rules.push(num)
+
+  if (props.values) {
+    rules.push(values(props.values))
+  }
 
   if (min !== undefined) {
     rules.push(minimum(min))
@@ -32,5 +42,9 @@ export const number: HandlerPlugin = () => {
     rules.push(maximum(max))
   }
 
-  useRule(pipe(...rules))
+  if (!props.default) {
+    useRule(optional(pipe(...rules)))
+  } else {
+    useRule(pipe(...rules))
+  }
 }

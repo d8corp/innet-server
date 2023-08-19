@@ -9,6 +9,7 @@ export function minLength (min: number) {
     if (value.length < min) {
       throw new RulesError('minLength', {
         ...data,
+        value,
         min,
       })
     }

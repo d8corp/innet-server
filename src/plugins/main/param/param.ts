@@ -98,7 +98,7 @@ export const param: HandlerPlugin = () => {
 
   paramContext.set(handler, { props })
   ruleContext.set(handler, rule => {
-    const override = params.required ? required : optional
+    const override = params.required ? required : (e: Rule) => e
 
     if (key in rulesMap) {
       if (key in oneOfRulesMap) {

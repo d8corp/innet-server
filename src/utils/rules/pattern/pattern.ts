@@ -6,6 +6,8 @@ export function pattern (pattern: string | RegExp, patternId: string = String(pa
   return (value: any, data?: object) => {
     if (!normPattern.test(value)) {
       throw new RulesError('pattern', {
+        value,
+        pattern: String(normPattern),
         patternId,
         ...data,
       })
