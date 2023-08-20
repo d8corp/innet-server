@@ -5,7 +5,7 @@ import {
   ruleContext,
   type SchemaContext,
   schemaContext,
-  useBlockPatch,
+  useBlock,
   useRule,
   useSchemaType,
 } from '../../../hooks'
@@ -21,7 +21,7 @@ export interface TupleProps extends BaseSchemaProps <any[]> {
 }
 
 export const tuple: HandlerPlugin = () => {
-  useBlockPatch()
+  useBlock('path')
 
   const handler = useNewHandler()
   const schema = useSchemaType('array', useProps<TupleProps>()) as ArraySchemaObject

@@ -5,7 +5,7 @@ import {
   ruleContext,
   type SchemaContext,
   schemaContext,
-  useBlockPatch,
+  useBlock,
   useSchemaType,
 } from '../../../hooks'
 import { type ArraySchemaObject, type BaseSchemaProps, type SchemaObject } from '../../../types'
@@ -16,7 +16,7 @@ export interface ArrayProps extends BaseSchemaProps <any[]> {
 }
 
 export const array: HandlerPlugin = () => {
-  useBlockPatch()
+  useBlock('path')
 
   const setRule = useContext(ruleContext)
   const handler = useNewHandler()

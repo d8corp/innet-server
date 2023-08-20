@@ -5,7 +5,7 @@ import {
   objectRuleContext,
   ruleContext,
   schemaContext, useApi,
-  useBlockPatch,
+  useBlock,
   useRule,
   useSchemaType,
 } from '../../../hooks'
@@ -20,7 +20,7 @@ export interface ObjectProps extends BaseSchemaProps <object> {
 }
 
 export const object: HandlerPlugin = () => {
-  useBlockPatch()
+  useBlock('path')
 
   const children = useChildren()
   const props = useProps<ObjectProps>() || {}
