@@ -5,8 +5,12 @@ export function EditPartnerSchema () {
 
   return (
     <object ref={ref}>
-      <field key='name'><string example='CANTent.' /></field>
-      <field key='gift'><boolean /></field>
+      <field optional key='name'>
+        <string example='CANTent.' />
+      </field>
+      <field optional key='gift'>
+        <boolean />
+      </field>
       <field optional key='addresses'>
         <array>
           <number description='address id' />

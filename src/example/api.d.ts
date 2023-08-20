@@ -22,8 +22,8 @@ declare namespace Components {
              * example:
              * CANTent.
              */
-            name: string;
-            gift: boolean;
+            name?: string;
+            gift?: boolean;
             addresses?: number[];
         }
         /**
@@ -55,10 +55,10 @@ declare namespace Paths {
     namespace Partners {
         namespace Get {
             namespace Parameters {
-                export type Test = Date; // date-time
+                export type Search = string;
             }
             export interface QueryParameters {
-                test?: Parameters.Test /* date-time */;
+                search?: Parameters.Search;
             }
             namespace Responses {
                 /**
@@ -80,10 +80,10 @@ declare namespace Paths {
     namespace Partners$Id {
         namespace Get {
             namespace Parameters {
-                export type Id = string;
+                export type Id = string; // uuid
             }
             export interface PathParameters {
-                id: Parameters.Id;
+                id: Parameters.Id /* uuid */;
             }
             namespace Responses {
                 export type Default = Components.Schemas.PartnerSchema;
