@@ -61,7 +61,7 @@
   "dependencies": {
     "@cantinc/utils": "^1.4.2",
     "@innet/html": "^1.0.1",
-    "@innet/jsx": "^2.0.0-alpha.9",
+    "@innet/jsx": "^2.0.0-alpha.10",
     "@innet/switch": "^1.0.0",
     "@innet/utils": "^2.0.0-alpha.1",
     "@types/cookie": "^0.5.1",

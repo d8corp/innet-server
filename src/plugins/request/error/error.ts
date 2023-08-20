@@ -70,6 +70,10 @@ export const error: HandlerPlugin = () => {
   const props = useProps<ErrorProps>()
   const res = useResponse()
 
+  if (!res) {
+    throw Error('<error> MUST be in <request>')
+  }
+
   const { status = 520, code = 'undefined' } = props || {}
   res.statusCode = typeof status === 'string' ? errorStatuses[status] : status
 

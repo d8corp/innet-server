@@ -9,6 +9,7 @@ import {
   useBlock,
   useSchemaType,
 } from '../../../hooks'
+import { parentRuleContext } from '../../../hooks/useParentRule'
 import { type ArraySchemaObject, type BaseSchemaProps, type SchemaObject } from '../../../types'
 import { arrayOf, defaultTo, oneOf, optional, pipe, type Rule } from '../../../utils'
 
@@ -42,6 +43,7 @@ export const array: HandlerPlugin = () => {
       ? (rule: Rule) => optional(pipe(...rules, arrayOf(rule)))
       : (rule: Rule) => pipe(...rules, arrayOf(rule))
 
+    parentRuleContext.reset(handler)
     ruleContext.set(handler, rule => {
       if (oneOfRulesMap) {
         oneOfRulesMap.push(rule)

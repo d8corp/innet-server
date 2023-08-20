@@ -2,12 +2,12 @@ import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
 import { useRule, useSchemaType } from '../../../hooks'
+import { useParentRule } from '../../../hooks/useParentRule'
 import { type ValuesSchemaProps } from '../../../types'
 import {
   defaultTo,
   maxLength,
   minLength,
-  optional,
   pattern as patternTo,
   pipe,
   type Rule,
@@ -63,6 +63,7 @@ export const string: HandlerPlugin = () => {
   if (props.default) {
     useRule(pipe(...rules))
   } else {
-    useRule(optional(pipe(...rules)))
+    const parentRule = useParentRule()
+    useRule(parentRule(pipe(...rules)))
   }
 }

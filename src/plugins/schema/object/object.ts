@@ -9,6 +9,7 @@ import {
   useRule,
   useSchemaType,
 } from '../../../hooks'
+import { parentRuleContext } from '../../../hooks/useParentRule'
 import { type BaseSchemaProps } from '../../../types'
 import {
   type ObjectOf,
@@ -31,6 +32,7 @@ export const object: HandlerPlugin = () => {
 
   if (schema) {
     schemaContext.set(handler, schema)
+    parentRuleContext.reset(handler)
 
     const rulesMap: ObjectOf = {}
     const rule = objectOf(rulesMap)

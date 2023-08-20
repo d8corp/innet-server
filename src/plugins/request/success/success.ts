@@ -28,6 +28,10 @@ export const success: HandlerPlugin = () => {
   const res = useResponse()
   const status = props?.status
 
+  if (!res) {
+    throw Error('<success> MUST be in <request>')
+  }
+
   res.statusCode = typeof status === 'string' ? successStatuses[status] : status ?? ((children) ? 200 : 204)
 
   if (children) {

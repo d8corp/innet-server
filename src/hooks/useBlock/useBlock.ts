@@ -8,7 +8,7 @@ import { type InParam } from '../../types'
 export function useBlock (...placements: [InParam, ...InParam[]]) {
   const param = useContext(paramContext)
 
-  if (placements.includes(param?.props.in)) {
+  if (param && placements.includes(param.props.in)) {
     useThrow(`<{type}> cannot be used in patch param <param in="${param?.props.in}">`)
   }
 }
