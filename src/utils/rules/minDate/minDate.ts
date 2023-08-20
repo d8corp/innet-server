@@ -9,6 +9,7 @@ export function minDate (min: Date) {
     if (value < min) {
       throw new RulesError('minDate', {
         ...data,
+        value,
         min: min.toISOString(),
       })
     }

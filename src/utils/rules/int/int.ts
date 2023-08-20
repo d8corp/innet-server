@@ -11,11 +11,40 @@ export function int (format: IntegerFormats) {
   const validator: (val: any) => any = format === 'int32' ? isNaN : (value: any) => isNaN(parseInt(value))
 
   return (value: any, data?: object) => {
-    const result = format === 'int32' ? Number(value) : BigInt(value)
+    let result: number | bigint
 
-    if (validator(result) || result > sizes[format] || result < -sizes[format]) {
+    if (format === 'int32') {
+      result = Number(value)
+    } else {
+      try {
+        result = BigInt(value)
+      } catch (e) {
+        result = NaN
+      }
+    }
+
+    if (validator(result)) {
       throw new RulesError('integer', {
         format,
+        value,
+        ...data,
+      })
+    }
+
+    if (result > sizes[format]) {
+      throw new RulesError('integer', {
+        format,
+        value: result,
+        max: sizes[format],
+        ...data,
+      })
+    }
+
+    if (result < -sizes[format]) {
+      throw new RulesError('integer', {
+        format,
+        value: result,
+        min: -sizes[format],
         ...data,
       })
     }

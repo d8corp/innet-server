@@ -2,6 +2,7 @@ import { type HandlerPlugin } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
 import { useResponse } from '../../../hooks'
+import { JSONString } from '../../../utils'
 
 export const errorStatuses = {
   badRequest: 400,
@@ -72,6 +73,6 @@ export const error: HandlerPlugin = () => {
   const { status = 520, code = 'undefined' } = props || {}
   res.statusCode = typeof status === 'string' ? errorStatuses[status] : status
 
-  res.write(JSON.stringify({ error: code, data: children }))
+  res.write(JSONString({ error: code, data: children }))
   res.end()
 }

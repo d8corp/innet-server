@@ -8,8 +8,10 @@ import {
   dateTo as DateRule,
   defaultTo,
   maxDate,
-  minDate, pipe,
-  type Rule,
+  minDate,
+  optional,
+  pipe,
+  type Rule, values as valuesOf,
 } from '../../../utils'
 import { dateFormat } from '../../../utils/dateFormat'
 
@@ -46,17 +48,31 @@ export const date: HandlerPlugin = () => {
     default: defaultValue === 'now' ? undefined : normDefault?.toISOString(),
   })
 
+  const rules: Rule[] = []
+
+  if (defaultValue !== undefined) {
+    rules.push(defaultTo(defaultValue === 'now' ? () => new Date(Date.now()) : normDefault))
+  }
+
+  rules.push(DateRule)
+
+  if (stringValues) {
+    rules.push((value, data) => valuesOf(stringValues)(value.toISOString(), data))
+  }
+
   // @ts-expect-error: FIXME
   schema.format = 'date-time'
 
   if (normMin) {
     // @ts-expect-error: FIXME
     schema['x-minimum'] = normMin.toISOString()
+    rules.push(minDate(normMin))
   }
 
   if (normMax) {
     // @ts-expect-error: FIXME
     schema['x-maximum'] = normMax.toISOString()
+    rules.push(maxDate(normMax))
   }
 
   if (defaultValue === 'now') {
@@ -64,21 +80,9 @@ export const date: HandlerPlugin = () => {
     schema['x-default'] = 'now'
   }
 
-  const rules: Rule[] = [DateRule]
-
-  if (normMin) {
-    rules.push(minDate(normMin))
-  }
-
-  if (normMax) {
-    rules.push(maxDate(normMax))
-  }
-
-  const rule = pipe(...rules)
-
   if (defaultValue === undefined) {
-    useRule(rule)
+    useRule(optional(pipe(...rules)))
   } else {
-    useRule(pipe(defaultTo(defaultValue === 'now' ? () => new Date(Date.now()) : normDefault), rule))
+    useRule(pipe(...rules))
   }
 }

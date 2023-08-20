@@ -18,7 +18,7 @@ import {
   oneOf,
   type Rule,
 } from '../../../utils'
-import { type ObjectOf, objectOf, optional, required } from '../../../utils/rules'
+import { type ObjectOf, objectOf, required } from '../../../utils/rules'
 
 const inMap: Record<InParam, keyof EndpointRules> = {
   query: 'search',

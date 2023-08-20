@@ -24,7 +24,7 @@ export const number: HandlerPlugin = () => {
 
   const rules: Rule[] = []
 
-  if (props.default) {
+  if (props.default !== undefined) {
     rules.push(defaultTo(props.default))
   }
 

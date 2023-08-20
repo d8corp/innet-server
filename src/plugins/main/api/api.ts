@@ -19,7 +19,7 @@ import {
   type EndpointsMethods,
   type RequestPlugin,
 } from '../../../types'
-import { Action } from '../../../utils'
+import { Action, JSONString } from '../../../utils'
 import { type Rule, RulesError } from '../../../utils/rules'
 
 export interface ApiProps {
@@ -77,7 +77,7 @@ export const api: HandlerPlugin = () => {
 
     if (url === (prefix || '')) {
       res.setHeader('Content-Type', 'application/json')
-      res.write(JSON.stringify(docs))
+      res.write(JSONString(docs))
       res.end()
       return
     }
@@ -121,7 +121,7 @@ export const api: HandlerPlugin = () => {
                 res.setHeader('Content-Type', 'application/json')
                 if (e instanceof RulesError) {
                   res.statusCode = 400
-                  res.write(JSON.stringify({
+                  res.write(JSONString({
                     error: 'requestValidation',
                     data: {
                       ...e.data,
@@ -132,7 +132,7 @@ export const api: HandlerPlugin = () => {
                 } else {
                   console.error(e)
                   res.statusCode = 500
-                  res.write(JSON.stringify({
+                  res.write(JSONString({
                     error: 'unknown',
                     data: { in: key },
                   }))
@@ -155,7 +155,7 @@ export const api: HandlerPlugin = () => {
             if (!action.body) {
               res.statusCode = 400
               res.setHeader('Content-Type', 'application/json')
-              res.write(JSON.stringify({
+              res.write(JSONString({
                 error: 'requestBodyContentType',
               }))
               res.end()

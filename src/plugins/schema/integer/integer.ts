@@ -3,7 +3,16 @@ import { useProps } from '@innet/jsx'
 
 import { useRule, useSchemaType } from '../../../hooks'
 import { type IntegerFormats, type ValuesSchemaProps } from '../../../types'
-import { defaultTo, int, max as maximum, min as minimum, pipe, type Rule } from '../../../utils'
+import {
+  defaultTo,
+  int,
+  max as maximum,
+  min as minimum,
+  optional,
+  pipe,
+  type Rule,
+  values as valuesOf,
+} from '../../../utils'
 
 type GetType<F extends IntegerFormats> = F extends 'int32' ? number : bigint
 
@@ -46,6 +55,10 @@ export const integer: HandlerPlugin = <F extends IntegerFormats>() => {
 
   rules.push(int(format))
 
+  if (values) {
+    rules.push(valuesOf(values))
+  }
+
   if (min !== undefined) {
     rules.push(minimum(min))
   }
@@ -54,5 +67,9 @@ export const integer: HandlerPlugin = <F extends IntegerFormats>() => {
     rules.push(maximum(max))
   }
 
-  useRule(pipe(...rules))
+  if (defaultValue === undefined) {
+    useRule(optional(pipe(...rules)))
+  } else {
+    useRule(pipe(...rules))
+  }
 }

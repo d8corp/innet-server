@@ -32,7 +32,7 @@ export const string: HandlerPlugin = () => {
   const schema = useSchemaType('string', props)
   const rules: Rule[] = []
 
-  if (props.default) {
+  if (props.default !== undefined) {
     rules.push(defaultTo(props.default))
   }
 

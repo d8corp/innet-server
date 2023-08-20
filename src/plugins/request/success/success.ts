@@ -2,6 +2,7 @@ import { type HandlerPlugin } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
 import { useResponse } from '../../../hooks'
+import { JSONString } from '../../../utils'
 
 export const successStatuses = {
   ok: 200,
@@ -30,7 +31,7 @@ export const success: HandlerPlugin = () => {
   res.statusCode = typeof status === 'string' ? successStatuses[status] : status ?? ((children) ? 200 : 204)
 
   if (children) {
-    res.write(JSON.stringify(children[0]))
+    res.write(JSONString(children[0]))
   }
 
   res.end()
