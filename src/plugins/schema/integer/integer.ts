@@ -14,17 +14,15 @@ import {
   values as valuesOf,
 } from '../../../utils'
 
-type GetType<F extends IntegerFormats> = F extends 'int32' ? number : bigint
-
-export interface IntegerProps<F extends IntegerFormats = IntegerFormats> extends ValuesSchemaProps<GetType<F>> {
-  format?: F
-  min?: GetType<F>
-  max?: GetType<F>
+export interface IntegerProps extends ValuesSchemaProps<number | bigint> {
+  format?: IntegerFormats
+  min?: number | bigint
+  max?: number | bigint
 }
 
-export const integer: HandlerPlugin = <F extends IntegerFormats>() => {
+export const integer: HandlerPlugin = () => {
   const {
-    format = 'int32' as F,
+    format = 'int32',
     min,
     max,
     values,
@@ -32,7 +30,7 @@ export const integer: HandlerPlugin = <F extends IntegerFormats>() => {
     examples,
     default: defaultValue,
     ...props
-  } = useProps<IntegerProps<F>>() || {}
+  } = useProps<IntegerProps>() || {}
   const schema = useSchemaType('integer', {
     ...props,
     default: defaultValue !== undefined ? Number(defaultValue) : undefined,
@@ -56,7 +54,7 @@ export const integer: HandlerPlugin = <F extends IntegerFormats>() => {
   rules.push(int(format))
 
   if (values) {
-    rules.push(valuesOf(values))
+    rules.push(valuesOf(values.map(value => int(format)(value))))
   }
 
   if (min !== undefined) {

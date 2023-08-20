@@ -108,7 +108,6 @@ export const handler = createHandler([
 
 declare global {
   namespace JSX {
-    // @ts-expect-error: FIXME
     interface IntrinsicElements {
       context: ContextProps
       slot: SlotProps
