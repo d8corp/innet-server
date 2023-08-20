@@ -96,7 +96,7 @@ export class Action {
     }
 
     if (this.bodyType === 'multipart/form-data') {
-      this.body = parseFormBody(this.req)
+      this.body = await parseFormBody(this.req)
     }
 
     if (this.bodyType === 'application/x-www-form-urlencoded') {
