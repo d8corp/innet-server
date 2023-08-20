@@ -2,8 +2,9 @@ import { type HandlerPlugin } from 'innet'
 import { useContext, useProps } from '@innet/jsx'
 
 import { paramContext, useBlock, useRule, useSchemaType } from '../../../hooks'
+import { useParentRule } from '../../../hooks/useParentRule'
 import { type BaseSchemaProps } from '../../../types'
-import { defaultTo, optional, pipe, type Rule } from '../../../utils'
+import { defaultTo, pipe, type Rule } from '../../../utils'
 
 export interface BooleanProps extends BaseSchemaProps <boolean> {
 
@@ -24,7 +25,8 @@ export const boolean: HandlerPlugin = () => {
   rules.push(param ? val => val === 'true' || (val === 'false' ? false : Boolean(val)) : Boolean)
 
   if (props?.default === undefined) {
-    useRule(optional(pipe(...rules)))
+    const parentRule = useParentRule()
+    useRule(parentRule(pipe(...rules)))
   } else {
     useRule(pipe(...rules))
   }
