@@ -4,7 +4,7 @@ import { v4 } from 'uuid'
 
 import { useRule, useSchemaType } from '../../../hooks'
 import { type ValuesSchemaProps } from '../../../types'
-import { defaultTo, pipe, type Rule, uuidTo } from '../../../utils'
+import { defaultTo, optional, pipe, type Rule, uuidTo, values } from '../../../utils'
 
 export interface UuidProps extends ValuesSchemaProps <string> {
   default?: 'new' | string
@@ -27,8 +27,18 @@ export const uuid: HandlerPlugin = () => {
   const rules: Rule[] = []
 
   if (defaultValue !== undefined) {
-    rules.push()
+    rules.push(defaultTo(defaultValue === 'new' ? v4 : defaultValue))
   }
 
-  useRule(pipe(defaultTo(defaultValue === 'new' ? v4 : defaultValue), uuidTo))
+  rules.push(uuidTo)
+
+  if (props.values) {
+    rules.push(values(props.values))
+  }
+
+  if (defaultValue === undefined) {
+    useRule(optional(pipe(...rules)))
+  } else {
+    useRule(pipe(...rules))
+  }
 }

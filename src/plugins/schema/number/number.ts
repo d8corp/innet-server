@@ -42,7 +42,7 @@ export const number: HandlerPlugin = () => {
     rules.push(maximum(max))
   }
 
-  if (!props.default) {
+  if (props.default === undefined) {
     useRule(optional(pipe(...rules)))
   } else {
     useRule(pipe(...rules))
