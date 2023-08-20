@@ -1,5 +1,6 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useContext, useProps } from '@innet/jsx'
+import { callHandler } from '@innet/utils'
 
 import {
   ruleContext,
@@ -30,8 +31,8 @@ export const array: HandlerPlugin = () => {
   schema.items = fieldSchema
 
   if (setRule) {
-    const rules: Rule[] = []
     let oneOfRulesMap: Rule[]
+    const rules: Rule[] = []
 
     if (props?.default !== undefined) {
       rules.push(defaultTo(props.default))
@@ -49,6 +50,14 @@ export const array: HandlerPlugin = () => {
         setRule(rootRule(oneOf(oneOfRulesMap)))
       }
     })
+
+    innet(children, handler)
+    innet(() => {
+      if (!oneOfRulesMap && setRule) {
+        setRule(rootRule(e => e))
+      }
+    }, callHandler)
+    return
   }
 
   innet(children, handler)
