@@ -2,6 +2,7 @@ import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
 import { useRule, useSchemaType } from '../../../hooks'
+import { useParentRule } from '../../../hooks/useParentRule'
 import { type ValuesSchemaProps } from '../../../types'
 import {
   type DateFormat,
@@ -9,7 +10,6 @@ import {
   defaultTo,
   maxDate,
   minDate,
-  optional,
   pipe,
   type Rule, values as valuesOf,
 } from '../../../utils'
@@ -81,7 +81,8 @@ export const date: HandlerPlugin = () => {
   }
 
   if (defaultValue === undefined) {
-    useRule(optional(pipe(...rules)))
+    const parentRule = useParentRule()
+    useRule(parentRule(pipe(...rules)))
   } else {
     useRule(pipe(...rules))
   }
