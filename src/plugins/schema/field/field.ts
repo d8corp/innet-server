@@ -8,6 +8,7 @@ import {
   useSchemaContext,
 } from '../../../hooks'
 import { type SchemaObject } from '../../../types'
+import { required } from '../../../utils'
 
 export interface FieldProps {
   key: string
@@ -47,7 +48,11 @@ export const field: HandlerPlugin = () => {
 
   const map = useObjectRule()
   ruleContext.set(handler, rule => {
-    map[key] = rule
+    if (optional) {
+      map[key] = rule
+    } else {
+      map[key] = required(rule)
+    }
   })
 
   objectRuleContext.set(handler, null)

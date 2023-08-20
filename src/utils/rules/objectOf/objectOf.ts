@@ -6,7 +6,10 @@ export type ObjectOf = Record<string, Rule>
 export function objectOf (map: ObjectOf) {
   return (value: any, data?: Record<string, any>) => {
     if (value === null || typeof value !== 'object') {
-      throw new RulesError('object', data)
+      throw new RulesError('object', {
+        value,
+        ...data,
+      })
     }
 
     const result: any = {}

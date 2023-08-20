@@ -9,11 +9,14 @@ import {
   useRule,
   useSchemaType,
 } from '../../../hooks'
-import { parentRuleContext } from '../../../hooks/useParentRule'
+import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
 import { type BaseSchemaProps } from '../../../types'
 import {
+  defaultTo,
   type ObjectOf,
   objectOf,
+  pipe,
+  type Rule,
 } from '../../../utils'
 
 export interface ObjectProps extends BaseSchemaProps <object> {
@@ -34,8 +37,21 @@ export const object: HandlerPlugin = () => {
     schemaContext.set(handler, schema)
     parentRuleContext.reset(handler)
 
+    const rules: Rule[] = []
     const rulesMap: ObjectOf = {}
-    const rule = objectOf(rulesMap)
+
+    if (props?.default !== undefined) {
+      rules.push(defaultTo(props.default))
+    }
+
+    if (props?.default !== undefined) {
+      rules.push(objectOf(rulesMap))
+    } else {
+      const parentRule = useParentRule()
+      rules.push(parentRule(objectOf(rulesMap)))
+    }
+
+    const rule = pipe(...rules)
 
     if (props.ref) {
       refRules[props.ref] = rule
@@ -44,6 +60,7 @@ export const object: HandlerPlugin = () => {
     useRule(rule)
     objectRuleContext.set(handler, rulesMap)
     ruleContext.set(handler, null)
+    parentRuleContext.reset(handler)
 
     innet(children, handler)
   } else if (props.ref) {
