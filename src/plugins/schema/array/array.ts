@@ -9,7 +9,7 @@ import {
   useSchemaType,
 } from '../../../hooks'
 import { type ArraySchemaObject, type BaseSchemaProps, type SchemaObject } from '../../../types'
-import { arrayOf } from '../../../utils'
+import { arrayOf, defaultTo, oneOf, optional, pipe, type Rule } from '../../../utils'
 
 export interface ArrayProps extends BaseSchemaProps <any[]> {
 
@@ -20,7 +20,8 @@ export const array: HandlerPlugin = () => {
 
   const setRule = useContext(ruleContext)
   const handler = useNewHandler()
-  const schema = useSchemaType('array', useProps<ArrayProps>()) as ArraySchemaObject
+  const props = useProps<ArrayProps>()
+  const schema = useSchemaType('array', props) as ArraySchemaObject
   const children = useChildren()
 
   const fieldSchema: SchemaObject = {}
@@ -29,7 +30,25 @@ export const array: HandlerPlugin = () => {
   schema.items = fieldSchema
 
   if (setRule) {
-    ruleContext.set(handler, rule => setRule(arrayOf(rule)))
+    const rules: Rule[] = []
+    let oneOfRulesMap: Rule[]
+
+    if (props?.default !== undefined) {
+      rules.push(defaultTo(props.default))
+    }
+
+    const rootRule = props?.default === undefined
+      ? (rule: Rule) => optional(pipe(...rules, arrayOf(rule)))
+      : (rule: Rule) => pipe(...rules, arrayOf(rule))
+
+    ruleContext.set(handler, rule => {
+      if (oneOfRulesMap) {
+        oneOfRulesMap.push(rule)
+      } else {
+        oneOfRulesMap = [rule]
+        setRule(rootRule(oneOf(oneOfRulesMap)))
+      }
+    })
   }
 
   innet(children, handler)
