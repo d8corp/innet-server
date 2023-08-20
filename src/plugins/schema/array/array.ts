@@ -9,9 +9,9 @@ import {
   useBlock,
   useSchemaType,
 } from '../../../hooks'
-import { parentRuleContext } from '../../../hooks/useParentRule'
+import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
 import { type ArraySchemaObject, type BaseSchemaProps, type SchemaObject } from '../../../types'
-import { arrayOf, defaultTo, oneOf, optional, pipe, type Rule } from '../../../utils'
+import { arrayOf, defaultTo, oneOf, pipe, type Rule } from '../../../utils'
 
 export interface ArrayProps extends BaseSchemaProps <any[]> {
 
@@ -34,13 +34,14 @@ export const array: HandlerPlugin = () => {
   if (setRule) {
     let oneOfRulesMap: Rule[]
     const rules: Rule[] = []
+    const parentRule = useParentRule()
 
     if (props?.default !== undefined) {
       rules.push(defaultTo(props.default))
     }
 
     const rootRule = props?.default === undefined
-      ? (rule: Rule) => optional(pipe(...rules, arrayOf(rule)))
+      ? (rule: Rule) => parentRule(pipe(...rules, arrayOf(rule)))
       : (rule: Rule) => pipe(...rules, arrayOf(rule))
 
     parentRuleContext.reset(handler)
