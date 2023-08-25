@@ -1,22 +1,23 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
-import { useChildren, useContext, useProps } from '@innet/jsx'
+import { useChildren, useContext } from '@innet/jsx'
+import { callHandler } from '@innet/utils'
 
 import { allBodyTypes } from '../../../constants'
 import {
+  bodyFileContext,
   endpointContext,
   ruleContext,
   schemaContext,
 } from '../../../hooks'
 import {
-  type BodyType, type EndpointRules,
+  type EndpointRules,
   type RequestBodyObject,
   type SchemaObject,
 } from '../../../types'
 import { getOrAdd } from '../../../utils'
 
 export interface BodyProps {
-  /** A media type, one of `application/x-www-form-urlencoded`, `application/json` or `multipart/form-data` */
-  type?: BodyType | BodyType[]
+
 }
 
 export const body: HandlerPlugin = () => {
@@ -27,9 +28,7 @@ export const body: HandlerPlugin = () => {
   }
 
   const children = useChildren()
-  const { type: rawType = allBodyTypes } = useProps<BodyProps>() || {}
   const { operation } = endpoint
-  const types = Array.isArray(rawType) ? rawType : [rawType]
 
   if (!operation.requestBody) {
     operation.requestBody = {
@@ -39,7 +38,7 @@ export const body: HandlerPlugin = () => {
 
   const requestBody = operation.requestBody as RequestBodyObject
 
-  for (const type of types) {
+  for (const type of allBodyTypes) {
     if (requestBody.content[type]) {
       throw Error(`<body type="${type}"> already used`)
     }
@@ -48,17 +47,26 @@ export const body: HandlerPlugin = () => {
   const handler = useNewHandler()
   const schema: SchemaObject = {}
 
-  for (const type of types) {
-    requestBody.content[type] = { schema }
-  }
-
   schemaContext.set(handler, schema)
 
   const rules: EndpointRules = getOrAdd(endpoint, 'endpoint.rules', [{}, {}])
+  let fileUsed = false
 
+  bodyFileContext.set(handler, () => {
+    fileUsed = true
+  })
   ruleContext.set(handler, rule => {
     rules.body = rule
   })
 
   innet(children, handler)
+  innet(() => {
+    if (fileUsed) {
+      requestBody.content['multipart/form-data'] = { schema }
+    } else {
+      for (const type of allBodyTypes) {
+        requestBody.content[type] = { schema }
+      }
+    }
+  }, callHandler)
 }

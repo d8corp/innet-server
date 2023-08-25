@@ -1,6 +1,7 @@
 import type http from 'http'
 import { Form } from 'multiparty'
 
+import { FileData } from '../FileData'
 import { parseSearch } from '../parseSearch'
 
 export async function parseFormBody (req: http.IncomingMessage) {
@@ -31,7 +32,7 @@ export async function parseFormBody (req: http.IncomingMessage) {
             query += '&'
           }
           query += `${key}==${queryFiles.length}`
-          queryFiles.push(value)
+          queryFiles.push(new FileData(value))
         }
       }
 

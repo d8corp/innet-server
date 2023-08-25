@@ -19,4 +19,5 @@ export const rulesErrors = [
   'null',
   'pattern',
   'string',
+  'file',
 ] as const
