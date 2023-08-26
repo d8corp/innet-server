@@ -11,6 +11,7 @@ import { serverFn } from '../handlerPlugins'
 import {
   api, type ApiProps,
   array, type ArrayProps,
+  binary, type BinaryProps,
   body, type BodyProps,
   boolean, type BooleanProps,
   contact, type ContactProps,
@@ -21,7 +22,6 @@ import {
   error, type ErrorProps,
   fallback, type FallbackProps,
   field, type FieldProps,
-  file, type FileProps,
   host, type HostProps,
   integer, type IntegerProps,
   license, type LicenseProps,
@@ -65,7 +65,7 @@ export const JSXPlugins = {
   object,
   array,
   field,
-  file,
+  binary,
   number,
   integer,
   string,
@@ -126,7 +126,7 @@ declare global {
       response: ResponseProps
       object: ObjectProps
       field: FieldProps
-      file: FileProps
+      binary: BinaryProps
       number: NumberProps
       integer: IntegerProps
       string: StringProps

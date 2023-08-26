@@ -20,20 +20,21 @@ export const dts: HandlerPlugin = () => {
   }).then(async content => {
     await fs.promises.writeFile(
       path,
-      `interface FileDataOptions {
+      `interface Bin {
+  filename: string
+  extension?: string
   fieldName: string
   originalFilename: string
   path: string
-  headers: {
-    'content-disposition': string
-    'content-type': string
-  }
+  type: string
+  disposition: string
   size: number
 }
 ${content
-        .replaceAll('number; // int64', 'bigint; // int64')
-        .replaceAll('string; // binary', 'FileDataOptions;')
-        .replaceAll('string; // date-time', 'Date; // date-time')}`,
+        .replaceAll(';', '')
+        .replaceAll('number // int64', 'bigint')
+        .replaceAll('string // binary', 'Bin')
+        .replaceAll('string // date-time', 'Date')}`,
     )
   }).catch(error => {
     console.warn(error)

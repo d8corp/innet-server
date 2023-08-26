@@ -3,18 +3,21 @@ import { useProps } from '@innet/jsx'
 
 import { useBlock, useBodyFile, useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
-import { fileData, pipe, type Rule } from '../../../utils'
+import { bin, maxBin, minBin, pipe, type Rule } from '../../../utils'
 
-export interface FileProps {
-  description?: string
+export interface BinaryProps {
   ref?: string
+  description?: string
+  accept?: string
+  min?: number
+  max?: number
 }
 
-export const file: HandlerPlugin = () => {
+export const binary: HandlerPlugin = () => {
   useBlock('path')
   useBodyFile()
 
-  const props = useProps<FileProps>()
+  const props = useProps<BinaryProps>()
   const schema = useSchemaType('string', props)
 
   if (schema) {
@@ -23,7 +26,15 @@ export const file: HandlerPlugin = () => {
 
   const rules: Rule[] = []
 
-  rules.push(fileData)
+  rules.push(bin)
+
+  if (props?.min) {
+    rules.push(minBin(props.min))
+  }
+
+  if (props?.max) {
+    rules.push(maxBin(props.max))
+  }
 
   const parentRule = useParentRule()
   useRule(parentRule(pipe(...rules)))

@@ -19,5 +19,7 @@ export const rulesErrors = [
   'null',
   'pattern',
   'string',
-  'file',
+  'binary',
+  'minBin',
+  'maxBin',
 ] as const

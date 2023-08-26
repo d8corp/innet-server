@@ -1,7 +1,7 @@
 import type http from 'http'
 import { Form } from 'multiparty'
 
-import { FileData } from '../FileData'
+import { Bin } from '../FileData'
 import { parseSearch } from '../parseSearch'
 
 export async function parseFormBody (req: http.IncomingMessage) {
@@ -32,7 +32,10 @@ export async function parseFormBody (req: http.IncomingMessage) {
             query += '&'
           }
           query += `${key}==${queryFiles.length}`
-          queryFiles.push(new FileData(value))
+          const { headers, ...options } = value
+          options.type = headers['content-type']
+          options.disposition = headers['content-disposition']
+          queryFiles.push(new Bin(options))
         }
       }
 

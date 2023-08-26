@@ -1,1 +1,1 @@
-export * from './FileData'
+export * from './Bin'
