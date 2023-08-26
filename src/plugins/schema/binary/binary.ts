@@ -3,7 +3,7 @@ import { useProps } from '@innet/jsx'
 
 import { useBlock, useBodyFile, useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
-import { bin, maxBin, minBin, pipe, type Rule } from '../../../utils'
+import { bin, binaryAccept, maxBin, minBin, pipe, type Rule } from '../../../utils'
 
 export interface BinaryProps {
   ref?: string
@@ -34,6 +34,10 @@ export const binary: HandlerPlugin = () => {
 
   if (props?.max) {
     rules.push(maxBin(props.max))
+  }
+
+  if (props?.accept) {
+    rules.push(binaryAccept(props.accept))
   }
 
   const parentRule = useParentRule()

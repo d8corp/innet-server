@@ -20,6 +20,7 @@ export const rulesErrors = [
   'pattern',
   'string',
   'binary',
+  'binaryAccept',
   'minBin',
   'maxBin',
 ] as const
