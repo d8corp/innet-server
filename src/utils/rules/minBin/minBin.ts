@@ -7,7 +7,7 @@ export function minBin (min: number): Rule {
   return (value: Bin, data?: object) => {
     if (value.size < min) {
       throw new RulesError('minBin', {
-        size: value.size,
+        value,
         min,
         ...data,
       })

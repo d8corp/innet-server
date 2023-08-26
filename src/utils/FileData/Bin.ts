@@ -30,4 +30,14 @@ export class Bin implements BinOptions {
     this.extension = splitFilename.pop()
     this.filename = splitFilename.join('.')
   }
+
+  toJSON () {
+    return {
+      $: 'binary',
+      originalFilename: this.originalFilename,
+      type: this.type,
+      disposition: this.disposition,
+      size: this.size,
+    }
+  }
 }

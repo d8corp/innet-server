@@ -11,6 +11,12 @@ export function EditPartnerSchema () {
       <field optional key='gift'>
         <boolean />
       </field>
+      <field optional key='icon'>
+        <binary
+          accept='image/*'
+          description='A square icon of the partner'
+        />
+      </field>
       <field optional key='addresses'>
         <array>
           <number description='address id' />

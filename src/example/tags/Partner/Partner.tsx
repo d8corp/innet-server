@@ -38,7 +38,7 @@ export function Partner () {
         <param in='path' name='id'>
           <string />
         </param>
-        <body type='application/json'>
+        <body>
           <EditPartnerSchema />
         </body>
         <response status={220} description='Partner Response Description'>
