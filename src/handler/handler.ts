@@ -7,7 +7,6 @@ import {
 } from '@innet/jsx'
 import { array as isArray, arraySync, async, fn, nullish, object as isObject, promise } from '@innet/utils'
 
-import { serverFn } from '../handlerPlugins'
 import {
   api, type ApiProps,
   array, type ArrayProps,
@@ -22,6 +21,7 @@ import {
   error, type ErrorProps,
   fallback, type FallbackProps,
   field, type FieldProps,
+  header, type HeaderProps,
   host, type HostProps,
   integer, type IntegerProps,
   license, type LicenseProps,
@@ -34,7 +34,7 @@ import {
   redirect, type RedirectProps,
   request, type RequestProps,
   response, type ResponseProps,
-  server, type ServerProps,
+  server, serverFn, type ServerProps,
   string, type StringProps,
   success, type SuccessProps,
   swagger, type SwaggerProps,
@@ -53,6 +53,7 @@ export const JSXPlugins = {
   slot,
   slots,
   server,
+  header,
   host,
   variable,
   api,
@@ -147,6 +148,7 @@ declare global {
       dev: DevProps
       prod: ProdProps
       uuid: UuidProps
+      header: HeaderProps
     }
   }
 }

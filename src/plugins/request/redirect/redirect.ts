@@ -1,8 +1,7 @@
-import innet, { type HandlerPlugin, useHandler } from 'innet'
-import { useChildren, useProps } from '@innet/jsx'
-import { callHandler } from '@innet/utils'
+import { type HandlerPlugin } from 'innet'
+import { useProps } from '@innet/jsx'
 
-import { useResponse } from '../../../hooks'
+import { useHeaders, useResponse } from '../../../hooks'
 
 export const redirectStatuses = {
   multipleChoices: 300,
@@ -38,16 +37,14 @@ export const redirect: HandlerPlugin = () => {
     throw Error('Use <redirect> inside <request>')
   }
 
-  const handler = useHandler()
-  const children = useChildren()
+  const headers = useHeaders()
   const props = useProps()
   const { to, status = 301, encode }: RedirectProps = props
 
   res.writeHead(getStatus(status), {
     location: encode ? customEncode(to) : to,
-    'Cache-Control': 'no-cache, no-store, must-revalidate',
+    'Cache-Control': headers['Cache-Control'] ?? 'no-cache, no-store, must-revalidate',
   })
 
-  innet(children, handler)
-  innet(() => res.end(), callHandler)
+  res.end()
 }

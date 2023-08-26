@@ -2,7 +2,7 @@ import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 import httpProxy from 'http-proxy'
 
-import { useRequest, useResponse } from '../../../hooks'
+import { useRequest, useResponse, useThrow } from '../../../hooks'
 
 export interface ProxyProps {
   to: string
@@ -15,7 +15,7 @@ export const proxy: HandlerPlugin = () => {
   const res = useResponse()
 
   if (!req || !res) {
-    throw Error('Use <proxy> inside <action>')
+    useThrow('{type} MUST be in <request>')
   }
 
   const proxyServer = httpProxy.createProxyServer({})

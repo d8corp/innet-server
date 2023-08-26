@@ -1,6 +1,6 @@
 import { useAction } from '../useAction'
 
-export function useHeaders <D> (): D {
+export function useHeaders <D extends Record<string, any>> (): D {
   const action = useAction()
 
   if (!action) {
