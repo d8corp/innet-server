@@ -22,6 +22,7 @@ import {
   error, type ErrorProps,
   fallback, type FallbackProps,
   field, type FieldProps,
+  file, type FileProps,
   header, type HeaderProps,
   host, type HostProps,
   integer, type IntegerProps,
@@ -65,6 +66,7 @@ export const JSXPlugins = {
   error,
   fallback,
   field,
+  file,
   header,
   host,
   integer,
@@ -114,44 +116,45 @@ export const handler = createHandler([
 declare global {
   namespace JSX {
     interface IntrinsicElements {
+      api: ApiProps
+      array: ArrayProps
+      binary: BinaryProps
+      body: BodyProps
+      boolean: BooleanProps
+      contact: ContactProps
       context: ContextProps
       cookie: CookieProps
+      date: DateProps
+      dev: DevProps
+      dts: DtsProps
+      endpoint: EndpointProps
+      error: ErrorProps
+      fallback: FallbackProps
+      field: FieldProps
+      file: FileProps
+      header: HeaderProps
+      host: HostProps
+      integer: IntegerProps
+      license: LicenseProps
+      null: NullProps
+      number: NumberProps
+      object: ObjectProps
+      param: ParamProps
+      prod: ProdProps
+      proxy: ProxyProps
+      redirect: RedirectProps
+      request: RequestProps
+      response: ResponseProps
       slot: SlotProps
       slots: SlotsProps
       server: ServerProps
-      api: ApiProps
-      contact: ContactProps
-      license: LicenseProps
-      host: HostProps
-      variable: VariableProps
-      tag: TagProps
-      endpoint: EndpointProps
       swagger: SwaggerProps
-      response: ResponseProps
-      object: ObjectProps
-      field: FieldProps
-      binary: BinaryProps
-      number: NumberProps
-      integer: IntegerProps
       string: StringProps
-      array: ArrayProps
-      boolean: BooleanProps
-      null: NullProps
-      dts: DtsProps
-      request: RequestProps
       success: SuccessProps
-      error: ErrorProps
-      param: ParamProps
-      body: BodyProps
-      proxy: ProxyProps
-      redirect: RedirectProps
-      date: DateProps
-      fallback: FallbackProps
+      tag: TagProps
       tuple: TupleProps
-      dev: DevProps
-      prod: ProdProps
       uuid: UuidProps
-      header: HeaderProps
+      variable: VariableProps
     }
   }
 }
