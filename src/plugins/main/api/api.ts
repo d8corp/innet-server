@@ -213,8 +213,9 @@ export const api: HandlerPlugin = () => {
 
     if (context.fallback) {
       const newHandler = Object.create(context.fallback.handler)
-      newHandler[responseContext.key] = res
-      newHandler[requestContext.key] = req
+      responseContext.set(newHandler, res)
+      requestContext.set(newHandler, req)
+      actionContext.set(newHandler, action)
       innet(context.fallback.children, newHandler)
     } else {
       res.statusCode = 404

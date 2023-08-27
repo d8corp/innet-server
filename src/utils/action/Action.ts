@@ -24,10 +24,14 @@ export class Action {
   @once get parsedUrl (): ParsedUrl {
     const match = this.req.url?.match(URL_PARSER)
     if (!match) throw Error('cannot parse url')
-    return match.groups as unknown as ParsedUrl
+    const result = match.groups as unknown as ParsedUrl
+    result.path = result.path
+      .replaceAll(/\/\.\.\//g, '/')
+      .replaceAll(/\/+/g, '/')
+    return result
   }
 
-  get path (): string | undefined {
+  get path (): string {
     return this.parsedUrl.path
   }
 

@@ -1,12 +1,5 @@
 import { useAction } from '../useAction'
 
 export function useCookies <D> (): D {
-  const action = useAction()
-
-  if (!action) {
-    throw Error('`useCookies` MUST be used in <request>')
-  }
-
-  // @ts-expect-error: FIXME
-  return action.cookies
+  return useAction().cookies as D
 }

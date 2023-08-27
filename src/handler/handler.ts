@@ -13,6 +13,7 @@ import {
   binary, type BinaryProps,
   body, type BodyProps,
   boolean, type BooleanProps,
+  cms, type CmsProps,
   contact, type ContactProps,
   cookie, type CookieProps,
   date, type DateProps,
@@ -56,6 +57,7 @@ export const JSXPlugins = {
   binary,
   body,
   boolean,
+  cms,
   contact,
   context,
   cookie,
@@ -121,6 +123,7 @@ declare global {
       binary: BinaryProps
       body: BodyProps
       boolean: BooleanProps
+      cms: CmsProps
       contact: ContactProps
       context: ContextProps
       cookie: CookieProps
