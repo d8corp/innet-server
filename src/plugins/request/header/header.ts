@@ -4,7 +4,7 @@ import { useProps } from '@innet/jsx'
 import { useResponse, useThrow } from '../../../hooks'
 
 export interface HeaderProps {
-  name: string
+  key: string
   value: string
 }
 
@@ -15,7 +15,7 @@ export const header: HandlerPlugin = () => {
     useThrow('<{type}> MUST be in <request> or <fallback>')
   }
 
-  const { name, value } = useProps<HeaderProps>()
+  const { key, value } = useProps<HeaderProps>()
 
-  res.setHeader(name, value)
+  res.setHeader(key, value)
 }
