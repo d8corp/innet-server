@@ -15,7 +15,7 @@
 ## Abstract
 This package helps to create server-side application based on [innet](https://www.npmjs.com/package/innet).
 
-Here you find **JSX components on back-end side** 🎉, Open API generation, Swagger UI in the box, validation, formatting, cms, proxy, html rendering and more.
+Here you find **JSX components on back-end side** 🎉, Open API generation, Swagger UI in the box, validation, formatting, cms, proxy, routing and more.
 
 [![stars](https://img.shields.io/github/stars/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/stargazers)
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
@@ -73,7 +73,9 @@ You will see a base Open API JSON structure.
 }
 ```
 
-## swagger
+## Utils
+
+### \<swagger>
 
 Use `<swagger>` element to add Swagger UI documentation.
 `<swagger>` element MUST be placed in `<api>` element.
@@ -105,7 +107,7 @@ export default (
 )
 ```
 
-## server
+### \<server>
 `<server>` element helps to start http(s) server.
 
 *src/app.tsx*
@@ -115,7 +117,7 @@ export default (
 )
 ```
 
-### port
+#### port
 
 Use `port` property to set up the server port:
 
@@ -130,7 +132,7 @@ export default (
 - You can use `PORT` environment variable to set it up on CI level.
 - [innetjs](https://www.npmjs.com/package/innetjs) allows you to use `PORT` in `.env` file of local environment.
 
-### ssl
+#### ssl
 
 To start `https` server, use `ssl` property:
 
@@ -150,7 +152,7 @@ export default (
 - [innetjs](https://www.npmjs.com/package/innetjs) allows you to use `SSL_KEY` and `SSL_CRT` in `.env` file.
 - You can add `localhost.key` and `localhost.crt` files in your project folder.
 
-### onStart
+#### onStart
 
 Use `onStart` prop to handle server start event.
 You can put `httpOnStart` to the prop.
@@ -168,7 +170,7 @@ export default (
 )
 ```
 
-### onRequest
+#### onRequest
 
 Use `onRequest` to handle any request of the server.
 
@@ -184,7 +186,7 @@ export default (
 )
 ```
 
-### onError
+#### onError
 
 Use `onError` to handle any request error on the server.
 
@@ -197,11 +199,11 @@ export default (
 )
 ```
 
-## api
+### \<api>
 
 `<api>` element MUST be placed in `<server>` element.
 
-### title
+#### title
 
 This is a title of the API.
 Open API specifies the parameter is REQUIRED.
@@ -218,7 +220,7 @@ export default (
 )
 ```
 
-### description
+#### description
 
 You can add a `description` of the API.
 [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
@@ -247,7 +249,7 @@ export default (
 )
 ```
 
-### summary
+#### summary
 
 Add a short summary of the API.
 
@@ -262,7 +264,7 @@ export default (
 )
 ```
 
-### version
+#### version
 
 The version of the OpenAPI document (which is distinct from the
 [OpenAPI Specification version](https://swagger.io/specification/#oas-version)
@@ -282,7 +284,7 @@ export default (
 
 *default: 0.0.0*
 
-### prefix
+#### prefix
 
 URL path prefix scopes the API.
 
@@ -297,12 +299,12 @@ export default (
 )
 ```
 
-## license
+### \<license>
 
 `<license>` element MUST be placed in `<api>` element.
 Use `<license>` element to define the API license.
 
-### name
+#### name
 
 REQUIRED prop. The license name used for the API.
 
@@ -319,7 +321,7 @@ export default (
 )
 ```
 
-### identifier
+#### identifier
 
 An [SPDX](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) license expression for the API.
 The `identifier` field is mutually exclusive of the `url` prop.
@@ -338,7 +340,7 @@ export default (
 )
 ```
 
-### url
+#### url
 
 A URL to the license used for the API.
 This MUST be in the form of a URL.
@@ -358,12 +360,12 @@ export default (
 )
 ```
 
-## contact
+### \<contact>
 
 `<contact>` element MUST be placed in `<api>` element.
 The contact information for the exposed API.
 
-### name
+#### name
 
 The identifying name of the contact person/organization.
 
@@ -378,7 +380,7 @@ export default (
 )
 ```
 
-### email
+#### email
 
 The email address of the contact person/organization.
 This MUST be in the form of an email address.
@@ -396,7 +398,7 @@ export default (
 )
 ```
 
-### url
+#### url
 
 The URL pointing to the contact information.
 This MUST be in the form of a URL.
@@ -414,14 +416,14 @@ export default (
 )
 ```
 
-## host
+### \<host>
 
 `<host>` element MUST be placed in `<api>` element.
 
 This element adds a link to related documentation API.
 You can provide many stands like dev, stage or prod.
 
-### url
+#### url
 
 REQUIRED prop of URL to the target host.
 
@@ -442,7 +444,7 @@ export default (
 )
 ```
 
-### description
+#### description
 
 An optional string describing the host designated by the URL.
 [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation.
@@ -461,11 +463,11 @@ export default (
 )
 ```
 
-## variable
+### \<variable>
 
 This element MUST be placed in `<host>` element and defines a variable from the `<host>`.
 
-### key
+#### key
 
 REQUIRED props. `key` is a server url parameter.
 
@@ -484,7 +486,7 @@ export default (
 )
 ```
 
-### value
+#### value
 
 The `value` prop uses for substitution by default.
 If the `values` is defined, the `value` MUST exist in the `values`.
@@ -507,7 +509,7 @@ export default (
 )
 ```
 
-### values
+#### values
 
 An enumeration of string values to be used if the substitution options are from a limited set.
 The array MUST NOT be empty.
@@ -534,7 +536,7 @@ export default (
 )
 ```
 
-### description
+#### description
 
 An optional description for the server variable.
 [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
@@ -562,13 +564,13 @@ export default (
 )
 ```
 
-## fallback
+### \<fallback>
 
 By default, `<api>` server returns 404 with empty body.
 `<fallback>` element defines default server response.
 This element MUST be placed in `<api>`.
 You MUST use one `<fallback>` per `<api>`.
-Can contains `<request>` elements.
+Can contains elements available inside `<request>`.
 
 *src/app.tsx*
 ```typescript jsx
@@ -593,19 +595,19 @@ If you open the application on any URL except for `/`, you can see the next resp
 }
 ```
 
-## endpoint
+### \<endpoint>
 
 `<endpoint>` defines an endpoint of the API.
 
 This element MUST be placed in `<api>`
 
-### method
+#### method
 
 A method of the endpoint.
 
 MUST be one of `'get' | 'post' | 'put' | 'patch' | 'delete' | 'options' | 'head' | 'trace'`
 
-### path
+#### path
 
 A relative path to an individual endpoint.
 
@@ -630,7 +632,7 @@ export default (
 )
 ```
 
-### summary
+#### summary
 
 An optional, string summary, intended to apply to all operations in this path.
 
@@ -649,7 +651,7 @@ export default (
 )
 ```
 
-### description
+#### description
 
 An optional, string description, intended to apply to all operations in this path.
 [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
@@ -669,7 +671,7 @@ export default (
 )
 ```
 
-### deprecated
+#### deprecated
 
 Declares this operation to be deprecated.
 Consumers SHOULD refrain from usage of the declared operation.
@@ -690,7 +692,7 @@ export default (
 )
 ```
 
-### private
+#### private
 
 Declares this operation to make an endpoint private.
 That means the endpoint should not be described and will not be shown in the Open API documentation.
@@ -710,13 +712,13 @@ export default (
 )
 ```
 
-## param
+### \<param>
 
 Describes a single operation parameter.
 
 A unique parameter is defined by a combination of a `name` and location.
 
-#### Parameter Locations
+##### Parameter Locations
 
 There are four possible parameter locations specified by the `in` prop:
 
@@ -726,12 +728,12 @@ There are four possible parameter locations specified by the `in` prop:
 - **header** - Custom headers that are expected as part of the request. Note that RFC7230 states header names are case insensitive.
 - **cookie** - Used to pass a specific cookie value to the API.
 
-### in
+#### in
 
 The location of the parameter.
 Possible values are `"query"`, `"header"`, `"path"` or `"cookie"`.
 
-### name
+#### name
 
 The name of the parameter. Parameter names are *case sensitive*.
 
@@ -752,7 +754,7 @@ export default (
 )
 ```
 
-### description
+#### description
 
 A brief description of the parameter.
 This could contain examples of use.
@@ -775,7 +777,7 @@ export default (
 )
 ```
 
-### required
+#### required
 
 Determines whether this parameter is mandatory.
 If the parameter location is "path", this property is `true` and its value MUST be `true`.
@@ -798,7 +800,7 @@ export default (
 )
 ```
 
-### deprecated
+#### deprecated
 
 Specifies that a parameter is deprecated and SHOULD be transitioned out of usage.
 Default value is `false`.
@@ -820,7 +822,7 @@ export default (
 )
 ```
 
-## number
+### \<number>
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
 It defines `number` value for a parent element.
@@ -848,7 +850,7 @@ export default (
 
 *This example defines a `GET` endpoint on `/users` which has an optional query `number` parameter of `minAge`.*
 
-### default
+#### default
 
 A default value for the `number`.
 
@@ -871,7 +873,7 @@ export default (
 
 *By default, `minAge` query param equals `18`*
 
-### example
+#### example
 
 An example value.
 
@@ -892,7 +894,7 @@ export default (
 )
 ```
 
-### description
+#### description
 
 A description of the `number`.
 
@@ -916,7 +918,7 @@ export default (
 )
 ```
 
-### values
+#### values
 
 The enumeration of available `values`.
 If you provide the parameter value, which is not in the `values`, the server returns an error.
@@ -946,7 +948,7 @@ export default (
 )
 ```
 
-### min, max
+#### min, max
 
 Those two props validate the number value by minimum and maximum values.
 
@@ -967,7 +969,7 @@ export default (
 
 *In this example `/products?rating=5` is valid and `/products?rating=6` is not*
 
-## tuple
+### \<tuple>
 
 `<tuple>` element specifies schema parameter as a tuple of children elements.
 
@@ -979,7 +981,7 @@ export default (
   <server>
     <api>
       <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
+        <param name='rating' in='query'>
           <tuple>
             <number min={1} max={5} />
             <number min={1} max={5} />
@@ -994,7 +996,7 @@ export default (
 This example defines that, `/products?rating=3&rating=4` is valid and `rating` MUST be from `3` to `4`.
 Also supports formats `/products?rating[]=3&rating[]=4` and `/products?rating[0]=3&rating[1]=4`.
 
-`/products?rating=3` or `/products?rating=1&rating=2&rating=3` returns an error.
+`/products?rating=3` or `/products?rating=1&rating=6` returns an error.
 
 You can add several elements in `<response>`, `<param>` or `<body>` to define that one of the element is valid.
 
@@ -1020,9 +1022,9 @@ export default (
 This example defines that, `/products?rating=3&rating=4` is valid and `rating` MUST be from `3` to `4`.
 Also supports `/products?rating=3`, returns products have `rating` equals `3`.
 
-`/products?rating=text` or `/products?rating=1&rating=2&rating=3` returns an error.
+`/products?rating=text` or `/products?rating=1&rating=6` returns an error.
 
-### default
+#### default
 
 Defines default `<tuple>` value.
 
@@ -1045,7 +1047,7 @@ export default (
 )
 ```
 
-### example
+#### example
 
 Defines an example of the `<tuple>` value.
 
@@ -1068,7 +1070,7 @@ export default (
 )
 ```
 
-### description
+#### description
 
 Defines the `<tuple>` description.
 
@@ -1094,7 +1096,7 @@ export default (
 )
 ```
 
-## array
+### \<array>
 
 `<array>` element specifies schema parameter as an array of children elements.
 
@@ -1122,7 +1124,7 @@ Also supports formats `/products?rating[]=3&rating[]=4` and `/products?rating[0]
 
 `/products?rating=3` and `/products?rating=1&rating=2&rating=3` also support.
 
-### default
+#### default
 
 Defines default `<array>` value.
 
@@ -1143,7 +1145,7 @@ export default (
 )
 ```
 
-### example
+#### example
 
 Defines an example of the `<array>` value.
 
@@ -1164,7 +1166,7 @@ export default (
 )
 ```
 
-### description
+#### description
 
 Defines the `<array>` description.
 
@@ -1187,7 +1189,7 @@ export default (
 )
 ```
 
-## integer
+### <integer>
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
 It defines `integer` value for a parent element.
@@ -1212,7 +1214,7 @@ export default (
 
 *This example defines a `GET` endpoint on `/users` which has an optional query `integer` parameter of `minAge`.*
 
-### format
+#### format
 
 You can set up the `integer` format.
 Possible values are `int32` or `int64`.
@@ -1239,7 +1241,7 @@ export default (
 )
 ```
 
-### default
+#### default
 
 A default value for the `integer`.
 
@@ -1262,7 +1264,7 @@ export default (
 
 *By default, `minAge` query param equals `18`*
 
-### example
+#### example
 
 An example value.
 
@@ -1283,7 +1285,7 @@ export default (
 )
 ```
 
-### description
+#### description
 
 A description of the `integer`.
 
@@ -1307,7 +1309,7 @@ export default (
 )
 ```
 
-### values
+#### values
 
 The enumeration of available `values`.
 If you provide the parameter value, which is not in the `values`, the server returns an error.
@@ -1337,7 +1339,7 @@ export default (
 )
 ```
 
-### min, max
+#### min, max
 
 Those two props validate the number value by minimum and maximum values.
 
@@ -1358,7 +1360,7 @@ export default (
 
 *In this example `/products?rating=5` is valid and `/products?rating=6` is not*
 
-## string
+### \<string>
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
 It defines `string` value for a parent element.
@@ -1381,7 +1383,7 @@ export default (
 )
 ```
 
-### default
+#### default
 
 A default value for the `string`.
 
@@ -1404,7 +1406,7 @@ export default (
 
 *By default, `status` query param equals `active`*
 
-### example
+#### example
 
 An example value.
 
@@ -1425,7 +1427,7 @@ export default (
 )
 ```
 
-### description
+#### description
 
 A description of the `string`.
 
@@ -1448,7 +1450,7 @@ export default (
 )
 ```
 
-### values
+#### values
 
 The enumeration of available `values`.
 If you provide the parameter value, which is not in the `values`, the server returns an error.
@@ -1476,7 +1478,7 @@ export default (
 )
 ```
 
-### min, max
+#### min, max
 
 Those two props validate the `string` value by minimum and maximum length.
 
@@ -1495,7 +1497,7 @@ export default (
 )
 ```
 
-### pattern
+#### pattern
 
 A `string` of `RegExp` or `RegExp`.
 
@@ -1531,7 +1533,7 @@ you get an error:
 }
 ```
 
-### patternId
+#### patternId
 
 This property adds an id of the pattern expression in error response.
 For example, You can use the id to load error message translations.
@@ -1572,7 +1574,7 @@ you get an error:
 }
 ```
 
-## boolean
+### \<boolean>
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
 It defines `boolean` value for a parent element.
@@ -1595,7 +1597,7 @@ export default (
 )
 ```
 
-### default
+#### default
 
 A default value for the `boolean`.
 
@@ -1616,7 +1618,7 @@ export default (
 )
 ```
 
-### example
+#### example
 
 An example value.
 
@@ -1637,7 +1639,7 @@ export default (
 )
 ```
 
-### description
+#### description
 
 A description of the `boolean`.
 
@@ -1660,7 +1662,7 @@ export default (
 )
 ```
 
-## date
+### \<date>
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
 It defines `date` value for a parent element.
@@ -1683,7 +1685,7 @@ export default (
 )
 ```
 
-### default
+#### default
 
 A default value for the `date`.
 Available values:
@@ -1709,7 +1711,7 @@ export default (
 )
 ```
 
-### values
+#### values
 
 The enumeration of available `values`.
 If you provide the parameter value, which is not in the `values`, the server returns an error.
@@ -1742,7 +1744,7 @@ export default (
 )
 ```
 
-### example
+#### example
 
 An example value.
 
@@ -1769,7 +1771,7 @@ export default (
 )
 ```
 
-### description
+#### description
 
 A description of the `date`.
 
@@ -1792,7 +1794,7 @@ export default (
 )
 ```
 
-## uuid
+### \<uuid>
 
 Universally unique identifier.
 
@@ -1817,7 +1819,7 @@ export default (
 )
 ```
 
-### default
+#### default
 
 A default value for the `uuid`.
 
@@ -1842,7 +1844,7 @@ export default (
 )
 ```
 
-### values
+#### values
 
 The enumeration of available `values`.
 If you provide the parameter value, which is not in the `values`, the server returns an error.
@@ -1869,7 +1871,7 @@ export default (
 )
 ```
 
-### example
+#### example
 
 An example value.
 
@@ -1893,7 +1895,7 @@ export default (
 )
 ```
 
-### description
+#### description
 
 A description of the `boolean`.
 
@@ -1919,7 +1921,7 @@ export default (
 ```
 
 
-## Body
+### \<body>
 
 This element MUST be placed inside `<endpoint>`.
 It defines request body for the endpoint.
@@ -1951,79 +1953,34 @@ return (
 )
 ```
 
-## Response
+### \<response>
 
 This element MUST be placed inside `<endpoint>`.
 It defines response body for the endpoint.
 
-## Request
+### \<binary>
 
-## Tag
+### \<request>
 
-## Error
+### \<tag>
 
-## Success
+### \<error>
 
-## Proxy
+### \<success>
 
-## Redirect
+### \<proxy>
 
+### \<redirect>
 
+### \<cms>
 
+### \<cookie>
 
+### \<file>
 
-
-
-
-
-
-
-
+### \<header>
 
 
-
-## HTML
-You can use `html` element to return html content.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <html>
-        <head>
-          <title>Innet App</title>
-        </head>
-        <body>
-          Hello World!
-        </body>
-      </html>
-    </action>
-  </server>
-)
-```
-
-You can use variables to split it anyhow.
-
-```typescript jsx
-const content = (
-  <html>
-    <head>
-      <title>Innet App</title>
-    </head>
-    <body>
-      Hello World!
-    </body>
-  </html>
-)
-
-export default (
-  <server>
-    <action>
-      {content}
-    </action>
-  </server>
-)
-```
 
 ## Header
 You can add an HTTP header into response with `header` element.
