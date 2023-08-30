@@ -75,38 +75,6 @@ You will see a base Open API JSON structure.
 
 ## Utils
 
-### \<swagger>
-
-Use `<swagger>` element to add Swagger UI documentation.
-`<swagger>` element MUST be placed in `<api>` element.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <swagger />
-    </api>
-  </server>
-)
-```
-
-Open http://localhost:80/swagger-ui
-You will see Swagger UI documentation.
-
-You can change the Swagger UI URL path by `path` property of `<swagger>` element.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <swagger path='/swagger' />
-    </api>
-  </server>
-)
-```
-
 ### \<server>
 `<server>` element helps to start http(s) server.
 
@@ -298,6 +266,81 @@ export default (
   </server>
 )
 ```
+
+### \<swagger>
+
+Use `<swagger>` element to add Swagger UI documentation.
+`<swagger>` element MUST be placed in `<api>` element.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <swagger />
+    </api>
+  </server>
+)
+```
+
+Open http://localhost:80/swagger-ui
+You will see Swagger UI documentation.
+
+You can change the Swagger UI URL path by `path` property of `<swagger>` element.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <swagger path='/swagger' />
+    </api>
+  </server>
+)
+```
+
+### \<dev>
+
+Everything inside <dev> will work when `NODE_ENV` equals `development`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <dev>
+        <swagger />
+      </dev>
+    </api>
+  </server>
+)
+```
+
+### \<dts>
+
+Use `<dts>` element to add types generation.
+`<dts>` element MUST be placed in `<api>` element.
+
+`<dts>` has a required prop of `path`. This is a path of api TypeScript types file, `<dts>` generates it.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <dev>
+        <dts path='src/api.d.ts' />
+      </dev>
+    </api>
+  </server>
+)
+```
+
+> You MUST add some schema otherwise you get the `Error: There is no schema in the input contents`.
+
+You can see examples of generated types usage in `Hooks` section.
+
+## Schema
 
 ### \<license>
 
@@ -711,6 +754,8 @@ export default (
   </server>
 )
 ```
+
+### \<tag>
 
 ### \<param>
 
@@ -1920,7 +1965,6 @@ export default (
 )
 ```
 
-
 ### \<body>
 
 This element MUST be placed inside `<endpoint>`.
@@ -1962,7 +2006,7 @@ It defines response body for the endpoint.
 
 ### \<request>
 
-### \<tag>
+## Request elements
 
 ### \<error>
 
@@ -1970,204 +2014,38 @@ It defines response body for the endpoint.
 
 ### \<proxy>
 
+You can proxy request.
+
 ### \<redirect>
 
+You can redirect users to another resource.
+
 ### \<cms>
+
+CMS helps to return files from a folder by path.
 
 ### \<cookie>
 
 ### \<file>
 
-### \<header>
-
-
-
-## Header
-You can add an HTTP header into response with `header` element.
-
-```typescript jsx
-const content = (
-  <html.../>
-) // check prev example
-
-export default (
-  <server>
-    <action>
-      <header name='content-type' value='text/html'>
-        {content}
-      </header>
-    </action>
-  </server>
-)
-```
-
-Also, you can put header around the content, it works the same.
-
-```typescript jsx
-const content = (
-  <html.../>
-) // check prev example
-
-export default (
-  <server>
-    <action>
-      <header name='content-type' value='text/html' />
-      {content}
-    </action>
-  </server>
-)
-```
-
-## File
 You can return a file as a response.
 
+### \<header>
+
+You can add an HTTP header into response by `header` element.
+
+## Hooks
+
+### useParams
+
+This hook returns an object of URL params you set by <param>.
+
+*src/requests/partners/GetPartner.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <action>
-      <header name='cache-control' value='max-age=300'>
-        <file path='index.html' />
-      </header>
-    </action>
-  </server>
-)
-```
-
-In this case `cache-control` will be equal to `max-age=300` even if the file does not exist.
-
-You can put content into the file to apply it only if the file does exist.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <file path='index.html'>
-        <header name='cache-control' value='max-age=300' />
-      </file>
-    </action>
-  </server>
-)
-```
-
-Put `index.html` in the root of the project (`my-app` folder).
-
-## cms
-
-CMS helps to return files from a folder by path.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <switch>
-        <cms dir='cms' />
-        <file path='404.html' />
-      </switch>
-    </action>
-  </server>
-)
-```
-
-It will check if the file exist in cms folder then returns the file else returns `404.html`.
-
-You can use prefix with router to handle specific path.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <switch>
-        <router path='/cms' ish>
-          <cms dir='cms' prefix='/cms' />
-        </router>
-        <file path='404.html' />
-      </switch>
-    </action>
-  </server>
-)
-```
-
-You can input something into `cms`, if requested file is exist then the content should be used.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <switch>
-        <cms dir='cms'>
-          <header name='cache-control' value='max-age=300' />
-        </cms>
-        <file path='404.html' />
-      </switch>
-    </action>
-  </server>
-)
-```
-
-## proxy
-You can proxy request.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <switch>
-        <cms dir='cms' />
-        <proxy to='https://site.com' />
-      </switch>
-    </action>
-  </server>
-)
-```
-
-In this case, if you have a file in cms folder then the file will return
-else makes request to the `site.com`.
-
-## redirect
-You can redirect users to another resource.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <switch>
-        <cms dir='cms' />
-        <redirect to='https://site.com' />
-      </switch>
-    </action>
-  </server>
-)
-```
-
-### status
-By default, status is `301`, you can change it with `status` prop.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <switch>
-        <cms dir='cms' />
-        <redirect to='https://site.com' status={302} />
-      </switch>
-    </action>
-  </server>
-)
-```
-
-Also, you can use string key of status.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <switch>
-        <cms dir='cms' />
-        <redirect to='https://site.com' status='found'/>
-      </switch>
-    </action>
-  </server>
-)
+export function GetPartner () {
+  const { id } = useParams<Paths.Partners$Id.Get.PathParameters>()
+  return <success>{{ id }}</success>
+}
 ```
 
 ## Components
@@ -2178,14 +2056,13 @@ Any component is just a function which returns content that should be run.
 ```typescript jsx
 export const Server = ({ cmsPrefix }) => (
   <server>
-    <action>
-      <switch>
-        <router path={cmsPrefix} ish>
-          <cms dir='cms' prefix={cmsPrefix} />
-        </router>
-        <file path='404.html' />
-      </switch>
-    </action>
+    <api>
+      <fallback>
+        <cms dir='cms' prefix={cmsPrefix}>
+          <file path='404.html' />
+        </cms>
+      </fallback>
+    </api>
   </server>
 )
 ```
