@@ -169,7 +169,8 @@ export default (
 
 ### \<api>
 
-`<api>` element MUST be placed in `<server>` element.
+`<api>` element MUST be placed in `<server>` element.  
+This element defines a REST API on the server.
 
 #### title
 
