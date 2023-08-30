@@ -758,6 +758,29 @@ export default (
 
 ### \<tag>
 
+You can wrap endpoints by `<tag>` element to group the endpoints.
+You can see the changes in Swagger UI.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <tag name='user'>
+        <endpoint
+          method='get'
+          path='/users'
+        />
+        <endpoint
+          method='post'
+          path='/users'
+        />
+      </tag>
+    </api>
+  </server>
+)
+```
+
 ### \<param>
 
 Describes a single operation parameter.
