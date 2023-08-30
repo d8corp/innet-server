@@ -339,7 +339,7 @@ export default (
 
 > You MUST add some schema otherwise you get the `Error: There is no schema in the input contents`.
 
-You can see examples of generated types usage in `Hooks` section.
+You can see examples of generated types usage in [Hooks](#hooks) section.
 
 ## Schema
 
