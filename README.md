@@ -337,7 +337,7 @@ export default (
 )
 ```
 
-> You MUST add some [schema](#schema) otherwise you get the `Error: There is no schema in the input contents`.
+> You MUST add some [endpoint](#endpoint) with some schema otherwise you get the `Error: There is no schema in the input contents`.
 
 You can see examples of generated types usage in [Hooks](#hooks) section.
 
