@@ -1258,7 +1258,7 @@ export default (
 )
 ```
 
-### <integer>
+### \<integer>
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
 It defines `integer` value for a parent element.
