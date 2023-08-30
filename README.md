@@ -176,7 +176,7 @@ This element defines a REST API on the server.
 
 This is a title of the API.
 Open API specifies the parameter is REQUIRED.
-But it's NOT REQUIRED in `<api>` element, it equals empty string by default.
+But it's NOT REQUIRED in `<api>` element, it equals [empty string](#usage) by default.
 
 *src/app.tsx*
 ```typescript jsx
