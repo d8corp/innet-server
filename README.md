@@ -1576,7 +1576,7 @@ export default (
   <server>
     <api>
       <endpoint method='get' path='/products'>
-        <param in='query' name='friendly-name'>
+        <param in='query' name='friendlyName'>
           <string pattern='^[a-z_0-9]+$' />
         </param>
       </endpoint>
@@ -1586,7 +1586,7 @@ export default (
 ```
 
 If you make a request to the API endpoint,
-with query parameter of `friendly-name` equals `no-friendly` (as example),
+with query parameter of `friendlyName` equals `no-friendly` (as example),
 you get an error:
 
 ```json
@@ -1595,7 +1595,7 @@ you get an error:
   "data": {
     "error": "reg",
     "data": {
-      "key": "friendly-name"
+      "key": "friendlyName"
     },
     "in": "search"
   }
@@ -1613,7 +1613,7 @@ export default (
   <server>
     <api>
       <endpoint method='get' path='/products'>
-        <param in='query' name='friendly-name'>
+        <param in='query' name='friendlyName'>
           <string
             pattern='^[a-z_0-9]+$'
             patternID='fname'
@@ -1626,7 +1626,7 @@ export default (
 ```
 
 If you make a request to the API endpoint,
-with query parameter of `friendly-name` equals `no-friendly` (as example),
+with query parameter of `friendlyName` equals `no-friendly` (as example),
 you get an error:
 
 ```json
@@ -1635,7 +1635,7 @@ you get an error:
   "data": {
     "error": "reg",
     "data": {
-      "key": "friendly-name",
+      "key": "friendlyName",
       "regId": "fname"
     },
     "in": "search"
