@@ -2168,6 +2168,24 @@ export default (
 
 This element MUST be placed in `<endpoint>` element.
 It defines run-time call handler for the endpoint.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/partners'>
+        <request>
+          <success>
+            {{partners: []}}
+          </success>
+        </request>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
 You can place a component inside it.
 The component will run when the endpoint will be triggered.
 
