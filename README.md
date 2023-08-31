@@ -276,10 +276,10 @@ export default (
 
 This section contains elements of utils.
 
-[←](#abstract)
-- [\<swagger>](#swagger)
-- [\<dev>](#dev)
-- [\<dts>](#dts)
+[←](#abstract)  
+[\<swagger>](#swagger)  
+[\<dev>](#dev)  
+[\<dts>](#dts)
 
 ### \<swagger>
 
@@ -356,11 +356,10 @@ You can see examples of generated types usage in [Hooks](#hooks) section.
 
 ## Schema
 
-The elements define Open API Schema.
+[←](#abstract) The elements define Open API Schema.
 You can create Open API documentation without implementation of this.
 It helps to define API contracts before start implementation on backend and frontend side.
 
-[←](#abstract)
 - Base
   - [\<license>](#license)
   - [\<contact>](#contact)
