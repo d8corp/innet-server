@@ -20,8 +20,6 @@ Here you find **JSX components on back-end side** 🎉, Open API generation, Swa
 [![stars](https://img.shields.io/github/stars/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/stargazers)
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
 
-## Index
-
 - [Utils](#utils)
 - [Schema](#schema)
 - [Request elements](#request-elements)
@@ -278,7 +276,6 @@ export default (
 
 This section contains elements of utils.
 
-- [Index](#index)
 - [\<swagger>](#swagger)
 - [\<dev>](#dev)
 - [\<dts>](#dts)
@@ -357,6 +354,32 @@ export default (
 You can see examples of generated types usage in [Hooks](#hooks) section.
 
 ## Schema
+
+The elements define Open API Schema.
+You can create Open API documentation without implementation of this.
+It helps to define API contracts before start implementation on backend and frontend side.
+
+- Base
+  - [\<license>](#license)
+  - [\<contact>](#contact)
+  - [\<host>](#host)
+  - [\<variable>](#variable)
+  - [\<fallback>](#fallback)
+  - [\<endpoint>](#endpoint)
+  - [\<tag>](#tag)
+  - [\<param>](#param)
+  - [\<body>](#body)
+  - [\<response>](#response)
+- Data
+  - [\<number>](#number)
+  - [\<tuple>](#tuple)
+  - [\<array>](#array)
+  - [\<integer>](#integer)
+  - [\<string>](#string)
+  - [\<boolean>](#boolean)
+  - [\<date>](#date)
+  - [\<uuid>](#uuid)
+  - [\<binary>](#binary)
 
 ### \<license>
 
@@ -621,37 +644,6 @@ export default (
     </api>
   </server>
 )
-```
-
-### \<fallback>
-
-By default, `<api>` server returns 404 with empty body.
-`<fallback>` element defines default server response.
-This element MUST be placed in `<api>`.
-You MUST use one `<fallback>` per `<api>`.
-Can contains elements available inside `<request>`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <fallback>
-        <error
-          code='unknownEndpoint'
-        />
-      </fallback>
-    </api>
-  </server>
-)
-```
-
-If you open the application on any URL except for `/`, you can see the next response.
-
-```json
-{
-  "error": "unknownEndpoint"
-}
 ```
 
 ### \<endpoint>
@@ -2184,6 +2176,41 @@ export default (
 )
 ```
 
+## Request elements
+
+### \<fallback>
+
+By default, `<api>` server returns 404 with empty body.
+`<fallback>` element defines default server response.
+This element MUST be placed in `<api>`.
+You MUST use one `<fallback>` per `<api>`.
+Can contains elements available inside `<request>`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <fallback>
+        <error
+          code='unknownEndpoint'
+        />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+If you open the application on any URL except for `/`, you can see the next response.
+
+```json
+{
+  "error": "unknownEndpoint"
+}
+```
+
+The next elements are placed in `<request>` or `<fallback>`
+
 ### \<request>
 
 This element MUST be placed in `<endpoint>` element.
@@ -2234,10 +2261,6 @@ export const GetPartners = () => (
   </success>
 )
 ```
-
-## Request elements
-
-The elements are placed in `<request>` or `<fallback>`
 
 ### \<success>
 
