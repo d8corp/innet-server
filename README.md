@@ -2207,6 +2207,8 @@ Children
 [\<file>](#file)  
 [\<header>](#header)
 
+---
+
 ### \<fallback>
 
 By default, `<api>` server returns 404 with empty body.
