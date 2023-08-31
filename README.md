@@ -643,7 +643,11 @@ If you open the application on any URL except for `/`, you can see the next resp
 
 `<endpoint>` defines an endpoint of the API.
 
-This element MUST be placed in `<api>`
+This element MUST be placed in `<api>`.
+`<api>` uses a specific algorithm to find expected endpoint.
+It does no matter how many endpoints you have.
+It depends on the deep of path pieces.
+If you have the deep equals 1 (`/users`, `/user`, `/login`, `/logout`) the endpoint will be found immediately O(1).
 
 #### method
 
