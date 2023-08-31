@@ -1042,7 +1042,7 @@ export default (
 
 `<tuple>` element specifies schema parameter as a tuple of children elements.
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>` or `<fallback>`.
 
 *src/app.tsx*
 ```typescript jsx
@@ -1169,7 +1169,7 @@ export default (
 
 `<array>` element specifies schema parameter as an array of children elements.
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>` or `<fallback>`.
 
 *src/app.tsx*
 ```typescript jsx
