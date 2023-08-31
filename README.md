@@ -20,6 +20,12 @@ Here you find **JSX components on back-end side** 🎉, Open API generation, Swa
 [![stars](https://img.shields.io/github/stars/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/stargazers)
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
 
+- [Utils](#utils)
+- [Schema](#schema)
+- [Request elements](#request-elements)
+- [Components](#components)
+- [Hooks](#hooks)
+
 ## Install
 The simplest way to start working with `@innet/server`, it is `innetjs` usage.
 
@@ -2330,20 +2336,6 @@ You can return a file as a response.
 
 You can add an HTTP header into response by `header` element.
 
-## Hooks
-
-### useParams
-
-This hook returns an object of URL params you set by <param>.
-
-*src/requests/partners/GetPartner.tsx*
-```typescript jsx
-export function GetPartner () {
-  const { id } = useParams<Paths.Partners$Id.Get.PathParameters>()
-  return <success>{{ id }}</success>
-}
-```
-
 ## Components
 
 Any component is just a function which returns content that should be run.
@@ -2407,6 +2399,20 @@ export default (
 The first argument is props, the second is children and the last one is a handler.
 
 You can use components inside another component.
+
+## Hooks
+
+### useParams
+
+This hook returns an object of URL params you set by <param>.
+
+*src/requests/partners/GetPartner.tsx*
+```typescript jsx
+export function GetPartner () {
+  const { id } = useParams<Paths.Partners$Id.Get.PathParameters>()
+  return <success>{{ id }}</success>
+}
+```
 
 ## error
 You can return an error to the user.
