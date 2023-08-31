@@ -1260,7 +1260,7 @@ export default (
 
 ### \<integer>
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>` or `<fallback>`.
 It defines `integer` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1431,7 +1431,7 @@ export default (
 
 ### \<string>
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>` or `<fallback>`.
 It defines `string` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1645,7 +1645,7 @@ you get an error:
 
 ### \<boolean>
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>` or `<fallback>`.
 It defines `boolean` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1733,7 +1733,7 @@ export default (
 
 ### \<date>
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>` or `<fallback>`.
 It defines `date` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1867,7 +1867,7 @@ export default (
 
 Universally unique identifier.
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>` or `<fallback>`.
 It defines `string` value in `uuid` format for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1893,7 +1893,7 @@ export default (
 A default value for the `uuid`.
 
 Available values:
-- string in uuid format
+- `string` in uuid format
 - `new` generates a new uuid
 
 *src/app.tsx*
