@@ -286,6 +286,8 @@ This section contains elements of utils.
 
 ### \<swagger>
 
+[← back](#utils)
+
 Use `<swagger>` element to add Swagger UI documentation.
 `<swagger>` element MUST be placed in `<api>` element.
 
@@ -318,6 +320,8 @@ export default (
 
 ### \<dev>
 
+[← back](#utils)
+
 Everything inside <dev> will work when `NODE_ENV` equals `development`.
 
 *src/app.tsx*
@@ -334,6 +338,8 @@ export default (
 ```
 
 ### \<dts>
+
+[← back](#utils)
 
 Use `<dts>` element to add types generation.
 `<dts>` element MUST be placed in `<api>` element.
@@ -392,6 +398,8 @@ Date
 ---
 
 ### \<license>
+
+[← back](#schema)
 
 `<license>` element MUST be placed in `<api>` element.
 Use `<license>` element to define the API license.
@@ -454,6 +462,8 @@ export default (
 
 ### \<contact>
 
+[← back](#schema)
+
 `<contact>` element MUST be placed in `<api>` element.
 The contact information for the exposed API.
 
@@ -510,6 +520,8 @@ export default (
 
 ### \<host>
 
+[← back](#schema)
+
 `<host>` element MUST be placed in `<api>` element.
 
 This element adds a link to related documentation API.
@@ -556,6 +568,8 @@ export default (
 ```
 
 ### \<variable>
+
+[← back](#schema)
 
 This element MUST be placed in `<host>` element and defines a variable from the `<host>`.
 
@@ -657,6 +671,8 @@ export default (
 ```
 
 ### \<endpoint>
+
+[← back](#schema)
 
 `<endpoint>` defines an endpoint of the API.
 
@@ -780,6 +796,8 @@ export default (
 
 ### \<tag>
 
+[← back](#schema)
+
 You can wrap endpoints by `<tag>` element to group the endpoints.
 You can see the changes in Swagger UI.
 
@@ -804,6 +822,8 @@ export default (
 ```
 
 ### \<param>
+
+[← back](#schema)
 
 Describes a single operation parameter.
 
@@ -915,6 +935,8 @@ export default (
 
 ### \<body>
 
+[← back](#schema)
+
 This element MUST be placed inside `<endpoint>`.
 It defines request body for the endpoint.
 `@innet/server` formats and validate the value automatically (real-time).
@@ -947,10 +969,14 @@ return (
 
 ### \<response>
 
+[← back](#schema)
+
 This element MUST be placed inside `<endpoint>`.
 It defines response body for the endpoint.
 
 ### \<number>
+
+[← back](#schema)
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
 It defines `number` value for a parent element.
@@ -1099,6 +1125,8 @@ export default (
 
 ### \<tuple>
 
+[← back](#schema)
+
 `<tuple>` element specifies schema parameter as a tuple of children elements.
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
@@ -1226,6 +1254,8 @@ export default (
 
 ### \<array>
 
+[← back](#schema)
+
 `<array>` element specifies schema parameter as an array of children elements.
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
@@ -1318,6 +1348,8 @@ export default (
 ```
 
 ### \<integer>
+
+[← back](#schema)
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
 It defines `integer` value for a parent element.
@@ -1489,6 +1521,8 @@ export default (
 *In this example `/products?rating=5` is valid and `/products?rating=6` is not*
 
 ### \<string>
+
+[← back](#schema)
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
 It defines `string` value for a parent element.
@@ -1704,6 +1738,8 @@ you get an error:
 
 ### \<boolean>
 
+[← back](#schema)
+
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
 It defines `boolean` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
@@ -1791,6 +1827,8 @@ export default (
 ```
 
 ### \<date>
+
+[← back](#schema)
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
 It defines `date` value for a parent element.
@@ -1955,6 +1993,8 @@ export default (
 
 ### \<uuid>
 
+[← back](#schema)
+
 Universally unique identifier.
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
@@ -2080,6 +2120,8 @@ export default (
 ```
 
 ### \<binary>
+
+[← back](#schema)
 
 This is a binary type of data.
 There is one way to get the type, it is `multipart/form-data` usage.
@@ -2211,11 +2253,13 @@ Children
 
 ### \<fallback>
 
+[← back](#run-time)
+
 By default, `<api>` server returns 404 with empty body.
 `<fallback>` element defines default server response.
 This element MUST be placed in `<api>`.
 You MUST use one `<fallback>` per `<api>`.
-Can contains elements available inside `<request>`.
+Can contain elements available inside `<request>`.
 
 *src/app.tsx*
 ```typescript jsx
@@ -2243,6 +2287,8 @@ If you open the application on any URL except for `/`, you can see the next resp
 The next elements are placed in `<request>` or `<fallback>`
 
 ### \<request>
+
+[← back](#run-time)
 
 This element MUST be placed in `<endpoint>` element.
 It defines run-time call handler for the endpoint.
@@ -2294,6 +2340,8 @@ export const GetPartners = () => (
 ```
 
 ### \<success>
+
+[← back](#run-time)
 
 This is a base element to return a success data.
 
@@ -2377,25 +2425,39 @@ export default (
 
 ### \<error>
 
+[← back](#run-time)
+
 ### \<proxy>
+
+[← back](#run-time)
 
 You can proxy request.
 
 ### \<redirect>
 
+[← back](#run-time)
+
 You can redirect users to another resource.
 
 ### \<cms>
+
+[← back](#run-time)
 
 CMS helps to return files from a folder by path.
 
 ### \<cookie>
 
+[← back](#run-time)
+
 ### \<file>
+
+[← back](#run-time)
 
 You can return a file as a response.
 
 ### \<header>
+
+[← back](#run-time)
 
 You can add an HTTP header into response by `header` element.
 
