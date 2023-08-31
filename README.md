@@ -1902,6 +1902,37 @@ export default (
 )
 ```
 
+#### min, max
+
+Those two pros limit the date period.
+
+Available values:
+- `string` - the date in ISO format
+- `number` - date timestamp
+- `Date` - JavaScript `Date` format
+- `'now'` - the string defines current server date as default.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='birthday'>
+          <date
+            min='01-01-1900'
+            max='now'
+            description='The user birthday'
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
 ### \<uuid>
 
 Universally unique identifier.
