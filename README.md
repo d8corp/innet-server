@@ -893,7 +893,7 @@ export default (
 
 ### \<number>
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>` or `<fallback>`.
 It defines `number` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
