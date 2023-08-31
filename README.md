@@ -20,6 +20,8 @@ Here you find **JSX components on back-end side** 🎉, Open API generation, Swa
 [![stars](https://img.shields.io/github/stars/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/stargazers)
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
 
+## Index
+
 - [Utils](#utils)
 - [Schema](#schema)
 - [Request elements](#request-elements)
@@ -78,8 +80,6 @@ You will see a base Open API JSON structure.
   "paths": {}
 }
 ```
-
-## Utils
 
 ### \<server>
 `<server>` element helps to start http(s) server.
@@ -273,6 +273,15 @@ export default (
   </server>
 )
 ```
+
+## Utils
+
+This section contains elements of utils.
+
+- [Index](#index)
+- [<swagger>](#swagger)
+- [<dev>](#dev)
+- [<dts>](#dts)
 
 ### \<swagger>
 
