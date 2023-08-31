@@ -279,9 +279,9 @@ export default (
 This section contains elements of utils.
 
 - [Index](#index)
-- [<swagger>](#swagger)
-- [<dev>](#dev)
-- [<dts>](#dts)
+- [\<swagger>](#swagger)
+- [\<dev>](#dev)
+- [\<dts>](#dts)
 
 ### \<swagger>
 
