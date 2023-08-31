@@ -22,7 +22,7 @@ Here you find **JSX components on back-end side** 🎉, Open API generation, Swa
 
 - [Utils](#utils)
 - [Schema](#schema)
-- [Request elements](#request-elements)
+- [Run-Time](#run-time)
 - [Components](#components)
 - [Hooks](#hooks)
 
@@ -276,10 +276,13 @@ export default (
 
 This section contains elements of utils.
 
-[←](#abstract)  
+[← back](#abstract)
+
 [\<swagger>](#swagger)  
 [\<dev>](#dev)  
 [\<dts>](#dts)
+
+---
 
 ### \<swagger>
 
@@ -356,31 +359,37 @@ You can see examples of generated types usage in [Hooks](#hooks) section.
 
 ## Schema
 
-[←](#abstract) The elements define Open API Schema.
+The elements define Open API Schema.
 You can create Open API documentation without implementation of this.
 It helps to define API contracts before start implementation on backend and frontend side.
 
-- Base
-  - [\<license>](#license)
-  - [\<contact>](#contact)
-  - [\<host>](#host)
-  - [\<variable>](#variable)
-  - [\<fallback>](#fallback)
-  - [\<endpoint>](#endpoint)
-  - [\<tag>](#tag)
-  - [\<param>](#param)
-  - [\<body>](#body)
-  - [\<response>](#response)
-- Data
-  - [\<number>](#number)
-  - [\<tuple>](#tuple)
-  - [\<array>](#array)
-  - [\<integer>](#integer)
-  - [\<string>](#string)
-  - [\<boolean>](#boolean)
-  - [\<date>](#date)
-  - [\<uuid>](#uuid)
-  - [\<binary>](#binary)
+
+[← back](#abstract)
+
+Main  
+[\<license>](#license)  
+[\<contact>](#contact)  
+[\<host>](#host)  
+[\<variable>](#variable)  
+[\<fallback>](#fallback)  
+[\<endpoint>](#endpoint)  
+[\<tag>](#tag)  
+[\<param>](#param)  
+[\<body>](#body)  
+[\<response>](#response)
+
+Date  
+[\<number>](#number)  
+[\<tuple>](#tuple)  
+[\<array>](#array)  
+[\<integer>](#integer)  
+[\<string>](#string)  
+[\<boolean>](#boolean)  
+[\<date>](#date)  
+[\<uuid>](#uuid)  
+[\<binary>](#binary)
+
+---
 
 ### \<license>
 
@@ -2177,7 +2186,26 @@ export default (
 )
 ```
 
-## Request elements
+## Run-Time
+
+Next elements relate to run-time action.
+This action calls on user request.
+
+[← back](#abstract)
+
+Parent  
+[\<fallback>](#fallback)  
+[\<request>](#request)
+
+Children  
+[\<success>](#success)  
+[\<error>](#error)
+[\<proxy>](#proxy)
+[\<redirect>](#redirect)
+[\<cms>](#cms)
+[\<cookie>](#cookie)
+[\<file>](#file)
+[\<header>](#header)
 
 ### \<fallback>
 
