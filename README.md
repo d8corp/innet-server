@@ -891,6 +891,45 @@ export default (
 )
 ```
 
+### \<body>
+
+This element MUST be placed inside `<endpoint>`.
+It defines request body for the endpoint.
+`@innet/server` formats and validate the value automatically (real-time).
+
+```typescript jsx
+return (
+  <server>
+    <api>
+      <endpoint method='post' path='/partners'>
+        <body>
+          <object>
+            <field key='name'>
+              <string example='CANTent.' />
+            </field>
+            <field key='gift'>
+              <boolean />
+            </field>
+            <field optional key='addresses'>
+              <array>
+                <number description='address id' />
+              </array>
+            </field>
+          </object>
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### \<response>
+
+This element MUST be placed inside `<endpoint>`.
+It defines response body for the endpoint.
+
+### \<request>
+
 ### \<number>
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>` or `<fallback>`.
@@ -1989,29 +2028,24 @@ export default (
 )
 ```
 
-### \<body>
+### \<binary>
 
-This element MUST be placed inside `<endpoint>`.
-It defines request body for the endpoint.
-`@innet/server` formats and validate the value automatically (real-time).
+This is a binary type of data.
+There is one way to get the type, it is `multipart/form-data` usage.
 
+*src/app.tsx*
 ```typescript jsx
-return (
+export default (
   <server>
     <api>
-      <endpoint method='post' path='/partners'>
+      <endpoint method='post' path='/partner'>
         <body>
           <object>
+            <field key='icon'>
+              <binary />
+            </field>
             <field key='name'>
-              <string example='CANTent.' />
-            </field>
-            <field key='gift'>
-              <boolean />
-            </field>
-            <field optional key='addresses'>
-              <array>
-                <number description='address id' />
-              </array>
+              <string />
             </field>
           </object>
         </body>
@@ -2021,14 +2055,85 @@ return (
 )
 ```
 
-### \<response>
+#### description
 
-This element MUST be placed inside `<endpoint>`.
-It defines response body for the endpoint.
+A description of the `binary`.
 
-### \<binary>
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/partner'>
+        <body>
+          <object>
+            <field key='icon'>
+              <binary
+                description='Square icon of the partner'
+              />
+            </field>
+          </object>
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
 
-### \<request>
+#### accept
+
+This prop defines available file format.
+It works the same as [accept](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept) attribute of HTML input element.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/partner'>
+        <body>
+          <object>
+            <field key='icon'>
+              <binary
+                accept='image/jpeg'
+                description='Square icon of the partner'
+              />
+            </field>
+          </object>
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### min, max
+
+Those two pros limit the file size.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/partner'>
+        <body>
+          <object>
+            <field key='icon'>
+              <binary
+                accept='image/jpeg'
+                description='Square icon of the partner'
+                min={1024}
+                max={10 * 1024 ** 2}
+              />
+            </field>
+          </object>
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
 
 ## Request elements
 
