@@ -2219,9 +2219,89 @@ export const GetPartners = () => (
 
 The elements are placed in `<request>` or `<fallback>`
 
-### \<error>
-
 ### \<success>
+
+This is a base element to return a success data.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <fallback>
+        <success />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+You will get a response with `204` status (`noContent`) and without content.
+
+You can provide some data to the user by children.
+
+*src/app.tsx*
+```typescript jsx
+const data = {...}
+
+export default (
+  <server>
+    <api>
+      <fallback>
+        <success>
+          {data}
+        </success>
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+You will get `200` status (`ok`), with body equals data.
+
+#### status
+
+You can set response status by `status` prop of `<success>`.
+
+*src/app.tsx*
+```typescript jsx
+const data = {...}
+
+export default (
+  <server>
+    <api>
+      <fallback>
+        <success status='created'>
+          {data}
+        </success>
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+You will get `201` status (`created`), with data as a content.
+
+You can use a number of `status` prop.
+
+*src/app.tsx*
+```typescript jsx
+const data = {...}
+
+export default (
+  <server>
+    <api>
+      <fallback>
+        <success status={201}>
+          {data}
+        </success>
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+### \<error>
 
 ### \<proxy>
 
@@ -2322,78 +2402,6 @@ export default (
 The first argument is props, the second is children and the last one is a handler.
 
 You can use components inside another component.
-
-## success
-If you work on REST API, you can use `success` or `error` as an answer
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <success />
-    </action>
-  </server>  
-)
-```
-
-You will get `204` status (`noContent`), without content.
-
-You can provide some data to the user by children.
-```typescript jsx
-const data = {
-  posts: []
-}
-
-export default (
-  <server>
-    <action>
-      <success>
-        {data}
-      </success>
-    </action>
-  </server>
-)
-```
-You will get `200` status (`ok`), with body equals data.
-
-### status
-You can set status by status prop.
-
-```typescript jsx
-const data = {
-  id: '123'
-}
-
-export default (
-  <server>
-    <action>
-      <success status='created'>
-        {data}
-      </success>
-    </action>
-  </server>  
-)
-```
-
-You will get `201` status (`created`), with data as a content.
-
-You can use a number with `status` prop.
-
-```typescript jsx
-const data = {
-  id: '123'
-}
-
-export default (
-  <server>
-    <action>
-      <success status={201}>
-        {data}
-      </success>
-    </action>
-  </server>  
-)
-```
 
 ## error
 You can return an error to the user.
