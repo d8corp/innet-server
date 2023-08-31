@@ -928,8 +928,6 @@ return (
 This element MUST be placed inside `<endpoint>`.
 It defines response body for the endpoint.
 
-### \<request>
-
 ### \<number>
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
@@ -2163,6 +2161,39 @@ export default (
       </endpoint>
     </api>
   </server>
+)
+```
+
+### \<request>
+
+This element MUST be placed in `<endpoint>` element.
+It defines run-time call handler for the endpoint.
+You can place a component inside it.
+The component will run when the endpoint will be triggered.
+
+*src/app.tsx*
+```typescript jsx
+import { GetPartners } from './GetPartners'
+
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/partners'>
+        <request>
+          <GetPartners />
+        </request>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+*src/GetPartners.tsx*
+```typescript jsx
+export const GetPartners = () => (
+  <success>
+    {{partners: []}}
+  </success>
 )
 ```
 
