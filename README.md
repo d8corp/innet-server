@@ -22,17 +22,17 @@ Here you find **JSX components on back-end side** 🎉, Open API generation, Swa
 
 ## Index
 
-[Install](#install)
-[Handler](#handler)
+[Install](#install)  
+[Handler](#handler)  
 [Usage](#usage)
 
 JSX Elements
-[Utils](#utils)
-[Schema](#schema)
+[Utils](#utils)  
+[Schema](#schema)  
 [Run-Time](#run-time)
 
 Features
-[Components](#components)
+[Components](#components)  
 [Hooks](#hooks)
 
 ## Install
