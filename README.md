@@ -20,7 +20,25 @@ Here you find **JSX components on back-end side** 🎉, Open API generation, Swa
 [![stars](https://img.shields.io/github/stars/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/stargazers)
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
 
+## Index
+
+[Install](#install)
+[Handler](#handler)
+[Usage](#usage)
+
+JSX Elements
+[Utils](#utils)
+[Schema](#schema)
+[Run-Time](#run-time)
+
+Features
+[Components](#components)
+[Hooks](#hooks)
+
 ## Install
+
+[← back](#index)
+
 The simplest way to start working with `@innet/server`, it is `innetjs` usage.
 
 ```shell
@@ -31,6 +49,8 @@ npx innetjs init my-app -t api
 Go into `my-app` and check `README.md`
 
 ## Handler
+
+[← back](#index)
 
 Use `server` handler to start an application.
 
@@ -45,6 +65,8 @@ innet(app, server)
 ```
 
 ## Usage
+
+[← back](#index)
 
 Here is a **Hello World** example:
 
@@ -266,19 +288,11 @@ export default (
 )
 ```
 
-## JSX Elements
-
-[Utils](#utils)
-[Schema](#schema)
-[Run-Time](#run-time)
-[Components](#components)
-[Hooks](#hooks)
-
 ## Utils
 
 This section contains elements of utils.
 
-[← back](#jsx-elements)
+[← back](#index)
 
 [\<swagger>](#swagger)  
 [\<dev>](#dev)  
@@ -372,7 +386,7 @@ You can create Open API documentation without implementation of this.
 It helps to define API contracts before start implementation on backend and frontend sides.
 
 
-[← back](#jsx-elements)
+[← back](#index)
 
 Main  
 [\<license>](#license)  
@@ -2375,7 +2389,7 @@ export default (
 Next elements relate to run-time action.
 This action calls on user request.
 
-[← back](#jsx-elements)
+[← back](#index)
 
 Parent  
 [\<fallback>](#fallback)  
