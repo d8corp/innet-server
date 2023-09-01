@@ -393,6 +393,7 @@ Date
 [\<boolean>](#boolean)  
 [\<date>](#date)  
 [\<uuid>](#uuid)  
+[\<object>](#object)
 [\<binary>](#binary)
 
 ---
@@ -2113,6 +2114,92 @@ export default (
             description='User ID for a new user'
           />
         </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### \<object>
+
+[← back](#schema)
+
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+It defines `object` value for a parent element.
+`@innet/server` formats and validate the value automatically (real-time).
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/users'>
+        <body>
+          <object />
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### default
+
+A default value for the `object`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/users'>
+        <body>
+          <object
+            default={{name: 'John'}}
+          />
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### example
+
+An example value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/users'>
+        <body>
+        <object
+          example={{name: 'John'}}
+        />
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### description
+
+A description of the `object`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/users'>
+        <body>
+        <object
+          description='The object of a user'
+        />
+        </body>
       </endpoint>
     </api>
   </server>
