@@ -30,6 +30,7 @@ It helps to define API contracts before start implementation on backend and fron
 [Usage](#usage)
 
 JSX Elements  
+[Main](#main)  
 [Utils](#utils)  
 [API Info](#api-info)  
 [Endpoints](#endpoints)  
@@ -100,6 +101,15 @@ You will see a base Open API JSON structure.
   "paths": {}
 }
 ```
+
+## Main
+
+[← back](#index)
+
+[\<server>](#server)   
+[\<api>](#api)
+
+---
 
 ### \<server>
 `<server>` element helps to start http(s) server.
