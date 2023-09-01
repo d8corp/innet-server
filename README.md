@@ -415,7 +415,7 @@ The API information elements are here.
 
 ### \<license>
 
-[api info](#api-info)
+[← back](#api-info)
 
 `<license>` element MUST be placed in `<api>` element.
 Use `<license>` element to define the API license.
@@ -478,7 +478,7 @@ export default (
 
 ### \<contact>
 
-[api info](#api-info)
+[← back](#api-info)
 
 `<contact>` element MUST be placed in `<api>` element.
 The contact information for the exposed API.
@@ -536,7 +536,7 @@ export default (
 
 ### \<host>
 
-[api info](#api-info)
+[← back](#api-info)
 
 `<host>` element MUST be placed in `<api>` element.
 
@@ -585,7 +585,7 @@ export default (
 
 ### \<variable>
 
-[api info](#api-info)
+[← back](#api-info)
 
 This element MUST be placed in `<host>` element and defines a variable from the `<host>`.
 
