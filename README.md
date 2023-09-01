@@ -702,9 +702,8 @@ export default (
 
 [← back](#endpoints)
 
-`<endpoint>` defines an endpoint of the API.
+`<endpoint>` defines an endpoint of the API and MUST be placed in `<api>`.
 
-This element MUST be placed in `<api>`.
 `<api>` uses a specific algorithm to find expected endpoint.
 
 It does no matter how many endpoints you have.
