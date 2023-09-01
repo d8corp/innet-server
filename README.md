@@ -112,6 +112,9 @@ You will see a base Open API JSON structure.
 ---
 
 ### \<server>
+
+[← back](#main)
+
 `<server>` element helps to start http(s) server.
 
 *src/app.tsx*
@@ -204,6 +207,8 @@ export default (
 ```
 
 ### \<api>
+
+[← back](#main)
 
 `<api>` element MUST be placed in `<server>` element.  
 This element defines a REST API on the server.
