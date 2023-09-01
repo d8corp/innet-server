@@ -989,8 +989,8 @@ It defines response body for the endpoint.
 
 [← back](#index)
 
-[\<boolean>](#boolean)  
 [\<null>](#null)  
+[\<boolean>](#boolean)  
 [\<string>](#string)  
 [\<number>](#number)  
 [\<integer>](#integer)  
@@ -998,385 +998,12 @@ It defines response body for the endpoint.
 [\<uuid>](#uuid)  
 [\<binary>](#binary)
 
-### \<number>
+### \<boolean>
 
 [← back](#schema)
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
-It defines `number` value for a parent element.
-`@innet/server` formats and validate the value automatically (real-time).
-
-Correct numbers are from `-9007199254740991` to `9007199254740991`.
-This is a value of `Number.MAX_SAFE_INTEGER`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <number />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-*This example defines a `GET` endpoint on `/users` which has an optional query `number` parameter of `minAge`.*
-
-#### default
-
-A default value for the `number`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <number default={18} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-*By default, `minAge` query param equals `18`*
-
-#### example
-
-An example value.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <number example={18} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### description
-
-A description of the `number`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <number
-            example={18}
-            description='Age value'
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### values
-
-The enumeration of available `values`.
-If you provide the parameter value, which is not in the `values`, the server returns an error.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <number
-            example={18}
-            values={[
-              12,
-              16,
-              18,
-              21,
-            ]}
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### min, max
-
-Those two props validate the number value by minimum and maximum values.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <number min={1} max={5} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-*In this example `/products?rating=5` is valid and `/products?rating=6` is not*
-
-### \<tuple>
-
-[← back](#schema)
-
-`<tuple>` element specifies schema parameter as a tuple of children elements.
-
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param name='rating' in='query'>
-          <tuple>
-            <number min={1} max={5} />
-            <number min={1} max={5} />
-          </tuple>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-This example defines that, `/products?rating=3&rating=4` is valid and `rating` MUST be from `3` to `4`.
-Also supports formats `/products?rating[]=3&rating[]=4` and `/products?rating[0]=3&rating[1]=4`.
-
-`/products?rating=3` or `/products?rating=1&rating=6` returns an error.
-
-You can add several elements in `<response>`, `<param>` or `<body>` to define that one of the element is valid.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <number min={1} max={5} />
-          <tuple>
-            <number min={1} max={5} />
-            <number min={1} max={5} />
-          </tuple>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-This example defines that, `/products?rating=3&rating=4` is valid and `rating` MUST be from `3` to `4`.
-Also supports `/products?rating=3`, returns products have `rating` equals `3`.
-
-`/products?rating=text` or `/products?rating=1&rating=6` returns an error.
-
-#### default
-
-Defines default `<tuple>` value.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <number min={1} max={5} />
-          <tuple default={[1, 5]}>
-            <number min={1} max={5} />
-            <number min={1} max={5} />
-          </tuple>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### example
-
-Defines an example of the `<tuple>` value.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <number min={1} max={5} />
-          <tuple default={[1, 5]} example={[3, 5]}>
-            <number min={1} max={5} />
-            <number min={1} max={5} />
-          </tuple>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### description
-
-Defines the `<tuple>` description.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <number min={1} max={5} />
-          <tuple
-            description='A range of rating score'
-            default={[1, 5]}
-            example={[3, 5]}>
-            <number min={1} max={5} />
-            <number min={1} max={5} />
-          </tuple>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-### \<array>
-
-[← back](#schema)
-
-`<array>` element specifies schema parameter as an array of children elements.
-
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <array>
-            <number min={1} max={5} />
-          </array>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-This example defines that, `/products?rating=3&rating=4` is valid and `rating` MUST be `3` or `4`.
-Also supports formats `/products?rating[]=3&rating[]=4` and `/products?rating[0]=3&rating[1]=4`.
-
-`/products?rating=3` and `/products?rating=1&rating=2&rating=3` also support.
-
-#### default
-
-Defines default `<array>` value.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <array default={[1, 2, 3, 4, 5]}>
-            <number min={1} max={5} />
-          </array>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### example
-
-Defines an example of the `<array>` value.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <array example={[1, 3, 5]}>
-            <number min={1} max={5} />
-          </array>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### description
-
-Defines the `<array>` description.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <array
-            description='Values of rating score'
-            example={[3, 5]}>
-            <number min={1} max={5} />
-          </array>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-### \<integer>
-
-[← back](#schema)
-
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
-It defines `integer` value for a parent element.
+It defines `boolean` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
 *src/app.tsx*
@@ -1387,37 +1014,8 @@ export default (
       <endpoint method='get' path='/users'>
         <param
           in='query'
-          name='minAge'>
-          <integer />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-*This example defines a `GET` endpoint on `/users` which has an optional query `integer` parameter of `minAge`.*
-
-#### format
-
-You can set up the `integer` format.
-Possible values are `int32` or `int64`.
-By default, there are `int32` used.
-
-The format of `int32` means a number from `-2147483647` to `2147483647`.
-The format of `int64` converts the value to `BigInt` and placed between `-9223372036854775807` and `9223372036854775807`
-
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <integer format='int64' />
+          name='active'>
+          <boolean />
         </param>
       </endpoint>
     </api>
@@ -1427,7 +1025,7 @@ export default (
 
 #### default
 
-A default value for the `integer`.
+A default value for the `boolean`.
 
 *src/app.tsx*
 ```typescript jsx
@@ -1437,16 +1035,14 @@ export default (
       <endpoint method='get' path='/users'>
         <param
           in='query'
-          name='minAge'>
-          <integer default={18} />
+          name='active'>
+          <boolean default={false} />
         </param>
       </endpoint>
     </api>
   </server>
 )
 ```
-
-*By default, `minAge` query param equals `18`*
 
 #### example
 
@@ -1457,11 +1053,11 @@ An example value.
 export default (
   <server>
     <api>
-      <endpoint method='get' path='/users'>
+      <endpoint method='get' path='/products'>
         <param
           in='query'
-          name='minAge'>
-          <integer example={18} />
+          name='active'>
+          <boolean example={false} />
         </param>
       </endpoint>
     </api>
@@ -1471,61 +1067,7 @@ export default (
 
 #### description
 
-A description of the `integer`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <integer
-            example={18}
-            description='Age value'
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### values
-
-The enumeration of available `values`.
-If you provide the parameter value, which is not in the `values`, the server returns an error.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <integer
-            example={18}
-            values={[
-              12,
-              16,
-              18,
-              21,
-            ]}
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### min, max
-
-Those two props validate the number value by minimum and maximum values.
+A description of the `boolean`.
 
 *src/app.tsx*
 ```typescript jsx
@@ -1533,16 +1075,18 @@ export default (
   <server>
     <api>
       <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <integer min={1} max={5} />
+        <param
+          in='query'
+          name='active'>
+          <boolean
+            description='Active products param'
+          />
         </param>
       </endpoint>
     </api>
   </server>
 )
 ```
-
-*In this example `/products?rating=5` is valid and `/products?rating=6` is not*
 
 ### \<string>
 
@@ -1760,13 +1304,16 @@ you get an error:
 }
 ```
 
-### \<boolean>
+### \<number>
 
 [← back](#schema)
 
 The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
-It defines `boolean` value for a parent element.
+It defines `number` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
+
+Correct numbers are from `-9007199254740991` to `9007199254740991`.
+This is a value of `Number.MAX_SAFE_INTEGER`.
 
 *src/app.tsx*
 ```typescript jsx
@@ -1776,18 +1323,20 @@ export default (
       <endpoint method='get' path='/users'>
         <param
           in='query'
-          name='active'>
-          <boolean />
+          name='minAge'>
+          <number />
         </param>
       </endpoint>
     </api>
   </server>
 )
 ```
+
+*This example defines a `GET` endpoint on `/users` which has an optional query `number` parameter of `minAge`.*
 
 #### default
 
-A default value for the `boolean`.
+A default value for the `number`.
 
 *src/app.tsx*
 ```typescript jsx
@@ -1797,14 +1346,16 @@ export default (
       <endpoint method='get' path='/users'>
         <param
           in='query'
-          name='active'>
-          <boolean default={false} />
+          name='minAge'>
+          <number default={18} />
         </param>
       </endpoint>
     </api>
   </server>
 )
 ```
+
+*By default, `minAge` query param equals `18`*
 
 #### example
 
@@ -1815,11 +1366,11 @@ An example value.
 export default (
   <server>
     <api>
-      <endpoint method='get' path='/products'>
+      <endpoint method='get' path='/users'>
         <param
           in='query'
-          name='active'>
-          <boolean example={false} />
+          name='minAge'>
+          <number example={18} />
         </param>
       </endpoint>
     </api>
@@ -1829,19 +1380,20 @@ export default (
 
 #### description
 
-A description of the `boolean`.
+A description of the `number`.
 
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
     <api>
-      <endpoint method='get' path='/products'>
+      <endpoint method='get' path='/users'>
         <param
           in='query'
-          name='active'>
-          <boolean
-            description='Active products param'
+          name='minAge'>
+          <number
+            example={18}
+            description='Age value'
           />
         </param>
       </endpoint>
@@ -1849,6 +1401,230 @@ export default (
   </server>
 )
 ```
+
+#### values
+
+The enumeration of available `values`.
+If you provide the parameter value, which is not in the `values`, the server returns an error.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <number
+            example={18}
+            values={[
+              12,
+              16,
+              18,
+              21,
+            ]}
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### min, max
+
+Those two props validate the number value by minimum and maximum values.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <number min={1} max={5} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+*In this example `/products?rating=5` is valid and `/products?rating=6` is not*
+
+### \<integer>
+
+[← back](#schema)
+
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+It defines `integer` value for a parent element.
+`@innet/server` formats and validate the value automatically (real-time).
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <integer />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+*This example defines a `GET` endpoint on `/users` which has an optional query `integer` parameter of `minAge`.*
+
+#### format
+
+You can set up the `integer` format.
+Possible values are `int32` or `int64`.
+By default, there are `int32` used.
+
+The format of `int32` means a number from `-2147483647` to `2147483647`.
+The format of `int64` converts the value to `BigInt` and placed between `-9223372036854775807` and `9223372036854775807`
+
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <integer format='int64' />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### default
+
+A default value for the `integer`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <integer default={18} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+*By default, `minAge` query param equals `18`*
+
+#### example
+
+An example value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <integer example={18} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### description
+
+A description of the `integer`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <integer
+            example={18}
+            description='Age value'
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### values
+
+The enumeration of available `values`.
+If you provide the parameter value, which is not in the `values`, the server returns an error.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='minAge'>
+          <integer
+            example={18}
+            values={[
+              12,
+              16,
+              18,
+              21,
+            ]}
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### min, max
+
+Those two props validate the number value by minimum and maximum values.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <integer min={1} max={5} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+*In this example `/products?rating=5` is valid and `/products?rating=6` is not*
 
 ### \<date>
 
@@ -2143,6 +1919,115 @@ export default (
 )
 ```
 
+### \<binary>
+
+[← back](#schema)
+
+This is a binary type of data.
+There is one way to get the type, it is `multipart/form-data` usage.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/partner'>
+        <body>
+          <object>
+            <field key='icon'>
+              <binary />
+            </field>
+            <field key='name'>
+              <string />
+            </field>
+          </object>
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### description
+
+A description of the `binary`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/partner'>
+        <body>
+          <object>
+            <field key='icon'>
+              <binary
+                description='Square icon of the partner'
+              />
+            </field>
+          </object>
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### accept
+
+This prop defines available file format.
+It works the same as [accept](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept) attribute of HTML input element.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/partner'>
+        <body>
+          <object>
+            <field key='icon'>
+              <binary
+                accept='image/jpeg'
+                description='Square icon of the partner'
+              />
+            </field>
+          </object>
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### min, max
+
+Those two pros limit the file size.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/partner'>
+        <body>
+          <object>
+            <field key='icon'>
+              <binary
+                accept='image/jpeg'
+                description='Square icon of the partner'
+                min={1024}
+                max={10 * 1024 ** 2}
+              />
+            </field>
+          </object>
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
 ## List of Data
 
 [← back](#index)
@@ -2153,6 +2038,230 @@ export default (
 [\<field>](#field)  
 
 ---
+
+### \<tuple>
+
+[← back](#schema)
+
+`<tuple>` element specifies schema parameter as a tuple of children elements.
+
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param name='rating' in='query'>
+          <tuple>
+            <number min={1} max={5} />
+            <number min={1} max={5} />
+          </tuple>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+This example defines that, `/products?rating=3&rating=4` is valid and `rating` MUST be from `3` to `4`.
+Also supports formats `/products?rating[]=3&rating[]=4` and `/products?rating[0]=3&rating[1]=4`.
+
+`/products?rating=3` or `/products?rating=1&rating=6` returns an error.
+
+You can add several elements in `<response>`, `<param>` or `<body>` to define that one of the element is valid.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <number min={1} max={5} />
+          <tuple>
+            <number min={1} max={5} />
+            <number min={1} max={5} />
+          </tuple>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+This example defines that, `/products?rating=3&rating=4` is valid and `rating` MUST be from `3` to `4`.
+Also supports `/products?rating=3`, returns products have `rating` equals `3`.
+
+`/products?rating=text` or `/products?rating=1&rating=6` returns an error.
+
+#### default
+
+Defines default `<tuple>` value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <number min={1} max={5} />
+          <tuple default={[1, 5]}>
+            <number min={1} max={5} />
+            <number min={1} max={5} />
+          </tuple>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### example
+
+Defines an example of the `<tuple>` value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <number min={1} max={5} />
+          <tuple default={[1, 5]} example={[3, 5]}>
+            <number min={1} max={5} />
+            <number min={1} max={5} />
+          </tuple>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### description
+
+Defines the `<tuple>` description.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <number min={1} max={5} />
+          <tuple
+            description='A range of rating score'
+            default={[1, 5]}
+            example={[3, 5]}>
+            <number min={1} max={5} />
+            <number min={1} max={5} />
+          </tuple>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### \<array>
+
+[← back](#schema)
+
+`<array>` element specifies schema parameter as an array of children elements.
+
+The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <array>
+            <number min={1} max={5} />
+          </array>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+This example defines that, `/products?rating=3&rating=4` is valid and `rating` MUST be `3` or `4`.
+Also supports formats `/products?rating[]=3&rating[]=4` and `/products?rating[0]=3&rating[1]=4`.
+
+`/products?rating=3` and `/products?rating=1&rating=2&rating=3` also support.
+
+#### default
+
+Defines default `<array>` value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <array default={[1, 2, 3, 4, 5]}>
+            <number min={1} max={5} />
+          </array>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### example
+
+Defines an example of the `<array>` value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <array example={[1, 3, 5]}>
+            <number min={1} max={5} />
+          </array>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### description
+
+Defines the `<array>` description.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <array
+            description='Values of rating score'
+            example={[3, 5]}>
+            <number min={1} max={5} />
+          </array>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
 
 ### \<object>
 
@@ -2285,115 +2394,6 @@ export default (
           <field key='surname' />
           <field optional key='birthbay' />
         </object>
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-### \<binary>
-
-[← back](#schema)
-
-This is a binary type of data.
-There is one way to get the type, it is `multipart/form-data` usage.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/partner'>
-        <body>
-          <object>
-            <field key='icon'>
-              <binary />
-            </field>
-            <field key='name'>
-              <string />
-            </field>
-          </object>
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### description
-
-A description of the `binary`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/partner'>
-        <body>
-          <object>
-            <field key='icon'>
-              <binary
-                description='Square icon of the partner'
-              />
-            </field>
-          </object>
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### accept
-
-This prop defines available file format.
-It works the same as [accept](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept) attribute of HTML input element.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/partner'>
-        <body>
-          <object>
-            <field key='icon'>
-              <binary
-                accept='image/jpeg'
-                description='Square icon of the partner'
-              />
-            </field>
-          </object>
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### min, max
-
-Those two pros limit the file size.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/partner'>
-        <body>
-          <object>
-            <field key='icon'>
-              <binary
-                accept='image/jpeg'
-                description='Square icon of the partner'
-                min={1024}
-                max={10 * 1024 ** 2}
-              />
-            </field>
-          </object>
         </body>
       </endpoint>
     </api>
