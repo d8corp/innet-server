@@ -402,6 +402,8 @@ You can see examples of generated types usage in [Hooks](#hooks) section.
 
 ## API Info
 
+The API information elements are here.
+
 [← back](#index)
 
 [\<license>](#license)  
