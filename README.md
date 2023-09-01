@@ -394,6 +394,7 @@ Date
 [\<date>](#date)  
 [\<uuid>](#uuid)  
 [\<object>](#object)
+[\<field>](#field)
 [\<binary>](#binary)
 
 ---
@@ -2199,6 +2200,58 @@ export default (
         <object
           description='The object of a user'
         />
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### \<field>
+
+[← back](#schema)
+
+The element MUST be placed inside [<object>](#object).
+It defines a `field` of an `object` value for a parent element.
+`@innet/server` formats and validate the value automatically (real-time).
+
+`key` is REQUIRED prop of `<field>`, it defines a field name of the `<object>`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/users'>
+        <body>
+          <object>
+            <field key='name' />
+            <field key='surname' />
+            <field key='birthbay' />
+          </object>
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### optional
+
+By default, any field is required. You can set it as `optional` by this prop.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/users'>
+        <body>
+        <object>
+          <field key='name' />
+          <field key='surname' />
+          <field optional key='birthbay' />
+        </object>
         </body>
       </endpoint>
     </api>
