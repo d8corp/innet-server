@@ -367,7 +367,7 @@ You can see examples of generated types usage in [Hooks](#hooks) section.
 
 The elements define Open API Schema.
 You can create Open API documentation without implementation of this.
-It helps to define API contracts before start implementation on backend and frontend side.
+It helps to define API contracts before start implementation on backend and frontend sides.
 
 
 [← back](#abstract)
