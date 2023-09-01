@@ -393,8 +393,8 @@ Date
 [\<boolean>](#boolean)  
 [\<date>](#date)  
 [\<uuid>](#uuid)  
-[\<object>](#object)
-[\<field>](#field)
+[\<object>](#object)  
+[\<field>](#field)  
 [\<binary>](#binary)
 
 ---
