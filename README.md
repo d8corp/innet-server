@@ -398,7 +398,7 @@ You can see examples of generated types usage in [Hooks](#hooks) section.
 
 ### \<license>
 
-[← back](#schema)
+[api info](#api-info)
 
 `<license>` element MUST be placed in `<api>` element.
 Use `<license>` element to define the API license.
@@ -461,7 +461,7 @@ export default (
 
 ### \<contact>
 
-[← back](#schema)
+[api info](#api-info)
 
 `<contact>` element MUST be placed in `<api>` element.
 The contact information for the exposed API.
@@ -519,7 +519,7 @@ export default (
 
 ### \<host>
 
-[← back](#schema)
+[api info](#api-info)
 
 `<host>` element MUST be placed in `<api>` element.
 
@@ -568,7 +568,7 @@ export default (
 
 ### \<variable>
 
-[← back](#schema)
+[api info](#api-info)
 
 This element MUST be placed in `<host>` element and defines a variable from the `<host>`.
 
@@ -683,7 +683,7 @@ export default (
 
 ### \<endpoint>
 
-[← back](#schema)
+[← back](#endpoints)
 
 `<endpoint>` defines an endpoint of the API.
 
@@ -807,7 +807,7 @@ export default (
 
 ### \<tag>
 
-[← back](#schema)
+[← back](#endpoints)
 
 You can wrap endpoints by `<tag>` element to group the endpoints.
 You can see the changes in Swagger UI.
@@ -834,7 +834,7 @@ export default (
 
 ### \<param>
 
-[← back](#schema)
+[← back](#endpoints)
 
 Describes a single operation parameter.
 
@@ -946,7 +946,7 @@ export default (
 
 ### \<body>
 
-[← back](#schema)
+[← back](#endpoints)
 
 This element MUST be placed inside `<endpoint>`.
 It defines request body for the endpoint.
@@ -980,7 +980,7 @@ return (
 
 ### \<response>
 
-[← back](#schema)
+[← back](#endpoints)
 
 This element MUST be placed inside `<endpoint>`.
 It defines response body for the endpoint.
@@ -997,17 +997,6 @@ It defines response body for the endpoint.
 [\<date>](#date)  
 [\<uuid>](#uuid)  
 [\<binary>](#binary)
-
-## List of Data
-
-[← back](#index)
-
-[\<tuple>](#tuple)  
-[\<array>](#array)  
-[\<object>](#object)  
-[\<field>](#field)  
-
----
 
 ### \<number>
 
@@ -2153,6 +2142,17 @@ export default (
   </server>
 )
 ```
+
+## List of Data
+
+[← back](#index)
+
+[\<tuple>](#tuple)  
+[\<array>](#array)  
+[\<object>](#object)  
+[\<field>](#field)  
+
+---
 
 ### \<object>
 
