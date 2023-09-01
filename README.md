@@ -20,12 +20,6 @@ Here you find **JSX components on back-end side** 🎉, Open API generation, Swa
 [![stars](https://img.shields.io/github/stars/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/stargazers)
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
 
-- [Utils](#utils)
-- [Schema](#schema)
-- [Run-Time](#run-time)
-- [Components](#components)
-- [Hooks](#hooks)
-
 ## Install
 The simplest way to start working with `@innet/server`, it is `innetjs` usage.
 
@@ -272,11 +266,19 @@ export default (
 )
 ```
 
+## JSX Elements
+
+[Utils](#utils)
+[Schema](#schema)
+[Run-Time](#run-time)
+[Components](#components)
+[Hooks](#hooks)
+
 ## Utils
 
 This section contains elements of utils.
 
-[← back](#abstract)
+[← back](#jsx-elements)
 
 [\<swagger>](#swagger)  
 [\<dev>](#dev)  
@@ -370,7 +372,7 @@ You can create Open API documentation without implementation of this.
 It helps to define API contracts before start implementation on backend and frontend sides.
 
 
-[← back](#abstract)
+[← back](#jsx-elements)
 
 Main  
 [\<license>](#license)  
@@ -2373,7 +2375,7 @@ export default (
 Next elements relate to run-time action.
 This action calls on user request.
 
-[← back](#abstract)
+[← back](#jsx-elements)
 
 Parent  
 [\<fallback>](#fallback)  
