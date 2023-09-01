@@ -395,7 +395,6 @@ Main
 [\<contact>](#contact)  
 [\<host>](#host)  
 [\<variable>](#variable)  
-[\<fallback>](#fallback)  
 [\<endpoint>](#endpoint)  
 [\<tag>](#tag)  
 [\<param>](#param)  
