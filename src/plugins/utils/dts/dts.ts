@@ -22,13 +22,13 @@ export const dts: HandlerPlugin = () => {
       path,
       `interface Bin {
   filename: string
-  extension?: string
   fieldName: string
   originalFilename: string
   path: string
   type: string
   disposition: string
   size: number
+  extension?: string
 }
 ${content
         .replaceAll(';', '')
