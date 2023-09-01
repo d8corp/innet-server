@@ -1,12 +1,12 @@
 interface Bin {
   filename: string
-  extension?: string
   fieldName: string
   originalFilename: string
   path: string
   type: string
   disposition: string
   size: number
+  extension?: string
 }
 declare namespace Components {
     namespace Schemas {
