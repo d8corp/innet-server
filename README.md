@@ -15,7 +15,10 @@
 ## Abstract
 This package helps to create server-side application based on [innet](https://www.npmjs.com/package/innet).
 
-Here you find **JSX components on back-end side** 🎉, Open API generation, Swagger UI in the box, validation, formatting, cms, proxy, routing and more.
+Here you find **JSX components on back-end side** 🎉, Open API generation, Swagger UI in the box, validation, formatting, cms, proxy and more.
+
+You can create Open API documentation without implementation of this.
+It helps to define API contracts before start implementation on backend and frontend sides.
 
 [![stars](https://img.shields.io/github/stars/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/stargazers)
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
@@ -26,14 +29,15 @@ Here you find **JSX components on back-end side** 🎉, Open API generation, Swa
 [Handler](#handler)  
 [Usage](#usage)
 
-JSX Elements
-
+JSX Elements  
 [Utils](#utils)  
-[Schema](#schema)  
+[API Info](#api-info)  
+[Endpoints](#endpoints)  
+[Primitive Data](#primitive-data)  
+[List of Data](#list-of-data)  
 [Run-Time](#run-time)
 
-Features
-
+Features  
 [Components](#components)  
 [Hooks](#hooks)
 
@@ -381,38 +385,14 @@ export default (
 
 You can see examples of generated types usage in [Hooks](#hooks) section.
 
-## Schema
-
-The elements define Open API Schema.
-You can create Open API documentation without implementation of this.
-It helps to define API contracts before start implementation on backend and frontend sides.
-
+## API Info
 
 [← back](#index)
 
-Main  
 [\<license>](#license)  
 [\<contact>](#contact)  
 [\<host>](#host)  
-[\<variable>](#variable)  
-[\<endpoint>](#endpoint)  
-[\<tag>](#tag)  
-[\<param>](#param)  
-[\<body>](#body)  
-[\<response>](#response)
-
-Date  
-[\<number>](#number)  
-[\<tuple>](#tuple)  
-[\<array>](#array)  
-[\<integer>](#integer)  
-[\<string>](#string)  
-[\<boolean>](#boolean)  
-[\<date>](#date)  
-[\<uuid>](#uuid)  
-[\<object>](#object)  
-[\<field>](#field)  
-[\<binary>](#binary)
+[\<variable>](#variable)
 
 ---
 
@@ -688,6 +668,18 @@ export default (
   </server>
 )
 ```
+
+## Endpoints
+
+[← back](#index)
+
+[\<endpoint>](#endpoint)  
+[\<tag>](#tag)  
+[\<param>](#param)  
+[\<body>](#body)  
+[\<response>](#response)
+
+---
 
 ### \<endpoint>
 
@@ -992,6 +984,30 @@ return (
 
 This element MUST be placed inside `<endpoint>`.
 It defines response body for the endpoint.
+
+## Primitive Data
+
+[← back](#index)
+
+[\<boolean>](#boolean)  
+[\<null>](#null)  
+[\<string>](#string)  
+[\<number>](#number)  
+[\<integer>](#integer)  
+[\<date>](#date)  
+[\<uuid>](#uuid)  
+[\<binary>](#binary)
+
+## List of Data
+
+[← back](#index)
+
+[\<tuple>](#tuple)  
+[\<array>](#array)  
+[\<object>](#object)  
+[\<field>](#field)  
+
+---
 
 ### \<number>
 
