@@ -2781,7 +2781,60 @@ export default (
 
 [← back](#run-time)
 
+MUST be placed in `<request>` or `<fallback>`.
+
 You can redirect users to another resource.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint
+        path='/test'
+        method='get'>
+        <request>
+          <redirect to='https://...' />
+        </request>
+      </endpoint>
+      <fallback>
+        <redirect to='https://...' />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+#### status
+
+`<redirect>` element returns status `301` by default.
+You can change it by `status` property.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint
+        path='/test'
+        method='get'>
+        <request>
+          <redirect
+            status='found'
+            to='https://...'
+          />
+        </request>
+      </endpoint>
+      <fallback>
+        <redirect
+          status={303}
+          to='https://...'
+        />
+      </fallback>
+    </api>
+  </server>
+)
+```
 
 ### \<cms>
 
