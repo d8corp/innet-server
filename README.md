@@ -17,8 +17,8 @@ This package helps to create server-side application based on [innet](https://ww
 
 Here you find **JSX components on back-end side** 🎉, Open API generation, Swagger UI in the box, validation, formatting, cms, proxy and more.
 
-You can create Open API documentation without implementation of this.
-It helps to define API contracts before start implementation on backend and frontend sides.
+You can create Open API documentation without implementation.
+It helps to define API contracts before start implementing on backend and frontend sides.
 
 [![stars](https://img.shields.io/github/stars/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/stargazers)
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
