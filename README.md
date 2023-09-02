@@ -2753,7 +2753,29 @@ There are some default errors:
 
 [← back](#run-time)
 
-You can proxy request.
+MUST be placed in `<request>` or `<fallback>`.
+
+You can easy proxy endpoints to another server/service.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint
+        path='/test'
+        method='get'>
+        <request>
+          <proxy to='https://...' />
+        </request>
+      </endpoint>
+      <fallback>
+        <proxy to='https://...' />
+      </fallback>
+    </api>
+  </server>
+)
+```
 
 ### \<redirect>
 
