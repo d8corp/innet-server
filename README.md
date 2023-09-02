@@ -2783,7 +2783,7 @@ export default (
 
 MUST be placed in `<request>` or `<fallback>`.
 
-You can redirect users to another resource.
+You can redirect users to another resource. It adds `Cache-Control` header by default.
 
 *src/app.tsx*
 ```typescript jsx
@@ -2985,13 +2985,270 @@ export default (
 
 ### \<header>
 
+MUST be placed in `<request>` or `<fallback>`.
+
 [← back](#run-time)
 
-You can add an HTTP header into response by `header` element.
+You can add an HTTP header into response by `<header>` element.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/src'>
+      <fallback>
+        <header
+          key='Cache-Control'
+          value='no-cache, no-store, must-revalidate'
+        />
+        <success />
+      </fallback>
+    </api>
+  </server>
+)
+```
 
 ### \<cookie>
 
+MUST be placed in `<request>` or `<fallback>`.
+
 [← back](#run-time)
+
+You can add/remove a cookie into response by `<cookie>` element.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/src'>
+      <fallback>
+        <cookie
+          key='token'
+          value='...'
+        />
+        <cookie
+          key='removedCookie'
+        />
+        <success />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+#### domain
+
+The prop specifies the value for the [Domain Set-Cookie attribute](https://datatracker.ietf.org/doc/html/rfc6265#section-5.2.3).
+By default, no domain is set, and most clients will consider the cookie to apply to only the current domain.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/src'>
+      <fallback>
+        <cookie
+          domain='.example.com'
+          key='token'
+          value='...'
+        />
+        <success />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+#### encode
+
+Specifies a function that will be used to encode a cookie's value. Since value of a cookie has a limited character set (and must be a simple string), this function can be used to encode a value into a string suited for a cookie's value.
+The default function is the global encodeURIComponent, which will encode a JavaScript string into UTF-8 byte sequences and then URL-encode any that fall outside of the cookie range.
+
+#### expires
+
+Specifies the Date object to be the value for the Expires [Set-Cookie attribute](https://datatracker.ietf.org/doc/html/rfc6265#section-5.2.1). By default, no expiration is set, and most clients will consider this a “non-persistent cookie” and will delete it on a condition like exiting a web browser application.
+Note the [cookie storage model specification](https://datatracker.ietf.org/doc/html/rfc6265#section-5.3) states that if both expires and maxAge are set, then maxAge takes precedence, but it is possible not all clients by obey this, so if both are set, they should point to the same date and time.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/src'>
+      <fallback>
+        <cookie
+          expires={new Date('2050-01-01')}
+          key='token'
+          value='...'
+        />
+        <success />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+#### httpOnly
+
+Specifies the boolean value for the [HttpOnly Set-Cookie attribute](https://datatracker.ietf.org/doc/html/rfc6265#section-5.2.6). When truthy, the HttpOnly attribute is set, otherwise it is not. By default, the HttpOnly attribute is not set.
+Note be careful when setting this to true, as compliant clients will not allow client-side JavaScript to see the cookie in document.cookie.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/src'>
+      <fallback>
+        <cookie
+          httpOnly
+          key='token'
+          value='...'
+        />
+        <success />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+#### maxAge
+
+Specifies the number (in seconds) to be the value for the Max-Age Set-Cookie attribute. The given number will be converted to an integer by rounding down. By default, no maximum age is set.
+Note the [cookie storage model specification](https://datatracker.ietf.org/doc/html/rfc6265#section-5.3)  states that if both expires and maxAge are set, then maxAge takes precedence, but it is possible not all clients by obey this, so if both are set, they should point to the same date and time.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/src'>
+      <fallback>
+        <cookie
+          httpOnly
+          maxAge={9999}
+          key='token'
+          value='...'
+        />
+        <success />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+#### path
+
+Specifies the value for the [Path Set-Cookie attribute](https://datatracker.ietf.org/doc/html/rfc6265#section-5.2.4).
+By default, the path is considered the “default path”.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/src'>
+      <fallback>
+        <cookie
+          httpOnly
+          maxAge={9999}
+          path='/src'
+          key='token'
+          value='...'
+        />
+        <success />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+#### priority
+
+Specifies the string to be the value for the «Priority Set-Cookie attribute».
+
+- `'low'` will set the Priority attribute to Low.
+- `'medium'` will set the Priority attribute to Medium, the default priority when not set.
+- `'high'` will set the Priority attribute to High.
+
+note This is an attribute that has not yet been fully standardized, and may change in the future. This also means many clients may ignore this attribute until they understand it.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/src'>
+      <fallback>
+        <cookie
+          httpOnly
+          priority='high'
+          path='/src'
+          key='token'
+          value='...'
+        />
+        <success />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+#### sameSite
+
+Specifies the `boolean` or `string` to be the value for the SameSite Set-Cookie attribute.
+
+- `true` will set the SameSite attribute to Strict for strict same site enforcement.
+- `false` will not set the SameSite attribute.
+- `'lax'` will set the SameSite attribute to Lax for lax same site enforcement.
+- `'strict'` will set the SameSite attribute to Strict for strict same site enforcement.
+- `'none'` will set the SameSite attribute to None for an explicit cross-site cookie.
+
+note This is an attribute that has not yet been fully standardized, and may change in the future.
+This also means many clients may ignore this attribute until they understand it.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/src'>
+      <fallback>
+        <cookie
+          httpOnly
+          sameSite
+          priority='high'
+          path='/src'
+          key='token'
+          value='...'
+        />
+        <success />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+#### secure
+
+Specifies the boolean value for the [Secure Set-Cookie attribute](https://datatracker.ietf.org/doc/html/rfc6265#section-5.2.5).
+When truthy, the Secure attribute is set, otherwise it is not.
+By default, the Secure attribute is not set.
+
+Note be careful when setting this to true, as compliant clients will not send the cookie back to the server in the future if the browser does not have an HTTPS connection.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/src'>
+      <fallback>
+        <cookie
+          httpOnly
+          secure
+          key='token'
+          value='...'
+        />
+        <success />
+      </fallback>
+    </api>
+  </server>
+)
+```
 
 ## Components
 
