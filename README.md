@@ -1030,7 +1030,7 @@ It defines response body for the endpoint.
 
 [← back](#schema)
 
-The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
+The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
 It defines `boolean` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1120,7 +1120,7 @@ export default (
 
 [← back](#schema)
 
-The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
+The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
 It defines `string` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1336,7 +1336,7 @@ you get an error:
 
 [← back](#schema)
 
-The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
+The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
 It defines `number` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1485,7 +1485,7 @@ export default (
 
 [← back](#schema)
 
-The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
+The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
 It defines `integer` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1658,7 +1658,7 @@ export default (
 
 [← back](#schema)
 
-The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
+The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
 It defines `date` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1825,7 +1825,7 @@ export default (
 
 Universally unique identifier.
 
-The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
+The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
 It defines `string` value in `uuid` format for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -2073,7 +2073,7 @@ export default (
 
 `<tuple>` element specifies schema parameter as a tuple of children elements.
 
-The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
+The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
 
 *src/app.tsx*
 ```typescript jsx
@@ -2098,7 +2098,7 @@ Also supports formats `/products?rating[]=3&rating[]=4` and `/products?rating[0]
 
 `/products?rating=3` or `/products?rating=1&rating=6` returns an error.
 
-You can add several elements in [<response>](#response), [<param>](#param) or [<body>](#body) to define that one of the element is valid.
+You can add several elements in [\<response>](#response), [\<param>](#param) or [\<body>](#body) to define that one of the element is valid.
 
 *src/app.tsx*
 ```typescript jsx
@@ -2202,7 +2202,7 @@ export default (
 
 `<array>` element specifies schema parameter as an array of children elements.
 
-The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
+The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
 
 *src/app.tsx*
 ```typescript jsx
@@ -2295,7 +2295,7 @@ export default (
 
 [← back](#schema)
 
-The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
+The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
 It defines `object` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -2381,7 +2381,7 @@ export default (
 
 [← back](#schema)
 
-The element MUST be placed inside [<object>](#object).
+The element MUST be placed inside [\<object>](#object).
 It defines a `field` of an `object` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -2457,10 +2457,10 @@ Children
 [← back](#run-time)
 
 By default, `<api>` server returns 404 with empty body.
-[<fallback>](#fallback) element defines default server response.
+[\<fallback>](#fallback) element defines default server response.
 This element MUST be placed in `<api>`.
-You MUST use one [<fallback>](#fallback) per `<api>`.
-Can contain elements available inside [<request>](#request).
+You MUST use one [\<fallback>](#fallback) per `<api>`.
+Can contain elements available inside [\<request>](#request).
 
 *src/app.tsx*
 ```typescript jsx
@@ -2485,7 +2485,7 @@ If you open the application on any URL except for `/`, you can see the next resp
 }
 ```
 
-The next elements are placed in [<request>](#request) or [<fallback>](#fallback)
+The next elements are placed in [\<request>](#request) or [\<fallback>](#fallback)
 
 ### \<request>
 
@@ -2629,7 +2629,7 @@ export default (
 [← back](#run-time)
 
 Returns an error.
-This element MUST be placed in [<request>](#request) or [<fallback>](#fallback).
+This element MUST be placed in [\<request>](#request) or [\<fallback>](#fallback).
 
 *src/app.tsx*
 ```typescript jsx
@@ -2765,7 +2765,7 @@ There are some default errors:
 
 [← back](#run-time)
 
-MUST be placed in [<request>](#request) or [<fallback>](#fallback).
+MUST be placed in [\<request>](#request) or [\<fallback>](#fallback).
 
 You can easy proxy endpoints to another server/service.
 
@@ -2793,7 +2793,7 @@ export default (
 
 [← back](#run-time)
 
-MUST be placed in [<request>](#request) or [<fallback>](#fallback).
+MUST be placed in [\<request>](#request) or [\<fallback>](#fallback).
 
 You can redirect users to another resource. It adds `Cache-Control` header by default.
 
@@ -2852,7 +2852,7 @@ export default (
 
 [← back](#run-time)
 
-MUST be placed in [<request>](#request) or [<fallback>](#fallback).
+MUST be placed in [\<request>](#request) or [\<fallback>](#fallback).
 
 `<cms>` helps to return files from a folder by path. It checks files run-time on the server.
 
@@ -2953,7 +2953,7 @@ export default (
 
 [← back](#run-time)
 
-It returns a file. MUST be placed in [<request>](#request) or [<fallback>](#fallback).
+It returns a file. MUST be placed in [\<request>](#request) or [\<fallback>](#fallback).
 
 It adds `Content-Length` and `Content-Type` automatically.
 
@@ -2997,7 +2997,7 @@ export default (
 
 ### \<header>
 
-MUST be placed in [<request>](#request) or [<fallback>](#fallback).
+MUST be placed in [\<request>](#request) or [\<fallback>](#fallback).
 
 [← back](#run-time)
 
@@ -3022,7 +3022,7 @@ export default (
 
 ### \<cookie>
 
-MUST be placed in [<request>](#request) or [<fallback>](#fallback).
+MUST be placed in [\<request>](#request) or [\<fallback>](#fallback).
 
 [← back](#run-time)
 
@@ -3347,7 +3347,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
 This hook returns current request instance.
 
 *src/Component.tsx*
@@ -3368,7 +3368,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
 This hook returns current response instance.
 
 *src/Component.tsx*
@@ -3389,7 +3389,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
 This hook returns current request headers object.
 
 *src/Component.tsx*
@@ -3408,7 +3408,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
 This hook returns current request cookies object.
 
 *src/Component.tsx*
@@ -3427,7 +3427,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
 This hook returns current request URL path as a `string`.
 
 *src/Component.tsx*
@@ -3446,8 +3446,8 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
-This hook returns an object of URL params you set by [<param>](#param).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
+This hook returns an object of URL params you set by [\<param>](#param).
 
 *src/Component.tsx*
 ```typescript jsx
@@ -3464,7 +3464,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
 This hook returns an object of URL query params.
 
 *src/Component.tsx*
@@ -3482,7 +3482,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
 This hook returns current request body.
 
 *src/Component.tsx*
