@@ -3293,6 +3293,8 @@ export default (
 
 ## Hooks
 
+[← back](#index)
+
 ### useParams
 
 This hook returns an object of URL params you set by <param>.
