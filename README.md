@@ -398,7 +398,19 @@ export default (
 
 > You MUST add some [endpoint](#endpoint) with some schema otherwise you get the `Error: There is no schema in the input contents`.
 
-You can see examples of generated types usage in [Hooks](#hooks) section.
+Here is an example of generated types usage.
+
+*src/GetPartner.tsx*
+```typescript jsx
+import { useParams } from '@innet/server'
+
+export function GetPartner () {
+  const { id } = useParams<Paths.Partners$Id.Get.PathParameters>()
+  return <success>{{ id }}</success>
+}
+```
+
+You do not need to import types, they generate as namespaces.
 
 ## API Info
 
@@ -2445,10 +2457,10 @@ Children
 [← back](#run-time)
 
 By default, `<api>` server returns 404 with empty body.
-`<fallback>` element defines default server response.
+[<fallback>](#fallback) element defines default server response.
 This element MUST be placed in `<api>`.
-You MUST use one `<fallback>` per `<api>`.
-Can contain elements available inside `<request>`.
+You MUST use one [<fallback>](#fallback) per `<api>`.
+Can contain elements available inside [<request>](#request).
 
 *src/app.tsx*
 ```typescript jsx
@@ -2473,7 +2485,7 @@ If you open the application on any URL except for `/`, you can see the next resp
 }
 ```
 
-The next elements are placed in `<request>` or `<fallback>`
+The next elements are placed in [<request>](#request) or [<fallback>](#fallback)
 
 ### \<request>
 
@@ -2617,7 +2629,7 @@ export default (
 [← back](#run-time)
 
 Returns an error.
-This element MUST be placed in `<request>` or `<fallback>`.
+This element MUST be placed in [<request>](#request) or [<fallback>](#fallback).
 
 *src/app.tsx*
 ```typescript jsx
@@ -2753,7 +2765,7 @@ There are some default errors:
 
 [← back](#run-time)
 
-MUST be placed in `<request>` or `<fallback>`.
+MUST be placed in [<request>](#request) or [<fallback>](#fallback).
 
 You can easy proxy endpoints to another server/service.
 
@@ -2781,7 +2793,7 @@ export default (
 
 [← back](#run-time)
 
-MUST be placed in `<request>` or `<fallback>`.
+MUST be placed in [<request>](#request) or [<fallback>](#fallback).
 
 You can redirect users to another resource. It adds `Cache-Control` header by default.
 
@@ -2840,7 +2852,7 @@ export default (
 
 [← back](#run-time)
 
-MUST be placed in `<request>` or `<fallback>`.
+MUST be placed in [<request>](#request) or [<fallback>](#fallback).
 
 `<cms>` helps to return files from a folder by path. It checks files run-time on the server.
 
@@ -2941,7 +2953,7 @@ export default (
 
 [← back](#run-time)
 
-It returns a file. MUST be placed in `<request>` or `<fallback>`.
+It returns a file. MUST be placed in [<request>](#request) or [<fallback>](#fallback).
 
 It adds `Content-Length` and `Content-Type` automatically.
 
@@ -2985,7 +2997,7 @@ export default (
 
 ### \<header>
 
-MUST be placed in `<request>` or `<fallback>`.
+MUST be placed in [<request>](#request) or [<fallback>](#fallback).
 
 [← back](#run-time)
 
@@ -3010,7 +3022,7 @@ export default (
 
 ### \<cookie>
 
-MUST be placed in `<request>` or `<fallback>`.
+MUST be placed in [<request>](#request) or [<fallback>](#fallback).
 
 [← back](#run-time)
 
@@ -3331,7 +3343,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in `<request>` or `<fallback>`.
+This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
 This hook returns current request instance.
 
 *src/Component.tsx*
@@ -3352,7 +3364,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in `<request>` or `<fallback>`.
+This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
 This hook returns current response instance.
 
 *src/Component.tsx*
@@ -3373,7 +3385,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in `<request>` or `<fallback>`.
+This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
 This hook returns current request headers object.
 
 *src/Component.tsx*
@@ -3392,7 +3404,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in `<request>` or `<fallback>`.
+This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
 This hook returns current request cookies object.
 
 *src/Component.tsx*
@@ -3411,8 +3423,8 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in `<request>` or `<fallback>`.
-This hook returns current request path as a `string`.
+This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
+This hook returns current request URL path as a `string`.
 
 *src/Component.tsx*
 
@@ -3428,13 +3440,17 @@ export function Component () {
 
 ### useParams
 
-This hook returns an object of URL params you set by <param>.
+[← back](#hooks)
 
-*src/requests/partners/GetPartner.tsx*
+This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
+This hook returns an object of URL params you set by [<param>](#param).
+
+*src/Component.tsx*
 ```typescript jsx
-export function GetPartner () {
-  const { id } = useParams<Paths.Partners$Id.Get.PathParameters>()
-  return <success>{{ id }}</success>
+export function Component () {
+  const params = useParams()
+
+  return <success>{params}</success>
 }
 ```
 
