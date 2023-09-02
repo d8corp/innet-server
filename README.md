@@ -2616,6 +2616,84 @@ export default (
 
 [← back](#run-time)
 
+Returns an error.
+This element MUST be placed in `<request>` or `<fallback>`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <fallback>
+        <error />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+Place a data into the element to return an error with the data.
+
+*src/app.tsx*
+```typescript jsx
+const data = {...}
+
+export default (
+  <server>
+    <api>
+      <fallback>
+        <error>
+          {data}
+        </error>
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+### status
+You can change response status by `status` prop. By default, it is `520` (`unknownError`)
+
+*src/app.tsx*
+```typescript jsx
+const data = {
+  message: 'User not found!'
+}
+
+export default (
+  <server>
+    <api>
+      <fallback>
+        <error status='notFound'>
+          {data}
+        </error>
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+You can use a number with the status prop.
+
+*src/app.tsx*
+```typescript jsx
+const data = {
+  message: 'User not found!'
+}
+
+export default (
+  <server>
+    <api>
+      <fallback>
+        <error status={404}>
+          {data}
+        </error>
+      </fallback>
+    </api>
+  </server>
+)
+```
+
 ### \<proxy>
 
 [← back](#run-time)
