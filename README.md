@@ -38,7 +38,7 @@ JSX Elements
 [List of Data](#list-of-data)  
 [Run-Time](#run-time)
 
-Features  
+Customize  
 [Components](#components)  
 [Hooks](#hooks)
 
