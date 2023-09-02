@@ -3328,39 +3328,6 @@ export function GetPartner () {
 }
 ```
 
-## cookie
-You can set cookie by `cookie` element.
-
-```typescript jsx
-const Login = ({ token }) => (
-  <cookie key='token' value={token}>
-    <success />
-  </cookie>
-)
-
-export default (
-  <server>
-    <action>
-      <Login token='test' />
-    </action>
-  </server>  
-)
-```
-
-To remove cookie just provide key without value.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <cookie key='token'>
-        <success />
-      </cookie>
-    </action>
-  </server>  
-)
-```
-
 ## useAction
 Action is an object which contains `request` and `response`.
 Also, it contains a couple of fields and methods.
