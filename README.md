@@ -1030,7 +1030,7 @@ It defines response body for the endpoint.
 
 [← back](#schema)
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
 It defines `boolean` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1120,7 +1120,7 @@ export default (
 
 [← back](#schema)
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
 It defines `string` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1336,7 +1336,7 @@ you get an error:
 
 [← back](#schema)
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
 It defines `number` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1485,7 +1485,7 @@ export default (
 
 [← back](#schema)
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
 It defines `integer` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1658,7 +1658,7 @@ export default (
 
 [← back](#schema)
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
 It defines `date` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -1825,7 +1825,7 @@ export default (
 
 Universally unique identifier.
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
 It defines `string` value in `uuid` format for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
@@ -2073,7 +2073,7 @@ export default (
 
 `<tuple>` element specifies schema parameter as a tuple of children elements.
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
 
 *src/app.tsx*
 ```typescript jsx
@@ -2098,7 +2098,7 @@ Also supports formats `/products?rating[]=3&rating[]=4` and `/products?rating[0]
 
 `/products?rating=3` or `/products?rating=1&rating=6` returns an error.
 
-You can add several elements in `<response>`, `<param>` or `<body>` to define that one of the element is valid.
+You can add several elements in [<response>](#response), [<param>](#param) or [<body>](#body) to define that one of the element is valid.
 
 *src/app.tsx*
 ```typescript jsx
@@ -2202,7 +2202,7 @@ export default (
 
 `<array>` element specifies schema parameter as an array of children elements.
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
 
 *src/app.tsx*
 ```typescript jsx
@@ -2295,7 +2295,7 @@ export default (
 
 [← back](#schema)
 
-The element MUST be placed inside one of `<response>`, `<param>`, `<body>`.
+The element MUST be placed inside one of [<response>](#response), [<param>](#param), [<body>](#body).
 It defines `object` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
