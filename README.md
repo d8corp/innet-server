@@ -2434,9 +2434,9 @@ Children
 [\<proxy>](#proxy)  
 [\<redirect>](#redirect)  
 [\<cms>](#cms)  
-[\<cookie>](#cookie)  
 [\<file>](#file)  
 [\<header>](#header)
+[\<cookie>](#cookie)  
 
 ---
 
@@ -2916,10 +2916,6 @@ export default (
 
 Now you can try [http://localhost/api/package.json](http://localhost/api/package.json)
 
-### \<cookie>
-
-[← back](#run-time)
-
 ### \<file>
 
 [← back](#run-time)
@@ -2931,6 +2927,10 @@ You can return a file as a response.
 [← back](#run-time)
 
 You can add an HTTP header into response by `header` element.
+
+### \<cookie>
+
+[← back](#run-time)
 
 ## Components
 
