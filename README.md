@@ -1028,7 +1028,7 @@ It defines response body for the endpoint.
 
 ### \<boolean>
 
-[← back](#schema)
+[← back](#primitive-data)
 
 The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
 It defines `boolean` value for a parent element.
@@ -1118,7 +1118,7 @@ export default (
 
 ### \<string>
 
-[← back](#schema)
+[← back](#primitive-data)
 
 The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
 It defines `string` value for a parent element.
@@ -1334,7 +1334,7 @@ you get an error:
 
 ### \<number>
 
-[← back](#schema)
+[← back](#primitive-data)
 
 The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
 It defines `number` value for a parent element.
@@ -1483,7 +1483,7 @@ export default (
 
 ### \<integer>
 
-[← back](#schema)
+[← back](#primitive-data)
 
 The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
 It defines `integer` value for a parent element.
@@ -1656,7 +1656,7 @@ export default (
 
 ### \<date>
 
-[← back](#schema)
+[← back](#primitive-data)
 
 The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
 It defines `date` value for a parent element.
@@ -1821,7 +1821,7 @@ export default (
 
 ### \<uuid>
 
-[← back](#schema)
+[← back](#primitive-data)
 
 Universally unique identifier.
 
@@ -1949,7 +1949,7 @@ export default (
 
 ### \<binary>
 
-[← back](#schema)
+[← back](#primitive-data)
 
 This is a binary type of data.
 There is one way to get the type, it is `multipart/form-data` usage.
@@ -2069,7 +2069,7 @@ export default (
 
 ### \<tuple>
 
-[← back](#schema)
+[← back](#list-of-data)
 
 `<tuple>` element specifies schema parameter as a tuple of children elements.
 
@@ -2198,7 +2198,7 @@ export default (
 
 ### \<array>
 
-[← back](#schema)
+[← back](#list-of-data)
 
 `<array>` element specifies schema parameter as an array of children elements.
 
@@ -2293,7 +2293,7 @@ export default (
 
 ### \<object>
 
-[← back](#schema)
+[← back](#list-of-data)
 
 The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
 It defines `object` value for a parent element.
@@ -2379,7 +2379,7 @@ export default (
 
 ### \<field>
 
-[← back](#schema)
+[← back](#list-of-data)
 
 The element MUST be placed inside [\<object>](#object).
 It defines a `field` of an `object` value for a parent element.
