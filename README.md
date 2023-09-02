@@ -2742,6 +2742,13 @@ Then you get
 }
 ```
 
+There are some default errors:
+
+- `undefined` - when you use `<error>` element without `code`.
+- `requestValidation` - when request data fails schema validation.
+- `requestBodyContentType` - when cannot parse body.
+- `unknown` - can because of JSON stringify fail or other errors.
+
 ### \<proxy>
 
 [← back](#run-time)
