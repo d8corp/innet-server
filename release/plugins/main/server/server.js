@@ -25,11 +25,17 @@ const server = () => {
     const { props = {}, children } = innet.useApp();
     const { env } = process;
     let { ssl: { key = (_a = env.SSL_KEY) !== null && _a !== void 0 ? _a : 'localhost.key', cert = (_b = env.SSL_CRT) !== null && _b !== void 0 ? _b : 'localhost.crt', } = {}, } = props;
-    if (!isInvalidPath(key)) {
-        key = fs__default["default"].readFileSync(key).toString();
+    try {
+        if (!isInvalidPath(key)) {
+            key = fs__default["default"].readFileSync(key).toString();
+        }
+        if (!isInvalidPath(cert)) {
+            cert = fs__default["default"].readFileSync(cert).toString();
+        }
     }
-    if (!isInvalidPath(cert)) {
-        cert = fs__default["default"].readFileSync(cert).toString();
+    catch (_d) {
+        key = '';
+        cert = '';
     }
     const https = Boolean(key && cert);
     const { port = Number((_c = env.PORT) !== null && _c !== void 0 ? _c : (https ? 442 : 80)), onStart, onError, onRequest, } = props;

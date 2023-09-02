@@ -31,11 +31,16 @@ export const server: HandlerPlugin = () => {
     } = {},
   } = props
 
-  if (!isInvalidPath(key)) {
-    key = fs.readFileSync(key).toString()
-  }
-  if (!isInvalidPath(cert)) {
-    cert = fs.readFileSync(cert).toString()
+  try {
+    if (!isInvalidPath(key)) {
+      key = fs.readFileSync(key).toString()
+    }
+    if (!isInvalidPath(cert)) {
+      cert = fs.readFileSync(cert).toString()
+    }
+  } catch {
+    key = ''
+    cert = ''
   }
 
   const https = Boolean(key && cert)
