@@ -2651,7 +2651,7 @@ export default (
 )
 ```
 
-### status
+#### status
 You can change response status by `status` prop. By default, it is `520` (`unknownError`)
 
 *src/app.tsx*
@@ -2692,6 +2692,54 @@ export default (
     </api>
   </server>
 )
+```
+
+#### code
+When you use `<error>` element a user get next response body.
+
+*for the previous example*
+```json
+{
+  "error": "undefined",
+  "data": {
+    "message": "User not found!"
+  }
+}
+```
+
+You can change the `error` code by `code` property.
+
+*src/app.tsx*
+```typescript jsx
+const data = {
+  message: 'User not found!'
+}
+
+export default (
+  <server>
+    <api>
+      <fallback>
+        <error
+          code='noUser'
+          status='notFound'>
+          {data}
+        </error>
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+Then you get
+
+*for the previous example*
+```json
+{
+  "error": "noUser",
+  "data": {
+    "message": "User not found!"
+  }
+}
 ```
 
 ### \<proxy>
@@ -2804,75 +2852,6 @@ export function GetPartner () {
   const { id } = useParams<Paths.Partners$Id.Get.PathParameters>()
   return <success>{{ id }}</success>
 }
-```
-
-## error
-You can return an error to the user.
-
-```typescript jsx
-export default (
-  <server>
-    <action>
-      <error />
-    </action>
-  </server>  
-)
-```
-
-You will get `520` status (`unknownError`).
-
-You can provide some data to the user by children.
-
-```typescript jsx
-const data = {
-  message: 'Some error!'
-}
-
-export default (
-  <server>
-    <action>
-      <error>
-        {data}
-      </error>
-    </action>
-  </server>  
-)
-```
-
-### status
-You can change response status by `status` prop.
-
-```typescript jsx
-const data = {
-  message: 'User not found!'
-}
-
-export default (
-  <server>
-    <action>
-      <error status='notFound'>
-        {data}
-      </error>
-    </action>
-  </server>
-)
-```
-Also, you can use a number with the status prop.
-
-```typescript jsx
-const data = {
-  message: 'User not found!'
-}
-
-export default (
-  <server>
-    <action>
-      <error status={404}>
-        {data}
-      </error>
-    </action>
-  </server>
-)
 ```
 
 ## cookie
