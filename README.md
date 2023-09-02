@@ -2840,6 +2840,8 @@ export default (
 
 [← back](#run-time)
 
+MUST be placed in `<request>` or `<fallback>`.
+
 `<cms>` helps to return files from a folder by path. It checks files run-time on the server.
 
 *src/app.tsx*
@@ -2916,11 +2918,70 @@ export default (
 
 Now you can try [http://localhost/api/package.json](http://localhost/api/package.json)
 
+#### children
+
+You can handle if a file was not found by children elements of `<cms>`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/src'>
+      <fallback>
+        <cms>
+          <error status={404} />
+        </cms>
+      </fallback>
+    </api>
+  </server>
+)
+```
+
 ### \<file>
 
 [← back](#run-time)
 
-You can return a file as a response.
+It returns a file. MUST be placed in `<request>` or `<fallback>`.
+
+It adds `Content-Length` and `Content-Type` automatically.
+
+It has a REQUIRED property of `path`. 
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <fallback>
+        <file
+          path='package.json'
+        />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+For this example you get `package.json` file of the project on any path except for `/`.
+
+#### children
+
+You can handle if a file was not found by children elements of `<file>`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/src'>
+      <fallback>
+        <file path='file_is_not_exist.txt'>
+          <error status={404} />
+        </file>
+      </fallback>
+    </api>
+  </server>
+)
+```
 
 ### \<header>
 
