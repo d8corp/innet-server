@@ -1,12 +1,12 @@
 import { useAction } from '../useAction'
+import { useThrow } from '../useThrow'
 
 export function useSearch <D> (): D {
   const action = useAction()
 
   if (!action) {
-    throw Error('`useSearch` MUST be used in <request>')
+    useThrow('<{type}> MUST be in <request> or <fallback>')
   }
 
-  // @ts-expect-error: FIXME
-  return action.search
+  return action.search as D
 }

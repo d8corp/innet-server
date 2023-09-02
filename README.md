@@ -3317,6 +3317,8 @@ Hook functions give you all features to control parent element functionality.
 [useCookies](#usecookies)  
 [usePath](#usepath)  
 [useParams](#useparams)  
+[useSearch](#usesearch)  
+[useBody](#usebody)  
 
 ### useServer
 
@@ -3447,10 +3449,48 @@ This hook returns an object of URL params you set by [<param>](#param).
 
 *src/Component.tsx*
 ```typescript jsx
+import { useParams } from '@innet/sever'
+
 export function Component () {
   const params = useParams()
 
   return <success>{params}</success>
+}
+```
+
+### useSearch
+
+[← back](#hooks)
+
+This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
+This hook returns an object of URL query params.
+
+*src/Component.tsx*
+```typescript jsx
+import { useSearch } from '@innet/sever'
+
+export function Component () {
+  const search = useSearch()
+
+  return <success>{search}</success>
+}
+```
+
+### useBody
+
+[← back](#hooks)
+
+This hook MUST be used in a component placed in [<request>](#request) or [<fallback>](#fallback).
+This hook returns current request body.
+
+*src/Component.tsx*
+```typescript jsx
+import { useBody } from '@innet/sever'
+
+export function Component () {
+  const body = useBody()
+
+  return <success>{body}</success>
 }
 ```
 
