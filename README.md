@@ -3256,6 +3256,7 @@ export default (
 
 Component is a function which returns content that, like, placed instead of the component.
 Like you can inject a plugin between elements.
+Components are from [@innet/jsx](https://www.npmjs.com/package/@innet/jsx).
 
 *src/SetToken.tsx*
 ```typescript jsx
@@ -3289,11 +3290,141 @@ export default (
 )
 ```
 
-...
+You can use [hooks](#hooks) inside components.
 
 ## Hooks
 
+Hook functions give you all features to control parent element functionality.
+
 [← back](#index)
+
+[useServer](#useserver)
+[useRequest](#userequest)
+[useResponse](#useresponse)
+[useHeaders](#useheaders)
+[useCookies](#usecookies)
+[usePath](#usepath)
+[useParams](#useparams)
+
+### useServer
+
+[← back](#hooks)
+
+This hook MUST be used in a component placed in `<server>`.
+This hook returns current http(s) server instance.
+
+*src/Component.tsx*
+
+```typescript jsx
+import { useServer } from '@innet/sever'
+
+export function Component () {
+  const server = useServer()
+
+  console.log(server)
+
+  return <success />
+}
+```
+
+### useRequest
+
+[← back](#hooks)
+
+This hook MUST be used in a component placed in `<request>` or `<fallback>`.
+This hook returns current request instance.
+
+*src/Component.tsx*
+
+```typescript jsx
+import { useRequest } from '@innet/sever'
+
+export function Component () {
+  const request = useRequest()
+
+  console.log(request)
+
+  return <success />
+}
+```
+
+### useResponse
+
+[← back](#hooks)
+
+This hook MUST be used in a component placed in `<request>` or `<fallback>`.
+This hook returns current response instance.
+
+*src/Component.tsx*
+
+```typescript jsx
+import { useResponse } from '@innet/sever'
+
+export function Component () {
+  const response = useResponse()
+
+  console.log(response)
+
+  return <success />
+}
+```
+
+### useHeaders
+
+[← back](#hooks)
+
+This hook MUST be used in a component placed in `<request>` or `<fallback>`.
+This hook returns current request headers object.
+
+*src/Component.tsx*
+
+```typescript jsx
+import { useHeaders } from '@innet/sever'
+
+export function Component () {
+  const headers = useHeaders()
+
+  return <success>{{ headers }}</success>
+}
+```
+
+### useCookies
+
+[← back](#hooks)
+
+This hook MUST be used in a component placed in `<request>` or `<fallback>`.
+This hook returns current request cookies object.
+
+*src/Component.tsx*
+
+```typescript jsx
+import { useCookies } from '@innet/sever'
+
+export function Component () {
+  const cookies = useCookies()
+
+  return <success>{{ cookies }}</success>
+}
+```
+
+### usePath
+
+[← back](#hooks)
+
+This hook MUST be used in a component placed in `<request>` or `<fallback>`.
+This hook returns current request path as a `string`.
+
+*src/Component.tsx*
+
+```typescript jsx
+import { usePath } from '@innet/sever'
+
+export function Component () {
+  const path = usePath()
+
+  return <success>{{ path }}</success>
+}
+```
 
 ### useParams
 
