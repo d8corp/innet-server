@@ -3252,67 +3252,44 @@ export default (
 
 ## Components
 
-Any component is just a function which returns content that should be run.
+[← back](#index)
 
-`server.tsx`
+Component is a function which returns content that, like, placed instead of the component.
+Like you can inject a plugin between elements.
+
+*src/SetToken.tsx*
 ```typescript jsx
-export const Server = ({ cmsPrefix }) => (
+export const SetToken = ({ value }) => (
+  <cookie
+    httpOnly
+    secure
+    key='token'
+    value={value}
+  />
+)
+```
+
+and then you can use it inside `app.tsx`.
+
+*src/app.tsx*
+```typescript jsx
+import { SetToken } from './SetToken'
+
+export default (
   <server>
-    <api>
+    <api prefix='/src'>
       <fallback>
-        <cms dir='cms' prefix={cmsPrefix}>
-          <file path='404.html' />
-        </cms>
+        <SetToken
+          value='...'
+        />
+        <success />
       </fallback>
     </api>
   </server>
 )
 ```
 
-and then you can use it inside `app.tsx`.
-
-```typescript jsx
-import { Server } from './server'
-
-export default <Server cmsPrefix='/cms' />
-```
-
-You can use it with any other functionality, for example with `html`.
-
-```typescript jsx
-import { useChildren } from '@innet/jsx'
-
-function Html ({ title }) {
-  const children = useChildren()
-
-  return (
-    <header name='content-type' value='text/html'>
-      <html>
-      <head>
-        <title>{title}</title>
-      </head>
-      <body>
-        {children}
-      </body>
-      </html>
-    </header>
-  )
-}
-
-export default (
-  <server>
-    <action>
-      <Html title='main'>
-        Hello World!
-      </Html>
-    </action>
-  </server>  
-)
-```
-
-The first argument is props, the second is children and the last one is a handler.
-
-You can use components inside another component.
+...
 
 ## Hooks
 
