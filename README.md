@@ -3298,13 +3298,13 @@ Hook functions give you all features to control parent element functionality.
 
 [← back](#index)
 
-[useServer](#useserver)
-[useRequest](#userequest)
-[useResponse](#useresponse)
-[useHeaders](#useheaders)
-[useCookies](#usecookies)
-[usePath](#usepath)
-[useParams](#useparams)
+[useServer](#useserver)  
+[useRequest](#userequest)  
+[useResponse](#useresponse)  
+[useHeaders](#useheaders)  
+[useCookies](#usecookies)  
+[usePath](#usepath)  
+[useParams](#useparams)  
 
 ### useServer
 
