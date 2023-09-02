@@ -2840,7 +2840,81 @@ export default (
 
 [← back](#run-time)
 
-CMS helps to return files from a folder by path.
+`<cms>` helps to return files from a folder by path. It checks files run-time on the server.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <fallback>
+        <cms />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+#### dir
+
+By default, it looks at project folder.
+If you try the previous example on [http://localhost/package.json](http://localhost/package.json)
+you get the project `package.json` file.
+
+You can change root folder by `dir` property.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <fallback>
+        <cms dir='src' />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+Now you can try [http://localhost/index.tsx](http://localhost/index.tsx)
+you get the index file in `src` folder.
+
+#### prefix
+
+`<cms>` matches full `path`, you should take it into account if you add `prefix` on `<api>`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/src'>
+      <fallback>
+        <cms />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+Here you can try [http://localhost/src/index.tsx](http://localhost/src/index.tsx)
+you get the index file in `src` folder.
+
+You can reduce the path for matching by prefix property of `<cms>`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/api'>
+      <fallback>
+        <cms prefix='/api' />
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+Now you can try [http://localhost/api/package.json](http://localhost/api/package.json)
 
 ### \<cookie>
 
