@@ -13,6 +13,7 @@ export function App () {
       <api description={description} prefix='/api' title='@innet/server Todo Template' version='0.0.1'>
         <swagger path='/swagger' />
         <license name='MIT' />
+        <host url='http://localhost/api' />
         <contact name='Mike' email='d8@cantinc.com' />
         <fallback>
           <error code='unknownRequest' status={404} />
