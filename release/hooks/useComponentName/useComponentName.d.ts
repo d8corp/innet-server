@@ -1,1 +1,1 @@
-export declare function useComponentName(): any;
+export declare function useComponentName(): string;

@@ -4,7 +4,7 @@ export interface ResponseProps {
      * A description of the response.
      * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
      * */
-    description: string;
+    description?: string;
     /**
      * Any [HTTP status code](https://swagger.io/specification/#http-codes) can be used as the property.
      * To define a range of response codes, this field MAY contain the uppercase wildcard character X.

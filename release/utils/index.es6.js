@@ -10,3 +10,4 @@ import './parseFormBody/index.es6.js';
 import './rules/index.es6.js';
 import './JSONString/index.es6.js';
 import './FileData/index.es6.js';
+import './generateTypes/index.es6.js';

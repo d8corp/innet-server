@@ -3319,6 +3319,7 @@ Hook functions give you all features to control parent element functionality.
 [useParams](#useparams)  
 [useSearch](#usesearch)  
 [useBody](#usebody)  
+[useComponentName](#usecomponentname)  
 
 ---
 
@@ -3493,6 +3494,24 @@ export function Component () {
   const body = useBody()
 
   return <success>{body}</success>
+}
+```
+
+### useComponentName
+
+[← back](#hooks)
+
+This hook returns name of current component.
+
+*src/Component.tsx*
+```typescript jsx
+import { useComponentName } from '@innet/sever'
+
+export function Component () {
+// returns this ^-------^
+  const name = useComponentName()
+
+  return <success>{{ name }}</success>
 }
 ```
 

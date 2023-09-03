@@ -17,7 +17,7 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 
 const response = () => {
-    const { description, status = 'default' } = jsx.useProps();
+    const { description = '', status = 'default' } = jsx.useProps() || {};
     const { operation, props: { path } } = useEndpoint.useEndpoint();
     const children = jsx.useChildren();
     const handler = innet.useNewHandler();

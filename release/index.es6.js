@@ -81,6 +81,7 @@ export { maxBin } from './utils/rules/maxBin/maxBin.es6.js';
 export { binaryAccept } from './utils/rules/binaryAccept/binaryAccept.es6.js';
 export { JSONString } from './utils/JSONString/JSONString.es6.js';
 export { Bin } from './utils/FileData/Bin.es6.js';
+export { generateSchemaTypes, generateTypes } from './utils/generateTypes/generateTypes.es6.js';
 export { serverContext, useServer } from './hooks/useServer/useServer.es6.js';
 export { apiContext, useApi } from './hooks/useApi/useApi.es6.js';
 export { hostContext, useHost } from './hooks/useHost/useHost.es6.js';

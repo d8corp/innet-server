@@ -9,7 +9,7 @@ import { getOrAdd } from '../../../utils/getOrAdd/getOrAdd.es6.js';
 import { ruleContext } from '../../../hooks/useRule/useRule.es6.js';
 
 const response = () => {
-    const { description, status = 'default' } = useProps();
+    const { description = '', status = 'default' } = useProps() || {};
     const { operation, props: { path } } = useEndpoint();
     const children = useChildren();
     const handler = useNewHandler();

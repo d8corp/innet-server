@@ -12,4 +12,5 @@ require('./parseFormBody/index.js');
 require('./rules/index.js');
 require('./JSONString/index.js');
 require('./FileData/index.js');
+require('./generateTypes/index.js');
 
