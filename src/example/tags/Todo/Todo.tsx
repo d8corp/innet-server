@@ -28,7 +28,7 @@ export function Todo () {
         path='/todos'
         summary='Add a todo'>
         <body>
-          <TodoSchema add />
+          <TodoSchema body />
         </body>
         <response>
           <TodoSchema />

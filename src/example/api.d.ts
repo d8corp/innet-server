@@ -1,13 +1,26 @@
 declare namespace Api {
+  export interface Bin {
+    filename: string
+    fieldName: string
+    originalFilename: string
+    path: string
+    type: string
+    disposition: string
+    size: number
+    extension?: string
+  }
   namespace Schemas {
     export type TodoSchema = {
       id: string
       title: string
+      created: Date
+      file?: string
       done: boolean
     }
-    export type TodoSchemaAdd = {
+    export type TodoSchemaBody = {
       id: string
       title: string
+      file?: Bin
       done: boolean
     }
   }
@@ -26,7 +39,7 @@ declare namespace Api {
       }
     }
     ['POST:/todos']: {
-      Body: Schemas.TodoSchemaAdd
+      Body: Schemas.TodoSchemaBody
       Response: Schemas.TodoSchema
     }
     ['GET:/todos/{todoId}']: {

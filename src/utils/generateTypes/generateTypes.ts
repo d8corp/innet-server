@@ -15,7 +15,19 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2): 
     return `${schema.format === 'int64' ? 'bigint' : 'number'}\n`
   }
 
-  if (['string', 'boolean', 'number', 'null'].includes(schema.type as any)) {
+  if (schema.type === 'string') {
+    if (schema.format === 'date-time') {
+      return 'Date\n'
+    }
+
+    if (schema.format === 'binary') {
+      return 'Bin\n'
+    }
+
+    return 'string\n'
+  }
+
+  if (['boolean', 'number', 'null'].includes(schema.type as any)) {
     return `${schema.type as string}\n`
   }
 
@@ -46,7 +58,7 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2): 
 }
 
 export function generateTypes (docs: Document): string {
-  let result = 'declare namespace Api {\n'
+  let result = 'declare namespace Api {\n  export interface Bin {\n    filename: string\n    fieldName: string\n    originalFilename: string\n    path: string\n    type: string\n    disposition: string\n    size: number\n    extension?: string\n  }\n'
   const schemas = docs.components?.schemas
   const paths = docs.paths
 

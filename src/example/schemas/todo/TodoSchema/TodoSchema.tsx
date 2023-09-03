@@ -1,23 +1,31 @@
 import { useComponentName } from 'src'
 
 export interface TodoSchemaProps {
-  add?: boolean
+  body?: boolean
 }
 
-export function TodoSchema (props: TodoSchemaProps) {
+export function TodoSchema ({ body }: TodoSchemaProps = {}) {
   const componentName = useComponentName()
-  const ref = `${componentName}${props?.add ? 'Add' : ''}`
+  const ref = `${componentName}${body ? 'Body' : ''}`
 
   return (
     <object ref={ref}>
-      <field optional={props?.add} key='id'>
-        <uuid default={props?.add ? 'new' : undefined} />
+      <field optional={body} key='id'>
+        <uuid default={body ? 'new' : undefined} />
       </field>
       <field key='title'>
-        <string example='Create todo' />
+        <string example='Check @innet/dom librarry' />
       </field>
-      <field optional={props?.add} key='done'>
-        <boolean default={props?.add ? false : undefined} />
+      {!body && (
+        <field key='created'>
+          <date />
+        </field>
+      )}
+      <field optional key='file'>
+        {body ? <binary /> : <string description='Origin file name' />}
+      </field>
+      <field optional={body} key='done'>
+        <boolean default={body ? false : undefined} />
       </field>
     </object>
   )
