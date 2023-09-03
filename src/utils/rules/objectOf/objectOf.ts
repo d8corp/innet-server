@@ -15,7 +15,10 @@ export function objectOf (map: ObjectOf) {
     const result: any = {}
 
     for (const key in map) {
-      result[key] = map[key](value[key], { ...data, key: addKey(key, data) })
+      const val = map[key](value[key], { ...data, key: addKey(key, data) })
+      if (val !== undefined) {
+        result[key] = val
+      }
     }
 
     return result
