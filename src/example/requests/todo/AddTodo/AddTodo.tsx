@@ -7,5 +7,5 @@ export function AddTodo () {
 
   todos.push(todo)
 
-  return <success />
+  return <success>{todo}</success>
 }

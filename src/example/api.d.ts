@@ -18,14 +18,22 @@ declare namespace Api {
         page: number
         pageSize: number
       }
+      Response: {
+        page: number
+        pageSize: number
+        count: number
+        todos: (Schemas.TodoSchema)[]
+      }
     }
     ['POST:/todos']: {
       Body: Schemas.TodoSchemaAdd
+      Response: Schemas.TodoSchema
     }
     ['GET:/todos/{todoId}']: {
       Params: {
         todoId: string
       }
+      Response: Schemas.TodoSchema
     }
     ['PATCH:/todos/{todoId}']: {
       Params: {

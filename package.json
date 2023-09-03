@@ -66,7 +66,6 @@
     "@types/multiparty": "^0.0.33",
     "@types/qs": "^6.9.7",
     "cookie": "^0.5.0",
-    "dtsgenerator": "^3.18.0",
     "http-proxy": "^1.18.1",
     "innet": "^2.0.0-alpha.3",
     "is-invalid-path": "^1.0.2",

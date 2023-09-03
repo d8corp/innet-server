@@ -30,6 +30,9 @@ export function Todo () {
         <body>
           <TodoSchema add />
         </body>
+        <response>
+          <TodoSchema />
+        </response>
         <request>
           <AddTodo />
         </request>

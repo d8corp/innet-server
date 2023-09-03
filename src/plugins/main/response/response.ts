@@ -16,7 +16,7 @@ export interface ResponseProps {
    * A description of the response.
    * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
    * */
-  description: string
+  description?: string
 
   /**
    * Any [HTTP status code](https://swagger.io/specification/#http-codes) can be used as the property.
@@ -28,7 +28,7 @@ export interface ResponseProps {
 }
 
 export const response: HandlerPlugin = () => {
-  const { description, status = 'default' } = useProps<ResponseProps>()
+  const { description = '', status = 'default' } = useProps<ResponseProps>() || {}
   const { operation, props: { path } } = useEndpoint()
   const children = useChildren()
   const handler = useNewHandler()

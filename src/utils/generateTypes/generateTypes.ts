@@ -11,6 +11,10 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2): 
     return `Schemas.${(schema.$ref as string).slice(21)}\n`
   }
 
+  if (schema.type === 'integer') {
+    return `${schema.format === 'int64' ? 'bigint' : 'number'}\n`
+  }
+
   if (['string', 'boolean', 'number', 'null'].includes(schema.type as any)) {
     return `${schema.type as string}\n`
   }
@@ -102,8 +106,8 @@ export function generateTypes (docs: Document): string {
         result += `      Body: ${generateSchemaTypes(requestBody.content['multipart/form-data'].schema, 8)}`
       }
 
-      if (responses) {
-        // console.log('responses', responses)
+      if (responses?.default) {
+        result += `      Response: ${generateSchemaTypes(responses.default.content['application/json'].schema, 8)}`
       }
 
       result += '    }\n'
