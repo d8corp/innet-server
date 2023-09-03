@@ -1,4 +1,3 @@
-## This is the API description.
+## This is a simple example of todos.
 
-- check
-- this
+Here you can find API endpoints to handle todos.

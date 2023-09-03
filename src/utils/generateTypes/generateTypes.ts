@@ -11,8 +11,14 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2): 
     return `Schemas.${(schema.$ref as string).slice(21)}\n`
   }
 
-  if (['string', 'boolean', 'number'].includes(schema.type as any)) {
-    return schema.type as string
+  if (['string', 'boolean', 'number', 'null'].includes(schema.type as any)) {
+    return `${schema.type as string}\n`
+  }
+
+  if (schema.type === 'array') {
+    if (!schema.items) return 'any[]\n'
+
+    return `(${generateSchemaTypes(schema.items, spaces + 2).slice(0, -1)})[]\n`
   }
 
   if (schema.type !== 'object') {
@@ -29,7 +35,7 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2): 
       ? ':'
       : '?:'
 
-    result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}\n`
+    result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}`
   }
 
   return `${result}${space.slice(0, -2)}}\n`
@@ -72,7 +78,7 @@ export function generateTypes (docs: Document): string {
 
         for (const param of parameters) {
           const splitter = param.in === 'path' || hasDefault(param.schema) ? ':' : '?:'
-          params[param.in as InParam] += `        ${param.name as string}${splitter} ${generateSchemaTypes(param.schema)}\n`
+          params[param.in as InParam] += `        ${param.name as string}${splitter} ${generateSchemaTypes(param.schema)}`
         }
 
         if (params.path) {

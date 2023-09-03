@@ -1,1 +1,1 @@
-export * from './partners'
+export * from './todo'

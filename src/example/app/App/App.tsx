@@ -1,21 +1,23 @@
-import { httpOnStart } from '../../../utils'
-import { Partner } from '../../tags'
+import { type ServerStartParams } from 'src'
+
+import { Todo } from '../../tags'
 import description from './description.md'
+
+const handleStart = ({ port, https }: ServerStartParams) => {
+  console.log(`http${https ? 's' : ''}://localhost:${port}/api/swagger`)
+}
 
 export function App () {
   return (
-    <server port={3000} onStart={httpOnStart}>
-      <api description={description} prefix='/api' title='CANT inc. API' version='0.0.1'>
+    <server onStart={handleStart}>
+      <api description={description} prefix='/api' title='@innet/server Todo Template' version='0.0.1'>
         <swagger path='/swagger' />
-        <host url='https://cantinc.com/api' description='Production' />
-        <host url='https://stage.cantinc.com/api' description='Stage' />
-        <host url='http://localhost:3000/api' description='Localhost' />
         <license name='MIT' />
-        <contact name='Mike' email='d8corp@mail.ru' />
+        <contact name='Mike' email='d8@cantinc.com' />
         <fallback>
           <error code='unknownRequest' status={404} />
         </fallback>
-        <Partner />
+        <Todo />
         <dev>
           <dts path='src/example/api.d.ts' />
         </dev>
