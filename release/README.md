@@ -396,21 +396,28 @@ export default (
 )
 ```
 
-> You MUST add some [endpoint](#endpoint) with some schema otherwise you get the `Error: There is no schema in the input contents`.
-
+You do not need to import types, use `Api` namespace everywhere.
 Here is an example of generated types usage.
 
-*src/GetPartner.tsx*
 ```typescript jsx
 import { useParams } from '@innet/server'
 
-export function GetPartner () {
-  const { id } = useParams<Paths.Partners$Id.Get.PathParameters>()
-  return <success>{{ id }}</success>
+import { todos } from '../todos'
+
+export function DeleteTodo () {
+  const { todoId } = useParams<Api.Endpoints['DELETE:/todos/{todoId}']['Params']>()
+
+  const todoIndex = todos.findIndex(({ id }) => id === todoId)
+
+  if (todoIndex === -1) {
+    return <error code='todoNotFound' status={404} />
+  }
+
+  todos.splice(todoIndex, 1)
+
+  return <success />
 }
 ```
-
-You do not need to import types, they generate as namespaces.
 
 ## API Info
 

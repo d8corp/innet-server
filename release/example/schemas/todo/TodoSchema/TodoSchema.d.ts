@@ -1,4 +1,4 @@
 export interface TodoSchemaProps {
-    add?: boolean;
+    body?: boolean;
 }
-export declare function TodoSchema(props: TodoSchemaProps): any;
+export declare function TodoSchema({ body }?: TodoSchemaProps): any;

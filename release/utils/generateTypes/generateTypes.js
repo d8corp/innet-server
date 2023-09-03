@@ -13,7 +13,16 @@ function generateSchemaTypes(schema, spaces = 2) {
     if (schema.type === 'integer') {
         return `${schema.format === 'int64' ? 'bigint' : 'number'}\n`;
     }
-    if (['string', 'boolean', 'number', 'null'].includes(schema.type)) {
+    if (schema.type === 'string') {
+        if (schema.format === 'date-time') {
+            return 'Date\n';
+        }
+        if (schema.format === 'binary') {
+            return 'Bin\n';
+        }
+        return 'string\n';
+    }
+    if (['boolean', 'number', 'null'].includes(schema.type)) {
         return `${schema.type}\n`;
     }
     if (schema.type === 'array') {
@@ -38,7 +47,7 @@ function generateSchemaTypes(schema, spaces = 2) {
 }
 function generateTypes(docs) {
     var _a;
-    let result = 'declare namespace Api {\n';
+    let result = 'declare namespace Api {\n  export interface Bin {\n    filename: string\n    fieldName: string\n    originalFilename: string\n    path: string\n    type: string\n    disposition: string\n    size: number\n    extension?: string\n  }\n';
     const schemas = (_a = docs.components) === null || _a === void 0 ? void 0 : _a.schemas;
     const paths = docs.paths;
     if (schemas) {
