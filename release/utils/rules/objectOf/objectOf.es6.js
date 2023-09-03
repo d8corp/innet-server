@@ -7,7 +7,10 @@ function objectOf(map) {
         }
         const result = {};
         for (const key in map) {
-            result[key] = map[key](value[key], Object.assign(Object.assign({}, data), { key: addKey(key, data) }));
+            const val = map[key](value[key], Object.assign(Object.assign({}, data), { key: addKey(key, data) }));
+            if (val !== undefined) {
+                result[key] = val;
+            }
         }
         return result;
     };
