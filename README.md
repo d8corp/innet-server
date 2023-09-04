@@ -3494,46 +3494,19 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook adds a request plugin function.
-The function runs before check endpoints.
-If the function returns `true` the request handling stops, and you get full control over the request.
+This hook returns request user IP.
+This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
 
-*src/SecretEndpoint.tsx*
+*src/Component.tsx*
 ```typescript jsx
-import { useRequestPlugin } from '@innet/sever'
+import { useClientIp } from '@innet/sever'
 
-export function SecretEndpoint () {
-  useRequestPlugin((req, res) => {
-    if (req.url.startsWith('/secret-endpoint')) {
-      res.statusCode = 200
-      res.write('A secret message')
-      res.end()
-      return true
-    }
-  })
+export function Component () {
+  const ip = useClientIp()
+  
+  return <success>{{ ip }}</success>
 }
 ```
-
-Then use the plugin in [\<api>](#api).
-
-*src/app.tsx*
-```typescript jsx
-import { SecretEndpoint } from './SecretEndpoint'
-
-export default (
-  <server>
-    <api>
-      <fallback>
-        <error />
-      </fallback>
-      <SecretEndpoint />
-    </api>
-  </server>
-)
-```
-
-Any endpoint returns an error except for `/secret-endpoint`.
-Elements order does not matter.
 
 ### useRequestPlugin
 
