@@ -3317,7 +3317,7 @@ Hook functions give you all features to control parent element functionality.
 
 [← back](#index)
 
-[useServer](#useserver)  
+Real-time  
 [useRequest](#userequest)  
 [useResponse](#useresponse)  
 [useHeaders](#useheaders)  
@@ -3326,31 +3326,16 @@ Hook functions give you all features to control parent element functionality.
 [useParams](#useparams)  
 [useSearch](#usesearch)  
 [useBody](#usebody)  
-[useComponentName](#usecomponentname)  
-[useRequestPlugin](#userequestplugin)  
+[useClientIp](#useclientip)  
+
+Server start
+[useRequestPlugin](#userequestplugin)
+
+Both  
+[useServer](#useserver)  
+[useComponentName](#usecomponentname)
 
 ---
-
-### useServer
-
-[← back](#hooks)
-
-This hook MUST be used in a component placed in `<server>`.
-This hook returns current http(s) server instance.
-
-*src/Component.tsx*
-
-```typescript jsx
-import { useServer } from '@innet/sever'
-
-export function Component () {
-  const server = useServer()
-
-  console.log(server)
-
-  return <success />
-}
-```
 
 ### useRequest
 
@@ -3505,25 +3490,7 @@ export function Component () {
 }
 ```
 
-### useComponentName
-
-[← back](#hooks)
-
-This hook returns name of current component.
-
-*src/Component.tsx*
-```typescript jsx
-import { useComponentName } from '@innet/sever'
-
-export function Component () {
-// returns this ^-------^
-  const name = useComponentName()
-
-  return <success>{{ name }}</success>
-}
-```
-
-### useRequestPlugin
+### useClientIp
 
 [← back](#hooks)
 
@@ -3567,6 +3534,91 @@ export default (
 
 Any endpoint returns an error except for `/secret-endpoint`.
 Elements order does not matter.
+
+### useRequestPlugin
+
+[← back](#hooks)
+
+This hook adds a request plugin function.
+The function runs before check endpoints.
+If the function returns `true` the request handling stops, and you get full control over the request.
+
+This hook MUST be used in a component placed in [\<api>](#api).
+
+*src/SecretEndpoint.tsx*
+```typescript jsx
+import { useRequestPlugin } from '@innet/sever'
+
+export function SecretEndpoint () {
+  useRequestPlugin((req, res) => {
+    if (req.url.startsWith('/secret-endpoint')) {
+      res.statusCode = 200
+      res.write('A secret message')
+      res.end()
+      return true
+    }
+  })
+}
+```
+
+Then use the plugin in [\<api>](#api).
+
+*src/app.tsx*
+```typescript jsx
+import { SecretEndpoint } from './SecretEndpoint'
+
+export default (
+  <server>
+    <api>
+      <fallback>
+        <error />
+      </fallback>
+      <SecretEndpoint />
+    </api>
+  </server>
+)
+```
+
+Any endpoint returns an error except for `/secret-endpoint`.
+Elements order does not matter.
+
+### useServer
+
+[← back](#hooks)
+
+This hook MUST be used in a component placed in [\<server>](#server).
+This hook returns current http(s) server instance.
+
+*src/Component.tsx*
+```typescript jsx
+import { useServer } from '@innet/sever'
+
+export function Component () {
+  const server = useServer()
+
+  console.log(server)
+
+  return <success />
+}
+```
+
+### useComponentName
+
+[← back](#hooks)
+
+This hook returns name of current component.
+
+*src/Component.tsx*
+```typescript jsx
+import { useComponentName } from '@innet/sever'
+
+export function Component () {
+// returns this ^-------^
+  const name = useComponentName()
+
+  return <success>{{ name }}</success>
+}
+```
 
 ## Issues
 If you find a bug or have a suggestion, please file an issue on [GitHub](https://github.com/d8corp/innet-server/issues).
