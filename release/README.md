@@ -3327,6 +3327,7 @@ Hook functions give you all features to control parent element functionality.
 [useSearch](#usesearch)  
 [useBody](#usebody)  
 [useComponentName](#usecomponentname)  
+[useRequestPlugin](#userequestplugin)  
 
 ---
 
@@ -3521,6 +3522,51 @@ export function Component () {
   return <success>{{ name }}</success>
 }
 ```
+
+### useRequestPlugin
+
+[← back](#hooks)
+
+This hook adds a request plugin function.
+The function runs before check endpoints.
+If the function returns `true` the request handling stops, and you get full control over the request.
+
+*src/SecretEndpoint.tsx*
+```typescript jsx
+import { useRequestPlugin } from '@innet/sever'
+
+export function SecretEndpoint () {
+  useRequestPlugin((req, res) => {
+    if (req.url.startsWith('/secret-endpoint')) {
+      res.statusCode = 200
+      res.write('A secret message')
+      res.end()
+      return true
+    }
+  })
+}
+```
+
+Then use the plugin in [\<api>](#api).
+
+*src/app.tsx*
+```typescript jsx
+import { SecretEndpoint } from './SecretEndpoint'
+
+export default (
+  <server>
+    <api>
+      <fallback>
+        <error />
+      </fallback>
+      <SecretEndpoint />
+    </api>
+  </server>
+)
+```
+
+Any endpoint returns an error except for `/secret-endpoint`.
+Elements order does not matter.
 
 ## Issues
 If you find a bug or have a suggestion, please file an issue on [GitHub](https://github.com/d8corp/innet-server/issues).

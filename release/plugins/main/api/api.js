@@ -54,6 +54,10 @@ const api = () => {
         if (!url.startsWith(prefix)) {
             return;
         }
+        for (const requestPlugin of requestPlugins) {
+            if (requestPlugin(req, res))
+                return;
+        }
         const method = ((_c = (_b = req.method) === null || _b === void 0 ? void 0 : _b.toLowerCase()) !== null && _c !== void 0 ? _c : 'get');
         const rawSplitPath = url.slice(prefix.length).split('/').slice(1);
         const splitPath = rawSplitPath.at(-1) ? rawSplitPath : rawSplitPath.slice(0, -1);
@@ -161,10 +165,6 @@ const api = () => {
                     endpointQueue.push([deep + 1, dynamicEndpoint, Object.assign(Object.assign({}, params), { [dynamicEndpoint.key.slice(1, -1)]: key })]);
                 }
             }
-        }
-        for (const requestPlugin of requestPlugins) {
-            if (requestPlugin(req, res))
-                return;
         }
         if (context.fallback) {
             const newHandler = Object.create(context.fallback.handler);

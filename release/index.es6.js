@@ -107,3 +107,4 @@ export { ruleContext, useRule, useSetRule } from './hooks/useRule/useRule.es6.js
 export { objectRuleContext, useObjectRule } from './hooks/useObjectRule/useObjectRule.es6.js';
 export { bodyFileContext, useBodyFile } from './hooks/useBodyFile/useBodyFile.es6.js';
 export { usePath } from './hooks/usePath/usePath.es6.js';
+export { useRequestPlugin } from './hooks/useRequestPlugin/useRequestPlugin.es6.js';

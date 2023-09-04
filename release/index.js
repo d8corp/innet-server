@@ -111,6 +111,7 @@ var useRule = require('./hooks/useRule/useRule.js');
 var useObjectRule = require('./hooks/useObjectRule/useObjectRule.js');
 var useBodyFile = require('./hooks/useBodyFile/useBodyFile.js');
 var usePath = require('./hooks/usePath/usePath.js');
+var useRequestPlugin = require('./hooks/useRequestPlugin/useRequestPlugin.js');
 
 
 
@@ -246,3 +247,4 @@ exports.useObjectRule = useObjectRule.useObjectRule;
 exports.bodyFileContext = useBodyFile.bodyFileContext;
 exports.useBodyFile = useBodyFile.useBodyFile;
 exports.usePath = usePath.usePath;
+exports.useRequestPlugin = useRequestPlugin.useRequestPlugin;
