@@ -86,6 +86,10 @@ export const api: HandlerPlugin = () => {
       return
     }
 
+    for (const requestPlugin of requestPlugins) {
+      if (requestPlugin(req, res)) return
+    }
+
     const method = (req.method?.toLowerCase() ?? 'get') as EndpointsMethods
     const rawSplitPath = url.slice(prefix.length).split('/').slice(1)
     const splitPath = rawSplitPath.at(-1) ? rawSplitPath : rawSplitPath.slice(0, -1)
@@ -205,10 +209,6 @@ export const api: HandlerPlugin = () => {
           endpointQueue.push([deep + 1, dynamicEndpoint, { ...params, [dynamicEndpoint.key.slice(1, -1)]: key }])
         }
       }
-    }
-
-    for (const requestPlugin of requestPlugins) {
-      if (requestPlugin(req, res)) return
     }
 
     if (context.fallback) {

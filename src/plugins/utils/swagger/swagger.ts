@@ -1,9 +1,7 @@
 import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
-import { onDestroy } from 'watch-state'
 
-import { useApi } from '../../../hooks'
-import { type RequestPlugin } from '../../../types'
+import { useApi, useRequestPlugin } from '../../../hooks'
 import html from './swagger.html'
 
 export interface SwaggerProps {
@@ -12,11 +10,11 @@ export interface SwaggerProps {
 
 export const swagger: HandlerPlugin = () => {
   const { path = '/swagger-ui' } = useProps<SwaggerProps>() || {}
-  const { docs, requestPlugins, prefix } = useApi()
+  const { docs, prefix } = useApi()
 
   let swaggerResponse: string
 
-  const listener: RequestPlugin = (req, res) => {
+  useRequestPlugin((req, res) => {
     if (req.url === prefix + path) {
       if (!swaggerResponse) {
         swaggerResponse = html.replace('spec: {},', `spec: ${JSON.stringify(docs)},`)
@@ -27,10 +25,5 @@ export const swagger: HandlerPlugin = () => {
       res.end()
       return true
     }
-  }
-
-  requestPlugins.add(listener)
-  onDestroy(() => {
-    requestPlugins.delete(listener)
   })
 }
