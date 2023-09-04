@@ -3317,7 +3317,7 @@ Hook functions give you all features to control parent element functionality.
 
 [← back](#index)
 
-[useServer](#useserver)  
+Real-time  
 [useRequest](#userequest)  
 [useResponse](#useresponse)  
 [useHeaders](#useheaders)  
@@ -3326,31 +3326,16 @@ Hook functions give you all features to control parent element functionality.
 [useParams](#useparams)  
 [useSearch](#usesearch)  
 [useBody](#usebody)  
-[useComponentName](#usecomponentname)  
-[useRequestPlugin](#userequestplugin)  
+[useClientIp](#useclientip)  
+
+Server start  
+[useRequestPlugin](#userequestplugin)
+
+Both  
+[useServer](#useserver)  
+[useComponentName](#usecomponentname)
 
 ---
-
-### useServer
-
-[← back](#hooks)
-
-This hook MUST be used in a component placed in `<server>`.
-This hook returns current http(s) server instance.
-
-*src/Component.tsx*
-
-```typescript jsx
-import { useServer } from '@innet/sever'
-
-export function Component () {
-  const server = useServer()
-
-  console.log(server)
-
-  return <success />
-}
-```
 
 ### useRequest
 
@@ -3505,21 +3490,21 @@ export function Component () {
 }
 ```
 
-### useComponentName
+### useClientIp
 
 [← back](#hooks)
 
-This hook returns name of current component.
+This hook returns request user IP.
+This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
 
 *src/Component.tsx*
 ```typescript jsx
-import { useComponentName } from '@innet/sever'
+import { useClientIp } from '@innet/sever'
 
 export function Component () {
-// returns this ^-------^
-  const name = useComponentName()
-
-  return <success>{{ name }}</success>
+  const ip = useClientIp()
+  
+  return <success>{{ ip }}</success>
 }
 ```
 
@@ -3530,6 +3515,8 @@ export function Component () {
 This hook adds a request plugin function.
 The function runs before check endpoints.
 If the function returns `true` the request handling stops, and you get full control over the request.
+
+This hook MUST be used in a component placed in [\<api>](#api).
 
 *src/SecretEndpoint.tsx*
 ```typescript jsx
@@ -3567,6 +3554,44 @@ export default (
 
 Any endpoint returns an error except for `/secret-endpoint`.
 Elements order does not matter.
+
+### useServer
+
+[← back](#hooks)
+
+This hook MUST be used in a component placed in [\<server>](#server).
+This hook returns current http(s) server instance.
+
+*src/Component.tsx*
+```typescript jsx
+import { useServer } from '@innet/sever'
+
+export function Component () {
+  const server = useServer()
+
+  console.log(server)
+
+  return <success />
+}
+```
+
+### useComponentName
+
+[← back](#hooks)
+
+This hook returns name of current component.
+
+*src/Component.tsx*
+```typescript jsx
+import { useComponentName } from '@innet/sever'
+
+export function Component () {
+// returns this ^-------^
+  const name = useComponentName()
+
+  return <success>{{ name }}</success>
+}
+```
 
 ## Issues
 If you find a bug or have a suggestion, please file an issue on [GitHub](https://github.com/d8corp/innet-server/issues).

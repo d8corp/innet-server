@@ -112,6 +112,7 @@ var useObjectRule = require('./hooks/useObjectRule/useObjectRule.js');
 var useBodyFile = require('./hooks/useBodyFile/useBodyFile.js');
 var usePath = require('./hooks/usePath/usePath.js');
 var useRequestPlugin = require('./hooks/useRequestPlugin/useRequestPlugin.js');
+var useClientIp = require('./hooks/useClientIp/useClientIp.js');
 
 
 
@@ -248,3 +249,4 @@ exports.bodyFileContext = useBodyFile.bodyFileContext;
 exports.useBodyFile = useBodyFile.useBodyFile;
 exports.usePath = usePath.usePath;
 exports.useRequestPlugin = useRequestPlugin.useRequestPlugin;
+exports.useClientIp = useClientIp.useClientIp;

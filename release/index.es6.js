@@ -108,3 +108,4 @@ export { objectRuleContext, useObjectRule } from './hooks/useObjectRule/useObjec
 export { bodyFileContext, useBodyFile } from './hooks/useBodyFile/useBodyFile.es6.js';
 export { usePath } from './hooks/usePath/usePath.es6.js';
 export { useRequestPlugin } from './hooks/useRequestPlugin/useRequestPlugin.es6.js';
+export { useClientIp } from './hooks/useClientIp/useClientIp.es6.js';
