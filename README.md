@@ -3539,7 +3539,7 @@ export function SecretEndpoint () {
   useRequestPlugin((req, res) => {
     if (req.patch.startsWith('/secret-endpoint')) {
       res.statusCode = 200
-      res.write('')
+      res.write('A secret message')
       res.end()
       return true
     }
