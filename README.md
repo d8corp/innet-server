@@ -3537,7 +3537,7 @@ import { useRequestPlugin } from '@innet/sever'
 
 export function SecretEndpoint () {
   useRequestPlugin((req, res) => {
-    if (req.patch.startsWith('/secret-endpoint')) {
+    if (req.url.startsWith('/secret-endpoint')) {
       res.statusCode = 200
       res.write('A secret message')
       res.end()
