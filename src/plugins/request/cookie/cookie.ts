@@ -1,8 +1,8 @@
 import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
-import cookieLib, { type CookieSerializeOptions } from 'cookie'
+import { type CookieSerializeOptions } from 'cookie'
 
-import { useResponse, useThrow } from '../../../hooks'
+import { useAction } from '../../../hooks'
 
 export interface CookieProps extends CookieSerializeOptions {
   key: string
@@ -10,26 +10,8 @@ export interface CookieProps extends CookieSerializeOptions {
 }
 
 export const cookie: HandlerPlugin = () => {
-  const res = useResponse()
-
-  if (!res) {
-    useThrow('<{type}> MUST be in <request> or <fallback>')
-  }
-
+  const action = useAction()
   const { key, value, ...opt } = useProps<CookieProps>()
-  let cookies: string[] | string | undefined = res.getHeader('Set-Cookie') as any
 
-  if (typeof cookies === 'string') {
-    cookies = [cookies]
-  }
-
-  const normValue = typeof value === 'string' ? cookieLib.serialize(key, value, opt) : `${key}=; max-age=0`
-
-  if (cookies) {
-    cookies.push(normValue)
-  } else {
-    cookies = normValue
-  }
-
-  res.setHeader('Set-Cookie', cookies)
+  action.setCookie(key, value, opt)
 }

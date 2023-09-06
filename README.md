@@ -317,7 +317,9 @@ This section contains elements of utils.
 
 [\<swagger>](#swagger)  
 [\<dev>](#dev)  
+[\<prod>](#prod)  
 [\<dts>](#dts)
+[\<protection>](#protection)
 
 ---
 
@@ -374,6 +376,25 @@ export default (
 )
 ```
 
+### \<prod>
+
+[← back](#utils)
+
+Everything inside <prod> will work when `NODE_ENV` equals `production`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <prod>
+        <swagger />
+      </prod>
+    </api>
+  </server>
+)
+```
+
 ### \<dts>
 
 [← back](#utils)
@@ -417,6 +438,149 @@ export function DeleteTodo () {
 
   return <success />
 }
+```
+
+### \<protection>
+
+[← back](#utils)
+
+This element adds protection page.
+You can use it when you want to protect your application.
+This element MUST be placed in `<api>` element.
+
+#### html
+
+`<protection>` has a required prop of `html`.
+This is a `string` of HTML a user will see if they have no protection.
+
+*src/app.tsx*
+```typescript jsx
+import html from './protection.html'
+
+export default (
+  <server>
+    <api>
+      <protection
+        html={html}
+      />
+    </api>
+  </server>
+)
+```
+
+#### value
+
+This prop is a secret string of protection value.
+User must provide a protection query param equals the `value`.
+
+By default, the value is `undefined` and protection does not work.
+You can use `PROTECTION` env to set default protection `value`.
+
+*src/app.tsx*
+```typescript jsx
+import html from './protection.html'
+
+export default (
+  <server>
+    <api>
+      <protection
+        value='secret'
+        html={html}
+      />
+    </api>
+  </server>
+)
+```
+
+#### maxAge
+
+This prop sets how much time protection is qualified.
+
+By default, the prop equals a year.
+You can use `PROTECTION_MAX_AGE` env to set default `maxAge`.
+
+*src/app.tsx*
+```typescript jsx
+import html from './protection.html'
+
+export default (
+  <server>
+    <api>
+      <protection
+        maxAge={24 * 60 * 60}
+        html={html}
+      />
+    </api>
+  </server>
+)
+```
+
+#### excludeIp
+
+This prop sets a list of IP addresses (split by `,`) to ignore the protection.
+
+You can use `PROTECTED_IP` env to set default `excludeIp`.
+
+*src/app.tsx*
+```typescript jsx
+import html from './protection.html'
+
+export default (
+  <server>
+    <api>
+      <protection
+        excludeIp='0.0.0.0,127.0.0.0'
+        html={html}
+      />
+    </api>
+  </server>
+)
+```
+
+#### cookieKey
+
+This prop sets a cookie field name used to store protection of a user.
+
+By default, it equals `protection`.
+You can use `PROTECTION_COOKIE_KEY` env to set default `cookieKey`.
+
+*src/app.tsx*
+```typescript jsx
+import html from './protection.html'
+
+export default (
+  <server>
+    <api>
+      <protection
+        cookieKey='secret'
+        html={html}
+      />
+    </api>
+  </server>
+)
+```
+
+#### searchKey
+
+This prop sets a search query field name used to check protection.
+
+By default, it equals `protection`.
+You can use `PROTECTION_SEARCH_KEY` env to set default `searchKey`.
+
+*src/app.tsx*
+```typescript jsx
+import html from './protection.html'
+
+export default (
+  <server>
+    <api>
+      <protection
+        searchKey='secret'
+        html={html}
+      />
+    </api>
+  </server>
+)
 ```
 
 ## API Info

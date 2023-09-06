@@ -1,7 +1,7 @@
-import cookie from 'cookie'
-import type http from 'http'
-import { type IncomingHttpHeaders } from 'http'
+import cookieLib, { type CookieSerializeOptions } from 'cookie'
+import { type IncomingHttpHeaders, type IncomingMessage, type ServerResponse } from 'http'
 import { type ParsedQs } from 'qs'
+import { getClientIp } from 'request-ip'
 
 import { once } from '../decorators'
 import { parseBody } from '../parseBody'
@@ -19,7 +19,10 @@ export interface ParsedUrl {
 }
 
 export class Action {
-  constructor (private readonly req: http.IncomingMessage) {}
+  constructor (
+    readonly req: IncomingMessage,
+    readonly res: ServerResponse,
+  ) {}
 
   @once get parsedUrl (): ParsedUrl {
     const match = this.req.url?.match(URL_PARSER)
@@ -66,7 +69,7 @@ export class Action {
   }
 
   @once get originCookies (): Record<string, string> {
-    return cookie.parse(this.req.headers.cookie ?? '')
+    return cookieLib.parse(this.req.headers.cookie ?? '')
   }
 
   #cookie: Record<string, string> = {}
@@ -110,5 +113,27 @@ export class Action {
     if (this.bodyType === 'application/json') {
       this.body = JSON.parse(await parseBody(this.req))
     }
+  }
+
+  setCookie (name: string, value?: string, options?: CookieSerializeOptions) {
+    let cookies: string[] | string | undefined = this.res.getHeader('Set-Cookie') as any
+
+    if (typeof cookies === 'string') {
+      cookies = [cookies]
+    }
+
+    const normValue = typeof value === 'string' ? cookieLib.serialize(name, value, options) : `${name}=; max-age=0`
+
+    if (cookies) {
+      cookies.push(normValue)
+    } else {
+      cookies = normValue
+    }
+
+    this.res.setHeader('Set-Cookie', cookies)
+  }
+
+  @once get clientIp () {
+    return getClientIp(this.req)
   }
 }

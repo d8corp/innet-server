@@ -1,14 +1,7 @@
-import { getClientIp } from 'request-ip'
-
-import { useRequest } from '../useRequest'
-import { useThrow } from '../useThrow'
+import { useAction } from '../useAction'
 
 export function useClientIp (): string | null {
-  const req = useRequest()
+  const action = useAction()
 
-  if (!req) {
-    useThrow('<{type}> MUST be in <request> or <fallback>')
-  }
-
-  return getClientIp(req)
+  return action.clientIp
 }

@@ -70,7 +70,7 @@ export const api: HandlerPlugin = () => {
   const listener = async (req: IncomingMessage, res: ServerResponse) => {
     if (res.writableEnded) return
 
-    const action = new Action(req)
+    const action = new Action(req, res)
 
     const path = action.parsedUrl.path
     const url = path.endsWith('/') ? path.slice(0, -1) : path
@@ -87,7 +87,7 @@ export const api: HandlerPlugin = () => {
     }
 
     for (const requestPlugin of requestPlugins) {
-      if (requestPlugin(req, res)) return
+      if (requestPlugin(action)) return
     }
 
     const method = (req.method?.toLowerCase() ?? 'get') as EndpointsMethods

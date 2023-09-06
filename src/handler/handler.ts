@@ -33,6 +33,7 @@ import {
   object, type ObjectProps,
   param, type ParamProps,
   prod, type ProdProps,
+  protection, type ProtectionProps,
   proxy, type ProxyProps,
   redirect, type RedirectProps,
   request, type RequestProps,
@@ -78,6 +79,7 @@ export const JSXPlugins = {
   object,
   param,
   prod,
+  protection,
   proxy,
   redirect,
   request,
@@ -144,6 +146,7 @@ declare global {
       object: ObjectProps
       param: ParamProps
       prod: ProdProps
+      protection: ProtectionProps
       proxy: ProxyProps
       redirect: RedirectProps
       request: RequestProps
