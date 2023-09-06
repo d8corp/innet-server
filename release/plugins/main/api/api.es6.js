@@ -7,12 +7,12 @@ import '../../../utils/rules/index.es6.js';
 import { useServer } from '../../../hooks/useServer/useServer.es6.js';
 import { apiContext } from '../../../hooks/useApi/useApi.es6.js';
 import { Action } from '../../../utils/action/Action.es6.js';
-import { JSONString } from '../../../utils/JSONString/JSONString.es6.js';
-import { RulesError } from '../../../utils/rules/helpers.es6.js';
 import { responseContext } from '../../../hooks/useResponse/useResponse.es6.js';
 import { requestContext } from '../../../hooks/useRequest/useRequest.es6.js';
-import { paramsContext } from '../../../hooks/useParams/useParams.es6.js';
 import { actionContext } from '../../../hooks/useAction/useAction.es6.js';
+import { JSONString } from '../../../utils/JSONString/JSONString.es6.js';
+import { RulesError } from '../../../utils/rules/helpers.es6.js';
+import { paramsContext } from '../../../hooks/useParams/useParams.es6.js';
 
 const api = () => {
     var _a;
@@ -37,18 +37,25 @@ const api = () => {
         const action = new Action(req, res);
         const path = action.parsedUrl.path;
         const url = path.endsWith('/') ? path.slice(0, -1) : path;
+        if (!url.startsWith(prefix)) {
+            return;
+        }
+        for (const requestPlugin of requestPlugins) {
+            const result = requestPlugin(action);
+            if (!result)
+                continue;
+            const newHandler = Object.create(handler);
+            responseContext.set(newHandler, res);
+            requestContext.set(newHandler, req);
+            actionContext.set(newHandler, action);
+            innet(result, newHandler);
+            return;
+        }
         if (url === (prefix || '')) {
             res.setHeader('Content-Type', 'application/json');
             res.write(JSONString(docs));
             res.end();
             return;
-        }
-        if (!url.startsWith(prefix)) {
-            return;
-        }
-        for (const requestPlugin of requestPlugins) {
-            if (requestPlugin(action))
-                return;
         }
         const method = ((_c = (_b = req.method) === null || _b === void 0 ? void 0 : _b.toLowerCase()) !== null && _c !== void 0 ? _c : 'get');
         const rawSplitPath = url.slice(prefix.length).split('/').slice(1);

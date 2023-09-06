@@ -318,7 +318,7 @@ This section contains elements of utils.
 [\<swagger>](#swagger)  
 [\<dev>](#dev)  
 [\<prod>](#prod)  
-[\<dts>](#dts)
+[\<dts>](#dts)  
 [\<protection>](#protection)
 
 ---
@@ -442,27 +442,26 @@ export function DeleteTodo () {
 
 ### \<protection>
 
+This element MUST be placed in `<api>` element.
+
 [← back](#utils)
 
 This element adds protection page.
 You can use it when you want to protect your application.
-This element MUST be placed in `<api>` element.
 
-#### html
-
-`<protection>` has a required prop of `html`.
-This is a `string` of HTML a user will see if they have no protection.
+If protection failed content of the element should be used.
 
 *src/app.tsx*
 ```typescript jsx
-import html from './protection.html'
-
 export default (
   <server>
     <api>
-      <protection
-        html={html}
-      />
+      <protection>
+        <error
+          code='protection'
+          status='forbidden'
+        />
+      </protection>
     </api>
   </server>
 )
@@ -2788,6 +2787,26 @@ export default (
       <fallback>
         <success status={201}>
           {data}
+        </success>
+      </fallback>
+    </api>
+  </server>
+)
+```
+
+#### contentType
+
+This props sets response content type.
+By default, it checks children element to define the prop.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <fallback>
+        <success contentType='text/html'>
+          Hello World!
         </success>
       </fallback>
     </api>

@@ -11,12 +11,12 @@ require('../../../utils/rules/index.js');
 var useServer = require('../../../hooks/useServer/useServer.js');
 var useApi = require('../../../hooks/useApi/useApi.js');
 var Action = require('../../../utils/action/Action.js');
-var JSONString = require('../../../utils/JSONString/JSONString.js');
-var helpers = require('../../../utils/rules/helpers.js');
 var useResponse = require('../../../hooks/useResponse/useResponse.js');
 var useRequest = require('../../../hooks/useRequest/useRequest.js');
-var useParams = require('../../../hooks/useParams/useParams.js');
 var useAction = require('../../../hooks/useAction/useAction.js');
+var JSONString = require('../../../utils/JSONString/JSONString.js');
+var helpers = require('../../../utils/rules/helpers.js');
+var useParams = require('../../../hooks/useParams/useParams.js');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -45,18 +45,25 @@ const api = () => {
         const action = new Action.Action(req, res);
         const path = action.parsedUrl.path;
         const url = path.endsWith('/') ? path.slice(0, -1) : path;
+        if (!url.startsWith(prefix)) {
+            return;
+        }
+        for (const requestPlugin of requestPlugins) {
+            const result = requestPlugin(action);
+            if (!result)
+                continue;
+            const newHandler = Object.create(handler);
+            useResponse.responseContext.set(newHandler, res);
+            useRequest.requestContext.set(newHandler, req);
+            useAction.actionContext.set(newHandler, action);
+            innet__default["default"](result, newHandler);
+            return;
+        }
         if (url === (prefix || '')) {
             res.setHeader('Content-Type', 'application/json');
             res.write(JSONString.JSONString(docs));
             res.end();
             return;
-        }
-        if (!url.startsWith(prefix)) {
-            return;
-        }
-        for (const requestPlugin of requestPlugins) {
-            if (requestPlugin(action))
-                return;
         }
         const method = ((_c = (_b = req.method) === null || _b === void 0 ? void 0 : _b.toLowerCase()) !== null && _c !== void 0 ? _c : 'get');
         const rawSplitPath = url.slice(prefix.length).split('/').slice(1);
