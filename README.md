@@ -477,15 +477,15 @@ You can use `PROTECTION` env to set default protection `value`.
 
 *src/app.tsx*
 ```typescript jsx
-import html from './protection.html'
-
 export default (
   <server>
     <api>
-      <protection
-        value='secret'
-        html={html}
-      />
+      <protection value='secret'>
+        <error
+          code='protection'
+          status='forbidden'
+        />
+      </protection>
     </api>
   </server>
 )
@@ -500,15 +500,17 @@ You can use `PROTECTION_MAX_AGE` env to set default `maxAge`.
 
 *src/app.tsx*
 ```typescript jsx
-import html from './protection.html'
-
 export default (
   <server>
     <api>
       <protection
         maxAge={24 * 60 * 60}
-        html={html}
-      />
+        value='secret'>
+        <error
+          code='protection'
+          status='forbidden'
+        />
+      </protection>
     </api>
   </server>
 )
@@ -522,15 +524,17 @@ You can use `PROTECTED_IP` env to set default `excludeIp`.
 
 *src/app.tsx*
 ```typescript jsx
-import html from './protection.html'
-
 export default (
   <server>
     <api>
       <protection
         excludeIp='0.0.0.0,127.0.0.0'
-        html={html}
-      />
+        value='secret'>
+        <error
+          code='protection'
+          status='forbidden'
+        />
+      </protection>
     </api>
   </server>
 )
@@ -545,15 +549,17 @@ You can use `PROTECTION_COOKIE_KEY` env to set default `cookieKey`.
 
 *src/app.tsx*
 ```typescript jsx
-import html from './protection.html'
-
 export default (
   <server>
     <api>
       <protection
         cookieKey='secret'
-        html={html}
-      />
+        value='secret'>
+        <error
+          code='protection'
+          status='forbidden'
+        />
+      </protection>
     </api>
   </server>
 )
@@ -568,15 +574,17 @@ You can use `PROTECTION_SEARCH_KEY` env to set default `searchKey`.
 
 *src/app.tsx*
 ```typescript jsx
-import html from './protection.html'
-
 export default (
   <server>
     <api>
       <protection
         searchKey='secret'
-        html={html}
-      />
+        value='secret'>
+        <error
+          code='protection'
+          status='forbidden'
+        />
+      </protection>
     </api>
   </server>
 )
