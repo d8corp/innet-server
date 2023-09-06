@@ -20,13 +20,13 @@ export type SuccessStatuses = keyof typeof successStatuses
 
 export interface SuccessProps {
   status?: SuccessStatuses | number
+  contentType?: string
 }
 
 export const success: HandlerPlugin = () => {
   const children = useChildren()
-  const props = useProps<SuccessProps>()
+  const { status, contentType } = useProps<SuccessProps>() || {}
   const res = useResponse()
-  const status = props?.status
 
   if (!res) {
     throw Error('<success> MUST be in <request>')
@@ -34,8 +34,21 @@ export const success: HandlerPlugin = () => {
 
   res.statusCode = typeof status === 'string' ? successStatuses[status] : status ?? ((children) ? 200 : 204)
 
-  if (children) {
-    res.write(JSONString(children[0]))
+  if (children?.[0]) {
+    const child = children[0]
+    const type = contentType || (
+      ['string', 'number', 'boolean', 'bigint'].includes(typeof child)
+        ? 'text/plain'
+        : 'application/json'
+    )
+
+    res.setHeader('Content-Type', type)
+
+    if (type === 'application/json') {
+      res.write(JSONString(child))
+    } else {
+      res.write(String(child))
+    }
   }
 
   res.end()

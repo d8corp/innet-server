@@ -75,19 +75,28 @@ export const api: HandlerPlugin = () => {
     const path = action.parsedUrl.path
     const url = path.endsWith('/') ? path.slice(0, -1) : path
 
-    if (url === (prefix || '')) {
-      res.setHeader('Content-Type', 'application/json')
-      res.write(JSONString(docs))
-      res.end()
-      return
-    }
-
     if (!url.startsWith(prefix)) {
       return
     }
 
     for (const requestPlugin of requestPlugins) {
-      if (requestPlugin(action)) return
+      const result = requestPlugin(action)
+
+      if (!result) continue
+
+      const newHandler = Object.create(handler)
+      responseContext.set(newHandler, res)
+      requestContext.set(newHandler, req)
+      actionContext.set(newHandler, action)
+      innet(result, newHandler)
+      return
+    }
+
+    if (url === (prefix || '')) {
+      res.setHeader('Content-Type', 'application/json')
+      res.write(JSONString(docs))
+      res.end()
+      return
     }
 
     const method = (req.method?.toLowerCase() ?? 'get') as EndpointsMethods
