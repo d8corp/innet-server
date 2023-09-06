@@ -12,14 +12,14 @@ const swagger = () => {
     const { path = '/swagger-ui' } = jsx.useProps() || {};
     const { docs, prefix } = useApi.useApi();
     let swaggerResponse;
-    useRequestPlugin.useRequestPlugin((req, res) => {
-        if (req.url === prefix + path) {
+    useRequestPlugin.useRequestPlugin(action => {
+        if (action.req.url === prefix + path) {
             if (!swaggerResponse) {
                 swaggerResponse = swagger$1["default"].replace('spec: {},', `spec: ${JSON.stringify(docs)},`);
             }
-            res.statusCode = 200;
-            res.write(swaggerResponse);
-            res.end();
+            action.res.statusCode = 200;
+            action.res.write(swaggerResponse);
+            action.res.end();
             return true;
         }
     });

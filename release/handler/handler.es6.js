@@ -27,6 +27,7 @@ import { number } from '../plugins/schema/number/number.es6.js';
 import { object } from '../plugins/schema/object/object.es6.js';
 import { param } from '../plugins/main/param/param.es6.js';
 import { prod } from '../plugins/utils/prod/prod.es6.js';
+import { protection } from '../plugins/utils/protection/protection.es6.js';
 import { proxy } from '../plugins/request/proxy/proxy.es6.js';
 import { redirect } from '../plugins/request/redirect/redirect.es6.js';
 import { request } from '../plugins/main/request/request.es6.js';
@@ -71,6 +72,7 @@ const JSXPlugins = {
     object,
     param,
     prod,
+    protection,
     proxy,
     redirect,
     request,

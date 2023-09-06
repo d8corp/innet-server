@@ -41,6 +41,7 @@ export { swagger } from './plugins/utils/swagger/swagger.es6.js';
 export { dts } from './plugins/utils/dts/dts.es6.js';
 export { dev } from './plugins/utils/dev/dev.es6.js';
 export { prod } from './plugins/utils/prod/prod.es6.js';
+export { protection } from './plugins/utils/protection/protection.es6.js';
 export { serverFn } from './plugins/handler/serverFn/serverFn.es6.js';
 export { EMPTY_SEARCH, parseSearch } from './utils/parseSearch/parseSearch.es6.js';
 export { stringifySearch } from './utils/stringifySearch/stringifySearch.es6.js';

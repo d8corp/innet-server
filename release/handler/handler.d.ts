@@ -1,6 +1,6 @@
 import { context, type ContextProps, slot, type SlotProps, slots, type SlotsProps } from '@innet/jsx';
 import { arraySync, async } from '@innet/utils';
-import { type ApiProps, type ArrayProps, type BinaryProps, type BodyProps, type BooleanProps, cms, type CmsProps, type ContactProps, type CookieProps, type DateProps, type DevProps, type DtsProps, type EndpointProps, type ErrorProps, type FallbackProps, type FieldProps, file, type FileProps, type HeaderProps, type HostProps, type IntegerProps, type LicenseProps, type NullProps, type NumberProps, type ObjectProps, type ParamProps, type ProdProps, type ProxyProps, type RedirectProps, type RequestProps, type ResponseProps, type ServerProps, type StringProps, type SuccessProps, type SwaggerProps, type TagProps, type TupleProps, type UuidProps, type VariableProps } from '../plugins';
+import { type ApiProps, type ArrayProps, type BinaryProps, type BodyProps, type BooleanProps, cms, type CmsProps, type ContactProps, type CookieProps, type DateProps, type DevProps, type DtsProps, type EndpointProps, type ErrorProps, type FallbackProps, type FieldProps, file, type FileProps, type HeaderProps, type HostProps, type IntegerProps, type LicenseProps, type NullProps, type NumberProps, type ObjectProps, type ParamProps, type ProdProps, protection, type ProtectionProps, type ProxyProps, type RedirectProps, type RequestProps, type ResponseProps, type ServerProps, type StringProps, type SuccessProps, type SwaggerProps, type TagProps, type TupleProps, type UuidProps, type VariableProps } from '../plugins';
 export declare const arrayPlugins: (typeof arraySync)[];
 export declare const JSXPlugins: {
     api: import("innet").HandlerPlugin;
@@ -29,6 +29,7 @@ export declare const JSXPlugins: {
     object: import("innet").HandlerPlugin;
     param: import("innet").HandlerPlugin;
     prod: import("innet").HandlerPlugin;
+    protection: typeof protection;
     proxy: import("innet").HandlerPlugin;
     redirect: import("innet").HandlerPlugin;
     request: import("innet").HandlerPlugin;
@@ -77,6 +78,7 @@ declare global {
             object: ObjectProps;
             param: ParamProps;
             prod: ProdProps;
+            protection: ProtectionProps;
             proxy: ProxyProps;
             redirect: RedirectProps;
             request: RequestProps;

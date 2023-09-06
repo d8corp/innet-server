@@ -31,6 +31,7 @@ var number = require('../plugins/schema/number/number.js');
 var object = require('../plugins/schema/object/object.js');
 var param = require('../plugins/main/param/param.js');
 var prod = require('../plugins/utils/prod/prod.js');
+var protection = require('../plugins/utils/protection/protection.js');
 var proxy = require('../plugins/request/proxy/proxy.js');
 var redirect = require('../plugins/request/redirect/redirect.js');
 var request = require('../plugins/main/request/request.js');
@@ -75,6 +76,7 @@ const JSXPlugins = {
     object: object.object,
     param: param.param,
     prod: prod.prod,
+    protection: protection.protection,
     proxy: proxy.proxy,
     redirect: redirect.redirect,
     request: request.request,

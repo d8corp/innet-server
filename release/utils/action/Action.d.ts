@@ -1,6 +1,6 @@
 /// <reference types="node" />
-import type http from 'http';
-import { type IncomingHttpHeaders } from 'http';
+import { type CookieSerializeOptions } from 'cookie';
+import { type IncomingHttpHeaders, type IncomingMessage, type ServerResponse } from 'http';
 import { type ParsedQs } from 'qs';
 import { type BodyType } from '../../types';
 export declare const URL_PARSER: RegExp;
@@ -10,8 +10,9 @@ export interface ParsedUrl {
 }
 export declare class Action {
     #private;
-    private readonly req;
-    constructor(req: http.IncomingMessage);
+    readonly req: IncomingMessage;
+    readonly res: ServerResponse;
+    constructor(req: IncomingMessage, res: ServerResponse);
     get parsedUrl(): ParsedUrl;
     get path(): string;
     get originSearch(): ParsedQs;
@@ -26,4 +27,6 @@ export declare class Action {
     get bodyType(): BodyType | undefined;
     body?: object;
     parseBody(): Promise<void>;
+    setCookie(name: string, value?: string, options?: CookieSerializeOptions): void;
+    get clientIp(): string | null;
 }

@@ -1,5 +1,6 @@
 import { __runInitializers, __classPrivateFieldGet, __classPrivateFieldSet, __awaiter, __esDecorate } from 'tslib';
-import cookie from 'cookie';
+import cookieLib from 'cookie';
+import { getClientIp } from 'request-ip';
 import '../decorators/index.es6.js';
 import '../parseBody/index.es6.js';
 import '../parseFormBody/index.es6.js';
@@ -19,9 +20,11 @@ let Action = (() => {
     let _get_originCookies_decorators;
     let _get_bodyType_decorators;
     let _parseBody_decorators;
+    let _get_clientIp_decorators;
     return _a = class Action {
-            constructor(req) {
+            constructor(req, res) {
                 this.req = (__runInitializers(this, _instanceExtraInitializers), req);
+                this.res = res;
                 _Action_search.set(this, void 0);
                 _Action_headers.set(this, {});
                 _Action_cookie.set(this, {});
@@ -66,7 +69,7 @@ let Action = (() => {
             }
             get originCookies() {
                 var _a;
-                return cookie.parse((_a = this.req.headers.cookie) !== null && _a !== void 0 ? _a : '');
+                return cookieLib.parse((_a = this.req.headers.cookie) !== null && _a !== void 0 ? _a : '');
             }
             get cookies() {
                 if (__classPrivateFieldGet(this, _Action_cookie, "f"))
@@ -103,6 +106,23 @@ let Action = (() => {
                     }
                 });
             }
+            setCookie(name, value, options) {
+                let cookies = this.res.getHeader('Set-Cookie');
+                if (typeof cookies === 'string') {
+                    cookies = [cookies];
+                }
+                const normValue = typeof value === 'string' ? cookieLib.serialize(name, value, options) : `${name}=; max-age=0`;
+                if (cookies) {
+                    cookies.push(normValue);
+                }
+                else {
+                    cookies = normValue;
+                }
+                this.res.setHeader('Set-Cookie', cookies);
+            }
+            get clientIp() {
+                return getClientIp(this.req);
+            }
         },
         _Action_search = new WeakMap(),
         _Action_headers = new WeakMap(),
@@ -113,11 +133,13 @@ let Action = (() => {
             _get_originCookies_decorators = [once];
             _get_bodyType_decorators = [once];
             _parseBody_decorators = [once];
+            _get_clientIp_decorators = [once];
             __esDecorate(_a, null, _get_parsedUrl_decorators, { kind: "getter", name: "parsedUrl", static: false, private: false, access: { has: obj => "parsedUrl" in obj, get: obj => obj.parsedUrl } }, null, _instanceExtraInitializers);
             __esDecorate(_a, null, _get_originSearch_decorators, { kind: "getter", name: "originSearch", static: false, private: false, access: { has: obj => "originSearch" in obj, get: obj => obj.originSearch } }, null, _instanceExtraInitializers);
             __esDecorate(_a, null, _get_originCookies_decorators, { kind: "getter", name: "originCookies", static: false, private: false, access: { has: obj => "originCookies" in obj, get: obj => obj.originCookies } }, null, _instanceExtraInitializers);
             __esDecorate(_a, null, _get_bodyType_decorators, { kind: "getter", name: "bodyType", static: false, private: false, access: { has: obj => "bodyType" in obj, get: obj => obj.bodyType } }, null, _instanceExtraInitializers);
             __esDecorate(_a, null, _parseBody_decorators, { kind: "method", name: "parseBody", static: false, private: false, access: { has: obj => "parseBody" in obj, get: obj => obj.parseBody } }, null, _instanceExtraInitializers);
+            __esDecorate(_a, null, _get_clientIp_decorators, { kind: "getter", name: "clientIp", static: false, private: false, access: { has: obj => "clientIp" in obj, get: obj => obj.clientIp } }, null, _instanceExtraInitializers);
         })(),
         _a;
 })();

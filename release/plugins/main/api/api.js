@@ -42,7 +42,7 @@ const api = () => {
         var _b, _c, _d, _e, _f, _g;
         if (res.writableEnded)
             return;
-        const action = new Action.Action(req);
+        const action = new Action.Action(req, res);
         const path = action.parsedUrl.path;
         const url = path.endsWith('/') ? path.slice(0, -1) : path;
         if (url === (prefix || '')) {
@@ -55,7 +55,7 @@ const api = () => {
             return;
         }
         for (const requestPlugin of requestPlugins) {
-            if (requestPlugin(req, res))
+            if (requestPlugin(action))
                 return;
         }
         const method = ((_c = (_b = req.method) === null || _b === void 0 ? void 0 : _b.toLowerCase()) !== null && _c !== void 0 ? _c : 'get');

@@ -1,8 +1,7 @@
-/// <reference types="node" />
-import type { IncomingMessage, ServerResponse } from 'http';
 import type { Handler } from 'innet';
 import type { OpenAPIV3_1 as API } from 'openapi-types';
 import type { ApiErrorValue } from './constants';
+import { type Action } from './utils';
 import { type Rule, type RulesErrors } from './utils/rules';
 export type TagObject = API.TagObject;
 export type Document = API.Document;
@@ -73,4 +72,4 @@ export interface Fallback {
     children: any;
     handler: Handler;
 }
-export type RequestPlugin = (req: IncomingMessage, res: ServerResponse) => boolean | undefined;
+export type RequestPlugin = (action: Action) => boolean | undefined;
