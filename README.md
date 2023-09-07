@@ -1264,6 +1264,33 @@ return (
 )
 ```
 
+You can use many `<response>` elements in an endpoint.
+
+*src/app.tsx*
+```typescript jsx
+return (
+  <server>
+    <api>
+      <endpoint method='get' path='/settings'>
+        <response status='2XX'>
+          <object />
+        </response>
+        <response status='4XX'>
+          <object>
+            <field key='error'>
+              <string />
+            </field>
+            <field optional key='data'>
+              <object />
+            </field>
+          </object>
+        </response>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
 ## Primitive Data
 
 [← back](#index)
