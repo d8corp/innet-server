@@ -1158,6 +1158,7 @@ This element MUST be placed inside `<endpoint>`.
 It defines request body for the endpoint.
 `@innet/server` formats and validate the value automatically (real-time).
 
+*src/app.tsx*
 ```typescript jsx
 return (
   <server>
@@ -1190,6 +1191,78 @@ return (
 
 This element MUST be placed inside `<endpoint>`.
 It defines response body for the endpoint.
+
+*src/app.tsx*
+```typescript jsx
+return (
+  <server>
+    <api>
+      <endpoint method='get' path='/settings'>
+        <response>
+          <object />
+        </response>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### status
+A status of the `<response>`.
+Any [HTTP status code](https://swagger.io/specification/#http-codes) can be used as a number of the property.
+
+By default, `status` equals `'defauls'`.
+
+*src/app.tsx*
+```typescript jsx
+return (
+  <server>
+    <api>
+      <endpoint method='get' path='/settings'>
+        <response status={200}>
+          <object />
+        </response>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+To define a range of response codes, this field MAY contain the uppercase wildcard character `X`.
+For example, `2XX` represents all response codes between \[200-299].
+Only the following range definitions are allowed: `1XX`, `2XX`, `3XX`, `4XX` and `5XX`.
+
+*src/app.tsx*
+```typescript jsx
+return (
+  <server>
+    <api>
+      <endpoint method='get' path='/settings'>
+        <response status='2XX'>
+          <object />
+        </response>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+Many number statuses have a string id you can use on the property.
+
+*src/app.tsx*
+```typescript jsx
+return (
+  <server>
+    <api>
+      <endpoint method='get' path='/settings'>
+        <response status='notFound'>
+          <object />
+        </response>
+      </endpoint>
+    </api>
+  </server>
+)
+```
 
 ## Primitive Data
 
