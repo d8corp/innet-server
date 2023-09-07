@@ -7,3 +7,4 @@ var response = require('./response.js');
 
 
 exports.response = response.response;
+exports.statuses = response.statuses;

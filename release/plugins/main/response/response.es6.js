@@ -2,18 +2,26 @@ import innet, { useNewHandler } from 'innet';
 import { useProps, useChildren, useContext } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
+import '../../request/index.es6.js';
+import { errorStatuses } from '../../request/error/error.es6.js';
+import { redirectStatuses } from '../../request/redirect/redirect.es6.js';
+import { successStatuses } from '../../request/success/success.es6.js';
 import { useEndpoint, endpointContext } from '../../../hooks/useEndpoint/useEndpoint.es6.js';
 import { useThrow } from '../../../hooks/useThrow/useThrow.es6.js';
 import { schemaContext } from '../../../hooks/useSchemaContext/useSchemaContext.es6.js';
 import { getOrAdd } from '../../../utils/getOrAdd/getOrAdd.es6.js';
 import { ruleContext } from '../../../hooks/useRule/useRule.es6.js';
 
+const statuses = Object.assign(Object.assign(Object.assign({}, errorStatuses), redirectStatuses), successStatuses);
 const response = () => {
-    const { description = '', status = 'default' } = useProps() || {};
+    let { description = '', status = 'default' } = useProps() || {};
     const { operation, props: { path } } = useEndpoint();
     const children = useChildren();
     const handler = useNewHandler();
     const endpoint = useContext(endpointContext);
+    if (status in statuses) {
+        status = statuses[status];
+    }
     if (!endpoint) {
         useThrow('<{type}> MUST be placed in <endpoint> element');
     }
@@ -41,4 +49,4 @@ const response = () => {
     innet(children, handler);
 };
 
-export { response };
+export { response, statuses };

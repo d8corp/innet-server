@@ -1,4 +1,6 @@
 import { type HandlerPlugin } from 'innet';
+import { type ErrorStatuses, type RedirectStatuses, type SuccessStatuses } from '../../request';
+export type StatusKey = ErrorStatuses | RedirectStatuses | SuccessStatuses;
 export interface ResponseProps {
     /**
      * A description of the response.
@@ -11,6 +13,7 @@ export interface ResponseProps {
      * For example, 2XX represents all response codes between [200-299].
      * Only the following range definitions are allowed: 1XX, 2XX, 3XX, 4XX, and 5XX.
      * */
-    status?: number | 'default';
+    status?: number | `${1 | 2 | 3 | 4 | 5}XX` | 'default' | StatusKey;
 }
+export declare const statuses: Record<StatusKey, number>;
 export declare const response: HandlerPlugin;

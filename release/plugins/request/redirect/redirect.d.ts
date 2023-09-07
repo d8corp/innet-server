@@ -9,9 +9,10 @@ export declare const redirectStatuses: {
     temporaryRedirect: number;
     permanentRedirect: number;
 };
+export type RedirectStatuses = keyof typeof redirectStatuses;
 export interface RedirectProps {
     to: string;
     encode?: boolean;
-    status?: number | keyof typeof redirectStatuses;
+    status?: number | RedirectStatuses;
 }
 export declare const redirect: HandlerPlugin;

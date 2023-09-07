@@ -477,15 +477,15 @@ You can use `PROTECTION` env to set default protection `value`.
 
 *src/app.tsx*
 ```typescript jsx
-import html from './protection.html'
-
 export default (
   <server>
     <api>
-      <protection
-        value='secret'
-        html={html}
-      />
+      <protection value='secret'>
+        <error
+          code='protection'
+          status='forbidden'
+        />
+      </protection>
     </api>
   </server>
 )
@@ -500,15 +500,17 @@ You can use `PROTECTION_MAX_AGE` env to set default `maxAge`.
 
 *src/app.tsx*
 ```typescript jsx
-import html from './protection.html'
-
 export default (
   <server>
     <api>
       <protection
         maxAge={24 * 60 * 60}
-        html={html}
-      />
+        value='secret'>
+        <error
+          code='protection'
+          status='forbidden'
+        />
+      </protection>
     </api>
   </server>
 )
@@ -522,15 +524,17 @@ You can use `PROTECTED_IP` env to set default `excludeIp`.
 
 *src/app.tsx*
 ```typescript jsx
-import html from './protection.html'
-
 export default (
   <server>
     <api>
       <protection
         excludeIp='0.0.0.0,127.0.0.0'
-        html={html}
-      />
+        value='secret'>
+        <error
+          code='protection'
+          status='forbidden'
+        />
+      </protection>
     </api>
   </server>
 )
@@ -545,15 +549,17 @@ You can use `PROTECTION_COOKIE_KEY` env to set default `cookieKey`.
 
 *src/app.tsx*
 ```typescript jsx
-import html from './protection.html'
-
 export default (
   <server>
     <api>
       <protection
         cookieKey='secret'
-        html={html}
-      />
+        value='secret'>
+        <error
+          code='protection'
+          status='forbidden'
+        />
+      </protection>
     </api>
   </server>
 )
@@ -568,15 +574,17 @@ You can use `PROTECTION_SEARCH_KEY` env to set default `searchKey`.
 
 *src/app.tsx*
 ```typescript jsx
-import html from './protection.html'
-
 export default (
   <server>
     <api>
       <protection
         searchKey='secret'
-        html={html}
-      />
+        value='secret'>
+        <error
+          code='protection'
+          status='forbidden'
+        />
+      </protection>
     </api>
   </server>
 )
@@ -1150,6 +1158,7 @@ This element MUST be placed inside `<endpoint>`.
 It defines request body for the endpoint.
 `@innet/server` formats and validate the value automatically (real-time).
 
+*src/app.tsx*
 ```typescript jsx
 return (
   <server>
@@ -1182,6 +1191,105 @@ return (
 
 This element MUST be placed inside `<endpoint>`.
 It defines response body for the endpoint.
+
+*src/app.tsx*
+```typescript jsx
+return (
+  <server>
+    <api>
+      <endpoint method='get' path='/settings'>
+        <response>
+          <object />
+        </response>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### status
+A status of the `<response>`.
+Any [HTTP status code](https://swagger.io/specification/#http-codes) can be used as a number of the property.
+
+By default, `status` equals `'default'`.
+
+*src/app.tsx*
+```typescript jsx
+return (
+  <server>
+    <api>
+      <endpoint method='get' path='/settings'>
+        <response status={200}>
+          <object />
+        </response>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+To define a range of response codes, this field MAY contain the uppercase wildcard character `X`.
+For example, `2XX` represents all response codes between \[200-299].
+Only the following range definitions are allowed: `1XX`, `2XX`, `3XX`, `4XX` and `5XX`.
+
+*src/app.tsx*
+```typescript jsx
+return (
+  <server>
+    <api>
+      <endpoint method='get' path='/settings'>
+        <response status='2XX'>
+          <object />
+        </response>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+Many number statuses have a string id you can use on the property.
+
+*src/app.tsx*
+```typescript jsx
+return (
+  <server>
+    <api>
+      <endpoint method='get' path='/settings'>
+        <response status='notFound'>
+          <object />
+        </response>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+You can use many `<response>` elements in an endpoint.
+
+*src/app.tsx*
+```typescript jsx
+return (
+  <server>
+    <api>
+      <endpoint method='get' path='/settings'>
+        <response status='2XX'>
+          <object />
+        </response>
+        <response status='4XX'>
+          <object>
+            <field key='error'>
+              <string />
+            </field>
+            <field optional key='data'>
+              <object />
+            </field>
+          </object>
+        </response>
+      </endpoint>
+    </api>
+  </server>
+)
+```
 
 ## Primitive Data
 

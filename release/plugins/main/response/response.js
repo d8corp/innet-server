@@ -6,6 +6,10 @@ var innet = require('innet');
 var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
 require('../../../utils/index.js');
+require('../../request/index.js');
+var error = require('../../request/error/error.js');
+var redirect = require('../../request/redirect/redirect.js');
+var success = require('../../request/success/success.js');
 var useEndpoint = require('../../../hooks/useEndpoint/useEndpoint.js');
 var useThrow = require('../../../hooks/useThrow/useThrow.js');
 var useSchemaContext = require('../../../hooks/useSchemaContext/useSchemaContext.js');
@@ -16,12 +20,16 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 
 var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 
+const statuses = Object.assign(Object.assign(Object.assign({}, error.errorStatuses), redirect.redirectStatuses), success.successStatuses);
 const response = () => {
-    const { description = '', status = 'default' } = jsx.useProps() || {};
+    let { description = '', status = 'default' } = jsx.useProps() || {};
     const { operation, props: { path } } = useEndpoint.useEndpoint();
     const children = jsx.useChildren();
     const handler = innet.useNewHandler();
     const endpoint = jsx.useContext(useEndpoint.endpointContext);
+    if (status in statuses) {
+        status = statuses[status];
+    }
     if (!endpoint) {
         useThrow.useThrow('<{type}> MUST be placed in <endpoint> element');
     }
@@ -50,3 +58,4 @@ const response = () => {
 };
 
 exports.response = response;
+exports.statuses = statuses;

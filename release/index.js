@@ -133,6 +133,7 @@ exports.variable = variable.variable;
 exports.tag = tag.tag;
 exports.endpoint = endpoint.endpoint;
 exports.response = response.response;
+exports.statuses = response.statuses;
 exports.request = request.request;
 exports.param = param.param;
 exports.body = body.body;
