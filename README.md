@@ -1211,7 +1211,7 @@ return (
 A status of the `<response>`.
 Any [HTTP status code](https://swagger.io/specification/#http-codes) can be used as a number of the property.
 
-By default, `status` equals `'defauls'`.
+By default, `status` equals `'default'`.
 
 *src/app.tsx*
 ```typescript jsx
