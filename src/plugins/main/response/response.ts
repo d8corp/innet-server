@@ -10,6 +10,13 @@ import {
 } from '../../../hooks'
 import { type EndpointRules, type ResponseObject, type SchemaObject } from '../../../types'
 import { getOrAdd } from '../../../utils'
+import {
+  type ErrorStatuses, errorStatuses,
+  type RedirectStatuses, redirectStatuses,
+  type SuccessStatuses, successStatuses,
+} from '../../request'
+
+export type StatusKey = ErrorStatuses | RedirectStatuses | SuccessStatuses
 
 export interface ResponseProps {
   /**
@@ -24,15 +31,24 @@ export interface ResponseProps {
    * For example, 2XX represents all response codes between [200-299].
    * Only the following range definitions are allowed: 1XX, 2XX, 3XX, 4XX, and 5XX.
    * */
-  status?: number | 'default'
+  status?: number | `${1 | 2 | 3 | 4 | 5}XX` | 'default' | StatusKey
+}
+export const statuses: Record<StatusKey, number> = {
+  ...errorStatuses,
+  ...redirectStatuses,
+  ...successStatuses,
 }
 
 export const response: HandlerPlugin = () => {
-  const { description = '', status = 'default' } = useProps<ResponseProps>() || {}
+  let { description = '', status = 'default' } = useProps<ResponseProps>() || {}
   const { operation, props: { path } } = useEndpoint()
   const children = useChildren()
   const handler = useNewHandler()
   const endpoint = useContext(endpointContext)
+
+  if (status in statuses) {
+    status = statuses[status as StatusKey]
+  }
 
   if (!endpoint) {
     useThrow('<{type}> MUST be placed in <endpoint> element')

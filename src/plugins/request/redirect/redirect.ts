@@ -14,10 +14,12 @@ export const redirectStatuses = {
   permanentRedirect: 308,
 }
 
+export type RedirectStatuses = keyof typeof redirectStatuses
+
 export interface RedirectProps {
   to: string
   encode?: boolean
-  status?: number | keyof typeof redirectStatuses
+  status?: number | RedirectStatuses
 }
 
 function getStatus (status: number | string): number {
