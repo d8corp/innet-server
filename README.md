@@ -404,16 +404,12 @@ export default (
 Use `<dts>` element to add types generation.
 `<dts>` element MUST be placed in `<api>` element.
 
-`<dts>` has a required prop of `path`. This is a path of api TypeScript types file, `<dts>` generates it.
-
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
     <api>
-      <dev>
-        <dts path='src/api.d.ts' />
-      </dev>
+      <dts />
     </api>
   </server>
 )
@@ -440,6 +436,37 @@ export function DeleteTodo () {
 
   return <success />
 }
+```
+
+#### path
+
+This is a path of api TypeScript types file, `<dts>` generates it.
+`'src/api.d.ts'` by default.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <dts path='src/types.d.ts' />
+    </api>
+  </server>
+)
+```
+
+#### namespace
+
+This prop changes namespace for generated types. `'Api'` by default.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <dts namespace='API' />
+    </api>
+  </server>
+)
 ```
 
 ### \<blacklist>

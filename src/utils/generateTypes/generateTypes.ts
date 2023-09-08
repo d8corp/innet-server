@@ -57,8 +57,19 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2): 
   return `${result}${space.slice(0, -2)}}\n`
 }
 
-export function generateTypes (docs: Document): string {
-  let result = 'declare namespace Api {\n  export interface Bin {\n    filename: string\n    fieldName: string\n    originalFilename: string\n    path: string\n    type: string\n    disposition: string\n    size: number\n    extension?: string\n  }\n'
+export function generateTypes (docs: Document, namespace = 'Api'): string {
+  let result = `declare namespace ${namespace} {
+  export interface Bin {
+    filename: string
+    fieldName: string
+    originalFilename: string
+    path: string
+    type: string
+    disposition: string
+    size: number
+    extension?: string
+  }
+`
   const schemas = docs.components?.schemas
   const paths = docs.paths
 

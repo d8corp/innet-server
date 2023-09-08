@@ -6,14 +6,15 @@ import { useApi } from '../../../hooks'
 import { generateTypes } from '../../../utils'
 
 export interface DtsProps {
-  path: string
+  path?: string
+  namespace?: string
 }
 
 export const dts: HandlerPlugin = () => {
-  const { path } = useProps<DtsProps>()
+  const { path = 'src/api.d.ts', namespace } = useProps<DtsProps>() || {}
   const { docs } = useApi()
 
-  promises.writeFile(path, generateTypes(docs)).catch(e => {
+  promises.writeFile(path, generateTypes(docs, namespace)).catch(e => {
     console.error(e)
   })
 }
