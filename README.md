@@ -319,6 +319,8 @@ This section contains elements of utils.
 [\<dev>](#dev)  
 [\<prod>](#prod)  
 [\<dts>](#dts)  
+[\<blacklist>](#blacklist)  
+[\<whitelist>](#whitelist)  
 [\<protection>](#protection)
 
 ---
@@ -438,6 +440,88 @@ export function DeleteTodo () {
 
   return <success />
 }
+```
+
+### \<blacklist>
+
+This element MUST be placed in `<api>` element.
+
+[← back](#utils)
+
+This element returns own content for a user from IPs list.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <blacklist>
+        <error />
+      </blacklist>
+    </api>
+  </server>
+)
+```
+
+#### ip
+
+`ip` prop sets black IPs. By default, it equals `BLACKLIST_IP` node environment variable.
+
+You can split IPs by `,` char.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <blacklist
+        ip='0.1.2.3,3.2.1.0'>
+        <error />
+      </blacklist>
+    </api>
+  </server>
+)
+```
+
+### \<whitelist>
+
+This element MUST be placed in `<api>` element.
+
+[← back](#utils)
+
+This element returns own content for a user IP, which is not in a list.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <whitelist>
+        <error />
+      </whitelist>
+    </api>
+  </server>
+)
+```
+
+#### ip
+
+`ip` prop sets white IPs. By default, it equals `WHITELIST_IP` node environment variable.
+
+You can split IPs by `,` char.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <whitelist
+        ip='0.1.2.3,3.2.1.0'>
+        <error />
+      </whitelist>
+    </api>
+  </server>
+)
 ```
 
 ### \<protection>

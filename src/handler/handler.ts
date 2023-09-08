@@ -11,6 +11,7 @@ import {
   api, type ApiProps,
   array, type ArrayProps,
   binary, type BinaryProps,
+  blacklist, type BlacklistProps,
   body, type BodyProps,
   boolean, type BooleanProps,
   cms, type CmsProps,
@@ -46,6 +47,7 @@ import {
   tuple, type TupleProps,
   uuid, type UuidProps,
   variable, type VariableProps,
+  whitelist, type WhitelistProps,
 } from '../plugins'
 
 export const arrayPlugins = [
@@ -56,6 +58,7 @@ export const JSXPlugins = {
   api,
   array,
   binary,
+  blacklist,
   body,
   boolean,
   cms,
@@ -94,6 +97,7 @@ export const JSXPlugins = {
   tuple,
   uuid,
   variable,
+  whitelist,
 }
 
 export const fnPlugins = [
@@ -123,6 +127,7 @@ declare global {
       api: ApiProps
       array: ArrayProps
       binary: BinaryProps
+      blacklist: BlacklistProps
       body: BodyProps
       boolean: BooleanProps
       cms: CmsProps
@@ -161,6 +166,7 @@ declare global {
       tuple: TupleProps
       uuid: UuidProps
       variable: VariableProps
+      whitelist: WhitelistProps
     }
   }
 }
