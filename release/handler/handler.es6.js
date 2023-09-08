@@ -5,6 +5,7 @@ import '../plugins/index.es6.js';
 import { api } from '../plugins/main/api/api.es6.js';
 import { array } from '../plugins/schema/array/array.es6.js';
 import { binary } from '../plugins/schema/binary/binary.es6.js';
+import { blacklist } from '../plugins/utils/blacklist/blacklist.es6.js';
 import { body } from '../plugins/main/body/body.es6.js';
 import { boolean } from '../plugins/schema/boolean/boolean.es6.js';
 import { cms } from '../plugins/request/cms/cms.es6.js';
@@ -40,6 +41,7 @@ import { tag } from '../plugins/main/tag/tag.es6.js';
 import { tuple } from '../plugins/schema/tuple/tuple.es6.js';
 import { uuid } from '../plugins/schema/uuid/uuid.es6.js';
 import { variable } from '../plugins/main/variable/variable.es6.js';
+import { whitelist } from '../plugins/utils/whitelist/whitelist.es6.js';
 import { serverFn } from '../plugins/handler/serverFn/serverFn.es6.js';
 
 const arrayPlugins = [
@@ -49,6 +51,7 @@ const JSXPlugins = {
     api,
     array,
     binary,
+    blacklist,
     body,
     boolean,
     cms,
@@ -87,6 +90,7 @@ const JSXPlugins = {
     tuple,
     uuid,
     variable,
+    whitelist,
 };
 const fnPlugins = [
     serverFn,

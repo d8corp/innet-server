@@ -9,6 +9,7 @@ require('../plugins/index.js');
 var api = require('../plugins/main/api/api.js');
 var array = require('../plugins/schema/array/array.js');
 var binary = require('../plugins/schema/binary/binary.js');
+var blacklist = require('../plugins/utils/blacklist/blacklist.js');
 var body = require('../plugins/main/body/body.js');
 var boolean = require('../plugins/schema/boolean/boolean.js');
 var cms = require('../plugins/request/cms/cms.js');
@@ -44,6 +45,7 @@ var tag = require('../plugins/main/tag/tag.js');
 var tuple = require('../plugins/schema/tuple/tuple.js');
 var uuid = require('../plugins/schema/uuid/uuid.js');
 var variable = require('../plugins/main/variable/variable.js');
+var whitelist = require('../plugins/utils/whitelist/whitelist.js');
 var serverFn = require('../plugins/handler/serverFn/serverFn.js');
 
 const arrayPlugins = [
@@ -53,6 +55,7 @@ const JSXPlugins = {
     api: api.api,
     array: array.array,
     binary: binary.binary,
+    blacklist: blacklist.blacklist,
     body: body.body,
     boolean: boolean.boolean,
     cms: cms.cms,
@@ -91,6 +94,7 @@ const JSXPlugins = {
     tuple: tuple.tuple,
     uuid: uuid.uuid,
     variable: variable.variable,
+    whitelist: whitelist.whitelist,
 };
 const fnPlugins = [
     serverFn.serverFn,
