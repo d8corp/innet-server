@@ -46,13 +46,21 @@ export interface ApiProps {
 
   /** URL path prefix scopes the API. */
   prefix?: string
+  include?: RegExp
+  exclude?: RegExp
 }
 
 export const api: HandlerPlugin = () => {
   const handler = useNewHandler()
   const { props = {}, children } = useApp<JSXElement<string, ApiProps>>()
   const { server } = useServer()
-  const { prefix = '', title = '', ...rest } = props
+  const {
+    prefix = '',
+    title = '',
+    include,
+    exclude,
+    ...rest
+  } = props
   const info = { ...rest, version: rest.version ?? '0.0.0', title }
 
   const endpoints: Endpoints = {}
@@ -75,7 +83,11 @@ export const api: HandlerPlugin = () => {
     const path = action.parsedUrl.path
     const url = path.endsWith('/') ? path.slice(0, -1) : path
 
-    if (!url.startsWith(prefix)) {
+    if (!url.startsWith(prefix) || exclude?.test(url)) {
+      return
+    }
+
+    if (include && !include.test(url)) {
       return
     }
 

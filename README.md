@@ -309,6 +309,36 @@ export default (
 )
 ```
 
+#### include
+
+A regular expression scopes the API.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api
+      include={/$\/(api|openapi)/}
+    />
+  </server>
+)
+```
+
+#### exclude
+
+A regular expression does not scope the API.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/api' />
+    <api prefix='/openapi' />
+    <api exclude={/$\/(api|openapi)/} />
+  </server>
+)
+```
+
 ## Utils
 
 This section contains elements of utils.
