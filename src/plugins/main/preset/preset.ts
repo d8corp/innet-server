@@ -1,6 +1,7 @@
 import innet, { useHandler } from 'innet'
 import { Context, useChildren, useContext } from '@innet/jsx'
 import { type IncomingMessage, type ServerResponse } from 'http'
+import { onDestroy } from 'watch-state'
 
 import { actionContext, useServer } from '../../../hooks'
 import { Action } from '../../../utils'
@@ -30,4 +31,8 @@ export function preset () {
   }
 
   server.addListener('request', listener)
+
+  onDestroy(() => {
+    server.removeListener('request', listener)
+  })
 }
