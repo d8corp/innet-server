@@ -5,7 +5,7 @@ import http, { type IncomingMessage, type ServerResponse } from 'http'
 import http2 from 'https'
 import { onDestroy } from 'watch-state'
 
-import { actionContext, requestPlugins, serverContext, type ServerRequest } from '../../../hooks'
+import { actionContext, serverContext, type ServerPlugin, serverPlugins } from '../../../hooks'
 import { type ServerStartParams, type SSL } from '../../../types'
 import { Action } from '../../../utils'
 
@@ -52,12 +52,12 @@ export const server: HandlerPlugin = () => {
     onRequest,
     onClose,
   } = props
-  const requests = new Set<ServerRequest>()
+  const plugins = new Set<ServerPlugin>()
 
   const server = https ? http2.createServer({ key, cert }) : http.createServer()
 
   serverContext.set(handler, { server, port })
-  requestPlugins.set(handler, requests)
+  serverPlugins.set(handler, plugins)
 
   onDestroy(() => {
     server.close()
@@ -77,14 +77,17 @@ export const server: HandlerPlugin = () => {
     const requestHandler = Object.create(handler)
     actionContext.set(requestHandler, action)
 
-    for (const request of requests) {
-      const result = request(action, requestHandler)
+    function server () {
+      for (const plugin of plugins) {
+        const result = plugin()
 
-      if (result !== undefined) {
-        innet(result, requestHandler)
-        return
+        if (result !== undefined) {
+          return result
+        }
       }
     }
+
+    innet({ type: server, props }, requestHandler)
   })
 
   innet(children, handler)

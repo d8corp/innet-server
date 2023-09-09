@@ -1,7 +1,7 @@
 import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
-import { useApi, useRequestPlugin } from '../../../hooks'
+import { useAction, useApi, useServerPlugin } from '../../../hooks'
 import html from './swagger.html'
 
 export interface SwaggerProps {
@@ -14,8 +14,10 @@ export const swagger: HandlerPlugin = () => {
 
   let swaggerResponse: string
 
-  useRequestPlugin(action => {
-    if (action.req.url === prefix + path) {
+  useServerPlugin(() => {
+    const action = useAction()
+
+    if (action.path === prefix + path) {
       if (!swaggerResponse) {
         swaggerResponse = html.replace('spec: {},', `spec: ${JSON.stringify(docs)},`)
       }

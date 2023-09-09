@@ -2,7 +2,6 @@ import type { Handler } from 'innet'
 import type { OpenAPIV3_1 as API } from 'openapi-types'
 
 import type { ApiErrorValue } from './constants'
-import { type Action } from './utils'
 import { type Rule, type RulesErrors } from './utils/rules'
 
 // Open API

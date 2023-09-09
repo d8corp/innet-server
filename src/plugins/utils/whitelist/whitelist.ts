@@ -1,6 +1,6 @@
 import { useChildren, useProps } from '@innet/jsx'
 
-import { useRequestPlugin } from '../../../hooks'
+import { useAction, useServerPlugin } from '../../../hooks'
 
 export interface WhitelistProps {
   ip?: string | string[]
@@ -16,7 +16,9 @@ export function whitelist () {
 
   if (!ips) return
 
-  useRequestPlugin(action => {
+  useServerPlugin(() => {
+    const action = useAction()
+
     if (!action.clientIp || !ips.includes(action.clientIp)) {
       return children
     }

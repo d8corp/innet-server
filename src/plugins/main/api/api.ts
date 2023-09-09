@@ -3,14 +3,12 @@ import { type JSXElement } from '@innet/jsx'
 import { type IncomingMessage, type ServerResponse } from 'http'
 import { onDestroy } from 'watch-state'
 
-import { type PresetCondition, presetCondition } from '../preset'
-
 import {
   actionContext,
   type ApiContext,
   apiContext,
-  paramsContext, requestPlugins, type ServerRequest,
-  useServer,
+  paramsContext, type ServerPlugin,
+  serverPlugins, useServer,
 } from '../../../hooks'
 import {
   type Document,
@@ -68,11 +66,11 @@ export const api: HandlerPlugin = () => {
     info,
     paths: {},
   }
-  const requests = new Set<ServerRequest>()
+  const requests = new Set<ServerPlugin>()
 
   const context: ApiContext = { docs, endpoints, prefix, refRules: {} }
 
-  const condition: PresetCondition = action => {
+  const condition: any = (action: Action) => {
     const path = action.parsedUrl.path
     const url = path.endsWith('/') ? path.slice(0, -1) : path
 
@@ -87,9 +85,8 @@ export const api: HandlerPlugin = () => {
     return true
   }
 
-  requestPlugins.set(handler, requests)
+  serverPlugins.set(handler, requests)
   apiContext.set(handler, context)
-  presetCondition.set(handler, condition)
 
   innet(children, handler)
 
@@ -101,12 +98,12 @@ export const api: HandlerPlugin = () => {
     const path = action.parsedUrl.path
     const url = path.endsWith('/') ? path.slice(0, -1) : path
 
-    if (!condition(action)) {
+    if (!condition(action as any)) {
       return
     }
 
     for (const request of requests) {
-      const result = request(action, handler)
+      const result = request()
 
       if (!result) continue
 

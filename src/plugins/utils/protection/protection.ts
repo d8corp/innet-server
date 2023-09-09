@@ -1,6 +1,6 @@
 import { useChildren, useProps } from '@innet/jsx'
 
-import { useRequestPlugin } from '../../../hooks'
+import { useAction, useServerPlugin } from '../../../hooks'
 
 export interface ProtectionProps {
   value?: string
@@ -24,7 +24,9 @@ export function protection () {
 
   const excludeIps = Array.isArray(excludeIp) ? excludeIp : excludeIp?.split(',')
 
-  useRequestPlugin(action => {
+  useServerPlugin(() => {
+    const action = useAction()
+
     if (!action.clientIp) return children
     if (excludeIps?.includes(action.clientIp)) return
 

@@ -1,12 +1,10 @@
 import { useChildren } from '@innet/jsx'
 
-import { useRequestPlugin } from '../../../hooks'
+import { useServerPlugin } from '../../../hooks'
 
-export interface ActionProps {
-
-}
+export interface ActionProps {}
 
 export function action () {
   const children = useChildren()
-  useRequestPlugin(() => children)
+  useServerPlugin(() => children)
 }
