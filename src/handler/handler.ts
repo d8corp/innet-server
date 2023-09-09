@@ -23,7 +23,6 @@ import {
   dts, type DtsProps,
   endpoint, type EndpointProps,
   error, type ErrorProps,
-  fallback, type FallbackProps,
   field, type FieldProps,
   file, type FileProps,
   header, type HeaderProps,
@@ -73,7 +72,6 @@ export const JSXPlugins = {
   dts,
   endpoint,
   error,
-  fallback,
   field,
   file,
   header,
@@ -144,7 +142,6 @@ declare global {
       dts: DtsProps
       endpoint: EndpointProps
       error: ErrorProps
-      fallback: FallbackProps
       field: FieldProps
       file: FileProps
       header: HeaderProps

@@ -96,8 +96,3 @@ export interface BaseSchemaProps<T> {
 export interface ValuesSchemaProps<T> extends BaseSchemaProps<T> {
   values?: T[]
 }
-
-export interface Fallback {
-  children: any
-  handler: Handler
-}

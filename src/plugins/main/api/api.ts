@@ -235,13 +235,6 @@ export const api: HandlerPlugin = () => {
         }
       }
     }
-
-    if (context.fallback) {
-      const newHandler = Object.create(context.fallback.handler)
-      actionContext.set(newHandler, action)
-      innet(context.fallback.children, newHandler)
-      return null
-    }
   })
 
   innet(children, handler)
