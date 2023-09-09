@@ -5,7 +5,7 @@ import http, { type IncomingMessage, type ServerResponse } from 'http'
 import http2 from 'https'
 import { onDestroy } from 'watch-state'
 
-import { actionContext, serverContext, type ServerRequest } from '../../../hooks'
+import { actionContext, requestPlugins, serverContext, type ServerRequest } from '../../../hooks'
 import { type ServerStartParams, type SSL } from '../../../types'
 import { Action } from '../../../utils'
 
@@ -56,7 +56,8 @@ export const server: HandlerPlugin = () => {
 
   const server = https ? http2.createServer({ key, cert }) : http.createServer()
 
-  serverContext.set(handler, { server, port, requests })
+  serverContext.set(handler, { server, port })
+  requestPlugins.set(handler, requests)
 
   onDestroy(() => {
     server.close()
@@ -73,13 +74,13 @@ export const server: HandlerPlugin = () => {
   server.on('request', (req, res) => {
     onRequest?.(req, res)
     const action = new Action(req, res)
+    const requestHandler = Object.create(handler)
+    actionContext.set(requestHandler, action)
 
     for (const request of requests) {
-      const result = request(action)
+      const result = request(action, requestHandler)
 
-      if (result) {
-        const requestHandler = Object.create(handler)
-        actionContext.set(requestHandler, action)
+      if (result !== undefined) {
         innet(result, requestHandler)
         return
       }

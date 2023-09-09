@@ -102,5 +102,3 @@ export interface Fallback {
   children: any
   handler: Handler
 }
-
-export type RequestPlugin = (action: Action) => any

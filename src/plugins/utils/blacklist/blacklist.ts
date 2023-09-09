@@ -15,7 +15,6 @@ export function blacklist () {
   const ips = typeof ip === 'string' ? ip.split(',') : ip as string[]
 
   useRequestPlugin(action => {
-    console.log(action.clientIp)
     if (!action.clientIp || ips?.includes(action.clientIp)) {
       return children
     }

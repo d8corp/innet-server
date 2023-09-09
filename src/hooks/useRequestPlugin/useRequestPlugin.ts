@@ -1,15 +1,14 @@
 import { onDestroy } from 'watch-state'
 
-import { useApi } from '../useApi'
+import { useRequestPlugins } from '../useRequestPlugins'
+import { type ServerRequest } from '../useServer'
 
-import { type RequestPlugin } from '../../types'
+export function useRequestPlugin (listener: ServerRequest) {
+  const requests = useRequestPlugins()
 
-export function useRequestPlugin (listener: RequestPlugin) {
-  const { requestPlugins } = useApi()
-
-  requestPlugins.add(listener)
+  requests.add(listener)
 
   onDestroy(() => {
-    requestPlugins.delete(listener)
+    requests.delete(listener)
   })
 }

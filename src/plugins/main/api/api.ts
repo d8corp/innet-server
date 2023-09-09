@@ -9,7 +9,7 @@ import {
   actionContext,
   type ApiContext,
   apiContext,
-  paramsContext,
+  paramsContext, requestPlugins, type ServerRequest,
   useServer,
 } from '../../../hooks'
 import {
@@ -17,7 +17,6 @@ import {
   type Endpoint,
   type Endpoints,
   type EndpointsMethods,
-  type RequestPlugin,
 } from '../../../types'
 import { Action, JSONString } from '../../../utils'
 import { type Rule, RulesError } from '../../../utils/rules'
@@ -69,9 +68,9 @@ export const api: HandlerPlugin = () => {
     info,
     paths: {},
   }
-  const requestPlugins = new Set<RequestPlugin>()
+  const requests = new Set<ServerRequest>()
 
-  const context: ApiContext = { docs, endpoints, prefix, requestPlugins, refRules: {} }
+  const context: ApiContext = { docs, endpoints, prefix, refRules: {} }
 
   const condition: PresetCondition = action => {
     const path = action.parsedUrl.path
@@ -88,6 +87,7 @@ export const api: HandlerPlugin = () => {
     return true
   }
 
+  requestPlugins.set(handler, requests)
   apiContext.set(handler, context)
   presetCondition.set(handler, condition)
 
@@ -105,8 +105,8 @@ export const api: HandlerPlugin = () => {
       return
     }
 
-    for (const requestPlugin of requestPlugins) {
-      const result = requestPlugin(action)
+    for (const request of requests) {
+      const result = request(action, handler)
 
       if (!result) continue
 

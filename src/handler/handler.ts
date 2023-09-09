@@ -8,6 +8,7 @@ import {
 import { array as isArray, arraySync, async, fn, nullish, object as isObject, promise } from '@innet/utils'
 
 import {
+  action, type ActionProps,
   api, type ApiProps,
   array, type ArrayProps,
   binary, type BinaryProps,
@@ -56,6 +57,7 @@ export const arrayPlugins = [
 ]
 
 export const JSXPlugins = {
+  action,
   api,
   array,
   binary,
@@ -126,6 +128,7 @@ export const handler = createHandler([
 declare global {
   namespace JSX {
     interface IntrinsicElements {
+      action: ActionProps
       api: ApiProps
       array: ArrayProps
       binary: BinaryProps
