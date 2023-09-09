@@ -95,17 +95,6 @@ export const api: HandlerPlugin = () => {
       return
     }
 
-    for (const plugin of plugins) {
-      const result = await plugin()
-
-      if (result === undefined) continue
-
-      const newHandler = Object.create(handler)
-      actionContext.set(newHandler, action)
-      innet(result, newHandler)
-      return null
-    }
-
     const path = action.parsedUrl.path
     const url = path.endsWith('/') ? path.slice(0, -1) : path
     const { req, res } = action
@@ -234,6 +223,17 @@ export const api: HandlerPlugin = () => {
           endpointQueue.push([deep + 1, dynamicEndpoint, { ...params, [dynamicEndpoint.key.slice(1, -1)]: key }])
         }
       }
+    }
+
+    for (const plugin of plugins) {
+      const result = await plugin()
+
+      if (result === undefined) continue
+
+      const newHandler = Object.create(handler)
+      actionContext.set(newHandler, action)
+      innet(result, newHandler)
+      return null
     }
   })
 

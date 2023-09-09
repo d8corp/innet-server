@@ -2908,8 +2908,7 @@ This action calls on user request.
 
 [← back](#index)
 
-Parent  
-[\<fallback>](#fallback)  
+Parent
 [\<request>](#request)
 
 Children  
@@ -2923,41 +2922,6 @@ Children
 [\<cookie>](#cookie)
 
 ---
-
-### \<fallback>
-
-[← back](#run-time)
-
-By default, `<api>` server returns 404 with empty body.
-[\<fallback>](#fallback) element defines default server response.
-This element MUST be placed in `<api>`.
-You MUST use one [\<fallback>](#fallback) per `<api>`.
-Can contain elements available inside [\<request>](#request).
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <fallback>
-        <error
-          code='unknownEndpoint'
-        />
-      </fallback>
-    </api>
-  </server>
-)
-```
-
-If you open the application on any URL except for `/`, you can see the next response.
-
-```json
-{
-  "error": "unknownEndpoint"
-}
-```
-
-The next elements are placed in [\<request>](#request) or [\<fallback>](#fallback)
 
 ### \<request>
 
@@ -3022,11 +2986,9 @@ This is a base element to return a success data.
 ```typescript jsx
 export default (
   <server>
-    <api>
-      <fallback>
-        <success />
-      </fallback>
-    </api>
+    <action>
+      <success />
+    </action>
   </server>
 )
 ```
@@ -3041,13 +3003,11 @@ const data = {...}
 
 export default (
   <server>
-    <api>
-      <fallback>
-        <success>
-          {data}
-        </success>
-      </fallback>
-    </api>
+    <action>
+      <success>
+        {data}
+      </success>
+    </action>
   </server>
 )
 ```
@@ -3064,13 +3024,11 @@ const data = {...}
 
 export default (
   <server>
-    <api>
-      <fallback>
-        <success status='created'>
-          {data}
-        </success>
-      </fallback>
-    </api>
+    <action>
+      <success status='created'>
+        {data}
+      </success>
+    </action>
   </server>
 )
 ```
@@ -3085,13 +3043,11 @@ const data = {...}
 
 export default (
   <server>
-    <api>
-      <fallback>
-        <success status={201}>
-          {data}
-        </success>
-      </fallback>
-    </api>
+    <action>
+      <success status={201}>
+        {data}
+      </success>
+    </action>
   </server>
 )
 ```
@@ -3105,13 +3061,11 @@ By default, it checks children element to define the prop.
 ```typescript jsx
 export default (
   <server>
-    <api>
-      <fallback>
-        <success contentType='text/html'>
-          Hello World!
-        </success>
-      </fallback>
-    </api>
+    <action>
+      <success contentType='text/html'>
+        Hello World!
+      </success>
+    </action>
   </server>
 )
 ```
@@ -3121,17 +3075,15 @@ export default (
 [← back](#run-time)
 
 Returns an error.
-This element MUST be placed in [\<request>](#request) or [\<fallback>](#fallback).
+This element MUST be placed in [\<request>](#request) or [\<action>](#action).
 
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
-    <api>
-      <fallback>
-        <error />
-      </fallback>
-    </api>
+    <action>
+      <error />
+    </action>
   </server>
 )
 ```
@@ -3144,13 +3096,11 @@ const data = {...}
 
 export default (
   <server>
-    <api>
-      <fallback>
-        <error>
-          {data}
-        </error>
-      </fallback>
-    </api>
+    <action>
+      <error>
+        {data}
+      </error>
+    </action>
   </server>
 )
 ```
@@ -3166,12 +3116,10 @@ const data = {
 
 export default (
   <server>
-    <api>
-      <fallback>
-        <error status='notFound'>
-          {data}
-        </error>
-      </fallback>
+    <action>
+      <error status='notFound'>
+        {data}
+      </error>
     </api>
   </server>
 )
@@ -3187,13 +3135,11 @@ const data = {
 
 export default (
   <server>
-    <api>
-      <fallback>
-        <error status={404}>
-          {data}
-        </error>
-      </fallback>
-    </api>
+    <action>
+      <error status={404}>
+        {data}
+      </error>
+    </action>
   </server>
 )
 ```
@@ -3221,15 +3167,13 @@ const data = {
 
 export default (
   <server>
-    <api>
-      <fallback>
-        <error
-          code='noUser'
-          status='notFound'>
-          {data}
-        </error>
-      </fallback>
-    </api>
+    <action>
+      <error
+        code='noUser'
+        status='notFound'>
+        {data}
+      </error>
+    </action>
   </server>
 )
 ```
@@ -3257,7 +3201,7 @@ There are some default errors:
 
 [← back](#run-time)
 
-MUST be placed in [\<request>](#request) or [\<fallback>](#fallback).
+MUST be placed in [\<request>](#request) or [\<action>](#action).
 
 You can easy proxy endpoints to another server/service.
 
@@ -3273,10 +3217,10 @@ export default (
           <proxy to='https://...' />
         </request>
       </endpoint>
-      <fallback>
-        <proxy to='https://...' />
-      </fallback>
     </api>
+    <action>
+      <proxy to='https://...' />
+    </action>
   </server>
 )
 ```
@@ -3285,7 +3229,7 @@ export default (
 
 [← back](#run-time)
 
-MUST be placed in [\<request>](#request) or [\<fallback>](#fallback).
+MUST be placed in [\<request>](#request) or [\<action>](#action).
 
 You can redirect users to another resource. It adds `Cache-Control` header by default.
 
@@ -3301,10 +3245,10 @@ export default (
           <redirect to='https://...' />
         </request>
       </endpoint>
-      <fallback>
-        <redirect to='https://...' />
-      </fallback>
     </api>
+    <action>
+      <redirect to='https://...' />
+    </action>
   </server>
 )
 ```
@@ -3329,13 +3273,13 @@ export default (
           />
         </request>
       </endpoint>
-      <fallback>
-        <redirect
-          status={303}
-          to='https://...'
-        />
-      </fallback>
     </api>
+    <action>
+      <redirect
+        status={303}
+        to='https://...'
+      />
+    </action>
   </server>
 )
 ```
@@ -3344,7 +3288,7 @@ export default (
 
 [← back](#run-time)
 
-MUST be placed in [\<request>](#request) or [\<fallback>](#fallback).
+MUST be placed in [\<request>](#request) or [\<action>](#action).
 
 `<cms>` helps to return files from a folder by path. It checks files run-time on the server.
 
@@ -3352,11 +3296,9 @@ MUST be placed in [\<request>](#request) or [\<fallback>](#fallback).
 ```typescript jsx
 export default (
   <server>
-    <api>
-      <fallback>
-        <cms />
-      </fallback>
-    </api>
+    <action>
+      <cms />
+    </action>
   </server>
 )
 ```
@@ -3373,11 +3315,9 @@ You can change root folder by `dir` property.
 ```typescript jsx
 export default (
   <server>
-    <api>
-      <fallback>
-        <cms dir='src' />
-      </fallback>
-    </api>
+    <action>
+      <cms dir='src' />
+    </action>
   </server>
 )
 ```
@@ -3394,9 +3334,9 @@ you get the index file in `src` folder.
 export default (
   <server>
     <api prefix='/src'>
-      <fallback>
+      <action>
         <cms />
-      </fallback>
+      </action>
     </api>
   </server>
 )
@@ -3412,9 +3352,9 @@ You can reduce the path for matching by prefix property of `<cms>`.
 export default (
   <server>
     <api prefix='/api'>
-      <fallback>
+      <action>
         <cms prefix='/api' />
-      </fallback>
+      </action>
     </api>
   </server>
 )
@@ -3430,13 +3370,11 @@ You can handle if a file was not found by children elements of `<cms>`.
 ```typescript jsx
 export default (
   <server>
-    <api prefix='/src'>
-      <fallback>
-        <cms>
-          <error status={404} />
-        </cms>
-      </fallback>
-    </api>
+    <action>
+      <cms>
+        <error status={404} />
+      </cms>
+    </action>
   </server>
 )
 ```
@@ -3445,7 +3383,7 @@ export default (
 
 [← back](#run-time)
 
-It returns a file. MUST be placed in [\<request>](#request) or [\<fallback>](#fallback).
+It returns a file. MUST be placed in [\<request>](#request) or [\<action>](#action).
 
 It adds `Content-Length` and `Content-Type` automatically.
 
@@ -3455,13 +3393,9 @@ It has a REQUIRED property of `path`.
 ```typescript jsx
 export default (
   <server>
-    <api>
-      <fallback>
-        <file
-          path='package.json'
-        />
-      </fallback>
-    </api>
+    <action>
+      <file path='package.json' />
+    </action>
   </server>
 )
 ```
@@ -3476,20 +3410,18 @@ You can handle if a file was not found by children elements of `<file>`.
 ```typescript jsx
 export default (
   <server>
-    <api prefix='/src'>
-      <fallback>
-        <file path='file_is_not_exist.txt'>
-          <error status={404} />
-        </file>
-      </fallback>
-    </api>
+    <action>
+      <file path='file_is_not_exist.txt'>
+        <error status={404} />
+      </file>
+    </action>
   </server>
 )
 ```
 
 ### \<header>
 
-MUST be placed in [\<request>](#request) or [\<fallback>](#fallback).
+MUST be placed in [\<request>](#request) or [\<action>](#action).
 
 [← back](#run-time)
 
@@ -3499,22 +3431,20 @@ You can add an HTTP header into response by `<header>` element.
 ```typescript jsx
 export default (
   <server>
-    <api prefix='/src'>
-      <fallback>
-        <header
-          key='Cache-Control'
-          value='no-cache, no-store, must-revalidate'
-        />
-        <success />
-      </fallback>
-    </api>
+    <action>
+      <header
+        key='Cache-Control'
+        value='no-cache, no-store, must-revalidate'
+      />
+      <success />
+    </action>
   </server>
 )
 ```
 
 ### \<cookie>
 
-MUST be placed in [\<request>](#request) or [\<fallback>](#fallback).
+MUST be placed in [\<request>](#request) or [\<action>](#action).
 
 [← back](#run-time)
 
@@ -3524,18 +3454,16 @@ You can add/remove a cookie into response by `<cookie>` element.
 ```typescript jsx
 export default (
   <server>
-    <api prefix='/src'>
-      <fallback>
-        <cookie
-          key='token'
-          value='...'
-        />
-        <cookie
-          key='removedCookie'
-        />
-        <success />
-      </fallback>
-    </api>
+    <action>
+      <cookie
+        key='token'
+        value='...'
+      />
+      <cookie
+        key='removedCookie'
+      />
+      <success />
+    </action>
   </server>
 )
 ```
@@ -3549,16 +3477,14 @@ By default, no domain is set, and most clients will consider the cookie to apply
 ```typescript jsx
 export default (
   <server>
-    <api prefix='/src'>
-      <fallback>
-        <cookie
-          domain='.example.com'
-          key='token'
-          value='...'
-        />
-        <success />
-      </fallback>
-    </api>
+    <action>
+      <cookie
+        domain='.example.com'
+        key='token'
+        value='...'
+      />
+      <success />
+    </action>
   </server>
 )
 ```
@@ -3577,16 +3503,14 @@ Note the [cookie storage model specification](https://datatracker.ietf.org/doc/h
 ```typescript jsx
 export default (
   <server>
-    <api prefix='/src'>
-      <fallback>
-        <cookie
-          expires={new Date('2050-01-01')}
-          key='token'
-          value='...'
-        />
-        <success />
-      </fallback>
-    </api>
+    <action>
+      <cookie
+        expires={new Date('2050-01-01')}
+        key='token'
+        value='...'
+      />
+      <success />
+    </action>
   </server>
 )
 ```
@@ -3600,16 +3524,14 @@ Note be careful when setting this to true, as compliant clients will not allow c
 ```typescript jsx
 export default (
   <server>
-    <api prefix='/src'>
-      <fallback>
-        <cookie
-          httpOnly
-          key='token'
-          value='...'
-        />
-        <success />
-      </fallback>
-    </api>
+    <action>
+      <cookie
+        httpOnly
+        key='token'
+        value='...'
+      />
+      <success />
+    </action>
   </server>
 )
 ```
@@ -3623,17 +3545,15 @@ Note the [cookie storage model specification](https://datatracker.ietf.org/doc/h
 ```typescript jsx
 export default (
   <server>
-    <api prefix='/src'>
-      <fallback>
-        <cookie
-          httpOnly
-          maxAge={9999}
-          key='token'
-          value='...'
-        />
-        <success />
-      </fallback>
-    </api>
+    <action>
+      <cookie
+        httpOnly
+        maxAge={9999}
+        key='token'
+        value='...'
+      />
+      <success />
+    </action>
   </server>
 )
 ```
@@ -3647,18 +3567,16 @@ By default, the path is considered the “default path”.
 ```typescript jsx
 export default (
   <server>
-    <api prefix='/src'>
-      <fallback>
-        <cookie
-          httpOnly
-          maxAge={9999}
-          path='/src'
-          key='token'
-          value='...'
-        />
-        <success />
-      </fallback>
-    </api>
+    <action>
+      <cookie
+        httpOnly
+        maxAge={9999}
+        path='/src'
+        key='token'
+        value='...'
+      />
+      <success />
+    </action>
   </server>
 )
 ```
@@ -3677,18 +3595,16 @@ note This is an attribute that has not yet been fully standardized, and may chan
 ```typescript jsx
 export default (
   <server>
-    <api prefix='/src'>
-      <fallback>
-        <cookie
-          httpOnly
-          priority='high'
-          path='/src'
-          key='token'
-          value='...'
-        />
-        <success />
-      </fallback>
-    </api>
+    <action>
+      <cookie
+        httpOnly
+        priority='high'
+        path='/src'
+        key='token'
+        value='...'
+      />
+      <success />
+    </action>
   </server>
 )
 ```
@@ -3710,19 +3626,17 @@ This also means many clients may ignore this attribute until they understand it.
 ```typescript jsx
 export default (
   <server>
-    <api prefix='/src'>
-      <fallback>
-        <cookie
-          httpOnly
-          sameSite
-          priority='high'
-          path='/src'
-          key='token'
-          value='...'
-        />
-        <success />
-      </fallback>
-    </api>
+    <action>
+      <cookie
+        httpOnly
+        sameSite
+        priority='high'
+        path='/src'
+        key='token'
+        value='...'
+      />
+      <success />
+    </action>
   </server>
 )
 ```
@@ -3739,17 +3653,15 @@ Note be careful when setting this to true, as compliant clients will not send th
 ```typescript jsx
 export default (
   <server>
-    <api prefix='/src'>
-      <fallback>
-        <cookie
-          httpOnly
-          secure
-          key='token'
-          value='...'
-        />
-        <success />
-      </fallback>
-    </api>
+    <action>
+      <cookie
+        httpOnly
+        secure
+        key='token'
+        value='...'
+      />
+      <success />
+    </action>
   </server>
 )
 ```
@@ -3782,14 +3694,12 @@ import { SetToken } from './SetToken'
 
 export default (
   <server>
-    <api prefix='/src'>
-      <fallback>
-        <SetToken
-          value='...'
-        />
-        <success />
-      </fallback>
-    </api>
+    <action>
+      <SetToken
+        value='...'
+      />
+      <success />
+    </action>
   </server>
 )
 ```
@@ -3814,7 +3724,7 @@ Real-time
 [useClientIp](#useclientip)  
 
 Server start  
-[useRequestPlugin](#userequestplugin)
+[useServerPlugin](#useserverplugin)
 
 Both  
 [useServer](#useserver)  
@@ -3826,7 +3736,7 @@ Both
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<action>](#action).
 This hook returns current request instance.
 
 *src/Component.tsx*
@@ -3847,7 +3757,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<action>](#action).
 This hook returns current response instance.
 
 *src/Component.tsx*
@@ -3868,7 +3778,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<action>](#action).
 This hook returns current request headers object.
 
 *src/Component.tsx*
@@ -3887,7 +3797,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<action>](#action).
 This hook returns current request cookies object.
 
 *src/Component.tsx*
@@ -3906,7 +3816,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<action>](#action).
 This hook returns current request URL path as a `string`.
 
 *src/Component.tsx*
@@ -3925,7 +3835,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<action>](#action).
 This hook returns an object of URL params you set by [\<param>](#param).
 
 *src/Component.tsx*
@@ -3943,7 +3853,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<action>](#action).
 This hook returns an object of URL query params.
 
 *src/Component.tsx*
@@ -3961,7 +3871,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<action>](#action).
 This hook returns current request body.
 
 *src/Component.tsx*
@@ -3980,7 +3890,7 @@ export function Component () {
 [← back](#hooks)
 
 This hook returns request user IP.
-This hook MUST be used in a component placed in [\<request>](#request) or [\<fallback>](#fallback).
+This hook MUST be used in a component placed in [\<request>](#request) or [\<action>](#action).
 
 *src/Component.tsx*
 ```typescript jsx
@@ -3993,7 +3903,7 @@ export function Component () {
 }
 ```
 
-### useRequestPlugin
+### useServerPlugin
 
 [← back](#hooks)
 
@@ -4001,25 +3911,24 @@ This hook adds a request plugin function.
 The function runs before check endpoints.
 If the function returns `true` the request handling stops, and you get full control over the request.
 
-This hook MUST be used in a component placed in [\<api>](#api).
+This hook MUST be used in a component placed in [\<server>](#server).
 
 *src/SecretEndpoint.tsx*
 ```typescript jsx
-import { useRequestPlugin } from '@innet/sever'
+import { useRequestPlugin, useAction } from '@innet/sever'
 
 export function SecretEndpoint () {
-  useRequestPlugin((req, res) => {
-    if (req.url.startsWith('/secret-endpoint')) {
-      res.statusCode = 200
-      res.write('A secret message')
-      res.end()
-      return true
+  useServerPlugin(() => {
+    const action = useAction()
+
+    if (action.path.startsWith('/secret-endpoint')) {
+      return <success>A secret message</success>
     }
   })
 }
 ```
 
-Then use the plugin in [\<api>](#api).
+Then use the plugin in [\<server>](#server) or [\<api>](#api).
 
 *src/app.tsx*
 ```typescript jsx
@@ -4027,12 +3936,10 @@ import { SecretEndpoint } from './SecretEndpoint'
 
 export default (
   <server>
-    <api>
-      <fallback>
-        <error />
-      </fallback>
-      <SecretEndpoint />
-    </api>
+    <SecretEndpoint />
+    <action>
+      <error />
+    </action>
   </server>
 )
 ```
