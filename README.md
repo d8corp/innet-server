@@ -107,7 +107,7 @@ You will see a base Open API JSON structure.
 [← back](#index)
 
 [\<server>](#server)   
-[\<api>](#api)
+[\<api>](#api)  
 [\<preset>](#preset)
 
 ---
