@@ -11,18 +11,22 @@ export function App () {
   return (
     <server onStart={handleStart}>
       <api description={description} prefix='/api' title='@innet/server Todo Template' version='0.0.1'>
-        <swagger path='/swagger' />
         <license name='MIT' />
         <host url='http://localhost/api' />
         <contact name='Mike' email='d8@cantinc.com' />
-        <fallback>
-          <error code='unknownRequest' status={404} />
-        </fallback>
+        <swagger path='/ui' />
+        <preset>
+          <header key='Cache-Control' value='no-cache, no-store, must-revalidate' />
+        </preset>
         <Todo />
         <dev>
           <dts path='src/example/api.d.ts' />
         </dev>
       </api>
+      <action>
+        <header key='Cache-Control' value='no-cache, no-store, must-revalidate' />
+        <error code='unknownRequest' status={404} />
+      </action>
     </server>
   )
 }

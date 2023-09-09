@@ -77,9 +77,9 @@ export const server: HandlerPlugin = () => {
     const requestHandler = Object.create(handler)
     actionContext.set(requestHandler, action)
 
-    function server () {
+    async function server () {
       for (const plugin of plugins) {
-        const result = plugin()
+        const result = await plugin()
 
         if (result !== undefined) {
           return result

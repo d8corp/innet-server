@@ -1,14 +1,15 @@
 import innet, { type Handler, type HandlerPlugin, useApp, useNewHandler } from 'innet'
 import { type JSXElement } from '@innet/jsx'
-import { type IncomingMessage, type ServerResponse } from 'http'
-import { onDestroy } from 'watch-state'
 
 import {
   actionContext,
   type ApiContext,
   apiContext,
-  paramsContext, type ServerPlugin,
-  serverPlugins, useServer,
+  paramsContext,
+  type ServerPlugin,
+  serverPlugins,
+  useAction,
+  useServerPlugin,
 } from '../../../hooks'
 import {
   type Document,
@@ -16,7 +17,7 @@ import {
   type Endpoints,
   type EndpointsMethods,
 } from '../../../types'
-import { Action, JSONString } from '../../../utils'
+import { type Action, JSONString } from '../../../utils'
 import { type Rule, RulesError } from '../../../utils/rules'
 
 export interface ApiProps {
@@ -50,7 +51,6 @@ export interface ApiProps {
 export const api: HandlerPlugin = () => {
   const handler = useNewHandler()
   const { props = {}, children } = useApp<JSXElement<string, ApiProps>>()
-  const { server } = useServer()
   const {
     prefix = '',
     title = '',
@@ -66,7 +66,7 @@ export const api: HandlerPlugin = () => {
     info,
     paths: {},
   }
-  const requests = new Set<ServerPlugin>()
+  const plugins = new Set<ServerPlugin>()
 
   const context: ApiContext = { docs, endpoints, prefix, refRules: {} }
 
@@ -85,39 +85,36 @@ export const api: HandlerPlugin = () => {
     return true
   }
 
-  serverPlugins.set(handler, requests)
+  serverPlugins.set(handler, plugins)
   apiContext.set(handler, context)
 
-  innet(children, handler)
-
-  const listener = async (req: IncomingMessage, res: ServerResponse) => {
-    if (res.writableEnded) return
-
-    const action = new Action(req, res)
-
-    const path = action.parsedUrl.path
-    const url = path.endsWith('/') ? path.slice(0, -1) : path
+  useServerPlugin(async () => {
+    const action = useAction()
 
     if (!condition(action as any)) {
       return
     }
 
-    for (const request of requests) {
-      const result = request()
+    for (const plugin of plugins) {
+      const result = await plugin()
 
-      if (!result) continue
+      if (result === undefined) continue
 
       const newHandler = Object.create(handler)
       actionContext.set(newHandler, action)
       innet(result, newHandler)
-      return
+      return null
     }
+
+    const path = action.parsedUrl.path
+    const url = path.endsWith('/') ? path.slice(0, -1) : path
+    const { req, res } = action
 
     if (url === (prefix || '')) {
       res.setHeader('Content-Type', 'application/json')
       res.write(JSONString(docs))
       res.end()
-      return
+      return null
     }
 
     const method = (req.method?.toLowerCase() ?? 'get') as EndpointsMethods
@@ -212,7 +209,7 @@ export const api: HandlerPlugin = () => {
         if (currentEndpoint.static?.[key]?.content) {
           if (!await run(currentEndpoint.static?.[key], params)) continue
 
-          return
+          return null
         }
 
         if (currentEndpoint.dynamic) {
@@ -220,7 +217,7 @@ export const api: HandlerPlugin = () => {
             if (dynamicEndpoint.content) {
               if (!await run(dynamicEndpoint, { ...params, [dynamicEndpoint.key.slice(1, -1)]: key })) continue
 
-              return
+              return null
             }
           }
         }
@@ -243,15 +240,9 @@ export const api: HandlerPlugin = () => {
       const newHandler = Object.create(context.fallback.handler)
       actionContext.set(newHandler, action)
       innet(context.fallback.children, newHandler)
-    } else {
-      res.statusCode = 404
-      res.end()
+      return null
     }
-  }
-
-  server.on('request', listener as any)
-
-  onDestroy(() => {
-    server.off('request', listener as any)
   })
+
+  innet(children, handler)
 }
