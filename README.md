@@ -319,7 +319,7 @@ A regular expression scopes the API.
 export default (
   <server>
     <api
-      include={/$\/(api|openapi)/}
+      include={/^\/(api|openapi)/}
     />
   </server>
 )
@@ -335,7 +335,7 @@ export default (
   <server>
     <api prefix='/api' />
     <api prefix='/openapi' />
-    <api exclude={/$\/(api|openapi)/} />
+    <api exclude={/^\/(api|openapi)/} />
   </server>
 )
 ```
