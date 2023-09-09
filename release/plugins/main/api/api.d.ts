@@ -18,5 +18,7 @@ export interface ApiProps {
     termsOfService?: string;
     /** URL path prefix scopes the API. */
     prefix?: string;
+    include?: RegExp;
+    exclude?: RegExp;
 }
 export declare const api: HandlerPlugin;

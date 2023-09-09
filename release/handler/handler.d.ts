@@ -1,6 +1,6 @@
 import { context, type ContextProps, slot, type SlotProps, slots, type SlotsProps } from '@innet/jsx';
 import { arraySync, async } from '@innet/utils';
-import { type ApiProps, type ArrayProps, type BinaryProps, blacklist, type BlacklistProps, type BodyProps, type BooleanProps, cms, type CmsProps, type ContactProps, type CookieProps, type DateProps, type DevProps, type DtsProps, type EndpointProps, type ErrorProps, type FallbackProps, type FieldProps, file, type FileProps, type HeaderProps, type HostProps, type IntegerProps, type LicenseProps, type NullProps, type NumberProps, type ObjectProps, type ParamProps, type ProdProps, protection, type ProtectionProps, type ProxyProps, type RedirectProps, type RequestProps, type ResponseProps, type ServerProps, type StringProps, type SuccessProps, type SwaggerProps, type TagProps, type TupleProps, type UuidProps, type VariableProps, whitelist, type WhitelistProps } from '../plugins';
+import { type ApiProps, type ArrayProps, type BinaryProps, blacklist, type BlacklistProps, type BodyProps, type BooleanProps, cms, type CmsProps, type ContactProps, type CookieProps, type DateProps, type DevProps, type DtsProps, type EndpointProps, type ErrorProps, type FallbackProps, type FieldProps, file, type FileProps, type HeaderProps, type HostProps, type IntegerProps, type LicenseProps, type NullProps, type NumberProps, type ObjectProps, type ParamProps, preset, type PresetProps, type ProdProps, protection, type ProtectionProps, type ProxyProps, type RedirectProps, type RequestProps, type ResponseProps, type ServerProps, type StringProps, type SuccessProps, type SwaggerProps, type TagProps, type TupleProps, type UuidProps, type VariableProps, whitelist, type WhitelistProps } from '../plugins';
 export declare const arrayPlugins: (typeof arraySync)[];
 export declare const JSXPlugins: {
     api: import("innet").HandlerPlugin;
@@ -29,6 +29,7 @@ export declare const JSXPlugins: {
     number: import("innet").HandlerPlugin;
     object: import("innet").HandlerPlugin;
     param: import("innet").HandlerPlugin;
+    preset: typeof preset;
     prod: import("innet").HandlerPlugin;
     protection: typeof protection;
     proxy: import("innet").HandlerPlugin;
@@ -80,6 +81,7 @@ declare global {
             number: NumberProps;
             object: ObjectProps;
             param: ParamProps;
+            preset: PresetProps;
             prod: ProdProps;
             protection: ProtectionProps;
             proxy: ProxyProps;

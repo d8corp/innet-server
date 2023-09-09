@@ -1,14 +1,14 @@
 import { __rest, __awaiter } from 'tslib';
 import innet, { useNewHandler, useApp } from 'innet';
 import { onDestroy } from 'watch-state';
+import '../preset/index.es6.js';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
 import '../../../utils/rules/index.es6.js';
 import { useServer } from '../../../hooks/useServer/useServer.es6.js';
 import { apiContext } from '../../../hooks/useApi/useApi.es6.js';
+import { presetCondition } from '../preset/preset.es6.js';
 import { Action } from '../../../utils/action/Action.es6.js';
-import { responseContext } from '../../../hooks/useResponse/useResponse.es6.js';
-import { requestContext } from '../../../hooks/useRequest/useRequest.es6.js';
 import { actionContext } from '../../../hooks/useAction/useAction.es6.js';
 import { JSONString } from '../../../utils/JSONString/JSONString.es6.js';
 import { RulesError } from '../../../utils/rules/helpers.es6.js';
@@ -19,7 +19,7 @@ const api = () => {
     const handler = useNewHandler();
     const { props = {}, children } = useApp();
     const { server } = useServer();
-    const { prefix = '', title = '' } = props, rest = __rest(props, ["prefix", "title"]);
+    const { prefix = '', title = '', include, exclude } = props, rest = __rest(props, ["prefix", "title", "include", "exclude"]);
     const info = Object.assign(Object.assign({}, rest), { version: (_a = rest.version) !== null && _a !== void 0 ? _a : '0.0.0', title });
     const endpoints = {};
     const docs = {
@@ -29,7 +29,20 @@ const api = () => {
     };
     const requestPlugins = new Set();
     const context = { docs, endpoints, prefix, requestPlugins, refRules: {} };
+    const condition = action => {
+        const path = action.parsedUrl.path;
+        const url = path.endsWith('/') ? path.slice(0, -1) : path;
+        if (!url.startsWith(prefix) || (exclude === null || exclude === void 0 ? void 0 : exclude.test(url))) {
+            return false;
+        }
+        if (include && !include.test(url)) {
+            return false;
+        }
+        return true;
+    };
     apiContext.set(handler, context);
+    presetCondition.set(handler, condition);
+    innet(children, handler);
     const listener = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         var _b, _c, _d, _e, _f, _g;
         if (res.writableEnded)
@@ -37,7 +50,7 @@ const api = () => {
         const action = new Action(req, res);
         const path = action.parsedUrl.path;
         const url = path.endsWith('/') ? path.slice(0, -1) : path;
-        if (!url.startsWith(prefix)) {
+        if (!condition(action)) {
             return;
         }
         for (const requestPlugin of requestPlugins) {
@@ -45,8 +58,6 @@ const api = () => {
             if (!result)
                 continue;
             const newHandler = Object.create(handler);
-            responseContext.set(newHandler, res);
-            requestContext.set(newHandler, req);
             actionContext.set(newHandler, action);
             innet(result, newHandler);
             return;
@@ -132,8 +143,6 @@ const api = () => {
                                 return true;
                         }
                         const newHandler = Object.create(runEndpoint.handler);
-                        responseContext.set(newHandler, res);
-                        requestContext.set(newHandler, req);
                         paramsContext.set(newHandler, params);
                         actionContext.set(newHandler, action);
                         innet(runEndpoint.content, newHandler);
@@ -167,8 +176,6 @@ const api = () => {
         }
         if (context.fallback) {
             const newHandler = Object.create(context.fallback.handler);
-            responseContext.set(newHandler, res);
-            requestContext.set(newHandler, req);
             actionContext.set(newHandler, action);
             innet(context.fallback.children, newHandler);
         }
@@ -181,7 +188,6 @@ const api = () => {
     onDestroy(() => {
         server.off('request', listener);
     });
-    innet(children, handler);
 };
 
 export { api };

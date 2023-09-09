@@ -41,9 +41,20 @@ function generateSchemaTypes(schema, spaces = 2) {
     }
     return `${result}${space.slice(0, -2)}}\n`;
 }
-function generateTypes(docs) {
+function generateTypes(docs, namespace = 'Api') {
     var _a;
-    let result = 'declare namespace Api {\n  export interface Bin {\n    filename: string\n    fieldName: string\n    originalFilename: string\n    path: string\n    type: string\n    disposition: string\n    size: number\n    extension?: string\n  }\n';
+    let result = `declare namespace ${namespace} {
+  export interface Bin {
+    filename: string
+    fieldName: string
+    originalFilename: string
+    path: string
+    type: string
+    disposition: string
+    size: number
+    extension?: string
+  }
+`;
     const schemas = (_a = docs.components) === null || _a === void 0 ? void 0 : _a.schemas;
     const paths = docs.paths;
     if (schemas) {

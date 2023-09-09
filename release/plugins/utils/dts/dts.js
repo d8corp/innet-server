@@ -10,9 +10,9 @@ var useApi = require('../../../hooks/useApi/useApi.js');
 var generateTypes = require('../../../utils/generateTypes/generateTypes.js');
 
 const dts = () => {
-    const { path } = jsx.useProps();
+    const { path = 'src/api.d.ts', namespace } = jsx.useProps() || {};
     const { docs } = useApi.useApi();
-    fs.promises.writeFile(path, generateTypes.generateTypes(docs)).catch(e => {
+    fs.promises.writeFile(path, generateTypes.generateTypes(docs, namespace)).catch(e => {
         console.error(e);
     });
 };

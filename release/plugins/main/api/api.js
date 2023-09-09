@@ -5,14 +5,14 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var tslib = require('tslib');
 var innet = require('innet');
 var watchState = require('watch-state');
+require('../preset/index.js');
 require('../../../hooks/index.js');
 require('../../../utils/index.js');
 require('../../../utils/rules/index.js');
 var useServer = require('../../../hooks/useServer/useServer.js');
 var useApi = require('../../../hooks/useApi/useApi.js');
+var preset = require('../preset/preset.js');
 var Action = require('../../../utils/action/Action.js');
-var useResponse = require('../../../hooks/useResponse/useResponse.js');
-var useRequest = require('../../../hooks/useRequest/useRequest.js');
 var useAction = require('../../../hooks/useAction/useAction.js');
 var JSONString = require('../../../utils/JSONString/JSONString.js');
 var helpers = require('../../../utils/rules/helpers.js');
@@ -27,7 +27,7 @@ const api = () => {
     const handler = innet.useNewHandler();
     const { props = {}, children } = innet.useApp();
     const { server } = useServer.useServer();
-    const { prefix = '', title = '' } = props, rest = tslib.__rest(props, ["prefix", "title"]);
+    const { prefix = '', title = '', include, exclude } = props, rest = tslib.__rest(props, ["prefix", "title", "include", "exclude"]);
     const info = Object.assign(Object.assign({}, rest), { version: (_a = rest.version) !== null && _a !== void 0 ? _a : '0.0.0', title });
     const endpoints = {};
     const docs = {
@@ -37,7 +37,20 @@ const api = () => {
     };
     const requestPlugins = new Set();
     const context = { docs, endpoints, prefix, requestPlugins, refRules: {} };
+    const condition = action => {
+        const path = action.parsedUrl.path;
+        const url = path.endsWith('/') ? path.slice(0, -1) : path;
+        if (!url.startsWith(prefix) || (exclude === null || exclude === void 0 ? void 0 : exclude.test(url))) {
+            return false;
+        }
+        if (include && !include.test(url)) {
+            return false;
+        }
+        return true;
+    };
     useApi.apiContext.set(handler, context);
+    preset.presetCondition.set(handler, condition);
+    innet__default["default"](children, handler);
     const listener = (req, res) => tslib.__awaiter(void 0, void 0, void 0, function* () {
         var _b, _c, _d, _e, _f, _g;
         if (res.writableEnded)
@@ -45,7 +58,7 @@ const api = () => {
         const action = new Action.Action(req, res);
         const path = action.parsedUrl.path;
         const url = path.endsWith('/') ? path.slice(0, -1) : path;
-        if (!url.startsWith(prefix)) {
+        if (!condition(action)) {
             return;
         }
         for (const requestPlugin of requestPlugins) {
@@ -53,8 +66,6 @@ const api = () => {
             if (!result)
                 continue;
             const newHandler = Object.create(handler);
-            useResponse.responseContext.set(newHandler, res);
-            useRequest.requestContext.set(newHandler, req);
             useAction.actionContext.set(newHandler, action);
             innet__default["default"](result, newHandler);
             return;
@@ -140,8 +151,6 @@ const api = () => {
                                 return true;
                         }
                         const newHandler = Object.create(runEndpoint.handler);
-                        useResponse.responseContext.set(newHandler, res);
-                        useRequest.requestContext.set(newHandler, req);
                         useParams.paramsContext.set(newHandler, params);
                         useAction.actionContext.set(newHandler, action);
                         innet__default["default"](runEndpoint.content, newHandler);
@@ -175,8 +184,6 @@ const api = () => {
         }
         if (context.fallback) {
             const newHandler = Object.create(context.fallback.handler);
-            useResponse.responseContext.set(newHandler, res);
-            useRequest.requestContext.set(newHandler, req);
             useAction.actionContext.set(newHandler, action);
             innet__default["default"](context.fallback.children, newHandler);
         }
@@ -189,7 +196,6 @@ const api = () => {
     watchState.onDestroy(() => {
         server.off('request', listener);
     });
-    innet__default["default"](children, handler);
 };
 
 exports.api = api;

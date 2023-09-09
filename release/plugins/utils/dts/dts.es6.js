@@ -6,9 +6,9 @@ import { useApi } from '../../../hooks/useApi/useApi.es6.js';
 import { generateTypes } from '../../../utils/generateTypes/generateTypes.es6.js';
 
 const dts = () => {
-    const { path } = useProps();
+    const { path = 'src/api.d.ts', namespace } = useProps() || {};
     const { docs } = useApi();
-    promises.writeFile(path, generateTypes(docs)).catch(e => {
+    promises.writeFile(path, generateTypes(docs, namespace)).catch(e => {
         console.error(e);
     });
 };

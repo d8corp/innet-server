@@ -17,6 +17,7 @@ export { request } from './plugins/main/request/request.es6.js';
 export { param } from './plugins/main/param/param.es6.js';
 export { body } from './plugins/main/body/body.es6.js';
 export { fallback } from './plugins/main/fallback/fallback.es6.js';
+export { preset, presetCondition } from './plugins/main/preset/preset.es6.js';
 export { object } from './plugins/schema/object/object.es6.js';
 export { field } from './plugins/schema/field/field.es6.js';
 export { number } from './plugins/schema/number/number.es6.js';
@@ -94,8 +95,8 @@ export { useOneElementError } from './hooks/useOneElementError/useOneElementErro
 export { schemaContext, useSchemaContext } from './hooks/useSchemaContext/useSchemaContext.es6.js';
 export { useSchemaType } from './hooks/useSchemaType/useSchemaType.es6.js';
 export { useNewSchema } from './hooks/useNewSchema/useNewSchema.es6.js';
-export { requestContext, useRequest } from './hooks/useRequest/useRequest.es6.js';
-export { responseContext, useResponse } from './hooks/useResponse/useResponse.es6.js';
+export { useRequest } from './hooks/useRequest/useRequest.es6.js';
+export { useResponse } from './hooks/useResponse/useResponse.es6.js';
 export { paramsContext, useParams } from './hooks/useParams/useParams.es6.js';
 export { useBody } from './hooks/useBody/useBody.es6.js';
 export { useSearch } from './hooks/useSearch/useSearch.es6.js';

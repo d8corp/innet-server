@@ -1,8 +1,8 @@
-import { Context, useContext } from '@innet/jsx';
+import '../useAction/index.es6.js';
+import { useAction } from '../useAction/useAction.es6.js';
 
-const requestContext = new Context();
 function useRequest() {
-    return useContext(requestContext);
+    return useAction().req;
 }
 
-export { requestContext, useRequest };
+export { useRequest };

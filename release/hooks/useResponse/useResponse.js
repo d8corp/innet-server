@@ -2,12 +2,11 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var jsx = require('@innet/jsx');
+require('../useAction/index.js');
+var useAction = require('../useAction/useAction.js');
 
-const responseContext = new jsx.Context();
 function useResponse() {
-    return jsx.useContext(responseContext);
+    return useAction.useAction().res;
 }
 
-exports.responseContext = responseContext;
 exports.useResponse = useResponse;

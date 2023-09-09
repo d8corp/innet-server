@@ -107,7 +107,8 @@ You will see a base Open API JSON structure.
 [← back](#index)
 
 [\<server>](#server)   
-[\<api>](#api)
+[\<api>](#api)  
+[\<preset>](#preset)
 
 ---
 
@@ -309,6 +310,75 @@ export default (
 )
 ```
 
+#### include
+
+A regular expression scopes the API.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api
+      include={/$\/(api|openapi)/}
+    />
+  </server>
+)
+```
+
+#### exclude
+
+A regular expression does not scope the API.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/api' />
+    <api prefix='/openapi' />
+    <api exclude={/$\/(api|openapi)/} />
+  </server>
+)
+```
+
+### \<preset>
+
+[← back](#main)
+
+`<preset>` element MUST be placed in `<server>` element.  
+This element adds handling of each request.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <preset>
+      <header
+        key='Test'
+        value='Ok'
+      />
+    </preset>
+  </server>
+)
+```
+
+Place the element inside [\<api>](#api) to preset it on the api requests scope.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/api'>
+      <preset>
+        <header
+          key='Cache-Control'
+          value='no-cache, no-store, must-revalidate'
+        />
+      </preset>
+    </api>
+  </server>
+)
+```
+
 ## Utils
 
 This section contains elements of utils.
@@ -404,16 +474,12 @@ export default (
 Use `<dts>` element to add types generation.
 `<dts>` element MUST be placed in `<api>` element.
 
-`<dts>` has a required prop of `path`. This is a path of api TypeScript types file, `<dts>` generates it.
-
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
     <api>
-      <dev>
-        <dts path='src/api.d.ts' />
-      </dev>
+      <dts />
     </api>
   </server>
 )
@@ -440,6 +506,37 @@ export function DeleteTodo () {
 
   return <success />
 }
+```
+
+#### path
+
+This is a path of api TypeScript types file, `<dts>` generates it.
+`'src/api.d.ts'` by default.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <dts path='src/types.d.ts' />
+    </api>
+  </server>
+)
+```
+
+#### namespace
+
+This prop changes namespace for generated types. `'Api'` by default.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <dts namespace='API' />
+    </api>
+  </server>
+)
 ```
 
 ### \<blacklist>

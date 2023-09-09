@@ -6,5 +6,4 @@ var useResponse = require('./useResponse.js');
 
 
 
-exports.responseContext = useResponse.responseContext;
 exports.useResponse = useResponse.useResponse;
