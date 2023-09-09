@@ -207,6 +207,19 @@ export default (
 )
 ```
 
+#### onClose
+
+Use `onClose` to handle server close action.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server
+    onClose={() => console.log('Close')}
+  />
+)
+```
+
 ### \<api>
 
 [← back](#main)
