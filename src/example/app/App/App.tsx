@@ -23,10 +23,10 @@ export function App () {
           <dts path='src/example/api.d.ts' />
         </dev>
       </api>
-      <action>
+      <request>
         <header key='Cache-Control' value='no-cache, no-store, must-revalidate' />
         <error code='unknownRequest' status={404} />
-      </action>
+      </request>
     </server>
   )
 }

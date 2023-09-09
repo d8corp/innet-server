@@ -1,7 +1,7 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import { endpointContext, useApi, useTag } from '../../../hooks'
+import { endpointContext, type ServerPlugin, serverPlugins, useApi, useTag } from '../../../hooks'
 import { type EndpointsMethods, type OperationObject } from '../../../types'
 import { getEndpoint } from '../../../utils'
 
@@ -88,7 +88,7 @@ export const endpoint: HandlerPlugin = () => {
   }
 
   if (!endpoints[method]) {
-    endpoints[method] = { key: '' }
+    endpoints[method] = { key: '', plugins: new Set<ServerPlugin>() }
   }
 
   // @ts-expect-error: it's always an object
@@ -96,6 +96,9 @@ export const endpoint: HandlerPlugin = () => {
 
   // @ts-expect-error: it's always an object
   endpointContext.set(handler, { operation, props, endpoint })
+
+  // @ts-expect-error: it's always an object
+  serverPlugins.set(handler, endpoint.plugins)
 
   innet(children, handler)
 }

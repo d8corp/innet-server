@@ -13,7 +13,7 @@ export function getEndpoint (path: string, parentEndpoint: Endpoint) {
       }
 
       if (!parentEndpoint.static[key]) {
-        parentEndpoint.static[key] = { key }
+        parentEndpoint.static[key] = { key, plugins: new Set() }
       }
 
       parentEndpoint = parentEndpoint.static[key]
@@ -29,7 +29,7 @@ export function getEndpoint (path: string, parentEndpoint: Endpoint) {
       parentEndpoint.dynamic = []
     }
 
-    const newEndpoint: Endpoint = { key }
+    const newEndpoint: Endpoint = { key, plugins: new Set() }
 
     parentEndpoint.dynamic.push(newEndpoint)
     parentEndpoint = newEndpoint

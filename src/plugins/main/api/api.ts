@@ -1,4 +1,4 @@
-import innet, { type Handler, type HandlerPlugin, useApp, useNewHandler } from 'innet'
+import innet, { type HandlerPlugin, useApp, useNewHandler } from 'innet'
 import { type JSXElement } from '@innet/jsx'
 
 import {
@@ -91,10 +91,9 @@ export const api: HandlerPlugin = () => {
   useServerPlugin(async () => {
     const action = useAction()
 
-    if (!condition(action as any)) {
-      return
-    }
+    if (!condition(action as any)) return
 
+    const actionHandler = useNewHandler()
     const path = action.parsedUrl.path
     const url = path.endsWith('/') ? path.slice(0, -1) : path
     const { req, res } = action
@@ -186,16 +185,19 @@ export const api: HandlerPlugin = () => {
             if (checkActionRules(bodyRules, 'body')) return true
           }
 
-          const newHandler = Object.create(runEndpoint.handler as Handler)
-          paramsContext.set(newHandler, params)
-          actionContext.set(newHandler, action)
+          paramsContext.set(actionHandler, params)
 
-          innet(runEndpoint.content, newHandler)
+          for (const plugin of runEndpoint.plugins) {
+            const result = await plugin()
+            if (result === undefined) continue
+            innet(result, actionHandler)
+            return true
+          }
 
           return true
         }
 
-        if (currentEndpoint.static?.[key]?.content) {
+        if (currentEndpoint.static?.[key]?.plugins) {
           if (!await run(currentEndpoint.static?.[key], params)) continue
 
           return null
@@ -203,7 +205,7 @@ export const api: HandlerPlugin = () => {
 
         if (currentEndpoint.dynamic) {
           for (const dynamicEndpoint of currentEndpoint.dynamic) {
-            if (dynamicEndpoint.content) {
+            if (dynamicEndpoint.plugins) {
               if (!await run(dynamicEndpoint, { ...params, [dynamicEndpoint.key.slice(1, -1)]: key })) continue
 
               return null

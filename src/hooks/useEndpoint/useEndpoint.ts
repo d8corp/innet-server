@@ -1,5 +1,7 @@
 import { Context, useContext } from '@innet/jsx'
 
+import { useThrow } from '../useThrow'
+
 import { type EndpointProps } from '../../plugins'
 import type { Endpoint, OperationObject } from '../../types'
 
@@ -15,7 +17,7 @@ export function useEndpoint () {
   const endpoint = useContext(endpointContext)
 
   if (!endpoint) {
-    throw Error('useEndpoint MUST be used in <endpoint>')
+    useThrow('Use <{type}> in <endpoint>')
   }
 
   return endpoint
