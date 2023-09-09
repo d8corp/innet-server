@@ -1,8 +1,5 @@
-import { Context, useContext } from '@innet/jsx'
-import { type ServerResponse } from 'http'
-
-export const responseContext = new Context<ServerResponse>()
+import { useAction } from '../useAction'
 
 export function useResponse () {
-  return useContext(responseContext)
+  return useAction().res
 }

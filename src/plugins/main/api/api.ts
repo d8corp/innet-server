@@ -3,13 +3,13 @@ import { type JSXElement } from '@innet/jsx'
 import { type IncomingMessage, type ServerResponse } from 'http'
 import { onDestroy } from 'watch-state'
 
+import { type PresetCondition, presetCondition } from '../preset'
+
 import {
   actionContext,
   type ApiContext,
   apiContext,
   paramsContext,
-  requestContext,
-  responseContext,
   useServer,
 } from '../../../hooks'
 import {
@@ -73,7 +73,25 @@ export const api: HandlerPlugin = () => {
 
   const context: ApiContext = { docs, endpoints, prefix, requestPlugins, refRules: {} }
 
+  const condition: PresetCondition = action => {
+    const path = action.parsedUrl.path
+    const url = path.endsWith('/') ? path.slice(0, -1) : path
+
+    if (!url.startsWith(prefix) || exclude?.test(url)) {
+      return false
+    }
+
+    if (include && !include.test(url)) {
+      return false
+    }
+
+    return true
+  }
+
   apiContext.set(handler, context)
+  presetCondition.set(handler, condition)
+
+  innet(children, handler)
 
   const listener = async (req: IncomingMessage, res: ServerResponse) => {
     if (res.writableEnded) return
@@ -83,11 +101,7 @@ export const api: HandlerPlugin = () => {
     const path = action.parsedUrl.path
     const url = path.endsWith('/') ? path.slice(0, -1) : path
 
-    if (!url.startsWith(prefix) || exclude?.test(url)) {
-      return
-    }
-
-    if (include && !include.test(url)) {
+    if (!condition(action)) {
       return
     }
 
@@ -97,8 +111,6 @@ export const api: HandlerPlugin = () => {
       if (!result) continue
 
       const newHandler = Object.create(handler)
-      responseContext.set(newHandler, res)
-      requestContext.set(newHandler, req)
       actionContext.set(newHandler, action)
       innet(result, newHandler)
       return
@@ -192,8 +204,6 @@ export const api: HandlerPlugin = () => {
           }
 
           const newHandler = Object.create(runEndpoint.handler as Handler)
-          responseContext.set(newHandler, res)
-          requestContext.set(newHandler, req)
           paramsContext.set(newHandler, params)
           actionContext.set(newHandler, action)
 
@@ -234,8 +244,6 @@ export const api: HandlerPlugin = () => {
 
     if (context.fallback) {
       const newHandler = Object.create(context.fallback.handler)
-      responseContext.set(newHandler, res)
-      requestContext.set(newHandler, req)
       actionContext.set(newHandler, action)
       innet(context.fallback.children, newHandler)
     } else {
@@ -249,6 +257,4 @@ export const api: HandlerPlugin = () => {
   onDestroy(() => {
     server.off('request', listener as any)
   })
-
-  innet(children, handler)
 }

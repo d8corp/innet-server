@@ -1,8 +1,5 @@
-import { Context, useContext } from '@innet/jsx'
-import { type IncomingMessage } from 'http'
-
-export const requestContext = new Context<IncomingMessage>()
+import { useAction } from '../useAction'
 
 export function useRequest () {
-  return useContext(requestContext)
+  return useAction().req
 }

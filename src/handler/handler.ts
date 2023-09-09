@@ -33,6 +33,7 @@ import {
   number, type NumberProps,
   object, type ObjectProps,
   param, type ParamProps,
+  preset, type PresetProps,
   prod, type ProdProps,
   protection, type ProtectionProps,
   proxy, type ProxyProps,
@@ -81,6 +82,7 @@ export const JSXPlugins = {
   number,
   object,
   param,
+  preset,
   prod,
   protection,
   proxy,
@@ -150,6 +152,7 @@ declare global {
       number: NumberProps
       object: ObjectProps
       param: ParamProps
+      preset: PresetProps
       prod: ProdProps
       protection: ProtectionProps
       proxy: ProxyProps
