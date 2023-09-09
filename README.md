@@ -108,6 +108,7 @@ You will see a base Open API JSON structure.
 
 [\<server>](#server)   
 [\<api>](#api)
+[\<preset>](#preset)
 
 ---
 
@@ -335,6 +336,45 @@ export default (
     <api prefix='/api' />
     <api prefix='/openapi' />
     <api exclude={/$\/(api|openapi)/} />
+  </server>
+)
+```
+
+### \<preset>
+
+[← back](#main)
+
+`<preset>` element MUST be placed in `<server>` element.  
+This element adds handling of each request.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <preset>
+      <header
+        key='Test'
+        value='Ok'
+      />
+    </preset>
+  </server>
+)
+```
+
+Place the element inside [\<api>](#api) to preset it on the api requests scope.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api prefix='/api'>
+      <preset>
+        <header
+          key='Cache-Control'
+          value='no-cache, no-store, must-revalidate'
+        />
+      </preset>
+    </api>
   </server>
 )
 ```
