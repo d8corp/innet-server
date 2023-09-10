@@ -97,7 +97,7 @@ You will see the `Hello Word!` string.
 
 ---
 
-Here is an [api](#api) example:
+Here is the simplest [api](#api) example:
 
 *src/app.tsx*
 ```typescript jsx
