@@ -20,7 +20,6 @@ var response = require('./plugins/main/response/response.js');
 var request = require('./plugins/main/request/request.js');
 var param = require('./plugins/main/param/param.js');
 var body = require('./plugins/main/body/body.js');
-var fallback = require('./plugins/main/fallback/fallback.js');
 var preset = require('./plugins/main/preset/preset.js');
 var object = require('./plugins/schema/object/object.js');
 var field = require('./plugins/schema/field/field.js');
@@ -115,8 +114,9 @@ var useRule = require('./hooks/useRule/useRule.js');
 var useObjectRule = require('./hooks/useObjectRule/useObjectRule.js');
 var useBodyFile = require('./hooks/useBodyFile/useBodyFile.js');
 var usePath = require('./hooks/usePath/usePath.js');
-var useRequestPlugin = require('./hooks/useRequestPlugin/useRequestPlugin.js');
+var useServerPlugin = require('./hooks/useServerPlugin/useServerPlugin.js');
 var useClientIp = require('./hooks/useClientIp/useClientIp.js');
+var useServerPlugins = require('./hooks/useServerPlugins/useServerPlugins.js');
 
 
 
@@ -140,9 +140,7 @@ exports.statuses = response.statuses;
 exports.request = request.request;
 exports.param = param.param;
 exports.body = body.body;
-exports.fallback = fallback.fallback;
 exports.preset = preset.preset;
-exports.presetCondition = preset.presetCondition;
 exports.object = object.object;
 exports.field = field.field;
 exports.number = number.number;
@@ -256,5 +254,7 @@ exports.useObjectRule = useObjectRule.useObjectRule;
 exports.bodyFileContext = useBodyFile.bodyFileContext;
 exports.useBodyFile = useBodyFile.useBodyFile;
 exports.usePath = usePath.usePath;
-exports.useRequestPlugin = useRequestPlugin.useRequestPlugin;
+exports.useServerPlugin = useServerPlugin.useServerPlugin;
 exports.useClientIp = useClientIp.useClientIp;
+exports.serverPlugins = useServerPlugins.serverPlugins;
+exports.useServerPlugins = useServerPlugins.useServerPlugins;

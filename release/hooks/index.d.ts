@@ -23,5 +23,6 @@ export * from './useRule';
 export * from './useObjectRule';
 export * from './useBodyFile';
 export * from './usePath';
-export * from './useRequestPlugin';
+export * from './useServerPlugin';
 export * from './useClientIp';
+export * from './useServerPlugins';

@@ -12,6 +12,5 @@ require('./response/index.js');
 require('./request/index.js');
 require('./param/index.js');
 require('./body/index.js');
-require('./fallback/index.js');
 require('./preset/index.js');
 

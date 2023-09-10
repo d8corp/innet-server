@@ -22,7 +22,8 @@ var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 
 const statuses = Object.assign(Object.assign(Object.assign({}, error.errorStatuses), redirect.redirectStatuses), success.successStatuses);
 const response = () => {
-    let { description = '', status = 'default' } = jsx.useProps() || {};
+    var _a;
+    let { description = '', status = 'default', type = 'application/json', } = jsx.useProps() || {};
     const { operation, props: { path } } = useEndpoint.useEndpoint();
     const children = jsx.useChildren();
     const handler = innet.useNewHandler();
@@ -36,17 +37,16 @@ const response = () => {
     if (!operation.responses) {
         operation.responses = {};
     }
-    if (operation.responses[status]) {
-        throw Error(`status ${status} for '${path}' already used`);
+    const defaultResponse = operation.responses[status];
+    if ((_a = defaultResponse === null || defaultResponse === void 0 ? void 0 : defaultResponse.content) === null || _a === void 0 ? void 0 : _a[type]) {
+        throw Error(`status ${status} and type ${type} for '${path}' already used`);
     }
     const schema = {};
     const response = {
         description,
-        content: {
-            'application/json': {
+        content: Object.assign(Object.assign({}, defaultResponse === null || defaultResponse === void 0 ? void 0 : defaultResponse.content), { [type]: {
                 schema,
-            },
-        },
+            } }),
     };
     operation.responses[status] = response;
     useSchemaContext.schemaContext.set(handler, schema);

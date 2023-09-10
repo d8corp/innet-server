@@ -6,6 +6,7 @@ import { useTag } from '../../../hooks/useTag/useTag.es6.js';
 import { useApi } from '../../../hooks/useApi/useApi.es6.js';
 import { getEndpoint } from '../../../utils/getEndpoint/getEndpoint.es6.js';
 import { endpointContext } from '../../../hooks/useEndpoint/useEndpoint.es6.js';
+import { serverPlugins } from '../../../hooks/useServerPlugins/useServerPlugins.es6.js';
 
 const endpoint = () => {
     const handler = useNewHandler();
@@ -42,12 +43,14 @@ const endpoint = () => {
         paths[path][method] = operation;
     }
     if (!endpoints[method]) {
-        endpoints[method] = { key: '' };
+        endpoints[method] = { key: '', plugins: new Set() };
     }
     // @ts-expect-error: it's always an object
     const endpoint = getEndpoint(path, endpoints[method]);
     // @ts-expect-error: it's always an object
     endpointContext.set(handler, { operation, props, endpoint });
+    // @ts-expect-error: it's always an object
+    serverPlugins.set(handler, endpoint.plugins);
     innet(children, handler);
 };
 

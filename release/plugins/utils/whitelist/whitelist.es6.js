@@ -1,6 +1,7 @@
 import { useProps, useChildren } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
-import { useRequestPlugin } from '../../../hooks/useRequestPlugin/useRequestPlugin.es6.js';
+import { useServerPlugin } from '../../../hooks/useServerPlugin/useServerPlugin.es6.js';
+import { useAction } from '../../../hooks/useAction/useAction.es6.js';
 
 function whitelist() {
     const { ip = process.env.WHITELIST_IP, } = useProps() || {};
@@ -8,7 +9,8 @@ function whitelist() {
     const ips = typeof ip === 'string' ? ip.split(',') : ip;
     if (!ips)
         return;
-    useRequestPlugin(action => {
+    useServerPlugin(() => {
+        const action = useAction();
         if (!action.clientIp || !ips.includes(action.clientIp)) {
             return children;
         }

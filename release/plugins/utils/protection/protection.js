@@ -4,7 +4,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
-var useRequestPlugin = require('../../../hooks/useRequestPlugin/useRequestPlugin.js');
+var useServerPlugin = require('../../../hooks/useServerPlugin/useServerPlugin.js');
+var useAction = require('../../../hooks/useAction/useAction.js');
 
 function protection() {
     const { maxAge = Number(process.env.PROTECTION_MAX_AGE) || 365 * 24 * 60 * 60, value = process.env.PROTECTION, excludeIp = process.env.PROTECTED_IP, cookieKey = process.env.PROTECTION_COOKIE_KEY || 'protection', searchKey = process.env.PROTECTION_SEARCH_KEY || 'protection', } = jsx.useProps() || {};
@@ -12,7 +13,8 @@ function protection() {
     if (!value)
         return;
     const excludeIps = Array.isArray(excludeIp) ? excludeIp : excludeIp === null || excludeIp === void 0 ? void 0 : excludeIp.split(',');
-    useRequestPlugin.useRequestPlugin(action => {
+    useServerPlugin.useServerPlugin(() => {
+        const action = useAction.useAction();
         if (!action.clientIp)
             return children;
         if (excludeIps === null || excludeIps === void 0 ? void 0 : excludeIps.includes(action.clientIp))

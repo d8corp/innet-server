@@ -25,6 +25,7 @@ require('./useRule/index.js');
 require('./useObjectRule/index.js');
 require('./useBodyFile/index.js');
 require('./usePath/index.js');
-require('./useRequestPlugin/index.js');
+require('./useServerPlugin/index.js');
 require('./useClientIp/index.js');
+require('./useServerPlugins/index.js');
 

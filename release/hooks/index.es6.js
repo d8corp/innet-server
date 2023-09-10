@@ -23,5 +23,6 @@ import './useRule/index.es6.js';
 import './useObjectRule/index.es6.js';
 import './useBodyFile/index.es6.js';
 import './usePath/index.es6.js';
-import './useRequestPlugin/index.es6.js';
+import './useServerPlugin/index.es6.js';
 import './useClientIp/index.es6.js';
+import './useServerPlugins/index.es6.js';

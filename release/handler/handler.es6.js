@@ -16,7 +16,6 @@ import { dev } from '../plugins/utils/dev/dev.es6.js';
 import { dts } from '../plugins/utils/dts/dts.es6.js';
 import { endpoint } from '../plugins/main/endpoint/endpoint.es6.js';
 import { error } from '../plugins/request/error/error.es6.js';
-import { fallback } from '../plugins/main/fallback/fallback.es6.js';
 import { field } from '../plugins/schema/field/field.es6.js';
 import { file } from '../plugins/request/file/file.es6.js';
 import { header } from '../plugins/request/header/header.es6.js';
@@ -64,7 +63,6 @@ const JSXPlugins = {
     dts,
     endpoint,
     error,
-    fallback,
     field,
     file,
     header,

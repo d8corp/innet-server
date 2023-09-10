@@ -3,6 +3,7 @@
 import { Context } from '@innet/jsx';
 import { type Server as HttpServer } from 'http';
 import { type Server as HttpsServer } from 'https';
+export type ServerPlugin = () => any;
 export interface ServerContext {
     server: HttpServer | HttpsServer;
     port: number;

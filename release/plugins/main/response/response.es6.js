@@ -14,7 +14,8 @@ import { ruleContext } from '../../../hooks/useRule/useRule.es6.js';
 
 const statuses = Object.assign(Object.assign(Object.assign({}, errorStatuses), redirectStatuses), successStatuses);
 const response = () => {
-    let { description = '', status = 'default' } = useProps() || {};
+    var _a;
+    let { description = '', status = 'default', type = 'application/json', } = useProps() || {};
     const { operation, props: { path } } = useEndpoint();
     const children = useChildren();
     const handler = useNewHandler();
@@ -28,17 +29,16 @@ const response = () => {
     if (!operation.responses) {
         operation.responses = {};
     }
-    if (operation.responses[status]) {
-        throw Error(`status ${status} for '${path}' already used`);
+    const defaultResponse = operation.responses[status];
+    if ((_a = defaultResponse === null || defaultResponse === void 0 ? void 0 : defaultResponse.content) === null || _a === void 0 ? void 0 : _a[type]) {
+        throw Error(`status ${status} and type ${type} for '${path}' already used`);
     }
     const schema = {};
     const response = {
         description,
-        content: {
-            'application/json': {
+        content: Object.assign(Object.assign({}, defaultResponse === null || defaultResponse === void 0 ? void 0 : defaultResponse.content), { [type]: {
                 schema,
-            },
-        },
+            } }),
     };
     operation.responses[status] = response;
     schemaContext.set(handler, schema);

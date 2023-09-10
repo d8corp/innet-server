@@ -6,7 +6,7 @@ const actionContext = new Context();
 function useAction() {
     const action = useContext(actionContext);
     if (!action) {
-        useThrow('<{type}> MUST be in <request> or <fallback>');
+        useThrow('<{type}> MUST be in <request>, <preset> or <fallback>');
     }
     return action;
 }

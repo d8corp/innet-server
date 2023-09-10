@@ -14,6 +14,7 @@ export interface ResponseProps {
      * Only the following range definitions are allowed: 1XX, 2XX, 3XX, 4XX, and 5XX.
      * */
     status?: number | `${1 | 2 | 3 | 4 | 5}XX` | 'default' | StatusKey;
+    type?: string;
 }
 export declare const statuses: Record<StatusKey, number>;
 export declare const response: HandlerPlugin;

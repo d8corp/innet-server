@@ -4,15 +4,12 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var tslib = require('tslib');
 var innet = require('innet');
-var watchState = require('watch-state');
-require('../preset/index.js');
 require('../../../hooks/index.js');
 require('../../../utils/index.js');
 require('../../../utils/rules/index.js');
-var useServer = require('../../../hooks/useServer/useServer.js');
+var useServerPlugins = require('../../../hooks/useServerPlugins/useServerPlugins.js');
 var useApi = require('../../../hooks/useApi/useApi.js');
-var preset = require('../preset/preset.js');
-var Action = require('../../../utils/action/Action.js');
+var useServerPlugin = require('../../../hooks/useServerPlugin/useServerPlugin.js');
 var useAction = require('../../../hooks/useAction/useAction.js');
 var JSONString = require('../../../utils/JSONString/JSONString.js');
 var helpers = require('../../../utils/rules/helpers.js');
@@ -26,7 +23,6 @@ const api = () => {
     var _a;
     const handler = innet.useNewHandler();
     const { props = {}, children } = innet.useApp();
-    const { server } = useServer.useServer();
     const { prefix = '', title = '', include, exclude } = props, rest = tslib.__rest(props, ["prefix", "title", "include", "exclude"]);
     const info = Object.assign(Object.assign({}, rest), { version: (_a = rest.version) !== null && _a !== void 0 ? _a : '0.0.0', title });
     const endpoints = {};
@@ -35,9 +31,9 @@ const api = () => {
         info,
         paths: {},
     };
-    const requestPlugins = new Set();
-    const context = { docs, endpoints, prefix, requestPlugins, refRules: {} };
-    const condition = action => {
+    const plugins = new Set();
+    const context = { docs, endpoints, prefix, refRules: {} };
+    const condition = (action) => {
         const path = action.parsedUrl.path;
         const url = path.endsWith('/') ? path.slice(0, -1) : path;
         if (!url.startsWith(prefix) || (exclude === null || exclude === void 0 ? void 0 : exclude.test(url))) {
@@ -48,33 +44,22 @@ const api = () => {
         }
         return true;
     };
+    useServerPlugins.serverPlugins.set(handler, plugins);
     useApi.apiContext.set(handler, context);
-    preset.presetCondition.set(handler, condition);
-    innet__default["default"](children, handler);
-    const listener = (req, res) => tslib.__awaiter(void 0, void 0, void 0, function* () {
+    useServerPlugin.useServerPlugin(() => tslib.__awaiter(void 0, void 0, void 0, function* () {
         var _b, _c, _d, _e, _f, _g;
-        if (res.writableEnded)
+        const action = useAction.useAction();
+        if (!condition(action))
             return;
-        const action = new Action.Action(req, res);
+        const actionHandler = innet.useNewHandler();
         const path = action.parsedUrl.path;
         const url = path.endsWith('/') ? path.slice(0, -1) : path;
-        if (!condition(action)) {
-            return;
-        }
-        for (const requestPlugin of requestPlugins) {
-            const result = requestPlugin(action);
-            if (!result)
-                continue;
-            const newHandler = Object.create(handler);
-            useAction.actionContext.set(newHandler, action);
-            innet__default["default"](result, newHandler);
-            return;
-        }
+        const { req, res } = action;
         if (url === (prefix || '')) {
             res.setHeader('Content-Type', 'application/json');
             res.write(JSONString.JSONString(docs));
             res.end();
-            return;
+            return null;
         }
         const method = ((_c = (_b = req.method) === null || _b === void 0 ? void 0 : _b.toLowerCase()) !== null && _c !== void 0 ? _c : 'get');
         const rawSplitPath = url.slice(prefix.length).split('/').slice(1);
@@ -150,24 +135,28 @@ const api = () => {
                             if (checkActionRules(bodyRules, 'body'))
                                 return true;
                         }
-                        const newHandler = Object.create(runEndpoint.handler);
-                        useParams.paramsContext.set(newHandler, params);
-                        useAction.actionContext.set(newHandler, action);
-                        innet__default["default"](runEndpoint.content, newHandler);
+                        useParams.paramsContext.set(actionHandler, params);
+                        for (const plugin of runEndpoint.plugins) {
+                            const result = yield plugin();
+                            if (result === undefined)
+                                continue;
+                            innet__default["default"](result, actionHandler);
+                            return true;
+                        }
                         return true;
                     });
                 }
-                if ((_e = (_d = currentEndpoint.static) === null || _d === void 0 ? void 0 : _d[key]) === null || _e === void 0 ? void 0 : _e.content) {
+                if ((_e = (_d = currentEndpoint.static) === null || _d === void 0 ? void 0 : _d[key]) === null || _e === void 0 ? void 0 : _e.plugins) {
                     if (!(yield run((_f = currentEndpoint.static) === null || _f === void 0 ? void 0 : _f[key], params)))
                         continue;
-                    return;
+                    return null;
                 }
                 if (currentEndpoint.dynamic) {
                     for (const dynamicEndpoint of currentEndpoint.dynamic) {
-                        if (dynamicEndpoint.content) {
+                        if (dynamicEndpoint.plugins) {
                             if (!(yield run(dynamicEndpoint, Object.assign(Object.assign({}, params), { [dynamicEndpoint.key.slice(1, -1)]: key }))))
                                 continue;
-                            return;
+                            return null;
                         }
                     }
                 }
@@ -182,20 +171,17 @@ const api = () => {
                 }
             }
         }
-        if (context.fallback) {
-            const newHandler = Object.create(context.fallback.handler);
+        for (const plugin of plugins) {
+            const result = yield plugin();
+            if (result === undefined)
+                continue;
+            const newHandler = Object.create(handler);
             useAction.actionContext.set(newHandler, action);
-            innet__default["default"](context.fallback.children, newHandler);
+            innet__default["default"](result, newHandler);
+            return null;
         }
-        else {
-            res.statusCode = 404;
-            res.end();
-        }
-    });
-    server.on('request', listener);
-    watchState.onDestroy(() => {
-        server.off('request', listener);
-    });
+    }));
+    innet__default["default"](children, handler);
 };
 
 exports.api = api;

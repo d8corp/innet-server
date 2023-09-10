@@ -30,8 +30,8 @@ let Action = (() => {
                 _Action_cookie.set(this, {});
             }
             get parsedUrl() {
-                var _a;
-                const match = (_a = this.req.url) === null || _a === void 0 ? void 0 : _a.match(URL_PARSER);
+                var _b;
+                const match = (_b = this.req.url) === null || _b === void 0 ? void 0 : _b.match(URL_PARSER);
                 if (!match)
                     throw Error('cannot parse url');
                 const result = match.groups;
@@ -68,8 +68,8 @@ let Action = (() => {
                 __classPrivateFieldSet(this, _Action_headers, value, "f");
             }
             get originCookies() {
-                var _a;
-                return cookieLib.parse((_a = this.req.headers.cookie) !== null && _a !== void 0 ? _a : '');
+                var _b;
+                return cookieLib.parse((_b = this.req.headers.cookie) !== null && _b !== void 0 ? _b : '');
             }
             get cookies() {
                 if (__classPrivateFieldGet(this, _Action_cookie, "f"))
@@ -128,18 +128,20 @@ let Action = (() => {
         _Action_headers = new WeakMap(),
         _Action_cookie = new WeakMap(),
         (() => {
+            const _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
             _get_parsedUrl_decorators = [once];
             _get_originSearch_decorators = [once];
             _get_originCookies_decorators = [once];
             _get_bodyType_decorators = [once];
             _parseBody_decorators = [once];
             _get_clientIp_decorators = [once];
-            __esDecorate(_a, null, _get_parsedUrl_decorators, { kind: "getter", name: "parsedUrl", static: false, private: false, access: { has: obj => "parsedUrl" in obj, get: obj => obj.parsedUrl } }, null, _instanceExtraInitializers);
-            __esDecorate(_a, null, _get_originSearch_decorators, { kind: "getter", name: "originSearch", static: false, private: false, access: { has: obj => "originSearch" in obj, get: obj => obj.originSearch } }, null, _instanceExtraInitializers);
-            __esDecorate(_a, null, _get_originCookies_decorators, { kind: "getter", name: "originCookies", static: false, private: false, access: { has: obj => "originCookies" in obj, get: obj => obj.originCookies } }, null, _instanceExtraInitializers);
-            __esDecorate(_a, null, _get_bodyType_decorators, { kind: "getter", name: "bodyType", static: false, private: false, access: { has: obj => "bodyType" in obj, get: obj => obj.bodyType } }, null, _instanceExtraInitializers);
-            __esDecorate(_a, null, _parseBody_decorators, { kind: "method", name: "parseBody", static: false, private: false, access: { has: obj => "parseBody" in obj, get: obj => obj.parseBody } }, null, _instanceExtraInitializers);
-            __esDecorate(_a, null, _get_clientIp_decorators, { kind: "getter", name: "clientIp", static: false, private: false, access: { has: obj => "clientIp" in obj, get: obj => obj.clientIp } }, null, _instanceExtraInitializers);
+            __esDecorate(_a, null, _get_parsedUrl_decorators, { kind: "getter", name: "parsedUrl", static: false, private: false, access: { has: obj => "parsedUrl" in obj, get: obj => obj.parsedUrl }, metadata: _metadata }, null, _instanceExtraInitializers);
+            __esDecorate(_a, null, _get_originSearch_decorators, { kind: "getter", name: "originSearch", static: false, private: false, access: { has: obj => "originSearch" in obj, get: obj => obj.originSearch }, metadata: _metadata }, null, _instanceExtraInitializers);
+            __esDecorate(_a, null, _get_originCookies_decorators, { kind: "getter", name: "originCookies", static: false, private: false, access: { has: obj => "originCookies" in obj, get: obj => obj.originCookies }, metadata: _metadata }, null, _instanceExtraInitializers);
+            __esDecorate(_a, null, _get_bodyType_decorators, { kind: "getter", name: "bodyType", static: false, private: false, access: { has: obj => "bodyType" in obj, get: obj => obj.bodyType }, metadata: _metadata }, null, _instanceExtraInitializers);
+            __esDecorate(_a, null, _parseBody_decorators, { kind: "method", name: "parseBody", static: false, private: false, access: { has: obj => "parseBody" in obj, get: obj => obj.parseBody }, metadata: _metadata }, null, _instanceExtraInitializers);
+            __esDecorate(_a, null, _get_clientIp_decorators, { kind: "getter", name: "clientIp", static: false, private: false, access: { has: obj => "clientIp" in obj, get: obj => obj.clientIp }, metadata: _metadata }, null, _instanceExtraInitializers);
+            if (_metadata) Object.defineProperty(_a, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
         })(),
         _a;
 })();

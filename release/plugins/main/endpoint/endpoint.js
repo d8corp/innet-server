@@ -10,6 +10,7 @@ var useTag = require('../../../hooks/useTag/useTag.js');
 var useApi = require('../../../hooks/useApi/useApi.js');
 var getEndpoint = require('../../../utils/getEndpoint/getEndpoint.js');
 var useEndpoint = require('../../../hooks/useEndpoint/useEndpoint.js');
+var useServerPlugins = require('../../../hooks/useServerPlugins/useServerPlugins.js');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -50,12 +51,14 @@ const endpoint = () => {
         paths[path][method] = operation;
     }
     if (!endpoints[method]) {
-        endpoints[method] = { key: '' };
+        endpoints[method] = { key: '', plugins: new Set() };
     }
     // @ts-expect-error: it's always an object
     const endpoint = getEndpoint.getEndpoint(path, endpoints[method]);
     // @ts-expect-error: it's always an object
     useEndpoint.endpointContext.set(handler, { operation, props, endpoint });
+    // @ts-expect-error: it's always an object
+    useServerPlugins.serverPlugins.set(handler, endpoint.plugins);
     innet__default["default"](children, handler);
 };
 

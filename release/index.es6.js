@@ -16,8 +16,7 @@ export { response, statuses } from './plugins/main/response/response.es6.js';
 export { request } from './plugins/main/request/request.es6.js';
 export { param } from './plugins/main/param/param.es6.js';
 export { body } from './plugins/main/body/body.es6.js';
-export { fallback } from './plugins/main/fallback/fallback.es6.js';
-export { preset, presetCondition } from './plugins/main/preset/preset.es6.js';
+export { preset } from './plugins/main/preset/preset.es6.js';
 export { object } from './plugins/schema/object/object.es6.js';
 export { field } from './plugins/schema/field/field.es6.js';
 export { number } from './plugins/schema/number/number.es6.js';
@@ -111,5 +110,6 @@ export { ruleContext, useRule, useSetRule } from './hooks/useRule/useRule.es6.js
 export { objectRuleContext, useObjectRule } from './hooks/useObjectRule/useObjectRule.es6.js';
 export { bodyFileContext, useBodyFile } from './hooks/useBodyFile/useBodyFile.es6.js';
 export { usePath } from './hooks/usePath/usePath.es6.js';
-export { useRequestPlugin } from './hooks/useRequestPlugin/useRequestPlugin.es6.js';
+export { useServerPlugin } from './hooks/useServerPlugin/useServerPlugin.es6.js';
 export { useClientIp } from './hooks/useClientIp/useClientIp.es6.js';
+export { serverPlugins, useServerPlugins } from './hooks/useServerPlugins/useServerPlugins.es6.js';

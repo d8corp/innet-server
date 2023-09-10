@@ -1,34 +1,34 @@
 function hasDefault(target) {
     return Boolean(target && ('default' in target || 'x-default' in target));
 }
-function generateSchemaTypes(schema, spaces = 2) {
+function generateSchemaTypes(schema, spaces = 2, lastChar = '\n') {
     const space = [...new Array(spaces)].map(() => ' ').join('');
     if ('$ref' in schema) {
-        return `Schemas.${schema.$ref.slice(21)}\n`;
+        return `Schemas.${schema.$ref.slice(21)}${lastChar}`;
     }
     if (schema.type === 'integer') {
-        return `${schema.format === 'int64' ? 'bigint' : 'number'}\n`;
+        return `${schema.format === 'int64' ? 'bigint' : 'number'}${lastChar}`;
     }
     if (schema.type === 'string') {
         if (schema.format === 'date-time') {
-            return 'Date\n';
+            return `Date${lastChar}`;
         }
         if (schema.format === 'binary') {
-            return 'Bin\n';
+            return `Bin${lastChar}`;
         }
-        return 'string\n';
+        return `string${lastChar}`;
     }
     if (['boolean', 'number', 'null'].includes(schema.type)) {
-        return `${schema.type}\n`;
+        return `${schema.type}${lastChar}`;
     }
     if (schema.type === 'array') {
         if (!schema.items)
-            return 'any[]\n';
-        return `(${generateSchemaTypes(schema.items, spaces + 2).slice(0, -1)})[]\n`;
+            return `any[]${lastChar}`;
+        return `Array<${generateSchemaTypes(schema.items, spaces + 2, '')}>${lastChar}`;
     }
     if (schema.type !== 'object') {
         console.error('unknown type', schema);
-        return 'any\n';
+        return `any${lastChar}`;
     }
     let result = '{\n';
     const required = schema.required || [];
@@ -39,7 +39,7 @@ function generateSchemaTypes(schema, spaces = 2) {
             : '?:';
         result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}`;
     }
-    return `${result}${space.slice(0, -2)}}\n`;
+    return `${result}${space.slice(0, -2)}}${lastChar}`;
 }
 function generateTypes(docs, namespace = 'Api') {
     var _a;
@@ -101,8 +101,22 @@ function generateTypes(docs, namespace = 'Api') {
             if (requestBody) {
                 result += `      Body: ${generateSchemaTypes(requestBody.content['multipart/form-data'].schema, 8)}`;
             }
-            if (responses === null || responses === void 0 ? void 0 : responses.default) {
-                result += `      Response: ${generateSchemaTypes(responses.default.content['application/json'].schema, 8)}`;
+            if (responses) {
+                result += '      Response: {\n';
+                for (const key in responses) {
+                    let multiple = false;
+                    const response = responses[key];
+                    result += `        ['${key}']: `;
+                    for (const type in response.content) {
+                        if (multiple) {
+                            result += ' | ';
+                        }
+                        result += generateSchemaTypes(response.content[type].schema, 10, '');
+                        multiple = true;
+                    }
+                    result += '\n';
+                }
+                result += '     }\n';
             }
             result += '    }\n';
         }

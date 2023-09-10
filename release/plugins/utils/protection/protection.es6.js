@@ -1,6 +1,7 @@
 import { useProps, useChildren } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
-import { useRequestPlugin } from '../../../hooks/useRequestPlugin/useRequestPlugin.es6.js';
+import { useServerPlugin } from '../../../hooks/useServerPlugin/useServerPlugin.es6.js';
+import { useAction } from '../../../hooks/useAction/useAction.es6.js';
 
 function protection() {
     const { maxAge = Number(process.env.PROTECTION_MAX_AGE) || 365 * 24 * 60 * 60, value = process.env.PROTECTION, excludeIp = process.env.PROTECTED_IP, cookieKey = process.env.PROTECTION_COOKIE_KEY || 'protection', searchKey = process.env.PROTECTION_SEARCH_KEY || 'protection', } = useProps() || {};
@@ -8,7 +9,8 @@ function protection() {
     if (!value)
         return;
     const excludeIps = Array.isArray(excludeIp) ? excludeIp : excludeIp === null || excludeIp === void 0 ? void 0 : excludeIp.split(',');
-    useRequestPlugin(action => {
+    useServerPlugin(() => {
+        const action = useAction();
         if (!action.clientIp)
             return children;
         if (excludeIps === null || excludeIps === void 0 ? void 0 : excludeIps.includes(action.clientIp))

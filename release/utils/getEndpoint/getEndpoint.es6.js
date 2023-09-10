@@ -8,7 +8,7 @@ function getEndpoint(path, parentEndpoint) {
                 parentEndpoint.static = {};
             }
             if (!parentEndpoint.static[key]) {
-                parentEndpoint.static[key] = { key };
+                parentEndpoint.static[key] = { key, plugins: new Set() };
             }
             parentEndpoint = parentEndpoint.static[key];
             if (deep + 1 === splitPath.length) {
@@ -19,7 +19,7 @@ function getEndpoint(path, parentEndpoint) {
         if (!parentEndpoint.dynamic) {
             parentEndpoint.dynamic = [];
         }
-        const newEndpoint = { key };
+        const newEndpoint = { key, plugins: new Set() };
         parentEndpoint.dynamic.push(newEndpoint);
         parentEndpoint = newEndpoint;
         if (deep + 1 === splitPath.length) {

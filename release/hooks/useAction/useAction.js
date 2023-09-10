@@ -10,7 +10,7 @@ const actionContext = new jsx.Context();
 function useAction() {
     const action = jsx.useContext(actionContext);
     if (!action) {
-        useThrow.useThrow('<{type}> MUST be in <request> or <fallback>');
+        useThrow.useThrow('<{type}> MUST be in <request>, <preset> or <fallback>');
     }
     return action;
 }

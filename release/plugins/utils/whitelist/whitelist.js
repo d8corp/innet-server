@@ -4,7 +4,8 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
-var useRequestPlugin = require('../../../hooks/useRequestPlugin/useRequestPlugin.js');
+var useServerPlugin = require('../../../hooks/useServerPlugin/useServerPlugin.js');
+var useAction = require('../../../hooks/useAction/useAction.js');
 
 function whitelist() {
     const { ip = process.env.WHITELIST_IP, } = jsx.useProps() || {};
@@ -12,7 +13,8 @@ function whitelist() {
     const ips = typeof ip === 'string' ? ip.split(',') : ip;
     if (!ips)
         return;
-    useRequestPlugin.useRequestPlugin(action => {
+    useServerPlugin.useServerPlugin(() => {
+        const action = useAction.useAction();
         if (!action.clientIp || !ips.includes(action.clientIp)) {
             return children;
         }

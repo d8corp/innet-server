@@ -1,1 +1,1 @@
-export { preset, presetCondition } from './preset.es6.js';
+export { preset } from './preset.es6.js';

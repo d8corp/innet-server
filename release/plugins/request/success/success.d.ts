@@ -13,6 +13,6 @@ export declare const successStatuses: {
 export type SuccessStatuses = keyof typeof successStatuses;
 export interface SuccessProps {
     status?: SuccessStatuses | number;
-    contentType?: string;
+    type?: string;
 }
 export declare const success: HandlerPlugin;

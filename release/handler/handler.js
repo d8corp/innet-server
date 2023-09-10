@@ -20,7 +20,6 @@ var dev = require('../plugins/utils/dev/dev.js');
 var dts = require('../plugins/utils/dts/dts.js');
 var endpoint = require('../plugins/main/endpoint/endpoint.js');
 var error = require('../plugins/request/error/error.js');
-var fallback = require('../plugins/main/fallback/fallback.js');
 var field = require('../plugins/schema/field/field.js');
 var file = require('../plugins/request/file/file.js');
 var header = require('../plugins/request/header/header.js');
@@ -68,7 +67,6 @@ const JSXPlugins = {
     dts: dts.dts,
     endpoint: endpoint.endpoint,
     error: error.error,
-    fallback: fallback.fallback,
     field: field.field,
     file: file.file,
     header: header.header,
