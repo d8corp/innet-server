@@ -20,12 +20,12 @@ export type SuccessStatuses = keyof typeof successStatuses
 
 export interface SuccessProps {
   status?: SuccessStatuses | number
-  contentType?: string
+  type?: string
 }
 
 export const success: HandlerPlugin = () => {
   const children = useChildren()
-  const { status, contentType } = useProps<SuccessProps>() || {}
+  const { status, type } = useProps<SuccessProps>() || {}
   const res = useResponse()
 
   if (!res) {
@@ -36,15 +36,15 @@ export const success: HandlerPlugin = () => {
 
   if (children?.[0]) {
     const child = children[0]
-    const type = contentType || (
+    const contentType = type || (
       ['string', 'number', 'boolean', 'bigint'].includes(typeof child)
         ? 'text/plain'
         : 'application/json'
     )
 
-    res.setHeader('Content-Type', type)
+    res.setHeader('Content-Type', contentType)
 
-    if (type === 'application/json') {
+    if (contentType === 'application/json') {
       res.write(JSONString(child))
     } else {
       res.write(String(child))
