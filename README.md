@@ -378,7 +378,7 @@ export default (
 
 ### \<request>
 
-[← back](#run-time)
+[← back](#main)
 
 This element MUST be placed in `<endpoint>` element.
 It defines run-time call handler for the endpoint.
