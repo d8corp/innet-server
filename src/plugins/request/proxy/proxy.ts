@@ -1,5 +1,6 @@
 import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
+import { type IncomingMessage } from 'http'
 import httpProxy from 'http-proxy'
 
 import { useRequest, useResponse, useThrow } from '../../../hooks'
@@ -7,10 +8,11 @@ import { useRequest, useResponse, useThrow } from '../../../hooks'
 export interface ProxyProps {
   to: string
   secure?: boolean
+  onProxyRes?: (res: IncomingMessage) => void
 }
 
 export const proxy: HandlerPlugin = () => {
-  const { to, secure } = useProps<ProxyProps>()
+  const { to, secure, onProxyRes } = useProps<ProxyProps>()
   const req = useRequest()
   const res = useResponse()
 
@@ -21,6 +23,10 @@ export const proxy: HandlerPlugin = () => {
   const proxyServer = httpProxy.createProxyServer({})
 
   delete req.headers.host
+
+  if (onProxyRes) {
+    proxyServer.on('proxyRes', onProxyRes)
+  }
 
   proxyServer.web(req, res, { target: to, secure })
 }
