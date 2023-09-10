@@ -4,7 +4,7 @@ import { Todo } from '../../tags'
 import description from './description.md'
 
 const handleStart = ({ port, https }: ServerStartParams) => {
-  console.log(`http${https ? 's' : ''}://localhost:${port}/api/swagger`)
+  console.log(`http${https ? 's' : ''}://localhost:${port}/api/ui`)
 }
 
 export function App () {

@@ -17,7 +17,7 @@ export function GetTodos () {
   const stop = start + Number(pageSize)
   const todos = rawTodos.slice(start, stop)
 
-  const data: Api.Endpoints['GET:/todos']['Response'] = {
+  const data: Api.Endpoints['GET:/todos']['Response']['default'] = {
     todos,
     pageSize,
     page,

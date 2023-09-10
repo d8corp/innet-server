@@ -32,6 +32,8 @@ export interface ResponseProps {
    * Only the following range definitions are allowed: 1XX, 2XX, 3XX, 4XX, and 5XX.
    * */
   status?: number | `${1 | 2 | 3 | 4 | 5}XX` | 'default' | StatusKey
+
+  type?: string
 }
 export const statuses: Record<StatusKey, number> = {
   ...errorStatuses,
@@ -40,7 +42,11 @@ export const statuses: Record<StatusKey, number> = {
 }
 
 export const response: HandlerPlugin = () => {
-  let { description = '', status = 'default' } = useProps<ResponseProps>() || {}
+  let {
+    description = '',
+    status = 'default',
+    type = 'application/json',
+  } = useProps<ResponseProps>() || {}
   const { operation, props: { path } } = useEndpoint()
   const children = useChildren()
   const handler = useNewHandler()
@@ -58,8 +64,10 @@ export const response: HandlerPlugin = () => {
     operation.responses = {}
   }
 
-  if (operation.responses[status]) {
-    throw Error(`status ${status} for '${path}' already used`)
+  const defaultResponse = operation.responses[status] as ResponseObject
+
+  if (defaultResponse?.content?.[type]) {
+    throw Error(`status ${status} and type ${type} for '${path}' already used`)
   }
 
   const schema: SchemaObject = {}
@@ -67,7 +75,8 @@ export const response: HandlerPlugin = () => {
   const response: ResponseObject = {
     description,
     content: {
-      'application/json': {
+      ...defaultResponse?.content,
+      [type]: {
         schema,
       },
     },

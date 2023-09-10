@@ -4,42 +4,42 @@ function hasDefault (target?: object): boolean {
   return Boolean(target && ('default' in target || 'x-default' in target))
 }
 
-export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2): string {
+export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2, lastChar = '\n'): string {
   const space = [...new Array(spaces)].map(() => ' ').join('')
 
   if ('$ref' in schema) {
-    return `Schemas.${(schema.$ref as string).slice(21)}\n`
+    return `Schemas.${(schema.$ref as string).slice(21)}${lastChar}`
   }
 
   if (schema.type === 'integer') {
-    return `${schema.format === 'int64' ? 'bigint' : 'number'}\n`
+    return `${schema.format === 'int64' ? 'bigint' : 'number'}${lastChar}`
   }
 
   if (schema.type === 'string') {
     if (schema.format === 'date-time') {
-      return 'Date\n'
+      return `Date${lastChar}`
     }
 
     if (schema.format === 'binary') {
-      return 'Bin\n'
+      return `Bin${lastChar}`
     }
 
-    return 'string\n'
+    return `string${lastChar}`
   }
 
   if (['boolean', 'number', 'null'].includes(schema.type as any)) {
-    return `${schema.type as string}\n`
+    return `${schema.type as string}${lastChar}`
   }
 
   if (schema.type === 'array') {
-    if (!schema.items) return 'any[]\n'
+    if (!schema.items) return `any[]${lastChar}`
 
-    return `(${generateSchemaTypes(schema.items, spaces + 2).slice(0, -1)})[]\n`
+    return `Array<${generateSchemaTypes(schema.items, spaces + 2, '')}>${lastChar}`
   }
 
   if (schema.type !== 'object') {
     console.error('unknown type', schema)
-    return 'any\n'
+    return `any${lastChar}`
   }
 
   let result = '{\n'
@@ -54,7 +54,7 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2): 
     result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}`
   }
 
-  return `${result}${space.slice(0, -2)}}\n`
+  return `${result}${space.slice(0, -2)}}${lastChar}`
 }
 
 export function generateTypes (docs: Document, namespace = 'Api'): string {
@@ -129,8 +129,27 @@ export function generateTypes (docs: Document, namespace = 'Api'): string {
         result += `      Body: ${generateSchemaTypes(requestBody.content['multipart/form-data'].schema, 8)}`
       }
 
-      if (responses?.default) {
-        result += `      Response: ${generateSchemaTypes(responses.default.content['application/json'].schema, 8)}`
+      if (responses) {
+        result += '      Response: {\n'
+        for (const key in responses) {
+          let multiple = false
+          const response = responses[key]
+          result += `        ['${key}']: `
+
+          for (const type in response.content) {
+            if (multiple) {
+              result += ' | '
+            }
+
+            result += generateSchemaTypes(response.content[type].schema, 10, '')
+
+            multiple = true
+          }
+
+          result += '\n'
+        }
+
+        result += '     }\n'
       }
 
       result += '    }\n'
