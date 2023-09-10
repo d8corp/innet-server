@@ -130,6 +130,7 @@ You will see a base Open API JSON structure.
 
 [\<server>](#server)   
 [\<api>](#api)  
+[\<request>](#request)  
 [\<preset>](#preset)
 
 ---
@@ -372,6 +373,59 @@ export default (
     <api prefix='/openapi' />
     <api exclude={/^\/(api|openapi)/} />
   </server>
+)
+```
+
+### \<request>
+
+[← back](#run-time)
+
+This element MUST be placed in `<endpoint>` element.
+It defines run-time call handler for the endpoint.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/partners'>
+        <request>
+          <success>
+            {{partners: []}}
+          </success>
+        </request>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+You can place a component inside it.
+The component will run when the endpoint will be triggered.
+
+*src/app.tsx*
+```typescript jsx
+import { GetPartners } from './GetPartners'
+
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/partners'>
+        <request>
+          <GetPartners />
+        </request>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+*src/GetPartners.tsx*
+```typescript jsx
+export const GetPartners = () => (
+  <success>
+    {{partners: []}}
+  </success>
 )
 ```
 
@@ -2949,11 +3003,7 @@ Next elements relate to run-time action.
 This action calls on user request.
 
 [← back](#index)
-
-Parent
-[\<request>](#request)
-
-Children  
+  
 [\<success>](#success)  
 [\<error>](#error)  
 [\<proxy>](#proxy)  
@@ -2964,59 +3014,6 @@ Children
 [\<cookie>](#cookie)
 
 ---
-
-### \<request>
-
-[← back](#run-time)
-
-This element MUST be placed in `<endpoint>` element.
-It defines run-time call handler for the endpoint.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/partners'>
-        <request>
-          <success>
-            {{partners: []}}
-          </success>
-        </request>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-You can place a component inside it.
-The component will run when the endpoint will be triggered.
-
-*src/app.tsx*
-```typescript jsx
-import { GetPartners } from './GetPartners'
-
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/partners'>
-        <request>
-          <GetPartners />
-        </request>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-*src/GetPartners.tsx*
-```typescript jsx
-export const GetPartners = () => (
-  <success>
-    {{partners: []}}
-  </success>
-)
-```
 
 ### \<success>
 
