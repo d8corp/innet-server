@@ -81,6 +81,28 @@ Here is a **Hello World** example:
 ```typescript jsx
 export default (
   <server>
+    <request>
+      <success>
+        Hello World!
+      </success>
+    </request>
+  </server>
+)
+```
+
+*Use `npm start` to run this server.*
+
+Open http://localhost:80
+You will see the `Hello Word!` string.
+
+---
+
+Here is an [api](#api) example:
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
     <api />
   </server>
 )
