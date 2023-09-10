@@ -14,7 +14,7 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 var httpProxy__default = /*#__PURE__*/_interopDefaultLegacy(httpProxy);
 
 const proxy = () => {
-    const { to, secure, onProxyRes } = jsx.useProps();
+    const { to, secure = false, onProxyRes } = jsx.useProps();
     const req = useRequest.useRequest();
     const res = useResponse.useResponse();
     if (!req || !res) {

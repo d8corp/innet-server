@@ -6,7 +6,7 @@ import { useResponse } from '../../../hooks/useResponse/useResponse.es6.js';
 import { useThrow } from '../../../hooks/useThrow/useThrow.es6.js';
 
 const proxy = () => {
-    const { to, secure, onProxyRes } = useProps();
+    const { to, secure = false, onProxyRes } = useProps();
     const req = useRequest();
     const res = useResponse();
     if (!req || !res) {

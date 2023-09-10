@@ -12,7 +12,7 @@ export interface ProxyProps {
 }
 
 export const proxy: HandlerPlugin = () => {
-  const { to, secure, onProxyRes } = useProps<ProxyProps>()
+  const { to, secure = false, onProxyRes } = useProps<ProxyProps>()
   const req = useRequest()
   const res = useResponse()
 
