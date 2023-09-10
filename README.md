@@ -46,7 +46,7 @@ Customize
 
 [← back](#index)
 
-The simplest way to start working with `@innet/server`, it is `innetjs` usage.
+The simplest way to start working with `@innet/server`, it is [innetjs](https://www.npmjs.com/package/innetjs) usage.
 
 ```shell
 npx innetjs init my-app -t api
