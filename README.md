@@ -380,28 +380,62 @@ export default (
 
 [← back](#main)
 
-This element MUST be placed in `<endpoint>` element.
-It defines run-time call handler for the endpoint.
+This element MUST be placed in [\<server>](#server) element.
+It defines run-time call handler for parent element.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <request>
+      <error status={404} />
+    </request>
+  </server>
+)
+```
+*Any request returns 404*
+
+Place [\<request>](#request) in [\<api>](#api) to handle any unknown request in the [\<api>](#api).
 
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
     <api>
-      <endpoint method='get' path='/partners'>
-        <request>
-          <success>
-            {{partners: []}}
-          </success>
-        </request>
-      </endpoint>
+      <request>
+        <error status={404} />
+      </request>
     </api>
   </server>
 )
 ```
 
-You can place a component inside it.
-The component will run when the endpoint will be triggered.
+Place [\<request>](#request) in [\<endpoint>](#endpoint) to handle the [\<endpoint>](#endpoint) request.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/my-endpoint'>
+        <request>
+          <success>
+            My Endpoint
+          </success>
+        </request>
+      </endpoint>
+    </api>
+    <request>
+      <success>
+        Any other request
+      </success>
+    </request>
+  </server>
+)
+```
+
+You can place a component inside [\<request>](#request).
+The component will run when the request will be triggered.
 
 *src/app.tsx*
 ```typescript jsx
