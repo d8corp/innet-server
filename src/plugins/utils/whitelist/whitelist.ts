@@ -8,7 +8,7 @@ export interface WhitelistProps {
 
 export function whitelist () {
   const {
-    ip = process.env.WHITELIST_IP,
+    ip = process.env.INNET_WHITELIST_IP,
   } = useProps<WhitelistProps>() || {}
   const children = useChildren()
 

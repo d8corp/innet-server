@@ -8,7 +8,7 @@ export interface BlacklistProps {
 
 export function blacklist () {
   const {
-    ip = process.env.BLACKLIST_IP,
+    ip = process.env.INNET_BLACKLIST_IP,
   } = useProps<BlacklistProps>() || {}
   const children = useChildren()
 

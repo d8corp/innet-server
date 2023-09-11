@@ -11,7 +11,10 @@ export interface DtsProps {
 }
 
 export const dts: HandlerPlugin = () => {
-  const { path = 'src/api.d.ts', namespace } = useProps<DtsProps>() || {}
+  const {
+    path = process.env.INNET_DTS_PATH || 'src/apiTypes.d.ts',
+    namespace = process.env.INNET_DTS_NAMESPACE,
+  } = useProps<DtsProps>() || {}
   const { docs } = useApi()
 
   promises.writeFile(path, generateTypes(docs, namespace)).catch(e => {
