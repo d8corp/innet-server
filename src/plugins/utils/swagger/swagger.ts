@@ -9,7 +9,9 @@ export interface SwaggerProps {
 }
 
 export const swagger: HandlerPlugin = () => {
-  const { path = '/swagger-ui' } = useProps<SwaggerProps>() || {}
+  const {
+    path = process.env.INNET_SWAGGER_PATH || '/swagger-ui',
+  } = useProps<SwaggerProps>() || {}
   const { docs, prefix } = useApi()
 
   let swaggerResponse: string

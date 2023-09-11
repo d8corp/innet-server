@@ -2,6 +2,7 @@ import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useContext, useProps } from '@innet/jsx'
 
 import { tagContext, useApi } from '../../../hooks'
+import { type TagObject } from '../../../types'
 
 export interface TagProps {
   /** The name of the tag. */
@@ -22,7 +23,11 @@ export const tag: HandlerPlugin = () => {
   const { name, description } = useProps<TagProps>()
   const children = useChildren()
   const { docs } = useApi()
-  const tag = description ? { name, description } : { name }
+  const tag: TagObject = { name }
+
+  if (description) {
+    tag.description = description
+  }
 
   if (!docs.tags) {
     docs.tags = [tag]
