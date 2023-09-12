@@ -27,8 +27,8 @@ export const server: HandlerPlugin = () => {
   const { env } = process
   let {
     ssl: {
-      key = env.SSL_KEY ?? 'localhost.key',
-      cert = env.SSL_CRT ?? 'localhost.crt',
+      key = env.INNET_SSL_KEY ?? 'localhost.key',
+      cert = env.INNET_SSL_CRT ?? 'localhost.crt',
     } = {},
   } = props
 
@@ -46,7 +46,7 @@ export const server: HandlerPlugin = () => {
 
   const https = Boolean(key && cert)
   const {
-    port = Number(env.PORT ?? (https ? 442 : 80)),
+    port = Number(env.INNET_PORT ?? (https ? 442 : 80)),
     onStart,
     onError,
     onRequest,
