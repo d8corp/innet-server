@@ -8,7 +8,7 @@ var useServerPlugin = require('../../../hooks/useServerPlugin/useServerPlugin.js
 var useAction = require('../../../hooks/useAction/useAction.js');
 
 function protection() {
-    const { maxAge = Number(process.env.PROTECTION_MAX_AGE) || 365 * 24 * 60 * 60, value = process.env.PROTECTION, excludeIp = process.env.PROTECTED_IP, cookieKey = process.env.PROTECTION_COOKIE_KEY || 'protection', searchKey = process.env.PROTECTION_SEARCH_KEY || 'protection', } = jsx.useProps() || {};
+    const { maxAge = Number(process.env.INNET_PROTECTION_MAX_AGE) || 365 * 24 * 60 * 60, value = process.env.INNET_PROTECTION, excludeIp = process.env.INNET_PROTECTED_IP, cookieKey = process.env.INNET_PROTECTION_COOKIE_KEY || 'protection', searchKey = process.env.INNET_PROTECTION_SEARCH_KEY || 'protection', } = jsx.useProps() || {};
     const children = jsx.useChildren();
     if (!value)
         return;

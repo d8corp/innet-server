@@ -26,3 +26,4 @@ import './usePath/index.es6.js';
 import './useServerPlugin/index.es6.js';
 import './useClientIp/index.es6.js';
 import './useServerPlugins/index.es6.js';
+import './useObjectSchemaContext/index.es6.js';

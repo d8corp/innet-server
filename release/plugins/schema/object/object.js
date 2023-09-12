@@ -10,6 +10,7 @@ require('../../../utils/index.js');
 var useBlock = require('../../../hooks/useBlock/useBlock.js');
 var useApi = require('../../../hooks/useApi/useApi.js');
 var useSchemaType = require('../../../hooks/useSchemaType/useSchemaType.js');
+var useObjectSchemaContext = require('../../../hooks/useObjectSchemaContext/useObjectSchemaContext.js');
 var useSchemaContext = require('../../../hooks/useSchemaContext/useSchemaContext.js');
 var useParentRule = require('../../../hooks/useParentRule/useParentRule.js');
 var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
@@ -30,19 +31,23 @@ const object = () => {
     const schema = useSchemaType.useSchemaType('object', props);
     const handler = innet.useNewHandler();
     if (schema) {
-        useSchemaContext.schemaContext.set(handler, schema);
+        schema.additionalProperties = {};
+        useObjectSchemaContext.objectSchemaContext.set(handler, schema);
+        useSchemaContext.schemaContext.set(handler, schema.additionalProperties);
         useParentRule.parentRuleContext.reset(handler);
         const rules = [];
         const rulesMap = {};
         if ((props === null || props === void 0 ? void 0 : props.default) !== undefined) {
             rules.push(defaultTo.defaultTo(props.default));
         }
+        let childRule = v => v;
+        const restRule = (value, data) => childRule(value, data);
         if ((props === null || props === void 0 ? void 0 : props.default) !== undefined) {
-            rules.push(objectOf.objectOf(rulesMap));
+            rules.push(objectOf.objectOf(rulesMap, restRule));
         }
         else {
             const parentRule = useParentRule.useParentRule();
-            rules.push(parentRule(objectOf.objectOf(rulesMap)));
+            rules.push(parentRule(objectOf.objectOf(rulesMap, restRule)));
         }
         const rule = pipe.pipe(...rules);
         if (props.ref) {
@@ -50,7 +55,9 @@ const object = () => {
         }
         useRule.useRule(rule);
         useObjectRule.objectRuleContext.set(handler, rulesMap);
-        useRule.ruleContext.set(handler, null);
+        useRule.ruleContext.set(handler, rule => {
+            childRule = rule;
+        });
         useParentRule.parentRuleContext.reset(handler);
         innet__default["default"](children, handler);
     }

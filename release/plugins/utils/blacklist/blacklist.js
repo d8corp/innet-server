@@ -8,7 +8,7 @@ var useServerPlugin = require('../../../hooks/useServerPlugin/useServerPlugin.js
 var useAction = require('../../../hooks/useAction/useAction.js');
 
 function blacklist() {
-    const { ip = process.env.BLACKLIST_IP, } = jsx.useProps() || {};
+    const { ip = process.env.INNET_BLACKLIST_IP, } = jsx.useProps() || {};
     const children = jsx.useChildren();
     const ips = typeof ip === 'string' ? ip.split(',') : ip;
     useServerPlugin.useServerPlugin(() => {

@@ -6,7 +6,7 @@ import { useServerPlugin } from '../../../hooks/useServerPlugin/useServerPlugin.
 import { useAction } from '../../../hooks/useAction/useAction.es6.js';
 
 const swagger = () => {
-    const { path = '/swagger-ui' } = useProps() || {};
+    const { path = process.env.INNET_SWAGGER_PATH || '/swagger-ui', } = useProps() || {};
     const { docs, prefix } = useApi();
     let swaggerResponse;
     useServerPlugin(() => {

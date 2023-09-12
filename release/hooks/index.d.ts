@@ -26,3 +26,4 @@ export * from './usePath';
 export * from './useServerPlugin';
 export * from './useClientIp';
 export * from './useServerPlugins';
+export * from './useObjectSchemaContext';

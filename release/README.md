@@ -160,8 +160,8 @@ export default (
 ```
 
 - By default, it uses port `80` for `http` and port `442` for `https`.
-- You can use `PORT` environment variable to set it up on CI level.
-- [innetjs](https://www.npmjs.com/package/innetjs) allows you to use `PORT` in `.env` file of local environment.
+- You can use `INNET_PORT` environment variable to set it up on CI level.
+- [innetjs](https://www.npmjs.com/package/innetjs) allows you to use `INNET_PORT` in `.env` file of local environment.
 
 #### ssl
 
@@ -179,8 +179,8 @@ export default (
 )
 ```
 
-- You can use `SSL_KEY` and `SSL_CRT` environment variables to set it up on CI level.
-- [innetjs](https://www.npmjs.com/package/innetjs) allows you to use `SSL_KEY` and `SSL_CRT` in `.env` file.
+- You can use `INNET_SSL_KEY` and `INNET_SSL_CRT` environment variables to set it up on CI level.
+- [innetjs](https://www.npmjs.com/package/innetjs) allows you to use `INNET_SSL_KEY` and `INNET_SSL_CRT` in `.env` file.
 - You can add `localhost.key` and `localhost.crt` files in your project folder.
 
 #### onStart
@@ -685,7 +685,7 @@ export default (
 
 #### ip
 
-`ip` prop sets black IPs. By default, it equals `BLACKLIST_IP` node environment variable.
+`ip` prop sets black IPs. By default, it equals `INNET_BLACKLIST_IP` node environment variable.
 
 You can split IPs by `,` char.
 
@@ -726,7 +726,7 @@ export default (
 
 #### ip
 
-`ip` prop sets white IPs. By default, it equals `WHITELIST_IP` node environment variable.
+`ip` prop sets white IPs. By default, it equals `INNET_WHITELIST_IP` node environment variable.
 
 You can split IPs by `,` char.
 
@@ -800,7 +800,7 @@ export default (
 This prop sets how much time protection is qualified.
 
 By default, the prop equals a year.
-You can use `PROTECTION_MAX_AGE` env to set default `maxAge`.
+You can use `INNET_PROTECTION_MAX_AGE` env to set default `maxAge`.
 
 *src/app.tsx*
 ```typescript jsx
@@ -824,7 +824,7 @@ export default (
 
 This prop sets a list of IP addresses (split by `,`) to ignore the protection.
 
-You can use `PROTECTED_IP` env to set default `excludeIp`.
+You can use `INNET_PROTECTED_IP` env to set default `excludeIp`.
 
 *src/app.tsx*
 ```typescript jsx
@@ -849,7 +849,7 @@ export default (
 This prop sets a cookie field name used to store protection of a user.
 
 By default, it equals `protection`.
-You can use `PROTECTION_COOKIE_KEY` env to set default `cookieKey`.
+You can use `INNET_PROTECTION_COOKIE_KEY` env to set default `cookieKey`.
 
 *src/app.tsx*
 ```typescript jsx
@@ -874,7 +874,7 @@ export default (
 This prop sets a search query field name used to check protection.
 
 By default, it equals `protection`.
-You can use `PROTECTION_SEARCH_KEY` env to set default `searchKey`.
+You can use `INNET_PROTECTION_SEARCH_KEY` env to set default `searchKey`.
 
 *src/app.tsx*
 ```typescript jsx
@@ -2908,7 +2908,9 @@ export default (
     <api>
       <endpoint method='post' path='/users'>
         <body>
-          <object />
+          <object>
+            <string />
+          </object>
         </body>
       </endpoint>
     </api>
@@ -2987,7 +2989,7 @@ The element MUST be placed inside [\<object>](#object).
 It defines a `field` of an `object` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
-`key` is REQUIRED prop of `<field>`, it defines a field name of the `<object>`.
+`key` is REQUIRED prop of `<field>`, it defines a field name of the [\<object>](#object).
 
 *src/app.tsx*
 ```typescript jsx

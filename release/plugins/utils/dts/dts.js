@@ -10,7 +10,7 @@ var useApi = require('../../../hooks/useApi/useApi.js');
 var generateTypes = require('../../../utils/generateTypes/generateTypes.js');
 
 const dts = () => {
-    const { path = 'src/api.d.ts', namespace } = jsx.useProps() || {};
+    const { path = process.env.INNET_DTS_PATH || 'src/apiTypes.d.ts', namespace = process.env.INNET_DTS_NAMESPACE, } = jsx.useProps() || {};
     const { docs } = useApi.useApi();
     fs.promises.writeFile(path, generateTypes.generateTypes(docs, namespace)).catch(e => {
         console.error(e);

@@ -39,6 +39,9 @@ function generateSchemaTypes(schema, spaces = 2, lastChar = '\n') {
             : '?:';
         result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}`;
     }
+    if (typeof schema.additionalProperties === 'object' && Object.keys(schema.additionalProperties).length) {
+        result += `${space}[key: string]: any\n`;
+    }
     return `${result}${space.slice(0, -2)}}${lastChar}`;
 }
 function generateTypes(docs, namespace = 'Api') {

@@ -6,6 +6,7 @@ var innet = require('innet');
 var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
 require('../../../utils/index.js');
+var useObjectSchemaContext = require('../../../hooks/useObjectSchemaContext/useObjectSchemaContext.js');
 var useSchemaContext = require('../../../hooks/useSchemaContext/useSchemaContext.js');
 var useObjectRule = require('../../../hooks/useObjectRule/useObjectRule.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
@@ -18,11 +19,8 @@ var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 const field = () => {
     const handler = innet.useNewHandler();
     const { key, optional } = jsx.useProps();
-    const schema = useSchemaContext.useSchemaContext();
+    const schema = useObjectSchemaContext.useObjectSchemaContext();
     const children = jsx.useChildren();
-    if (Array.isArray(schema) || (schema === null || schema === void 0 ? void 0 : schema.type) !== 'object') {
-        throw Error('Use <field> inside <object>');
-    }
     if (!schema.properties) {
         schema.properties = {};
     }

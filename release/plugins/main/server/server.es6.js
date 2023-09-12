@@ -18,7 +18,7 @@ const server = () => {
     const handler = useNewHandler();
     const { props = {}, children } = useApp();
     const { env } = process;
-    let { ssl: { key = (_a = env.SSL_KEY) !== null && _a !== void 0 ? _a : 'localhost.key', cert = (_b = env.SSL_CRT) !== null && _b !== void 0 ? _b : 'localhost.crt', } = {}, } = props;
+    let { ssl: { key = (_a = env.INNET_SSL_KEY) !== null && _a !== void 0 ? _a : 'localhost.key', cert = (_b = env.INNET_SSL_CRT) !== null && _b !== void 0 ? _b : 'localhost.crt', } = {}, } = props;
     try {
         if (!isInvalidPath(key)) {
             key = fs.readFileSync(key).toString();
@@ -32,7 +32,7 @@ const server = () => {
         cert = '';
     }
     const https = Boolean(key && cert);
-    const { port = Number((_c = env.PORT) !== null && _c !== void 0 ? _c : (https ? 442 : 80)), onStart, onError, onRequest, onClose, } = props;
+    const { port = Number((_c = env.INNET_PORT) !== null && _c !== void 0 ? _c : (https ? 442 : 80)), onStart, onError, onRequest, onClose, } = props;
     const plugins = new Set();
     const server = https ? http2.createServer({ key, cert }) : http.createServer();
     serverContext.set(handler, { server, port });

@@ -8,7 +8,7 @@ var useServerPlugin = require('../../../hooks/useServerPlugin/useServerPlugin.js
 var useAction = require('../../../hooks/useAction/useAction.js');
 
 function whitelist() {
-    const { ip = process.env.WHITELIST_IP, } = jsx.useProps() || {};
+    const { ip = process.env.INNET_WHITELIST_IP, } = jsx.useProps() || {};
     const children = jsx.useChildren();
     const ips = typeof ip === 'string' ? ip.split(',') : ip;
     if (!ips)

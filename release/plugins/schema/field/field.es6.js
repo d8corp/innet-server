@@ -2,7 +2,8 @@ import innet, { useNewHandler } from 'innet';
 import { useProps, useChildren } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
-import { useSchemaContext, schemaContext } from '../../../hooks/useSchemaContext/useSchemaContext.es6.js';
+import { useObjectSchemaContext } from '../../../hooks/useObjectSchemaContext/useObjectSchemaContext.es6.js';
+import { schemaContext } from '../../../hooks/useSchemaContext/useSchemaContext.es6.js';
 import { useObjectRule, objectRuleContext } from '../../../hooks/useObjectRule/useObjectRule.es6.js';
 import { ruleContext } from '../../../hooks/useRule/useRule.es6.js';
 import { required } from '../../../utils/rules/required/required.es6.js';
@@ -10,11 +11,8 @@ import { required } from '../../../utils/rules/required/required.es6.js';
 const field = () => {
     const handler = useNewHandler();
     const { key, optional } = useProps();
-    const schema = useSchemaContext();
+    const schema = useObjectSchemaContext();
     const children = useChildren();
-    if (Array.isArray(schema) || (schema === null || schema === void 0 ? void 0 : schema.type) !== 'object') {
-        throw Error('Use <field> inside <object>');
-    }
     if (!schema.properties) {
         schema.properties = {};
     }

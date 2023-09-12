@@ -11,7 +11,10 @@ const tag = () => {
     const { name, description } = useProps();
     const children = useChildren();
     const { docs } = useApi();
-    const tag = description ? { name, description } : { name };
+    const tag = { name };
+    if (description) {
+        tag.description = description;
+    }
     if (!docs.tags) {
         docs.tags = [tag];
     }

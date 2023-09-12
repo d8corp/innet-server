@@ -4,7 +4,7 @@ import { useServerPlugin } from '../../../hooks/useServerPlugin/useServerPlugin.
 import { useAction } from '../../../hooks/useAction/useAction.es6.js';
 
 function whitelist() {
-    const { ip = process.env.WHITELIST_IP, } = useProps() || {};
+    const { ip = process.env.INNET_WHITELIST_IP, } = useProps() || {};
     const children = useChildren();
     const ips = typeof ip === 'string' ? ip.split(',') : ip;
     if (!ips)

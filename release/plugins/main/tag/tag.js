@@ -19,7 +19,10 @@ const tag = () => {
     const { name, description } = jsx.useProps();
     const children = jsx.useChildren();
     const { docs } = useApi.useApi();
-    const tag = description ? { name, description } : { name };
+    const tag = { name };
+    if (description) {
+        tag.description = description;
+    }
     if (!docs.tags) {
         docs.tags = [tag];
     }
