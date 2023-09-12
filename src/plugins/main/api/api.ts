@@ -56,9 +56,10 @@ export const api: HandlerPlugin = () => {
     title = '',
     include,
     exclude,
+    version = process.env.INNET_API_VERSION || '0.0.0',
     ...rest
   } = props
-  const info = { ...rest, version: rest.version ?? '0.0.0', title }
+  const info = { ...rest, version, title }
 
   const endpoints: Endpoints = {}
   const docs: Document = {

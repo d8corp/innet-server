@@ -247,8 +247,8 @@ export default (
 
 [← back](#main)
 
-`<api>` element MUST be placed in `<server>` element.  
 This element defines a REST API on the server.
+This element MUST be placed in [\<server>](#server) element.
 
 #### title
 
@@ -329,7 +329,7 @@ export default (
 )
 ```
 
-*default: 0.0.0*
+*default: `INNET_API_VERSION` || `'0.0.0'`*
 
 #### prefix
 
