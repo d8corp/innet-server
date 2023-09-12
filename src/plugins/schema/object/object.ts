@@ -3,6 +3,7 @@ import { useChildren, useProps } from '@innet/jsx'
 
 import {
   objectRuleContext,
+  objectSchemaContext,
   ruleContext,
   schemaContext, useApi,
   useBlock,
@@ -34,7 +35,9 @@ export const object: HandlerPlugin = () => {
   const handler = useNewHandler()
 
   if (schema) {
-    schemaContext.set(handler, schema)
+    schema.additionalProperties = {}
+    objectSchemaContext.set(handler, schema)
+    schemaContext.set(handler, schema.additionalProperties)
     parentRuleContext.reset(handler)
 
     const rules: Rule[] = []
@@ -44,11 +47,15 @@ export const object: HandlerPlugin = () => {
       rules.push(defaultTo(props.default))
     }
 
+    let childRule: Rule = v => v
+
+    const restRule: Rule = (value, data) => childRule(value, data)
+
     if (props?.default !== undefined) {
-      rules.push(objectOf(rulesMap))
+      rules.push(objectOf(rulesMap, restRule))
     } else {
       const parentRule = useParentRule()
-      rules.push(parentRule(objectOf(rulesMap)))
+      rules.push(parentRule(objectOf(rulesMap, restRule)))
     }
 
     const rule = pipe(...rules)
@@ -59,7 +66,9 @@ export const object: HandlerPlugin = () => {
 
     useRule(rule)
     objectRuleContext.set(handler, rulesMap)
-    ruleContext.set(handler, null)
+    ruleContext.set(handler, rule => {
+      childRule = rule
+    })
     parentRuleContext.reset(handler)
 
     innet(children, handler)

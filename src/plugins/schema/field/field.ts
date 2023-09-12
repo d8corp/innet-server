@@ -4,8 +4,9 @@ import { useChildren, useProps } from '@innet/jsx'
 import {
   objectRuleContext,
   ruleContext,
-  schemaContext, useObjectRule,
-  useSchemaContext,
+  schemaContext,
+  useObjectRule,
+  useObjectSchemaContext,
 } from '../../../hooks'
 import { type SchemaObject } from '../../../types'
 import { required } from '../../../utils'
@@ -18,12 +19,8 @@ export interface FieldProps {
 export const field: HandlerPlugin = () => {
   const handler = useNewHandler()
   const { key, optional } = useProps<FieldProps>()
-  const schema = useSchemaContext()
+  const schema = useObjectSchemaContext()
   const children = useChildren()
-
-  if (Array.isArray(schema) || schema?.type !== 'object') {
-    throw Error('Use <field> inside <object>')
-  }
 
   if (!schema.properties) {
     schema.properties = {}

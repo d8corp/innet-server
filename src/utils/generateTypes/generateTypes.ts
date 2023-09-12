@@ -54,6 +54,10 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2, l
     result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}`
   }
 
+  if (typeof schema.additionalProperties === 'object' && Object.keys(schema.additionalProperties).length) {
+    result += `${space}[key: string]: any\n`
+  }
+
   return `${result}${space.slice(0, -2)}}${lastChar}`
 }
 

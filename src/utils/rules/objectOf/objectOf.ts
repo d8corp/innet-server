@@ -3,7 +3,7 @@ import { type Rule } from '../types'
 
 export type ObjectOf = Record<string, Rule>
 
-export function objectOf (map: ObjectOf) {
+export function objectOf (map: ObjectOf, rest?: Rule) {
   return (value: any, data?: Record<string, any>) => {
     if (value === null || typeof value !== 'object') {
       throw new RulesError('object', {
@@ -18,6 +18,18 @@ export function objectOf (map: ObjectOf) {
       const val = map[key](value[key], { ...data, key: addKey(key, data) })
       if (val !== undefined) {
         result[key] = val
+      }
+    }
+
+    if (rest) {
+      for (const key in value) {
+        if (key in map) continue
+
+        const val = rest(value[key], { ...data, key: addKey(key, data) })
+
+        if (val !== undefined) {
+          result[key] = val
+        }
       }
     }
 
