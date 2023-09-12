@@ -12,7 +12,10 @@ export interface CmsProps {
 }
 
 export function cms () {
-  const { prefix = '/', dir = '.' } = useProps<CmsProps>() || {}
+  const {
+    prefix = process.env.INNET_CMS_PREFIX || '/',
+    dir = process.env.INNET_CMS_DIR || '.',
+  } = useProps<CmsProps>() || {}
   const children = useChildren()
   const handler = useHandler()
   let url = usePath()
