@@ -12,11 +12,10 @@ import { RulesError } from '../../../utils/rules/helpers.es6.js';
 import { paramsContext } from '../../../hooks/useParams/useParams.es6.js';
 
 const api = () => {
-    var _a;
     const handler = useNewHandler();
     const { props = {}, children } = useApp();
-    const { prefix = '', title = '', include, exclude } = props, rest = __rest(props, ["prefix", "title", "include", "exclude"]);
-    const info = Object.assign(Object.assign({}, rest), { version: (_a = rest.version) !== null && _a !== void 0 ? _a : '0.0.0', title });
+    const { prefix = '', title = '', include, exclude, version = process.env.INNET_API_VERSION || '0.0.0' } = props, rest = __rest(props, ["prefix", "title", "include", "exclude", "version"]);
+    const info = Object.assign(Object.assign({}, rest), { version, title });
     const endpoints = {};
     const docs = {
         openapi: '3.1.0',
@@ -39,7 +38,7 @@ const api = () => {
     serverPlugins.set(handler, plugins);
     apiContext.set(handler, context);
     useServerPlugin(() => __awaiter(void 0, void 0, void 0, function* () {
-        var _b, _c, _d, _e, _f, _g;
+        var _a, _b, _c, _d, _e, _f;
         const action = useAction();
         if (!condition(action))
             return;
@@ -53,7 +52,7 @@ const api = () => {
             res.end();
             return null;
         }
-        const method = ((_c = (_b = req.method) === null || _b === void 0 ? void 0 : _b.toLowerCase()) !== null && _c !== void 0 ? _c : 'get');
+        const method = ((_b = (_a = req.method) === null || _a === void 0 ? void 0 : _a.toLowerCase()) !== null && _b !== void 0 ? _b : 'get');
         const rawSplitPath = url.slice(prefix.length).split('/').slice(1);
         const splitPath = rawSplitPath.at(-1) ? rawSplitPath : rawSplitPath.slice(0, -1);
         const endpoint = endpoints[method];
@@ -138,8 +137,8 @@ const api = () => {
                         return true;
                     });
                 }
-                if ((_e = (_d = currentEndpoint.static) === null || _d === void 0 ? void 0 : _d[key]) === null || _e === void 0 ? void 0 : _e.plugins) {
-                    if (!(yield run((_f = currentEndpoint.static) === null || _f === void 0 ? void 0 : _f[key], params)))
+                if ((_d = (_c = currentEndpoint.static) === null || _c === void 0 ? void 0 : _c[key]) === null || _d === void 0 ? void 0 : _d.plugins) {
+                    if (!(yield run((_e = currentEndpoint.static) === null || _e === void 0 ? void 0 : _e[key], params)))
                         continue;
                     return null;
                 }
@@ -154,7 +153,7 @@ const api = () => {
                 }
                 break;
             }
-            if ((_g = currentEndpoint.static) === null || _g === void 0 ? void 0 : _g[key]) {
+            if ((_f = currentEndpoint.static) === null || _f === void 0 ? void 0 : _f[key]) {
                 endpointQueue.push([deep + 1, currentEndpoint.static[key], params]);
             }
             if (currentEndpoint.dynamic) {

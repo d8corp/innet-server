@@ -21,6 +21,16 @@ function generateSchemaTypes(schema, spaces = 2, lastChar = '\n') {
     if (['boolean', 'number', 'null'].includes(schema.type)) {
         return `${schema.type}${lastChar}`;
     }
+    if (schema.oneOf) {
+        let result = '';
+        for (const item of schema.oneOf) {
+            if (result) {
+                result += ' | ';
+            }
+            result += generateSchemaTypes(item, spaces + 2, '');
+        }
+        return result + lastChar;
+    }
     if (schema.type === 'array') {
         if (!schema.items)
             return `any[]${lastChar}`;
@@ -32,15 +42,23 @@ function generateSchemaTypes(schema, spaces = 2, lastChar = '\n') {
     }
     let result = '{\n';
     const required = schema.required || [];
-    for (const key in schema.properties) {
-        const prop = schema.properties[key];
-        const splitter = required.includes(key) || hasDefault(prop)
-            ? ':'
-            : '?:';
-        result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}`;
+    const hasProps = Boolean(schema.properties && Object.keys(schema.properties).length);
+    const hasRestProps = Boolean(typeof schema.additionalProperties === 'object' &&
+        Object.keys(schema.additionalProperties).length);
+    if (hasProps) {
+        for (const key in schema.properties) {
+            const prop = schema.properties[key];
+            const splitter = required.includes(key) || hasDefault(prop)
+                ? ':'
+                : '?:';
+            result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}`;
+        }
     }
-    if (typeof schema.additionalProperties === 'object' && Object.keys(schema.additionalProperties).length) {
-        result += `${space}[key: string]: any\n`;
+    if (hasRestProps) {
+        const value = hasProps
+            ? 'any\n'
+            : generateSchemaTypes(schema.additionalProperties, spaces + 2);
+        result += `${space}[key: string]: ${value}`;
     }
     return `${result}${space.slice(0, -2)}}${lastChar}`;
 }

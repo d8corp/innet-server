@@ -16,7 +16,7 @@ var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
 
 function cms() {
-    const { prefix = '/', dir = '.' } = jsx.useProps() || {};
+    const { prefix = process.env.INNET_CMS_PREFIX || '/', dir = process.env.INNET_CMS_DIR || '.', } = jsx.useProps() || {};
     const children = jsx.useChildren();
     const handler = innet.useHandler();
     let url = usePath.usePath();

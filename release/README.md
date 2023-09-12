@@ -247,8 +247,8 @@ export default (
 
 [← back](#main)
 
-`<api>` element MUST be placed in `<server>` element.  
 This element defines a REST API on the server.
+This element MUST be placed in [\<server>](#server) element.
 
 #### title
 
@@ -329,7 +329,7 @@ export default (
 )
 ```
 
-*default: 0.0.0*
+*default: `INNET_API_VERSION` || `'0.0.0'`*
 
 #### prefix
 
@@ -3380,7 +3380,7 @@ export default (
 
 #### dir
 
-By default, it looks at project folder.
+By default, it equals `INNET_CMS_DIR` node env variable or the project folder.
 If you try the previous example on [http://localhost/package.json](http://localhost/package.json)
 you get the project `package.json` file.
 
@@ -3403,6 +3403,7 @@ you get the index file in `src` folder.
 #### prefix
 
 `<cms>` matches full `path`, you should take it into account if you add `prefix` on `<api>`.
+By default, it equals `INNET_CMS_PREFIX` node env variable or `/`.
 
 *src/app.tsx*
 ```typescript jsx

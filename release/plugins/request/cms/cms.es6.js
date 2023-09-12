@@ -7,7 +7,7 @@ import { usePath } from '../../../hooks/usePath/usePath.es6.js';
 import { file } from '../file/file.es6.js';
 
 function cms() {
-    const { prefix = '/', dir = '.' } = useProps() || {};
+    const { prefix = process.env.INNET_CMS_PREFIX || '/', dir = process.env.INNET_CMS_DIR || '.', } = useProps() || {};
     const children = useChildren();
     const handler = useHandler();
     let url = usePath();
