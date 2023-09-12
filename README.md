@@ -2908,7 +2908,9 @@ export default (
     <api>
       <endpoint method='post' path='/users'>
         <body>
-          <object />
+          <object>
+            <string />
+          </object>
         </body>
       </endpoint>
     </api>
@@ -2987,7 +2989,7 @@ The element MUST be placed inside [\<object>](#object).
 It defines a `field` of an `object` value for a parent element.
 `@innet/server` formats and validate the value automatically (real-time).
 
-`key` is REQUIRED prop of `<field>`, it defines a field name of the `<object>`.
+`key` is REQUIRED prop of `<field>`, it defines a field name of the [\<object>](#object).
 
 *src/app.tsx*
 ```typescript jsx
