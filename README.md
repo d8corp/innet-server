@@ -3188,9 +3188,9 @@ export default (
     <api>
       <endpoint method='post' path='/users'>
         <body>
-        <object
-          description='The object of a user'
-        />
+          <object
+            description='The object of a user'
+          />
         </body>
       </endpoint>
     </api>
