@@ -37,8 +37,8 @@ import {
   protection, type ProtectionProps,
   proxy, type ProxyProps,
   redirect, type RedirectProps,
-  request, type RequestProps,
   response, type ResponseProps,
+  returnPlugin, type ReturnProps,
   server, serverFn, type ServerProps,
   string, type StringProps,
   success, type SuccessProps,
@@ -85,8 +85,8 @@ export const JSXPlugins = {
   protection,
   proxy,
   redirect,
-  request,
   response,
+  return: returnPlugin,
   slot,
   slots,
   server,
@@ -154,7 +154,7 @@ declare global {
       protection: ProtectionProps
       proxy: ProxyProps
       redirect: RedirectProps
-      request: RequestProps
+      return: ReturnProps
       response: ResponseProps
       slot: SlotProps
       slots: SlotsProps

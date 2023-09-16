@@ -3,11 +3,9 @@ import { useChildren } from '@innet/jsx'
 
 import { useServerPlugin } from '../../../hooks'
 
-export interface RequestProps {
+export interface ReturnProps {}
 
-}
-
-export const request: HandlerPlugin = () => {
+export const returnPlugin: HandlerPlugin = () => {
   const children = useChildren()
   useServerPlugin(() => children)
 }
