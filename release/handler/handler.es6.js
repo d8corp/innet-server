@@ -13,9 +13,9 @@ import { cms } from '../plugins/request/cms/cms.es6.js';
 import { contact } from '../plugins/main/contact/contact.es6.js';
 import { cookie } from '../plugins/request/cookie/cookie.es6.js';
 import { date } from '../plugins/schema/date/date.es6.js';
-import { dev } from '../plugins/utils/dev/dev.es6.js';
 import { dts } from '../plugins/utils/dts/dts.es6.js';
 import { endpoint } from '../plugins/main/endpoint/endpoint.es6.js';
+import { env } from '../plugins/utils/env/env.es6.js';
 import { error } from '../plugins/request/error/error.es6.js';
 import { field } from '../plugins/schema/field/field.es6.js';
 import { file } from '../plugins/request/file/file.es6.js';
@@ -28,7 +28,6 @@ import { number } from '../plugins/schema/number/number.es6.js';
 import { object } from '../plugins/schema/object/object.es6.js';
 import { param } from '../plugins/main/param/param.es6.js';
 import { preset } from '../plugins/main/preset/preset.es6.js';
-import { prod } from '../plugins/utils/prod/prod.es6.js';
 import { protection } from '../plugins/utils/protection/protection.es6.js';
 import { proxy } from '../plugins/request/proxy/proxy.es6.js';
 import { redirect } from '../plugins/request/redirect/redirect.es6.js';
@@ -61,9 +60,9 @@ const JSXPlugins = {
     context,
     cookie,
     date,
-    dev,
     dts,
     endpoint,
+    env,
     error,
     field,
     file,
@@ -76,7 +75,6 @@ const JSXPlugins = {
     object,
     param,
     preset,
-    prod,
     protection,
     proxy,
     redirect,

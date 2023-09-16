@@ -1,6 +1,6 @@
 import { context, type ContextProps, slot, type SlotProps, slots, type SlotsProps } from '@innet/jsx';
 import { arraySync, async } from '@innet/utils';
-import { type AnyProps, type ApiProps, type ArrayProps, type BinaryProps, blacklist, type BlacklistProps, type BodyProps, type BooleanProps, cms, type CmsProps, type ContactProps, type CookieProps, type DateProps, type DevProps, type DtsProps, type EndpointProps, type ErrorProps, type FieldProps, file, type FileProps, type HeaderProps, type HostProps, type IntegerProps, type LicenseProps, type NullProps, type NumberProps, type ObjectProps, type ParamProps, preset, type PresetProps, type ProdProps, protection, type ProtectionProps, type ProxyProps, type RedirectProps, type RequestProps, type ResponseProps, type ServerProps, type StringProps, type SuccessProps, type SwaggerProps, type TagProps, type TupleProps, type UuidProps, type VariableProps, whitelist, type WhitelistProps } from '../plugins';
+import { type AnyProps, type ApiProps, type ArrayProps, type BinaryProps, blacklist, type BlacklistProps, type BodyProps, type BooleanProps, cms, type CmsProps, type ContactProps, type CookieProps, type DateProps, type DtsProps, type EndpointProps, type EnvProps, type ErrorProps, type FieldProps, file, type FileProps, type HeaderProps, type HostProps, type IntegerProps, type LicenseProps, type NullProps, type NumberProps, type ObjectProps, type ParamProps, preset, type PresetProps, protection, type ProtectionProps, type ProxyProps, type RedirectProps, type RequestProps, type ResponseProps, type ServerProps, type StringProps, type SuccessProps, type SwaggerProps, type TagProps, type TupleProps, type UuidProps, type VariableProps, whitelist, type WhitelistProps } from '../plugins';
 export declare const arrayPlugins: (typeof arraySync)[];
 export declare const JSXPlugins: {
     any: import("innet").HandlerPlugin;
@@ -15,9 +15,9 @@ export declare const JSXPlugins: {
     context: typeof context;
     cookie: import("innet").HandlerPlugin;
     date: import("innet").HandlerPlugin;
-    dev: import("innet").HandlerPlugin;
     dts: import("innet").HandlerPlugin;
     endpoint: import("innet").HandlerPlugin;
+    env: import("innet").HandlerPlugin;
     error: import("innet").HandlerPlugin;
     field: import("innet").HandlerPlugin;
     file: typeof file;
@@ -30,7 +30,6 @@ export declare const JSXPlugins: {
     object: import("innet").HandlerPlugin;
     param: import("innet").HandlerPlugin;
     preset: typeof preset;
-    prod: import("innet").HandlerPlugin;
     protection: typeof protection;
     proxy: import("innet").HandlerPlugin;
     redirect: import("innet").HandlerPlugin;
@@ -67,9 +66,9 @@ declare global {
             context: ContextProps;
             cookie: CookieProps;
             date: DateProps;
-            dev: DevProps;
             dts: DtsProps;
             endpoint: EndpointProps;
+            env: EnvProps;
             error: ErrorProps;
             field: FieldProps;
             file: FileProps;
@@ -82,7 +81,6 @@ declare global {
             object: ObjectProps;
             param: ParamProps;
             preset: PresetProps;
-            prod: ProdProps;
             protection: ProtectionProps;
             proxy: ProxyProps;
             redirect: RedirectProps;

@@ -2,8 +2,8 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var prod = require('./prod.js');
+var env = require('./env.js');
 
 
 
-exports.prod = prod.prod;
+exports.env = env.env;

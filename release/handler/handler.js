@@ -17,9 +17,9 @@ var cms = require('../plugins/request/cms/cms.js');
 var contact = require('../plugins/main/contact/contact.js');
 var cookie = require('../plugins/request/cookie/cookie.js');
 var date = require('../plugins/schema/date/date.js');
-var dev = require('../plugins/utils/dev/dev.js');
 var dts = require('../plugins/utils/dts/dts.js');
 var endpoint = require('../plugins/main/endpoint/endpoint.js');
+var env = require('../plugins/utils/env/env.js');
 var error = require('../plugins/request/error/error.js');
 var field = require('../plugins/schema/field/field.js');
 var file = require('../plugins/request/file/file.js');
@@ -32,7 +32,6 @@ var number = require('../plugins/schema/number/number.js');
 var object = require('../plugins/schema/object/object.js');
 var param = require('../plugins/main/param/param.js');
 var preset = require('../plugins/main/preset/preset.js');
-var prod = require('../plugins/utils/prod/prod.js');
 var protection = require('../plugins/utils/protection/protection.js');
 var proxy = require('../plugins/request/proxy/proxy.js');
 var redirect = require('../plugins/request/redirect/redirect.js');
@@ -65,9 +64,9 @@ const JSXPlugins = {
     context: jsx.context,
     cookie: cookie.cookie,
     date: date.date,
-    dev: dev.dev,
     dts: dts.dts,
     endpoint: endpoint.endpoint,
+    env: env.env,
     error: error.error,
     field: field.field,
     file: file.file,
@@ -80,7 +79,6 @@ const JSXPlugins = {
     object: object.object,
     param: param.param,
     preset: preset.preset,
-    prod: prod.prod,
     protection: protection.protection,
     proxy: proxy.proxy,
     redirect: redirect.redirect,
