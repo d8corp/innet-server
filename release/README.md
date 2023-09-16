@@ -1619,6 +1619,7 @@ return (
 
 [← back](#index)
 
+[\<any>](#any)  
 [\<null>](#null)  
 [\<boolean>](#boolean)  
 [\<string>](#string)  
@@ -1627,6 +1628,142 @@ return (
 [\<date>](#date)  
 [\<uuid>](#uuid)  
 [\<binary>](#binary)
+
+### \<any>
+
+[← back](#primitive-data)
+
+The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
+It defines `any` value for a parent element.
+`@innet/server` formats and validate the value automatically (real-time).
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/todos'>
+        <param
+          in='query'
+          name='search'>
+          <any />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### default
+
+A default value for the `any`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param
+          in='query'
+          name='search'>
+          <any default={null} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### example
+
+An example value.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param
+          in='query'
+          name='active'>
+          <any example={false} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### description
+
+A description of the `any`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param
+          in='query'
+          name='active'>
+          <any
+            description='Active products param'
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+### \<null>
+
+[← back](#primitive-data)
+
+The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
+It defines `null` value for a parent element.
+`@innet/server` formats and validate the value automatically (real-time).
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/todos'>
+        <param
+          in='query'
+          name='search'>
+          <null />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### description
+
+A description of the `null`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param
+          in='query'
+          name='active'>
+          <null description='FIXME!' />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
 
 ### \<boolean>
 
