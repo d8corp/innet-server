@@ -3538,9 +3538,9 @@ export default (
         </return>
       </endpoint>
     </api>
-    <response>
+    <return>
       <redirect to='https://...' />
-    </response>
+    </return>
   </server>
 )
 ```
