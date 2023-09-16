@@ -509,8 +509,7 @@ This section contains elements of utils.
 [← back](#index)
 
 [\<swagger>](#swagger)  
-[\<dev>](#dev)  
-[\<prod>](#prod)  
+[\<env>](#env)  
 [\<dts>](#dts)  
 [\<blacklist>](#blacklist)  
 [\<whitelist>](#whitelist)  
@@ -552,39 +551,48 @@ export default (
 )
 ```
 
-### \<dev>
+### \<env>
 
 [← back](#utils)
 
-Everything inside <dev> will work when `NODE_ENV` equals `development`.
+This element helps to control content by `process.env`.
+
+There are a required field of `is`.
+If it's a `string` then an environment variable must be equal to the `string`.
+If it's an `array of string` then an environment variable must be included into the `array of string`.
 
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
     <api>
-      <dev>
+      <env is='dev'>
         <swagger />
-      </dev>
+      </env>
     </api>
   </server>
 )
 ```
 
-### \<prod>
+*The `<swagger />` will work only if `NODE_ENV` equals `dev`*
 
-[← back](#utils)
+#### of
 
-Everything inside <prod> will work when `NODE_ENV` equals `production`.
+By default `of` equals `NODE_ENV`. You can check eny other environment variable.
 
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
     <api>
-      <prod>
+      <env
+        of='PORT'
+        is={[
+          '3000',
+          '8080',
+        ]}>
         <swagger />
-      </prod>
+      </env>
     </api>
   </server>
 )
