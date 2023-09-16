@@ -130,7 +130,7 @@ You will see a base Open API JSON structure.
 
 [\<server>](#server)   
 [\<api>](#api)  
-[\<return>](#request)  
+[\<return>](#return)  
 [\<preset>](#preset)
 
 ---
