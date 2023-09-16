@@ -6,9 +6,9 @@ var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
 var useServerPlugin = require('../../../hooks/useServerPlugin/useServerPlugin.js');
 
-const request = () => {
+const returnPlugin = () => {
     const children = jsx.useChildren();
     useServerPlugin.useServerPlugin(() => children);
 };
 
-exports.request = request;
+exports.returnPlugin = returnPlugin;

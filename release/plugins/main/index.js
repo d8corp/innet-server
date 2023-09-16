@@ -9,7 +9,7 @@ require('./variable/index.js');
 require('./tag/index.js');
 require('./endpoint/index.js');
 require('./response/index.js');
-require('./request/index.js');
+require('./return/index.js');
 require('./param/index.js');
 require('./body/index.js');
 require('./preset/index.js');

@@ -81,18 +81,18 @@ Here is a **Hello World** example:
 ```typescript jsx
 export default (
   <server>
-    <request>
+    <return>
       <success>
         Hello World!
       </success>
-    </request>
+    </return>
   </server>
 )
 ```
 
 *Use `npm start` to run this server.*
 
-Open http://localhost:80
+Open http://localhost
 You will see the `Hello Word!` string.
 
 ---
@@ -110,7 +110,7 @@ export default (
 
 *Use `npm start` to run this server.*
 
-Open http://localhost:80
+Open http://localhost
 You will see a base Open API JSON structure.
 
 ```json
@@ -130,7 +130,7 @@ You will see a base Open API JSON structure.
 
 [\<server>](#server)   
 [\<api>](#api)  
-[\<request>](#request)  
+[\<return>](#return)  
 [\<preset>](#preset)
 
 ---
@@ -376,41 +376,100 @@ export default (
 )
 ```
 
-### \<request>
+### \<return>
 
 [← back](#main)
 
 This element MUST be placed in [\<server>](#server) element.
-It defines run-time call handler for parent element.
+It defines a run-time call handler for parent element.
 
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
-    <request>
+    <return>
       <error status={404} />
-    </request>
+    </return>
   </server>
 )
 ```
 *Any request returns 404*
 
-Place [\<request>](#request) in [\<api>](#api) to handle any unknown request in the [\<api>](#api).
+The code runs from top to bottom and from left to right.
+You cannot use two [\<return>](#return) elements one by one,
+the same as you cannot use two `return` one by one for a JS `function`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <return>
+      <error status={404} />
+    </return>
+    <return>
+      <success />
+    </return>
+  </server>
+)
+```
+
+like
+
+```javascript
+function server () {
+  return 'error'
+  return 'success'
+}
+```
+
+*The second [\<return>](#return) will newer run.*
+
+You can use [\<return>](#return) in some elements like you use `return` in `if` or `while`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <env is='dev'>
+      <return>
+        <error status={404} />
+      </return>
+    </env>
+    <return>
+      <success />
+    </return>
+  </server>
+)
+```
+
+like
+
+```javascript
+function server () {
+  if (process.env.NODE_ENV === 'dev') {
+    return 'error'
+  }
+
+  return 'success'
+}
+```
+
+Place [\<return>](#return) in [\<api>](#api) to handle any unknown request in the [\<api>](#api).
 
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
     <api>
-      <request>
+      <return>
         <error status={404} />
-      </request>
+      </return>
     </api>
   </server>
 )
 ```
 
-Place [\<request>](#request) in [\<endpoint>](#endpoint) to handle the [\<endpoint>](#endpoint) request.
+Place [\<return>](#return) in [\<endpoint>](#endpoint) to handle the [\<endpoint>](#endpoint) request.
 
 *src/app.tsx*
 ```typescript jsx
@@ -418,23 +477,23 @@ export default (
   <server>
     <api>
       <endpoint method='get' path='/my-endpoint'>
-        <request>
+        <return>
           <success>
             My Endpoint
           </success>
-        </request>
+        </return>
       </endpoint>
     </api>
-    <request>
+    <return>
       <success>
         Any other request
       </success>
-    </request>
+    </return>
   </server>
 )
 ```
 
-You can place a component inside [\<request>](#request).
+You can place a component inside [\<return>](#return).
 The component will run when the request will be triggered.
 
 *src/app.tsx*
@@ -445,9 +504,9 @@ export default (
   <server>
     <api>
       <endpoint method='get' path='/partners'>
-        <request>
+        <return>
           <GetPartners />
-        </request>
+        </return>
       </endpoint>
     </api>
   </server>
@@ -469,6 +528,8 @@ export const GetPartners = () => (
 
 `<preset>` element MUST be placed in `<server>` element.  
 This element adds handling of each request.
+It works the same as [\<return>](#return), but do not interrupt the running.
+You can use it to add a `header` or `cookie` or some setup of a parent element.
 
 *src/app.tsx*
 ```typescript jsx
@@ -497,7 +558,18 @@ export default (
           value='no-cache, no-store, must-revalidate'
         />
       </preset>
+      ...Endpoints
+      <return>
+        <success>
+          Header contains `Cache-Control`
+        </success>
+      </return>
     </api>
+    <return>
+      <success>
+        Header do not contain `Cache-Control`
+      </success>
+    </return>
   </server>
 )
 ```
@@ -3116,9 +3188,9 @@ export default (
     <api>
       <endpoint method='post' path='/users'>
         <body>
-        <object
-          description='The object of a user'
-        />
+          <object
+            description='The object of a user'
+          />
         </body>
       </endpoint>
     </api>
@@ -3295,7 +3367,7 @@ export default (
 [← back](#run-time)
 
 Returns an error.
-This element MUST be placed in [\<request>](#request) or [\<response>](#response).
+This element MUST be placed in [\<return>](#return) or [\<response>](#response).
 
 *src/app.tsx*
 ```typescript jsx
@@ -3421,7 +3493,7 @@ There are some default errors:
 
 [← back](#run-time)
 
-MUST be placed in [\<request>](#request) or [\<response>](#response).
+MUST be placed in [\<return>](#return) or [\<response>](#response).
 
 You can easy proxy endpoints to another server/service.
 
@@ -3433,9 +3505,9 @@ export default (
       <endpoint
         path='/test'
         method='get'>
-        <request>
+        <return>
           <proxy to='https://...' />
-        </request>
+        </return>
       </endpoint>
     </api>
     <response>
@@ -3449,7 +3521,7 @@ export default (
 
 [← back](#run-time)
 
-MUST be placed in [\<request>](#request) or [\<response>](#response).
+MUST be placed in [\<return>](#return) or [\<response>](#response).
 
 You can redirect users to another resource. It adds `Cache-Control` header by default.
 
@@ -3461,14 +3533,14 @@ export default (
       <endpoint
         path='/test'
         method='get'>
-        <request>
+        <return>
           <redirect to='https://...' />
-        </request>
+        </return>
       </endpoint>
     </api>
-    <response>
+    <return>
       <redirect to='https://...' />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3486,12 +3558,12 @@ export default (
       <endpoint
         path='/test'
         method='get'>
-        <request>
+        <return>
           <redirect
             status='found'
             to='https://...'
           />
-        </request>
+        </return>
       </endpoint>
     </api>
     <response>
@@ -3508,7 +3580,7 @@ export default (
 
 [← back](#run-time)
 
-MUST be placed in [\<request>](#request) or [\<response>](#response).
+MUST be placed in [\<return>](#return) or [\<response>](#response).
 
 `<cms>` helps to return files from a folder by path. It checks files run-time on the server.
 
@@ -3604,7 +3676,7 @@ export default (
 
 [← back](#run-time)
 
-It returns a file. MUST be placed in [\<request>](#request) or [\<response>](#response).
+It returns a file. MUST be placed in [\<return>](#return) or [\<response>](#response).
 
 It adds `Content-Length` and `Content-Type` automatically.
 
@@ -3642,7 +3714,7 @@ export default (
 
 ### \<header>
 
-MUST be placed in [\<request>](#request) or [\<response>](#response).
+MUST be placed in [\<return>](#return) or [\<response>](#response).
 
 [← back](#run-time)
 
@@ -3665,7 +3737,7 @@ export default (
 
 ### \<cookie>
 
-MUST be placed in [\<request>](#request) or [\<response>](#response).
+MUST be placed in [\<return>](#return) or [\<response>](#response).
 
 [← back](#run-time)
 
@@ -3957,7 +4029,7 @@ Both
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
 This hook returns current request instance.
 
 *src/Component.tsx*
@@ -3978,7 +4050,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
 This hook returns current response instance.
 
 *src/Component.tsx*
@@ -3999,7 +4071,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
 This hook returns current request headers object.
 
 *src/Component.tsx*
@@ -4018,7 +4090,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
 This hook returns current request cookies object.
 
 *src/Component.tsx*
@@ -4037,7 +4109,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
 This hook returns current request URL path as a `string`.
 
 *src/Component.tsx*
@@ -4056,7 +4128,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
 This hook returns an object of URL params you set by [\<param>](#param).
 
 *src/Component.tsx*
@@ -4074,7 +4146,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
 This hook returns an object of URL query params.
 
 *src/Component.tsx*
@@ -4092,7 +4164,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<request>](#request) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
 This hook returns current request body.
 
 *src/Component.tsx*
@@ -4111,7 +4183,7 @@ export function Component () {
 [← back](#hooks)
 
 This hook returns request user IP.
-This hook MUST be used in a component placed in [\<request>](#request) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
 
 *src/Component.tsx*
 ```typescript jsx

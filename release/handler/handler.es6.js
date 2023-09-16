@@ -31,8 +31,8 @@ import { preset } from '../plugins/main/preset/preset.es6.js';
 import { protection } from '../plugins/utils/protection/protection.es6.js';
 import { proxy } from '../plugins/request/proxy/proxy.es6.js';
 import { redirect } from '../plugins/request/redirect/redirect.es6.js';
-import { request } from '../plugins/main/request/request.es6.js';
 import { response } from '../plugins/main/response/response.es6.js';
+import { returnPlugin } from '../plugins/main/return/return.es6.js';
 import { server } from '../plugins/main/server/server.es6.js';
 import { swagger } from '../plugins/utils/swagger/swagger.es6.js';
 import { string } from '../plugins/schema/string/string.es6.js';
@@ -78,8 +78,8 @@ const JSXPlugins = {
     protection,
     proxy,
     redirect,
-    request,
     response,
+    return: returnPlugin,
     slot,
     slots,
     server,

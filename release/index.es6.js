@@ -13,7 +13,7 @@ export { variable } from './plugins/main/variable/variable.es6.js';
 export { tag } from './plugins/main/tag/tag.es6.js';
 export { endpoint } from './plugins/main/endpoint/endpoint.es6.js';
 export { response, statuses } from './plugins/main/response/response.es6.js';
-export { request } from './plugins/main/request/request.es6.js';
+export { returnPlugin } from './plugins/main/return/return.es6.js';
 export { param } from './plugins/main/param/param.es6.js';
 export { body } from './plugins/main/body/body.es6.js';
 export { preset } from './plugins/main/preset/preset.es6.js';

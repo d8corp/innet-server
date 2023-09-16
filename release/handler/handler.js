@@ -35,8 +35,8 @@ var preset = require('../plugins/main/preset/preset.js');
 var protection = require('../plugins/utils/protection/protection.js');
 var proxy = require('../plugins/request/proxy/proxy.js');
 var redirect = require('../plugins/request/redirect/redirect.js');
-var request = require('../plugins/main/request/request.js');
 var response = require('../plugins/main/response/response.js');
+var _return = require('../plugins/main/return/return.js');
 var server = require('../plugins/main/server/server.js');
 var swagger = require('../plugins/utils/swagger/swagger.js');
 var string = require('../plugins/schema/string/string.js');
@@ -82,8 +82,8 @@ const JSXPlugins = {
     protection: protection.protection,
     proxy: proxy.proxy,
     redirect: redirect.redirect,
-    request: request.request,
     response: response.response,
+    return: _return.returnPlugin,
     slot: jsx.slot,
     slots: jsx.slots,
     server: server.server,
