@@ -92,7 +92,7 @@ export default (
 
 *Use `npm start` to run this server.*
 
-Open http://localhost:80
+Open http://localhost
 You will see the `Hello Word!` string.
 
 ---
@@ -110,7 +110,7 @@ export default (
 
 *Use `npm start` to run this server.*
 
-Open http://localhost:80
+Open http://localhost
 You will see a base Open API JSON structure.
 
 ```json
