@@ -21,9 +21,6 @@ export function TodoSchema ({ body }: TodoSchemaProps = {}) {
           <date />
         </field>
       )}
-      <field optional key='file'>
-        {body ? <binary /> : <string description='Origin file name' />}
-      </field>
       <field optional={body} key='done'>
         <boolean default={body ? false : undefined} />
       </field>

@@ -14,13 +14,11 @@ declare namespace Api {
       id: string
       title: string
       created: Date
-      file?: string
       done: boolean
     }
     export type TodoSchemaBody = {
       id: string
       title: string
-      file?: Bin
       done: boolean
     }
   }

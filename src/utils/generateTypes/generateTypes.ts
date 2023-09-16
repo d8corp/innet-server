@@ -51,6 +51,10 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2, l
     return `Array<${generateSchemaTypes(schema.items, spaces + 2, '')}>${lastChar}`
   }
 
+  if (!schema.type) {
+    return `any${lastChar}`
+  }
+
   if (schema.type !== 'object') {
     console.error('unknown type', schema)
     return `any${lastChar}`

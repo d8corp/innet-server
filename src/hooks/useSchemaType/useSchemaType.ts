@@ -3,7 +3,9 @@ import { useNewSchema } from '../useNewSchema'
 
 import { type ObjectType, type SchemaObject, type ValuesSchemaProps } from '../../types'
 
-type TypeMap <T extends ObjectType> = T extends 'number' | 'integer'
+export type SchemaType = ObjectType | 'any'
+
+type TypeMap <T extends SchemaType> = T extends 'number' | 'integer'
   ? number
   : T extends 'string'
     ? string
@@ -15,9 +17,11 @@ type TypeMap <T extends ObjectType> = T extends 'number' | 'integer'
           ? boolean
           : T extends 'null'
             ? null
-            : unknown
+            : T extends 'any'
+              ? any
+              : unknown
 
-export function useSchemaType <T extends ObjectType> (
+export function useSchemaType <T extends SchemaType> (
   type: T,
   { values, ref, example, examples, ...options }: undefined | ValuesSchemaProps<TypeMap<T>> = {},
 ): SchemaObject | undefined {
@@ -44,7 +48,7 @@ export function useSchemaType <T extends ObjectType> (
       ...options,
       example,
       examples,
-      type,
+      type: type === 'any' ? undefined : type,
       enum: values,
     } as any)
   }
@@ -54,6 +58,6 @@ export function useSchemaType <T extends ObjectType> (
     example,
     examples,
     enum: values,
-    type: type as any,
+    type: type === 'any' ? undefined : type as any,
   })
 }
