@@ -22,7 +22,6 @@ import './minLength/index.es6.js';
 import './max/index.es6.js';
 import './min/index.es6.js';
 import './defaultTo/index.es6.js';
-import './any/index.es6.js';
 import './bin/index.es6.js';
 import './minBin/index.es6.js';
 import './maxBin/index.es6.js';

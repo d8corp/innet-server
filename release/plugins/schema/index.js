@@ -12,4 +12,5 @@ require('./date/index.js');
 require('./tuple/index.js');
 require('./uuid/index.js');
 require('./binary/index.js');
+require('./any/index.js');
 

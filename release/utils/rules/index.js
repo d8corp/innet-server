@@ -26,7 +26,6 @@ require('./minLength/index.js');
 require('./max/index.js');
 require('./min/index.js');
 require('./defaultTo/index.js');
-require('./any/index.js');
 require('./bin/index.js');
 require('./minBin/index.js');
 require('./maxBin/index.js');

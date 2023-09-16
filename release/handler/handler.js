@@ -6,6 +6,7 @@ var innet = require('innet');
 var jsx = require('@innet/jsx');
 var utils = require('@innet/utils');
 require('../plugins/index.js');
+var any = require('../plugins/schema/any/any.js');
 var api = require('../plugins/main/api/api.js');
 var array = require('../plugins/schema/array/array.js');
 var binary = require('../plugins/schema/binary/binary.js');
@@ -52,6 +53,7 @@ const arrayPlugins = [
     utils.arraySync,
 ];
 const JSXPlugins = {
+    any: any.any,
     api: api.api,
     array: array.array,
     binary: binary.binary,

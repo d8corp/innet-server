@@ -4,6 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var innet = require('innet');
 var jsx = require('@innet/jsx');
+var utils = require('@innet/utils');
 require('../../../hooks/index.js');
 require('../../../hooks/useParentRule/index.js');
 require('../../../utils/index.js');
@@ -60,6 +61,11 @@ const object = () => {
         });
         useParentRule.parentRuleContext.reset(handler);
         innet__default["default"](children, handler);
+        innet__default["default"](() => {
+            if (!Object.keys(schema.additionalProperties).length) {
+                delete schema.additionalProperties;
+            }
+        }, utils.callHandler);
     }
     else if (props.ref) {
         useRule.useRule(refRules[props.ref]);

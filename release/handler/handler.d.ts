@@ -1,8 +1,9 @@
 import { context, type ContextProps, slot, type SlotProps, slots, type SlotsProps } from '@innet/jsx';
 import { arraySync, async } from '@innet/utils';
-import { type ApiProps, type ArrayProps, type BinaryProps, blacklist, type BlacklistProps, type BodyProps, type BooleanProps, cms, type CmsProps, type ContactProps, type CookieProps, type DateProps, type DevProps, type DtsProps, type EndpointProps, type ErrorProps, type FieldProps, file, type FileProps, type HeaderProps, type HostProps, type IntegerProps, type LicenseProps, type NullProps, type NumberProps, type ObjectProps, type ParamProps, preset, type PresetProps, type ProdProps, protection, type ProtectionProps, type ProxyProps, type RedirectProps, type RequestProps, type ResponseProps, type ServerProps, type StringProps, type SuccessProps, type SwaggerProps, type TagProps, type TupleProps, type UuidProps, type VariableProps, whitelist, type WhitelistProps } from '../plugins';
+import { type AnyProps, type ApiProps, type ArrayProps, type BinaryProps, blacklist, type BlacklistProps, type BodyProps, type BooleanProps, cms, type CmsProps, type ContactProps, type CookieProps, type DateProps, type DevProps, type DtsProps, type EndpointProps, type ErrorProps, type FieldProps, file, type FileProps, type HeaderProps, type HostProps, type IntegerProps, type LicenseProps, type NullProps, type NumberProps, type ObjectProps, type ParamProps, preset, type PresetProps, type ProdProps, protection, type ProtectionProps, type ProxyProps, type RedirectProps, type RequestProps, type ResponseProps, type ServerProps, type StringProps, type SuccessProps, type SwaggerProps, type TagProps, type TupleProps, type UuidProps, type VariableProps, whitelist, type WhitelistProps } from '../plugins';
 export declare const arrayPlugins: (typeof arraySync)[];
 export declare const JSXPlugins: {
+    any: import("innet").HandlerPlugin;
     api: import("innet").HandlerPlugin;
     array: import("innet").HandlerPlugin;
     binary: import("innet").HandlerPlugin;
@@ -54,6 +55,7 @@ export declare const handler: import("innet").Handler;
 declare global {
     namespace JSX {
         interface IntrinsicElements {
+            any: AnyProps;
             api: ApiProps;
             array: ArrayProps;
             binary: BinaryProps;

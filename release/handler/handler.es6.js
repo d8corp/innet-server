@@ -2,6 +2,7 @@ import { createHandler } from 'innet';
 import { context, slot, slots, jsxPlugins, jsxComponent } from '@innet/jsx';
 import { arraySync, async, promise, array as array$1, nullish, object as object$1, fn } from '@innet/utils';
 import '../plugins/index.es6.js';
+import { any } from '../plugins/schema/any/any.es6.js';
 import { api } from '../plugins/main/api/api.es6.js';
 import { array } from '../plugins/schema/array/array.es6.js';
 import { binary } from '../plugins/schema/binary/binary.es6.js';
@@ -48,6 +49,7 @@ const arrayPlugins = [
     arraySync,
 ];
 const JSXPlugins = {
+    any,
     api,
     array,
     binary,

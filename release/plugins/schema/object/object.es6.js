@@ -1,5 +1,6 @@
 import innet, { useNewHandler } from 'innet';
 import { useChildren, useProps } from '@innet/jsx';
+import { callHandler } from '@innet/utils';
 import '../../../hooks/index.es6.js';
 import '../../../hooks/useParentRule/index.es6.js';
 import '../../../utils/index.es6.js';
@@ -52,6 +53,11 @@ const object = () => {
         });
         parentRuleContext.reset(handler);
         innet(children, handler);
+        innet(() => {
+            if (!Object.keys(schema.additionalProperties).length) {
+                delete schema.additionalProperties;
+            }
+        }, callHandler);
     }
     else if (props.ref) {
         useRule(refRules[props.ref]);

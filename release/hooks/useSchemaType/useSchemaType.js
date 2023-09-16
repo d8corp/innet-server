@@ -26,11 +26,10 @@ function useSchemaType(type, _a = {}) {
             return;
         }
         return (docs.components.schemas[ref] = Object.assign(Object.assign({}, options), { example,
-            examples,
-            type, enum: values }));
+            examples, type: type === 'any' ? undefined : type, enum: values }));
     }
     return useNewSchema.useNewSchema(Object.assign(Object.assign({}, options), { example,
-        examples, enum: values, type: type }));
+        examples, enum: values, type: type === 'any' ? undefined : type }));
 }
 
 exports.useSchemaType = useSchemaType;

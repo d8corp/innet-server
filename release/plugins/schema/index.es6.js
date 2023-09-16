@@ -10,3 +10,4 @@ import './date/index.es6.js';
 import './tuple/index.es6.js';
 import './uuid/index.es6.js';
 import './binary/index.es6.js';
+import './any/index.es6.js';
