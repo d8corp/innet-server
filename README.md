@@ -528,6 +528,8 @@ export const GetPartners = () => (
 
 `<preset>` element MUST be placed in `<server>` element.  
 This element adds handling of each request.
+It works the same as [\<return>](#return), but do not interrupt the running.
+You can use it to add a `header` or `cookie` or some setup of a parent element.
 
 *src/app.tsx*
 ```typescript jsx
@@ -556,7 +558,18 @@ export default (
           value='no-cache, no-store, must-revalidate'
         />
       </preset>
+      ...Endpoints
+      <return>
+        <success>
+          Header contains `Cache-Control`
+        </success>
+      </return>
     </api>
+    <return>
+      <success>
+        Header do not contain `Cache-Control`
+      </success>
+    </return>
   </server>
 )
 ```
