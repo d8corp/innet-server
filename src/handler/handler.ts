@@ -19,9 +19,9 @@ import {
   contact, type ContactProps,
   cookie, type CookieProps,
   date, type DateProps,
-  dev, type DevProps,
   dts, type DtsProps,
   endpoint, type EndpointProps,
+  env, type EnvProps,
   error, type ErrorProps,
   field, type FieldProps,
   file, type FileProps,
@@ -34,7 +34,6 @@ import {
   object, type ObjectProps,
   param, type ParamProps,
   preset, type PresetProps,
-  prod, type ProdProps,
   protection, type ProtectionProps,
   proxy, type ProxyProps,
   redirect, type RedirectProps,
@@ -68,9 +67,9 @@ export const JSXPlugins = {
   context,
   cookie,
   date,
-  dev,
   dts,
   endpoint,
+  env,
   error,
   field,
   file,
@@ -83,7 +82,6 @@ export const JSXPlugins = {
   object,
   param,
   preset,
-  prod,
   protection,
   proxy,
   redirect,
@@ -138,9 +136,9 @@ declare global {
       context: ContextProps
       cookie: CookieProps
       date: DateProps
-      dev: DevProps
       dts: DtsProps
       endpoint: EndpointProps
+      env: EnvProps
       error: ErrorProps
       field: FieldProps
       file: FileProps
@@ -153,7 +151,6 @@ declare global {
       object: ObjectProps
       param: ParamProps
       preset: PresetProps
-      prod: ProdProps
       protection: ProtectionProps
       proxy: ProxyProps
       redirect: RedirectProps

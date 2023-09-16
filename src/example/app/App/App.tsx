@@ -19,9 +19,9 @@ export function App () {
           <header key='Cache-Control' value='no-cache, no-store, must-revalidate' />
         </preset>
         <Todo />
-        <dev>
+        <env is='dev'>
           <dts path='src/example/api.d.ts' />
-        </dev>
+        </env>
       </api>
       <request>
         <header key='Cache-Control' value='no-cache, no-store, must-revalidate' />
