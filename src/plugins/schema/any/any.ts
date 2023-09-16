@@ -6,7 +6,7 @@ import { useParentRule } from '../../../hooks/useParentRule'
 import { type BaseSchemaProps } from '../../../types'
 import { defaultTo, pipe, type Rule } from '../../../utils'
 
-export interface AnyProps extends BaseSchemaProps <boolean> {
+export interface AnyProps extends BaseSchemaProps <any> {
 
 }
 
