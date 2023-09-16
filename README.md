@@ -381,7 +381,7 @@ export default (
 [← back](#main)
 
 This element MUST be placed in [\<server>](#server) element.
-It defines run-time call handler for parent element.
+It defines a run-time call handler for parent element.
 
 *src/app.tsx*
 ```typescript jsx
@@ -394,6 +394,65 @@ export default (
 )
 ```
 *Any request returns 404*
+
+The code runs from top to bottom and from left to right.
+You cannot use two [\<return>](#return) elements one by one,
+the same as you cannot use two `return` one by one for a JS `function`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <return>
+      <error status={404} />
+    </return>
+    <return>
+      <success />
+    </return>
+  </server>
+)
+```
+
+like
+
+```javascript
+function server () {
+  return 'error'
+  return 'success'
+}
+```
+
+*The second [\<return>](#return) will newer run.*
+
+You can use [\<return>](#return) in some elements like you use `return` in `if` or `while`.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <env is='dev'>
+      <return>
+        <error status={404} />
+      </return>
+    </env>
+    <return>
+      <success />
+    </return>
+  </server>
+)
+```
+
+like
+
+```javascript
+function server () {
+  if (process.env.NODE_ENV === 'dev') {
+    return 'error'
+  }
+
+  return 'success'
+}
+```
 
 Place [\<return>](#return) in [\<api>](#api) to handle any unknown request in the [\<api>](#api).
 
