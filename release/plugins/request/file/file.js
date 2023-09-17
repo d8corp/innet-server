@@ -38,11 +38,10 @@ function file() {
             }
             res.writeHead(200, headers);
             readStream.pipe(res);
+            return;
         }
     }
-    else {
-        innet__default["default"](children, handler);
-    }
+    innet__default["default"](children, handler);
 }
 
 exports.file = file;

@@ -28,11 +28,10 @@ function file() {
             }
             res.writeHead(200, headers);
             readStream.pipe(res);
+            return;
         }
     }
-    else {
-        innet(children, handler);
-    }
+    innet(children, handler);
 }
 
 export { file };
