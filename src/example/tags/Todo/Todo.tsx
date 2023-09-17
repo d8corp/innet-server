@@ -1,4 +1,4 @@
-import { AddTodo, DeleteTodo, EditTodo, GetTodo, GetTodos } from '../../requests'
+import { AddTodo, DeleteTodo, EditTodo, GetTodo, GetTodos } from '../../return'
 import { ListQueryParams, ListSchema, TodoSchema } from '../../schemas'
 
 export function Todo () {

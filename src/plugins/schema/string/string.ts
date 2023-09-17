@@ -1,7 +1,7 @@
 import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
-import { useRule, useSchemaType } from '../../../hooks'
+import { useApi, useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
 import { type ValuesSchemaProps } from '../../../types'
 import {
@@ -29,41 +29,55 @@ export const string: HandlerPlugin = () => {
     patternId,
     ...props
   } = useProps<StringProps>() || {}
+  const { refRules } = useApi()
   const schema = useSchemaType('string', props)
-  const rules: Rule[] = []
 
-  if (props.default !== undefined) {
-    rules.push(defaultTo(props.default))
-  }
+  if (schema) {
+    const rules: Rule[] = []
 
-  rules.push(String)
+    if (props.default !== undefined) {
+      rules.push(defaultTo(props.default))
+    }
 
-  if (props.values) {
-    rules.push(values(props.values))
-  }
+    rules.push(String)
 
-  if (min !== undefined) {
-    // @ts-expect-error: FIXME
-    schema.minimum = min
-    rules.push(minLength(min))
-  }
+    if (props.values) {
+      rules.push(values(props.values))
+    }
 
-  if (max !== undefined) {
-    // @ts-expect-error: FIXME
-    schema.maximum = max
-    rules.push(maxLength(max))
-  }
+    if (min !== undefined) {
+      schema.minimum = min
+      rules.push(minLength(min))
+    }
 
-  if (pattern !== undefined) {
-    // @ts-expect-error: FIXME
-    schema.pattern = String(pattern)
-    rules.push(patternTo(pattern, patternId))
-  }
+    if (max !== undefined) {
+      schema.maximum = max
+      rules.push(maxLength(max))
+    }
 
-  if (props.default) {
-    useRule(pipe(...rules))
-  } else {
-    const parentRule = useParentRule()
-    useRule(parentRule(pipe(...rules)))
+    if (pattern !== undefined) {
+      schema.pattern = String(pattern)
+      rules.push(patternTo(pattern, patternId))
+    }
+
+    const rule = pipe(...rules)
+
+    if (props.ref) {
+      refRules[props.ref] = rule
+    }
+
+    if (props.default) {
+      useRule(rule)
+    } else {
+      const parentRule = useParentRule()
+      useRule(parentRule(rule))
+    }
+  } else if (props.ref) {
+    if (props.default) {
+      useRule(refRules[props.ref])
+    } else {
+      const parentRule = useParentRule()
+      useRule(parentRule(refRules[props.ref]))
+    }
   }
 }
