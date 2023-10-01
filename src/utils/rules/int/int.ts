@@ -2,7 +2,7 @@ import { RulesError } from '../helpers'
 
 import { type IntegerFormats } from '../../../types'
 
-const sizes: Record<IntegerFormats, number | bigint> = {
+const sizes: Record<IntegerFormats, bigint | number> = {
   int32: 2_147_483_647,
   int64: BigInt('9223372036854775807'),
 }
@@ -11,7 +11,7 @@ export function int (format: IntegerFormats) {
   const validator: (val: any) => any = format === 'int32' ? isNaN : (value: any) => isNaN(parseInt(value))
 
   return (value: any, data?: object) => {
-    let result: number | bigint
+    let result: bigint | number
 
     if (format === 'int32') {
       result = Number(value)
@@ -34,8 +34,8 @@ export function int (format: IntegerFormats) {
     if (result > sizes[format]) {
       throw new RulesError('integer', {
         format,
-        value: result,
         max: sizes[format],
+        value: result,
         ...data,
       })
     }
@@ -43,8 +43,8 @@ export function int (format: IntegerFormats) {
     if (result < -sizes[format]) {
       throw new RulesError('integer', {
         format,
-        value: result,
         min: -sizes[format],
+        value: result,
         ...data,
       })
     }

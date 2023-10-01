@@ -4,27 +4,19 @@ import { useProps } from '@innet/jsx'
 import { useApi, useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
 import { type ValuesSchemaProps } from '../../../types'
-import {
-  defaultTo,
-  maxLength,
-  minLength,
-  pattern as patternTo,
-  pipe,
-  type Rule,
-  values,
-} from '../../../utils'
+import { defaultTo, maxLength, minLength, pattern as patternTo, pipe, type Rule, values } from '../../../utils'
 
 export interface StringProps extends ValuesSchemaProps <string> {
-  min?: number
   max?: number
-  pattern?: string | RegExp
+  min?: number
+  pattern?: RegExp | string
   patternId?: string
 }
 
 export const string: HandlerPlugin = () => {
   const {
-    min,
     max,
+    min,
     pattern,
     patternId,
     ...props

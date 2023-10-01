@@ -11,7 +11,11 @@ export interface CookieProps extends CookieSerializeOptions {
 
 export const cookie: HandlerPlugin = () => {
   const action = useAction()
-  const { key, value, ...opt } = useProps<CookieProps>()
+  const {
+    key,
+    value,
+    ...opt
+  } = useProps<CookieProps>()
 
   action.setCookie(key, value, opt)
 }

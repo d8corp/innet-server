@@ -13,22 +13,25 @@ import { Action } from '../../../utils'
 const isInvalidPath = require('is-invalid-path')
 
 export interface ServerProps {
+  onClose?: () => any
+  onError?: (e: Error) => any
+  onRequest?: (req: IncomingMessage, res: ServerResponse) => any
+  onStart?: (params: ServerStartParams) => any
   port?: number
   ssl?: SSL
-  onStart?: (params: ServerStartParams) => any
-  onRequest?: (req: IncomingMessage, res: ServerResponse) => any
-  onError?: (e: Error) => any
-  onClose?: () => any
 }
 
 export const server: HandlerPlugin = () => {
   const handler = useNewHandler()
-  const { props = {}, children } = useApp<JSXElement<string, ServerProps>>()
+  const {
+    children,
+    props = {},
+  } = useApp<JSXElement<string, ServerProps>>()
   const { env } = process
   let {
     ssl: {
-      key = env.INNET_SSL_KEY ?? 'localhost.key',
       cert = env.INNET_SSL_CRT ?? 'localhost.crt',
+      key = env.INNET_SSL_KEY ?? 'localhost.key',
     } = {},
   } = props
 
@@ -46,17 +49,17 @@ export const server: HandlerPlugin = () => {
 
   const https = Boolean(key && cert)
   const {
-    port = Number(env.INNET_PORT ?? (https ? 442 : 80)),
-    onStart,
+    onClose,
     onError,
     onRequest,
-    onClose,
+    onStart,
+    port = Number(env.INNET_PORT ?? (https ? 442 : 80)),
   } = props
   const plugins = new Set<ServerPlugin>()
 
-  const server = https ? http2.createServer({ key, cert }) : http.createServer()
+  const server = https ? http2.createServer({ cert, key }) : http.createServer()
 
-  serverContext.set(handler, { server, port })
+  serverContext.set(handler, { port, server })
   serverPlugins.set(handler, plugins)
   serverPortContext.set(handler, port)
 
@@ -88,12 +91,12 @@ export const server: HandlerPlugin = () => {
       }
     }
 
-    innet({ type: server, props }, requestHandler)
+    innet({ props, type: server }, requestHandler)
   })
 
   innet(children, handler)
 
   server.listen(port, () => {
-    onStart?.({ port, https })
+    onStart?.({ https, port })
   })
 }

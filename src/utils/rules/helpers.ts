@@ -12,6 +12,6 @@ export class RulesError extends Error {
   }
 }
 
-export function addKey (key: string | number, data?: any) {
+export function addKey (key: number | string, data?: any) {
   return data?.key ? `${data.key as string}.${key}` : key
 }

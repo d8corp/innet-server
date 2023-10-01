@@ -2,10 +2,14 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": [
+    "import-newlines",
+    "newline-destructuring",
+    "perfectionist",
     "@typescript-eslint",
     "simple-import-sort"
   ],
   "extends": [
+    "plugin:perfectionist/recommended-natural",
     "standard",
     "standard-with-typescript",
     "standard-jsx"
@@ -20,6 +24,27 @@
     "@typescript-eslint/array-type": ["error", {
       "default": "array"
     }],
+    "import-newlines/enforce": [
+      "error",
+      {
+        "items": 13,
+        "max-len": 120
+      }
+    ],
+    "newline-destructuring/newline": [
+      "error",
+      {
+        "items": 1
+      }
+    ],
+    "perfectionist/sort-objects": [
+      "error",
+      {
+        "partition-by-comment": true
+      }
+    ],
+    "perfectionist/sort-named-imports": "off",
+    "perfectionist/sort-imports": "off",
     "@typescript-eslint/prefer-nullish-coalescing": "off",
     "@typescript-eslint/no-confusing-void-expression": "off",
     "@typescript-eslint/consistent-type-assertions": "off",

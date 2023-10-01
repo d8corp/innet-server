@@ -7,8 +7,8 @@ export function maxBin (max: number): Rule {
   return (value: Bin, data?: object) => {
     if (value.size > max) {
       throw new RulesError('maxBin', {
-        value,
         max,
+        value,
         ...data,
       })
     }

@@ -19,83 +19,18 @@ export interface ParsedUrl {
 }
 
 export class Action {
+  #cookie: Record<string, string> = {}
+
+  #headers: IncomingHttpHeaders = {}
+
+  #search: ParsedQs | undefined
+
+  body?: object
+
   constructor (
     readonly req: IncomingMessage,
     readonly res: ServerResponse,
   ) {}
-
-  @once get parsedUrl (): ParsedUrl {
-    const match = this.req.url?.match(URL_PARSER)
-    if (!match) throw Error('cannot parse url')
-    const result = match.groups as unknown as ParsedUrl
-    result.path = result.path
-      .replaceAll(/\/\.\.\//g, '/')
-      .replaceAll(/\/+/g, '/')
-    return result
-  }
-
-  get path (): string {
-    return this.parsedUrl.path
-  }
-
-  @once get originSearch (): ParsedQs {
-    return parseSearch(this.parsedUrl.search)
-  }
-
-  #search: ParsedQs | undefined
-  get search (): ParsedQs {
-    if (this.#search) return this.#search
-    this.#search = this.originSearch
-    return this.#search
-  }
-
-  set search (value: ParsedQs) {
-    this.#search = value
-  }
-
-  get originHeaders (): IncomingHttpHeaders {
-    return this.req.headers
-  }
-
-  #headers: IncomingHttpHeaders = {}
-  get headers (): IncomingHttpHeaders {
-    if (this.#headers) return this.#headers
-    this.#headers = this.originHeaders
-    return this.#headers
-  }
-
-  set headers (value: IncomingHttpHeaders) {
-    this.#headers = value
-  }
-
-  @once get originCookies (): Record<string, string> {
-    return cookieLib.parse(this.req.headers.cookie ?? '')
-  }
-
-  #cookie: Record<string, string> = {}
-  get cookies (): Record<string, string> {
-    if (this.#cookie) return this.#cookie
-    this.#cookie = this.originCookies
-    return this.#cookie
-  }
-
-  set cookies (value: Record<string, string>) {
-    this.#cookie = value
-  }
-
-  @once get bodyType (): BodyType | undefined {
-    const headerType = this.req.headers['content-type']
-
-    if (!headerType) return
-
-    for (const bodyType of allBodyTypes) {
-      if (headerType.startsWith(bodyType)) {
-        return bodyType
-      }
-    }
-  }
-
-  body?: object
 
   @once async parseBody (): Promise<void> {
     if (!this.bodyType) {
@@ -116,7 +51,7 @@ export class Action {
   }
 
   setCookie (name: string, value?: string, options?: CookieSerializeOptions) {
-    let cookies: string[] | string | undefined = this.res.getHeader('Set-Cookie') as any
+    let cookies: string | string[] | undefined = this.res.getHeader('Set-Cookie') as any
 
     if (typeof cookies === 'string') {
       cookies = [cookies]
@@ -133,7 +68,75 @@ export class Action {
     this.res.setHeader('Set-Cookie', cookies)
   }
 
+  @once get bodyType (): BodyType | undefined {
+    const headerType = this.req.headers['content-type']
+
+    if (!headerType) return
+
+    for (const bodyType of allBodyTypes) {
+      if (headerType.startsWith(bodyType)) {
+        return bodyType
+      }
+    }
+  }
+
   @once get clientIp () {
     return getClientIp(this.req)
+  }
+
+  get cookies (): Record<string, string> {
+    if (this.#cookie) return this.#cookie
+    this.#cookie = this.originCookies
+    return this.#cookie
+  }
+
+  set cookies (value: Record<string, string>) {
+    this.#cookie = value
+  }
+
+  get headers (): IncomingHttpHeaders {
+    if (this.#headers) return this.#headers
+    this.#headers = this.originHeaders
+    return this.#headers
+  }
+
+  set headers (value: IncomingHttpHeaders) {
+    this.#headers = value
+  }
+
+  @once get originCookies (): Record<string, string> {
+    return cookieLib.parse(this.req.headers.cookie ?? '')
+  }
+
+  get originHeaders (): IncomingHttpHeaders {
+    return this.req.headers
+  }
+
+  @once get originSearch (): ParsedQs {
+    return parseSearch(this.parsedUrl.search)
+  }
+
+  @once get parsedUrl (): ParsedUrl {
+    const match = this.req.url?.match(URL_PARSER)
+    if (!match) throw Error('cannot parse url')
+    const result = match.groups as unknown as ParsedUrl
+    result.path = result.path
+      .replaceAll(/\/\.\.\//g, '/')
+      .replaceAll(/\/+/g, '/')
+    return result
+  }
+
+  get path (): string {
+    return this.parsedUrl.path
+  }
+
+  get search (): ParsedQs {
+    if (this.#search) return this.#search
+    this.#search = this.originSearch
+    return this.#search
+  }
+
+  set search (value: ParsedQs) {
+    this.#search = value
   }
 }

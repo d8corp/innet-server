@@ -9,8 +9,8 @@ export function maxDate (max: Date) {
     if (value > max) {
       throw new RulesError('maxDate', {
         ...data,
-        value,
         max: max.toISOString(),
+        value,
       })
     }
 

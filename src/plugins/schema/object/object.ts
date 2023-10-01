@@ -6,20 +6,15 @@ import {
   objectRuleContext,
   objectSchemaContext,
   ruleContext,
-  schemaContext, useApi,
+  schemaContext,
+  useApi,
   useBlock,
   useRule,
   useSchemaType,
 } from '../../../hooks'
 import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
 import { type BaseSchemaProps } from '../../../types'
-import {
-  defaultTo,
-  type ObjectOf,
-  objectOf,
-  pipe,
-  type Rule,
-} from '../../../utils'
+import { defaultTo, type ObjectOf, objectOf, pipe, type Rule } from '../../../utils'
 
 export interface ObjectProps extends BaseSchemaProps <object> {
 

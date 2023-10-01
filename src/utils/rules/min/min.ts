@@ -1,8 +1,8 @@
 import { RulesError } from '../helpers'
 
-export function min (min: number | bigint) {
+export function min (min: bigint | number) {
   return (value: any, data?: object) => {
-    if (!['number', 'bigint'].includes(typeof value)) {
+    if (!['bigint', 'number'].includes(typeof value)) {
       throw new RulesError('number', {
         ...data,
         value,
@@ -12,8 +12,8 @@ export function min (min: number | bigint) {
     if (value < min) {
       throw new RulesError('minimum', {
         ...data,
-        value,
         min,
+        value,
       })
     }
 

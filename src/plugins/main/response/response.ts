@@ -1,19 +1,16 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useContext, useProps } from '@innet/jsx'
 
-import {
-  endpointContext,
-  ruleContext,
-  schemaContext,
-  useEndpoint,
-  useThrow,
-} from '../../../hooks'
+import { endpointContext, ruleContext, schemaContext, useEndpoint, useThrow } from '../../../hooks'
 import { type EndpointRules, type ResponseObject, type SchemaObject } from '../../../types'
 import { getOrAdd } from '../../../utils'
 import {
-  type ErrorStatuses, errorStatuses,
-  type RedirectStatuses, redirectStatuses,
-  type SuccessStatuses, successStatuses,
+  type ErrorStatuses,
+  errorStatuses,
+  type RedirectStatuses,
+  redirectStatuses,
+  type SuccessStatuses,
+  successStatuses,
 } from '../../request'
 
 export type StatusKey = ErrorStatuses | RedirectStatuses | SuccessStatuses
@@ -31,7 +28,7 @@ export interface ResponseProps {
    * For example, 2XX represents all response codes between [200-299].
    * Only the following range definitions are allowed: 1XX, 2XX, 3XX, 4XX, and 5XX.
    * */
-  status?: number | `${1 | 2 | 3 | 4 | 5}XX` | 'default' | StatusKey
+  status?: 'default' | `${1 | 2 | 3 | 4 | 5}XX` | StatusKey | number
 
   type?: string
 }
@@ -47,7 +44,10 @@ export const response: HandlerPlugin = () => {
     status = 'default',
     type = 'application/json',
   } = useProps<ResponseProps>() || {}
-  const { operation, props: { path } } = useEndpoint()
+  const {
+    operation,
+    props: { path },
+  } = useEndpoint()
   const children = useChildren()
   const handler = useNewHandler()
   const endpoint = useContext(endpointContext)
@@ -73,13 +73,13 @@ export const response: HandlerPlugin = () => {
   const schema: SchemaObject = {}
 
   const response: ResponseObject = {
-    description,
     content: {
       ...defaultResponse?.content,
       [type]: {
         schema,
       },
     },
+    description,
   }
 
   operation.responses[status] = response

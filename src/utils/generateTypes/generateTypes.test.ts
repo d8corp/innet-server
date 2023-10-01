@@ -1,19 +1,39 @@
 import { generateTypes } from './generateTypes'
 
 const docs: any = {
-  openapi: '3.1.0',
-  info: {
-    description: '## This is a simple example of todos.\n\nHere you can find API endpoints to handle todos.\n',
-    version: '0.0.1',
-    title: '@innet/server Todo Template',
-    license: { name: 'MIT' },
-    contact: { name: 'Mike', email: 'd8@cantinc.com' },
+  components: {
+    schemas: {
+      TodoSchema: {
+        properties: {
+          done: { type: 'boolean' },
+          id: { format: 'uuid', type: 'string' },
+          title: { example: 'Create todo', type: 'string' },
+        },
+        required: ['id', 'title', 'done'],
+        type: 'object',
+      },
+      TodoSchemaAdd: {
+        properties: {
+          done: { default: false, type: 'boolean' },
+          id: { format: 'uuid', type: 'string', 'x-default': 'new' },
+          title: { example: 'Create todo', type: 'string' },
+        },
+        required: ['title'],
+        type: 'object',
+      },
+    },
   },
+  info: {
+    contact: { email: 'd8@cantinc.com', name: 'Mike' },
+    description: '## This is a simple example of todos.\n\nHere you can find API endpoints to handle todos.\n',
+    license: { name: 'MIT' },
+    title: '@innet/server Todo Template',
+    version: '0.0.1',
+  },
+  openapi: '3.1.0',
   paths: {
     '/todos': {
       get: {
-        summary: 'Returns a list of todos',
-        tags: ['todo'],
         parameters: [
           { in: 'query', name: 'done', schema: { type: 'boolean' } },
           { in: 'query', name: 'page', schema: { default: 1, type: 'number' } },
@@ -21,35 +41,35 @@ const docs: any = {
         ],
         responses: {
           default: {
-            description: 'Response Description',
             content: {
               'application/json': {
                 schema: {
                   description: 'test1',
-                  type: 'object',
                   properties: {
+                    count: { default: 11, type: 'number' },
                     page: {
                       default: 1,
-                      type: 'integer',
                       format: 'int32',
+                      type: 'integer',
                     },
                     pageSize: { example: 10, type: 'number' },
-                    count: { default: 11, type: 'number' },
                     todos: {
-                      type: 'array',
                       items: { $ref: '#/components/schemas/TodoSchema' },
+                      type: 'array',
                     },
                   },
                   required: ['page', 'pageSize', 'count', 'todos'],
+                  type: 'object',
                 },
               },
             },
+            description: 'Response Description',
           },
         },
+        summary: 'Returns a list of todos',
+        tags: ['todo'],
       },
       post: {
-        summary: 'Add a todo',
-        tags: ['todo'],
         requestBody: {
           content: {
             'application/json': { schema: { $ref: '#/components/schemas/TodoSchemaAdd' } },
@@ -57,107 +77,87 @@ const docs: any = {
             'multipart/form-data': { schema: { $ref: '#/components/schemas/TodoSchemaAdd' } },
           },
         },
+        summary: 'Add a todo',
+        tags: ['todo'],
       },
     },
     '/todos/{todoId}': {
-      get: {
-        summary: 'Returns a todo',
-        tags: ['todo'],
+      delete: {
         parameters: [
           {
             in: 'path',
             name: 'todoId',
             required: true,
-            schema: { type: 'string', format: 'uuid' },
+            schema: { format: 'uuid', type: 'string' },
+          },
+        ],
+        summary: 'Delete a todo',
+        tags: ['todo'],
+      },
+      get: {
+        parameters: [
+          {
+            in: 'path',
+            name: 'todoId',
+            required: true,
+            schema: { format: 'uuid', type: 'string' },
           },
         ],
         responses: {
           default: {
-            description: 'Response Description',
             content: { 'application/json': { schema: { $ref: '#/components/schemas/TodoSchema' } } },
+            description: 'Response Description',
           },
         },
+        summary: 'Returns a todo',
+        tags: ['todo'],
       },
       patch: {
-        summary: 'Change a todo',
-        tags: ['todo'],
         parameters: [
           {
             in: 'path',
             name: 'todoId',
             required: true,
-            schema: { type: 'string', format: 'uuid' },
+            schema: { format: 'uuid', type: 'string' },
           },
         ],
         requestBody: {
           content: {
             'application/json': {
               schema: {
-                type: 'object',
                 properties: {
                   done: { type: 'boolean' },
                   title: { type: 'string' },
                 },
+                type: 'object',
               },
             },
             'application/x-www-form-urlencoded': {
               schema: {
-                type: 'object',
                 properties: {
                   done: { type: 'boolean' },
                   title: { type: 'string' },
                 },
+                type: 'object',
               },
             },
             'multipart/form-data': {
               schema: {
-                type: 'object',
                 properties: {
                   done: { type: 'boolean' },
                   title: { type: 'string' },
                 },
+                type: 'object',
               },
             },
           },
         },
-      },
-      delete: {
-        summary: 'Delete a todo',
+        summary: 'Change a todo',
         tags: ['todo'],
-        parameters: [
-          {
-            in: 'path',
-            name: 'todoId',
-            required: true,
-            schema: { type: 'string', format: 'uuid' },
-          },
-        ],
       },
     },
   },
-  tags: [{ name: 'todo', description: 'Todo API' }],
-  components: {
-    schemas: {
-      TodoSchema: {
-        type: 'object',
-        properties: {
-          id: { type: 'string', format: 'uuid' },
-          title: { example: 'Create todo', type: 'string' },
-          done: { type: 'boolean' },
-        },
-        required: ['id', 'title', 'done'],
-      },
-      TodoSchemaAdd: {
-        type: 'object',
-        properties: {
-          id: { type: 'string', format: 'uuid', 'x-default': 'new' },
-          title: { example: 'Create todo', type: 'string' },
-          done: { default: false, type: 'boolean' },
-        },
-        required: ['title'],
-      },
-    },
-  },
+  tags: [{ description: 'Todo API', name: 'todo' }],
 }
 
 const serverTypes = `declare namespace Api {

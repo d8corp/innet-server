@@ -10,7 +10,7 @@ export function TodoSchema ({ body }: TodoSchemaProps = {}) {
 
   return (
     <object ref={ref}>
-      <field optional={body} key='id'>
+      <field key='id' optional={body}>
         <uuid default={body ? 'new' : undefined} />
       </field>
       <field key='title'>
@@ -21,7 +21,7 @@ export function TodoSchema ({ body }: TodoSchemaProps = {}) {
           <date />
         </field>
       )}
-      <field optional={body} key='done'>
+      <field key='done' optional={body}>
         <boolean default={body ? false : undefined} />
       </field>
     </object>

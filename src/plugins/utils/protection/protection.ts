@@ -3,20 +3,20 @@ import { useChildren, useProps } from '@innet/jsx'
 import { useAction, useServerPlugin } from '../../../hooks'
 
 export interface ProtectionProps {
-  value?: string
-  maxAge?: number
-  excludeIp?: string | string[]
   cookieKey?: string
+  excludeIp?: string | string[]
+  maxAge?: number
   searchKey?: string
+  value?: string
 }
 
 export function protection () {
   const {
-    maxAge = Number(process.env.INNET_PROTECTION_MAX_AGE) || 365 * 24 * 60 * 60,
-    value = process.env.INNET_PROTECTION,
-    excludeIp = process.env.INNET_PROTECTED_IP,
     cookieKey = process.env.INNET_PROTECTION_COOKIE_KEY || 'protection',
+    excludeIp = process.env.INNET_PROTECTED_IP,
+    maxAge = Number(process.env.INNET_PROTECTION_MAX_AGE) || 365 * 24 * 60 * 60,
     searchKey = process.env.INNET_PROTECTION_SEARCH_KEY || 'protection',
+    value = process.env.INNET_PROTECTION,
   } = useProps<ProtectionProps>() || {}
   const children = useChildren()
 
@@ -38,10 +38,10 @@ export function protection () {
 
     if (searchProtection && searchProtection === value) {
       action.setCookie(cookieKey, value, {
-        maxAge,
         httpOnly: true,
-        secure: true,
+        maxAge,
         path: '/',
+        secure: true,
       })
 
       return

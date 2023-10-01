@@ -3,9 +3,9 @@ import { useNewSchema } from '../useNewSchema'
 
 import { type ObjectType, type SchemaObject, type ValuesSchemaProps } from '../../types'
 
-export type SchemaType = ObjectType | 'any'
+export type SchemaType = 'any' | ObjectType
 
-type TypeMap <T extends SchemaType> = T extends 'number' | 'integer'
+type TypeMap <T extends SchemaType> = T extends 'integer' | 'number'
   ? number
   : T extends 'string'
     ? string
@@ -23,7 +23,13 @@ type TypeMap <T extends SchemaType> = T extends 'number' | 'integer'
 
 export function useSchemaType <T extends SchemaType> (
   type: T,
-  { values, ref, example, examples, ...options }: undefined | ValuesSchemaProps<TypeMap<T>> = {},
+  {
+    example,
+    examples,
+    ref,
+    values,
+    ...options
+  }: ValuesSchemaProps<TypeMap<T>> | undefined = {},
 ): SchemaObject | undefined {
   if (ref) {
     const { docs } = useApi()
@@ -46,18 +52,18 @@ export function useSchemaType <T extends SchemaType> (
 
     return (docs.components.schemas[ref] = {
       ...options,
+      enum: values,
       example,
       examples,
       type: type === 'any' ? undefined : type,
-      enum: values,
     } as any)
   }
 
   return useNewSchema({
     ...options,
+    enum: values,
     example,
     examples,
-    enum: values,
     type: type === 'any' ? undefined : type as any,
   })
 }

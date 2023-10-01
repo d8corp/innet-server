@@ -1,4 +1,4 @@
-export function getOrAdd <R = any> (target: object, path: string | number, defaultValues: any[]): R {
+export function getOrAdd <R = any> (target: object, path: number | string, defaultValues: any[]): R {
   const pathKeys = String(path).split('.').map(value => isNaN(Number(value)) ? value : Number(value))
 
   let currentTarget: any = target

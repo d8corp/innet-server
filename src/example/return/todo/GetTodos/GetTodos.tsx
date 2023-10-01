@@ -4,9 +4,9 @@ import { todos as rootTodos } from '../todos'
 
 export function GetTodos () {
   const {
+    done,
     page,
     pageSize,
-    done,
   } = useSearch<Api.Endpoints['GET:/todos']['Search']>()
 
   const rawTodos = done === undefined
@@ -18,10 +18,10 @@ export function GetTodos () {
   const todos = rawTodos.slice(start, stop)
 
   const data: Api.Endpoints['GET:/todos']['Response']['default'] = {
-    todos,
-    pageSize,
-    page,
     count: rootTodos.length,
+    page,
+    pageSize,
+    todos,
   }
 
   return <success>{data}</success>

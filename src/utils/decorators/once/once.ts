@@ -22,11 +22,11 @@ export function once <This, Args extends any[], Result = unknown> (
   context: ClassFieldDecoratorContext<This, (...args: Args) => Result>
 ): any
 export function once <This, Args extends any[], Result = unknown> (
-  target: ((this: This, ...args: Args) => Result) | ((this: This, value: Args[0]) => Result) | (() => Args) | undefined,
-  context: ClassMethodDecoratorContext<This, (this: This, ...args: Args) => Result>
-  | ClassSetterDecoratorContext<This, Args[0]>
+  target: (() => Args) | ((this: This, ...args: Args) => Result) | ((this: This, value: Args[0]) => Result) | undefined,
+  context: ClassFieldDecoratorContext<This, (this: This, ...args: Args) => Result>
   | ClassGetterDecoratorContext<This, Args>
-  | ClassFieldDecoratorContext<This, (this: This, ...args: Args) => Result>,
+  | ClassMethodDecoratorContext<This, (this: This, ...args: Args) => Result>
+  | ClassSetterDecoratorContext<This, Args[0]>,
 ) {
   return context.kind === 'field'
     ? function (fn: (this: This, ...args: Args) => Result) {

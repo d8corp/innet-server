@@ -9,8 +9,8 @@ export function maxLength (max: number) {
     if (value.length > max) {
       throw new RulesError('maxLength', {
         ...data,
-        value,
         max,
+        value,
       })
     }
 

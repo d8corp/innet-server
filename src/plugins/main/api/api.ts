@@ -11,19 +11,28 @@ import {
   useAction,
   useServerPlugin,
 } from '../../../hooks'
-import {
-  type Document,
-  type Endpoint,
-  type Endpoints,
-  type EndpointsMethods,
-} from '../../../types'
+import { type Document, type Endpoint, type Endpoints, type EndpointsMethods } from '../../../types'
 import { type Action, JSONString } from '../../../utils'
 import { type Rule, RulesError } from '../../../utils/rules'
 
 export interface ApiProps {
+  /** A description of the API. [CommonMark syntax](https://spec.commonmark.or.org) MAY be used for rich text representation. */
+  description?: string
+
+  exclude?: RegExp
+
+  include?: RegExp
+
+  /** URL path prefix scopes the API. */
+  prefix?: string
+
+  /** A short summary of the API. */
+  summary?: string
+
+  /** A URL to the Terms of Service for the API. This MUST be in the form of a URL. */
+  termsOfService?: string
   /** The title of the API. */
   title?: string
-
   /**
    * The version of the OpenAPI document (which is distinct from the
    * [OpenAPI Specification version](https://swagger.io/specification/#oas-version)
@@ -32,39 +41,28 @@ export interface ApiProps {
    * @default: 0.0.0
    * */
   version?: string
-
-  /** A short summary of the API. */
-  summary?: string
-
-  /** A description of the API. [CommonMark syntax](https://spec.commonmark.or.org) MAY be used for rich text representation. */
-  description?: string
-
-  /** A URL to the Terms of Service for the API. This MUST be in the form of a URL. */
-  termsOfService?: string
-
-  /** URL path prefix scopes the API. */
-  prefix?: string
-  include?: RegExp
-  exclude?: RegExp
 }
 
 export const api: HandlerPlugin = () => {
   const handler = useNewHandler()
-  const { props = {}, children } = useApp<JSXElement<string, ApiProps>>()
   const {
+    children,
+    props = {},
+  } = useApp<JSXElement<string, ApiProps>>()
+  const {
+    exclude,
+    include,
     prefix = '',
     title = '',
-    include,
-    exclude,
     version = process.env.INNET_API_VERSION || '0.0.0',
     ...rest
   } = props
-  const info = { ...rest, version, title }
+  const info = { ...rest, title, version }
 
   const endpoints: Endpoints = {}
   const docs: Document = {
-    openapi: '3.1.0',
     info,
+    openapi: '3.1.0',
     paths: {},
   }
   const plugins = new Set<ServerPlugin>()
@@ -97,7 +95,10 @@ export const api: HandlerPlugin = () => {
     const actionHandler = useNewHandler()
     const path = action.parsedUrl.path
     const url = path.endsWith('/') ? path.slice(0, -1) : path
-    const { req, res } = action
+    const {
+      req,
+      res,
+    } = action
 
     if (url === (prefix || '')) {
       res.setHeader('Content-Type', 'application/json')
@@ -133,7 +134,7 @@ export const api: HandlerPlugin = () => {
             }
           }
 
-          function checkActionRules (rules?: Rule, key: 'search' | 'cookies' | 'headers' | 'body' = 'search') {
+          function checkActionRules (rules?: Rule, key: 'body' | 'cookies' | 'headers' | 'search' = 'search') {
             if (rules) {
               try {
                 action[key] = rules(action[key])
@@ -142,19 +143,19 @@ export const api: HandlerPlugin = () => {
                 if (e instanceof RulesError) {
                   res.statusCode = 400
                   res.write(JSONString({
-                    error: 'requestValidation',
                     data: {
                       ...e.data,
                       in: key,
                     },
+                    error: 'requestValidation',
                   }))
                   res.end()
                 } else {
                   console.error(e)
                   res.statusCode = 500
                   res.write(JSONString({
-                    error: 'unknown',
                     data: { in: key },
+                    error: 'unknown',
                   }))
                   res.end()
                 }

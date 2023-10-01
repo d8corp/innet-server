@@ -27,7 +27,7 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2, l
     return `string${lastChar}`
   }
 
-  if (['boolean', 'number', 'null'].includes(schema.type as any)) {
+  if (['boolean', 'null', 'number'].includes(schema.type as any)) {
     return `${schema.type as string}${lastChar}`
   }
 
@@ -129,10 +129,10 @@ export function generateTypes (docs: Document, namespace = 'Api'): string {
 
       if (parameters) {
         const params: Record<InParam, string> = {
-          query: '',
+          cookie: '',
           header: '',
           path: '',
-          cookie: '',
+          query: '',
         }
 
         for (const param of parameters) {

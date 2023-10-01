@@ -31,8 +31,8 @@ export function binaryAccept (accept: string): Rule {
     }
 
     throw new RulesError('binaryAccept', {
-      value,
       accept,
+      value,
       ...data,
     })
   }

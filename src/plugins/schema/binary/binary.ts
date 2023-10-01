@@ -6,11 +6,11 @@ import { useParentRule } from '../../../hooks/useParentRule'
 import { bin, binaryAccept, maxBin, minBin, pipe, type Rule } from '../../../utils'
 
 export interface BinaryProps {
-  ref?: string
-  description?: string
   accept?: string
-  min?: number
+  description?: string
   max?: number
+  min?: number
+  ref?: string
 }
 
 export const binary: HandlerPlugin = () => {

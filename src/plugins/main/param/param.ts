@@ -1,33 +1,32 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useProps } from '@innet/jsx'
 
-import {
-  paramContext,
-  ruleContext,
-  schemaContext,
-  useEndpoint,
-} from '../../../hooks'
-import {
-  type EndpointRules,
-  type InParam,
-  type ParameterObject,
-  type SchemaObject,
-} from '../../../types'
-import {
-  getOrAdd,
-  oneOf,
-  type Rule,
-} from '../../../utils'
+import { paramContext, ruleContext, schemaContext, useEndpoint } from '../../../hooks'
+import { type EndpointRules, type InParam, type ParameterObject, type SchemaObject } from '../../../types'
+import { getOrAdd, oneOf, type Rule } from '../../../utils'
 import { type ObjectOf, objectOf, required } from '../../../utils/rules'
 
 const inMap: Record<InParam, keyof EndpointRules> = {
-  query: 'search',
-  path: 'path',
   cookie: 'cookie',
   header: 'header',
+  path: 'path',
+  query: 'search',
 }
 
 export interface ParamProps {
+  /**
+   * Specifies that a parameter is deprecated and SHOULD be transitioned out of usage.
+   * Default value is `false`.
+   * */
+  deprecated?: boolean
+
+  /**
+   * A brief description of the parameter.
+   * This could contain examples of use.
+   * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
+   * */
+  description?: string
+
   /**
    * The location of the parameter.
    * Possible values are "query", "header", "path" or "cookie".
@@ -44,28 +43,18 @@ export interface ParamProps {
   name: string
 
   /**
-   * A brief description of the parameter.
-   * This could contain examples of use.
-   * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
-   * */
-  description?: string
-
-  /**
    * Determines whether this parameter is mandatory.
    * If the parameter location is "path", this property is `true` and its value MUST be `true`.
    * Otherwise, the property MAY be included and its default value is `false`.
    * */
   required?: boolean
-
-  /**
-   * Specifies that a parameter is deprecated and SHOULD be transitioned out of usage.
-   * Default value is `false`.
-   * */
-  deprecated?: boolean
 }
 
 export const param: HandlerPlugin = () => {
-  const { operation, endpoint } = useEndpoint()
+  const {
+    endpoint,
+    operation,
+  } = useEndpoint()
 
   if (!operation.parameters) {
     operation.parameters = []

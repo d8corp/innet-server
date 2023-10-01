@@ -7,15 +7,19 @@ import { type ValuesSchemaProps } from '../../../types'
 import { defaultTo, max as maximum, min as minimum, num, pipe, type Rule, values } from '../../../utils'
 
 export interface NumberProps extends ValuesSchemaProps <number> {
-  /** Validate the number value by minimum. */
-  min?: number
-
   /** Validate the number value by maximum. */
   max?: number
+
+  /** Validate the number value by minimum. */
+  min?: number
 }
 
 export const number: HandlerPlugin = () => {
-  const { min, max, ...props } = useProps<NumberProps>() || {}
+  const {
+    max,
+    min,
+    ...props
+  } = useProps<NumberProps>() || {}
 
   const schema = useSchemaType('number', props)
   // @ts-expect-error: FIXME

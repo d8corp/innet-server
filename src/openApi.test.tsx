@@ -36,11 +36,11 @@ describe('Open API', () => {
     )
 
     expect(fn).toBeCalledWith({
-      openapi: '3.1.0',
       info: {
         title: '',
         version: '0.0.0',
       },
+      openapi: '3.1.0',
       paths: {},
     })
   })
@@ -56,11 +56,11 @@ describe('Open API', () => {
     )
 
     expect(fn).toBeCalledWith({
-      openapi: '3.1.0',
       info: {
         title: 'Test',
         version: '0.0.0',
       },
+      openapi: '3.1.0',
       paths: {},
     })
   })
@@ -69,19 +69,19 @@ describe('Open API', () => {
 
     run(
       <server>
-        <api title='Test' summary='my summary'>
+        <api summary='my summary' title='Test'>
           <Log />
         </api>
       </server>,
     )
 
     expect(fn).toBeCalledWith({
-      openapi: '3.1.0',
       info: {
+        summary: 'my summary',
         title: 'Test',
         version: '0.0.0',
-        summary: 'my summary',
       },
+      openapi: '3.1.0',
       paths: {},
     })
   })
@@ -90,19 +90,19 @@ describe('Open API', () => {
 
     run(
       <server>
-        <api title='Test' description='my description'>
+        <api description='my description' title='Test'>
           <Log />
         </api>
       </server>,
     )
 
     expect(fn).toBeCalledWith({
-      openapi: '3.1.0',
       info: {
+        description: 'my description',
         title: 'Test',
         version: '0.0.0',
-        description: 'my description',
       },
+      openapi: '3.1.0',
       paths: {},
     })
   })
@@ -118,11 +118,11 @@ describe('Open API', () => {
     )
 
     expect(fn).toBeCalledWith({
-      openapi: '3.1.0',
       info: {
         title: 'Test',
         version: '0.0.1',
       },
+      openapi: '3.1.0',
       paths: {},
     })
   })

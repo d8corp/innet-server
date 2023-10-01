@@ -13,8 +13,8 @@ export interface CmsProps {
 
 export function cms () {
   const {
-    prefix = process.env.INNET_CMS_PREFIX || '/',
     dir = process.env.INNET_CMS_DIR || '.',
+    prefix = process.env.INNET_CMS_PREFIX || '/',
   } = useProps<CmsProps>() || {}
   const children = useChildren()
   const handler = useHandler()
@@ -28,5 +28,5 @@ export function cms () {
 
   const filePath = path.join(dir, url)
 
-  innet({ type: file, props: { path: filePath }, children }, handler)
+  innet({ children, props: { path: filePath }, type: file }, handler)
 }

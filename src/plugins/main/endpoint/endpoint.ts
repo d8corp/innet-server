@@ -7,9 +7,22 @@ import { getEndpoint } from '../../../utils'
 
 export interface EndpointProps {
   /**
+   * Declares this operation to be deprecated.
+   * Consumers SHOULD refrain from usage of the declared operation.
+   * Default value is false.
+   * */
+  deprecated?: boolean
+  /**
+   * An optional, string description, intended to apply to all operations in this path.
+   * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
+   * */
+  description?: string
+
+  /**
    * A method of the endpoint.
    * */
   method: EndpointsMethods
+
   /**
    * A relative path to an individual endpoint.
    * The property MUST begin with a forward slash (/).
@@ -20,36 +33,33 @@ export interface EndpointProps {
   path: string
 
   /**
-   * An optional, string summary, intended to apply to all operations in this path.
-   * */
-  summary?: string
-
-  /**
-   * An optional, string description, intended to apply to all operations in this path.
-   * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
-   * */
-  description?: string
-
-  /**
-   * Declares this operation to be deprecated.
-   * Consumers SHOULD refrain from usage of the declared operation.
-   * Default value is false.
-   * */
-  deprecated?: boolean
-
-  /**
    * Declares this operation to make an endpoint private.
    * That means the endpoint should not be described and will not be shown in the Open API documentation.
    * */
   private?: boolean
+
+  /**
+   * An optional, string summary, intended to apply to all operations in this path.
+   * */
+  summary?: string
 }
 
 export const endpoint: HandlerPlugin = () => {
   const handler = useNewHandler()
   const tag = useTag()
-  const { docs, endpoints } = useApi()
+  const {
+    docs,
+    endpoints,
+  } = useApi()
   const props = useProps<EndpointProps>()
-  const { path, summary, description, deprecated, method, private: privateMode } = props
+  const {
+    deprecated,
+    description,
+    method,
+    path,
+    private: privateMode,
+    summary,
+  } = props
   const children = useChildren()
   const { paths } = docs
 
@@ -95,7 +105,7 @@ export const endpoint: HandlerPlugin = () => {
   const endpoint = getEndpoint(path, endpoints[method])
 
   // @ts-expect-error: it's always an object
-  endpointContext.set(handler, { operation, props, endpoint })
+  endpointContext.set(handler, { endpoint, operation, props })
 
   // @ts-expect-error: it's always an object
   serverPlugins.set(handler, endpoint.plugins)

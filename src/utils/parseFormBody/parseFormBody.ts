@@ -32,7 +32,10 @@ export async function parseFormBody (req: http.IncomingMessage) {
             query += '&'
           }
           query += `${key}==${queryFiles.length}`
-          const { headers, ...options } = value
+          const {
+            headers,
+            ...options
+          } = value
           options.type = headers['content-type']
           options.disposition = headers['content-disposition']
           queryFiles.push(new Bin(options))

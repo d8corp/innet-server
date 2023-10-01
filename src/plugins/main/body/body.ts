@@ -3,17 +3,8 @@ import { useChildren, useContext } from '@innet/jsx'
 import { callHandler } from '@innet/utils'
 
 import { allBodyTypes } from '../../../constants'
-import {
-  bodyFileContext,
-  endpointContext,
-  ruleContext,
-  schemaContext,
-} from '../../../hooks'
-import {
-  type EndpointRules,
-  type RequestBodyObject,
-  type SchemaObject,
-} from '../../../types'
+import { bodyFileContext, endpointContext, ruleContext, schemaContext } from '../../../hooks'
+import type { EndpointRules, RequestBodyObject, SchemaObject } from '../../../types'
 import { getOrAdd } from '../../../utils'
 
 export interface BodyProps {

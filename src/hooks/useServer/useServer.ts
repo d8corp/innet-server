@@ -7,8 +7,8 @@ import { useThrow } from '../useThrow'
 export type ServerPlugin = () => any
 
 export interface ServerContext {
-  server: HttpServer | HttpsServer
   port: number
+  server: HttpServer | HttpsServer
 }
 
 export const serverContext = new Context<ServerContext>()

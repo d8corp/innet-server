@@ -5,15 +5,15 @@ import { useResponse } from '../../../hooks'
 import { JSONString } from '../../../utils'
 
 export const successStatuses = {
-  ok: 200,
-  created: 201,
   accepted: 202,
-  outside: 203,
-  noContent: 204,
-  resetContent: 205,
-  partialContent: 206,
-  multiStatus: 207,
   alreadyReported: 208,
+  created: 201,
+  multiStatus: 207,
+  noContent: 204,
+  ok: 200,
+  outside: 203,
+  partialContent: 206,
+  resetContent: 205,
 } as const
 
 export type SuccessStatuses = keyof typeof successStatuses
@@ -25,7 +25,10 @@ export interface SuccessProps {
 
 export const success: HandlerPlugin = () => {
   const children = useChildren()
-  const { status, type } = useProps<SuccessProps>() || {}
+  const {
+    status,
+    type,
+  } = useProps<SuccessProps>() || {}
   const res = useResponse()
 
   if (!res) {
@@ -37,7 +40,7 @@ export const success: HandlerPlugin = () => {
   if (children?.[0]) {
     const child = children[0]
     const contentType = type || (
-      ['string', 'number', 'boolean', 'bigint'].includes(typeof child)
+      ['bigint', 'boolean', 'number', 'string'].includes(typeof child)
         ? 'text/plain'
         : 'application/json'
     )

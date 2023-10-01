@@ -11,7 +11,10 @@ export interface UuidProps extends ValuesSchemaProps <string> {
 }
 
 export const uuid: HandlerPlugin = () => {
-  const { default: defaultValue, ...props } = useProps<UuidProps>() || {}
+  const {
+    default: defaultValue,
+    ...props
+  } = useProps<UuidProps>() || {}
   const schema = useSchemaType('string', {
     ...props,
     default: defaultValue === 'new' ? undefined : defaultValue,

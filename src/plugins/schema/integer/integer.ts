@@ -14,21 +14,21 @@ import {
   values as valuesOf,
 } from '../../../utils'
 
-export interface IntegerProps extends ValuesSchemaProps<number | bigint> {
+export interface IntegerProps extends ValuesSchemaProps<bigint | number> {
   format?: IntegerFormats
-  min?: number | bigint
-  max?: number | bigint
+  max?: bigint | number
+  min?: bigint | number
 }
 
 export const integer: HandlerPlugin = () => {
   const {
-    format = 'int32',
-    min,
-    max,
-    values,
+    default: defaultValue,
     example,
     examples,
-    default: defaultValue,
+    format = 'int32',
+    max,
+    min,
+    values,
     ...props
   } = useProps<IntegerProps>() || {}
   const schema = useSchemaType('integer', {

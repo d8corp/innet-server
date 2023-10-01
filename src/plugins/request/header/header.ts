@@ -15,7 +15,10 @@ export const header: HandlerPlugin = () => {
     useThrow('<{type}> MUST be in <request> or <fallback>')
   }
 
-  const { key, value } = useProps<HeaderProps>()
+  const {
+    key,
+    value,
+  } = useProps<HeaderProps>()
 
   res.setHeader(key, value)
 }

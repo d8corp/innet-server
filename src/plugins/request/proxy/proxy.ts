@@ -6,13 +6,17 @@ import httpProxy from 'http-proxy'
 import { useRequest, useResponse, useThrow } from '../../../hooks'
 
 export interface ProxyProps {
-  to: string
-  secure?: boolean
   onProxyRes?: (res: IncomingMessage) => void
+  secure?: boolean
+  to: string
 }
 
 export const proxy: HandlerPlugin = () => {
-  const { to, secure = false, onProxyRes } = useProps<ProxyProps>()
+  const {
+    onProxyRes,
+    secure = false,
+    to,
+  } = useProps<ProxyProps>()
   const req = useRequest()
   const res = useResponse()
 
@@ -28,5 +32,5 @@ export const proxy: HandlerPlugin = () => {
     proxyServer.on('proxyRes', onProxyRes)
   }
 
-  proxyServer.web(req, res, { target: to, secure })
+  proxyServer.web(req, res, { secure, target: to })
 }

@@ -11,22 +11,23 @@ import {
   maxDate,
   minDate,
   pipe,
-  type Rule, values as valuesOf,
+  type Rule,
+  values as valuesOf,
 } from '../../../utils'
 import { dateFormat } from '../../../utils/dateFormat'
 
 export interface DateProps extends ValuesSchemaProps <DateFormat> {
-  min?: DateFormat
   max?: DateFormat
+  min?: DateFormat
 }
 
 export const date: HandlerPlugin = () => {
   const {
-    min,
-    max,
     default: defaultValue,
     example,
     examples,
+    max,
+    min,
     values,
     ...props
   } = useProps<DateProps>() || {}
@@ -41,11 +42,11 @@ export const date: HandlerPlugin = () => {
 
   const schema = useSchemaType('string', {
     ...props,
-    values: stringValues,
+    default: defaultValue === 'now' ? undefined : normDefault?.toISOString(),
     example: normExample?.toISOString(),
     // @ts-expect-error: FIXME
     examples: normExamples?.map(example => example.toISOString()),
-    default: defaultValue === 'now' ? undefined : normDefault?.toISOString(),
+    values: stringValues,
   })
 
   const rules: Rule[] = []

@@ -4,8 +4,8 @@ import { ListQueryParams, ListSchema, TodoSchema } from '../../schemas'
 export function Todo () {
   return (
     <tag
-      name='todo'
-      description='Todo API'>
+      description='Todo API'
+      name='todo'>
       <endpoint
         method='get'
         path='/todos'
@@ -60,10 +60,10 @@ export function Todo () {
         </param>
         <body>
           <object>
-            <field optional key='done'>
+            <field key='done' optional>
               <boolean />
             </field>
-            <field optional key='title'>
+            <field key='title' optional>
               <string />
             </field>
           </object>

@@ -6,9 +6,9 @@ import { type EndpointProps } from '../../plugins'
 import type { Endpoint, OperationObject } from '../../types'
 
 export interface EndpointContext {
+  endpoint: Endpoint
   operation: OperationObject
   props: EndpointProps
-  endpoint: Endpoint
 }
 
 export const endpointContext = new Context<EndpointContext>()

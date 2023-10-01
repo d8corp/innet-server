@@ -5,6 +5,12 @@ import { useHost } from '../../../hooks'
 
 export interface VariableProps {
   /**
+   * An optional description for the server variable.
+   * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
+   * */
+  description?: string
+
+  /**
    * A server url parameter
    * */
   key: string
@@ -21,17 +27,17 @@ export interface VariableProps {
    * The array MUST NOT be empty.
    * */
   values?: [string, string, ...string[]]
-
-  /**
-   * An optional description for the server variable.
-   * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
-   * */
-  description?: string
 }
 
 export const variable: HandlerPlugin = () => {
   const { server } = useHost()
-  const { key, values, value = values?.[0], ...rest } = useProps<VariableProps>()
+  const {
+    key,
+    values,
+    // predefine
+    value = values?.[0],
+    ...rest
+  } = useProps<VariableProps>()
 
   if (!server.variables) {
     server.variables = {}

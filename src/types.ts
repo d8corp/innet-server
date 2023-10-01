@@ -20,7 +20,7 @@ export type ParameterObject = API.ParameterObject
 export type RequestBodyObject = API.RequestBodyObject
 
 export type ObjectType = ArraySchemaObjectType | NonArraySchemaObjectType
-export type RefSchemaObject = SchemaObject | ReferenceObject
+export type RefSchemaObject = ReferenceObject | SchemaObject
 
 // Custom
 
@@ -31,19 +31,19 @@ export interface IValidationErrorData extends Record<string, any> {
 export type ValidationErrorData = IValidationErrorData | undefined
 
 export interface EndpointRules {
-  path?: Rule
-  search?: Rule
+  body?: Rule
   cookie?: Rule
   header?: Rule
-  body?: Rule
+  path?: Rule
   response?: Rule
+  search?: Rule
 }
 
 export interface EndpointRulesMaps {
-  path?: Record<string, Rule>
-  search?: Record<string, Rule>
   cookie?: Record<string, Rule>
   header?: Record<string, Rule>
+  path?: Record<string, Rule>
+  search?: Record<string, Rule>
 }
 
 export interface Endpoint<
@@ -53,19 +53,19 @@ export interface Endpoint<
   P extends InValidationErrorParam = InValidationErrorParam,
   D extends ValidationErrorData = ValidationErrorData
 > {
+  dynamic?: Endpoint<I, O, E, P, D>[]
   key: string
   plugins: Set<ServerPlugin>
   rules?: EndpointRules
   rulesMaps?: EndpointRulesMaps
   static?: Record<string, Endpoint<I, O, E, P, D>>
-  dynamic?: Endpoint<I, O, E, P, D>[]
 }
 
 export type IntegerFormats = 'int32' | 'int64'
-export type EndpointsMethods = 'get' | 'post' | 'put' | 'patch' | 'delete' | 'options' | 'head' | 'trace'
-export type InParam = 'query' | 'header' | 'path' | 'cookie'
-export type InValidationErrorParam = InParam | 'body'
-export type BodyType = 'application/x-www-form-urlencoded' | 'application/json' | 'multipart/form-data'
+export type EndpointsMethods = 'delete' | 'get' | 'head' | 'options' | 'patch' | 'post' | 'put' | 'trace'
+export type InParam = 'cookie' | 'header' | 'path' | 'query'
+export type InValidationErrorParam = 'body' | InParam
+export type BodyType = 'application/json' | 'application/x-www-form-urlencoded' | 'multipart/form-data'
 export type Endpoints<
   I = unknown,
   O = unknown,
@@ -80,15 +80,15 @@ export interface SSL {
 }
 
 export interface ServerStartParams {
-  port: number
   https: boolean
+  port: number
 }
 
 export interface BaseSchemaProps<T> {
   default?: T
+  description?: string
   example?: T
   examples?: T[]
-  description?: string
   ref?: string
 }
 

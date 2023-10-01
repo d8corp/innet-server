@@ -1,4 +1,5 @@
 export interface BinOptions {
+  disposition: string
   /**
    * A field name of FormData request
    */
@@ -12,38 +13,37 @@ export interface BinOptions {
    */
   path: string
   /**
-   * MIME-type of the file
-   */
-  type: string
-  disposition: string
-  /**
    * The file size
    */
   size: number
+  /**
+   * MIME-type of the file
+   */
+  type: string
 }
 
 export class Bin implements BinOptions {
-  /**
-   * A file name, without extension
-   */
-  filename: string
+  // @ts-expect-error: FIXME
+  disposition: string
   /**
    * The extension of the origin file from originalFilename
    */
   extension?: string
   // @ts-expect-error: FIXME
-  type: string
-  // @ts-expect-error: FIXME
-  disposition: string
-  // @ts-expect-error: FIXME
   fieldName: string
+  /**
+   * A file name, without extension
+   */
+  filename: string
   // @ts-expect-error: FIXME
   originalFilename: string
   // @ts-expect-error: FIXME
   path: string
-
   // @ts-expect-error: FIXME
   size: number
+
+  // @ts-expect-error: FIXME
+  type: string
 
   constructor (options: BinOptions) {
     Object.assign(this, options)
@@ -55,10 +55,10 @@ export class Bin implements BinOptions {
   toJSON () {
     return {
       $: 'binary',
-      originalFilename: this.originalFilename,
-      type: this.type,
       disposition: this.disposition,
+      originalFilename: this.originalFilename,
       size: this.size,
+      type: this.type,
     }
   }
 }
