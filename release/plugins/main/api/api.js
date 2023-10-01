@@ -22,7 +22,7 @@ var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 const api = () => {
     const handler = innet.useNewHandler();
     const { children, props = {}, } = innet.useApp();
-    const { exclude, include, prefix = '', title = '', version = process.env.INNET_API_VERSION || '0.0.0' } = props, rest = tslib.__rest(props, ["exclude", "include", "prefix", "title", "version"]);
+    const { exclude, include, prefix = process.env.INNET_API_PREFIX || '', title = '', version = process.env.INNET_API_VERSION || '0.0.0' } = props, rest = tslib.__rest(props, ["exclude", "include", "prefix", "title", "version"]);
     const info = Object.assign(Object.assign({}, rest), { title, version });
     const endpoints = {};
     const docs = {

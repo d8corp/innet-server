@@ -52,7 +52,7 @@ export const api: HandlerPlugin = () => {
   const {
     exclude,
     include,
-    prefix = '',
+    prefix = process.env.INNET_API_PREFIX || '',
     title = '',
     version = process.env.INNET_API_VERSION || '0.0.0',
     ...rest

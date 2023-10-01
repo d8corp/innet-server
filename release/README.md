@@ -345,6 +345,7 @@ export default (
   </server>
 )
 ```
+*default: `INNET_API_PREFIX` || `''`*
 
 #### include
 
