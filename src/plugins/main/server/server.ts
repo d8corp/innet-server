@@ -5,7 +5,7 @@ import http, { type IncomingMessage, type ServerResponse } from 'http'
 import http2 from 'https'
 import { onDestroy } from 'watch-state'
 
-import { actionContext, serverContext, type ServerPlugin, serverPlugins } from '../../../hooks'
+import { actionContext, serverContext, type ServerPlugin, serverPlugins, serverPortContext } from '../../../hooks'
 import { type ServerStartParams, type SSL } from '../../../types'
 import { Action } from '../../../utils'
 
@@ -58,6 +58,7 @@ export const server: HandlerPlugin = () => {
 
   serverContext.set(handler, { server, port })
   serverPlugins.set(handler, plugins)
+  serverPortContext.set(handler, port)
 
   onDestroy(() => {
     server.close()
