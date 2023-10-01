@@ -11,7 +11,7 @@ var useAction = require('../../../hooks/useAction/useAction.js');
 
 const swagger = () => {
     const { path = process.env.INNET_SWAGGER_PATH || '/swagger-ui', } = jsx.useProps() || {};
-    const { docs, prefix } = useApi.useApi();
+    const { docs, prefix, } = useApi.useApi();
     let swaggerResponse;
     useServerPlugin.useServerPlugin(() => {
         const action = useAction.useAction();

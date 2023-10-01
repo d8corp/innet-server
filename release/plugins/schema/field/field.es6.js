@@ -10,7 +10,7 @@ import { required } from '../../../utils/rules/required/required.es6.js';
 
 const field = () => {
     const handler = useNewHandler();
-    const { key, optional } = useProps();
+    const { key, optional, } = useProps();
     const schema = useObjectSchemaContext();
     const children = useChildren();
     if (!schema.properties) {

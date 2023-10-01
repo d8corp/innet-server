@@ -13,14 +13,14 @@ import { required } from '../../../utils/rules/required/required.es6.js';
 import { oneOf } from '../../../utils/rules/oneOf/oneOf.es6.js';
 
 const inMap = {
-    query: 'search',
-    path: 'path',
     cookie: 'cookie',
     header: 'header',
+    path: 'path',
+    query: 'search',
 };
 const param = () => {
     var _a;
-    const { operation, endpoint } = useEndpoint();
+    const { endpoint, operation, } = useEndpoint();
     if (!operation.parameters) {
         operation.parameters = [];
     }

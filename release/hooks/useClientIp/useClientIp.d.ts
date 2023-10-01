@@ -1,1 +1,1 @@
-export declare function useClientIp(): string | null;
+export declare function useClientIp(): null | string;

@@ -12,10 +12,10 @@ class Bin {
     toJSON() {
         return {
             $: 'binary',
-            originalFilename: this.originalFilename,
-            type: this.type,
             disposition: this.disposition,
+            originalFilename: this.originalFilename,
             size: this.size,
+            type: this.type,
         };
     }
 }

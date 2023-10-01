@@ -19,9 +19,9 @@ var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 const endpoint = () => {
     const handler = innet.useNewHandler();
     const tag = useTag.useTag();
-    const { docs, endpoints } = useApi.useApi();
+    const { docs, endpoints, } = useApi.useApi();
     const props = jsx.useProps();
-    const { path, summary, description, deprecated, method, private: privateMode } = props;
+    const { deprecated, description, method, path, private: privateMode, summary, } = props;
     const children = jsx.useChildren();
     const { paths } = docs;
     if (!paths)
@@ -56,7 +56,7 @@ const endpoint = () => {
     // @ts-expect-error: it's always an object
     const endpoint = getEndpoint.getEndpoint(path, endpoints[method]);
     // @ts-expect-error: it's always an object
-    useEndpoint.endpointContext.set(handler, { operation, props, endpoint });
+    useEndpoint.endpointContext.set(handler, { endpoint, operation, props });
     // @ts-expect-error: it's always an object
     useServerPlugins.serverPlugins.set(handler, endpoint.plugins);
     innet__default["default"](children, handler);

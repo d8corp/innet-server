@@ -5,19 +5,19 @@ import { useResponse } from '../../../hooks/useResponse/useResponse.es6.js';
 import { JSONString } from '../../../utils/JSONString/JSONString.es6.js';
 
 const successStatuses = {
-    ok: 200,
-    created: 201,
     accepted: 202,
-    outside: 203,
-    noContent: 204,
-    resetContent: 205,
-    partialContent: 206,
-    multiStatus: 207,
     alreadyReported: 208,
+    created: 201,
+    multiStatus: 207,
+    noContent: 204,
+    ok: 200,
+    outside: 203,
+    partialContent: 206,
+    resetContent: 205,
 };
 const success = () => {
     const children = useChildren();
-    const { status, type } = useProps() || {};
+    const { status, type, } = useProps() || {};
     const res = useResponse();
     if (!res) {
         throw Error('<success> MUST be in <request>');
@@ -25,7 +25,7 @@ const success = () => {
     res.statusCode = typeof status === 'string' ? successStatuses[status] : status !== null && status !== void 0 ? status : ((children) ? 200 : 204);
     if (children === null || children === void 0 ? void 0 : children[0]) {
         const child = children[0];
-        const contentType = type || (['string', 'number', 'boolean', 'bigint'].includes(typeof child)
+        const contentType = type || (['bigint', 'boolean', 'number', 'string'].includes(typeof child)
             ? 'text/plain'
             : 'application/json');
         res.setHeader('Content-Type', contentType);

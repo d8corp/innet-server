@@ -9,7 +9,9 @@ var useHost = require('../../../hooks/useHost/useHost.js');
 
 const variable = () => {
     const { server } = useHost.useHost();
-    const _a = jsx.useProps(), { key, values, value = values === null || values === void 0 ? void 0 : values[0] } = _a, rest = tslib.__rest(_a, ["key", "values", "value"]);
+    const _a = jsx.useProps(), { key, values, 
+    // predefine
+    value = values === null || values === void 0 ? void 0 : values[0] } = _a, rest = tslib.__rest(_a, ["key", "values", "value"]);
     if (!server.variables) {
         server.variables = {};
     }

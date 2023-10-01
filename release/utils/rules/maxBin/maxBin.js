@@ -7,8 +7,8 @@ var helpers = require('../helpers.js');
 function maxBin(max) {
     return (value, data) => {
         if (value.size > max) {
-            throw new helpers.RulesError('maxBin', Object.assign({ value,
-                max }, data));
+            throw new helpers.RulesError('maxBin', Object.assign({ max,
+                value }, data));
         }
         return value;
     };

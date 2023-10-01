@@ -1,4 +1,5 @@
 export interface BinOptions {
+    disposition: string;
     /**
      * A field name of FormData request
      */
@@ -12,36 +13,35 @@ export interface BinOptions {
      */
     path: string;
     /**
-     * MIME-type of the file
-     */
-    type: string;
-    disposition: string;
-    /**
      * The file size
      */
     size: number;
+    /**
+     * MIME-type of the file
+     */
+    type: string;
 }
 export declare class Bin implements BinOptions {
-    /**
-     * A file name, without extension
-     */
-    filename: string;
+    disposition: string;
     /**
      * The extension of the origin file from originalFilename
      */
     extension?: string;
-    type: string;
-    disposition: string;
     fieldName: string;
+    /**
+     * A file name, without extension
+     */
+    filename: string;
     originalFilename: string;
     path: string;
     size: number;
+    type: string;
     constructor(options: BinOptions);
     toJSON(): {
         $: string;
-        originalFilename: string;
-        type: string;
         disposition: string;
+        originalFilename: string;
         size: number;
+        type: string;
     };
 }

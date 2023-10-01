@@ -18,7 +18,7 @@ var useRule = require('../../../hooks/useRule/useRule.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
 
 const number = () => {
-    const _a = jsx.useProps() || {}, { min: min$1, max: max$1 } = _a, props = tslib.__rest(_a, ["min", "max"]);
+    const _a = jsx.useProps() || {}, { max: max$1, min: min$1 } = _a, props = tslib.__rest(_a, ["max", "min"]);
     const schema = useSchemaType.useSchemaType('number', props);
     // @ts-expect-error: FIXME
     schema.minimum = min$1;

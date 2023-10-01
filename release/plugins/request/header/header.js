@@ -12,7 +12,7 @@ const header = () => {
     if (!res) {
         useThrow.useThrow('<{type}> MUST be in <request> or <fallback>');
     }
-    const { key, value } = jsx.useProps();
+    const { key, value, } = jsx.useProps();
     res.setHeader(key, value);
 };
 

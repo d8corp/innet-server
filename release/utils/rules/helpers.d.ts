@@ -5,4 +5,4 @@ export declare class RulesError extends Error {
     } & object;
     constructor(error: RulesErrors, data?: object);
 }
-export declare function addKey(key: string | number, data?: any): string | number;
+export declare function addKey(key: number | string, data?: any): string | number;

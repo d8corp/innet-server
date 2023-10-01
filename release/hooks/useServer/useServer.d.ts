@@ -5,8 +5,8 @@ import { type Server as HttpServer } from 'http';
 import { type Server as HttpsServer } from 'https';
 export type ServerPlugin = () => any;
 export interface ServerContext {
-    server: HttpServer | HttpsServer;
     port: number;
+    server: HttpServer | HttpsServer;
 }
 export declare const serverContext: Context<ServerContext, ServerContext | undefined>;
 export declare function useServer(): ServerContext;

@@ -14,7 +14,7 @@ import { useRule } from '../../../hooks/useRule/useRule.es6.js';
 import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 
 const number = () => {
-    const _a = useProps() || {}, { min: min$1, max: max$1 } = _a, props = __rest(_a, ["min", "max"]);
+    const _a = useProps() || {}, { max: max$1, min: min$1 } = _a, props = __rest(_a, ["max", "min"]);
     const schema = useSchemaType('number', props);
     // @ts-expect-error: FIXME
     schema.minimum = min$1;

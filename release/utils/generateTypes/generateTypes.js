@@ -22,7 +22,7 @@ function generateSchemaTypes(schema, spaces = 2, lastChar = '\n') {
         }
         return `string${lastChar}`;
     }
-    if (['boolean', 'number', 'null'].includes(schema.type)) {
+    if (['boolean', 'null', 'number'].includes(schema.type)) {
         return `${schema.type}${lastChar}`;
     }
     if (schema.oneOf) {
@@ -104,10 +104,10 @@ function generateTypes(docs, namespace = 'Api') {
             result += `    ['${method.toUpperCase()}:${path}']: {\n`;
             if (parameters) {
                 const params = {
-                    query: '',
+                    cookie: '',
                     header: '',
                     path: '',
-                    cookie: '',
+                    query: '',
                 };
                 for (const param of parameters) {
                     const splitter = param.in === 'path' || hasDefault(param.schema) ? ':' : '?:';

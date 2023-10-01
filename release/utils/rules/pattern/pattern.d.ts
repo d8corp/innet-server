@@ -1,1 +1,1 @@
-export declare function pattern(pattern: string | RegExp, patternId?: string): (value: any, data?: object) => any;
+export declare function pattern(pattern: RegExp | string, patternId?: string): (value: any, data?: object) => any;

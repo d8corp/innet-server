@@ -4,14 +4,14 @@ import { useResponse } from '../../../hooks/useResponse/useResponse.es6.js';
 import { useHeaders } from '../../../hooks/useHeaders/useHeaders.es6.js';
 
 const redirectStatuses = {
-    multipleChoices: 300,
-    movedPermanently: 301,
     found: 302,
-    seeOther: 303,
+    movedPermanently: 301,
+    multipleChoices: 300,
     notModified: 304,
-    useProxy: 305,
-    temporaryRedirect: 307,
     permanentRedirect: 308,
+    seeOther: 303,
+    temporaryRedirect: 307,
+    useProxy: 305,
 };
 function getStatus(status) {
     if (typeof status === 'number')
@@ -30,10 +30,10 @@ const redirect = () => {
     }
     const headers = useHeaders();
     const props = useProps();
-    const { to, status = 301, encode } = props;
+    const { encode, status = 301, to, } = props;
     res.writeHead(getStatus(status), {
-        location: encode ? customEncode(to) : to,
         'Cache-Control': (_a = headers['Cache-Control']) !== null && _a !== void 0 ? _a : 'no-cache, no-store, must-revalidate',
+        location: encode ? customEncode(to) : to,
     });
     res.end();
 };

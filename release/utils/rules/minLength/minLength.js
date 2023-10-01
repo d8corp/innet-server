@@ -10,8 +10,8 @@ function minLength(min) {
             throw new helpers.RulesError('string', data);
         }
         if (value.length < min) {
-            throw new helpers.RulesError('minLength', Object.assign(Object.assign({}, data), { value,
-                min }));
+            throw new helpers.RulesError('minLength', Object.assign(Object.assign({}, data), { min,
+                value }));
         }
         return value;
     };

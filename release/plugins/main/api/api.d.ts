@@ -1,5 +1,15 @@
 import { type HandlerPlugin } from 'innet';
 export interface ApiProps {
+    /** A description of the API. [CommonMark syntax](https://spec.commonmark.or.org) MAY be used for rich text representation. */
+    description?: string;
+    exclude?: RegExp;
+    include?: RegExp;
+    /** URL path prefix scopes the API. */
+    prefix?: string;
+    /** A short summary of the API. */
+    summary?: string;
+    /** A URL to the Terms of Service for the API. This MUST be in the form of a URL. */
+    termsOfService?: string;
     /** The title of the API. */
     title?: string;
     /**
@@ -10,15 +20,5 @@ export interface ApiProps {
      * @default: 0.0.0
      * */
     version?: string;
-    /** A short summary of the API. */
-    summary?: string;
-    /** A description of the API. [CommonMark syntax](https://spec.commonmark.or.org) MAY be used for rich text representation. */
-    description?: string;
-    /** A URL to the Terms of Service for the API. This MUST be in the form of a URL. */
-    termsOfService?: string;
-    /** URL path prefix scopes the API. */
-    prefix?: string;
-    include?: RegExp;
-    exclude?: RegExp;
 }
 export declare const api: HandlerPlugin;

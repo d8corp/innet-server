@@ -13,7 +13,7 @@ import { optional } from '../../../utils/rules/optional/optional.es6.js';
 import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 
 const integer = () => {
-    const _a = useProps() || {}, { format = 'int32', min: min$1, max: max$1, values: values$1, example, examples, default: defaultValue } = _a, props = __rest(_a, ["format", "min", "max", "values", "example", "examples", "default"]);
+    const _a = useProps() || {}, { default: defaultValue, example, examples, format = 'int32', max: max$1, min: min$1, values: values$1 } = _a, props = __rest(_a, ["default", "example", "examples", "format", "max", "min", "values"]);
     const schema = useSchemaType('integer', Object.assign(Object.assign({}, props), { default: defaultValue !== undefined ? Number(defaultValue) : undefined, example: example !== undefined ? Number(example) : undefined, examples: examples === null || examples === void 0 ? void 0 : examples.map(Number), values: values$1 === null || values$1 === void 0 ? void 0 : values$1.map(Number) }));
     // @ts-expect-error: FIXME
     schema.format = format;

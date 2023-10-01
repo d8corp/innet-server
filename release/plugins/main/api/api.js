@@ -21,13 +21,13 @@ var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 
 const api = () => {
     const handler = innet.useNewHandler();
-    const { props = {}, children } = innet.useApp();
-    const { prefix = '', title = '', include, exclude, version = process.env.INNET_API_VERSION || '0.0.0' } = props, rest = tslib.__rest(props, ["prefix", "title", "include", "exclude", "version"]);
-    const info = Object.assign(Object.assign({}, rest), { version, title });
+    const { children, props = {}, } = innet.useApp();
+    const { exclude, include, prefix = '', title = '', version = process.env.INNET_API_VERSION || '0.0.0' } = props, rest = tslib.__rest(props, ["exclude", "include", "prefix", "title", "version"]);
+    const info = Object.assign(Object.assign({}, rest), { title, version });
     const endpoints = {};
     const docs = {
-        openapi: '3.1.0',
         info,
+        openapi: '3.1.0',
         paths: {},
     };
     const plugins = new Set();
@@ -53,7 +53,7 @@ const api = () => {
         const actionHandler = innet.useNewHandler();
         const path = action.parsedUrl.path;
         const url = path.endsWith('/') ? path.slice(0, -1) : path;
-        const { req, res } = action;
+        const { req, res, } = action;
         if (url === (prefix || '')) {
             res.setHeader('Content-Type', 'application/json');
             res.write(JSONString.JSONString(docs));
@@ -95,8 +95,8 @@ const api = () => {
                                     if (e instanceof helpers.RulesError) {
                                         res.statusCode = 400;
                                         res.write(JSONString.JSONString({
-                                            error: 'requestValidation',
                                             data: Object.assign(Object.assign({}, e.data), { in: key }),
+                                            error: 'requestValidation',
                                         }));
                                         res.end();
                                     }
@@ -104,8 +104,8 @@ const api = () => {
                                         console.error(e);
                                         res.statusCode = 500;
                                         res.write(JSONString.JSONString({
-                                            error: 'unknown',
                                             data: { in: key },
+                                            error: 'unknown',
                                         }));
                                         res.end();
                                     }

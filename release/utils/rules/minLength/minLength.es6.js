@@ -6,8 +6,8 @@ function minLength(min) {
             throw new RulesError('string', data);
         }
         if (value.length < min) {
-            throw new RulesError('minLength', Object.assign(Object.assign({}, data), { value,
-                min }));
+            throw new RulesError('minLength', Object.assign(Object.assign({}, data), { min,
+                value }));
         }
         return value;
     };

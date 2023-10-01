@@ -4,7 +4,7 @@ import { useServerPlugin } from '../../../hooks/useServerPlugin/useServerPlugin.
 import { useAction } from '../../../hooks/useAction/useAction.es6.js';
 
 function protection() {
-    const { maxAge = Number(process.env.INNET_PROTECTION_MAX_AGE) || 365 * 24 * 60 * 60, value = process.env.INNET_PROTECTION, excludeIp = process.env.INNET_PROTECTED_IP, cookieKey = process.env.INNET_PROTECTION_COOKIE_KEY || 'protection', searchKey = process.env.INNET_PROTECTION_SEARCH_KEY || 'protection', } = useProps() || {};
+    const { cookieKey = process.env.INNET_PROTECTION_COOKIE_KEY || 'protection', excludeIp = process.env.INNET_PROTECTED_IP, maxAge = Number(process.env.INNET_PROTECTION_MAX_AGE) || 365 * 24 * 60 * 60, searchKey = process.env.INNET_PROTECTION_SEARCH_KEY || 'protection', value = process.env.INNET_PROTECTION, } = useProps() || {};
     const children = useChildren();
     if (!value)
         return;
@@ -21,10 +21,10 @@ function protection() {
         const { [searchKey]: searchProtection } = action.search;
         if (searchProtection && searchProtection === value) {
             action.setCookie(cookieKey, value, {
-                maxAge,
                 httpOnly: true,
-                secure: true,
+                maxAge,
                 path: '/',
+                secure: true,
             });
             return;
         }

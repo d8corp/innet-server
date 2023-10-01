@@ -2,6 +2,17 @@ import { type HandlerPlugin } from 'innet';
 import { type EndpointsMethods } from '../../../types';
 export interface EndpointProps {
     /**
+     * Declares this operation to be deprecated.
+     * Consumers SHOULD refrain from usage of the declared operation.
+     * Default value is false.
+     * */
+    deprecated?: boolean;
+    /**
+     * An optional, string description, intended to apply to all operations in this path.
+     * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
+     * */
+    description?: string;
+    /**
      * A method of the endpoint.
      * */
     method: EndpointsMethods;
@@ -14,24 +25,13 @@ export interface EndpointProps {
      * */
     path: string;
     /**
-     * An optional, string summary, intended to apply to all operations in this path.
-     * */
-    summary?: string;
-    /**
-     * An optional, string description, intended to apply to all operations in this path.
-     * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
-     * */
-    description?: string;
-    /**
-     * Declares this operation to be deprecated.
-     * Consumers SHOULD refrain from usage of the declared operation.
-     * Default value is false.
-     * */
-    deprecated?: boolean;
-    /**
      * Declares this operation to make an endpoint private.
      * That means the endpoint should not be described and will not be shown in the Open API documentation.
      * */
     private?: boolean;
+    /**
+     * An optional, string summary, intended to apply to all operations in this path.
+     * */
+    summary?: string;
 }
 export declare const endpoint: HandlerPlugin;

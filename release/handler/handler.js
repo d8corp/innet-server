@@ -38,9 +38,9 @@ var redirect = require('../plugins/request/redirect/redirect.js');
 var response = require('../plugins/main/response/response.js');
 var _return = require('../plugins/main/return/return.js');
 var server = require('../plugins/main/server/server.js');
-var swagger = require('../plugins/utils/swagger/swagger.js');
 var string = require('../plugins/schema/string/string.js');
 var success = require('../plugins/request/success/success.js');
+var swagger = require('../plugins/utils/swagger/swagger.js');
 var tag = require('../plugins/main/tag/tag.js');
 var tuple = require('../plugins/schema/tuple/tuple.js');
 var uuid = require('../plugins/schema/uuid/uuid.js');
@@ -84,12 +84,12 @@ const JSXPlugins = {
     redirect: redirect.redirect,
     response: response.response,
     return: _return.returnPlugin,
+    server: server.server,
     slot: jsx.slot,
     slots: jsx.slots,
-    server: server.server,
-    swagger: swagger.swagger,
     string: string.string,
     success: success.success,
+    swagger: swagger.swagger,
     tag: tag.tag,
     tuple: tuple.tuple,
     uuid: uuid.uuid,

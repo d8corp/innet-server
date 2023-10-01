@@ -1,6 +1,6 @@
 import { type HandlerPlugin } from 'innet';
 export interface DtsProps {
-    path?: string;
     namespace?: string;
+    path?: string;
 }
 export declare const dts: HandlerPlugin;

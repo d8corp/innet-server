@@ -19,7 +19,7 @@ var useRule = require('../../../hooks/useRule/useRule.js');
 var useParentRule = require('../../../hooks/useParentRule/useParentRule.js');
 
 const string = () => {
-    const _a = jsx.useProps() || {}, { min, max, pattern: pattern$1, patternId } = _a, props = tslib.__rest(_a, ["min", "max", "pattern", "patternId"]);
+    const _a = jsx.useProps() || {}, { max, min, pattern: pattern$1, patternId } = _a, props = tslib.__rest(_a, ["max", "min", "pattern", "patternId"]);
     const { refRules } = useApi.useApi();
     const schema = useSchemaType.useSchemaType('string', props);
     if (schema) {

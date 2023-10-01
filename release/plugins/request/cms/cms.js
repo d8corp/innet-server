@@ -16,7 +16,7 @@ var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
 
 function cms() {
-    const { prefix = process.env.INNET_CMS_PREFIX || '/', dir = process.env.INNET_CMS_DIR || '.', } = jsx.useProps() || {};
+    const { dir = process.env.INNET_CMS_DIR || '.', prefix = process.env.INNET_CMS_PREFIX || '/', } = jsx.useProps() || {};
     const children = jsx.useChildren();
     const handler = innet.useHandler();
     let url = usePath.usePath();
@@ -27,7 +27,7 @@ function cms() {
         return innet__default["default"](children, handler);
     }
     const filePath = path__default["default"].join(dir, url);
-    innet__default["default"]({ type: file.file, props: { path: filePath }, children }, handler);
+    innet__default["default"]({ children, props: { path: filePath }, type: file.file }, handler);
 }
 
 exports.cms = cms;

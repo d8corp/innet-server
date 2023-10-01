@@ -24,7 +24,7 @@ const statuses = Object.assign(Object.assign(Object.assign({}, error.errorStatus
 const response = () => {
     var _a;
     let { description = '', status = 'default', type = 'application/json', } = jsx.useProps() || {};
-    const { operation, props: { path } } = useEndpoint.useEndpoint();
+    const { operation, props: { path }, } = useEndpoint.useEndpoint();
     const children = jsx.useChildren();
     const handler = innet.useNewHandler();
     const endpoint = jsx.useContext(useEndpoint.endpointContext);
@@ -43,10 +43,10 @@ const response = () => {
     }
     const schema = {};
     const response = {
-        description,
         content: Object.assign(Object.assign({}, defaultResponse === null || defaultResponse === void 0 ? void 0 : defaultResponse.content), { [type]: {
                 schema,
             } }),
+        description,
     };
     operation.responses[status] = response;
     useSchemaContext.schemaContext.set(handler, schema);

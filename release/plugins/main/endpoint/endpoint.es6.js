@@ -11,9 +11,9 @@ import { serverPlugins } from '../../../hooks/useServerPlugins/useServerPlugins.
 const endpoint = () => {
     const handler = useNewHandler();
     const tag = useTag();
-    const { docs, endpoints } = useApi();
+    const { docs, endpoints, } = useApi();
     const props = useProps();
-    const { path, summary, description, deprecated, method, private: privateMode } = props;
+    const { deprecated, description, method, path, private: privateMode, summary, } = props;
     const children = useChildren();
     const { paths } = docs;
     if (!paths)
@@ -48,7 +48,7 @@ const endpoint = () => {
     // @ts-expect-error: it's always an object
     const endpoint = getEndpoint(path, endpoints[method]);
     // @ts-expect-error: it's always an object
-    endpointContext.set(handler, { operation, props, endpoint });
+    endpointContext.set(handler, { endpoint, operation, props });
     // @ts-expect-error: it's always an object
     serverPlugins.set(handler, endpoint.plugins);
     innet(children, handler);

@@ -8,7 +8,7 @@ const header = () => {
     if (!res) {
         useThrow('<{type}> MUST be in <request> or <fallback>');
     }
-    const { key, value } = useProps();
+    const { key, value, } = useProps();
     res.setHeader(key, value);
 };
 

@@ -2,6 +2,17 @@ import { type HandlerPlugin } from 'innet';
 import { type InParam } from '../../../types';
 export interface ParamProps {
     /**
+     * Specifies that a parameter is deprecated and SHOULD be transitioned out of usage.
+     * Default value is `false`.
+     * */
+    deprecated?: boolean;
+    /**
+     * A brief description of the parameter.
+     * This could contain examples of use.
+     * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
+     * */
+    description?: string;
+    /**
      * The location of the parameter.
      * Possible values are "query", "header", "path" or "cookie".
      * */
@@ -15,21 +26,10 @@ export interface ParamProps {
      * */
     name: string;
     /**
-     * A brief description of the parameter.
-     * This could contain examples of use.
-     * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
-     * */
-    description?: string;
-    /**
      * Determines whether this parameter is mandatory.
      * If the parameter location is "path", this property is `true` and its value MUST be `true`.
      * Otherwise, the property MAY be included and its default value is `false`.
      * */
     required?: boolean;
-    /**
-     * Specifies that a parameter is deprecated and SHOULD be transitioned out of usage.
-     * Default value is `false`.
-     * */
-    deprecated?: boolean;
 }
 export declare const param: HandlerPlugin;

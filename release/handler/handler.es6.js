@@ -34,9 +34,9 @@ import { redirect } from '../plugins/request/redirect/redirect.es6.js';
 import { response } from '../plugins/main/response/response.es6.js';
 import { returnPlugin } from '../plugins/main/return/return.es6.js';
 import { server } from '../plugins/main/server/server.es6.js';
-import { swagger } from '../plugins/utils/swagger/swagger.es6.js';
 import { string } from '../plugins/schema/string/string.es6.js';
 import { success } from '../plugins/request/success/success.es6.js';
+import { swagger } from '../plugins/utils/swagger/swagger.es6.js';
 import { tag } from '../plugins/main/tag/tag.es6.js';
 import { tuple } from '../plugins/schema/tuple/tuple.es6.js';
 import { uuid } from '../plugins/schema/uuid/uuid.es6.js';
@@ -80,12 +80,12 @@ const JSXPlugins = {
     redirect,
     response,
     return: returnPlugin,
+    server,
     slot,
     slots,
-    server,
-    swagger,
     string,
     success,
+    swagger,
     tag,
     tuple,
     uuid,

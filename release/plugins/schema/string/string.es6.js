@@ -15,7 +15,7 @@ import { useRule } from '../../../hooks/useRule/useRule.es6.js';
 import { useParentRule } from '../../../hooks/useParentRule/useParentRule.es6.js';
 
 const string = () => {
-    const _a = useProps() || {}, { min, max, pattern: pattern$1, patternId } = _a, props = __rest(_a, ["min", "max", "pattern", "patternId"]);
+    const _a = useProps() || {}, { max, min, pattern: pattern$1, patternId } = _a, props = __rest(_a, ["max", "min", "pattern", "patternId"]);
     const { refRules } = useApi();
     const schema = useSchemaType('string', props);
     if (schema) {

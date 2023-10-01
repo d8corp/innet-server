@@ -2,7 +2,7 @@ import innet, { useHandler } from 'innet';
 import { useProps, useChildren } from '@innet/jsx';
 
 const env = () => {
-    const { of = 'NODE_ENV', is } = useProps();
+    const { is, of = 'NODE_ENV', } = useProps();
     if (Array.isArray(is) ? is.includes(process.env[of]) : process.env[of] === is) {
         innet(useChildren(), useHandler());
     }

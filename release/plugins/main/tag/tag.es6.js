@@ -8,7 +8,7 @@ const tag = () => {
     if (useContext(tagContext)) {
         throw Error('You cannot use a <tag> inside another one');
     }
-    const { name, description } = useProps();
+    const { description, name, } = useProps();
     const children = useChildren();
     const { docs } = useApi();
     const tag = { name };

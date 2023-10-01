@@ -10,7 +10,7 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 
 const env = () => {
-    const { of = 'NODE_ENV', is } = jsx.useProps();
+    const { is, of = 'NODE_ENV', } = jsx.useProps();
     if (Array.isArray(is) ? is.includes(process.env[of]) : process.env[of] === is) {
         innet__default["default"](jsx.useChildren(), innet.useHandler());
     }

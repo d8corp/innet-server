@@ -5,7 +5,9 @@ import { useHost } from '../../../hooks/useHost/useHost.es6.js';
 
 const variable = () => {
     const { server } = useHost();
-    const _a = useProps(), { key, values, value = values === null || values === void 0 ? void 0 : values[0] } = _a, rest = __rest(_a, ["key", "values", "value"]);
+    const _a = useProps(), { key, values, 
+    // predefine
+    value = values === null || values === void 0 ? void 0 : values[0] } = _a, rest = __rest(_a, ["key", "values", "value"]);
     if (!server.variables) {
         server.variables = {};
     }

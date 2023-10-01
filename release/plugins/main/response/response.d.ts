@@ -13,7 +13,7 @@ export interface ResponseProps {
      * For example, 2XX represents all response codes between [200-299].
      * Only the following range definitions are allowed: 1XX, 2XX, 3XX, 4XX, and 5XX.
      * */
-    status?: number | `${1 | 2 | 3 | 4 | 5}XX` | 'default' | StatusKey;
+    status?: 'default' | `${1 | 2 | 3 | 4 | 5}XX` | StatusKey | number;
     type?: string;
 }
 export declare const statuses: Record<StatusKey, number>;

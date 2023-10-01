@@ -1,18 +1,18 @@
 import { type HandlerPlugin } from 'innet';
 export declare const redirectStatuses: {
-    multipleChoices: number;
-    movedPermanently: number;
     found: number;
-    seeOther: number;
+    movedPermanently: number;
+    multipleChoices: number;
     notModified: number;
-    useProxy: number;
-    temporaryRedirect: number;
     permanentRedirect: number;
+    seeOther: number;
+    temporaryRedirect: number;
+    useProxy: number;
 };
 export type RedirectStatuses = keyof typeof redirectStatuses;
 export interface RedirectProps {
-    to: string;
     encode?: boolean;
-    status?: number | RedirectStatuses;
+    status?: RedirectStatuses | number;
+    to: string;
 }
 export declare const redirect: HandlerPlugin;

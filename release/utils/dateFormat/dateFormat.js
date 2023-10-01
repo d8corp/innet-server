@@ -7,7 +7,7 @@ function dateFormat(date) {
         return;
     if (date === 'now')
         return new Date();
-    if (['string', 'number'].includes(typeof date))
+    if (['number', 'string'].includes(typeof date))
         return new Date(date);
     return date;
 }

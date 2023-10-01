@@ -12,6 +12,7 @@ require('../../../hooks/index.js');
 require('../../../utils/index.js');
 var useServer = require('../../../hooks/useServer/useServer.js');
 var useServerPlugins = require('../../../hooks/useServerPlugins/useServerPlugins.js');
+var useServerPort = require('../../../hooks/useServerPort/useServerPort.js');
 var Action = require('../../../utils/action/Action.js');
 var useAction = require('../../../hooks/useAction/useAction.js');
 
@@ -27,9 +28,9 @@ const isInvalidPath = require('is-invalid-path');
 const server = () => {
     var _a, _b, _c;
     const handler = innet.useNewHandler();
-    const { props = {}, children } = innet.useApp();
+    const { children, props = {}, } = innet.useApp();
     const { env } = process;
-    let { ssl: { key = (_a = env.INNET_SSL_KEY) !== null && _a !== void 0 ? _a : 'localhost.key', cert = (_b = env.INNET_SSL_CRT) !== null && _b !== void 0 ? _b : 'localhost.crt', } = {}, } = props;
+    let { ssl: { cert = (_a = env.INNET_SSL_CRT) !== null && _a !== void 0 ? _a : 'localhost.crt', key = (_b = env.INNET_SSL_KEY) !== null && _b !== void 0 ? _b : 'localhost.key', } = {}, } = props;
     try {
         if (!isInvalidPath(key)) {
             key = fs__default["default"].readFileSync(key).toString();
@@ -43,11 +44,12 @@ const server = () => {
         cert = '';
     }
     const https = Boolean(key && cert);
-    const { port = Number((_c = env.INNET_PORT) !== null && _c !== void 0 ? _c : (https ? 442 : 80)), onStart, onError, onRequest, onClose, } = props;
+    const { onClose, onError, onRequest, onStart, port = Number((_c = env.INNET_PORT) !== null && _c !== void 0 ? _c : (https ? 442 : 80)), } = props;
     const plugins = new Set();
-    const server = https ? http2__default["default"].createServer({ key, cert }) : http__default["default"].createServer();
-    useServer.serverContext.set(handler, { server, port });
+    const server = https ? http2__default["default"].createServer({ cert, key }) : http__default["default"].createServer();
+    useServer.serverContext.set(handler, { port, server });
     useServerPlugins.serverPlugins.set(handler, plugins);
+    useServerPort.serverPortContext.set(handler, port);
     watchState.onDestroy(() => {
         server.close();
     });
@@ -72,11 +74,11 @@ const server = () => {
                 }
             });
         }
-        innet__default["default"]({ type: server, props }, requestHandler);
+        innet__default["default"]({ props, type: server }, requestHandler);
     });
     innet__default["default"](children, handler);
     server.listen(port, () => {
-        onStart === null || onStart === void 0 ? void 0 : onStart({ port, https });
+        onStart === null || onStart === void 0 ? void 0 : onStart({ https, port });
     });
 };
 

@@ -24,10 +24,10 @@ function int(format) {
                 value }, data));
         }
         if (result > sizes[format]) {
-            throw new RulesError('integer', Object.assign({ format, value: result, max: sizes[format] }, data));
+            throw new RulesError('integer', Object.assign({ format, max: sizes[format], value: result }, data));
         }
         if (result < -sizes[format]) {
-            throw new RulesError('integer', Object.assign({ format, value: result, min: -sizes[format] }, data));
+            throw new RulesError('integer', Object.assign({ format, min: -sizes[format], value: result }, data));
         }
         return result;
     };

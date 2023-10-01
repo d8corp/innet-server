@@ -6,7 +6,7 @@ import { useNewSchema } from '../useNewSchema/useNewSchema.es6.js';
 
 function useSchemaType(type, _a = {}) {
     var _b;
-    var { values, ref, example, examples } = _a, options = __rest(_a, ["values", "ref", "example", "examples"]);
+    var { example, examples, ref, values } = _a, options = __rest(_a, ["example", "examples", "ref", "values"]);
     if (ref) {
         const { docs } = useApi();
         if (!docs.components) {
@@ -21,11 +21,11 @@ function useSchemaType(type, _a = {}) {
         if ((_b = docs.components.schemas) === null || _b === void 0 ? void 0 : _b[ref]) {
             return;
         }
-        return (docs.components.schemas[ref] = Object.assign(Object.assign({}, options), { example,
-            examples, type: type === 'any' ? undefined : type, enum: values }));
+        return (docs.components.schemas[ref] = Object.assign(Object.assign({}, options), { enum: values, example,
+            examples, type: type === 'any' ? undefined : type }));
     }
-    return useNewSchema(Object.assign(Object.assign({}, options), { example,
-        examples, enum: values, type: type === 'any' ? undefined : type }));
+    return useNewSchema(Object.assign(Object.assign({}, options), { enum: values, example,
+        examples, type: type === 'any' ? undefined : type }));
 }
 
 export { useSchemaType };

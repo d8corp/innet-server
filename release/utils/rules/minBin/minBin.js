@@ -7,8 +7,8 @@ var helpers = require('../helpers.js');
 function minBin(min) {
     return (value, data) => {
         if (value.size < min) {
-            throw new helpers.RulesError('minBin', Object.assign({ value,
-                min }, data));
+            throw new helpers.RulesError('minBin', Object.assign({ min,
+                value }, data));
         }
         return value;
     };

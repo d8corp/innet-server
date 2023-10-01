@@ -6,8 +6,8 @@ function maxLength(max) {
             throw new RulesError('string', data);
         }
         if (value.length > max) {
-            throw new RulesError('maxLength', Object.assign(Object.assign({}, data), { value,
-                max }));
+            throw new RulesError('maxLength', Object.assign(Object.assign({}, data), { max,
+                value }));
         }
         return value;
     };

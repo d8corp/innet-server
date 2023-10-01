@@ -29,4 +29,5 @@ require('./useServerPlugin/index.js');
 require('./useClientIp/index.js');
 require('./useServerPlugins/index.js');
 require('./useObjectSchemaContext/index.js');
+require('./useServerPort/index.js');
 

@@ -21,14 +21,14 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 
 const inMap = {
-    query: 'search',
-    path: 'path',
     cookie: 'cookie',
     header: 'header',
+    path: 'path',
+    query: 'search',
 };
 const param = () => {
     var _a;
-    const { operation, endpoint } = useEndpoint.useEndpoint();
+    const { endpoint, operation, } = useEndpoint.useEndpoint();
     if (!operation.parameters) {
         operation.parameters = [];
     }

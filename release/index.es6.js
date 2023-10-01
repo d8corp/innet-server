@@ -113,3 +113,4 @@ export { useServerPlugin } from './hooks/useServerPlugin/useServerPlugin.es6.js'
 export { useClientIp } from './hooks/useClientIp/useClientIp.es6.js';
 export { serverPlugins, useServerPlugins } from './hooks/useServerPlugins/useServerPlugins.es6.js';
 export { objectSchemaContext, useObjectSchemaContext } from './hooks/useObjectSchemaContext/useObjectSchemaContext.es6.js';
+export { serverPortContext, useServerPort } from './hooks/useServerPort/useServerPort.es6.js';

@@ -18,7 +18,7 @@ var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 
 const field = () => {
     const handler = innet.useNewHandler();
-    const { key, optional } = jsx.useProps();
+    const { key, optional, } = jsx.useProps();
     const schema = useObjectSchemaContext.useObjectSchemaContext();
     const children = jsx.useChildren();
     if (!schema.properties) {
