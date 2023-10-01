@@ -136,7 +136,7 @@ export function generateTypes (docs: Document, namespace = 'Api'): string {
         }
 
         for (const param of parameters) {
-          const splitter = param.in === 'path' || hasDefault(param.schema) ? ':' : '?:'
+          const splitter = param.in === 'path' || hasDefault(param.schema) || param.required ? ':' : '?:'
           params[param.in as InParam] += `        ${param.name as string}${splitter} ${generateSchemaTypes(param.schema)}`
         }
 

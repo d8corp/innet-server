@@ -106,7 +106,7 @@ function generateTypes(docs, namespace = 'Api') {
                     query: '',
                 };
                 for (const param of parameters) {
-                    const splitter = param.in === 'path' || hasDefault(param.schema) ? ':' : '?:';
+                    const splitter = param.in === 'path' || hasDefault(param.schema) || param.required ? ':' : '?:';
                     params[param.in] += `        ${param.name}${splitter} ${generateSchemaTypes(param.schema)}`;
                 }
                 if (params.path) {
