@@ -1710,6 +1710,8 @@ return (
 [\<uuid>](#uuid)  
 [\<binary>](#binary)
 
+---
+
 ### \<any>
 
 [← back](#primitive-data)
