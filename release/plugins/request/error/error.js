@@ -70,7 +70,10 @@ const error = () => {
     }
     const { code = 'undefined', status = 520, } = props || {};
     res.statusCode = typeof status === 'string' ? errorStatuses[status] : status;
-    res.write(JSONString.JSONString({ data: children, error: code }));
+    const content = JSONString.JSONString({ data: children, error: code });
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Length', content.length);
+    res.write(content);
     res.end();
 };
 
