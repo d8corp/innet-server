@@ -4022,6 +4022,7 @@ Server start
 
 Both  
 [useServer](#useserver)  
+[usePort](#useport)  
 [useComponentName](#usecomponentname)
 
 ---
@@ -4256,6 +4257,26 @@ export function Component () {
   const server = useServer()
 
   console.log(server)
+
+  return <success />
+}
+```
+
+### usePort
+
+[← back](#hooks)
+
+This hook MUST be used in a component placed in [\<server>](#server).
+This hook returns current http(s) server port.
+
+*src/Component.tsx*
+```typescript jsx
+import { usePort } from '@innet/sever'
+
+export function Component () {
+  const port = usePort()
+
+  console.log(port)
 
   return <success />
 }
