@@ -28,3 +28,4 @@ import './useClientIp/index.es6.js';
 import './useServerPlugins/index.es6.js';
 import './useObjectSchemaContext/index.es6.js';
 import './useServerPort/index.es6.js';
+import './useIsServerHttps/index.es6.js';

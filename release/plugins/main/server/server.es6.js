@@ -9,6 +9,7 @@ import '../../../utils/index.es6.js';
 import { serverContext } from '../../../hooks/useServer/useServer.es6.js';
 import { serverPlugins } from '../../../hooks/useServerPlugins/useServerPlugins.es6.js';
 import { serverPortContext } from '../../../hooks/useServerPort/useServerPort.es6.js';
+import { serverHttpsContext } from '../../../hooks/useIsServerHttps/useIsServerHttps.es6.js';
 import { Action } from '../../../utils/action/Action.es6.js';
 import { actionContext } from '../../../hooks/useAction/useAction.es6.js';
 
@@ -39,6 +40,7 @@ const server = () => {
     serverContext.set(handler, { port, server });
     serverPlugins.set(handler, plugins);
     serverPortContext.set(handler, port);
+    serverHttpsContext.set(handler, https);
     onDestroy(() => {
         server.close();
     });

@@ -28,7 +28,9 @@ const success = () => {
         const contentType = type || (['bigint', 'boolean', 'number', 'string'].includes(typeof child)
             ? 'text/plain'
             : 'application/json');
+        const content = contentType === 'application/json' ? JSONString(child) : String(child);
         res.setHeader('Content-Type', contentType);
+        res.setHeader('Content-Length', content.length);
         if (contentType === 'application/json') {
             res.write(JSONString(child));
         }

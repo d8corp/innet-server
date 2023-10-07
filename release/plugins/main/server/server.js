@@ -13,6 +13,7 @@ require('../../../utils/index.js');
 var useServer = require('../../../hooks/useServer/useServer.js');
 var useServerPlugins = require('../../../hooks/useServerPlugins/useServerPlugins.js');
 var useServerPort = require('../../../hooks/useServerPort/useServerPort.js');
+var useIsServerHttps = require('../../../hooks/useIsServerHttps/useIsServerHttps.js');
 var Action = require('../../../utils/action/Action.js');
 var useAction = require('../../../hooks/useAction/useAction.js');
 
@@ -50,6 +51,7 @@ const server = () => {
     useServer.serverContext.set(handler, { port, server });
     useServerPlugins.serverPlugins.set(handler, plugins);
     useServerPort.serverPortContext.set(handler, port);
+    useIsServerHttps.serverHttpsContext.set(handler, https);
     watchState.onDestroy(() => {
         server.close();
     });
