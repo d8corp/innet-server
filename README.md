@@ -4025,6 +4025,7 @@ Server start
 Both  
 [useServer](#useserver)  
 [usePort](#useport)  
+[useIsServerHttps](#useisserverhttps)  
 [useComponentName](#usecomponentname)
 
 ---
@@ -4271,16 +4272,43 @@ export function Component () {
 This hook MUST be used in a component placed in [\<server>](#server).
 This hook returns current http(s) server port.
 
-*src/Component.tsx*
+*src/LocalHost.tsx*
 ```typescript jsx
 import { usePort } from '@innet/sever'
 
-export function Component () {
+export function LocalHost () {
   const port = usePort()
 
-  console.log(port)
+  return (
+    <host
+      description='Development'
+      url={`http://localhost:${port}/api`}
+    />
+  )
+}
+```
 
-  return <success />
+### useIsServerHttps
+
+[← back](#hooks)
+
+This hook MUST be used in a component placed in [\<server>](#server).
+This hook returns `true` if it is https server and `false` if not.
+
+*src/LocalHost.tsx*
+```typescript jsx
+import { usePort, useIsServerHttps } from '@innet/sever'
+
+export function LocalHost () {
+  const https = useIsServerHttps() ? 'https' : 'http'
+  const port = usePort()
+
+  return (
+    <host
+      description='Development'
+      url={`${https}://localhost:${port}/api`}
+    />
+  )
 }
 ```
 
