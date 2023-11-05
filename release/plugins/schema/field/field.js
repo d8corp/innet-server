@@ -18,7 +18,7 @@ var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 
 const field = () => {
     const handler = innet.useNewHandler();
-    const { key, optional, } = jsx.useProps();
+    const { deprecated, key, optional, } = jsx.useProps();
     const schema = useObjectSchemaContext.useObjectSchemaContext();
     const children = jsx.useChildren();
     if (!schema.properties) {
@@ -29,6 +29,9 @@ const field = () => {
     }
     const fieldSchema = {};
     useSchemaContext.schemaContext.set(handler, fieldSchema);
+    if (deprecated) {
+        fieldSchema.deprecated = true;
+    }
     schema.properties[key] = fieldSchema;
     if (!optional) {
         if (!schema.required) {

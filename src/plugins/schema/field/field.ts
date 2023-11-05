@@ -6,6 +6,7 @@ import { type SchemaObject } from '../../../types'
 import { required } from '../../../utils'
 
 export interface FieldProps {
+  deprecated?: boolean
   key: string
   optional?: boolean
 }
@@ -13,6 +14,7 @@ export interface FieldProps {
 export const field: HandlerPlugin = () => {
   const handler = useNewHandler()
   const {
+    deprecated,
     key,
     optional,
   } = useProps<FieldProps>()
@@ -29,6 +31,10 @@ export const field: HandlerPlugin = () => {
 
   const fieldSchema: SchemaObject = {}
   schemaContext.set(handler, fieldSchema)
+
+  if (deprecated) {
+    fieldSchema.deprecated = true
+  }
 
   schema.properties[key] = fieldSchema
 

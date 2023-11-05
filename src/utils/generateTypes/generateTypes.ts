@@ -75,6 +75,10 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2, l
         ? ':'
         : '?:'
 
+      if ('deprecated' in prop && prop.deprecated) {
+        result += `${space}/** @deprecated */\n`
+      }
+
       result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}`
     }
   }
@@ -125,6 +129,11 @@ export function generateTypes (docs: Document, namespace = 'Api'): string {
       const parameters = endpoint.parameters
       const requestBody = endpoint.requestBody
       const responses = endpoint.responses
+
+      if (endpoint.deprecated) {
+        result += '    /** @deprecated */\n'
+      }
+
       result += `    ['${method.toUpperCase()}:${path}']: {\n`
 
       if (parameters) {

@@ -54,6 +54,9 @@ function generateSchemaTypes(schema, spaces = 2, lastChar = '\n') {
             const splitter = required.includes(key) || hasDefault(prop)
                 ? ':'
                 : '?:';
+            if ('deprecated' in prop && prop.deprecated) {
+                result += `${space}/** @deprecated */\n`;
+            }
             result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}`;
         }
     }
@@ -97,6 +100,9 @@ function generateTypes(docs, namespace = 'Api') {
             const parameters = endpoint.parameters;
             const requestBody = endpoint.requestBody;
             const responses = endpoint.responses;
+            if (endpoint.deprecated) {
+                result += '    /** @deprecated */\n';
+            }
             result += `    ['${method.toUpperCase()}:${path}']: {\n`;
             if (parameters) {
                 const params = {
