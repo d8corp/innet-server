@@ -177,14 +177,18 @@ export function generateTypes (docs: Document, namespace = 'Api'): string {
           const response = responses[key]
           result += `        ['${key}']: `
 
-          for (const type in response.content) {
-            if (multiple) {
-              result += ' | '
+          if (!response.content) {
+            result += 'void'
+          } else {
+            for (const type in response.content) {
+              if (multiple) {
+                result += ' | '
+              }
+
+              result += generateSchemaTypes(response.content[type].schema, 10, '')
+
+              multiple = true
             }
-
-            result += generateSchemaTypes(response.content[type].schema, 10, '')
-
-            multiple = true
           }
 
           result += '\n'

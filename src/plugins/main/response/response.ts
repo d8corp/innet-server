@@ -70,16 +70,19 @@ export const response: HandlerPlugin = () => {
     throw Error(`status ${status} and type ${type} for '${path}' already used`)
   }
 
-  const schema: SchemaObject = {}
+  const schema: SchemaObject | undefined = status === 204 || !children ? undefined : {}
 
   const response: ResponseObject = {
-    content: {
+    description,
+  }
+
+  if (schema) {
+    response.content = {
       ...defaultResponse?.content,
       [type]: {
         schema,
       },
-    },
-    description,
+    }
   }
 
   operation.responses[status] = response

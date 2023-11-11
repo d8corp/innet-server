@@ -65,6 +65,9 @@ declare namespace Api {
       Params: {
         todoId: string
       }
+      Response: {
+        ['204']: void
+     }
     }
   }
 }
