@@ -33,13 +33,15 @@ const response = () => {
     if ((_a = defaultResponse === null || defaultResponse === void 0 ? void 0 : defaultResponse.content) === null || _a === void 0 ? void 0 : _a[type]) {
         throw Error(`status ${status} and type ${type} for '${path}' already used`);
     }
-    const schema = {};
+    const schema = status === 204 || !children ? undefined : {};
     const response = {
-        content: Object.assign(Object.assign({}, defaultResponse === null || defaultResponse === void 0 ? void 0 : defaultResponse.content), { [type]: {
-                schema,
-            } }),
         description,
     };
+    if (schema) {
+        response.content = Object.assign(Object.assign({}, defaultResponse === null || defaultResponse === void 0 ? void 0 : defaultResponse.content), { [type]: {
+                schema,
+            } });
+    }
     operation.responses[status] = response;
     schemaContext.set(handler, schema);
     const rules = getOrAdd(endpoint, 'endpoint.rules', [{}, {}]);

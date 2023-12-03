@@ -3253,6 +3253,29 @@ export default (
 )
 ```
 
+#### deprecated
+
+You can deprecate a field.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/users'>
+        <body>
+        <object>
+          <field key='name' />
+          <field key='surname' />
+          <field deprecated optional key='birthbay' />
+        </object>
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
 ## Run-Time
 
 Next elements relate to run-time action.

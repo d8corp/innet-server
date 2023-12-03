@@ -12,6 +12,7 @@ import { serverPortContext } from '../../../hooks/useServerPort/useServerPort.es
 import { serverHttpsContext } from '../../../hooks/useIsServerHttps/useIsServerHttps.es6.js';
 import { Action } from '../../../utils/action/Action.es6.js';
 import { actionContext } from '../../../hooks/useAction/useAction.es6.js';
+import { requestHandlerContext } from '../../../hooks/useRequestHandler/useRequestHandler.es6.js';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const isInvalidPath = require('is-invalid-path');
@@ -55,6 +56,7 @@ const server = () => {
         const action = new Action(req, res);
         const requestHandler = Object.create(handler);
         actionContext.set(requestHandler, action);
+        requestHandlerContext.set(requestHandler, requestHandler);
         function server() {
             return __awaiter(this, void 0, void 0, function* () {
                 for (const plugin of plugins) {

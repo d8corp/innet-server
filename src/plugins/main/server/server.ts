@@ -7,6 +7,7 @@ import { onDestroy } from 'watch-state'
 
 import {
   actionContext,
+  requestHandlerContext,
   serverContext,
   serverHttpsContext,
   type ServerPlugin,
@@ -88,6 +89,7 @@ export const server: HandlerPlugin = () => {
     const action = new Action(req, res)
     const requestHandler = Object.create(handler)
     actionContext.set(requestHandler, action)
+    requestHandlerContext.set(requestHandler, requestHandler)
 
     async function server () {
       for (const plugin of plugins) {

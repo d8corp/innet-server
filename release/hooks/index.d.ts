@@ -29,3 +29,4 @@ export * from './useServerPlugins';
 export * from './useObjectSchemaContext';
 export * from './useServerPort';
 export * from './useIsServerHttps';
+export * from './useRequestHandler';

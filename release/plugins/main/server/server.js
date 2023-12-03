@@ -16,6 +16,7 @@ var useServerPort = require('../../../hooks/useServerPort/useServerPort.js');
 var useIsServerHttps = require('../../../hooks/useIsServerHttps/useIsServerHttps.js');
 var Action = require('../../../utils/action/Action.js');
 var useAction = require('../../../hooks/useAction/useAction.js');
+var useRequestHandler = require('../../../hooks/useRequestHandler/useRequestHandler.js');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -66,6 +67,7 @@ const server = () => {
         const action = new Action.Action(req, res);
         const requestHandler = Object.create(handler);
         useAction.actionContext.set(requestHandler, action);
+        useRequestHandler.requestHandlerContext.set(requestHandler, requestHandler);
         function server() {
             return tslib.__awaiter(this, void 0, void 0, function* () {
                 for (const plugin of plugins) {

@@ -115,3 +115,4 @@ export { serverPlugins, useServerPlugins } from './hooks/useServerPlugins/useSer
 export { objectSchemaContext, useObjectSchemaContext } from './hooks/useObjectSchemaContext/useObjectSchemaContext.es6.js';
 export { serverPortContext, useServerPort } from './hooks/useServerPort/useServerPort.es6.js';
 export { serverHttpsContext, useIsServerHttps } from './hooks/useIsServerHttps/useIsServerHttps.es6.js';
+export { requestHandlerContext, useRequestHandler } from './hooks/useRequestHandler/useRequestHandler.es6.js';
