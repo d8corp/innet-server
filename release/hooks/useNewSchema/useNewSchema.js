@@ -18,7 +18,7 @@ function useNewSchema(schema = Object.create(null)) {
     else if (parentSchema.oneOf) {
         parentSchema.oneOf.push(schema);
     }
-    else if (parentSchema.type) {
+    else if (parentSchema.type || '$ref' in parentSchema) {
         const oldSchema = Object.assign({}, parentSchema);
         for (const key in parentSchema) {
             // @ts-expect-error: FIXME
