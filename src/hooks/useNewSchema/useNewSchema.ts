@@ -14,7 +14,7 @@ export function useNewSchema <T extends RefSchemaObject = SchemaObject> (schema:
     parentSchema.push(schema)
   } else if (parentSchema.oneOf) {
     parentSchema.oneOf.push(schema)
-  } else if (parentSchema.type) {
+  } else if (parentSchema.type || '$ref' in parentSchema) {
     const oldSchema = { ...parentSchema }
 
     for (const key in parentSchema) {
