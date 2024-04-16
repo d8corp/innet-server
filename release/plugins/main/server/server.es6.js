@@ -14,8 +14,6 @@ import { Action } from '../../../utils/action/Action.es6.js';
 import { actionContext } from '../../../hooks/useAction/useAction.es6.js';
 import { requestHandlerContext } from '../../../hooks/useRequestHandler/useRequestHandler.es6.js';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const isInvalidPath = require('is-invalid-path');
 const server = () => {
     var _a, _b, _c;
     const handler = useNewHandler();
@@ -23,10 +21,10 @@ const server = () => {
     const { env } = process;
     let { ssl: { cert = (_a = env.INNET_SSL_CRT) !== null && _a !== void 0 ? _a : 'localhost.crt', key = (_b = env.INNET_SSL_KEY) !== null && _b !== void 0 ? _b : 'localhost.key', } = {}, } = props;
     try {
-        if (!isInvalidPath(key)) {
+        if (!key.startsWith('-----BEGIN PRIVATE KEY-----')) {
             key = fs.readFileSync(key).toString();
         }
-        if (!isInvalidPath(cert)) {
+        if (!cert.startsWith('-----BEGIN CERTIFICATE-----')) {
             cert = fs.readFileSync(cert).toString();
         }
     }

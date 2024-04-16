@@ -25,8 +25,6 @@ var fs__default = /*#__PURE__*/_interopDefaultLegacy(fs);
 var http__default = /*#__PURE__*/_interopDefaultLegacy(http);
 var http2__default = /*#__PURE__*/_interopDefaultLegacy(http2);
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const isInvalidPath = require('is-invalid-path');
 const server = () => {
     var _a, _b, _c;
     const handler = innet.useNewHandler();
@@ -34,10 +32,10 @@ const server = () => {
     const { env } = process;
     let { ssl: { cert = (_a = env.INNET_SSL_CRT) !== null && _a !== void 0 ? _a : 'localhost.crt', key = (_b = env.INNET_SSL_KEY) !== null && _b !== void 0 ? _b : 'localhost.key', } = {}, } = props;
     try {
-        if (!isInvalidPath(key)) {
+        if (!key.startsWith('-----BEGIN PRIVATE KEY-----')) {
             key = fs__default["default"].readFileSync(key).toString();
         }
-        if (!isInvalidPath(cert)) {
+        if (!cert.startsWith('-----BEGIN CERTIFICATE-----')) {
             cert = fs__default["default"].readFileSync(cert).toString();
         }
     }

@@ -17,9 +17,6 @@ import {
 import { type ServerStartParams, type SSL } from '../../../types'
 import { Action } from '../../../utils'
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const isInvalidPath = require('is-invalid-path')
-
 export interface ServerProps {
   onClose?: () => any
   onError?: (e: Error) => any
@@ -44,10 +41,10 @@ export const server: HandlerPlugin = () => {
   } = props
 
   try {
-    if (!isInvalidPath(key)) {
+    if (!key.startsWith('-----BEGIN PRIVATE KEY-----')) {
       key = fs.readFileSync(key).toString()
     }
-    if (!isInvalidPath(cert)) {
+    if (!cert.startsWith('-----BEGIN CERTIFICATE-----')) {
       cert = fs.readFileSync(cert).toString()
     }
   } catch {
