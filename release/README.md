@@ -159,7 +159,7 @@ export default (
 )
 ```
 
-- By default, it uses port `80` for `http` and port `442` for `https`.
+- By default, it uses port `80` for `http` and port `443` for `https`.
 - You can use `INNET_PORT` environment variable to set it up on CI level.
 - [innetjs](https://www.npmjs.com/package/innetjs) allows you to use `INNET_PORT` in `.env` file of local environment.
 
@@ -3304,9 +3304,9 @@ This is a base element to return a success data.
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <success />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3321,11 +3321,11 @@ const data = {...}
 
 export default (
   <server>
-    <response>
+    <return>
       <success>
         {data}
       </success>
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3342,11 +3342,11 @@ const data = {...}
 
 export default (
   <server>
-    <response>
+    <return>
       <success status='created'>
         {data}
       </success>
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3361,11 +3361,11 @@ const data = {...}
 
 export default (
   <server>
-    <response>
+    <return>
       <success status={201}>
         {data}
       </success>
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3379,11 +3379,11 @@ By default, it checks children element to define the prop.
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <success contentType='text/html'>
         Hello World!
       </success>
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3393,15 +3393,15 @@ export default (
 [← back](#run-time)
 
 Returns an error.
-This element MUST be placed in [\<return>](#return) or [\<response>](#response).
+This element MUST be placed in [\<return>](#return).
 
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <error />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3414,11 +3414,11 @@ const data = {...}
 
 export default (
   <server>
-    <response>
+    <return>
       <error>
         {data}
       </error>
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3434,11 +3434,11 @@ const data = {
 
 export default (
   <server>
-    <response>
+    <return>
       <error status='notFound'>
         {data}
       </error>
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3453,11 +3453,11 @@ const data = {
 
 export default (
   <server>
-    <response>
+    <return>
       <error status={404}>
         {data}
       </error>
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3485,13 +3485,13 @@ const data = {
 
 export default (
   <server>
-    <response>
+    <return>
       <error
         code='noUser'
         status='notFound'>
         {data}
       </error>
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3519,7 +3519,7 @@ There are some default errors:
 
 [← back](#run-time)
 
-MUST be placed in [\<return>](#return) or [\<response>](#response).
+MUST be placed in [\<return>](#return).
 
 You can easy proxy endpoints to another server/service.
 
@@ -3536,9 +3536,9 @@ export default (
         </return>
       </endpoint>
     </api>
-    <response>
+    <return>
       <proxy to='https://...' />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3547,7 +3547,7 @@ export default (
 
 [← back](#run-time)
 
-MUST be placed in [\<return>](#return) or [\<response>](#response).
+MUST be placed in [\<return>](#return).
 
 You can redirect users to another resource. It adds `Cache-Control` header by default.
 
@@ -3592,12 +3592,12 @@ export default (
         </return>
       </endpoint>
     </api>
-    <response>
+    <return>
       <redirect
         status={303}
         to='https://...'
       />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3606,7 +3606,7 @@ export default (
 
 [← back](#run-time)
 
-MUST be placed in [\<return>](#return) or [\<response>](#response).
+MUST be placed in [\<return>](#return).
 
 `<cms>` helps to return files from a folder by path. It checks files run-time on the server.
 
@@ -3614,9 +3614,9 @@ MUST be placed in [\<return>](#return) or [\<response>](#response).
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <cms />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3633,9 +3633,9 @@ You can change root folder by `dir` property.
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <cms dir='src' />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3653,9 +3653,9 @@ By default, it equals `INNET_CMS_PREFIX` node env variable or `/`.
 export default (
   <server>
     <api prefix='/src'>
-      <response>
+      <return>
         <cms />
-      </response>
+      </return>
     </api>
   </server>
 )
@@ -3671,9 +3671,9 @@ You can reduce the path for matching by prefix property of `<cms>`.
 export default (
   <server>
     <api prefix='/api'>
-      <response>
+      <return>
         <cms prefix='/api' />
-      </response>
+      </return>
     </api>
   </server>
 )
@@ -3689,11 +3689,11 @@ You can handle if a file was not found by children elements of `<cms>`.
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <cms>
         <error status={404} />
       </cms>
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3702,7 +3702,7 @@ export default (
 
 [← back](#run-time)
 
-It returns a file. MUST be placed in [\<return>](#return) or [\<response>](#response).
+It returns a file. MUST be placed in [\<return>](#return).
 
 It adds `Content-Length` and `Content-Type` automatically.
 
@@ -3712,9 +3712,9 @@ It has a REQUIRED property of `path`.
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <file path='package.json' />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3729,18 +3729,18 @@ You can handle if a file was not found by children elements of `<file>`.
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <file path='file_is_not_exist.txt'>
         <error status={404} />
       </file>
-    </response>
+    </return>
   </server>
 )
 ```
 
 ### \<header>
 
-MUST be placed in [\<return>](#return) or [\<response>](#response).
+MUST be placed in [\<return>](#return).
 
 [← back](#run-time)
 
@@ -3750,20 +3750,20 @@ You can add an HTTP header into response by `<header>` element.
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <header
         key='Cache-Control'
         value='no-cache, no-store, must-revalidate'
       />
       <success />
-    </response>
+    </return>
   </server>
 )
 ```
 
 ### \<cookie>
 
-MUST be placed in [\<return>](#return) or [\<response>](#response).
+MUST be placed in [\<return>](#return).
 
 [← back](#run-time)
 
@@ -3773,7 +3773,7 @@ You can add/remove a cookie into response by `<cookie>` element.
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <cookie
         key='token'
         value='...'
@@ -3782,7 +3782,7 @@ export default (
         key='removedCookie'
       />
       <success />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3796,14 +3796,14 @@ By default, no domain is set, and most clients will consider the cookie to apply
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <cookie
         domain='.example.com'
         key='token'
         value='...'
       />
       <success />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3822,14 +3822,14 @@ Note the [cookie storage model specification](https://datatracker.ietf.org/doc/h
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <cookie
         expires={new Date('2050-01-01')}
         key='token'
         value='...'
       />
       <success />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3843,14 +3843,14 @@ Note be careful when setting this to true, as compliant clients will not allow c
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <cookie
         httpOnly
         key='token'
         value='...'
       />
       <success />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3864,7 +3864,7 @@ Note the [cookie storage model specification](https://datatracker.ietf.org/doc/h
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <cookie
         httpOnly
         maxAge={9999}
@@ -3872,7 +3872,7 @@ export default (
         value='...'
       />
       <success />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3886,7 +3886,7 @@ By default, the path is considered the “default path”.
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <cookie
         httpOnly
         maxAge={9999}
@@ -3895,7 +3895,7 @@ export default (
         value='...'
       />
       <success />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3914,7 +3914,7 @@ note This is an attribute that has not yet been fully standardized, and may chan
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <cookie
         httpOnly
         priority='high'
@@ -3923,7 +3923,7 @@ export default (
         value='...'
       />
       <success />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3945,7 +3945,7 @@ This also means many clients may ignore this attribute until they understand it.
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <cookie
         httpOnly
         sameSite
@@ -3955,7 +3955,7 @@ export default (
         value='...'
       />
       <success />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -3972,7 +3972,7 @@ Note be careful when setting this to true, as compliant clients will not send th
 ```typescript jsx
 export default (
   <server>
-    <response>
+    <return>
       <cookie
         httpOnly
         secure
@@ -3980,7 +3980,7 @@ export default (
         value='...'
       />
       <success />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -4013,12 +4013,12 @@ import { SetToken } from './SetToken'
 
 export default (
   <server>
-    <response>
+    <return>
       <SetToken
         value='...'
       />
       <success />
-    </response>
+    </return>
   </server>
 )
 ```
@@ -4057,7 +4057,7 @@ Both
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return).
 This hook returns current request instance.
 
 *src/Component.tsx*
@@ -4078,7 +4078,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return).
 This hook returns current response instance.
 
 *src/Component.tsx*
@@ -4099,7 +4099,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return).
 This hook returns current request headers object.
 
 *src/Component.tsx*
@@ -4118,7 +4118,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return).
 This hook returns current request cookies object.
 
 *src/Component.tsx*
@@ -4137,7 +4137,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return).
 This hook returns current request URL path as a `string`.
 
 *src/Component.tsx*
@@ -4156,7 +4156,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return).
 This hook returns an object of URL params you set by [\<param>](#param).
 
 *src/Component.tsx*
@@ -4174,7 +4174,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return).
 This hook returns an object of URL query params.
 
 *src/Component.tsx*
@@ -4192,7 +4192,7 @@ export function Component () {
 
 [← back](#hooks)
 
-This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return).
 This hook returns current request body.
 
 *src/Component.tsx*
@@ -4211,7 +4211,7 @@ export function Component () {
 [← back](#hooks)
 
 This hook returns request user IP.
-This hook MUST be used in a component placed in [\<return>](#return) or [\<response>](#response).
+This hook MUST be used in a component placed in [\<return>](#return).
 
 *src/Component.tsx*
 ```typescript jsx
@@ -4258,9 +4258,9 @@ import { SecretEndpoint } from './SecretEndpoint'
 export default (
   <server>
     <SecretEndpoint />
-    <response>
+    <return>
       <error />
-    </response>
+    </return>
   </server>
 )
 ```

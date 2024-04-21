@@ -58,7 +58,7 @@ export const server: HandlerPlugin = () => {
     onError,
     onRequest,
     onStart,
-    port = Number(env.INNET_PORT ?? (https ? 442 : 80)),
+    port = Number(env.INNET_PORT ?? (https ? 443 : 80)),
   } = props
   const plugins = new Set<ServerPlugin>()
 

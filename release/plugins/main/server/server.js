@@ -44,7 +44,7 @@ const server = () => {
         cert = '';
     }
     const https = Boolean(key && cert);
-    const { onClose, onError, onRequest, onStart, port = Number((_c = env.INNET_PORT) !== null && _c !== void 0 ? _c : (https ? 442 : 80)), } = props;
+    const { onClose, onError, onRequest, onStart, port = Number((_c = env.INNET_PORT) !== null && _c !== void 0 ? _c : (https ? 443 : 80)), } = props;
     const plugins = new Set();
     const server = https ? http2__default["default"].createServer({ cert, key }) : http__default["default"].createServer();
     useServer.serverContext.set(handler, { port, server });
