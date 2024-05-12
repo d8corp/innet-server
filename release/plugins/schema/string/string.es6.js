@@ -43,7 +43,7 @@ const string = () => {
         if (props.ref) {
             refRules[props.ref] = rule;
         }
-        if (props.default) {
+        if (props.default !== undefined) {
             useRule(rule);
         }
         else {
@@ -52,7 +52,7 @@ const string = () => {
         }
     }
     else if (props.ref) {
-        if (props.default) {
+        if (props.default !== undefined) {
             useRule(refRules[props.ref]);
         }
         else {
