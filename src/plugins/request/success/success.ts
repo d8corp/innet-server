@@ -1,5 +1,5 @@
 import { type HandlerPlugin } from 'innet'
-import { useChildren, useProps } from '@innet/jsx'
+import { useProps } from '@innet/jsx'
 
 import { useResponse } from '../../../hooks'
 import { JSONString } from '../../../utils'
@@ -19,16 +19,17 @@ export const successStatuses = {
 export type SuccessStatuses = keyof typeof successStatuses
 
 export interface SuccessProps {
+  children?: any
   status?: SuccessStatuses | number
   type?: string
 }
 
 export const success: HandlerPlugin = () => {
-  const children = useChildren()
   const {
+    children,
     status,
     type,
-  } = useProps<SuccessProps>() || {}
+  } = useProps<SuccessProps>()
   const res = useResponse()
 
   if (!res) {
@@ -37,8 +38,8 @@ export const success: HandlerPlugin = () => {
 
   res.statusCode = typeof status === 'string' ? successStatuses[status] : status ?? ((children) ? 200 : 204)
 
-  if (children?.[0]) {
-    const child = children[0]
+  if (children) {
+    const child = children
     const contentType = type || (
       ['bigint', 'boolean', 'number', 'string'].includes(typeof child)
         ? 'text/plain'

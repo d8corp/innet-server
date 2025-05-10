@@ -16,7 +16,7 @@ var optional = require('../../../utils/rules/optional/optional.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
 
 const uuid = () => {
-    const _a = jsx.useProps() || {}, { default: defaultValue } = _a, props = tslib.__rest(_a, ["default"]);
+    const _a = jsx.useProps(), { default: defaultValue } = _a, props = tslib.__rest(_a, ["default"]);
     const schema = useSchemaType.useSchemaType('string', Object.assign(Object.assign({}, props), { default: defaultValue === 'new' ? undefined : defaultValue }));
     // @ts-expect-error: FIXME
     schema.format = 'uuid';

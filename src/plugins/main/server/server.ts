@@ -1,5 +1,5 @@
-import innet, { type HandlerPlugin, useApp, useNewHandler } from 'innet'
-import { type JSXElement } from '@innet/jsx'
+import innet, { type HandlerPlugin, useNewHandler } from 'innet'
+import { useProps } from '@innet/jsx'
 import fs from 'fs'
 import http, { type IncomingMessage, type ServerResponse } from 'http'
 import http2 from 'https'
@@ -18,6 +18,7 @@ import { type ServerStartParams, type SSL } from '../../../types'
 import { Action } from '../../../utils'
 
 export interface ServerProps {
+  children?: any
   onClose?: () => any
   onError?: (e: Error) => any
   onRequest?: (req: IncomingMessage, res: ServerResponse) => any
@@ -28,11 +29,9 @@ export interface ServerProps {
 
 export const server: HandlerPlugin = () => {
   const handler = useNewHandler()
-  const {
-    children,
-    props = {},
-  } = useApp<JSXElement<string, ServerProps>>()
+  const props = useProps<ServerProps>()
   const { env } = process
+
   let {
     ssl: {
       cert = env.INNET_SSL_CRT ?? 'localhost.crt',
@@ -101,7 +100,7 @@ export const server: HandlerPlugin = () => {
     innet({ props, type: server }, requestHandler)
   })
 
-  innet(children, handler)
+  innet(props.children, handler)
 
   server.listen(port, () => {
     onStart?.({ https, port })

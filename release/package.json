@@ -1,6 +1,6 @@
 {
   "name": "@innet/server",
-  "version": "2.0.0-alpha.35",
+  "version": "2.0.0-beta.1",
   "description": "Create server-side application with innet",
   "main": "index.js",
   "module": "index.es6.js",
@@ -36,7 +36,7 @@
   "homepage": "https://github.com/d8corp/innet-server",
   "dependencies": {
     "@cantinc/utils": "^1.4.2",
-    "@innet/jsx": "^2.0.0-alpha.10",
+    "@innet/jsx": "^2.0.0-beta.2",
     "@innet/utils": "^2.0.0-alpha.1",
     "@types/cookie": "^0.5.1",
     "@types/multiparty": "^0.0.33",

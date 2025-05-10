@@ -1,5 +1,5 @@
 import innet, { useNewHandler } from 'innet';
-import { useProps, useChildren, useContext } from '@innet/jsx';
+import { useProps, useContext } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
 import '../../request/index.es6.js';
@@ -15,9 +15,8 @@ import { ruleContext } from '../../../hooks/useRule/useRule.es6.js';
 const statuses = Object.assign(Object.assign(Object.assign({}, errorStatuses), redirectStatuses), successStatuses);
 const response = () => {
     var _a;
-    let { description = '', status = 'default', type = 'application/json', } = useProps() || {};
+    let { children, description = '', status = 'default', type = 'application/json', } = useProps() || {};
     const { operation, props: { path }, } = useEndpoint();
-    const children = useChildren();
     const handler = useNewHandler();
     const endpoint = useContext(endpointContext);
     if (status in statuses) {

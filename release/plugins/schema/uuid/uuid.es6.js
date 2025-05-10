@@ -12,7 +12,7 @@ import { optional } from '../../../utils/rules/optional/optional.es6.js';
 import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 
 const uuid = () => {
-    const _a = useProps() || {}, { default: defaultValue } = _a, props = __rest(_a, ["default"]);
+    const _a = useProps(), { default: defaultValue } = _a, props = __rest(_a, ["default"]);
     const schema = useSchemaType('string', Object.assign(Object.assign({}, props), { default: defaultValue === 'new' ? undefined : defaultValue }));
     // @ts-expect-error: FIXME
     schema.format = 'uuid';

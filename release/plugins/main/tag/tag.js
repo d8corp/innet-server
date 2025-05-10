@@ -16,8 +16,7 @@ const tag = () => {
     if (jsx.useContext(useTag.tagContext)) {
         throw Error('You cannot use a <tag> inside another one');
     }
-    const { description, name, } = jsx.useProps();
-    const children = jsx.useChildren();
+    const { children, description, name, } = jsx.useProps();
     const { docs } = useApi.useApi();
     const tag = { name };
     if (description) {

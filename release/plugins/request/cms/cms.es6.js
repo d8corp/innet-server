@@ -1,5 +1,5 @@
 import innet, { useHandler } from 'innet';
-import { useProps, useChildren } from '@innet/jsx';
+import { useProps } from '@innet/jsx';
 import path from 'node:path';
 import '../file/index.es6.js';
 import '../../../hooks/index.es6.js';
@@ -7,8 +7,7 @@ import { usePath } from '../../../hooks/usePath/usePath.es6.js';
 import { file } from '../file/file.es6.js';
 
 function cms() {
-    const { dir = process.env.INNET_CMS_DIR || '.', prefix = process.env.INNET_CMS_PREFIX || '/', } = useProps() || {};
-    const children = useChildren();
+    const { children, dir = process.env.INNET_CMS_DIR || '.', prefix = process.env.INNET_CMS_PREFIX || '/', } = useProps();
     const handler = useHandler();
     let url = usePath();
     if (url.startsWith(prefix)) {

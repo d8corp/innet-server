@@ -1,5 +1,5 @@
 import innet, { useNewHandler } from 'innet';
-import { useProps, useChildren } from '@innet/jsx';
+import { useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
 import { useTag } from '../../../hooks/useTag/useTag.es6.js';
@@ -11,10 +11,9 @@ import { serverPlugins } from '../../../hooks/useServerPlugins/useServerPlugins.
 const endpoint = () => {
     const handler = useNewHandler();
     const tag = useTag();
-    const { docs, endpoints, } = useApi();
     const props = useProps();
-    const { deprecated, description, method, path, private: privateMode, summary, } = props;
-    const children = useChildren();
+    const { docs, endpoints, } = useApi();
+    const { children, deprecated, description, method, path, private: privateMode, summary, } = props;
     const { paths } = docs;
     if (!paths)
         throw Error('cannot find paths in docs');

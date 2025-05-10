@@ -1,5 +1,5 @@
 import innet, { useHandler } from 'innet'
-import { useChildren, useProps } from '@innet/jsx'
+import { useProps } from '@innet/jsx'
 import path from 'path'
 
 import { file } from '../file'
@@ -7,16 +7,18 @@ import { file } from '../file'
 import { usePath } from '../../../hooks'
 
 export interface CmsProps {
+  children?: any
   dir?: string
   prefix?: string
 }
 
 export function cms () {
   const {
+    children,
     dir = process.env.INNET_CMS_DIR || '.',
     prefix = process.env.INNET_CMS_PREFIX || '/',
-  } = useProps<CmsProps>() || {}
-  const children = useChildren()
+  } = useProps<CmsProps>()
+
   const handler = useHandler()
   let url = usePath()
 

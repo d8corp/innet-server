@@ -3,6 +3,7 @@ import {
   context,
   type ContextProps,
   jsxComponent,
+  type JSXElement,
   jsxPlugins,
   slot,
   type SlotProps,
@@ -168,6 +169,25 @@ export const handler = createHandler([
 
 declare global {
   namespace JSX {
+    type Element =
+      | ArrayElement
+      | FunctionElement
+      | JSXElement
+      | boolean
+      | null
+      | number
+      // eslint-disable-next-line @typescript-eslint/ban-types
+      | (string & {})
+      | undefined
+
+    interface ArrayElement extends Array<Element> {}
+
+    type FunctionElement = () => Element
+
+    interface ElementChildrenAttribute {
+      // eslint-disable-next-line @typescript-eslint/ban-types
+      children: {}
+    }
     interface IntrinsicElements {
       any: AnyProps
       api: ApiProps

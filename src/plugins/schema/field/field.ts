@@ -1,11 +1,12 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
-import { useChildren, useProps } from '@innet/jsx'
+import { useProps } from '@innet/jsx'
 
 import { objectRuleContext, ruleContext, schemaContext, useObjectRule, useObjectSchemaContext } from '../../../hooks'
 import { type SchemaObject } from '../../../types'
 import { required } from '../../../utils'
 
 export interface FieldProps {
+  children?: any
   deprecated?: boolean
   key: string
   optional?: boolean
@@ -14,12 +15,12 @@ export interface FieldProps {
 export const field: HandlerPlugin = () => {
   const handler = useNewHandler()
   const {
+    children,
     deprecated,
     key,
     optional,
   } = useProps<FieldProps>()
   const schema = useObjectSchemaContext()
-  const children = useChildren()
 
   if (!schema.properties) {
     schema.properties = {}

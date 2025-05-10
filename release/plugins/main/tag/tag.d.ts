@@ -1,5 +1,6 @@
 import { type HandlerPlugin } from 'innet';
 export interface TagProps {
+    children?: any;
     /**
      * A description for the tag.
      * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.

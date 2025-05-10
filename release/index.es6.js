@@ -1,3 +1,4 @@
+import './_virtual/_rollup-plugin-process-env.es6.js';
 import './handler/index.es6.js';
 import './plugins/index.es6.js';
 import './utils/index.es6.js';

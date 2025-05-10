@@ -1,5 +1,5 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
-import { useChildren, useContext, useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 import { callHandler } from '@innet/utils'
 
 import { ruleContext, type SchemaContext, schemaContext, useBlock, useSchemaType } from '../../../hooks'
@@ -8,7 +8,7 @@ import { type ArraySchemaObject, type BaseSchemaProps, type SchemaObject } from 
 import { arrayOf, defaultTo, oneOf, pipe, type Rule } from '../../../utils'
 
 export interface ArrayProps extends BaseSchemaProps <any[]> {
-
+  children?: any
 }
 
 export const array: HandlerPlugin = () => {
@@ -16,9 +16,12 @@ export const array: HandlerPlugin = () => {
 
   const setRule = useContext(ruleContext)
   const handler = useNewHandler()
-  const props = useProps<ArrayProps>()
+  const {
+    children,
+    ...props
+  } = useProps<ArrayProps>()
+
   const schema = useSchemaType('array', props) as ArraySchemaObject
-  const children = useChildren()
 
   const fieldSchema: SchemaObject = {}
   handler[schemaContext.key] = fieldSchema satisfies SchemaContext

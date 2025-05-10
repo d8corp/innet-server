@@ -1,5 +1,5 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
-import { useChildren, useContext, useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 
 import { endpointContext, ruleContext, schemaContext, useEndpoint, useThrow } from '../../../hooks'
 import { type EndpointRules, type ResponseObject, type SchemaObject } from '../../../types'
@@ -16,6 +16,7 @@ import {
 export type StatusKey = ErrorStatuses | RedirectStatuses | SuccessStatuses
 
 export interface ResponseProps {
+  children?: any
   /**
    * A description of the response.
    * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
@@ -40,15 +41,17 @@ export const statuses: Record<StatusKey, number> = {
 
 export const response: HandlerPlugin = () => {
   let {
+    children,
     description = '',
     status = 'default',
     type = 'application/json',
   } = useProps<ResponseProps>() || {}
+
   const {
     operation,
     props: { path },
   } = useEndpoint()
-  const children = useChildren()
+
   const handler = useNewHandler()
   const endpoint = useContext(endpointContext)
 

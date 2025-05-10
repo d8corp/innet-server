@@ -1,6 +1,7 @@
 import { type HandlerPlugin } from 'innet';
 import { type EndpointsMethods } from '../../../types';
 export interface EndpointProps {
+    children?: any;
     /**
      * Declares this operation to be deprecated.
      * Consumers SHOULD refrain from usage of the declared operation.

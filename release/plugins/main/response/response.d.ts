@@ -2,6 +2,7 @@ import { type HandlerPlugin } from 'innet';
 import { type ErrorStatuses, type RedirectStatuses, type SuccessStatuses } from '../../request';
 export type StatusKey = ErrorStatuses | RedirectStatuses | SuccessStatuses;
 export interface ResponseProps {
+    children?: any;
     /**
      * A description of the response.
      * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.

@@ -161,16 +161,26 @@ const docs: any = {
 }
 
 const serverTypes = `declare namespace Api {
+  export interface Bin {
+    filename: string
+    fieldName: string
+    originalFilename: string
+    path: string
+    type: string
+    disposition: string
+    size: number
+    extension?: string
+  }
   namespace Schemas {
     export type TodoSchema = {
+      done: boolean
       id: string
       title: string
-      done: boolean
     }
     export type TodoSchemaAdd = {
+      done: boolean
       id: string
       title: string
-      done: boolean
     }
   }
   export interface Endpoints {
@@ -180,14 +190,30 @@ const serverTypes = `declare namespace Api {
         page: number
         pageSize: number
       }
+      Response: {
+        ['default']: {
+          count: number
+          page: number
+          pageSize: number
+          todos: Array<Schemas.TodoSchema>
+        }
+     }
     }
     ['POST:/todos']: {
       Body: Schemas.TodoSchemaAdd
+    }
+    ['DELETE:/todos/{todoId}']: {
+      Params: {
+        todoId: string
+      }
     }
     ['GET:/todos/{todoId}']: {
       Params: {
         todoId: string
       }
+      Response: {
+        ['default']: Schemas.TodoSchema
+     }
     }
     ['PATCH:/todos/{todoId}']: {
       Params: {
@@ -196,11 +222,6 @@ const serverTypes = `declare namespace Api {
       Body: {
         done?: boolean
         title?: string
-      }
-    }
-    ['DELETE:/todos/{todoId}']: {
-      Params: {
-        todoId: string
       }
     }
   }

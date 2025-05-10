@@ -2,6 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+var tslib = require('tslib');
 var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
 require('../../../utils/index.js');
@@ -62,13 +63,12 @@ const errorStatuses = {
     webServerIsDown: 521,
 };
 const error = () => {
-    const [children] = (jsx.useChildren()) || [];
-    const props = jsx.useProps();
+    const _a = jsx.useProps(), { children } = _a, props = tslib.__rest(_a, ["children"]);
     const res = useResponse.useResponse();
     if (!res) {
         throw Error('<error> MUST be in <request>');
     }
-    const { code = 'undefined', status = 520, } = props || {};
+    const { code = 'undefined', status = 520, } = props;
     res.statusCode = typeof status === 'string' ? errorStatuses[status] : status;
     const content = JSONString.JSONString({ data: children, error: code });
     res.setHeader('Content-Type', 'application/json');

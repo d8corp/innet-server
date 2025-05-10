@@ -14,7 +14,8 @@ export const uuid: HandlerPlugin = () => {
   const {
     default: defaultValue,
     ...props
-  } = useProps<UuidProps>() || {}
+  } = useProps<UuidProps>()
+
   const schema = useSchemaType('string', {
     ...props,
     default: defaultValue === 'new' ? undefined : defaultValue,

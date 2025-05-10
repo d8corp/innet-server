@@ -1,5 +1,6 @@
+import { __rest } from 'tslib';
 import innet, { useNewHandler } from 'innet';
-import { useChildren, useProps } from '@innet/jsx';
+import { useProps } from '@innet/jsx';
 import { callHandler } from '@innet/utils';
 import '../../../hooks/index.es6.js';
 import '../../../hooks/useParentRule/index.es6.js';
@@ -18,8 +19,7 @@ import { objectRuleContext } from '../../../hooks/useObjectRule/useObjectRule.es
 
 const object = () => {
     useBlock('path');
-    const children = useChildren();
-    const props = useProps() || {};
+    const _a = useProps(), { children } = _a, props = __rest(_a, ["children"]);
     const { refRules } = useApi();
     const schema = useSchemaType('object', props);
     const handler = useNewHandler();

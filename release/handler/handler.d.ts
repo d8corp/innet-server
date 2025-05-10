@@ -1,4 +1,4 @@
-import { context, type ContextProps, slot, type SlotProps, slots, type SlotsProps } from '@innet/jsx';
+import { context, type ContextProps, type JSXElement, slot, type SlotProps, slots, type SlotsProps } from '@innet/jsx';
 import { arraySync, async } from '@innet/utils';
 import { type AnyProps, type ApiProps, type ArrayProps, type BinaryProps, blacklist, type BlacklistProps, type BodyProps, type BooleanProps, cms, type CmsProps, type ContactProps, type CookieProps, type DateProps, type DtsProps, type EndpointProps, type EnvProps, type ErrorProps, type FieldProps, file, type FileProps, type HeaderProps, type HostProps, type IntegerProps, type LicenseProps, type NullProps, type NumberProps, type ObjectProps, type ParamProps, preset, type PresetProps, protection, type ProtectionProps, type ProxyProps, type RedirectProps, type ResponseProps, type ReturnProps, type ServerProps, type StringProps, type SuccessProps, type SwaggerProps, type TagProps, type TupleProps, type UuidProps, type VariableProps, whitelist, type WhitelistProps } from '../plugins';
 export declare const arrayPlugins: (typeof arraySync)[];
@@ -53,6 +53,13 @@ export declare const promisePlugins: (typeof async)[];
 export declare const handler: import("innet").Handler;
 declare global {
     namespace JSX {
+        type Element = ArrayElement | FunctionElement | JSXElement | boolean | null | number | (string & {}) | undefined;
+        interface ArrayElement extends Array<Element> {
+        }
+        type FunctionElement = () => Element;
+        interface ElementChildrenAttribute {
+            children: {};
+        }
         interface IntrinsicElements {
             any: AnyProps;
             api: ApiProps;

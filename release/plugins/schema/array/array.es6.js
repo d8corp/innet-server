@@ -1,5 +1,6 @@
+import { __rest } from 'tslib';
 import innet, { useNewHandler } from 'innet';
-import { useContext, useProps, useChildren } from '@innet/jsx';
+import { useContext, useProps } from '@innet/jsx';
 import { callHandler } from '@innet/utils';
 import '../../../hooks/index.es6.js';
 import '../../../hooks/useParentRule/index.es6.js';
@@ -18,9 +19,8 @@ const array = () => {
     useBlock('path');
     const setRule = useContext(ruleContext);
     const handler = useNewHandler();
-    const props = useProps();
+    const _a = useProps(), { children } = _a, props = __rest(_a, ["children"]);
     const schema = useSchemaType('array', props);
-    const children = useChildren();
     const fieldSchema = {};
     handler[schemaContext.key] = fieldSchema;
     schema.items = fieldSchema;

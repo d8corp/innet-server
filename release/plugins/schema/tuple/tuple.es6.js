@@ -1,5 +1,6 @@
+import { __rest } from 'tslib';
 import innet, { useNewHandler } from 'innet';
-import { useProps, useChildren } from '@innet/jsx';
+import { useProps } from '@innet/jsx';
 import { callHandler } from '@innet/utils';
 import '../../../hooks/index.es6.js';
 import '../../../hooks/useParentRule/index.es6.js';
@@ -17,9 +18,8 @@ import { required } from '../../../utils/rules/required/required.es6.js';
 const tuple = () => {
     useBlock('path');
     const handler = useNewHandler();
-    const props = useProps();
+    const _a = useProps(), { children } = _a, props = __rest(_a, ["children"]);
     const schema = useSchemaType('array', props);
-    const children = useChildren();
     if (schema) {
         const schemas = [];
         handler[schemaContext.key] = schemas;
@@ -27,10 +27,10 @@ const tuple = () => {
         schema.prefixItems = schemas;
         const rulesMap = [];
         const rules = [];
-        if ((props === null || props === void 0 ? void 0 : props.default) !== undefined) {
+        if (props.default !== undefined) {
             rules.push(defaultTo(props.default));
         }
-        if ((props === null || props === void 0 ? void 0 : props.default) !== undefined) {
+        if (props.default !== undefined) {
             rules.push(tupleOf(rulesMap));
         }
         else {

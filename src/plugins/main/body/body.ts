@@ -8,7 +8,7 @@ import type { EndpointRules, RequestBodyObject, SchemaObject } from '../../../ty
 import { getOrAdd } from '../../../utils'
 
 export interface BodyProps {
-
+  children?: any
 }
 
 export const body: HandlerPlugin = () => {

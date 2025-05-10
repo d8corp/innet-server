@@ -12,6 +12,7 @@ export declare const successStatuses: {
 };
 export type SuccessStatuses = keyof typeof successStatuses;
 export interface SuccessProps {
+    children?: any;
     status?: SuccessStatuses | number;
     type?: string;
 }

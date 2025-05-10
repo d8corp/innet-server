@@ -1,5 +1,5 @@
 import innet, { useHandler } from 'innet'
-import { useChildren, useProps } from '@innet/jsx'
+import { useProps } from '@innet/jsx'
 import fs from 'fs'
 import { type OutgoingHttpHeaders } from 'http'
 import mime from 'mime'
@@ -7,20 +7,24 @@ import mime from 'mime'
 import { useResponse, useThrow } from '../../../hooks'
 
 export interface FileProps {
+  children?: any
   path: string
 }
 
 export function file () {
   const handler = useHandler()
-  const props = useProps()
-  const children = useChildren()
+  const {
+    children,
+    ...props
+  } = useProps<FileProps>()
+
   const res = useResponse()
 
   if (!res) {
     useThrow('<{type}> MUST be in <request> or <fallback>')
   }
 
-  const { path }: FileProps = props
+  const { path } = props
 
   if (fs.existsSync(path)) {
     const stat = fs.statSync(path)

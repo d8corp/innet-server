@@ -1,5 +1,5 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
-import { useChildren, useProps } from '@innet/jsx'
+import { useProps } from '@innet/jsx'
 import { callHandler } from '@innet/utils'
 
 import { ruleContext, type SchemaContext, schemaContext, useBlock, useRule, useSchemaType } from '../../../hooks'
@@ -8,16 +8,18 @@ import { type ArraySchemaObject, type BaseSchemaProps, type SchemaObject } from 
 import { defaultTo, pipe, required, type Rule, tupleOf } from '../../../utils'
 
 export interface TupleProps extends BaseSchemaProps <any[]> {
-
+  children?: any
 }
 
 export const tuple: HandlerPlugin = () => {
   useBlock('path')
 
   const handler = useNewHandler()
-  const props = useProps<TupleProps>()
+  const {
+    children,
+    ...props
+  } = useProps<TupleProps>()
   const schema = useSchemaType('array', props) as ArraySchemaObject
-  const children = useChildren()
 
   if (schema) {
     const schemas: SchemaObject[] = []
@@ -29,11 +31,11 @@ export const tuple: HandlerPlugin = () => {
     const rulesMap: Rule[] = []
     const rules: Rule[] = []
 
-    if (props?.default !== undefined) {
+    if (props.default !== undefined) {
       rules.push(defaultTo(props.default))
     }
 
-    if (props?.default !== undefined) {
+    if (props.default !== undefined) {
       rules.push(tupleOf(rulesMap))
     } else {
       const parentRule = useParentRule()

@@ -2,6 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+var tslib = require('tslib');
 var innet = require('innet');
 var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
@@ -32,8 +33,7 @@ const param = () => {
     if (!operation.parameters) {
         operation.parameters = [];
     }
-    const children = jsx.useChildren();
-    const props = jsx.useProps();
+    const _b = jsx.useProps(), { children } = _b, props = tslib.__rest(_b, ["children"]);
     const params = Object.assign({}, props);
     if (props.in === 'path') {
         params.required = (_a = params.required) !== null && _a !== void 0 ? _a : true;

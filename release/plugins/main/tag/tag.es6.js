@@ -1,5 +1,5 @@
 import innet, { useNewHandler } from 'innet';
-import { useContext, useProps, useChildren } from '@innet/jsx';
+import { useContext, useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import { tagContext } from '../../../hooks/useTag/useTag.es6.js';
 import { useApi } from '../../../hooks/useApi/useApi.es6.js';
@@ -8,8 +8,7 @@ const tag = () => {
     if (useContext(tagContext)) {
         throw Error('You cannot use a <tag> inside another one');
     }
-    const { description, name, } = useProps();
-    const children = useChildren();
+    const { children, description, name, } = useProps();
     const { docs } = useApi();
     const tag = { name };
     if (description) {

@@ -1,16 +1,17 @@
-import { useChildren, useProps } from '@innet/jsx'
+import { useProps } from '@innet/jsx'
 
 import { useAction, useServerPlugin } from '../../../hooks'
 
 export interface BlacklistProps {
+  children?: any
   ip?: string | string[]
 }
 
 export function blacklist () {
   const {
+    children,
     ip = process.env.INNET_BLACKLIST_IP,
   } = useProps<BlacklistProps>() || {}
-  const children = useChildren()
 
   const ips = typeof ip === 'string' ? ip.split(',') : ip as string[]
 

@@ -2,6 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+var tslib = require('tslib');
 var innet = require('innet');
 var jsx = require('@innet/jsx');
 var utils = require('@innet/utils');
@@ -26,8 +27,7 @@ var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 
 const object = () => {
     useBlock.useBlock('path');
-    const children = jsx.useChildren();
-    const props = jsx.useProps() || {};
+    const _a = jsx.useProps(), { children } = _a, props = tslib.__rest(_a, ["children"]);
     const { refRules } = useApi.useApi();
     const schema = useSchemaType.useSchemaType('object', props);
     const handler = innet.useNewHandler();

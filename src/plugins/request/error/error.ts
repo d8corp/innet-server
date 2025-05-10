@@ -1,5 +1,5 @@
 import { type HandlerPlugin } from 'innet'
-import { useChildren, useProps } from '@innet/jsx'
+import { useProps } from '@innet/jsx'
 
 import { useResponse } from '../../../hooks'
 import { JSONString } from '../../../utils'
@@ -61,13 +61,16 @@ export const errorStatuses = {
 export type ErrorStatuses = keyof typeof errorStatuses
 
 export interface ErrorProps {
+  children?: any
   code?: string
   status?: ErrorStatuses | number
 }
 
 export const error: HandlerPlugin = () => {
-  const [children] = (useChildren()) || []
-  const props = useProps<ErrorProps>()
+  const {
+    children,
+    ...props
+  } = useProps<ErrorProps>()
   const res = useResponse()
 
   if (!res) {
@@ -77,7 +80,7 @@ export const error: HandlerPlugin = () => {
   const {
     code = 'undefined',
     status = 520,
-  } = props || {}
+  } = props
   res.statusCode = typeof status === 'string' ? errorStatuses[status] : status
 
   const content = JSONString({ data: children, error: code })

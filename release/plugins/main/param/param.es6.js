@@ -1,5 +1,6 @@
+import { __rest } from 'tslib';
 import innet, { useNewHandler } from 'innet';
-import { useChildren, useProps } from '@innet/jsx';
+import { useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
 import '../../../utils/rules/index.es6.js';
@@ -24,8 +25,7 @@ const param = () => {
     if (!operation.parameters) {
         operation.parameters = [];
     }
-    const children = useChildren();
-    const props = useProps();
+    const _b = useProps(), { children } = _b, props = __rest(_b, ["children"]);
     const params = Object.assign({}, props);
     if (props.in === 'path') {
         params.required = (_a = params.required) !== null && _a !== void 0 ? _a : true;

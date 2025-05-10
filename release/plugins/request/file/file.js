@@ -2,6 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+var tslib = require('tslib');
 var innet = require('innet');
 var jsx = require('@innet/jsx');
 var fs = require('node:fs');
@@ -18,8 +19,7 @@ var mime__default = /*#__PURE__*/_interopDefaultLegacy(mime);
 
 function file() {
     const handler = innet.useHandler();
-    const props = jsx.useProps();
-    const children = jsx.useChildren();
+    const _a = jsx.useProps(), { children } = _a, props = tslib.__rest(_a, ["children"]);
     const res = useResponse.useResponse();
     if (!res) {
         useThrow.useThrow('<{type}> MUST be in <request> or <fallback>');

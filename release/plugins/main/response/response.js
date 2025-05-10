@@ -23,9 +23,8 @@ var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 const statuses = Object.assign(Object.assign(Object.assign({}, error.errorStatuses), redirect.redirectStatuses), success.successStatuses);
 const response = () => {
     var _a;
-    let { description = '', status = 'default', type = 'application/json', } = jsx.useProps() || {};
+    let { children, description = '', status = 'default', type = 'application/json', } = jsx.useProps() || {};
     const { operation, props: { path }, } = useEndpoint.useEndpoint();
-    const children = jsx.useChildren();
     const handler = innet.useNewHandler();
     const endpoint = jsx.useContext(useEndpoint.endpointContext);
     if (status in statuses) {

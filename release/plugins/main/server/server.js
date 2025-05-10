@@ -4,6 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var tslib = require('tslib');
 var innet = require('innet');
+var jsx = require('@innet/jsx');
 var fs = require('node:fs');
 var http = require('node:http');
 var http2 = require('node:https');
@@ -28,7 +29,7 @@ var http2__default = /*#__PURE__*/_interopDefaultLegacy(http2);
 const server = () => {
     var _a, _b, _c;
     const handler = innet.useNewHandler();
-    const { children, props = {}, } = innet.useApp();
+    const props = jsx.useProps();
     const { env } = process;
     let { ssl: { cert = (_a = env.INNET_SSL_CRT) !== null && _a !== void 0 ? _a : 'localhost.crt', key = (_b = env.INNET_SSL_KEY) !== null && _b !== void 0 ? _b : 'localhost.key', } = {}, } = props;
     try {
@@ -78,7 +79,7 @@ const server = () => {
         }
         innet__default["default"]({ props, type: server }, requestHandler);
     });
-    innet__default["default"](children, handler);
+    innet__default["default"](props.children, handler);
     server.listen(port, () => {
         onStart === null || onStart === void 0 ? void 0 : onStart({ https, port });
     });

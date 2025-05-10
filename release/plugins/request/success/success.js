@@ -20,15 +20,14 @@ const successStatuses = {
     resetContent: 205,
 };
 const success = () => {
-    const children = jsx.useChildren();
-    const { status, type, } = jsx.useProps() || {};
+    const { children, status, type, } = jsx.useProps();
     const res = useResponse.useResponse();
     if (!res) {
         throw Error('<success> MUST be in <request>');
     }
     res.statusCode = typeof status === 'string' ? successStatuses[status] : status !== null && status !== void 0 ? status : ((children) ? 200 : 204);
-    if (children === null || children === void 0 ? void 0 : children[0]) {
-        const child = children[0];
+    if (children) {
+        const child = children;
         const contentType = type || (['bigint', 'boolean', 'number', 'string'].includes(typeof child)
             ? 'text/plain'
             : 'application/json');

@@ -1,5 +1,5 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
-import { useChildren, useProps } from '@innet/jsx'
+import { useProps } from '@innet/jsx'
 import { callHandler } from '@innet/utils'
 
 import {
@@ -17,14 +17,16 @@ import { type BaseSchemaProps } from '../../../types'
 import { defaultTo, type ObjectOf, objectOf, pipe, type Rule } from '../../../utils'
 
 export interface ObjectProps extends BaseSchemaProps <object> {
-
+  children?: any
 }
 
 export const object: HandlerPlugin = () => {
   useBlock('path')
 
-  const children = useChildren()
-  const props = useProps<ObjectProps>() || {}
+  const {
+    children,
+    ...props
+  } = useProps<ObjectProps>()
   const { refRules } = useApi()
 
   const schema = useSchemaType('object', props)

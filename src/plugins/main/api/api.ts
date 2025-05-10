@@ -1,5 +1,5 @@
-import innet, { type HandlerPlugin, useApp, useNewHandler } from 'innet'
-import { type JSXElement } from '@innet/jsx'
+import innet, { type HandlerPlugin, useNewHandler } from 'innet'
+import { useProps } from '@innet/jsx'
 
 import {
   actionContext,
@@ -16,6 +16,7 @@ import { type Action, JSONString } from '../../../utils'
 import { type Rule, RulesError } from '../../../utils/rules'
 
 export interface ApiProps {
+  children?: any
   /** A description of the API. [CommonMark syntax](https://spec.commonmark.or.org) MAY be used for rich text representation. */
   description?: string
 
@@ -45,11 +46,10 @@ export interface ApiProps {
 
 export const api: HandlerPlugin = () => {
   const handler = useNewHandler()
+  const props = useProps<ApiProps>()
+
   const {
     children,
-    props = {},
-  } = useApp<JSXElement<string, ApiProps>>()
-  const {
     exclude,
     include,
     prefix = process.env.INNET_API_PREFIX || '',
@@ -57,6 +57,7 @@ export const api: HandlerPlugin = () => {
     version = process.env.INNET_API_VERSION || '0.0.0',
     ...rest
   } = props
+
   const info = { ...rest, title, version }
 
   const endpoints: Endpoints = {}

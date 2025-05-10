@@ -16,8 +16,7 @@ var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
 
 function cms() {
-    const { dir = process.env.INNET_CMS_DIR || '.', prefix = process.env.INNET_CMS_PREFIX || '/', } = jsx.useProps() || {};
-    const children = jsx.useChildren();
+    const { children, dir = process.env.INNET_CMS_DIR || '.', prefix = process.env.INNET_CMS_PREFIX || '/', } = jsx.useProps();
     const handler = innet.useHandler();
     let url = usePath.usePath();
     if (url.startsWith(prefix)) {

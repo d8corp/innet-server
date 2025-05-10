@@ -1,8 +1,9 @@
-import { useChildren, useProps } from '@innet/jsx'
+import { useProps } from '@innet/jsx'
 
 import { useAction, useServerPlugin } from '../../../hooks'
 
 export interface ProtectionProps {
+  children?: any
   cookieKey?: string
   excludeIp?: string | string[]
   maxAge?: number
@@ -12,13 +13,13 @@ export interface ProtectionProps {
 
 export function protection () {
   const {
+    children,
     cookieKey = process.env.INNET_PROTECTION_COOKIE_KEY || 'protection',
     excludeIp = process.env.INNET_PROTECTED_IP,
     maxAge = Number(process.env.INNET_PROTECTION_MAX_AGE) || 365 * 24 * 60 * 60,
     searchKey = process.env.INNET_PROTECTION_SEARCH_KEY || 'protection',
     value = process.env.INNET_PROTECTION,
-  } = useProps<ProtectionProps>() || {}
-  const children = useChildren()
+  } = useProps<ProtectionProps>()
 
   if (!value) return
 

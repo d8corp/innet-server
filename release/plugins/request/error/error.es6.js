@@ -1,4 +1,5 @@
-import { useChildren, useProps } from '@innet/jsx';
+import { __rest } from 'tslib';
+import { useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
 import { useResponse } from '../../../hooks/useResponse/useResponse.es6.js';
@@ -58,13 +59,12 @@ const errorStatuses = {
     webServerIsDown: 521,
 };
 const error = () => {
-    const [children] = (useChildren()) || [];
-    const props = useProps();
+    const _a = useProps(), { children } = _a, props = __rest(_a, ["children"]);
     const res = useResponse();
     if (!res) {
         throw Error('<error> MUST be in <request>');
     }
-    const { code = 'undefined', status = 520, } = props || {};
+    const { code = 'undefined', status = 520, } = props;
     res.statusCode = typeof status === 'string' ? errorStatuses[status] : status;
     const content = JSONString({ data: children, error: code });
     res.setHeader('Content-Type', 'application/json');

@@ -54,6 +54,7 @@ export declare const errorStatuses: {
 };
 export type ErrorStatuses = keyof typeof errorStatuses;
 export interface ErrorProps {
+    children?: any;
     code?: string;
     status?: ErrorStatuses | number;
 }

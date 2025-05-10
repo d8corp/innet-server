@@ -1,4 +1,5 @@
 export interface ProtectionProps {
+    children?: any;
     cookieKey?: string;
     excludeIp?: string | string[];
     maxAge?: number;

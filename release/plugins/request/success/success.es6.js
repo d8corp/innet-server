@@ -1,4 +1,4 @@
-import { useChildren, useProps } from '@innet/jsx';
+import { useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
 import { useResponse } from '../../../hooks/useResponse/useResponse.es6.js';
@@ -16,15 +16,14 @@ const successStatuses = {
     resetContent: 205,
 };
 const success = () => {
-    const children = useChildren();
-    const { status, type, } = useProps() || {};
+    const { children, status, type, } = useProps();
     const res = useResponse();
     if (!res) {
         throw Error('<success> MUST be in <request>');
     }
     res.statusCode = typeof status === 'string' ? successStatuses[status] : status !== null && status !== void 0 ? status : ((children) ? 200 : 204);
-    if (children === null || children === void 0 ? void 0 : children[0]) {
-        const child = children[0];
+    if (children) {
+        const child = children;
         const contentType = type || (['bigint', 'boolean', 'number', 'string'].includes(typeof child)
             ? 'text/plain'
             : 'application/json');

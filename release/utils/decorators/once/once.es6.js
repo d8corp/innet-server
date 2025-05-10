@@ -17,7 +17,7 @@ function once(target, context) {
         : function once() {
             // @ts-expect-error: FIXME
             const map = getCacheObject(this);
-            if (map[context.name]) {
+            if (context.name in map) {
                 return map[context.name];
             }
             // @ts-expect-error: FIXME

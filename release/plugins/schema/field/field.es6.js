@@ -1,5 +1,5 @@
 import innet, { useNewHandler } from 'innet';
-import { useProps, useChildren } from '@innet/jsx';
+import { useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
 import { useObjectSchemaContext } from '../../../hooks/useObjectSchemaContext/useObjectSchemaContext.es6.js';
@@ -10,9 +10,8 @@ import { required } from '../../../utils/rules/required/required.es6.js';
 
 const field = () => {
     const handler = useNewHandler();
-    const { deprecated, key, optional, } = useProps();
+    const { children, deprecated, key, optional, } = useProps();
     const schema = useObjectSchemaContext();
-    const children = useChildren();
     if (!schema.properties) {
         schema.properties = {};
     }

@@ -1,5 +1,5 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
-import { useChildren, useProps } from '@innet/jsx'
+import { useProps } from '@innet/jsx'
 
 import { paramContext, ruleContext, schemaContext, useEndpoint } from '../../../hooks'
 import { type EndpointRules, type InParam, type ParameterObject, type SchemaObject } from '../../../types'
@@ -14,6 +14,7 @@ const inMap: Record<InParam, keyof EndpointRules> = {
 }
 
 export interface ParamProps {
+  children?: any
   /**
    * Specifies that a parameter is deprecated and SHOULD be transitioned out of usage.
    * Default value is `false`.
@@ -60,8 +61,11 @@ export const param: HandlerPlugin = () => {
     operation.parameters = []
   }
 
-  const children = useChildren()
-  const props = useProps<ParamProps>()
+  const {
+    children,
+    ...props
+  } = useProps<ParamProps>()
+
   const params: ParameterObject = { ...props }
 
   if (props.in === 'path') {

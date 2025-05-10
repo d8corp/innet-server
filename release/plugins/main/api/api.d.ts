@@ -1,5 +1,6 @@
 import { type HandlerPlugin } from 'innet';
 export interface ApiProps {
+    children?: any;
     /** A description of the API. [CommonMark syntax](https://spec.commonmark.or.org) MAY be used for rich text representation. */
     description?: string;
     exclude?: RegExp;

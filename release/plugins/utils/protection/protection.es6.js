@@ -1,11 +1,10 @@
-import { useProps, useChildren } from '@innet/jsx';
+import { useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import { useServerPlugin } from '../../../hooks/useServerPlugin/useServerPlugin.es6.js';
 import { useAction } from '../../../hooks/useAction/useAction.es6.js';
 
 function protection() {
-    const { cookieKey = process.env.INNET_PROTECTION_COOKIE_KEY || 'protection', excludeIp = process.env.INNET_PROTECTED_IP, maxAge = Number(process.env.INNET_PROTECTION_MAX_AGE) || 365 * 24 * 60 * 60, searchKey = process.env.INNET_PROTECTION_SEARCH_KEY || 'protection', value = process.env.INNET_PROTECTION, } = useProps() || {};
-    const children = useChildren();
+    const { children, cookieKey = process.env.INNET_PROTECTION_COOKIE_KEY || 'protection', excludeIp = process.env.INNET_PROTECTED_IP, maxAge = Number(process.env.INNET_PROTECTION_MAX_AGE) || 365 * 24 * 60 * 60, searchKey = process.env.INNET_PROTECTION_SEARCH_KEY || 'protection', value = process.env.INNET_PROTECTION, } = useProps();
     if (!value)
         return;
     const excludeIps = Array.isArray(excludeIp) ? excludeIp : excludeIp === null || excludeIp === void 0 ? void 0 : excludeIp.split(',');

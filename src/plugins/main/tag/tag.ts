@@ -1,10 +1,11 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
-import { useChildren, useContext, useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 
 import { tagContext, useApi } from '../../../hooks'
 import { type TagObject } from '../../../types'
 
 export interface TagProps {
+  children?: any
   /**
    * A description for the tag.
    * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
@@ -21,10 +22,11 @@ export const tag: HandlerPlugin = () => {
   }
 
   const {
+    children,
     description,
     name,
   } = useProps<TagProps>()
-  const children = useChildren()
+
   const { docs } = useApi()
   const tag: TagObject = { name }
 

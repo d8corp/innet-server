@@ -1,5 +1,6 @@
+import { __rest } from 'tslib';
 import innet, { useHandler } from 'innet';
-import { useProps, useChildren } from '@innet/jsx';
+import { useProps } from '@innet/jsx';
 import fs from 'node:fs';
 import mime from 'mime';
 import '../../../hooks/index.es6.js';
@@ -8,8 +9,7 @@ import { useThrow } from '../../../hooks/useThrow/useThrow.es6.js';
 
 function file() {
     const handler = useHandler();
-    const props = useProps();
-    const children = useChildren();
+    const _a = useProps(), { children } = _a, props = __rest(_a, ["children"]);
     const res = useResponse();
     if (!res) {
         useThrow('<{type}> MUST be in <request> or <fallback>');

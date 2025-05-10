@@ -1,16 +1,17 @@
-import { useChildren, useProps } from '@innet/jsx'
+import { useProps } from '@innet/jsx'
 
 import { useAction, useServerPlugin } from '../../../hooks'
 
 export interface WhitelistProps {
+  children?: any
   ip?: string | string[]
 }
 
 export function whitelist () {
   const {
+    children,
     ip = process.env.INNET_WHITELIST_IP,
-  } = useProps<WhitelistProps>() || {}
-  const children = useChildren()
+  } = useProps<WhitelistProps>()
 
   const ips = typeof ip === 'string' ? ip.split(',') : ip as string[]
 

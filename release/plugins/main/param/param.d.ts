@@ -1,6 +1,7 @@
 import { type HandlerPlugin } from 'innet';
 import { type InParam } from '../../../types';
 export interface ParamProps {
+    children?: any;
     /**
      * Specifies that a parameter is deprecated and SHOULD be transitioned out of usage.
      * Default value is `false`.

@@ -1,5 +1,6 @@
 import { __awaiter } from 'tslib';
-import innet, { useNewHandler, useApp } from 'innet';
+import innet, { useNewHandler } from 'innet';
+import { useProps } from '@innet/jsx';
 import fs from 'node:fs';
 import http from 'node:http';
 import http2 from 'node:https';
@@ -17,7 +18,7 @@ import { requestHandlerContext } from '../../../hooks/useRequestHandler/useReque
 const server = () => {
     var _a, _b, _c;
     const handler = useNewHandler();
-    const { children, props = {}, } = useApp();
+    const props = useProps();
     const { env } = process;
     let { ssl: { cert = (_a = env.INNET_SSL_CRT) !== null && _a !== void 0 ? _a : 'localhost.crt', key = (_b = env.INNET_SSL_KEY) !== null && _b !== void 0 ? _b : 'localhost.key', } = {}, } = props;
     try {
@@ -67,7 +68,7 @@ const server = () => {
         }
         innet({ props, type: server }, requestHandler);
     });
-    innet(children, handler);
+    innet(props.children, handler);
     server.listen(port, () => {
         onStart === null || onStart === void 0 ? void 0 : onStart({ https, port });
     });

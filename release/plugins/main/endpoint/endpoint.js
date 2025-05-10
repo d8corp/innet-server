@@ -19,10 +19,9 @@ var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 const endpoint = () => {
     const handler = innet.useNewHandler();
     const tag = useTag.useTag();
-    const { docs, endpoints, } = useApi.useApi();
     const props = jsx.useProps();
-    const { deprecated, description, method, path, private: privateMode, summary, } = props;
-    const children = jsx.useChildren();
+    const { docs, endpoints, } = useApi.useApi();
+    const { children, deprecated, description, method, path, private: privateMode, summary, } = props;
     const { paths } = docs;
     if (!paths)
         throw Error('cannot find paths in docs');

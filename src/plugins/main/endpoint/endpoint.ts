@@ -1,11 +1,12 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
-import { useChildren, useProps } from '@innet/jsx'
+import { useProps } from '@innet/jsx'
 
 import { endpointContext, type ServerPlugin, serverPlugins, useApi, useTag } from '../../../hooks'
 import { type EndpointsMethods, type OperationObject } from '../../../types'
 import { getEndpoint } from '../../../utils'
 
 export interface EndpointProps {
+  children?: any
   /**
    * Declares this operation to be deprecated.
    * Consumers SHOULD refrain from usage of the declared operation.
@@ -47,12 +48,15 @@ export interface EndpointProps {
 export const endpoint: HandlerPlugin = () => {
   const handler = useNewHandler()
   const tag = useTag()
+  const props = useProps<EndpointProps>()
+
   const {
     docs,
     endpoints,
   } = useApi()
-  const props = useProps<EndpointProps>()
+
   const {
+    children,
     deprecated,
     description,
     method,
@@ -60,7 +64,7 @@ export const endpoint: HandlerPlugin = () => {
     private: privateMode,
     summary,
   } = props
-  const children = useChildren()
+
   const { paths } = docs
 
   if (!paths) throw Error('cannot find paths in docs')

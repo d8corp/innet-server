@@ -2,6 +2,7 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+var tslib = require('tslib');
 var innet = require('innet');
 var jsx = require('@innet/jsx');
 var utils = require('@innet/utils');
@@ -25,9 +26,8 @@ var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 const tuple = () => {
     useBlock.useBlock('path');
     const handler = innet.useNewHandler();
-    const props = jsx.useProps();
+    const _a = jsx.useProps(), { children } = _a, props = tslib.__rest(_a, ["children"]);
     const schema = useSchemaType.useSchemaType('array', props);
-    const children = jsx.useChildren();
     if (schema) {
         const schemas = [];
         handler[useSchemaContext.schemaContext.key] = schemas;
@@ -35,10 +35,10 @@ const tuple = () => {
         schema.prefixItems = schemas;
         const rulesMap = [];
         const rules = [];
-        if ((props === null || props === void 0 ? void 0 : props.default) !== undefined) {
+        if (props.default !== undefined) {
             rules.push(defaultTo.defaultTo(props.default));
         }
-        if ((props === null || props === void 0 ? void 0 : props.default) !== undefined) {
+        if (props.default !== undefined) {
             rules.push(tupleOf.tupleOf(rulesMap));
         }
         else {
