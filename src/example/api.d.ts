@@ -10,15 +10,15 @@ declare namespace Api {
     extension?: string
   }
   namespace Schemas {
+    export type TodoSchemaBody = {
+      id: string
+      title: string
+      done: boolean
+    }
     export type TodoSchema = {
       id: string
       title: string
       created: Date
-      done: boolean
-    }
-    export type TodoSchemaBody = {
-      id: string
-      title: string
       done: boolean
     }
   }

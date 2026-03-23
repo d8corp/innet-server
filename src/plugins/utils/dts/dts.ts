@@ -2,7 +2,7 @@ import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 import { promises } from 'fs'
 
-import { useApi } from '../../../hooks'
+import { useApi, useEffect } from '../../../hooks'
 import { generateTypes } from '../../../utils'
 
 export interface DtsProps {
@@ -17,7 +17,9 @@ export const dts: HandlerPlugin = () => {
   } = useProps<DtsProps>() || {}
   const { docs } = useApi()
 
-  promises.writeFile(path, generateTypes(docs, namespace)).catch(e => {
-    console.error(e)
+  useEffect(() => {
+    promises.writeFile(path, generateTypes(docs, namespace)).catch(e => {
+      console.error(e)
+    })
   })
 }

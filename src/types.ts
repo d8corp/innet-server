@@ -21,6 +21,7 @@ export type RequestBodyObject = API.RequestBodyObject
 
 export type ObjectType = ArraySchemaObjectType | NonArraySchemaObjectType
 export type RefSchemaObject = ReferenceObject | SchemaObject
+export type Effect = () => void
 
 // Custom
 
