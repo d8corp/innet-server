@@ -86,12 +86,12 @@ export const endpoint: HandlerPlugin = () => {
 
   const operation: OperationObject = {}
 
-  if (summary) {
-    operation.summary = summary
-  }
-
   if (operationId) {
     operation.operationId = operationId
+  }
+
+  if (summary) {
+    operation.summary = summary
   }
 
   if (description) {

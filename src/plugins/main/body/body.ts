@@ -1,9 +1,8 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useChildren, useContext } from '@innet/jsx'
-import { callHandler } from '@innet/utils'
 
 import { allBodyTypes } from '../../../constants'
-import { bodyFileContext, endpointContext, ruleContext, schemaContext } from '../../../hooks'
+import { bodyFileContext, endpointContext, ruleContext, schemaContext, useEffect } from '../../../hooks'
 import type { EndpointRules, RequestBodyObject, SchemaObject } from '../../../types'
 import { getOrAdd } from '../../../utils'
 
@@ -51,7 +50,8 @@ export const body: HandlerPlugin = () => {
   })
 
   innet(children, handler)
-  innet(() => {
+
+  useEffect(() => {
     if (fileUsed) {
       requestBody.content['multipart/form-data'] = { schema }
     } else {
@@ -59,5 +59,5 @@ export const body: HandlerPlugin = () => {
         requestBody.content[type] = { schema }
       }
     }
-  }, callHandler)
+  })
 }

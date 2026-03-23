@@ -1,8 +1,15 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useProps } from '@innet/jsx'
-import { callHandler } from '@innet/utils'
 
-import { ruleContext, type SchemaContext, schemaContext, useBlock, useRule, useSchemaType } from '../../../hooks'
+import {
+  ruleContext,
+  type SchemaContext,
+  schemaContext,
+  useBlock,
+  useEffect,
+  useRule,
+  useSchemaType,
+} from '../../../hooks'
 import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
 import { type ArraySchemaObject, type BaseSchemaProps, type SchemaObject } from '../../../types'
 import { defaultTo, pipe, required, type Rule, tupleOf } from '../../../utils'
@@ -50,10 +57,11 @@ export const tuple: HandlerPlugin = () => {
     })
 
     innet(children, handler)
-    innet(() => {
+
+    useEffect(() => {
       if (!rulesMap.length) {
         throw Error('<tuple> MUST have content')
       }
-    }, callHandler)
+    })
   }
 }

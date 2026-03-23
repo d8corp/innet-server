@@ -1,6 +1,5 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useProps } from '@innet/jsx'
-import { callHandler } from '@innet/utils'
 
 import {
   objectRuleContext,
@@ -9,6 +8,7 @@ import {
   schemaContext,
   useApi,
   useBlock,
+  useEffect,
   useRule,
   useSchemaType,
 } from '../../../hooks'
@@ -70,11 +70,12 @@ export const object: HandlerPlugin = () => {
     parentRuleContext.reset(handler)
 
     innet(children, handler)
-    innet(() => {
+
+    useEffect(() => {
       if (!Object.keys(schema.additionalProperties as any).length) {
         delete schema.additionalProperties
       }
-    }, callHandler)
+    })
   } else if (props.ref) {
     useRule(refRules[props.ref])
   }

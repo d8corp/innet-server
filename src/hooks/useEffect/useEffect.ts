@@ -4,5 +4,5 @@ import { callHandler } from '@innet/utils'
 import { type Effect } from '../../types'
 
 export function useEffect (effect: Effect) {
-  innet(effect, callHandler, 1)
+  innet(effect, callHandler, 1, true)
 }

@@ -1,8 +1,7 @@
 import innet, { type HandlerPlugin, useNewHandler } from 'innet'
 import { useContext, useProps } from '@innet/jsx'
-import { callHandler } from '@innet/utils'
 
-import { ruleContext, type SchemaContext, schemaContext, useBlock, useSchemaType } from '../../../hooks'
+import { ruleContext, type SchemaContext, schemaContext, useBlock, useEffect, useSchemaType } from '../../../hooks'
 import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
 import { type ArraySchemaObject, type BaseSchemaProps, type SchemaObject } from '../../../types'
 import { arrayOf, defaultTo, oneOf, pipe, type Rule } from '../../../utils'
@@ -52,11 +51,13 @@ export const array: HandlerPlugin = () => {
     })
 
     innet(children, handler)
-    innet(() => {
+
+    useEffect(() => {
       if (!oneOfRulesMap && setRule) {
         setRule(rootRule(e => e))
       }
-    }, callHandler)
+    })
+
     return
   }
 
