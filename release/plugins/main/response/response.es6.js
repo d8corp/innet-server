@@ -12,7 +12,11 @@ import { schemaContext } from '../../../hooks/useSchemaContext/useSchemaContext.
 import { getOrAdd } from '../../../utils/getOrAdd/getOrAdd.es6.js';
 import { ruleContext } from '../../../hooks/useRule/useRule.es6.js';
 
-const statuses = Object.assign(Object.assign(Object.assign({}, errorStatuses), redirectStatuses), successStatuses);
+const statuses = {
+    ...errorStatuses,
+    ...redirectStatuses,
+    ...successStatuses,
+};
 const response = () => {
     var _a;
     let { children, description = '', status = 'default', type = 'application/json', } = useProps() || {};
@@ -37,9 +41,12 @@ const response = () => {
         description,
     };
     if (schema) {
-        response.content = Object.assign(Object.assign({}, defaultResponse === null || defaultResponse === void 0 ? void 0 : defaultResponse.content), { [type]: {
+        response.content = {
+            ...defaultResponse === null || defaultResponse === void 0 ? void 0 : defaultResponse.content,
+            [type]: {
                 schema,
-            } });
+            },
+        };
     }
     operation.responses[status] = response;
     schemaContext.set(handler, schema);

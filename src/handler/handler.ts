@@ -1,15 +1,5 @@
 import { createHandler } from 'innet'
-import {
-  context,
-  type ContextProps,
-  jsxComponent,
-  type JSXElement,
-  jsxPlugins,
-  slot,
-  type SlotProps,
-  slots,
-  type SlotsProps,
-} from '@innet/jsx'
+import { jsxComponent, type JSXElement, jsxPlugins } from '@innet/jsx'
 import { array as isArray, arraySync, async, fn, nullish, object as isObject, promise } from '@innet/utils'
 
 import {
@@ -110,7 +100,6 @@ export const JSXPlugins = {
   boolean,
   cms,
   contact,
-  context,
   cookie,
   date,
   dts,
@@ -134,8 +123,6 @@ export const JSXPlugins = {
   response,
   return: returnPlugin,
   server,
-  slot,
-  slots,
   string,
   success,
   swagger,
@@ -198,7 +185,6 @@ declare global {
       boolean: BooleanProps
       cms: CmsProps
       contact: ContactProps
-      context: ContextProps
       cookie: CookieProps
       date: DateProps
       dts: DtsProps
@@ -222,8 +208,6 @@ declare global {
       response: ResponseProps
       return: ReturnProps
       server: ServerProps
-      slot: SlotProps
-      slots: SlotsProps
       string: StringProps
       success: SuccessProps
       swagger: SwaggerProps

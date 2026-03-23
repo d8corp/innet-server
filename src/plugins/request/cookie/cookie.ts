@@ -1,10 +1,10 @@
 import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
-import { type CookieSerializeOptions } from 'cookie'
+import { type Cookies } from 'cookie'
 
 import { useAction } from '../../../hooks'
 
-export interface CookieProps extends CookieSerializeOptions {
+export interface CookieProps extends Cookies {
   key: string
   value?: string
 }

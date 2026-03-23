@@ -8,8 +8,12 @@ function pattern(pattern, patternId = String(pattern)) {
     const normPattern = typeof pattern === 'string' ? new RegExp(pattern) : pattern;
     return (value, data) => {
         if (!normPattern.test(value)) {
-            throw new helpers.RulesError('pattern', Object.assign({ pattern: String(normPattern), patternId,
-                value }, data));
+            throw new helpers.RulesError('pattern', {
+                pattern: String(normPattern),
+                patternId,
+                value,
+                ...data,
+            });
         }
         return value;
     };

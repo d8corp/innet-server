@@ -2,7 +2,6 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var tslib = require('tslib');
 var innet = require('innet');
 var jsx = require('@innet/jsx');
 var fs = require('node:fs');
@@ -67,15 +66,13 @@ const server = () => {
         const requestHandler = Object.create(handler);
         useAction.actionContext.set(requestHandler, action);
         useRequestHandler.requestHandlerContext.set(requestHandler, requestHandler);
-        function server() {
-            return tslib.__awaiter(this, void 0, void 0, function* () {
-                for (const plugin of plugins) {
-                    const result = yield plugin();
-                    if (result !== undefined) {
-                        return result;
-                    }
+        async function server() {
+            for (const plugin of plugins) {
+                const result = await plugin();
+                if (result !== undefined) {
+                    return result;
                 }
-            });
+            }
         }
         innet__default["default"]({ props, type: server }, requestHandler);
     });

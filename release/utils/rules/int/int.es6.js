@@ -20,14 +20,27 @@ function int(format) {
             }
         }
         if (validator(result)) {
-            throw new RulesError('integer', Object.assign({ format,
-                value }, data));
+            throw new RulesError('integer', {
+                format,
+                value,
+                ...data,
+            });
         }
         if (result > sizes[format]) {
-            throw new RulesError('integer', Object.assign({ format, max: sizes[format], value: result }, data));
+            throw new RulesError('integer', {
+                format,
+                max: sizes[format],
+                value: result,
+                ...data,
+            });
         }
         if (result < -sizes[format]) {
-            throw new RulesError('integer', Object.assign({ format, min: -sizes[format], value: result }, data));
+            throw new RulesError('integer', {
+                format,
+                min: -sizes[format],
+                value: result,
+                ...data,
+            });
         }
         return result;
     };

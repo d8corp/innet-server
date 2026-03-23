@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { type HandlerPlugin } from 'innet';
 import { type IncomingMessage } from 'http';
 export interface ProxyProps {

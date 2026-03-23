@@ -1396,6 +1396,28 @@ export default (
 )
 ```
 
+#### operationId
+
+`operationId` is an optional unique string used to identify an operation.
+If provided, these IDs must be unique among all operations described in your API.
+
+Tools and libraries MAY use the operationId to uniquely identify an operation, therefore, it is recommended to follow common programming naming conventions.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint
+        method='get'
+        path='/users'
+        operationId='getUsers'
+      />
+    </api>
+  </server>
+)
+```
+
 ### \<tag>
 
 [← back](#endpoints)

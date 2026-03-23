@@ -2,7 +2,6 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var tslib = require('tslib');
 var innet = require('innet');
 var jsx = require('@innet/jsx');
 var utils = require('@innet/utils');
@@ -27,7 +26,7 @@ const array = () => {
     useBlock.useBlock('path');
     const setRule = jsx.useContext(useRule.ruleContext);
     const handler = innet.useNewHandler();
-    const _a = jsx.useProps(), { children } = _a, props = tslib.__rest(_a, ["children"]);
+    const { children, ...props } = jsx.useProps();
     const schema = useSchemaType.useSchemaType('array', props);
     const fieldSchema = {};
     handler[useSchemaContext.schemaContext.key] = fieldSchema;

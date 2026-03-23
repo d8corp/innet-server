@@ -1,4 +1,3 @@
-import { __rest } from 'tslib';
 import innet, { useNewHandler } from 'innet';
 import { useProps } from '@innet/jsx';
 import { callHandler } from '@innet/utils';
@@ -19,7 +18,7 @@ import { objectRuleContext } from '../../../hooks/useObjectRule/useObjectRule.es
 
 const object = () => {
     useBlock('path');
-    const _a = useProps(), { children } = _a, props = __rest(_a, ["children"]);
+    const { children, ...props } = useProps();
     const { refRules } = useApi();
     const schema = useSchemaType('object', props);
     const handler = useNewHandler();

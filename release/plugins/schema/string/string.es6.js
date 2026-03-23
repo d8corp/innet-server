@@ -1,4 +1,3 @@
-import { __rest } from 'tslib';
 import { useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../hooks/useParentRule/index.es6.js';
@@ -15,7 +14,7 @@ import { useRule } from '../../../hooks/useRule/useRule.es6.js';
 import { useParentRule } from '../../../hooks/useParentRule/useParentRule.es6.js';
 
 const string = () => {
-    const _a = useProps() || {}, { max, min, pattern: pattern$1, patternId } = _a, props = __rest(_a, ["max", "min", "pattern", "patternId"]);
+    const { max, min, pattern: pattern$1, patternId, ...props } = useProps() || {};
     const { refRules } = useApi();
     const schema = useSchemaType('string', props);
     if (schema) {

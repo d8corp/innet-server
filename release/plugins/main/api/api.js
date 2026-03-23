@@ -2,7 +2,6 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var tslib = require('tslib');
 var innet = require('innet');
 var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
@@ -23,8 +22,8 @@ var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 const api = () => {
     const handler = innet.useNewHandler();
     const props = jsx.useProps();
-    const { children, exclude, include, prefix = process.env.INNET_API_PREFIX || '', title = '', version = process.env.INNET_API_VERSION || '0.0.0' } = props, rest = tslib.__rest(props, ["children", "exclude", "include", "prefix", "title", "version"]);
-    const info = Object.assign(Object.assign({}, rest), { title, version });
+    const { children, exclude, include, prefix = process.env.INNET_API_PREFIX || '', title = '', version = process.env.INNET_API_VERSION || '0.0.0', ...rest } = props;
+    const info = { ...rest, title, version };
     const endpoints = {};
     const docs = {
         info,
@@ -46,7 +45,7 @@ const api = () => {
     };
     useServerPlugins.serverPlugins.set(handler, plugins);
     useApi.apiContext.set(handler, context);
-    useServerPlugin.useServerPlugin(() => tslib.__awaiter(void 0, void 0, void 0, function* () {
+    useServerPlugin.useServerPlugin(async () => {
         var _a, _b, _c, _d, _e, _f;
         const action = useAction.useAction();
         if (!condition(action))
@@ -70,91 +69,92 @@ const api = () => {
             const [deep, currentEndpoint, params] = endpointQueue.shift();
             const key = splitPath[deep];
             if (deep + 1 === splitPath.length) {
-                function run(runEndpoint, params) {
+                async function run(runEndpoint, params) {
                     var _a, _b, _c, _d, _e;
-                    return tslib.__awaiter(this, void 0, void 0, function* () {
-                        const pathRules = (_a = runEndpoint.rules) === null || _a === void 0 ? void 0 : _a.path;
-                        const headerRules = (_b = runEndpoint.rules) === null || _b === void 0 ? void 0 : _b.header;
-                        const cookieRules = (_c = runEndpoint.rules) === null || _c === void 0 ? void 0 : _c.cookie;
-                        const searchRules = (_d = runEndpoint.rules) === null || _d === void 0 ? void 0 : _d.search;
-                        const bodyRules = (_e = runEndpoint.rules) === null || _e === void 0 ? void 0 : _e.body;
-                        if (pathRules) {
-                            try {
-                                Object.assign(params, pathRules(params, { in: 'path' }));
-                            }
-                            catch (_f) {
-                                return false;
-                            }
+                    const pathRules = (_a = runEndpoint.rules) === null || _a === void 0 ? void 0 : _a.path;
+                    const headerRules = (_b = runEndpoint.rules) === null || _b === void 0 ? void 0 : _b.header;
+                    const cookieRules = (_c = runEndpoint.rules) === null || _c === void 0 ? void 0 : _c.cookie;
+                    const searchRules = (_d = runEndpoint.rules) === null || _d === void 0 ? void 0 : _d.search;
+                    const bodyRules = (_e = runEndpoint.rules) === null || _e === void 0 ? void 0 : _e.body;
+                    if (pathRules) {
+                        try {
+                            Object.assign(params, pathRules(params, { in: 'path' }));
                         }
-                        function checkActionRules(rules, key = 'search') {
-                            if (rules) {
-                                try {
-                                    action[key] = rules(action[key]);
-                                }
-                                catch (e) {
-                                    res.setHeader('Content-Type', 'application/json');
-                                    if (e instanceof helpers.RulesError) {
-                                        res.statusCode = 400;
-                                        res.write(JSONString.JSONString({
-                                            data: Object.assign(Object.assign({}, e.data), { in: key }),
-                                            error: 'requestValidation',
-                                        }));
-                                        res.end();
-                                    }
-                                    else {
-                                        console.error(e);
-                                        res.statusCode = 500;
-                                        res.write(JSONString.JSONString({
-                                            data: { in: key },
-                                            error: 'unknown',
-                                        }));
-                                        res.end();
-                                    }
-                                    return true;
-                                }
-                            }
+                        catch (_f) {
                             return false;
                         }
-                        if (checkActionRules(headerRules, 'headers'))
-                            return true;
-                        if (checkActionRules(cookieRules, 'cookies'))
-                            return true;
-                        if (checkActionRules(searchRules, 'search'))
-                            return true;
-                        if (bodyRules) {
-                            yield action.parseBody();
-                            if (!action.body) {
-                                res.statusCode = 400;
+                    }
+                    function checkActionRules(rules, key = 'search') {
+                        if (rules) {
+                            try {
+                                action[key] = rules(action[key]);
+                            }
+                            catch (e) {
                                 res.setHeader('Content-Type', 'application/json');
-                                res.write(JSONString.JSONString({
-                                    error: 'requestBodyContentType',
-                                }));
-                                res.end();
+                                if (e instanceof helpers.RulesError) {
+                                    res.statusCode = 400;
+                                    res.write(JSONString.JSONString({
+                                        data: {
+                                            ...e.data,
+                                            in: key,
+                                        },
+                                        error: 'requestValidation',
+                                    }));
+                                    res.end();
+                                }
+                                else {
+                                    console.error(e);
+                                    res.statusCode = 500;
+                                    res.write(JSONString.JSONString({
+                                        data: { in: key },
+                                        error: 'unknown',
+                                    }));
+                                    res.end();
+                                }
                                 return true;
                             }
-                            if (checkActionRules(bodyRules, 'body'))
-                                return true;
                         }
-                        useParams.paramsContext.set(actionHandler, params);
-                        for (const plugin of runEndpoint.plugins) {
-                            const result = yield plugin();
-                            if (result === undefined)
-                                continue;
-                            innet__default["default"](result, actionHandler);
+                        return false;
+                    }
+                    if (checkActionRules(headerRules, 'headers'))
+                        return true;
+                    if (checkActionRules(cookieRules, 'cookies'))
+                        return true;
+                    if (checkActionRules(searchRules, 'search'))
+                        return true;
+                    if (bodyRules) {
+                        await action.parseBody();
+                        if (!action.body) {
+                            res.statusCode = 400;
+                            res.setHeader('Content-Type', 'application/json');
+                            res.write(JSONString.JSONString({
+                                error: 'requestBodyContentType',
+                            }));
+                            res.end();
                             return true;
                         }
+                        if (checkActionRules(bodyRules, 'body'))
+                            return true;
+                    }
+                    useParams.paramsContext.set(actionHandler, params);
+                    for (const plugin of runEndpoint.plugins) {
+                        const result = await plugin();
+                        if (result === undefined)
+                            continue;
+                        innet__default["default"](result, actionHandler);
                         return true;
-                    });
+                    }
+                    return true;
                 }
                 if ((_d = (_c = currentEndpoint.static) === null || _c === void 0 ? void 0 : _c[key]) === null || _d === void 0 ? void 0 : _d.plugins) {
-                    if (!(yield run((_e = currentEndpoint.static) === null || _e === void 0 ? void 0 : _e[key], params)))
+                    if (!await run((_e = currentEndpoint.static) === null || _e === void 0 ? void 0 : _e[key], params))
                         continue;
                     return null;
                 }
                 if (currentEndpoint.dynamic) {
                     for (const dynamicEndpoint of currentEndpoint.dynamic) {
                         if (dynamicEndpoint.plugins) {
-                            if (!(yield run(dynamicEndpoint, Object.assign(Object.assign({}, params), { [dynamicEndpoint.key.slice(1, -1)]: key }))))
+                            if (!await run(dynamicEndpoint, { ...params, [dynamicEndpoint.key.slice(1, -1)]: key }))
                                 continue;
                             return null;
                         }
@@ -167,12 +167,12 @@ const api = () => {
             }
             if (currentEndpoint.dynamic) {
                 for (const dynamicEndpoint of currentEndpoint.dynamic) {
-                    endpointQueue.push([deep + 1, dynamicEndpoint, Object.assign(Object.assign({}, params), { [dynamicEndpoint.key.slice(1, -1)]: key })]);
+                    endpointQueue.push([deep + 1, dynamicEndpoint, { ...params, [dynamicEndpoint.key.slice(1, -1)]: key }]);
                 }
             }
         }
         for (const plugin of plugins) {
-            const result = yield plugin();
+            const result = await plugin();
             if (result === undefined)
                 continue;
             const newHandler = Object.create(handler);
@@ -180,7 +180,7 @@ const api = () => {
             innet__default["default"](result, newHandler);
             return null;
         }
-    }));
+    });
     innet__default["default"](children, handler);
 };
 

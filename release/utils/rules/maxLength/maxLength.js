@@ -10,8 +10,11 @@ function maxLength(max) {
             throw new helpers.RulesError('string', data);
         }
         if (value.length > max) {
-            throw new helpers.RulesError('maxLength', Object.assign(Object.assign({}, data), { max,
-                value }));
+            throw new helpers.RulesError('maxLength', {
+                ...data,
+                max,
+                value,
+            });
         }
         return value;
     };

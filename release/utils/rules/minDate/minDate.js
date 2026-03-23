@@ -10,7 +10,11 @@ function minDate(min) {
             throw new helpers.RulesError('date', data);
         }
         if (value < min) {
-            throw new helpers.RulesError('minDate', Object.assign(Object.assign({}, data), { min: min.toISOString(), value }));
+            throw new helpers.RulesError('minDate', {
+                ...data,
+                min: min.toISOString(),
+                value,
+            });
         }
         return value;
     };

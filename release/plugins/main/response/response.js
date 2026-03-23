@@ -20,7 +20,11 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 
 var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 
-const statuses = Object.assign(Object.assign(Object.assign({}, error.errorStatuses), redirect.redirectStatuses), success.successStatuses);
+const statuses = {
+    ...error.errorStatuses,
+    ...redirect.redirectStatuses,
+    ...success.successStatuses,
+};
 const response = () => {
     var _a;
     let { children, description = '', status = 'default', type = 'application/json', } = jsx.useProps() || {};
@@ -45,9 +49,12 @@ const response = () => {
         description,
     };
     if (schema) {
-        response.content = Object.assign(Object.assign({}, defaultResponse === null || defaultResponse === void 0 ? void 0 : defaultResponse.content), { [type]: {
+        response.content = {
+            ...defaultResponse === null || defaultResponse === void 0 ? void 0 : defaultResponse.content,
+            [type]: {
                 schema,
-            } });
+            },
+        };
     }
     operation.responses[status] = response;
     useSchemaContext.schemaContext.set(handler, schema);

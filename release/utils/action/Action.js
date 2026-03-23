@@ -37,21 +37,19 @@ let Action = (() => {
                 _Action_headers.set(this, {});
                 _Action_search.set(this, void 0);
             }
-            parseBody() {
-                return tslib.__awaiter(this, void 0, void 0, function* () {
-                    if (!this.bodyType) {
-                        return;
-                    }
-                    if (this.bodyType === 'multipart/form-data') {
-                        this.body = yield parseFormBody.parseFormBody(this.req);
-                    }
-                    if (this.bodyType === 'application/x-www-form-urlencoded') {
-                        this.body = parseSearch.parseSearch(yield parseBody.parseBody(this.req));
-                    }
-                    if (this.bodyType === 'application/json') {
-                        this.body = JSON.parse(yield parseBody.parseBody(this.req));
-                    }
-                });
+            async parseBody() {
+                if (!this.bodyType) {
+                    return;
+                }
+                if (this.bodyType === 'multipart/form-data') {
+                    this.body = await parseFormBody.parseFormBody(this.req);
+                }
+                if (this.bodyType === 'application/x-www-form-urlencoded') {
+                    this.body = parseSearch.parseSearch(await parseBody.parseBody(this.req));
+                }
+                if (this.bodyType === 'application/json') {
+                    this.body = JSON.parse(await parseBody.parseBody(this.req));
+                }
             }
             setCookie(name, value, options) {
                 let cookies = this.res.getHeader('Set-Cookie');

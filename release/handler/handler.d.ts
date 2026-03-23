@@ -1,4 +1,4 @@
-import { context, type ContextProps, type JSXElement, slot, type SlotProps, slots, type SlotsProps } from '@innet/jsx';
+import { type JSXElement } from '@innet/jsx';
 import { arraySync, async } from '@innet/utils';
 import { type AnyProps, type ApiProps, type ArrayProps, type BinaryProps, blacklist, type BlacklistProps, type BodyProps, type BooleanProps, cms, type CmsProps, type ContactProps, type CookieProps, type DateProps, type DtsProps, type EndpointProps, type EnvProps, type ErrorProps, type FieldProps, file, type FileProps, type HeaderProps, type HostProps, type IntegerProps, type LicenseProps, type NullProps, type NumberProps, type ObjectProps, type ParamProps, preset, type PresetProps, protection, type ProtectionProps, type ProxyProps, type RedirectProps, type ResponseProps, type ReturnProps, type ServerProps, type StringProps, type SuccessProps, type SwaggerProps, type TagProps, type TupleProps, type UuidProps, type VariableProps, whitelist, type WhitelistProps } from '../plugins';
 export declare const arrayPlugins: (typeof arraySync)[];
@@ -12,7 +12,6 @@ export declare const JSXPlugins: {
     boolean: import("innet").HandlerPlugin;
     cms: typeof cms;
     contact: import("innet").HandlerPlugin;
-    context: typeof context;
     cookie: import("innet").HandlerPlugin;
     date: import("innet").HandlerPlugin;
     dts: import("innet").HandlerPlugin;
@@ -36,8 +35,6 @@ export declare const JSXPlugins: {
     response: import("innet").HandlerPlugin;
     return: import("innet").HandlerPlugin;
     server: import("innet").HandlerPlugin;
-    slot: typeof slot;
-    slots: typeof slots;
     string: import("innet").HandlerPlugin;
     success: import("innet").HandlerPlugin;
     swagger: import("innet").HandlerPlugin;
@@ -70,7 +67,6 @@ declare global {
             boolean: BooleanProps;
             cms: CmsProps;
             contact: ContactProps;
-            context: ContextProps;
             cookie: CookieProps;
             date: DateProps;
             dts: DtsProps;
@@ -94,8 +90,6 @@ declare global {
             response: ResponseProps;
             return: ReturnProps;
             server: ServerProps;
-            slot: SlotProps;
-            slots: SlotsProps;
             string: StringProps;
             success: SuccessProps;
             swagger: SwaggerProps;

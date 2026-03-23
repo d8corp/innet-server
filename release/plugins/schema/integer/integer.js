@@ -2,7 +2,6 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var tslib = require('tslib');
 var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
 require('../../../utils/index.js');
@@ -17,8 +16,14 @@ var optional = require('../../../utils/rules/optional/optional.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
 
 const integer = () => {
-    const _a = jsx.useProps() || {}, { default: defaultValue, example, examples, format = 'int32', max: max$1, min: min$1, values: values$1 } = _a, props = tslib.__rest(_a, ["default", "example", "examples", "format", "max", "min", "values"]);
-    const schema = useSchemaType.useSchemaType('integer', Object.assign(Object.assign({}, props), { default: defaultValue !== undefined ? Number(defaultValue) : undefined, example: example !== undefined ? Number(example) : undefined, examples: examples === null || examples === void 0 ? void 0 : examples.map(Number), values: values$1 === null || values$1 === void 0 ? void 0 : values$1.map(Number) }));
+    const { default: defaultValue, example, examples, format = 'int32', max: max$1, min: min$1, values: values$1, ...props } = jsx.useProps() || {};
+    const schema = useSchemaType.useSchemaType('integer', {
+        ...props,
+        default: defaultValue !== undefined ? Number(defaultValue) : undefined,
+        example: example !== undefined ? Number(example) : undefined,
+        examples: examples === null || examples === void 0 ? void 0 : examples.map(Number),
+        values: values$1 === null || values$1 === void 0 ? void 0 : values$1.map(Number),
+    });
     // @ts-expect-error: FIXME
     schema.format = format;
     // @ts-expect-error: FIXME

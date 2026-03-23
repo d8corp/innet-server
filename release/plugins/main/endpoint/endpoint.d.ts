@@ -18,6 +18,11 @@ export interface EndpointProps {
      * */
     method: EndpointsMethods;
     /**
+     * `operationId` is an optional unique string used to identify an operation.
+     * If provided, these IDs must be unique among all operations described in your API.
+     * */
+    operationId?: string;
+    /**
      * A relative path to an individual endpoint.
      * The property MUST begin with a forward slash (/).
      * Path templating is allowed.

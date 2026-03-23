@@ -2,7 +2,6 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var tslib = require('tslib');
 var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
 require('../../../utils/index.js');
@@ -63,7 +62,7 @@ const errorStatuses = {
     webServerIsDown: 521,
 };
 const error = () => {
-    const _a = jsx.useProps(), { children } = _a, props = tslib.__rest(_a, ["children"]);
+    const { children, ...props } = jsx.useProps();
     const res = useResponse.useResponse();
     if (!res) {
         throw Error('<error> MUST be in <request>');

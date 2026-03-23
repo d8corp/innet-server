@@ -1,4 +1,3 @@
-import { __awaiter } from 'tslib';
 import innet, { useNewHandler } from 'innet';
 import { useProps } from '@innet/jsx';
 import fs from 'node:fs';
@@ -56,15 +55,13 @@ const server = () => {
         const requestHandler = Object.create(handler);
         actionContext.set(requestHandler, action);
         requestHandlerContext.set(requestHandler, requestHandler);
-        function server() {
-            return __awaiter(this, void 0, void 0, function* () {
-                for (const plugin of plugins) {
-                    const result = yield plugin();
-                    if (result !== undefined) {
-                        return result;
-                    }
+        async function server() {
+            for (const plugin of plugins) {
+                const result = await plugin();
+                if (result !== undefined) {
+                    return result;
                 }
-            });
+            }
         }
         innet({ props, type: server }, requestHandler);
     });

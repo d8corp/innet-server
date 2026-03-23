@@ -6,7 +6,11 @@ function maxDate(max) {
             throw new RulesError('date', data);
         }
         if (value > max) {
-            throw new RulesError('maxDate', Object.assign(Object.assign({}, data), { max: max.toISOString(), value }));
+            throw new RulesError('maxDate', {
+                ...data,
+                max: max.toISOString(),
+                value,
+            });
         }
         return value;
     };

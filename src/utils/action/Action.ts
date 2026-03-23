@@ -1,4 +1,4 @@
-import cookieLib, { type CookieSerializeOptions } from 'cookie'
+import cookieLib, { type Cookies, type SerializeOptions } from 'cookie'
 import { type IncomingHttpHeaders, type IncomingMessage, type ServerResponse } from 'http'
 import { type ParsedQs } from 'qs'
 import { getClientIp } from 'request-ip'
@@ -19,7 +19,7 @@ export interface ParsedUrl {
 }
 
 export class Action {
-  #cookie: Record<string, string> = {}
+  #cookie: Cookies = {}
 
   #headers: IncomingHttpHeaders = {}
 
@@ -50,7 +50,7 @@ export class Action {
     }
   }
 
-  setCookie (name: string, value?: string, options?: CookieSerializeOptions) {
+  setCookie (name: string, value?: string, options?: SerializeOptions) {
     let cookies: string | string[] | undefined = this.res.getHeader('Set-Cookie') as any
 
     if (typeof cookies === 'string') {
@@ -84,7 +84,7 @@ export class Action {
     return getClientIp(this.req)
   }
 
-  get cookies (): Record<string, string> {
+  get cookies (): Cookies {
     if (this.#cookie) return this.#cookie
     this.#cookie = this.originCookies
     return this.#cookie
@@ -104,7 +104,7 @@ export class Action {
     this.#headers = value
   }
 
-  @once get originCookies (): Record<string, string> {
+  @once get originCookies (): Cookies {
     return cookieLib.parse(this.req.headers.cookie ?? '')
   }
 

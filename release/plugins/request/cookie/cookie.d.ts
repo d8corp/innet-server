@@ -1,6 +1,6 @@
 import { type HandlerPlugin } from 'innet';
-import { type CookieSerializeOptions } from 'cookie';
-export interface CookieProps extends CookieSerializeOptions {
+import { type Cookies } from 'cookie';
+export interface CookieProps extends Cookies {
     key: string;
     value?: string;
 }

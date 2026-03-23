@@ -7,11 +7,14 @@ var helpers = require('../helpers.js');
 function objectOf(map, rest) {
     return (value, data) => {
         if (value === null || typeof value !== 'object') {
-            throw new helpers.RulesError('object', Object.assign({ value }, data));
+            throw new helpers.RulesError('object', {
+                value,
+                ...data,
+            });
         }
         const result = {};
         for (const key in map) {
-            const val = map[key](value[key], Object.assign(Object.assign({}, data), { key: helpers.addKey(key, data) }));
+            const val = map[key](value[key], { ...data, key: helpers.addKey(key, data) });
             if (val !== undefined) {
                 result[key] = val;
             }
@@ -20,7 +23,7 @@ function objectOf(map, rest) {
             for (const key in value) {
                 if (key in map)
                     continue;
-                const val = rest(value[key], Object.assign(Object.assign({}, data), { key: helpers.addKey(key, data) }));
+                const val = rest(value[key], { ...data, key: helpers.addKey(key, data) });
                 if (val !== undefined) {
                     result[key] = val;
                 }

@@ -13,20 +13,22 @@ const endpoint = () => {
     const tag = useTag();
     const props = useProps();
     const { docs, endpoints, } = useApi();
-    const { children, deprecated, description, method, path, private: privateMode, summary, } = props;
+    const { children, deprecated, description, method, operationId, path, private: privateMode, summary, } = props;
     const { paths } = docs;
     if (!paths)
         throw Error('cannot find paths in docs');
     if (!paths[path]) {
         paths[path] = {};
     }
-    // @ts-expect-error: it's always an object
     if (paths[path][method]) {
         throw Error(`You cannot use the same endpoints ${method}:${path}`);
     }
     const operation = {};
     if (summary) {
         operation.summary = summary;
+    }
+    if (operationId) {
+        operation.operationId = operationId;
     }
     if (description) {
         operation.description = description;
@@ -38,13 +40,11 @@ const endpoint = () => {
         operation.tags = [tag.name];
     }
     if (!privateMode) {
-        // @ts-expect-error: it's always an object
         paths[path][method] = operation;
     }
     if (!endpoints[method]) {
         endpoints[method] = { key: '', plugins: new Set() };
     }
-    // @ts-expect-error: it's always an object
     const endpoint = getEndpoint(path, endpoints[method]);
     // @ts-expect-error: it's always an object
     endpointContext.set(handler, { endpoint, operation, props });

@@ -24,7 +24,9 @@ const host = () => {
         target.servers = [];
     }
     const { servers } = operation || docs;
-    const server = Object.assign({}, props);
+    const server = {
+        ...props,
+    };
     // @ts-expect-error: FIXME
     servers.push(server);
     handler[useHost.hostContext.key] = { server };

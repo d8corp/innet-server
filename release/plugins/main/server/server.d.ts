@@ -1,4 +1,3 @@
-/// <reference types="node" />
 import { type HandlerPlugin } from 'innet';
 import { type IncomingMessage, type ServerResponse } from 'http';
 import { type ServerStartParams, type SSL } from '../../../types';

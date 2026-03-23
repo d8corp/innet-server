@@ -1,4 +1,3 @@
-import { __rest } from 'tslib';
 import innet, { useHandler } from 'innet';
 import { useProps } from '@innet/jsx';
 import fs from 'node:fs';
@@ -9,7 +8,7 @@ import { useThrow } from '../../../hooks/useThrow/useThrow.es6.js';
 
 function file() {
     const handler = useHandler();
-    const _a = useProps(), { children } = _a, props = __rest(_a, ["children"]);
+    const { children, ...props } = useProps();
     const res = useResponse();
     if (!res) {
         useThrow('<{type}> MUST be in <request> or <fallback>');

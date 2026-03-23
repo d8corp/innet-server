@@ -7,11 +7,17 @@ var helpers = require('../helpers.js');
 function min(min) {
     return (value, data) => {
         if (!['bigint', 'number'].includes(typeof value)) {
-            throw new helpers.RulesError('number', Object.assign(Object.assign({}, data), { value }));
+            throw new helpers.RulesError('number', {
+                ...data,
+                value,
+            });
         }
         if (value < min) {
-            throw new helpers.RulesError('minimum', Object.assign(Object.assign({}, data), { min,
-                value }));
+            throw new helpers.RulesError('minimum', {
+                ...data,
+                min,
+                value,
+            });
         }
         return value;
     };

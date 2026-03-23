@@ -1,7 +1,7 @@
 import type http from 'http'
 import { Form } from 'multiparty'
 
-import { Bin } from '../FileData'
+import { Bin, type BinOptions } from '../FileData'
 import { parseSearch } from '../parseSearch'
 
 export async function parseFormBody (req: http.IncomingMessage) {
@@ -17,16 +17,16 @@ export async function parseFormBody (req: http.IncomingMessage) {
       const queryFiles: any[] = []
 
       for (const key in fields) {
-        for (const value of fields[key]) {
+        for (const value of fields[key]!) {
           if (query) {
             query += '&'
           }
-          query += `${key}=${(value as string).replaceAll('=', '%26')}`
+          query += `${key}=${value.replaceAll('=', '%26')}`
         }
       }
 
       for (const key in files) {
-        const values = files[key]
+        const values = files[key]!
         for (const value of values) {
           if (query) {
             query += '&'
@@ -36,9 +36,13 @@ export async function parseFormBody (req: http.IncomingMessage) {
             headers,
             ...options
           } = value
-          options.type = headers['content-type']
-          options.disposition = headers['content-disposition']
-          queryFiles.push(new Bin(options))
+          const binOptions: BinOptions = {
+            ...options,
+            disposition: headers['content-disposition'],
+            type: headers['content-type'],
+          }
+
+          queryFiles.push(new Bin(binOptions))
         }
       }
 

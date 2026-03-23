@@ -5,7 +5,10 @@ Object.defineProperty(exports, '__esModule', { value: true });
 class RulesError extends Error {
     constructor(error, data) {
         super(`Validation Error: ${error}`);
-        this.data = Object.assign({ error }, data);
+        this.data = {
+            error,
+            ...data,
+        };
     }
 }
 function addKey(key, data) {

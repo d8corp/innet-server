@@ -24,8 +24,11 @@ function binaryAccept(accept) {
                 continue;
             return value;
         }
-        throw new RulesError('binaryAccept', Object.assign({ accept,
-            value }, data));
+        throw new RulesError('binaryAccept', {
+            accept,
+            value,
+            ...data,
+        });
     };
 }
 

@@ -1,4 +1,3 @@
-import { __rest } from 'tslib';
 import innet, { useNewHandler } from 'innet';
 import { useProps } from '@innet/jsx';
 import { callHandler } from '@innet/utils';
@@ -18,7 +17,7 @@ import { required } from '../../../utils/rules/required/required.es6.js';
 const tuple = () => {
     useBlock('path');
     const handler = useNewHandler();
-    const _a = useProps(), { children } = _a, props = __rest(_a, ["children"]);
+    const { children, ...props } = useProps();
     const schema = useSchemaType('array', props);
     if (schema) {
         const schemas = [];

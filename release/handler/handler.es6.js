@@ -1,5 +1,5 @@
 import { createHandler } from 'innet';
-import { context, slot, slots, jsxPlugins, jsxComponent } from '@innet/jsx';
+import { jsxPlugins, jsxComponent } from '@innet/jsx';
 import { arraySync, async, promise, array as array$1, nullish, object as object$1, fn } from '@innet/utils';
 import '../plugins/index.es6.js';
 import { any } from '../plugins/schema/any/any.es6.js';
@@ -57,7 +57,6 @@ const JSXPlugins = {
     boolean,
     cms,
     contact,
-    context,
     cookie,
     date,
     dts,
@@ -81,8 +80,6 @@ const JSXPlugins = {
     response,
     return: returnPlugin,
     server,
-    slot,
-    slots,
     string,
     success,
     swagger,

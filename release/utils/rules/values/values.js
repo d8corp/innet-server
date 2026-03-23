@@ -7,8 +7,11 @@ var helpers = require('../helpers.js');
 function values(values) {
     return (value, data) => {
         if (!values.includes(value)) {
-            throw new helpers.RulesError('values', Object.assign(Object.assign({}, data), { value,
-                values }));
+            throw new helpers.RulesError('values', {
+                ...data,
+                value,
+                values,
+            });
         }
         return value;
     };

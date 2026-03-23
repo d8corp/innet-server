@@ -6,7 +6,11 @@ function minDate(min) {
             throw new RulesError('date', data);
         }
         if (value < min) {
-            throw new RulesError('minDate', Object.assign(Object.assign({}, data), { min: min.toISOString(), value }));
+            throw new RulesError('minDate', {
+                ...data,
+                min: min.toISOString(),
+                value,
+            });
         }
         return value;
     };

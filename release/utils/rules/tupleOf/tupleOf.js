@@ -14,7 +14,7 @@ function tupleOf(rules) {
         }
         const result = [];
         for (let index = 0; index < rules.length; index++) {
-            result.push(rules[index](value[index], Object.assign(Object.assign({}, data), { key: helpers.addKey(index, data) })));
+            result.push(rules[index](value[index], { ...data, key: helpers.addKey(index, data) }));
         }
         return result;
     };

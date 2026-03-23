@@ -1,4 +1,3 @@
-import { __rest } from 'tslib';
 import { useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
@@ -59,7 +58,7 @@ const errorStatuses = {
     webServerIsDown: 521,
 };
 const error = () => {
-    const _a = useProps(), { children } = _a, props = __rest(_a, ["children"]);
+    const { children, ...props } = useProps();
     const res = useResponse();
     if (!res) {
         throw Error('<error> MUST be in <request>');

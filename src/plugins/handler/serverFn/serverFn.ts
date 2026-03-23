@@ -5,7 +5,7 @@ export const serverFn: Plugin = () => {
   return () => {
     const handler = useHandler()
     const fn = useApp<Watcher<any>>()
-    new Watch(update => {
+    new Watch((update: boolean) => {
       innet(fn(update), handler)
     })
   }

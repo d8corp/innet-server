@@ -25,6 +25,12 @@ export interface EndpointProps {
   method: EndpointsMethods
 
   /**
+   * `operationId` is an optional unique string used to identify an operation.
+   * If provided, these IDs must be unique among all operations described in your API.
+   * */
+  operationId?: string
+
+  /**
    * A relative path to an individual endpoint.
    * The property MUST begin with a forward slash (/).
    * Path templating is allowed.
@@ -60,6 +66,7 @@ export const endpoint: HandlerPlugin = () => {
     deprecated,
     description,
     method,
+    operationId,
     path,
     private: privateMode,
     summary,
@@ -73,7 +80,6 @@ export const endpoint: HandlerPlugin = () => {
     paths[path] = {}
   }
 
-  // @ts-expect-error: it's always an object
   if (paths[path][method]) {
     throw Error(`You cannot use the same endpoints ${method}:${path}`)
   }
@@ -82,6 +88,10 @@ export const endpoint: HandlerPlugin = () => {
 
   if (summary) {
     operation.summary = summary
+  }
+
+  if (operationId) {
+    operation.operationId = operationId
   }
 
   if (description) {
@@ -97,7 +107,6 @@ export const endpoint: HandlerPlugin = () => {
   }
 
   if (!privateMode) {
-    // @ts-expect-error: it's always an object
     paths[path][method] = operation as any
   }
 
@@ -105,7 +114,6 @@ export const endpoint: HandlerPlugin = () => {
     endpoints[method] = { key: '', plugins: new Set<ServerPlugin>() }
   }
 
-  // @ts-expect-error: it's always an object
   const endpoint = getEndpoint(path, endpoints[method])
 
   // @ts-expect-error: it's always an object

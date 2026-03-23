@@ -9,7 +9,10 @@ function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'defau
 var qs__default = /*#__PURE__*/_interopDefaultLegacy(qs);
 
 function stringifySearch(search, options) {
-    return qs__default["default"].stringify(search, Object.assign({ encode: false }, options));
+    return qs__default["default"].stringify(search, {
+        encode: false,
+        ...options,
+    });
 }
 
 exports.stringifySearch = stringifySearch;

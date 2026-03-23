@@ -2,7 +2,6 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var tslib = require('tslib');
 var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
 require('../../../hooks/useParentRule/index.js');
@@ -18,7 +17,7 @@ var useRule = require('../../../hooks/useRule/useRule.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
 
 const number = () => {
-    const _a = jsx.useProps() || {}, { max: max$1, min: min$1 } = _a, props = tslib.__rest(_a, ["max", "min"]);
+    const { max: max$1, min: min$1, ...props } = jsx.useProps() || {};
     const schema = useSchemaType.useSchemaType('number', props);
     // @ts-expect-error: FIXME
     schema.minimum = min$1;

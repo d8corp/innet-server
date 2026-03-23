@@ -8,7 +8,10 @@ var Bin = require('../../FileData/Bin.js');
 
 function bin(value, data) {
     if (!(value instanceof Bin.Bin)) {
-        throw new helpers.RulesError('binary', Object.assign({ value }, data));
+        throw new helpers.RulesError('binary', {
+            value,
+            ...data,
+        });
     }
     return value;
 }

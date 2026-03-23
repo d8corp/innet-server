@@ -24,14 +24,27 @@ function int(format) {
             }
         }
         if (validator(result)) {
-            throw new helpers.RulesError('integer', Object.assign({ format,
-                value }, data));
+            throw new helpers.RulesError('integer', {
+                format,
+                value,
+                ...data,
+            });
         }
         if (result > sizes[format]) {
-            throw new helpers.RulesError('integer', Object.assign({ format, max: sizes[format], value: result }, data));
+            throw new helpers.RulesError('integer', {
+                format,
+                max: sizes[format],
+                value: result,
+                ...data,
+            });
         }
         if (result < -sizes[format]) {
-            throw new helpers.RulesError('integer', Object.assign({ format, min: -sizes[format], value: result }, data));
+            throw new helpers.RulesError('integer', {
+                format,
+                min: -sizes[format],
+                value: result,
+                ...data,
+            });
         }
         return result;
     };

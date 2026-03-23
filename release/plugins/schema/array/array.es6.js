@@ -1,4 +1,3 @@
-import { __rest } from 'tslib';
 import innet, { useNewHandler } from 'innet';
 import { useContext, useProps } from '@innet/jsx';
 import { callHandler } from '@innet/utils';
@@ -19,7 +18,7 @@ const array = () => {
     useBlock('path');
     const setRule = useContext(ruleContext);
     const handler = useNewHandler();
-    const _a = useProps(), { children } = _a, props = __rest(_a, ["children"]);
+    const { children, ...props } = useProps();
     const schema = useSchemaType('array', props);
     const fieldSchema = {};
     handler[schemaContext.key] = fieldSchema;

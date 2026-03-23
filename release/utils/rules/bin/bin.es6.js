@@ -4,7 +4,10 @@ import { Bin } from '../../FileData/Bin.es6.js';
 
 function bin(value, data) {
     if (!(value instanceof Bin)) {
-        throw new RulesError('binary', Object.assign({ value }, data));
+        throw new RulesError('binary', {
+            value,
+            ...data,
+        });
     }
     return value;
 }

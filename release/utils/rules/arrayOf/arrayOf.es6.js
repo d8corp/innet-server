@@ -8,7 +8,7 @@ function arrayOf(formatter) {
         else if (!Array.isArray(value)) {
             value = [value];
         }
-        return value.map((val, index) => formatter(val, Object.assign(Object.assign({}, data), { key: addKey(index, data) })));
+        return value.map((val, index) => formatter(val, { ...data, key: addKey(index, data) }));
     };
 }
 

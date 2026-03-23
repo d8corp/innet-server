@@ -1,4 +1,4 @@
-import { __runInitializers, __awaiter, __classPrivateFieldGet, __classPrivateFieldSet, __esDecorate } from 'tslib';
+import { __runInitializers, __classPrivateFieldGet, __classPrivateFieldSet, __esDecorate } from 'tslib';
 import cookieLib from 'cookie';
 import { getClientIp } from 'request-ip';
 import '../decorators/index.es6.js';
@@ -29,21 +29,19 @@ let Action = (() => {
                 _Action_headers.set(this, {});
                 _Action_search.set(this, void 0);
             }
-            parseBody() {
-                return __awaiter(this, void 0, void 0, function* () {
-                    if (!this.bodyType) {
-                        return;
-                    }
-                    if (this.bodyType === 'multipart/form-data') {
-                        this.body = yield parseFormBody(this.req);
-                    }
-                    if (this.bodyType === 'application/x-www-form-urlencoded') {
-                        this.body = parseSearch(yield parseBody(this.req));
-                    }
-                    if (this.bodyType === 'application/json') {
-                        this.body = JSON.parse(yield parseBody(this.req));
-                    }
-                });
+            async parseBody() {
+                if (!this.bodyType) {
+                    return;
+                }
+                if (this.bodyType === 'multipart/form-data') {
+                    this.body = await parseFormBody(this.req);
+                }
+                if (this.bodyType === 'application/x-www-form-urlencoded') {
+                    this.body = parseSearch(await parseBody(this.req));
+                }
+                if (this.bodyType === 'application/json') {
+                    this.body = JSON.parse(await parseBody(this.req));
+                }
             }
             setCookie(name, value, options) {
                 let cookies = this.res.getHeader('Set-Cookie');

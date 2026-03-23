@@ -28,8 +28,11 @@ function binaryAccept(accept) {
                 continue;
             return value;
         }
-        throw new helpers.RulesError('binaryAccept', Object.assign({ accept,
-            value }, data));
+        throw new helpers.RulesError('binaryAccept', {
+            accept,
+            value,
+            ...data,
+        });
     };
 }
 

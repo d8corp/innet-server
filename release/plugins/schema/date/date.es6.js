@@ -1,4 +1,3 @@
-import { __rest } from 'tslib';
 import { useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../hooks/useParentRule/index.es6.js';
@@ -16,7 +15,7 @@ import { useRule } from '../../../hooks/useRule/useRule.es6.js';
 import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 
 const date = () => {
-    const _a = useProps() || {}, { default: defaultValue, example, examples, max, min, values: values$1 } = _a, props = __rest(_a, ["default", "example", "examples", "max", "min", "values"]);
+    const { default: defaultValue, example, examples, max, min, values: values$1, ...props } = useProps() || {};
     const normMin = dateFormat(min);
     const normMax = dateFormat(max);
     const normDefault = dateFormat(defaultValue);
@@ -25,9 +24,14 @@ const date = () => {
     // @ts-expect-error: FIXME
     const stringValues = normValues === null || normValues === void 0 ? void 0 : normValues.map(value => value.toISOString());
     const normExamples = examples === null || examples === void 0 ? void 0 : examples.map(dateFormat);
-    const schema = useSchemaType('string', Object.assign(Object.assign({}, props), { default: defaultValue === 'now' ? undefined : normDefault === null || normDefault === void 0 ? void 0 : normDefault.toISOString(), example: normExample === null || normExample === void 0 ? void 0 : normExample.toISOString(), 
+    const schema = useSchemaType('string', {
+        ...props,
+        default: defaultValue === 'now' ? undefined : normDefault === null || normDefault === void 0 ? void 0 : normDefault.toISOString(),
+        example: normExample === null || normExample === void 0 ? void 0 : normExample.toISOString(),
         // @ts-expect-error: FIXME
-        examples: normExamples === null || normExamples === void 0 ? void 0 : normExamples.map(example => example.toISOString()), values: stringValues }));
+        examples: normExamples === null || normExamples === void 0 ? void 0 : normExamples.map(example => example.toISOString()),
+        values: stringValues,
+    });
     const rules = [];
     if (defaultValue !== undefined) {
         rules.push(defaultTo(defaultValue === 'now' ? () => new Date(Date.now()) : normDefault));

@@ -2,7 +2,6 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-var tslib = require('tslib');
 var jsx = require('@innet/jsx');
 var uuid$1 = require('uuid');
 require('../../../hooks/index.js');
@@ -16,8 +15,11 @@ var optional = require('../../../utils/rules/optional/optional.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
 
 const uuid = () => {
-    const _a = jsx.useProps(), { default: defaultValue } = _a, props = tslib.__rest(_a, ["default"]);
-    const schema = useSchemaType.useSchemaType('string', Object.assign(Object.assign({}, props), { default: defaultValue === 'new' ? undefined : defaultValue }));
+    const { default: defaultValue, ...props } = jsx.useProps();
+    const schema = useSchemaType.useSchemaType('string', {
+        ...props,
+        default: defaultValue === 'new' ? undefined : defaultValue,
+    });
     // @ts-expect-error: FIXME
     schema.format = 'uuid';
     if (defaultValue === 'new') {

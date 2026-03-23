@@ -12,7 +12,10 @@ const EMPTY_SEARCH = {};
 function parseSearch(search, options) {
     if (!search)
         return EMPTY_SEARCH;
-    return qs__default["default"].parse(search, Object.assign({ ignoreQueryPrefix: true }, options));
+    return qs__default["default"].parse(search, {
+        ignoreQueryPrefix: true,
+        ...options,
+    });
 }
 
 exports.EMPTY_SEARCH = EMPTY_SEARCH;

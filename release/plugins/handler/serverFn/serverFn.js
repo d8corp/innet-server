@@ -13,7 +13,7 @@ const serverFn = () => {
     return () => {
         const handler = innet.useHandler();
         const fn = innet.useApp();
-        new watchState.Watch(update => {
+        new watchState.Watch((update) => {
             innet__default["default"](fn(update), handler);
         });
     };

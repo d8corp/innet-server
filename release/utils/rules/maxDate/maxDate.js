@@ -10,7 +10,11 @@ function maxDate(max) {
             throw new helpers.RulesError('date', data);
         }
         if (value > max) {
-            throw new helpers.RulesError('maxDate', Object.assign(Object.assign({}, data), { max: max.toISOString(), value }));
+            throw new helpers.RulesError('maxDate', {
+                ...data,
+                max: max.toISOString(),
+                value,
+            });
         }
         return value;
     };

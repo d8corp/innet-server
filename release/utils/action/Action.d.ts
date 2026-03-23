@@ -1,5 +1,4 @@
-/// <reference types="node" />
-import { type CookieSerializeOptions } from 'cookie';
+import { type Cookies, type SerializeOptions } from 'cookie';
 import { type IncomingHttpHeaders, type IncomingMessage, type ServerResponse } from 'http';
 import { type ParsedQs } from 'qs';
 import { type BodyType } from '../../types';
@@ -15,14 +14,14 @@ export declare class Action {
     body?: object;
     constructor(req: IncomingMessage, res: ServerResponse);
     parseBody(): Promise<void>;
-    setCookie(name: string, value?: string, options?: CookieSerializeOptions): void;
+    setCookie(name: string, value?: string, options?: SerializeOptions): void;
     get bodyType(): BodyType | undefined;
     get clientIp(): string | null;
-    get cookies(): Record<string, string>;
+    get cookies(): Cookies;
     set cookies(value: Record<string, string>);
     get headers(): IncomingHttpHeaders;
     set headers(value: IncomingHttpHeaders);
-    get originCookies(): Record<string, string>;
+    get originCookies(): Cookies;
     get originHeaders(): IncomingHttpHeaders;
     get originSearch(): ParsedQs;
     get parsedUrl(): ParsedUrl;

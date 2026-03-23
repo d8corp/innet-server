@@ -1,4 +1,3 @@
-import { __rest } from 'tslib';
 import { useProps } from '@innet/jsx';
 import { v4 } from 'uuid';
 import '../../../hooks/index.es6.js';
@@ -12,8 +11,11 @@ import { optional } from '../../../utils/rules/optional/optional.es6.js';
 import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 
 const uuid = () => {
-    const _a = useProps(), { default: defaultValue } = _a, props = __rest(_a, ["default"]);
-    const schema = useSchemaType('string', Object.assign(Object.assign({}, props), { default: defaultValue === 'new' ? undefined : defaultValue }));
+    const { default: defaultValue, ...props } = useProps();
+    const schema = useSchemaType('string', {
+        ...props,
+        default: defaultValue === 'new' ? undefined : defaultValue,
+    });
     // @ts-expect-error: FIXME
     schema.format = 'uuid';
     if (defaultValue === 'new') {
