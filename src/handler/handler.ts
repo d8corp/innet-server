@@ -157,14 +157,15 @@ export const handler = createHandler([
 declare global {
   namespace JSX {
     type Element =
+    // eslint-disable-next-line @typescript-eslint/ban-types
+      | ({} & string)
       | ArrayElement
       | FunctionElement
       | JSXElement
       | boolean
       | null
-      | number
       // eslint-disable-next-line @typescript-eslint/ban-types
-      | (string & {})
+      | number
       | undefined
 
     interface ArrayElement extends Array<Element> {}
