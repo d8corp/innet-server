@@ -116,3 +116,4 @@ export { objectSchemaContext, useObjectSchemaContext } from './hooks/useObjectSc
 export { serverPortContext, useServerPort } from './hooks/useServerPort/useServerPort.es6.js';
 export { serverHttpsContext, useIsServerHttps } from './hooks/useIsServerHttps/useIsServerHttps.es6.js';
 export { requestHandlerContext, useRequestHandler } from './hooks/useRequestHandler/useRequestHandler.es6.js';
+export { useEffect } from './hooks/useEffect/useEffect.es6.js';

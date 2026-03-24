@@ -1,4 +1,4 @@
-import innet, { type HandlerPlugin, useHandler } from 'innet'
+import { type HandlerPlugin, innet, useHandler } from 'innet'
 import { useProps } from '@innet/jsx'
 
 export interface EnvProps {

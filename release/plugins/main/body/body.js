@@ -4,7 +4,6 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var innet = require('innet');
 var jsx = require('@innet/jsx');
-var utils = require('@innet/utils');
 var constants = require('../../../constants.js');
 require('../../../hooks/index.js');
 require('../../../utils/index.js');
@@ -13,10 +12,7 @@ var useSchemaContext = require('../../../hooks/useSchemaContext/useSchemaContext
 var getOrAdd = require('../../../utils/getOrAdd/getOrAdd.js');
 var useBodyFile = require('../../../hooks/useBodyFile/useBodyFile.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
-
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
+var useEffect = require('../../../hooks/useEffect/useEffect.js');
 
 const body = () => {
     const endpoint = jsx.useContext(useEndpoint.endpointContext);
@@ -47,8 +43,8 @@ const body = () => {
     useRule.ruleContext.set(handler, rule => {
         rules.body = rule;
     });
-    innet__default["default"](children, handler);
-    innet__default["default"](() => {
+    innet.innet(children, handler);
+    useEffect.useEffect(() => {
         if (fileUsed) {
             requestBody.content['multipart/form-data'] = { schema };
         }
@@ -57,7 +53,7 @@ const body = () => {
                 requestBody.content[type] = { schema };
             }
         }
-    }, utils.callHandler);
+    });
 };
 
 exports.body = body;

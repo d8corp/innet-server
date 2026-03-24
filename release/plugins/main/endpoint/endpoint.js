@@ -12,10 +12,6 @@ var getEndpoint = require('../../../utils/getEndpoint/getEndpoint.js');
 var useEndpoint = require('../../../hooks/useEndpoint/useEndpoint.js');
 var useServerPlugins = require('../../../hooks/useServerPlugins/useServerPlugins.js');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
-
 const endpoint = () => {
     const handler = innet.useNewHandler();
     const tag = useTag.useTag();
@@ -32,11 +28,11 @@ const endpoint = () => {
         throw Error(`You cannot use the same endpoints ${method}:${path}`);
     }
     const operation = {};
-    if (summary) {
-        operation.summary = summary;
-    }
     if (operationId) {
         operation.operationId = operationId;
+    }
+    if (summary) {
+        operation.summary = summary;
     }
     if (description) {
         operation.description = description;
@@ -58,7 +54,7 @@ const endpoint = () => {
     useEndpoint.endpointContext.set(handler, { endpoint, operation, props });
     // @ts-expect-error: it's always an object
     useServerPlugins.serverPlugins.set(handler, endpoint.plugins);
-    innet__default["default"](children, handler);
+    innet.innet(children, handler);
 };
 
 exports.endpoint = endpoint;

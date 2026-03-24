@@ -32,4 +32,5 @@ require('./useObjectSchemaContext/index.js');
 require('./useServerPort/index.js');
 require('./useIsServerHttps/index.js');
 require('./useRequestHandler/index.js');
+require('./useEffect/index.js');
 

@@ -1,4 +1,4 @@
-import innet, { type HandlerPlugin, useNewHandler } from 'innet'
+import { type HandlerPlugin, innet, useNewHandler } from 'innet'
 import { useContext, useProps } from '@innet/jsx'
 
 import { endpointContext, ruleContext, schemaContext, useEndpoint, useThrow } from '../../../hooks'

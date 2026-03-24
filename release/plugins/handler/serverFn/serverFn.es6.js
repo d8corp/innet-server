@@ -1,4 +1,4 @@
-import innet, { useHandler, useApp } from 'innet';
+import { useHandler, useApp, innet } from 'innet';
 import { Watch } from 'watch-state';
 
 const serverFn = () => {

@@ -12,10 +12,6 @@ var useObjectRule = require('../../../hooks/useObjectRule/useObjectRule.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
 var required = require('../../../utils/rules/required/required.js');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
-
 const field = () => {
     const handler = innet.useNewHandler();
     const { children, deprecated, key, optional, } = jsx.useProps();
@@ -48,7 +44,7 @@ const field = () => {
         }
     });
     useObjectRule.objectRuleContext.set(handler, null);
-    innet__default["default"](children, handler);
+    innet.innet(children, handler);
 };
 
 exports.field = field;

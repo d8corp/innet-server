@@ -16,10 +16,6 @@ var useSchemaContext = require('../../../hooks/useSchemaContext/useSchemaContext
 var getOrAdd = require('../../../utils/getOrAdd/getOrAdd.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
-
 const statuses = {
     ...error.errorStatuses,
     ...redirect.redirectStatuses,
@@ -62,7 +58,7 @@ const response = () => {
     useRule.ruleContext.set(handler, rule => {
         rules.response = rule;
     });
-    innet__default["default"](children, handler);
+    innet.innet(children, handler);
 };
 
 exports.response = response;

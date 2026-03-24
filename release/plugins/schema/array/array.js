@@ -4,7 +4,6 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var innet = require('innet');
 var jsx = require('@innet/jsx');
-var utils = require('@innet/utils');
 require('../../../hooks/index.js');
 require('../../../hooks/useParentRule/index.js');
 require('../../../utils/index.js');
@@ -17,10 +16,7 @@ var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
 var arrayOf = require('../../../utils/rules/arrayOf/arrayOf.js');
 var oneOf = require('../../../utils/rules/oneOf/oneOf.js');
-
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
+var useEffect = require('../../../hooks/useEffect/useEffect.js');
 
 const array = () => {
     useBlock.useBlock('path');
@@ -51,15 +47,15 @@ const array = () => {
                 setRule(rootRule(oneOf.oneOf(oneOfRulesMap)));
             }
         });
-        innet__default["default"](children, handler);
-        innet__default["default"](() => {
+        innet.innet(children, handler);
+        useEffect.useEffect(() => {
             if (!oneOfRulesMap && setRule) {
                 setRule(rootRule(e => e));
             }
-        }, utils.callHandler);
+        });
         return;
     }
-    innet__default["default"](children, handler);
+    innet.innet(children, handler);
 };
 
 exports.array = array;

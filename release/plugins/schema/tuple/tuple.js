@@ -4,7 +4,6 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var innet = require('innet');
 var jsx = require('@innet/jsx');
-var utils = require('@innet/utils');
 require('../../../hooks/index.js');
 require('../../../hooks/useParentRule/index.js');
 require('../../../utils/index.js');
@@ -17,10 +16,7 @@ var useParentRule = require('../../../hooks/useParentRule/useParentRule.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
 var required = require('../../../utils/rules/required/required.js');
-
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
+var useEffect = require('../../../hooks/useEffect/useEffect.js');
 
 const tuple = () => {
     useBlock.useBlock('path');
@@ -49,12 +45,12 @@ const tuple = () => {
         useRule.ruleContext.set(handler, rule => {
             rulesMap.push(rule);
         });
-        innet__default["default"](children, handler);
-        innet__default["default"](() => {
+        innet.innet(children, handler);
+        useEffect.useEffect(() => {
             if (!rulesMap.length) {
                 throw Error('<tuple> MUST have content');
             }
-        }, utils.callHandler);
+        });
     }
 };
 

@@ -1,4 +1,4 @@
-import innet, { useNewHandler } from 'innet';
+import { useNewHandler, innet } from 'innet';
 import { useProps, useChildren, useContext } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import { useApi } from '../../../hooks/useApi/useApi.es6.js';

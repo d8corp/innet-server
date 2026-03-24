@@ -12,7 +12,6 @@ var file = require('../file/file.js');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 var path__default = /*#__PURE__*/_interopDefaultLegacy(path);
 
 function cms() {
@@ -23,10 +22,10 @@ function cms() {
         url = url.slice(prefix.length);
     }
     else {
-        return innet__default["default"](children, handler);
+        return innet.innet(children, handler);
     }
     const filePath = path__default["default"].join(dir, url);
-    innet__default["default"]({ children, props: { path: filePath }, type: file.file }, handler);
+    innet.innet({ children, props: { path: filePath }, type: file.file }, handler);
 }
 
 exports.cms = cms;

@@ -1,6 +1,5 @@
-import innet, { useNewHandler } from 'innet';
+import { useNewHandler, innet } from 'innet';
 import { useProps } from '@innet/jsx';
-import { callHandler } from '@innet/utils';
 import '../../../hooks/index.es6.js';
 import '../../../hooks/useParentRule/index.es6.js';
 import '../../../utils/index.es6.js';
@@ -15,6 +14,7 @@ import { objectOf } from '../../../utils/rules/objectOf/objectOf.es6.js';
 import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 import { useRule, ruleContext } from '../../../hooks/useRule/useRule.es6.js';
 import { objectRuleContext } from '../../../hooks/useObjectRule/useObjectRule.es6.js';
+import { useEffect } from '../../../hooks/useEffect/useEffect.es6.js';
 
 const object = () => {
     useBlock('path');
@@ -52,11 +52,11 @@ const object = () => {
         });
         parentRuleContext.reset(handler);
         innet(children, handler);
-        innet(() => {
+        useEffect(() => {
             if (!Object.keys(schema.additionalProperties).length) {
                 delete schema.additionalProperties;
             }
-        }, callHandler);
+        });
     }
     else if (props.ref) {
         useRule(refRules[props.ref]);

@@ -1,4 +1,4 @@
-import innet from 'innet'
+import { innet } from 'innet'
 import { Watch } from 'watch-state'
 
 import { handler } from './handler'

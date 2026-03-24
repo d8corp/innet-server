@@ -16,6 +16,7 @@ export type ParameterObject = API.ParameterObject;
 export type RequestBodyObject = API.RequestBodyObject;
 export type ObjectType = ArraySchemaObjectType | NonArraySchemaObjectType;
 export type RefSchemaObject = ReferenceObject | SchemaObject;
+export type Effect = () => void;
 export interface IValidationErrorData extends Record<string, any> {
     error: RulesErrors;
 }

@@ -120,6 +120,7 @@ var useObjectSchemaContext = require('./hooks/useObjectSchemaContext/useObjectSc
 var useServerPort = require('./hooks/useServerPort/useServerPort.js');
 var useIsServerHttps = require('./hooks/useIsServerHttps/useIsServerHttps.js');
 var useRequestHandler = require('./hooks/useRequestHandler/useRequestHandler.js');
+var useEffect = require('./hooks/useEffect/useEffect.js');
 
 
 
@@ -268,3 +269,4 @@ exports.serverHttpsContext = useIsServerHttps.serverHttpsContext;
 exports.useIsServerHttps = useIsServerHttps.useIsServerHttps;
 exports.requestHandlerContext = useRequestHandler.requestHandlerContext;
 exports.useRequestHandler = useRequestHandler.useRequestHandler;
+exports.useEffect = useEffect.useEffect;

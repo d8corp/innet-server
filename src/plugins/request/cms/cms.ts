@@ -1,4 +1,4 @@
-import innet, { useHandler } from 'innet'
+import { innet, useHandler } from 'innet'
 import { useProps } from '@innet/jsx'
 import path from 'path'
 

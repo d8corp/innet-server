@@ -1,6 +1,5 @@
-import innet, { useNewHandler } from 'innet';
+import { useNewHandler, innet } from 'innet';
 import { useContext, useProps } from '@innet/jsx';
-import { callHandler } from '@innet/utils';
 import '../../../hooks/index.es6.js';
 import '../../../hooks/useParentRule/index.es6.js';
 import '../../../utils/index.es6.js';
@@ -13,6 +12,7 @@ import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
 import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 import { arrayOf } from '../../../utils/rules/arrayOf/arrayOf.es6.js';
 import { oneOf } from '../../../utils/rules/oneOf/oneOf.es6.js';
+import { useEffect } from '../../../hooks/useEffect/useEffect.es6.js';
 
 const array = () => {
     useBlock('path');
@@ -44,11 +44,11 @@ const array = () => {
             }
         });
         innet(children, handler);
-        innet(() => {
+        useEffect(() => {
             if (!oneOfRulesMap && setRule) {
                 setRule(rootRule(e => e));
             }
-        }, callHandler);
+        });
         return;
     }
     innet(children, handler);

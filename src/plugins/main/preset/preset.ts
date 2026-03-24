@@ -1,4 +1,4 @@
-import innet, { useHandler } from 'innet'
+import { innet, useHandler } from 'innet'
 import { useChildren } from '@innet/jsx'
 
 import { useServerPlugin } from '../../../hooks'

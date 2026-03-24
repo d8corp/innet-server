@@ -1,4 +1,4 @@
-import innet, { useNewHandler } from 'innet';
+import { useNewHandler, innet } from 'innet';
 import { useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
@@ -24,11 +24,11 @@ const endpoint = () => {
         throw Error(`You cannot use the same endpoints ${method}:${path}`);
     }
     const operation = {};
-    if (summary) {
-        operation.summary = summary;
-    }
     if (operationId) {
         operation.operationId = operationId;
+    }
+    if (summary) {
+        operation.summary = summary;
     }
     if (description) {
         operation.description = description;

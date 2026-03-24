@@ -1,6 +1,5 @@
-import innet, { useNewHandler } from 'innet';
+import { useNewHandler, innet } from 'innet';
 import { useContext, useChildren } from '@innet/jsx';
-import { callHandler } from '@innet/utils';
 import { allBodyTypes } from '../../../constants.es6.js';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
@@ -9,6 +8,7 @@ import { schemaContext } from '../../../hooks/useSchemaContext/useSchemaContext.
 import { getOrAdd } from '../../../utils/getOrAdd/getOrAdd.es6.js';
 import { bodyFileContext } from '../../../hooks/useBodyFile/useBodyFile.es6.js';
 import { ruleContext } from '../../../hooks/useRule/useRule.es6.js';
+import { useEffect } from '../../../hooks/useEffect/useEffect.es6.js';
 
 const body = () => {
     const endpoint = useContext(endpointContext);
@@ -40,7 +40,7 @@ const body = () => {
         rules.body = rule;
     });
     innet(children, handler);
-    innet(() => {
+    useEffect(() => {
         if (fileUsed) {
             requestBody.content['multipart/form-data'] = { schema };
         }
@@ -49,7 +49,7 @@ const body = () => {
                 requestBody.content[type] = { schema };
             }
         }
-    }, callHandler);
+    });
 };
 
 export { body };

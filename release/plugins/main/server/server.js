@@ -20,7 +20,6 @@ var useRequestHandler = require('../../../hooks/useRequestHandler/useRequestHand
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 var fs__default = /*#__PURE__*/_interopDefaultLegacy(fs);
 var http__default = /*#__PURE__*/_interopDefaultLegacy(http);
 var http2__default = /*#__PURE__*/_interopDefaultLegacy(http2);
@@ -74,9 +73,9 @@ const server = () => {
                 }
             }
         }
-        innet__default["default"]({ props, type: server }, requestHandler);
+        innet.innet({ props, type: server }, requestHandler);
     });
-    innet__default["default"](props.children, handler);
+    innet.innet(props.children, handler);
     server.listen(port, () => {
         onStart === null || onStart === void 0 ? void 0 : onStart({ https, port });
     });

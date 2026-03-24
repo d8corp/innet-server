@@ -1,4 +1,4 @@
-import innet, { useNewHandler } from 'innet';
+import { useNewHandler, innet } from 'innet';
 import { useContext, useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import { tagContext } from '../../../hooks/useTag/useTag.es6.js';

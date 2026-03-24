@@ -1,4 +1,4 @@
-import innet, { useNewHandler } from 'innet';
+import { useNewHandler, innet } from 'innet';
 import { useProps } from '@innet/jsx';
 import fs from 'node:fs';
 import http from 'node:http';

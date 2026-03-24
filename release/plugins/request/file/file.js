@@ -12,7 +12,6 @@ var useThrow = require('../../../hooks/useThrow/useThrow.js');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
 var fs__default = /*#__PURE__*/_interopDefaultLegacy(fs);
 var mime__default = /*#__PURE__*/_interopDefaultLegacy(mime);
 
@@ -40,7 +39,7 @@ function file() {
             return;
         }
     }
-    innet__default["default"](children, handler);
+    innet.innet(children, handler);
 }
 
 exports.file = file;

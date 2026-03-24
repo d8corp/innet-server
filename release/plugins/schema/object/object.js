@@ -4,7 +4,6 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var innet = require('innet');
 var jsx = require('@innet/jsx');
-var utils = require('@innet/utils');
 require('../../../hooks/index.js');
 require('../../../hooks/useParentRule/index.js');
 require('../../../utils/index.js');
@@ -19,10 +18,7 @@ var objectOf = require('../../../utils/rules/objectOf/objectOf.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
 var useObjectRule = require('../../../hooks/useObjectRule/useObjectRule.js');
-
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
+var useEffect = require('../../../hooks/useEffect/useEffect.js');
 
 const object = () => {
     useBlock.useBlock('path');
@@ -59,12 +55,12 @@ const object = () => {
             childRule = rule;
         });
         useParentRule.parentRuleContext.reset(handler);
-        innet__default["default"](children, handler);
-        innet__default["default"](() => {
+        innet.innet(children, handler);
+        useEffect.useEffect(() => {
             if (!Object.keys(schema.additionalProperties).length) {
                 delete schema.additionalProperties;
             }
-        }, utils.callHandler);
+        });
     }
     else if (props.ref) {
         useRule.useRule(refRules[props.ref]);

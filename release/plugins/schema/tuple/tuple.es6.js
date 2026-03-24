@@ -1,6 +1,5 @@
-import innet, { useNewHandler } from 'innet';
+import { useNewHandler, innet } from 'innet';
 import { useProps } from '@innet/jsx';
-import { callHandler } from '@innet/utils';
 import '../../../hooks/index.es6.js';
 import '../../../hooks/useParentRule/index.es6.js';
 import '../../../utils/index.es6.js';
@@ -13,6 +12,7 @@ import { useParentRule, parentRuleContext } from '../../../hooks/useParentRule/u
 import { useRule, ruleContext } from '../../../hooks/useRule/useRule.es6.js';
 import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 import { required } from '../../../utils/rules/required/required.es6.js';
+import { useEffect } from '../../../hooks/useEffect/useEffect.es6.js';
 
 const tuple = () => {
     useBlock('path');
@@ -42,11 +42,11 @@ const tuple = () => {
             rulesMap.push(rule);
         });
         innet(children, handler);
-        innet(() => {
+        useEffect(() => {
             if (!rulesMap.length) {
                 throw Error('<tuple> MUST have content');
             }
-        }, callHandler);
+        });
     }
 };
 

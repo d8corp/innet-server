@@ -1,4 +1,4 @@
-import innet, { useHandler } from 'innet';
+import { useHandler, innet } from 'innet';
 import { useProps } from '@innet/jsx';
 import fs from 'node:fs';
 import mime from 'mime';

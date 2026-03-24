@@ -16,10 +16,6 @@ var useRule = require('../../../hooks/useRule/useRule.js');
 var required = require('../../../utils/rules/required/required.js');
 var oneOf = require('../../../utils/rules/oneOf/oneOf.js');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
-
 const inMap = {
     cookie: 'cookie',
     header: 'header',
@@ -64,7 +60,7 @@ const param = () => {
             rulesMap[key] = override(rule);
         }
     });
-    innet__default["default"](children, handler);
+    innet.innet(children, handler);
 };
 
 exports.param = param;

@@ -1,4 +1,4 @@
-import innet from 'innet'
+import { innet } from 'innet'
 import { handler } from 'src'
 
 import { App } from './app/App'

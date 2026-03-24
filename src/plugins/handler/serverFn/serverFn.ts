@@ -1,4 +1,4 @@
-import innet, { type Plugin, useApp, useHandler } from 'innet'
+import { innet, type Plugin, useApp, useHandler } from 'innet'
 import { Watch, type Watcher } from 'watch-state'
 
 export const serverFn: Plugin = () => {

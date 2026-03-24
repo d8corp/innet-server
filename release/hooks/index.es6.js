@@ -30,3 +30,4 @@ import './useObjectSchemaContext/index.es6.js';
 import './useServerPort/index.es6.js';
 import './useIsServerHttps/index.es6.js';
 import './useRequestHandler/index.es6.js';
+import './useEffect/index.es6.js';

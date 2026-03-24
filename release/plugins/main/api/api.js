@@ -15,10 +15,6 @@ var JSONString = require('../../../utils/JSONString/JSONString.js');
 var helpers = require('../../../utils/rules/helpers.js');
 var useParams = require('../../../hooks/useParams/useParams.js');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
-
 const api = () => {
     const handler = innet.useNewHandler();
     const props = jsx.useProps();
@@ -141,7 +137,7 @@ const api = () => {
                         const result = await plugin();
                         if (result === undefined)
                             continue;
-                        innet__default["default"](result, actionHandler);
+                        innet.innet(result, actionHandler);
                         return true;
                     }
                     return true;
@@ -177,11 +173,11 @@ const api = () => {
                 continue;
             const newHandler = Object.create(handler);
             useAction.actionContext.set(newHandler, action);
-            innet__default["default"](result, newHandler);
+            innet.innet(result, newHandler);
             return null;
         }
     });
-    innet__default["default"](children, handler);
+    innet.innet(children, handler);
 };
 
 exports.api = api;

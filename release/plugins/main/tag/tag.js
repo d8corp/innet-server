@@ -8,10 +8,6 @@ require('../../../hooks/index.js');
 var useTag = require('../../../hooks/useTag/useTag.js');
 var useApi = require('../../../hooks/useApi/useApi.js');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var innet__default = /*#__PURE__*/_interopDefaultLegacy(innet);
-
 const tag = () => {
     if (jsx.useContext(useTag.tagContext)) {
         throw Error('You cannot use a <tag> inside another one');
@@ -33,7 +29,7 @@ const tag = () => {
     }
     const handler = innet.useNewHandler();
     handler[useTag.tagContext.key] = tag;
-    innet__default["default"](children, handler);
+    innet.innet(children, handler);
 };
 
 exports.tag = tag;
