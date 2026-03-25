@@ -14,11 +14,14 @@ import { useRule } from '../../../hooks/useRule/useRule.es6.js';
 import { useParentRule } from '../../../hooks/useParentRule/useParentRule.es6.js';
 
 const string = () => {
-    const { max, min, pattern: pattern$1, patternId, ...props } = useProps() || {};
+    const { format, max, min, pattern: pattern$1, patternId, ...props } = useProps() || {};
     const { refRules } = useApi();
     const schema = useSchemaType('string', props);
     if (schema) {
         const rules = [];
+        if (format !== undefined) {
+            schema.format = format;
+        }
         if (props.default !== undefined) {
             rules.push(defaultTo(props.default));
         }
@@ -26,12 +29,15 @@ const string = () => {
         if (props.values) {
             rules.push(values(props.values));
         }
+        if (format !== undefined) {
+            schema.format = format;
+        }
         if (min !== undefined) {
-            schema.minimum = min;
+            schema.minLength = min;
             rules.push(minLength(min));
         }
         if (max !== undefined) {
-            schema.maximum = max;
+            schema.maxLength = max;
             rules.push(maxLength(max));
         }
         if (pattern$1 !== undefined) {

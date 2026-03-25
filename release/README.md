@@ -2176,6 +2176,26 @@ you get an error:
 }
 ```
 
+#### format
+
+An optional format modifier serves as a hint at the contents and format of the string.
+Available formats include: `email`, `date-time`, `date`, `uri`, `hostname`, `ipv4`, `ipv6`, `uuid`, `byte`, `binary`, `password` or custom string.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <param in='query' name='email'>
+          <string format='email' />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
 ### \<number>
 
 [← back](#primitive-data)
@@ -2324,6 +2344,66 @@ export default (
 ```
 
 *In this example `/products?rating=5` is valid and `/products?rating=6` is not*
+
+#### exclusiveMinimum, exclusiveMaximum
+
+These props restrict the value to be strictly greater than or less than the specified number.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='rating'>
+          <number 
+            exclusiveMinimum={0}
+            exclusiveMaximum={5}
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### multipleOf
+
+This prop restricts the value to be a multiple of the specified number.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='quantity'>
+          <number multipleOf={10} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### format
+
+An optional format modifier serves as a hint at the contents and format of the number.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='price'>
+          <number format='float' />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
 
 ### \<integer>
 
@@ -2497,6 +2577,47 @@ export default (
 ```
 
 *In this example `/products?rating=5` is valid and `/products?rating=6` is not*
+
+#### exclusiveMinimum, exclusiveMaximum
+
+These props restrict the value to be strictly greater than or less than the specified number.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='count'>
+          <integer 
+            exclusiveMinimum={0}
+            exclusiveMaximum={100}
+          />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### multipleOf
+
+This prop restricts the value to be a multiple of the specified number.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='quantity'>
+          <integer multipleOf={5} />
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
 
 ### \<date>
 
@@ -3135,6 +3256,48 @@ export default (
 )
 ```
 
+#### minItems, maxItems
+
+Those two props validate the array by minimum and maximum number of items.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='tags'>
+          <array minItems={1} maxItems={10}>
+            <string />
+          </array>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### uniqueItems
+
+This prop validates that all items in the array are unique.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/products'>
+        <param in='query' name='ids'>
+          <array uniqueItems>
+            <number />
+          </array>
+        </param>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
 ### \<object>
 
 [← back](#list-of-data)
@@ -3291,6 +3454,58 @@ export default (
           <field key='surname' />
           <field deprecated optional key='birthbay' />
         </object>
+        </body>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### readOnly
+
+You can mark a field as read-only, meaning it can only be returned in responses, not sent in requests.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='get' path='/users'>
+        <response>
+          <object>
+            <field key='id' readOnly>
+              <uuid />
+            </field>
+            <field key='name'>
+              <string />
+            </field>
+          </object>
+        </response>
+      </endpoint>
+    </api>
+  </server>
+)
+```
+
+#### writeOnly
+
+You can mark a field as write-only, meaning it can only be sent in requests, not returned in responses.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <endpoint method='post' path='/users'>
+        <body>
+          <object>
+            <field key='password' writeOnly>
+              <string />
+            </field>
+            <field key='name'>
+              <string />
+            </field>
+          </object>
         </body>
       </endpoint>
     </api>

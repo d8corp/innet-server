@@ -1,6 +1,6 @@
 {
   "name": "@innet/server",
-  "version": "2.0.0-beta.4",
+  "version": "2.0.0-beta.5",
   "description": "Create server-side application with innet",
   "main": "index.js",
   "module": "index.es6.js",
@@ -8,7 +8,7 @@
   "types": "index.d.ts",
   "scripts": {
     "build": "innetjs release -e",
-    "start": "innetjs start -n -e -i example/index",
+    "start": "innetjs start -n -i example/index",
     "test": "jest",
     "api": "jest",
     "lint": "eslint src --ext .ts,.tsx",
@@ -37,7 +37,7 @@
   "dependencies": {
     "@babel/code-frame": "^7.29.0",
     "@cantinc/utils": "^1.4.4",
-    "@innet/jsx": "^2.1.2",
+    "@innet/jsx": "^2.1.3",
     "@innet/utils": "^2.1.0",
     "@types/cookie": "^1.0.0",
     "@types/multiparty": "^4.2.1",

@@ -22,11 +22,20 @@ const array = () => {
     useBlock.useBlock('path');
     const setRule = jsx.useContext(useRule.ruleContext);
     const handler = innet.useNewHandler();
-    const { children, ...props } = jsx.useProps();
+    const { children, maxItems, minItems, uniqueItems, ...props } = jsx.useProps();
     const schema = useSchemaType.useSchemaType('array', props);
     const fieldSchema = {};
     handler[useSchemaContext.schemaContext.key] = fieldSchema;
     schema.items = fieldSchema;
+    if (maxItems) {
+        schema.maxItems = maxItems;
+    }
+    if (minItems) {
+        schema.minItems = minItems;
+    }
+    if (uniqueItems) {
+        schema.uniqueItems = uniqueItems;
+    }
     if (setRule) {
         let oneOfRulesMap;
         const rules = [];

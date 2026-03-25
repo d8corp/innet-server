@@ -18,11 +18,20 @@ const array = () => {
     useBlock('path');
     const setRule = useContext(ruleContext);
     const handler = useNewHandler();
-    const { children, ...props } = useProps();
+    const { children, maxItems, minItems, uniqueItems, ...props } = useProps();
     const schema = useSchemaType('array', props);
     const fieldSchema = {};
     handler[schemaContext.key] = fieldSchema;
     schema.items = fieldSchema;
+    if (maxItems) {
+        schema.maxItems = maxItems;
+    }
+    if (minItems) {
+        schema.minItems = minItems;
+    }
+    if (uniqueItems) {
+        schema.uniqueItems = uniqueItems;
+    }
     if (setRule) {
         let oneOfRulesMap;
         const rules = [];

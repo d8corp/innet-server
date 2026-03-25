@@ -10,7 +10,7 @@ import { required } from '../../../utils/rules/required/required.es6.js';
 
 const field = () => {
     const handler = useNewHandler();
-    const { children, deprecated, key, optional, } = useProps();
+    const { children, deprecated, key, optional, readOnly, writeOnly, } = useProps();
     const schema = useObjectSchemaContext();
     if (!schema.properties) {
         schema.properties = {};
@@ -22,6 +22,12 @@ const field = () => {
     schemaContext.set(handler, fieldSchema);
     if (deprecated) {
         fieldSchema.deprecated = true;
+    }
+    if (readOnly) {
+        fieldSchema.readOnly = true;
+    }
+    if (writeOnly) {
+        fieldSchema.writeOnly = true;
     }
     schema.properties[key] = fieldSchema;
     if (!optional) {

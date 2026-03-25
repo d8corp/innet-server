@@ -1,5 +1,23 @@
 # Changelog
 
+## v2.0
+
+### Features
+
+- **Array Schema**: Added `maxItems`, `minItems`, and `uniqueItems` properties for array validation
+- **Field Schema**: Added `readOnly` and `writeOnly` properties for field metadata
+- **Integer Schema**: Enhanced with `exclusiveMaximum`, `exclusiveMinimum`, `multipleOf`, and `format` properties with proper OpenAPI specification compliance
+- **Number Schema**: Enhanced with `exclusiveMaximum`, `exclusiveMinimum`, `multipleOf`, and `format` properties with proper OpenAPI specification compliance
+- **String Schema**: Added `format` property with support for various formats (email, date-time, uri, etc.)
+
+### Fixes
+
+- Fixed string schema to use correct OpenAPI properties (`minLength`/`maxLength` instead of `minimum`/`maximum`)
+
+### Dependencies
+
+- Updated `innetjs` from 3.2.0 to 3.2.1
+
 ## v1.7
 
 ### v1.7.1 [![03.06.2023](https://img.shields.io/date/1685806146)](https://github.com/d8corp/innet-server/tree/v1.7.1)

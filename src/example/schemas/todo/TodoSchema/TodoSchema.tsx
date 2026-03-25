@@ -10,7 +10,7 @@ export function TodoSchema ({ body }: TodoSchemaProps = {}) {
 
   return (
     <object ref={ref}>
-      <field key='id' optional={body}>
+      <field key='id' optional={body} readOnly>
         <uuid default={body ? 'new' : undefined} />
       </field>
       <field key='title'>

@@ -10,6 +10,8 @@ export interface FieldProps {
   deprecated?: boolean
   key: string
   optional?: boolean
+  readOnly?: boolean
+  writeOnly?: boolean
 }
 
 export const field: HandlerPlugin = () => {
@@ -19,6 +21,8 @@ export const field: HandlerPlugin = () => {
     deprecated,
     key,
     optional,
+    readOnly,
+    writeOnly,
   } = useProps<FieldProps>()
   const schema = useObjectSchemaContext()
 
@@ -35,6 +39,14 @@ export const field: HandlerPlugin = () => {
 
   if (deprecated) {
     fieldSchema.deprecated = true
+  }
+
+  if (readOnly) {
+    fieldSchema.readOnly = true
+  }
+
+  if (writeOnly) {
+    fieldSchema.writeOnly = true
   }
 
   schema.properties[key] = fieldSchema

@@ -4,5 +4,7 @@ export interface FieldProps {
     deprecated?: boolean;
     key: string;
     optional?: boolean;
+    readOnly?: boolean;
+    writeOnly?: boolean;
 }
 export declare const field: HandlerPlugin;

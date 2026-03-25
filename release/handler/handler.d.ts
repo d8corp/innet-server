@@ -50,7 +50,7 @@ export declare const promisePlugins: (typeof async)[];
 export declare const handler: import("innet").Handler;
 declare global {
     namespace JSX {
-        type Element = ArrayElement | FunctionElement | JSXElement | boolean | null | number | (string & {}) | undefined;
+        type Element = ({} & string) | ArrayElement | FunctionElement | JSXElement | boolean | null | number | undefined;
         interface ArrayElement extends Array<Element> {
         }
         type FunctionElement = () => Element;

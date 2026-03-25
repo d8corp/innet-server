@@ -8,6 +8,9 @@ import { arrayOf, defaultTo, oneOf, pipe, type Rule } from '../../../utils'
 
 export interface ArrayProps extends BaseSchemaProps <any[]> {
   children?: any
+  maxItems?: number
+  minItems?: number
+  uniqueItems?: boolean
 }
 
 export const array: HandlerPlugin = () => {
@@ -17,6 +20,9 @@ export const array: HandlerPlugin = () => {
   const handler = useNewHandler()
   const {
     children,
+    maxItems,
+    minItems,
+    uniqueItems,
     ...props
   } = useProps<ArrayProps>()
 
@@ -26,6 +32,18 @@ export const array: HandlerPlugin = () => {
   handler[schemaContext.key] = fieldSchema satisfies SchemaContext
 
   schema.items = fieldSchema
+
+  if (maxItems) {
+    schema.maxItems = maxItems
+  }
+
+  if (minItems) {
+    schema.minItems = minItems
+  }
+
+  if (uniqueItems) {
+    schema.uniqueItems = uniqueItems
+  }
 
   if (setRule) {
     let oneOfRulesMap: Rule[]

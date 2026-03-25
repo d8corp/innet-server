@@ -18,11 +18,14 @@ var useRule = require('../../../hooks/useRule/useRule.js');
 var useParentRule = require('../../../hooks/useParentRule/useParentRule.js');
 
 const string = () => {
-    const { max, min, pattern: pattern$1, patternId, ...props } = jsx.useProps() || {};
+    const { format, max, min, pattern: pattern$1, patternId, ...props } = jsx.useProps() || {};
     const { refRules } = useApi.useApi();
     const schema = useSchemaType.useSchemaType('string', props);
     if (schema) {
         const rules = [];
+        if (format !== undefined) {
+            schema.format = format;
+        }
         if (props.default !== undefined) {
             rules.push(defaultTo.defaultTo(props.default));
         }
@@ -30,12 +33,15 @@ const string = () => {
         if (props.values) {
             rules.push(values.values(props.values));
         }
+        if (format !== undefined) {
+            schema.format = format;
+        }
         if (min !== undefined) {
-            schema.minimum = min;
+            schema.minLength = min;
             rules.push(minLength.minLength(min));
         }
         if (max !== undefined) {
-            schema.maximum = max;
+            schema.maxLength = max;
             rules.push(maxLength.maxLength(max));
         }
         if (pattern$1 !== undefined) {
