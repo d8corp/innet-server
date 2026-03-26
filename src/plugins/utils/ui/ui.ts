@@ -8,13 +8,17 @@ import redoc from './redoc.html'
 import scalar from './scalar.html'
 import swagger from './swagger.html'
 
+function camelToDash (str: string): string {
+  return str.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`)
+}
+
+export const uiPresets = { rapidoc, redoc, scalar, swagger } satisfies Record<string, string>
+
 export interface UiProps {
   html?: string
   params?: Record<string, any>
   path?: string
 }
-
-export const uiPresets = { rapidoc, redoc, scalar, swagger } satisfies Record<string, string>
 
 export const ui: HandlerPlugin = () => {
   const {
@@ -35,7 +39,12 @@ export const ui: HandlerPlugin = () => {
 
     if (action.path === prefix + path) {
       if (!cache) {
-        const attributes = Object.keys(params).reduce((res, key) => `${res} ${key}='${String(params[key])}'`, '')
+        const attributes = Object
+          .keys(params)
+          .reduce((res, key) => {
+            return `${res} ${camelToDash(key)}='${String(params[key])}'`
+          }, '')
+
         cache = placeholder(html, {
           apiUrl: prefix,
           attributes,

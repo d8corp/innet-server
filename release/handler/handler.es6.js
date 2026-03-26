@@ -39,6 +39,7 @@ import { success } from '../plugins/request/success/success.es6.js';
 import { swagger } from '../plugins/utils/swagger/swagger.es6.js';
 import { tag } from '../plugins/main/tag/tag.es6.js';
 import { tuple } from '../plugins/schema/tuple/tuple.es6.js';
+import { ui } from '../plugins/utils/ui/ui.es6.js';
 import { uuid } from '../plugins/schema/uuid/uuid.es6.js';
 import { variable } from '../plugins/main/variable/variable.es6.js';
 import { whitelist } from '../plugins/utils/whitelist/whitelist.es6.js';
@@ -85,6 +86,7 @@ const JSXPlugins = {
     swagger,
     tag,
     tuple,
+    ui,
     uuid,
     variable,
     whitelist,

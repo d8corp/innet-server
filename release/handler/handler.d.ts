@@ -1,6 +1,6 @@
 import { type JSXElement } from '@innet/jsx';
 import { arraySync, async } from '@innet/utils';
-import { type AnyProps, type ApiProps, type ArrayProps, type BinaryProps, blacklist, type BlacklistProps, type BodyProps, type BooleanProps, cms, type CmsProps, type ContactProps, type CookieProps, type DateProps, type DtsProps, type EndpointProps, type EnvProps, type ErrorProps, type FieldProps, file, type FileProps, type HeaderProps, type HostProps, type IntegerProps, type LicenseProps, type NullProps, type NumberProps, type ObjectProps, type ParamProps, preset, type PresetProps, protection, type ProtectionProps, type ProxyProps, type RedirectProps, type ResponseProps, type ReturnProps, type ServerProps, type StringProps, type SuccessProps, type SwaggerProps, type TagProps, type TupleProps, type UuidProps, type VariableProps, whitelist, type WhitelistProps } from '../plugins';
+import { type AnyProps, type ApiProps, type ArrayProps, type BinaryProps, blacklist, type BlacklistProps, type BodyProps, type BooleanProps, cms, type CmsProps, type ContactProps, type CookieProps, type DateProps, type DtsProps, type EndpointProps, type EnvProps, type ErrorProps, type FieldProps, file, type FileProps, type HeaderProps, type HostProps, type IntegerProps, type LicenseProps, type NullProps, type NumberProps, type ObjectProps, type ParamProps, preset, type PresetProps, protection, type ProtectionProps, type ProxyProps, type RedirectProps, type ResponseProps, type ReturnProps, type ServerProps, type StringProps, type SuccessProps, type SwaggerProps, type TagProps, type TupleProps, type UiProps, type UuidProps, type VariableProps, whitelist, type WhitelistProps } from '../plugins';
 export declare const arrayPlugins: (typeof arraySync)[];
 export declare const JSXPlugins: {
     any: import("innet").HandlerPlugin;
@@ -40,6 +40,7 @@ export declare const JSXPlugins: {
     swagger: import("innet").HandlerPlugin;
     tag: import("innet").HandlerPlugin;
     tuple: import("innet").HandlerPlugin;
+    ui: import("innet").HandlerPlugin;
     uuid: import("innet").HandlerPlugin;
     variable: import("innet").HandlerPlugin;
     whitelist: typeof whitelist;
@@ -92,9 +93,11 @@ declare global {
             server: ServerProps;
             string: StringProps;
             success: SuccessProps;
+            /** @deprecated Use <ui> */
             swagger: SwaggerProps;
             tag: TagProps;
             tuple: TupleProps;
+            ui: UiProps;
             uuid: UuidProps;
             variable: VariableProps;
             whitelist: WhitelistProps;

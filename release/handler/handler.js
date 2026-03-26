@@ -43,6 +43,7 @@ var success = require('../plugins/request/success/success.js');
 var swagger = require('../plugins/utils/swagger/swagger.js');
 var tag = require('../plugins/main/tag/tag.js');
 var tuple = require('../plugins/schema/tuple/tuple.js');
+var ui = require('../plugins/utils/ui/ui.js');
 var uuid = require('../plugins/schema/uuid/uuid.js');
 var variable = require('../plugins/main/variable/variable.js');
 var whitelist = require('../plugins/utils/whitelist/whitelist.js');
@@ -89,6 +90,7 @@ const JSXPlugins = {
     swagger: swagger.swagger,
     tag: tag.tag,
     tuple: tuple.tuple,
+    ui: ui.ui,
     uuid: uuid.uuid,
     variable: variable.variable,
     whitelist: whitelist.whitelist,

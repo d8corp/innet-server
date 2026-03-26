@@ -77,6 +77,7 @@ export { dts } from './plugins/utils/dts/dts.es6.js';
 export { env } from './plugins/utils/env/env.es6.js';
 export { protection } from './plugins/utils/protection/protection.es6.js';
 export { swagger } from './plugins/utils/swagger/swagger.es6.js';
+export { ui, uiPresets } from './plugins/utils/ui/ui.es6.js';
 export { whitelist } from './plugins/utils/whitelist/whitelist.es6.js';
 export { Bin } from './utils/FileData/Bin.es6.js';
 export { JSONString } from './utils/JSONString/JSONString.es6.js';

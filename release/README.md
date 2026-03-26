@@ -581,7 +581,7 @@ This section contains elements of utils.
 
 [← back](#index)
 
-[\<swagger>](#swagger)  
+[\<ui>](#ui)  
 [\<env>](#env)  
 [\<dts>](#dts)  
 [\<blacklist>](#blacklist)  
@@ -590,39 +590,150 @@ This section contains elements of utils.
 
 ---
 
-### \<swagger>
+### \<ui>
 
 [← back](#utils)
 
-Use `<swagger>` element to add Swagger UI documentation.
-`<swagger>` element MUST be placed in `<api>` element.
+Use `<ui>` element to add API documentation UI. This element supports multiple documentation viewers including Swagger UI, RapiDoc, ReDoc, and Scalar.
+`<ui>` element MUST be placed in `<api>` element.
 
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
     <api>
-      <swagger />
+      <ui />
     </api>
   </server>
 )
 ```
 
-Open http://localhost:80/swagger-ui
-You will see Swagger UI documentation.
+Open http://localhost:80/ui
+You will see Swagger UI documentation by default.
 
-You can change the Swagger UI URL path by `path` property of `<swagger>` element.
+#### html
+
+You can provide custom HTML template for the documentation viewer.
+Built-in presets are available: `uiPresets.swagger`, `uiPresets.rapidoc`, `uiPresets.redoc`, `uiPresets.scalar`.
+
+*src/app.tsx*
+```typescript jsx
+import { uiPresets } from '@innet/server'
+
+export default (
+  <server>
+    <api>
+      <ui html={uiPresets.rapidoc} />
+    </api>
+  </server>
+)
+```
+
+#### params
+
+You can pass additional parameters to the documentation viewer. Parameters depend on the selected UI library.
+
+For **Swagger UI** (default):
 
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
     <api>
-      <swagger path='/swagger' />
+      <ui
+        params={{
+          docExpansion: 'full',
+          filter: true,
+          showExtensions: true,
+        }}
+      />
     </api>
   </server>
 )
 ```
+
+For **Scalar**:
+
+*src/app.tsx*
+```typescript jsx
+import { uiPresets } from '@innet/server'
+
+export default (
+  <server>
+    <api>
+      <ui
+        html={uiPresets.scalar}
+        params={{
+          theme: 'moon',
+          layout: 'classic',
+        }}
+      />
+    </api>
+  </server>
+)
+```
+
+For **RapiDoc**:
+
+*src/app.tsx*
+```typescript jsx
+import { uiPresets } from '@innet/server'
+
+export default (
+  <server>
+    <api>
+      <ui
+        html={uiPresets.rapidoc}
+        params={{
+          theme: 'dark',
+          layout: 'row',
+          showHeader: 'false',
+        }}
+      />
+    </api>
+  </server>
+)
+```
+
+For **ReDoc**:
+
+*src/app.tsx*
+```typescript jsx
+import { uiPresets } from '@innet/server'
+
+export default (
+  <server>
+    <api>
+      <ui
+        html={uiPresets.redoc}
+        params={{
+          disableSearch: 'true',
+          hideDownloadButton: 'true',
+          nativeScrollbars: 'true',
+          theme: '{"sidebar": {"backgroundColor": "#d1e5ef"}}',
+        }}
+      />
+    </api>
+  </server>
+)
+```
+
+#### path
+
+You can change the documentation UI URL path by `path` property of `<ui>` element.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <ui path='/docs' />
+    </api>
+  </server>
+)
+```
+
+*default: `INNET_UI_PATH` || `'/ui'`*
 
 ### \<env>
 
