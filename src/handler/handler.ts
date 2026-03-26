@@ -78,6 +78,8 @@ import {
   type TagProps,
   tuple,
   type TupleProps,
+  ui,
+  type UiProps,
   uuid,
   type UuidProps,
   variable,
@@ -128,6 +130,7 @@ export const JSXPlugins = {
   swagger,
   tag,
   tuple,
+  ui,
   uuid,
   variable,
   whitelist,
@@ -211,9 +214,11 @@ declare global {
       server: ServerProps
       string: StringProps
       success: SuccessProps
+      /** @deprecated Use <ui> */
       swagger: SwaggerProps
       tag: TagProps
       tuple: TupleProps
+      ui: UiProps
       uuid: UuidProps
       variable: VariableProps
       whitelist: WhitelistProps

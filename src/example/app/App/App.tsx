@@ -17,7 +17,7 @@ export function App () {
         <license name='MIT' />
         <host url='http://localhost/api' />
         <contact email='d8@cantinc.com' name='Mike' />
-        <swagger path='/ui' />
+        <ui />
         <preset>
           <header key='Cache-Control' value='no-cache, no-store, must-revalidate' />
         </preset>

@@ -8,6 +8,7 @@ export interface SwaggerProps {
   path?: string
 }
 
+/** @deprecated Use <ui> */
 export const swagger: HandlerPlugin = () => {
   const {
     path = process.env.INNET_SWAGGER_PATH || '/swagger-ui',
