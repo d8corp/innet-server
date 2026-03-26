@@ -2,7 +2,14 @@ import { type HandlerPlugin, innet, useNewHandler } from 'innet'
 import { useContext, useProps } from '@innet/jsx'
 
 import { tagContext, useApi } from '../../../hooks'
-import { type TagObject } from '../../../types'
+import { type Document, type TagObject } from '../../../types'
+
+export interface TagGroup {
+  name: string
+  tags: string[]
+}
+
+export const TAG_GROUP_NAME = 'x-tagGroups'
 
 export interface TagProps {
   children?: any
@@ -12,7 +19,10 @@ export interface TagProps {
    * */
   description?: string
 
-  /** The name of the tag. */
+  /** A name of the tag group. */
+  group?: string
+
+  /** A name of the tag. */
   name: string
 }
 
@@ -24,6 +34,7 @@ export const tag: HandlerPlugin = () => {
   const {
     children,
     description,
+    group,
     name,
   } = useProps<TagProps>()
 
@@ -40,6 +51,22 @@ export const tag: HandlerPlugin = () => {
     docs.tags.push(tag)
   } else {
     throw Error(`You cannot use two tags with the same name (${name})`)
+  }
+
+  if (group) {
+    if (docs[TAG_GROUP_NAME as keyof Document]) {
+      const groups = docs[TAG_GROUP_NAME as keyof Document] as TagGroup[]
+      const tagGroup = groups.find(({ name }) => name === group)
+
+      if (tagGroup) {
+        tagGroup.tags.push(name)
+      } else {
+        groups.push({ name: group, tags: [name] })
+      }
+    } else {
+      // @ts-expect-error Custom field
+      docs[TAG_GROUP_NAME] = [{ name: group, tags: [name] }] satisfies TagGroup[]
+    }
   }
 
   const handler = useNewHandler()
