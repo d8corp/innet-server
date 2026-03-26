@@ -1556,6 +1556,34 @@ export default (
 )
 ```
 
+#### group
+
+You can organize tags into groups using the `group` property.
+This adds tag groups support to the OpenAPI specification,
+which is displayed in documentation viewers.
+
+*src/app.tsx*
+```typescript jsx
+export default (
+  <server>
+    <api>
+      <tag group='Authentication' name='auth'>
+        <endpoint method='post' path='/login' />
+        <endpoint method='post' path='/logout' />
+      </tag>
+      <tag group='Users' name='users'>
+        <endpoint method='get' path='/users' />
+        <endpoint method='post' path='/users' />
+      </tag>
+    </api>
+  </server>
+)
+```
+
+This will create tag groups in your OpenAPI documentation:
+- **Authentication** group containing the `auth` tag
+- **Users** group containing the `users` tag
+
 ### \<param>
 
 [← back](#endpoints)

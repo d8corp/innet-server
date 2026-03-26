@@ -49,7 +49,7 @@ export { preset } from './plugins/main/preset/preset.es6.js';
 export { response, statuses } from './plugins/main/response/response.es6.js';
 export { returnPlugin } from './plugins/main/return/return.es6.js';
 export { server } from './plugins/main/server/server.es6.js';
-export { tag } from './plugins/main/tag/tag.es6.js';
+export { TAG_GROUP_NAME, tag } from './plugins/main/tag/tag.es6.js';
 export { variable } from './plugins/main/variable/variable.es6.js';
 export { cms } from './plugins/request/cms/cms.es6.js';
 export { cookie } from './plugins/request/cookie/cookie.es6.js';

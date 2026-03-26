@@ -4,6 +4,7 @@
 
 ### Features
 
+- **Tag Groups**: Added `group` property for `<tag>` element to organize tags into groups in OpenAPI documentation
 - **UI Documentation**: Added built-in UI documentation viewers with support for Swagger UI, RapiDoc, ReDoc, and Scalar
 - **Array Schema**: Added `maxItems`, `minItems`, and `uniqueItems` properties for array validation
 - **Field Schema**: Added `readOnly` and `writeOnly` properties for field metadata

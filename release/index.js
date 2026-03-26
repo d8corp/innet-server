@@ -196,6 +196,7 @@ exports.response = response.response;
 exports.statuses = response.statuses;
 exports.returnPlugin = _return.returnPlugin;
 exports.server = server.server;
+exports.TAG_GROUP_NAME = tag.TAG_GROUP_NAME;
 exports.tag = tag.tag;
 exports.variable = variable.variable;
 exports.cms = cms.cms;
