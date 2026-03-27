@@ -7,10 +7,14 @@ import { bin, binaryAccept, maxBin, minBin, pipe, type Rule } from '../../../uti
 
 export interface BinaryProps {
   accept?: string
+  deprecated: boolean
   description?: string
   max?: number
   min?: number
+  readOnly: boolean
   ref?: string
+  title?: string
+  writeOnly: boolean
 }
 
 export const binary: HandlerPlugin = () => {

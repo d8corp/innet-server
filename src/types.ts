@@ -87,12 +87,17 @@ export interface ServerStartParams {
 
 export interface BaseSchemaProps<T> {
   default?: T
+  deprecated?: boolean
   description?: string
   example?: T
   examples?: T[]
+  readOnly?: boolean
   ref?: string
+  title?: string
+  writeOnly?: boolean
 }
 
 export interface ValuesSchemaProps<T> extends BaseSchemaProps<T> {
+  const?: T
   values?: T[]
 }

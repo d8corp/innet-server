@@ -15,7 +15,7 @@ var required = require('../../../utils/rules/required/required.js');
 
 const field = () => {
     const handler = innet.useNewHandler();
-    const { children, deprecated, key, optional, readOnly, writeOnly, } = jsx.useProps();
+    const { children, deprecated, description, key, optional, readOnly, title, writeOnly, } = jsx.useProps();
     const schema = getSafeSchema.getSafeSchema(useObjectSchemaContext.useObjectSchemaContext());
     if (!schema.properties) {
         schema.properties = {};
@@ -27,6 +27,12 @@ const field = () => {
     useSchemaContext.schemaContext.set(handler, fieldSchema);
     if (deprecated) {
         fieldSchema.deprecated = true;
+    }
+    if (title) {
+        fieldSchema.title = title;
+    }
+    if (description) {
+        fieldSchema.description = description;
     }
     if (readOnly) {
         fieldSchema.readOnly = true;

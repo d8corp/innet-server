@@ -15,6 +15,7 @@ const integer = () => {
     const { default: defaultValue, example, examples, exclusiveMaximum, exclusiveMinimum, format = 'int32', max: max$1, min: min$1, multipleOf, values: values$1, ...props } = useProps() || {};
     const schema = useSchemaType('integer', {
         ...props,
+        const: props.const !== undefined ? Number(props.const) : undefined,
         default: defaultValue !== undefined ? Number(defaultValue) : undefined,
         example: example !== undefined ? Number(example) : undefined,
         examples: examples === null || examples === void 0 ? void 0 : examples.map(Number),

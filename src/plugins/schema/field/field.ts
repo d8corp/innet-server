@@ -8,9 +8,11 @@ import { getSafeSchema, required } from '../../../utils'
 export interface FieldProps {
   children?: any
   deprecated?: boolean
+  description?: string
   key: string
   optional?: boolean
   readOnly?: boolean
+  title?: string
   writeOnly?: boolean
 }
 
@@ -19,9 +21,11 @@ export const field: HandlerPlugin = () => {
   const {
     children,
     deprecated,
+    description,
     key,
     optional,
     readOnly,
+    title,
     writeOnly,
   } = useProps<FieldProps>()
   const schema = getSafeSchema(useObjectSchemaContext())
@@ -39,6 +43,14 @@ export const field: HandlerPlugin = () => {
 
   if (deprecated) {
     fieldSchema.deprecated = true
+  }
+
+  if (title) {
+    fieldSchema.title = title
+  }
+
+  if (description) {
+    fieldSchema.description = description
   }
 
   if (readOnly) {

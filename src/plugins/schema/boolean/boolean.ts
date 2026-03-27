@@ -7,7 +7,7 @@ import { type BaseSchemaProps } from '../../../types'
 import { defaultTo, pipe, type Rule } from '../../../utils'
 
 export interface BooleanProps extends BaseSchemaProps <boolean> {
-
+  const?: boolean
 }
 
 export const boolean: HandlerPlugin = () => {

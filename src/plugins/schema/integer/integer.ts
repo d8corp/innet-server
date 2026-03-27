@@ -78,6 +78,7 @@ export const integer: HandlerPlugin = () => {
   } = useProps<IntegerProps>() || {}
   const schema = useSchemaType('integer', {
     ...props,
+    const: props.const !== undefined ? Number(props.const) : undefined,
     default: defaultValue !== undefined ? Number(defaultValue) : undefined,
     example: example !== undefined ? Number(example) : undefined,
     examples: examples?.map(Number),
