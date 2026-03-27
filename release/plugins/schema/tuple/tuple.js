@@ -26,7 +26,6 @@ const tuple = () => {
     if (schema) {
         const schemas = [];
         handler[useSchemaContext.schemaContext.key] = schemas;
-        // @ts-expect-error: FIXME
         schema.prefixItems = schemas;
         const rulesMap = [];
         const rules = [];

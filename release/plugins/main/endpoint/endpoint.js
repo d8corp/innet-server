@@ -50,9 +50,7 @@ const endpoint = () => {
         endpoints[method] = { key: '', plugins: new Set() };
     }
     const endpoint = getEndpoint.getEndpoint(path, endpoints[method]);
-    // @ts-expect-error: it's always an object
     useEndpoint.endpointContext.set(handler, { endpoint, operation, props });
-    // @ts-expect-error: it's always an object
     useServerPlugins.serverPlugins.set(handler, endpoint.plugins);
     innet.innet(children, handler);
 };

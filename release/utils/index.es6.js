@@ -5,6 +5,7 @@ import './decorators/index.es6.js';
 import './generateTypes/index.es6.js';
 import './getEndpoint/index.es6.js';
 import './getOrAdd/index.es6.js';
+import './getSafeSchema/index.es6.js';
 import './httpOnStart/index.es6.js';
 import './parseBody/index.es6.js';
 import './parseFormBody/index.es6.js';

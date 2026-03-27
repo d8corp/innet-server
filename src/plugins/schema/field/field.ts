@@ -3,7 +3,7 @@ import { useProps } from '@innet/jsx'
 
 import { objectRuleContext, ruleContext, schemaContext, useObjectRule, useObjectSchemaContext } from '../../../hooks'
 import { type SchemaObject } from '../../../types'
-import { required } from '../../../utils'
+import { getSafeSchema, required } from '../../../utils'
 
 export interface FieldProps {
   children?: any
@@ -24,7 +24,7 @@ export const field: HandlerPlugin = () => {
     readOnly,
     writeOnly,
   } = useProps<FieldProps>()
-  const schema = useObjectSchemaContext()
+  const schema = getSafeSchema(useObjectSchemaContext())
 
   if (!schema.properties) {
     schema.properties = {}

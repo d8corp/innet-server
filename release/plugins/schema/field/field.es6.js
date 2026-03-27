@@ -2,6 +2,7 @@ import { useNewHandler, innet } from 'innet';
 import { useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
+import { getSafeSchema } from '../../../utils/getSafeSchema/getSafeSchema.es6.js';
 import { useObjectSchemaContext } from '../../../hooks/useObjectSchemaContext/useObjectSchemaContext.es6.js';
 import { schemaContext } from '../../../hooks/useSchemaContext/useSchemaContext.es6.js';
 import { useObjectRule, objectRuleContext } from '../../../hooks/useObjectRule/useObjectRule.es6.js';
@@ -11,7 +12,7 @@ import { required } from '../../../utils/rules/required/required.es6.js';
 const field = () => {
     const handler = useNewHandler();
     const { children, deprecated, key, optional, readOnly, writeOnly, } = useProps();
-    const schema = useObjectSchemaContext();
+    const schema = getSafeSchema(useObjectSchemaContext());
     if (!schema.properties) {
         schema.properties = {};
     }

@@ -86,6 +86,7 @@ export { once } from './utils/decorators/once/once.es6.js';
 export { generateSchemaTypes, generateTypes } from './utils/generateTypes/generateTypes.es6.js';
 export { getEndpoint } from './utils/getEndpoint/getEndpoint.es6.js';
 export { getOrAdd } from './utils/getOrAdd/getOrAdd.es6.js';
+export { getSafeSchema } from './utils/getSafeSchema/getSafeSchema.es6.js';
 export { httpOnStart } from './utils/httpOnStart/httpOnStart.es6.js';
 export { parseBody } from './utils/parseBody/parseBody.es6.js';
 export { parseFormBody } from './utils/parseFormBody/parseFormBody.es6.js';

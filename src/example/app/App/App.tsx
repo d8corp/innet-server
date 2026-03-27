@@ -1,4 +1,4 @@
-import { type ServerStartParams } from 'src'
+import { type ServerStartParams, uiPresets } from 'src'
 
 import { Todo } from '../../tags'
 import description from './description.md'
@@ -17,7 +17,7 @@ export function App () {
         <license name='MIT' />
         <host url='http://localhost/api' />
         <contact email='d8@cantinc.com' name='Mike' />
-        <ui />
+        <ui html={uiPresets.swagger} />
         <preset>
           <header key='Cache-Control' value='no-cache, no-store, must-revalidate' />
         </preset>

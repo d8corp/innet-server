@@ -15,6 +15,7 @@ import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 import { useRule, ruleContext } from '../../../hooks/useRule/useRule.es6.js';
 import { objectRuleContext } from '../../../hooks/useObjectRule/useObjectRule.es6.js';
 import { useEffect } from '../../../hooks/useEffect/useEffect.es6.js';
+import { getSafeSchema } from '../../../utils/getSafeSchema/getSafeSchema.es6.js';
 
 const object = () => {
     useBlock('path');
@@ -53,8 +54,9 @@ const object = () => {
         parentRuleContext.reset(handler);
         innet(children, handler);
         useEffect(() => {
-            if (!Object.keys(schema.additionalProperties).length) {
-                delete schema.additionalProperties;
+            const safeSchema = getSafeSchema(schema);
+            if (!Object.keys(safeSchema.additionalProperties).length) {
+                delete safeSchema.additionalProperties;
             }
         });
     }

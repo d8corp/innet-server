@@ -8,13 +8,10 @@ var useHost = require('../../../hooks/useHost/useHost.js');
 
 const variable = () => {
     const { server } = useHost.useHost();
-    const { key, values, 
-    // predefine
-    value = values === null || values === void 0 ? void 0 : values[0], ...rest } = jsx.useProps();
+    const { key, values, value = values === null || values === void 0 ? void 0 : values[0], ...rest } = jsx.useProps();
     if (!server.variables) {
         server.variables = {};
     }
-    // @ts-expect-error: FIXME
     server.variables[key] = { ...rest, default: value, enum: values };
 };
 

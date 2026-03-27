@@ -14,7 +14,7 @@ import {
 } from '../../../hooks'
 import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
 import { type BaseSchemaProps } from '../../../types'
-import { defaultTo, type ObjectOf, objectOf, pipe, type Rule } from '../../../utils'
+import { defaultTo, getSafeSchema, type ObjectOf, objectOf, pipe, type Rule } from '../../../utils'
 
 export interface ObjectProps extends BaseSchemaProps <object> {
   children?: any
@@ -72,8 +72,10 @@ export const object: HandlerPlugin = () => {
     innet(children, handler)
 
     useEffect(() => {
-      if (!Object.keys(schema.additionalProperties as any).length) {
-        delete schema.additionalProperties
+      const safeSchema = getSafeSchema(schema)
+
+      if (!Object.keys(safeSchema.additionalProperties as any).length) {
+        delete safeSchema.additionalProperties
       }
     })
   } else if (props.ref) {

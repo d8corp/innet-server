@@ -5,7 +5,6 @@ import { useApi } from '../../../hooks/useApi/useApi.es6.js';
 import { useServerPlugin } from '../../../hooks/useServerPlugin/useServerPlugin.es6.js';
 import { useAction } from '../../../hooks/useAction/useAction.es6.js';
 
-/** @deprecated Use <ui> */
 const swagger = () => {
     const { path = process.env.INNET_SWAGGER_PATH || '/swagger-ui', } = useProps() || {};
     const { docs, prefix, } = useApi();

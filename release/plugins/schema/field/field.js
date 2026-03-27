@@ -6,6 +6,7 @@ var innet = require('innet');
 var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
 require('../../../utils/index.js');
+var getSafeSchema = require('../../../utils/getSafeSchema/getSafeSchema.js');
 var useObjectSchemaContext = require('../../../hooks/useObjectSchemaContext/useObjectSchemaContext.js');
 var useSchemaContext = require('../../../hooks/useSchemaContext/useSchemaContext.js');
 var useObjectRule = require('../../../hooks/useObjectRule/useObjectRule.js');
@@ -15,7 +16,7 @@ var required = require('../../../utils/rules/required/required.js');
 const field = () => {
     const handler = innet.useNewHandler();
     const { children, deprecated, key, optional, readOnly, writeOnly, } = jsx.useProps();
-    const schema = useObjectSchemaContext.useObjectSchemaContext();
+    const schema = getSafeSchema.getSafeSchema(useObjectSchemaContext.useObjectSchemaContext());
     if (!schema.properties) {
         schema.properties = {};
     }

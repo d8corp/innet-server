@@ -20,10 +20,8 @@ const uuid = () => {
         ...props,
         default: defaultValue === 'new' ? undefined : defaultValue,
     });
-    // @ts-expect-error: FIXME
     schema.format = 'uuid';
     if (defaultValue === 'new') {
-        // @ts-expect-error: FIXME
         schema['x-default'] = defaultValue;
     }
     const rules = [];

@@ -19,6 +19,7 @@ var pipe = require('../../../utils/rules/pipe/pipe.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
 var useObjectRule = require('../../../hooks/useObjectRule/useObjectRule.js');
 var useEffect = require('../../../hooks/useEffect/useEffect.js');
+var getSafeSchema = require('../../../utils/getSafeSchema/getSafeSchema.js');
 
 const object = () => {
     useBlock.useBlock('path');
@@ -57,8 +58,9 @@ const object = () => {
         useParentRule.parentRuleContext.reset(handler);
         innet.innet(children, handler);
         useEffect.useEffect(() => {
-            if (!Object.keys(schema.additionalProperties).length) {
-                delete schema.additionalProperties;
+            const safeSchema = getSafeSchema.getSafeSchema(schema);
+            if (!Object.keys(safeSchema.additionalProperties).length) {
+                delete safeSchema.additionalProperties;
             }
         });
     }
