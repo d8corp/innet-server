@@ -2,9 +2,9 @@ import { useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
 import { useSchemaType } from '../../../hooks/useSchemaType/useSchemaType.es6.js';
+import { getArrayValues, values } from '../../../utils/rules/values/values.es6.js';
 import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
 import { int } from '../../../utils/rules/int/int.es6.js';
-import { values } from '../../../utils/rules/values/values.es6.js';
 import { min } from '../../../utils/rules/min/min.es6.js';
 import { max } from '../../../utils/rules/max/max.es6.js';
 import { useRule } from '../../../hooks/useRule/useRule.es6.js';
@@ -19,7 +19,7 @@ const integer = () => {
         default: defaultValue !== undefined ? Number(defaultValue) : undefined,
         example: example !== undefined ? Number(example) : undefined,
         examples: examples === null || examples === void 0 ? void 0 : examples.map(Number),
-        values: values$1 === null || values$1 === void 0 ? void 0 : values$1.map(Number),
+        values: values$1 && getArrayValues(values$1, Number),
     });
     if (schema) {
         if (format) {
@@ -47,7 +47,7 @@ const integer = () => {
     }
     rules.push(int(format));
     if (values$1) {
-        rules.push(values(values$1.map(value => int(format)(value))));
+        rules.push(values(getArrayValues(values$1, int(format))));
     }
     if (min$1 !== undefined) {
         rules.push(min(min$1));

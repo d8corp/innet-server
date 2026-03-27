@@ -117,5 +117,5 @@ export { pipe } from './utils/rules/pipe/pipe.es6.js';
 export { required } from './utils/rules/required/required.es6.js';
 export { tupleOf } from './utils/rules/tupleOf/tupleOf.es6.js';
 export { uuidTo } from './utils/rules/uuidTo/uuidTo.es6.js';
-export { values } from './utils/rules/values/values.es6.js';
+export { getArrayValues, values } from './utils/rules/values/values.es6.js';
 export { stringifySearch } from './utils/stringifySearch/stringifySearch.es6.js';

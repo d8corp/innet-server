@@ -8,6 +8,7 @@ import {
   type DateFormat,
   dateTo as DateRule,
   defaultTo,
+  getArrayValues,
   maxDate,
   minDate,
   pipe,
@@ -36,7 +37,7 @@ export const date: HandlerPlugin = () => {
   const normMax = dateFormat(max)
   const normDefault = dateFormat(defaultValue)
   const normExample = dateFormat(example)
-  const normValues = values?.map(dateFormat)
+  const normValues = values && getArrayValues(values, dateFormat)
   // @ts-expect-error: FIXME
   const stringValues = normValues?.map(value => value.toISOString())
   const normExamples = examples?.map(dateFormat)

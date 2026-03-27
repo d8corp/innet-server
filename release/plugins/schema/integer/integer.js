@@ -6,9 +6,9 @@ var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
 require('../../../utils/index.js');
 var useSchemaType = require('../../../hooks/useSchemaType/useSchemaType.js');
+var values = require('../../../utils/rules/values/values.js');
 var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
 var int = require('../../../utils/rules/int/int.js');
-var values = require('../../../utils/rules/values/values.js');
 var min = require('../../../utils/rules/min/min.js');
 var max = require('../../../utils/rules/max/max.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
@@ -23,7 +23,7 @@ const integer = () => {
         default: defaultValue !== undefined ? Number(defaultValue) : undefined,
         example: example !== undefined ? Number(example) : undefined,
         examples: examples === null || examples === void 0 ? void 0 : examples.map(Number),
-        values: values$1 === null || values$1 === void 0 ? void 0 : values$1.map(Number),
+        values: values$1 && values.getArrayValues(values$1, Number),
     });
     if (schema) {
         if (format) {
@@ -51,7 +51,7 @@ const integer = () => {
     }
     rules.push(int.int(format));
     if (values$1) {
-        rules.push(values.values(values$1.map(value => int.int(format)(value))));
+        rules.push(values.values(values.getArrayValues(values$1, int.int(format))));
     }
     if (min$1 !== undefined) {
         rules.push(min.min(min$1));

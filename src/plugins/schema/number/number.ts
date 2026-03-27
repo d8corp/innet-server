@@ -4,7 +4,7 @@ import { useProps } from '@innet/jsx'
 import { useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
 import { type ValuesSchemaProps } from '../../../types'
-import { defaultTo, max as maximum, min as minimum, num, pipe, type Rule, values } from '../../../utils'
+import { defaultTo, getArrayValues, max as maximum, min as minimum, num, pipe, type Rule, values } from '../../../utils'
 
 export interface NumberProps extends ValuesSchemaProps <number> {
   /**
@@ -97,7 +97,7 @@ export const number: HandlerPlugin = () => {
   rules.push(num)
 
   if (props.values) {
-    rules.push(values(props.values))
+    rules.push(values(getArrayValues(props.values, Number)))
   }
 
   if (min !== undefined) {

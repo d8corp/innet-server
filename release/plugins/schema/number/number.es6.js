@@ -5,7 +5,7 @@ import '../../../utils/index.es6.js';
 import { useSchemaType } from '../../../hooks/useSchemaType/useSchemaType.es6.js';
 import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
 import { num } from '../../../utils/rules/num/num.es6.js';
-import { values } from '../../../utils/rules/values/values.es6.js';
+import { values, getArrayValues } from '../../../utils/rules/values/values.es6.js';
 import { min } from '../../../utils/rules/min/min.es6.js';
 import { max } from '../../../utils/rules/max/max.es6.js';
 import { useParentRule } from '../../../hooks/useParentRule/useParentRule.es6.js';
@@ -41,7 +41,7 @@ const number = () => {
     }
     rules.push(num);
     if (props.values) {
-        rules.push(values(props.values));
+        rules.push(values(getArrayValues(props.values, Number)));
     }
     if (min$1 !== undefined) {
         rules.push(min(min$1));

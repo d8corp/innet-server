@@ -68,7 +68,8 @@ export interface BaseSchemaProps<T> {
     title?: string;
     writeOnly?: boolean;
 }
+export type SchemaValues<T> = (T extends (number | string) ? Record<T, string> : never) | T[];
 export interface ValuesSchemaProps<T> extends BaseSchemaProps<T> {
     const?: T;
-    values?: T[];
+    values?: SchemaValues<T>;
 }

@@ -6,4 +6,5 @@ var values = require('./values.js');
 
 
 
+exports.getArrayValues = values.getArrayValues;
 exports.values = values.values;

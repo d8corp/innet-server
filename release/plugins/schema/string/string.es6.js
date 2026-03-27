@@ -5,7 +5,7 @@ import '../../../utils/index.es6.js';
 import { useApi } from '../../../hooks/useApi/useApi.es6.js';
 import { useSchemaType } from '../../../hooks/useSchemaType/useSchemaType.es6.js';
 import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
-import { values } from '../../../utils/rules/values/values.es6.js';
+import { values, getArrayValues } from '../../../utils/rules/values/values.es6.js';
 import { minLength } from '../../../utils/rules/minLength/minLength.es6.js';
 import { maxLength } from '../../../utils/rules/maxLength/maxLength.es6.js';
 import { pattern } from '../../../utils/rules/pattern/pattern.es6.js';
@@ -27,7 +27,7 @@ const string = () => {
         }
         rules.push(String);
         if (props.values) {
-            rules.push(values(props.values));
+            rules.push(values(getArrayValues(props.values)));
         }
         if (format !== undefined) {
             schema.format = format;

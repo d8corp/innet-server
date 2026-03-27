@@ -32,7 +32,7 @@ const uuid = () => {
     }
     rules.push(uuidTo.uuidTo);
     if (props.values) {
-        rules.push(values.values(props.values));
+        rules.push(values.values(values.getArrayValues(props.values)));
     }
     if (defaultValue === undefined) {
         useRule.useRule(optional.optional(pipe.pipe(...rules)));

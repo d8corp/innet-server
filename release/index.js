@@ -274,5 +274,6 @@ exports.pipe = pipe.pipe;
 exports.required = required.required;
 exports.tupleOf = tupleOf.tupleOf;
 exports.uuidTo = uuidTo.uuidTo;
+exports.getArrayValues = values.getArrayValues;
 exports.values = values.values;
 exports.stringifySearch = stringifySearch.stringifySearch;

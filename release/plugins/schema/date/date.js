@@ -8,10 +8,10 @@ require('../../../hooks/useParentRule/index.js');
 require('../../../utils/index.js');
 require('../../../utils/dateFormat/index.js');
 var dateFormat = require('../../../utils/dateFormat/dateFormat.js');
+var values = require('../../../utils/rules/values/values.js');
 var useSchemaType = require('../../../hooks/useSchemaType/useSchemaType.js');
 var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
 var dateTo = require('../../../utils/rules/dateTo/dateTo.js');
-var values = require('../../../utils/rules/values/values.js');
 var minDate = require('../../../utils/rules/minDate/minDate.js');
 var maxDate = require('../../../utils/rules/maxDate/maxDate.js');
 var useParentRule = require('../../../hooks/useParentRule/useParentRule.js');
@@ -24,7 +24,7 @@ const date = () => {
     const normMax = dateFormat.dateFormat(max);
     const normDefault = dateFormat.dateFormat(defaultValue);
     const normExample = dateFormat.dateFormat(example);
-    const normValues = values$1 === null || values$1 === void 0 ? void 0 : values$1.map(dateFormat.dateFormat);
+    const normValues = values$1 && values.getArrayValues(values$1, dateFormat.dateFormat);
     // @ts-expect-error: FIXME
     const stringValues = normValues === null || normValues === void 0 ? void 0 : normValues.map(value => value.toISOString());
     const normExamples = examples === null || examples === void 0 ? void 0 : examples.map(dateFormat.dateFormat);

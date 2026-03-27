@@ -31,7 +31,7 @@ const string = () => {
         }
         rules.push(String);
         if (props.values) {
-            rules.push(values.values(props.values));
+            rules.push(values.values(values.getArrayValues(props.values)));
         }
         if (format !== undefined) {
             schema.format = format;

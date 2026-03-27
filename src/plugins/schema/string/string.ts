@@ -4,7 +4,16 @@ import { useProps } from '@innet/jsx'
 import { useApi, useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
 import { type ValuesSchemaProps } from '../../../types'
-import { defaultTo, maxLength, minLength, pattern as patternTo, pipe, type Rule, values } from '../../../utils'
+import {
+  defaultTo,
+  getArrayValues,
+  maxLength,
+  minLength,
+  pattern as patternTo,
+  pipe,
+  type Rule,
+  values,
+} from '../../../utils'
 
 export interface StringProps extends ValuesSchemaProps <string> {
   /**
@@ -71,7 +80,7 @@ export const string: HandlerPlugin = () => {
     rules.push(String)
 
     if (props.values) {
-      rules.push(values(props.values))
+      rules.push(values(getArrayValues(props.values)))
     }
 
     if (format !== undefined) {

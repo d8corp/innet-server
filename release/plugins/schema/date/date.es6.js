@@ -4,10 +4,10 @@ import '../../../hooks/useParentRule/index.es6.js';
 import '../../../utils/index.es6.js';
 import '../../../utils/dateFormat/index.es6.js';
 import { dateFormat } from '../../../utils/dateFormat/dateFormat.es6.js';
+import { getArrayValues, values } from '../../../utils/rules/values/values.es6.js';
 import { useSchemaType } from '../../../hooks/useSchemaType/useSchemaType.es6.js';
 import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
 import { dateTo } from '../../../utils/rules/dateTo/dateTo.es6.js';
-import { values } from '../../../utils/rules/values/values.es6.js';
 import { minDate } from '../../../utils/rules/minDate/minDate.es6.js';
 import { maxDate } from '../../../utils/rules/maxDate/maxDate.es6.js';
 import { useParentRule } from '../../../hooks/useParentRule/useParentRule.es6.js';
@@ -20,7 +20,7 @@ const date = () => {
     const normMax = dateFormat(max);
     const normDefault = dateFormat(defaultValue);
     const normExample = dateFormat(example);
-    const normValues = values$1 === null || values$1 === void 0 ? void 0 : values$1.map(dateFormat);
+    const normValues = values$1 && getArrayValues(values$1, dateFormat);
     // @ts-expect-error: FIXME
     const stringValues = normValues === null || normValues === void 0 ? void 0 : normValues.map(value => value.toISOString());
     const normExamples = examples === null || examples === void 0 ? void 0 : examples.map(dateFormat);

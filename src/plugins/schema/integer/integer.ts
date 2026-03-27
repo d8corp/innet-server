@@ -5,6 +5,7 @@ import { useRule, useSchemaType } from '../../../hooks'
 import { type IntegerFormats, type ValuesSchemaProps } from '../../../types'
 import {
   defaultTo,
+  getArrayValues,
   int,
   max as maximum,
   min as minimum,
@@ -82,7 +83,7 @@ export const integer: HandlerPlugin = () => {
     default: defaultValue !== undefined ? Number(defaultValue) : undefined,
     example: example !== undefined ? Number(example) : undefined,
     examples: examples?.map(Number),
-    values: values?.map(Number),
+    values: values && getArrayValues(values, Number),
   })
 
   if (schema) {
@@ -120,7 +121,7 @@ export const integer: HandlerPlugin = () => {
   rules.push(int(format))
 
   if (values) {
-    rules.push(valuesOf(values.map(value => int(format)(value))))
+    rules.push(valuesOf(getArrayValues(values, int(format))))
   }
 
   if (min !== undefined) {

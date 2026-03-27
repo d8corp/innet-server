@@ -59,9 +59,19 @@ export function useSchemaType <T extends SchemaType> (
     } as any)
   }
 
+  const arrayValues = values ? Array.isArray(values) ? values : Object.keys(values) : values
+  const enumDescription = values && !Array.isArray(values)
+    ? {
+        'x-enum-descriptions': values,
+        'x-enumDescriptions': values,
+        'x-enumNames': values,
+      }
+    : {}
+
   return useNewSchema({
     ...options,
-    enum: values,
+    ...enumDescription,
+    enum: arrayValues,
     example,
     examples,
     type: type === 'any' ? undefined : type as any,
