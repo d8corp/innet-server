@@ -17,6 +17,7 @@ function useNewSchema(schema = Object.create(null)) {
     else if (parentSchema.type || '$ref' in parentSchema) {
         const oldSchema = { ...parentSchema };
         for (const key in parentSchema) {
+            // @ts-expect-error: FIXME
             delete parentSchema[key];
         }
         parentSchema.oneOf = [oldSchema, schema];

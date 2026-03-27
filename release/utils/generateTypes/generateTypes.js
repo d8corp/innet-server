@@ -99,6 +99,7 @@ function generateTypes(docs, namespace = 'Api') {
     for (const path in paths) {
         const pathObject = paths[path];
         for (const method in pathObject) {
+            // @ts-expect-error: FIXME
             const endpoint = pathObject[method];
             const parameters = endpoint.parameters;
             const requestBody = endpoint.requestBody;

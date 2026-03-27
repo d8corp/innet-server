@@ -20,6 +20,7 @@ const redirectStatuses = {
 function getStatus(status) {
     if (typeof status === 'number')
         return status;
+    // @ts-expect-error: FIXME
     return redirectStatuses[status] || 301;
 }
 function customEncode(url) {

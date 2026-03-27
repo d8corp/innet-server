@@ -19,6 +19,7 @@ const host = () => {
     const server = {
         ...props,
     };
+    // @ts-expect-error: FIXME
     servers.push(server);
     handler[hostContext.key] = { server };
     innet(children, handler);

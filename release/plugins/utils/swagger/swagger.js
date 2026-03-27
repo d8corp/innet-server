@@ -9,6 +9,7 @@ var useApi = require('../../../hooks/useApi/useApi.js');
 var useServerPlugin = require('../../../hooks/useServerPlugin/useServerPlugin.js');
 var useAction = require('../../../hooks/useAction/useAction.js');
 
+/** @deprecated Use <ui> */
 const swagger = () => {
     const { path = process.env.INNET_SWAGGER_PATH || '/swagger-ui', } = jsx.useProps() || {};
     const { docs, prefix, } = useApi.useApi();

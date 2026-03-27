@@ -36,6 +36,7 @@ const tag = () => {
             }
         }
         else {
+            // @ts-expect-error Custom field
             docs[TAG_GROUP_NAME] = [{ name: group, tags: [name] }];
         }
     }

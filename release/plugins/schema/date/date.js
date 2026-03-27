@@ -25,12 +25,14 @@ const date = () => {
     const normDefault = dateFormat.dateFormat(defaultValue);
     const normExample = dateFormat.dateFormat(example);
     const normValues = values$1 === null || values$1 === void 0 ? void 0 : values$1.map(dateFormat.dateFormat);
+    // @ts-expect-error: FIXME
     const stringValues = normValues === null || normValues === void 0 ? void 0 : normValues.map(value => value.toISOString());
     const normExamples = examples === null || examples === void 0 ? void 0 : examples.map(dateFormat.dateFormat);
     const schema = useSchemaType.useSchemaType('string', {
         ...props,
         default: defaultValue === 'now' ? undefined : normDefault === null || normDefault === void 0 ? void 0 : normDefault.toISOString(),
         example: normExample === null || normExample === void 0 ? void 0 : normExample.toISOString(),
+        // @ts-expect-error: FIXME
         examples: normExamples === null || normExamples === void 0 ? void 0 : normExamples.map(example => example.toISOString()),
         values: stringValues,
     });
@@ -42,16 +44,20 @@ const date = () => {
     if (stringValues) {
         rules.push((value, data) => values.values(stringValues)(value.toISOString(), data));
     }
+    // @ts-expect-error: FIXME
     schema.format = 'date-time';
     if (normMin) {
+        // @ts-expect-error: FIXME
         schema['x-minimum'] = normMin.toISOString();
         rules.push(minDate.minDate(normMin));
     }
     if (normMax) {
+        // @ts-expect-error: FIXME
         schema['x-maximum'] = normMax.toISOString();
         rules.push(maxDate.maxDate(normMax));
     }
     if (defaultValue === 'now') {
+        // @ts-expect-error: FIXME
         schema['x-default'] = 'now';
     }
     if (defaultValue === undefined) {
