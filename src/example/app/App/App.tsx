@@ -18,6 +18,7 @@ export function App () {
         <host url='http://localhost/api' />
         <contact email='d8@cantinc.com' name='Mike' />
         <ui html={uiPresets.swagger} />
+        <ui html={uiPresets.scalar} path='/scalar' />
         <preset>
           <header key='Cache-Control' value='no-cache, no-store, must-revalidate' />
         </preset>

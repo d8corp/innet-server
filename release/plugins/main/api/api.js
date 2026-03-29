@@ -43,6 +43,7 @@ const api = () => {
     useApi.apiContext.set(handler, context);
     useServerPlugin.useServerPlugin(async () => {
         var _a, _b, _c, _d, _e, _f;
+        const app = innet.useApp();
         const action = useAction.useAction();
         if (!condition(action))
             return;
@@ -168,11 +169,11 @@ const api = () => {
             }
         }
         for (const plugin of plugins) {
-            const result = await plugin();
-            if (result === undefined)
-                continue;
             const newHandler = Object.create(handler);
             useAction.actionContext.set(newHandler, action);
+            const result = await innet.net(plugin, app, newHandler);
+            if (result === undefined)
+                continue;
             innet.innet(result, newHandler);
             return null;
         }

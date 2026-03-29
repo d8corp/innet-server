@@ -66,8 +66,10 @@ const server = () => {
         useAction.actionContext.set(requestHandler, action);
         useRequestHandler.requestHandlerContext.set(requestHandler, requestHandler);
         async function server() {
+            const app = innet.useApp();
+            const handler = innet.useHandler();
             for (const plugin of plugins) {
-                const result = await plugin();
+                const result = await innet.net(plugin, app, handler);
                 if (result !== undefined) {
                     return result;
                 }

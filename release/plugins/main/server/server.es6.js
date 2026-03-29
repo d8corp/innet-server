@@ -1,4 +1,4 @@
-import { useNewHandler, innet } from 'innet';
+import { useNewHandler, useApp, useHandler, net, innet } from 'innet';
 import { useProps } from '@innet/jsx';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -56,8 +56,10 @@ const server = () => {
         actionContext.set(requestHandler, action);
         requestHandlerContext.set(requestHandler, requestHandler);
         async function server() {
+            const app = useApp();
+            const handler = useHandler();
             for (const plugin of plugins) {
-                const result = await plugin();
+                const result = await net(plugin, app, handler);
                 if (result !== undefined) {
                     return result;
                 }

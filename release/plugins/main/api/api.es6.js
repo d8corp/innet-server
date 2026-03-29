@@ -1,4 +1,4 @@
-import { useNewHandler, innet } from 'innet';
+import { useNewHandler, useApp, innet, net } from 'innet';
 import { useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
@@ -39,6 +39,7 @@ const api = () => {
     apiContext.set(handler, context);
     useServerPlugin(async () => {
         var _a, _b, _c, _d, _e, _f;
+        const app = useApp();
         const action = useAction();
         if (!condition(action))
             return;
@@ -164,11 +165,11 @@ const api = () => {
             }
         }
         for (const plugin of plugins) {
-            const result = await plugin();
-            if (result === undefined)
-                continue;
             const newHandler = Object.create(handler);
             actionContext.set(newHandler, action);
+            const result = await net(plugin, app, newHandler);
+            if (result === undefined)
+                continue;
             innet(result, newHandler);
             return null;
         }

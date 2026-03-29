@@ -1,4 +1,4 @@
-import { type HandlerPlugin, innet, useNewHandler } from 'innet'
+import { type HandlerPlugin, innet, net, useApp, useNewHandler } from 'innet'
 import { useProps } from '@innet/jsx'
 
 import {
@@ -89,6 +89,7 @@ export const api: HandlerPlugin = () => {
   apiContext.set(handler, context)
 
   useServerPlugin(async () => {
+    const app = useApp()
     const action = useAction()
 
     if (!condition(action as any)) return
@@ -231,12 +232,12 @@ export const api: HandlerPlugin = () => {
     }
 
     for (const plugin of plugins) {
-      const result = await plugin()
-
-      if (result === undefined) continue
-
       const newHandler = Object.create(handler)
       actionContext.set(newHandler, action)
+
+      const result = await net(plugin, app, newHandler)
+
+      if (result === undefined) continue
       innet(result, newHandler)
       return null
     }

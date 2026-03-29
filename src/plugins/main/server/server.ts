@@ -1,4 +1,4 @@
-import { type HandlerPlugin, innet, useNewHandler } from 'innet'
+import { type HandlerPlugin, innet, net, useApp, useHandler, useNewHandler } from 'innet'
 import { useProps } from '@innet/jsx'
 import fs from 'fs'
 import http, { type IncomingMessage, type ServerResponse } from 'http'
@@ -88,8 +88,11 @@ export const server: HandlerPlugin = () => {
     requestHandlerContext.set(requestHandler, requestHandler)
 
     async function server () {
+      const app = useApp()
+      const handler = useHandler()
+
       for (const plugin of plugins) {
-        const result = await plugin()
+        const result = await net(plugin, app, handler)
 
         if (result !== undefined) {
           return result
