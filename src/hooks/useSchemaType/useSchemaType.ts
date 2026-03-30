@@ -62,9 +62,7 @@ export function useSchemaType <T extends SchemaType> (
   const arrayValues = values ? Array.isArray(values) ? values : Object.keys(values) : values
   const enumDescription = values && !Array.isArray(values)
     ? {
-        'x-enum-descriptions': values,
-        'x-enumDescriptions': values,
-        'x-enumNames': values,
+        [process.env.INNET_API_ENUM_DESCRIPTION_KEY || 'x-enumNames']: values,
       }
     : {}
 

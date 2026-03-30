@@ -23,7 +23,7 @@ const api = () => {
         paths: {},
     };
     const plugins = new Set();
-    const context = { docs, endpoints, prefix, refRules: {} };
+    const context = { docs, endpoints, prefix, props, refRules: {} };
     const condition = (action) => {
         const path = action.parsedUrl.path;
         const url = path.endsWith('/') ? path.slice(0, -1) : path;

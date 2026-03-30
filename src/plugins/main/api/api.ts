@@ -68,7 +68,7 @@ export const api: HandlerPlugin = () => {
   }
   const plugins = new Set<ServerPlugin>()
 
-  const context: ApiContext = { docs, endpoints, prefix, refRules: {} }
+  const context: ApiContext = { docs, endpoints, prefix, props, refRules: {} }
 
   const condition: any = (action: Action) => {
     const path = action.parsedUrl.path
