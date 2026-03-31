@@ -1,5 +1,15 @@
 import { type Document, type InParam, type SchemaObject } from '../../types'
 
+function getElement (docs: Document, target?: object) {
+  if (!target) return target
+
+  if ('$ref' in target) {
+    return docs.components?.schemas?.[String(target.$ref).replace('#/components/schemas/', '')] ?? target
+  }
+
+  return target
+}
+
 function hasDefault (target?: object): boolean {
   return Boolean(target && ('default' in target || 'x-default' in target))
 }
@@ -145,7 +155,7 @@ export function generateTypes (docs: Document, namespace = 'Api'): string {
         }
 
         for (const param of parameters) {
-          const splitter = param.in === 'path' || hasDefault(param.schema) || param.required ? ':' : '?:'
+          const splitter = param.in === 'path' || hasDefault(getElement(docs, param.schema)) || param.required ? ':' : '?:'
           params[param.in as InParam] += `        ${param.name as string}${splitter} ${generateSchemaTypes(param.schema)}`
         }
 

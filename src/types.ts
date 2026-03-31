@@ -91,6 +91,7 @@ export interface BaseSchemaProps<T> {
   description?: string
   example?: T
   examples?: T[]
+  nullable?: boolean
   readOnly?: boolean
   ref?: string
   title?: string
@@ -100,6 +101,6 @@ export interface BaseSchemaProps<T> {
 export type SchemaValues<T> = (T extends (number | string) ? Record<T, string> : never) | T[]
 
 export interface ValuesSchemaProps<T> extends BaseSchemaProps<T> {
-  const?: T
+  value?: T
   values?: SchemaValues<T>
 }

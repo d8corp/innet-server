@@ -11,6 +11,7 @@
 - **Integer Schema**: Enhanced with `exclusiveMaximum`, `exclusiveMinimum`, `multipleOf`, and `format` properties with proper OpenAPI specification compliance
 - **Number Schema**: Enhanced with `exclusiveMaximum`, `exclusiveMinimum`, `multipleOf`, and `format` properties with proper OpenAPI specification compliance
 - **String Schema**: Added `format` property with support for various formats (email, date-time, uri, etc.)
+- **Nullable Schema**: Added `nullable` property to support nullable types in OpenAPI schema, generating union types like `[type, 'null']` when enabled
 
 ### Fixes
 

@@ -1,7 +1,7 @@
 import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
-import { useResponse } from '../../../hooks'
+import { useResponse, useServer } from '../../../hooks'
 import { JSONString } from '../../../utils'
 
 export const errorStatuses = {
@@ -67,15 +67,17 @@ export interface ErrorProps {
 }
 
 export const error: HandlerPlugin = () => {
+  const server = useServer()
+  const res = useResponse()
+
+  if (!res) {
+    throw Error('<error> MUST be in <return>')
+  }
+
   const {
     children,
     ...props
   } = useProps<ErrorProps>()
-  const res = useResponse()
-
-  if (!res) {
-    throw Error('<error> MUST be in <request>')
-  }
 
   const {
     code = 'undefined',
@@ -83,7 +85,8 @@ export const error: HandlerPlugin = () => {
   } = props
   res.statusCode = typeof status === 'string' ? errorStatuses[status] : status
 
-  const content = JSONString({ data: children, error: code })
+  const format = server.props.formatError ?? JSONString
+  const content = format({ data: children, error: code })
 
   res.setHeader('Content-Type', 'application/json')
   res.setHeader('Content-Length', content.length)

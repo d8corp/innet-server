@@ -17,7 +17,7 @@ import {
 } from '../../../utils'
 import { dateFormat } from '../../../utils/dateFormat'
 
-export interface DateProps extends Omit<ValuesSchemaProps<DateFormat>, 'const'> {
+export interface DateProps extends Omit<ValuesSchemaProps<DateFormat>, 'value'> {
   const?: string
   max?: DateFormat
   min?: DateFormat

@@ -1,103 +1,502 @@
+<br>
+<p align="center">
+  <a href="https://github.com/d8corp/innet">
+    <img width="200" height="200" src="https://raw.githubusercontent.com/d8corp/innet/main/logo.svg" alt="Innet logo by Mikhail Lysikov">
+  </a>
+</p>
 
-<a href="https://www.npmjs.com/package/innet">
-  <img src="https://raw.githubusercontent.com/d8corp/innet/main/logo.svg" align="left" width="90" height="90" alt="InnetJs logo by Mikhail Lysikov">
-</a>
+<h1 align="center">@innet/server</h1>
 
-# &nbsp; @innet/server
+<p align="center">Backend Server Framework</p>
 
-&nbsp;
+<br>
 
-[![NPM](https://img.shields.io/npm/v/@innet/server.svg)](https://www.npmjs.com/package/@innet/server)
-[![downloads](https://img.shields.io/npm/dm/@innet/server.svg)](https://www.npmtrends.com/@innet/server)
-[![changelog](https://img.shields.io/badge/Changelog-⋮-brightgreen)](https://changelogs.xyz/@innet/server)
-[![license](https://img.shields.io/npm/l/@innet/server)](https://github.com/d8corp/innet-server/blob/main/LICENSE)
+<div align="center">
+  <a href="https://www.npmjs.com/package/@innet/server" target="_blank">
+    <img src="https://img.shields.io/npm/v/@innet/server.svg" alt="@innet/server npm">
+  </a>
+  <a href="https://www.npmtrends.com/@innet/server" target="_blank">
+    <img src="https://img.shields.io/npm/dm/@innet/server.svg" alt="@innet/server downloads">
+  </a>
+  <a href="https://github.com/d8corp/innet-server/tree/main/release" target="_blank">
+    <img src="https://packagephobia.com/badge?p=@innet/server" alt="@innet/server install size">
+  </a>
+  <a href="https://www.typescriptlang.org" target="_blank">
+    <img src="https://img.shields.io/npm/types/@innet/server" alt="TypeScript">
+  </a>
+  <a href="https://github.com/d8corp/innet-server/blob/main/LICENSE" target="_blank">
+    <img src="https://img.shields.io/npm/l/@innet/server" alt="@innet/server license">
+  </a>
+  <a href="https://github.com/d8corp/innet-server/blob/main/CHANGELOG.md" target="_blank">
+    <img src="https://img.shields.io/badge/Changelog-⋮-brightgreen" alt="@innet/server changelog">
+  </a>
+  <a href="https://github.com/d8corp/innet-server/issues" target="_blank">
+    <img src="https://img.shields.io/github/issues-raw/d8corp/innet-server" alt="@innet/server issues">
+  </a>
+</div>
 
-## Abstract
-This package helps to create server-side application based on [innet](https://www.npmjs.com/package/innet).
+<br>
 
-Here you find **JSX components on back-end side** 🎉, Open API generation, Swagger UI in the box, validation, formatting, cms, proxy and more.
+`@innet/server` is an **isomorphic backend framework** built with **JSX components**. Create REST APIs with **OpenAPI documentation** automatically generated, **real-time validation**, and **type-safe contracts** — all in a declarative, component-based syntax.
 
-You can create Open API documentation without implementation.
-It helps to define API contracts before start implementing on backend and frontend sides.
+- **JSX Backend** — Write backend with React-like component syntax
+- **OpenAPI First** — Generate OpenAPI 3.1.0 documentation automatically
+- **Type-Safe** — Full TypeScript support with automatic type inference
+- **Real-Time Validation** — Validate request/response data automatically
+- **UI** — Built-in interactive API documentation with `Swagger`, `Scalar`, `RapiDoc`, `ReDoc` or your own viewer
+- **Component-Driven** — Reusable, composable business logic
+- **Contract-First** — Define API contracts before implementation
+- **Framework Agnostic** — Works with any runtime (Node.js, Deno, Bun)
+- **Zero Configuration** — Works out of the box with sensible defaults
+- **Decorator-Free** — No decorators or annotations needed
+
+Built on top of [innet](https://www.npmjs.com/package/innet).
 
 [![stars](https://img.shields.io/github/stars/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/stargazers)
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
 
 ## Index
 
-[Install](#install)  
-[Handler](#handler)  
-[Usage](#usage)
-
-JSX Elements  
-[Main](#main)  
-[Utils](#utils)  
-[API Info](#api-info)  
-[Endpoints](#endpoints)  
-[Primitive Data](#primitive-data)  
-[List of Data](#list-of-data)  
-[Run-Time](#run-time)
-
-Customize  
-[Components](#components)  
-[Hooks](#hooks)
+<blockquote>
+  ┌ 📦 <a href="#install">Install</a><br>
+  <details>
+    <summary>&nbsp;🚀 <a href="#quick-start">Quick Start</a></summary>
+    <blockquote>
+      ├ 📁 <a href="#hello-world">Hello World</a><br>
+      ├ 📁 <a href="#api-example">API Example</a><br>
+      ├ 📁 <a href="#endpoint-example">Endpoint Example</a><br>
+      └ 📁 <a href="#component-example">Component Example</a>
+    </blockquote>
+  </details>
+  <details>
+    <summary>&nbsp;⚙️ <a href="#configuration">Configuration</a></summary>
+    <blockquote>
+      ├ 🏷️ <a href="#innet_port">INNET_PORT</a><br>
+      ├ 🏷️ <a href="#innet_ssl_crt">INNET_SSL_CRT</a><br>
+      ├ 🏷️ <a href="#innet_ssl_key">INNET_SSL_KEY</a><br>
+      ├ 🏷️ <a href="#innet_api_prefix">INNET_API_PREFIX</a><br>
+      ├ 🏷️ <a href="#innet_api_version">INNET_API_VERSION</a><br>
+      ├ 🏷️ <a href="#innet_api_enum_description_key">INNET_API_ENUM_DESCRIPTION_KEY</a><br>
+      ├ 🏷️ <a href="#innet_cms_dir">INNET_CMS_DIR</a><br>
+      ├ 🏷️ <a href="#innet_cms_prefix">INNET_CMS_PREFIX</a><br>
+      ├ 🏷️ <a href="#innet_blacklist_ip">INNET_BLACKLIST_IP</a><br>
+      ├ 🏷️ <a href="#innet_whitelist_ip">INNET_WHITELIST_IP</a><br>
+      ├ 🏷️ <a href="#innet_protection">INNET_PROTECTION</a><br>
+      ├ 🏷️ <a href="#innet_protection_max_age">INNET_PROTECTION_MAX_AGE</a><br>
+      ├ 🏷️ <a href="#innet_protection_cookie_key">INNET_PROTECTION_COOKIE_KEY</a><br>
+      ├ 🏷️ <a href="#innet_protection_search_key">INNET_PROTECTION_SEARCH_KEY</a><br>
+      ├ 🏷️ <a href="#innet_protected_ip">INNET_PROTECTED_IP</a><br>
+      ├ 🏷️ <a href="#innet_dts_path">INNET_DTS_PATH</a><br>
+      ├ 🏷️ <a href="#innet_dts_namespace">INNET_DTS_NAMESPACE</a><br>
+      ├ 🏷️ <a href="#innet_ui_path">INNET_UI_PATH</a><br>
+      └ 🏷️ <a href="#innet_swagger_path">INNET_SWAGGER_PATH</a><br>
+    </blockquote>
+  </details>
+  ├ 🛠️ <a href="#components">Components</a><br>
+  <details>
+    <summary>&nbsp;🗂 <a href="#elements">Elements</a></summary>
+    <blockquote>
+      <details>
+        <summary>&nbsp;🧩 <a href="#env">&lt;env&gt;</a></summary>
+        <blockquote>
+          ├ 🏷️ <a href="#env-is">is</a><br>
+          └ 🏷️ <a href="#env-of">of</a>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#server">&lt;server&gt;</a></summary>
+        <blockquote>
+          ├ 🏷️ <a href="#server-port">port</a><br>
+          ├ 🏷️ <a href="#server-ssl">ssl</a><br>
+          ├ 🏷️ <a href="#server-format-error">formatError</a><br>
+          ├ 🏷️ <a href="#server-onstart">onStart</a><br>
+          ├ 🏷️ <a href="#server-onrequest">onRequest</a><br>
+          ├ 🏷️ <a href="#server-onerror">onError</a><br>
+          ├ 🏷️ <a href="#server-onclose">onClose</a><br>
+          <details>
+            <summary>&nbsp;🧩 <a href="#blacklist">&lt;blacklist&gt;</a></summary>
+            <blockquote>
+              └ 🏷️ <a href="#blacklist-ip">ip</a>
+            </blockquote>
+          </details>
+          <details>
+            <summary>&nbsp;🧩 <a href="#whitelist">&lt;whitelist&gt;</a></summary>
+            <blockquote>
+              └ 🏷️ <a href="#whitelist-ip">ip</a>
+            </blockquote>
+          </details>
+          <details>
+            <summary>&nbsp;🧩 <a href="#protection">&lt;protection&gt;</a></summary>
+            <blockquote>
+              ├ 🏷️ <a href="#protection-value">value</a><br>
+              ├ 🏷️ <a href="#protection-maxage">maxAge</a><br>
+              ├ 🏷️ <a href="#protection-excludeip">excludeIp</a><br>
+              ├ 🏷️ <a href="#protection-cookiekey">cookieKey</a><br>
+              └ 🏷️ <a href="#protection-searchkey">searchKey</a>
+            </blockquote>
+          </details>
+          <details>
+            <summary>&nbsp;🧩 <a href="#preset">&lt;preset&gt;</a></summary>
+            <blockquote>
+              <details>
+                <summary>&nbsp;🧩 <a href="#header">&lt;header&gt;</a></summary>
+                <blockquote>
+                  ├ 🏷️ <a href="#header-key">key</a><br>
+                  └ 🏷️ <a href="#header-value">value</a>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="#cookie">&lt;cookie&gt;</a></summary>
+                <blockquote>
+                  ├ 🏷️ <a href="#cookie-key">key</a><br>
+                  ├ 🏷️ <a href="#cookie-value">value</a><br>
+                  ├ 🏷️ <a href="#cookie-domain">domain</a><br>
+                  ├ 🏷️ <a href="#cookie-encode">encode</a><br>
+                  ├ 🏷️ <a href="#cookie-expires">expires</a><br>
+                  ├ 🏷️ <a href="#cookie-httponly">httpOnly</a><br>
+                  ├ 🏷️ <a href="#cookie-maxage">maxAge</a><br>
+                  ├ 🏷️ <a href="#cookie-path">path</a><br>
+                  ├ 🏷️ <a href="#cookie-priority">priority</a><br>
+                  ├ 🏷️ <a href="#cookie-samesite">sameSite</a><br>
+                  └ 🏷️ <a href="#cookie-secure">secure</a>
+                </blockquote>
+              </details>
+            </blockquote>
+          </details>
+          <details>
+            <summary>&nbsp;🧩 <a href="#return">&lt;return&gt;</a></summary>
+            <blockquote>
+              <details>
+                <summary>&nbsp;🧩 <a href="#success">&lt;success&gt;</a></summary>
+                <blockquote>
+                  ├ 🏷️ <a href="#success-status">status</a><br>
+                  └ 🏷️ <a href="#success-contenttype">contentType</a>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="#error">&lt;error&gt;</a></summary>
+                <blockquote>
+                  ├ 🏷️ <a href="#error-status">status</a><br>
+                  └ 🏷️ <a href="#error-code">code</a>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="#proxy">&lt;proxy&gt;</a></summary>
+                <blockquote>
+                  └ 🏷️ <a href="#proxy-to">to</a>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="#redirect">&lt;redirect&gt;</a></summary>
+                <blockquote>
+                  ├ 🏷️ <a href="#redirect-to">to</a><br>
+                  └ 🏷️ <a href="#redirect-status">status</a>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="#cms">&lt;cms&gt;</a></summary>
+                <blockquote>
+                  ├ 🏷️ <a href="#cms-dir">dir</a><br>
+                  └ 🏷️ <a href="#cms-prefix">prefix</a>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="#file">&lt;file&gt;</a></summary>
+                <blockquote>
+                  └ 🏷️ <a href="#file-path">path</a>
+                </blockquote>
+              </details>
+            </blockquote>
+          </details>
+          <details>
+            <summary>&nbsp;🧩 <a href="#api">&lt;api&gt;</a></summary>
+            <blockquote>
+              ├ 🏷️ <a href="#api-title">title</a><br>
+              ├ 🏷️ <a href="#api-description">description</a><br>
+              ├ 🏷️ <a href="#api-version">version</a><br>
+              ├ 🏷️ <a href="#api-prefix">prefix</a><br>
+              ├ 🏷️ <a href="#api-include">include</a><br>
+              ├ 🏷️ <a href="#api-exclude">exclude</a><br>
+              <details>
+                <summary>&nbsp;🧩 <a href="#host">&lt;host&gt;</a></summary>
+                <blockquote>
+                  ├ 🏷️ <a href="#host-url">url</a><br>
+                  ├ 🏷️ <a href="#host-description">description</a><br>
+                  <details>
+                    <summary>&nbsp;🧩 <a href="#variable">&lt;variable&gt;</a></summary>
+                    <blockquote>
+                      ├ 🏷️ <a href="#variable-key">key</a><br>
+                      ├ 🏷️ <a href="#variable-value">value</a><br>
+                      ├ 🏷️ <a href="#variable-values">values</a><br>
+                      └ 🏷️ <a href="#variable-description">description</a>
+                    </blockquote>
+                  </details>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="#license">&lt;license&gt;</a></summary>
+                <blockquote>
+                  ├ 🏷️ <a href="#license-name">name</a><br>
+                  ├ 🏷️ <a href="#license-identifier">identifier</a><br>
+                  └ 🏷️ <a href="#license-url">url</a>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="#contact">&lt;contact&gt;</a></summary>
+                <blockquote>
+                  ├ 🏷️ <a href="#contact-name">name</a><br>
+                  ├ 🏷️ <a href="#contact-email">email</a><br>
+                  └ 🏷️ <a href="#contact-url">url</a>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="#ui">&lt;ui&gt;</a></summary>
+                <blockquote>
+                  ├ 🏷️ <a href="#ui-html">html</a><br>
+                  ├ 🏷️ <a href="#ui-params">params</a><br>
+                  └ 🏷️ <a href="#ui-path">path</a>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="#dts">&lt;dts&gt;</a></summary>
+                <blockquote>
+                  ├ 🏷️ <a href="#dts-path">path</a><br>
+                  └ 🏷️ <a href="#dts-namespace">namespace</a>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="#tag">&lt;tag&gt;</a></summary>
+                <blockquote>
+                  ├ 🏷️ <a href="#tag-name">name</a><br>
+                  └ 🏷️ <a href="#tag-group">group</a>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="#endpoint">&lt;endpoint&gt;</a></summary>
+                <blockquote>
+                  ├ 🏷️ <a href="#endpoint-method">method</a><br>
+                  ├ 🏷️ <a href="#endpoint-path">path</a><br>
+                  ├ 🏷️ <a href="#endpoint-summary">summary</a><br>
+                  ├ 🏷️ <a href="#endpoint-description">description</a><br>
+                  ├ 🏷️ <a href="#endpoint-deprecated">deprecated</a><br>
+                  ├ 🏷️ <a href="#endpoint-private">private</a><br>
+                  ├ 🏷️ <a href="#endpoint-operationid">operationId</a><br>
+                  ├ 🧩 <a href="#body">&lt;body&gt;</a>
+                  <details>
+                    <summary>&nbsp;🧩 <a href="#param">&lt;param&gt;</a></summary>
+                    <blockquote>
+                      ├ 🏷️ <a href="#param-in">in</a><br>
+                      ├ 🏷️ <a href="#param-name">name</a><br>
+                      ├ 🏷️ <a href="#param-description">description</a><br>
+                      ├ 🏷️ <a href="#param-required">required</a><br>
+                      └ 🏷️ <a href="#param-deprecated">deprecated</a>
+                    </blockquote>
+                  </details>
+                  <details>
+                    <summary>&nbsp;🧩 <a href="#response">&lt;response&gt;</a></summary>
+                    <blockquote>
+                      ├ 🏷️ <a href="#response-status">status</a><br>
+                      └ 🏷️ <a href="#response-type">type</a>
+                    </blockquote>
+                  </details>
+                </blockquote>
+              </details>
+            </blockquote>
+          </details>
+        </blockquote>
+      </details>
+    </blockquote>
+  </details>
+  <details>
+    <summary>&nbsp;🗂️ <a href="#schemas">Schemas</a></summary>
+    <blockquote>
+      <details>
+        <summary>&nbsp;📁 <a href="#schemas-props">Props</a></summary>
+        <blockquote>
+          ├ 🏷️ <a href="#schema-title">title</a><br>
+          ├ 🏷️ <a href="#schema-description">description</a><br>
+          ├ 🏷️ <a href="#schema-examples">examples</a><br>
+          ├ 🏷️ <a href="#schema-example">example</a><br>
+          ├ 🏷️ <a href="#schema-default">default</a><br>
+          ├ 🏷️ <a href="#schema-nullable">nullable</a><br>
+          ├ 🏷️ <a href="#schema-ref">ref</a><br>
+          ├ 🏷️ <a href="#schema-const">const</a><br>
+          ├ 🏷️ <a href="#schema-values">values</a><br>
+          ├ 🏷️ <a href="#schema-readonly">readOnly</a><br>
+          ├ 🏷️ <a href="#schema-writeonly">writeOnly</a><br>
+          └ 🏷️ <a href="#schema-deprecated">deprecated</a><br>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;📁 <a href="#collections">Collections</a></summary>
+        <blockquote>
+          <details>
+            <summary>&nbsp;🧩 <a href="#object">&lt;object&gt;</a></summary>
+            <blockquote>
+              <details>
+                <summary>&nbsp;🧩 <a href="#field">&lt;field&gt;</a></summary>
+                <blockquote>
+                  ├ 🏷️ <a href="#field-key">key</a><br>
+                  ├ 🏷️ <a href="#field-optional">optional</a><br>
+                  ├ 🏷️ <a href="#field-deprecated">deprecated</a><br>
+                  ├ 🏷️ <a href="#field-readonly">readOnly</a><br>
+                  └ 🏷️ <a href="#field-writeonly">writeOnly</a>
+                </blockquote>
+              </details>
+            </blockquote>
+          </details>
+          <details>
+            <summary>&nbsp;🧩 <a href="#array">&lt;array&gt;</a></summary>
+            <blockquote>
+              ├ 🏷️ <a href="#array-minitems">minItems</a><br>
+              ├ 🏷️ <a href="#array-maxitems">maxItems</a><br>
+              └ 🏷️ <a href="#array-uniqueitems">uniqueItems</a>
+            </blockquote>
+          </details>
+          └ 🧩 <a href="#tuple">&lt;tuple&gt;</a><br>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;📁 <a href="#primitive-data">Primitives</a></summary>
+        <blockquote>
+          <details>
+            <summary>&nbsp;🧩 <a href="#string">&lt;string&gt;</a></summary>
+            <blockquote>
+              ├ 🏷️ <a href="#string-min">min</a><br>
+              ├ 🏷️ <a href="#string-max">max</a><br>
+              ├ 🏷️ <a href="#string-pattern">pattern</a><br>
+              └ 🏷️ <a href="#string-patternid">patternId</a>
+            </blockquote>
+          </details>
+          <details>
+            <summary>&nbsp;🧩 <a href="#number">&lt;number&gt;</a></summary>
+            <blockquote>
+              ├ 🏷️ <a href="#num-min">min</a><br>
+              ├ 🏷️ <a href="#num-max">max</a><br>
+              ├ 🏷️ <a href="#num-exclusivemin">exclusiveMin</a><br>
+              ├ 🏷️ <a href="#num-exclusivemax">exclusiveMax</a><br>
+              └ 🏷️ <a href="#num-multipleof">multipleOf</a>
+            </blockquote>
+          </details>
+          <details>
+            <summary>&nbsp;🧩 <a href="#integer">&lt;integer&gt;</a></summary>
+            <blockquote>
+              ├ 🏷️ <a href="#int-format">format</a><br>
+              ├ 🏷️ <a href="#int-min">min</a><br>
+              ├ 🏷️ <a href="#int-max">max</a><br>
+              ├ 🏷️ <a href="#int-exclusivemin">exclusiveMin</a><br>
+              ├ 🏷️ <a href="#int-exclusivemax">exclusiveMax</a><br>
+              └ 🏷️ <a href="#int-multipleof">multipleOf</a>
+            </blockquote>
+          </details>
+          <details>
+            <summary>&nbsp;🧩 <a href="#date">&lt;date&gt;</a></summary>
+            <blockquote>
+              ├ 🏷️ <a href="#date-min">min</a><br>
+              └ 🏷️ <a href="#date-max">max</a>
+            </blockquote>
+          </details>
+          <details>
+            <summary>&nbsp;🧩 <a href="#binary">&lt;binary&gt;</a></summary>
+            <blockquote>
+              ├ 🏷️ <a href="#binary-accept">accept</a><br>
+              ├ 🏷️ <a href="#binary-min">min</a><br>
+              └ 🏷️ <a href="#binary-max">max</a>
+            </blockquote>
+          </details>
+          ├ 🧩 <a href="#uuid">&lt;uuid&gt;</a><br>
+          ├ 🧩 <a href="#boolean">&lt;boolean&gt;</a><br>
+          ├ 🧩 <a href="#null">&lt;null&gt;</a><br>
+          └ 🧩 <a href="#any">&lt;any&gt;</a><br>
+        </blockquote>
+      </details>
+    </blockquote>
+  </details>
+  <details>
+    <summary>&nbsp;🪝 <a href="#hooks">Hooks</a></summary>
+    <blockquote>
+      <details>
+        <summary>&nbsp;📁 <a href="#runtime-hooks">Runtime</a></summary>
+        <blockquote>
+          ├ 🪝 <a href="#userequest">useRequest</a><br>
+          ├ 🪝 <a href="#useresponse">useResponse</a><br>
+          ├ 🪝 <a href="#usepath">usePath</a><br>
+          ├ 🪝 <a href="#useheaders">useHeaders</a><br>
+          ├ 🪝 <a href="#usecookies">useCookies</a><br>
+          ├ 🪝 <a href="#useparams">useParams</a><br>
+          ├ 🪝 <a href="#usesearch">useSearch</a><br>
+          ├ 🪝 <a href="#usebody">useBody</a><br>
+          └ 🪝 <a href="#useclientip">useClientIp</a>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;📁 <a href="#shared-hooks">Shared</a></summary>
+        <blockquote>
+          ├ 🪝 <a href="#useserver">useServer</a><br>
+          ├ 🪝 <a href="#useserverport">useServerPort</a><br>
+          ├ 🪝 <a href="#useisserverhttps">useIsServerHttps</a><br>
+          ├ 🪝 <a href="#usecomponentname">useComponentName</a><br>
+          └ 🪝 <a href="#useserverplugin">useServerPlugin</a>
+        </blockquote>
+      </details>
+    </blockquote>
+  </details>
+  └ 🔗 <a href="#links">Links</a>
+</blockquote>
 
 ## Install
+###### [🏠︎](#index) / Install [↓](#quick-start)
 
-[← back](#index)
-
-The simplest way to start working with `@innet/server`, it is [innetjs](https://www.npmjs.com/package/innetjs) usage.
+The easiest way to get started is with the [innetjs](https://www.npmjs.com/package/innetjs) CLI:
 
 ```shell
 npx innetjs init my-app -t api
 ```
-*change my-app to work folder name*
 
-Go into `my-app` and check `README.md`
+Or install manually:
 
-## Handler
+```shell
+npm install @innet/server innet
+```
 
-[← back](#index)
+## Quick Start
+###### [🏠︎](#index) / Quick Start [↑](#install) [↓](#configuration)
 
-Use `server` handler to start an application.
+Before you begin, make sure you have Node.js (v18 or later) installed. You'll also need a basic understanding of TypeScript and JSX.
+
+### Hello World
+###### [🏠︎](#index) / [Quick Start](#quick-start) / Hello World [↓](#api-example)
+
+Start your first `@innet/server` application. This minimal example shows how to create a server that responds to any request with a simple text message. Perfect for verifying your setup works correctly.
 
 *src/index.ts*
 ```typescript
-import innet from 'innet'
-import server from '@innet/server'
-
+import { innet } from 'innet'
+import { handler } from '@innet/server'
 import app from './app'
 
-innet(app, server)
+innet(app, handler)
 ```
-
-## Usage
-
-[← back](#index)
-
-Here is a **Hello World** example:
 
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
     <return>
-      <success>
-        Hello World!
-      </success>
+      <success>Hello World!</success>
     </return>
   </server>
 )
 ```
 
-*Use `npm start` to run this server.*
+Start with `npm start`, then open http://localhost — you'll see `Hello World!` displayed.
 
-Open http://localhost
-You will see the `Hello Word!` string.
+### API Example
+###### [🏠︎](#index) / [Quick Start](#quick-start) / API Example [↑](#hello-world) [↓](#endpoint-example)
 
----
-
-Here is the simplest [api](#api) example:
+Generate OpenAPI documentation without writing any endpoints.
+This shows the automatic OpenAPI 3.1.0 structure that `@innet/server` creates.
+Useful for understanding the API documentation format and testing the Swagger UI [<ui>](#ui) setup.
 
 *src/app.tsx*
 ```typescript jsx
@@ -108,405 +507,66 @@ export default (
 )
 ```
 
-*Use `npm start` to run this server.*
+Open http://localhost — you'll see OpenAPI 3.1.0 JSON structure with API metadata.
 
-Open http://localhost
-You will see a base Open API JSON structure.
+### Endpoint Example
+###### [🏠︎](#index) / [Quick Start](#quick-start) / Endpoint Example [↑](#api-example) [↓](#component-example)
 
-```json
-{
-  "openapi": "3.1.0",
-  "info": {
-    "title": "",
-    "version": "0.0.0"
-  },
-  "paths": {}
-}
-```
-
-## Main
-
-[← back](#index)
-
-[\<server>](#server)   
-[\<api>](#api)  
-[\<return>](#return)  
-[\<preset>](#preset)
-
----
-
-### \<server>
-
-[← back](#main)
-
-`<server>` element helps to start http(s) server.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server />
-)
-```
-
-#### port
-
-Use `port` property to set up the server port:
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server port={3000} />
-)
-```
-
-- By default, it uses port `80` for `http` and port `443` for `https`.
-- You can use `INNET_PORT` environment variable to set it up on CI level.
-- [innetjs](https://www.npmjs.com/package/innetjs) allows you to use `INNET_PORT` in `.env` file of local environment.
-
-#### ssl
-
-To start `https` server, use `ssl` property:
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server
-    ssl={{
-      cert: 'url_to_file.crt',
-      key: 'url_to_file.key',
-    }}
-  />
-)
-```
-
-- You can use `INNET_SSL_KEY` and `INNET_SSL_CRT` environment variables to set it up on CI level.
-- [innetjs](https://www.npmjs.com/package/innetjs) allows you to use `INNET_SSL_KEY` and `INNET_SSL_CRT` in `.env` file.
-- You can add `localhost.key` and `localhost.crt` files in your project folder.
-
-#### onStart
-
-Use `onStart` prop to handle server start event.
-You can put `httpOnStart` to the prop.
-This will log URL into console after start the server.
-The URL opens the server app.
-
-*src/app.tsx*
-```typescript jsx
-import { httpOnStart } from '@innet/server'
-
-export default (
-  <server
-    onStart={httpOnStart}
-  />
-)
-```
-
-#### onRequest
-
-Use `onRequest` to handle any request of the server.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server
-    onRequest={(req, res) => console.log({
-      req,
-      res,
-    })}
-  />
-)
-```
-
-#### onError
-
-Use `onError` to handle any request error on the server.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server
-    onError={error => console.error(error)}
-  />
-)
-```
-
-#### onClose
-
-Use `onClose` to handle server close action.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server
-    onClose={() => console.log('Close')}
-  />
-)
-```
-
-### \<api>
-
-[← back](#main)
-
-This element defines a REST API on the server.
-This element MUST be placed in [\<server>](#server) element.
-
-#### title
-
-This is a title of the API.
-Open API specifies the parameter is REQUIRED.
-But it's NOT REQUIRED in `<api>` element, it equals [empty string](#usage) by default.
+Build an API endpoint with automatic OpenAPI documentation.
+This example demonstrates how to define an endpoint with HTTP method, path, and response handler.
 
 *src/app.tsx*
 ```typescript jsx
 export default (
   <server>
-    <api
-      title='@innet/server API'
-    />
-  </server>
-)
-```
-
-#### description
-
-You can add a `description` of the API.
-[CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api
-      description='**MARKDOWN** is available'
-    />
-  </server>
-)
-```
-
-[innetjs](https://www.npmjs.com/package/innetjs) can help to use a separate file of description:
-
-*src/app.tsx*
-```typescript jsx
-import desc from './desc.md'
-
-export default (
-  <server>
-    <api description={desc} />
-  </server>
-)
-```
-
-#### summary
-
-Add a short summary of the API.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api
-      summary='Hello World!'
-    />
-  </server>
-)
-```
-
-#### version
-
-The version of the OpenAPI document (which is distinct from the
-[OpenAPI Specification version](https://swagger.io/specification/#oas-version)
-or the API implementation version).
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api
-      title='@innet/server API'
-      version='1.0.1'
-    />
-  </server>
-)
-```
-
-*default: `INNET_API_VERSION` || `'0.0.0'`*
-
-#### prefix
-
-URL path prefix scopes the API.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api
-      prefix='/api'
-    />
-  </server>
-)
-```
-*default: `INNET_API_PREFIX` || `''`*
-
-#### include
-
-A regular expression scopes the API.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api
-      include={/^\/(api|openapi)/}
-    />
-  </server>
-)
-```
-
-#### exclude
-
-A regular expression does not scope the API.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api prefix='/api' />
-    <api prefix='/openapi' />
-    <api exclude={/^\/(api|openapi)/} />
-  </server>
-)
-```
-
-### \<return>
-
-[← back](#main)
-
-This element MUST be placed in [\<server>](#server) element.
-It defines a run-time call handler for parent element.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <return>
-      <error status={404} />
-    </return>
-  </server>
-)
-```
-*Any request returns 404*
-
-The code runs from top to bottom and from left to right.
-You cannot use two [\<return>](#return) elements one by one,
-the same as you cannot use two `return` one by one for a JS `function`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <return>
-      <error status={404} />
-    </return>
-    <return>
-      <success />
-    </return>
-  </server>
-)
-```
-
-like
-
-```javascript
-function server () {
-  return 'error'
-  return 'success'
-}
-```
-
-*The second [\<return>](#return) will newer run.*
-
-You can use [\<return>](#return) in some elements like you use `return` in `if` or `while`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <env is='dev'>
-      <return>
-        <error status={404} />
-      </return>
-    </env>
-    <return>
-      <success />
-    </return>
-  </server>
-)
-```
-
-like
-
-```javascript
-function server () {
-  if (process.env.NODE_ENV === 'dev') {
-    return 'error'
-  }
-
-  return 'success'
-}
-```
-
-Place [\<return>](#return) in [\<api>](#api) to handle any unknown request in the [\<api>](#api).
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <return>
-        <error status={404} />
-      </return>
-    </api>
-  </server>
-)
-```
-
-Place [\<return>](#return) in [\<endpoint>](#endpoint) to handle the [\<endpoint>](#endpoint) request.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/my-endpoint'>
+    <api title='My API' version='1.0.0'>
+      <endpoint
+        method='get'
+        path='/hello'
+        summary='Greet the user'>
         <return>
           <success>
-            My Endpoint
+            {{ message: 'Hello!' }}
           </success>
         </return>
       </endpoint>
     </api>
-    <return>
-      <success>
-        Any other request
-      </success>
-    </return>
   </server>
 )
 ```
 
-You can place a component inside [\<return>](#return).
-The component will run when the request will be triggered.
+Test the endpoint: `curl http://localhost/hello` — returns `{"message":"Hello!"}`
+
+### Component Example
+###### [🏠︎](#index) / [Quick Start](#quick-start) / Component Example [↑](#endpoint-example)
+
+Create reusable components for your business logic.
+This example shows how to extract endpoint logic into a separate component.
 
 *src/app.tsx*
 ```typescript jsx
-import { GetPartners } from './GetPartners'
+import { useSearch } from '@innet/server'
+
+function Hello () {
+  const search = useSearch<any>()
+  const name: string = search?.name ?? 'World'
+
+  return (
+    <success>
+      {{ message: `Hello ${name}!` }}
+    </success>
+  )
+}
 
 export default (
   <server>
-    <api>
-      <endpoint method='get' path='/partners'>
+    <api title='My API' version='1.0.0'>
+      <endpoint
+        method='get'
+        path='/hello'
+        summary='Greet the user'>
         <return>
-          <GetPartners />
+          <Hello />
         </return>
       </endpoint>
     </api>
@@ -514,4222 +574,2026 @@ export default (
 )
 ```
 
-*src/GetPartners.tsx*
+Test the endpoint: `curl http://localhost/hello?name=John` — returns `{"message":"Hello John!"}`
+
+## Configuration
+###### [🏠︎](#index) / Configuration [↑](#quick-start) [↓](#components)
+
+Configure the server and API behavior using environment variables.
+
+### Server Settings
+###### [🏠︎](#index) / [Configuration](#configuration) / Server Settings [↓](#components)
+
+#### INNET_PORT
+###### [🏠︎](#index) / [Configuration](#configuration) / [Server Settings](#server-settings) [↓](#innet_ssl_crt)
+Server port number.
+
+- **Default:** `80` (HTTP) or `443` (HTTPS)
+- **Used by:** `<server port={3000}>`
+
+```shell
+INNET_PORT=3000
+```
+
+#### INNET_SSL_CRT
+Path to SSL certificate file.
+
+- **Default:** `localhost.crt`
+- **Used by:** `<server ssl>`
+
+```shell
+INNET_SSL_CRT=./certs/server.crt
+```
+
+#### <a id="innet_ssl_key">INNET_SSL_KEY</a>
+Path to SSL private key file.
+
+- **Default:** `localhost.key`
+- **Used by:** `<server ssl>`
+
+```shell
+INNET_SSL_KEY=./certs/server.key
+```
+
+### API Settings
+
+#### <a id="innet_api_prefix">INNET_API_PREFIX</a>
+URL prefix for all API endpoints.
+
+- **Default:** `''` (empty string)
+- **Used by:** `<api prefix>`
+
+```shell
+INNET_API_PREFIX=/api/v1
+```
+
+#### <a id="innet_api_version">INNET_API_VERSION</a>
+API version string.
+
+- **Default:** `'0.0.0'`
+- **Used by:** `<api version>`
+
+```shell
+INNET_API_VERSION=1.0.0
+```
+
+#### <a id="innet_api_enum_description_key">INNET_API_ENUM_DESCRIPTION_KEY</a>
+Key name for enum descriptions in OpenAPI spec.
+
+- **Default:** `'x-enumNames'`
+- **Used by:** Schema enums
+
+```shell
+INNET_API_ENUM_DESCRIPTION_KEY=x-enum-descriptions
+```
+
+### CMS Settings
+
+#### <a id="innet_cms_dir">INNET_CMS_DIR</a>
+Directory for static CMS files.
+
+- **Default:** `'.'`
+- **Used by:** `<cms dir>`
+
+```shell
+INNET_CMS_DIR=./public
+```
+
+#### <a id="innet_cms_prefix">INNET_CMS_PREFIX</a>
+URL prefix for CMS routes.
+
+- **Default:** `'/'`
+- **Used by:** `<cms prefix>`
+
+```shell
+INNET_CMS_PREFIX=/static
+```
+
+### Security Settings
+
+#### <a id="innet_blacklist_ip">INNET_BLACKLIST_IP</a>
+IP address to blacklist.
+
+- **Default:** `undefined`
+- **Used by:** `<blacklist ip>`
+
+```shell
+INNET_BLACKLIST_IP=192.168.1.100
+```
+
+#### <a id="innet_whitelist_ip">INNET_WHITELIST_IP</a>
+IP address to whitelist.
+
+- **Default:** `undefined`
+- **Used by:** `<whitelist ip>`
+
+```shell
+INNET_WHITELIST_IP=10.0.0.1
+```
+
+#### <a id="innet_protection">INNET_PROTECTION</a>
+Protection token value.
+
+- **Default:** `undefined`
+- **Used by:** `<protection value>`
+
+```shell
+INNET_PROTECTION=secret-token
+```
+
+#### <a id="innet_protection_max_age">INNET_PROTECTION_MAX_AGE</a>
+Protection token max age in seconds.
+
+- **Default:** `31536000` (1 year)
+- **Used by:** `<protection maxAge>`
+
+```shell
+INNET_PROTECTION_MAX_AGE=86400
+```
+
+#### <a id="innet_protection_cookie_key">INNET_PROTECTION_COOKIE_KEY</a>
+Cookie name for protection token.
+
+- **Default:** `'protection'`
+- **Used by:** `<protection cookieKey>`
+
+```shell
+INNET_PROTECTION_COOKIE_KEY=auth_token
+```
+
+#### <a id="innet_protection_search_key">INNET_PROTECTION_SEARCH_KEY</a>
+Query parameter name for protection token.
+
+- **Default:** `'protection'`
+- **Used by:** `<protection searchKey>`
+
+```shell
+INNET_PROTECTION_SEARCH_KEY=token
+```
+
+#### <a id="innet_protected_ip">INNET_PROTECTED_IP</a>
+IP address to exclude from protection.
+
+- **Default:** `undefined`
+- **Used by:** `<protection excludeIp>`
+
+```shell
+INNET_PROTECTED_IP=127.0.0.1
+```
+
+### Documentation Settings
+
+#### <a id="innet_dts_path">INNET_DTS_PATH</a>
+Path for generated TypeScript definition file.
+
+- **Default:** `'src/apiTypes.d.ts'`
+- **Used by:** `<dts path>`
+
+```shell
+INNET_DTS_PATH=./types/api.d.ts
+```
+
+#### <a id="innet_dts_namespace">INNET_DTS_NAMESPACE</a>
+Namespace for generated TypeScript types.
+
+- **Default:** `undefined`
+- **Used by:** `<dts namespace>`
+
+```shell
+INNET_DTS_NAMESPACE=API
+```
+
+#### <a id="innet_ui_path">INNET_UI_PATH</a>
+URL path for API documentation UI.
+
+- **Default:** `'/ui'`
+- **Used by:** `<ui path>`
+
+```shell
+INNET_UI_PATH=/docs
+```
+
+#### <a id="innet_swagger_path">INNET_SWAGGER_PATH</a>
+URL path for Swagger UI.
+
+- **Default:** `'/swagger-ui'`
+- **Used by:** `<swagger path>`
+
+```shell
+INNET_SWAGGER_PATH=/swagger
+```
+
+## Components
+###### [🏠︎](#index) / Components [↑](#configuration) [↓](#elements)
+
+Components are reusable, composable building blocks for your API.
+Create custom components to encapsulate business logic and share them across your application.
+
+Here's an example of a custom component:
+
+*src/components/ApiResponse.tsx*
 ```typescript jsx
-export const GetPartners = () => (
-  <success>
-    {{partners: []}}
-  </success>
+interface ApiResponseProps {
+  data: any;
+  status?: number;
+}
+
+export const ApiResponse = ({ data, status = 200 }: ApiResponseProps) => (
+  <return>
+    <success status={status}>{data}</success>
+  </return>
+);
+```
+
+Use the component in your API:
+
+```typescript jsx
+<endpoint method='get' path='/users'>
+  <ApiResponse data={users} />
+</endpoint>
+```
+
+### Endpoints
+###### [🏠︎](#index) / [Core Concepts](#core-concepts) / Endpoints [↑](#api)
+
+The `<endpoint>` element defines a single API operation with HTTP method and path. It's where you specify route parameters, request body, response schema, and the handler that processes requests. Each endpoint is automatically added to OpenAPI documentation.
+
+```typescript jsx
+<api>
+  <endpoint
+    method='get'
+    path='/users/{userId}'
+    summary='Get a user'
+    description='Retrieve user by ID'
+  >
+    {/* parameters, body, response, handler */}
+  </endpoint>
+</api>
+```
+
+**HTTP Methods:** `get`, `post`, `put`, `patch`, `delete`, `options`, `head`, `trace`
+
+#### <a id="endpoint-method">method</a>
+
+The HTTP method for the endpoint.
+
+- Type: `'get' | 'post' | 'put' | 'patch' | 'delete' | 'options' | 'head' | 'trace'`
+- Required: Yes
+
+```typescript jsx
+<endpoint method='get' path='/users' />
+```
+
+#### <a id="endpoint-path">path</a>
+
+The URL path for the endpoint. Supports path templating with `{paramName}`.
+
+- Type: `string`
+- Required: Yes
+- Must start with `/`
+
+```typescript jsx
+<endpoint method='get' path='/users/{userId}' />
+```
+
+#### <a id="endpoint-summary">summary</a>
+
+Short summary of the operation.
+
+- Type: `string`
+- Required: No
+
+```typescript jsx
+<endpoint method='get' path='/users' summary='List all users' />
+```
+
+#### <a id="endpoint-description">description</a>
+
+Longer description of the operation. CommonMark syntax supported.
+
+- Type: `string`
+- Required: No
+
+```typescript jsx
+<endpoint method='get' path='/users' description='Returns a list of all users' />
+```
+
+#### <a id="endpoint-deprecated">deprecated</a>
+
+Mark the endpoint as deprecated.
+
+- Type: `boolean`
+- Default: `false`
+
+```typescript jsx
+<endpoint method='get' path='/users' deprecated />
+```
+
+#### <a id="endpoint-private">private</a>
+
+Hide the endpoint from OpenAPI documentation.
+
+- Type: `boolean`
+- Default: `false`
+
+```typescript jsx
+<endpoint method='get' path='/users' private />
+```
+
+#### <a id="endpoint-operationid">operationId</a>
+
+Unique identifier for the operation.
+
+- Type: `string`
+- Required: No
+
+```typescript jsx
+<endpoint method='get' path='/users' operationId='getUsers' />
+```
+
+### Tag
+###### [🏠︎](#index) / [Core Concepts](#core-concepts) / Tag [↑](#endpoints)
+
+The `<tag>` element groups related endpoints together in the OpenAPI documentation.
+
+#### <a id="tag-name">name</a>
+
+The tag name.
+
+- Type: `string`
+- Required: Yes
+
+```typescript jsx
+<tag name='users'>
+  <endpoint method='get' path='/users' />
+  <endpoint method='post' path='/users' />
+</tag>
+```
+
+#### <a id="tag-group">group</a>
+
+Organize tags into groups in the documentation.
+
+- Type: `string`
+- Required: No
+
+```typescript jsx
+<tag group='Authentication' name='auth'>
+  <endpoint method='post' path='/login' />
+</tag>
+```
+###### [🏠︎](#index) / [Core Concepts](#core-concepts) / Components [↑](#endpoints)
+
+Components are reusable functions that return JSX elements. They allow you to extract common handler logic and share it across multiple endpoints. This keeps your code DRY and makes API maintenance easier.
+
+*src/components/GetUser.tsx*
+```typescript jsx
+export const GetUser = () => (
+  <success>{{ id: 1, name: 'John' }}</success>
 )
 ```
 
-### \<preset>
-
-[← back](#main)
-
-`<preset>` element MUST be placed in `<server>` element.  
-This element adds handling of each request.
-It works the same as [\<return>](#return), but do not interrupt the running.
-You can use it to add a `header` or `cookie` or some setup of a parent element.
-
 *src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <preset>
-      <header
-        key='Test'
-        value='Ok'
-      />
-    </preset>
-  </server>
-)
-```
+import { GetUser } from './components/GetUser'
 
-Place the element inside [\<api>](#api) to preset it on the api requests scope.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api prefix='/api'>
-      <preset>
-        <header
-          key='Cache-Control'
-          value='no-cache, no-store, must-revalidate'
-        />
-      </preset>
-      ...Endpoints
-      <return>
-        <success>
-          Header contains `Cache-Control`
-        </success>
-      </return>
-    </api>
-    <return>
-      <success>
-        Header do not contain `Cache-Control`
-      </success>
-    </return>
-  </server>
-)
-```
-
-## Utils
-
-This section contains elements of utils.
-
-[← back](#index)
-
-[\<ui>](#ui)  
-[\<env>](#env)  
-[\<dts>](#dts)  
-[\<blacklist>](#blacklist)  
-[\<whitelist>](#whitelist)  
-[\<protection>](#protection)
-
----
-
-### \<ui>
-
-[← back](#utils)
-
-Use `<ui>` element to add API documentation UI. This element supports multiple documentation viewers including Swagger UI, RapiDoc, ReDoc, and Scalar.
-`<ui>` element MUST be placed in `<api>` element.
-
-*src/app.tsx*
-```typescript jsx
 export default (
   <server>
     <api>
-      <ui />
+      <endpoint method='get' path='/users/{id}'>
+        <return>
+          <GetUser />
+        </return>
+      </endpoint>
     </api>
   </server>
 )
 ```
 
-Open http://localhost:80/ui
-You will see Swagger UI documentation by default.
+## Elements
+###### [🏠︎](#index) / Elements [↑](#components) [↓](#schemas)
+
+## Schemas
+###### [🏠︎](#index) / Schemas [↑](#elements) [↓](#hooks)
+
+### Primitive Data
+###### [🏠︎](#index) / [Schemas](#schemas) / [Primitive Data](#primitive-data) [↑](#schemas-props) [↓](#object)
+
+Primitive data types are the building blocks of your API schemas. They represent single values like strings, numbers, booleans, and dates. All primitives support common properties like title, description, examples, defaults, and validation rules. Use them to define the data types for parameters, request bodies, and responses.
+
+All primitives support: `title`, `description`, `deprecated`, `readOnly`, `writeOnly`, `example`, `default`, `nullable`
+
+**Types:**
+- `<any />` — Any value
+- `<null />` — Null type
+- `<boolean />` — True/false
+- `<string />` — Text (supports `min`, `max`, `pattern`, `format`, `values`)
+- `<number />` — Decimal number (supports `min`, `max`, `exclusiveMinimum`, `exclusiveMaximum`, `multipleOf`)
+- `<integer />` — Whole number (supports `format: 'int32' | 'int64'`)
+- `<date />` — ISO date (supports `min`, `max`)
+- `<uuid />` — UUID format
+- `<binary />` — File/binary data (supports `accept`, `min`, `max` file size)
+
+#### <a id="any">Any</a>
+
+Accepts any value type. Useful when you want to allow flexible input without strict type validation.
+
+```typescript jsx
+<param in='query' name='data'>
+  <any />
+</param>
+```
+
+**Properties:**
+- <a id="any-title">`title`</a> — Type title
+- <a id="any-description">`description`</a> — Type description
+- <a id="any-example">`example`</a> — Example value
+- <a id="any-default">`default`</a> — Default value
+- <a id="any-readonly">`readOnly`</a> — Read-only flag
+- <a id="any-writeonly">`writeOnly`</a> — Write-only flag
+- <a id="any-deprecated">`deprecated`</a> — Deprecated flag
+
+#### <a id="null">Null</a>
+
+Represents a null value explicitly.
+
+```typescript jsx
+<param in='query' name='nothing'>
+  <null />
+</param>
+```
+
+**Properties:**
+- <a id="null-description">`description`</a> — Type description
+
+#### <a id="boolean">Boolean</a>
+
+True or false value.
+
+```typescript jsx
+<param in='query' name='active'>
+  <boolean default={true} />
+</param>
+```
+
+**Properties:**
+- <a id="bool-title">`title`</a> — Type title
+- <a id="bool-description">`description`</a> — Type description
+- <a id="bool-example">`example`</a> — Example value
+- <a id="bool-default">`default`</a> — Default value
+- <a id="bool-const">`const`</a> — Constant value
+- <a id="bool-values">`values`</a> — Enumeration of allowed values
+
+#### <a id="string">String</a>
+
+Text data with optional validation.
+
+```typescript jsx
+<param in='query' name='email'>
+  <string format='email' min={1} max={255} />
+</param>
+```
+
+**Properties:**
+- <a id="string-title">`title`</a> — Type title
+- <a id="string-description">`description`</a> — Type description
+- <a id="string-min-max">`min/max`</a> — Minimum and maximum length
+- <a id="string-pattern">`pattern`</a> — Regex pattern validation
+- <a id="string-patternid">`patternId`</a> — Pattern identifier for error messages
+- <a id="string-format">`format`</a> — Format hint: `email`, `date-time`, `date`, `uri`, `hostname`, `ipv4`, `ipv6`, `uuid`, `byte`, `binary`, `password`
+- <a id="string-values">`values`</a> — Enumeration of allowed values
+- <a id="string-example">`example`</a> — Example value
+- <a id="string-default">`default`</a> — Default value
+- <a id="string-const">`const`</a> — Constant value
+
+#### <a id="number">Number</a>
+
+Decimal number with optional validation.
+
+```typescript jsx
+<param in='query' name='price'>
+  <number min={0} max={10000} multipleOf={0.01} />
+</param>
+```
+
+**Properties:**
+- <a id="num-title">`title`</a> — Type title
+- <a id="num-description">`description`</a> — Type description
+- <a id="num-min-max">`min/max`</a> — Minimum and maximum values
+- <a id="num-exclusive">`exclusiveMin/Max`</a> — Exclusive minimum and maximum
+- <a id="num-multipleof">`multipleOf`</a> — Must be multiple of this value
+- <a id="num-format">`format`</a> — Format: `double`, `float`
+- <a id="num-values">`values`</a> — Enumeration of allowed values
+- <a id="num-example">`example`</a> — Example value
+- <a id="num-default">`default`</a> — Default value
+- <a id="num-const">`const`</a> — Constant value
+
+#### <a id="integer">Integer</a>
+
+Whole number with optional validation.
+
+```typescript jsx
+<param in='query' name='age'>
+  <integer min={0} max={150} />
+</param>
+```
+
+**Properties:**
+- <a id="int-format">`format`</a> — `'int32'` (default) or `'int64'` for BigInt
+- <a id="int-title">`title`</a> — Type title
+- <a id="int-description">`description`</a> — Type description
+- <a id="int-min-max">`min/max`</a> — Minimum and maximum values
+- <a id="int-exclusive">`exclusiveMin/Max`</a> — Exclusive minimum and maximum
+- <a id="int-multipleof">`multipleOf`</a> — Must be multiple of this value
+- <a id="int-values">`values`</a> — Enumeration of allowed values
+- <a id="int-example">`example`</a> — Example value
+- <a id="int-default">`default`</a> — Default value
+- <a id="int-const">`const`</a> — Constant value
+
+#### <a id="date">Date</a>
+
+ISO 8601 date format.
+
+```typescript jsx
+<param in='query' name='birthDate'>
+  <date min='1900-01-01' max='now' />
+</param>
+```
+
+**Properties:**
+- <a id="date-title">`title`</a> — Type title
+- <a id="date-description">`description`</a> — Type description
+- <a id="date-min-max">`min/max`</a> — Date range limits
+- <a id="date-values">`values`</a> — Enumeration of allowed dates
+- <a id="date-example">`example`</a> — Example value
+- <a id="date-default">`default`</a> — Default value
+
+#### <a id="uuid">UUID</a>
+
+Universally unique identifier in UUID format.
+
+```typescript jsx
+<param in='cookie' name='sessionId'>
+  <uuid default='new' />
+</param>
+```
+
+**Properties:**
+- <a id="uuid-title">`title`</a> — Type title
+- <a id="uuid-description">`description`</a> — Type description
+- <a id="uuid-default">`default`</a> — Default value or `'new'` to generate
+- <a id="uuid-values">`values`</a> — Enumeration of allowed UUIDs
+- <a id="uuid-example">`example`</a> — Example value
+
+#### <a id="binary">Binary</a>
+
+File upload or binary data. Typically used with multipart/form-data.
+
+```typescript jsx
+<field key='avatar'>
+  <binary accept='image/*' min={1024} max={5242880} />
+</field>
+```
+
+**Properties:**
+- <a id="binary-title">`title`</a> — Type title
+- <a id="binary-description">`description`</a> — Type description
+- <a id="binary-accept">`accept`</a> — File type filter (MIME types)
+- <a id="binary-min-max">`min/max`</a> — File size limits in bytes
+
+### Object
+###### [🏠︎](#index) / [Schema Types](#schema-types) / Object [↑](#primitive-data) [↓](#array)
+
+Objects represent structured data with named fields. Use `<object>` to define complex schemas with multiple properties, each with its own type and validation rules. Objects can be nested to create deeply structured data models.
+
+```typescript jsx
+<object description='User object'>
+  <field key='id' readOnly>
+    <uuid />
+  </field>
+  <field key='name' required>
+    <string min={1} max={100} />
+  </field>
+  <field key='email' required>
+    <string format='email' />
+  </field>
+  <field key='role' optional default='user'>
+    <string values={['admin', 'user', 'guest']} />
+  </field>
+</object>
+```
+
+**Object Properties:**
+- <a id="object-default">`default`</a> — Default value for the entire object
+- <a id="object-example">`example`</a> — Example value
+- <a id="object-description">`description`</a> — Object description
+
+#### <a id="field">Field</a>
+
+Defines a single field within an `<object>`.
+
+**Properties:**
+- <a id="field-key">`key`</a> — Field name (required)
+- <a id="field-optional">`optional`</a> — Mark field as optional (not required)
+- <a id="field-deprecated">`deprecated`</a> — Mark field as deprecated
+- <a id="field-readonly">`readOnly`</a> — Field is read-only (responses only)
+- <a id="field-writeonly">`writeOnly`</a> — Field is write-only (requests only)
+
+```typescript jsx
+<object>
+  <field key='id' readOnly>
+    <uuid />
+  </field>
+  <field key='password' writeOnly required>
+    <string min={8} />
+  </field>
+  <field key='nickname' optional>
+    <string />
+  </field>
+</object>
+```
+
+### Array
+###### [🏠︎](#index) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) [↑](#object) [↓](#tuple)
+
+Arrays represent collections of items of the same type. Use `<array>` to define lists of primitives or complex objects. Control the number of items with `minItems` and `maxItems`, and ensure uniqueness with `uniqueItems`.
+
+```typescript jsx
+<array minItems={1} maxItems={10} uniqueItems>
+  <string />
+</array>
+```
+
+**Array Properties:**
+- <a id="array-default">`default`</a> — Default value
+- <a id="array-example">`example`</a> — Example value
+- <a id="array-min-max">`minItems/maxItems`</a> — Array size limits
+- <a id="array-unique">`uniqueItems`</a> — All items must be unique
+- <a id="array-description">`description`</a> — Array description
+
+### Tuple
+###### [🏠︎](#index) / [Schemas](#schemas) / [Collections](#collections) / Tuple [↑](#array)
+
+A fixed-length array with specific types for each position.
+
+```typescript jsx
+<tuple>
+  <string />
+  <number />
+  <boolean />
+</tuple>
+```
+
+**Tuple Properties:**
+- <a id="tuple-default">`default`</a> — Default value
+- <a id="tuple-example">`example`</a> — Example value
+- <a id="tuple-description">`description`</a> — Tuple description
+
+## Hooks
+###### [🏠︎](#index) / Hooks [↑](#schemas) [↓](#links)
+
+Hooks provide access to request/response context and server information inside components.
+
+### Runtime
+###### [🏠︎](#index) / [Hooks](#hooks) / Runtime
+
+#### useRequest
+###### [🏠︎](#index) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useRequest
+
+Returns the HTTP request object.
+
+- **Returns:** `IncomingMessage`
+
+```typescript
+const request = useRequest()
+```
+
+#### useResponse
+###### [🏠︎](#index) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useResponse
+
+Returns the HTTP response object.
+
+- **Returns:** `ServerResponse`
+
+```typescript
+const response = useResponse()
+```
+
+#### usePath
+###### [🏠︎](#index) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / usePath
+
+Returns the request path.
+
+- **Returns:** `string`
+
+```typescript
+const path = usePath()
+```
+
+#### useHeaders
+###### [🏠︎](#index) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useHeaders
+
+Returns request headers.
+
+- **Returns:** `Record<string, string>`
+
+```typescript
+const headers = useHeaders()
+```
+
+#### useCookies
+###### [🏠︎](#index) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useCookies
+
+Returns request cookies.
+
+- **Returns:** `Record<string, string>`
+
+```typescript
+const cookies = useCookies()
+```
+
+#### useParams
+###### [🏠︎](#index) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useParams
+
+Returns URL path parameters.
+
+- **Returns:** `Record<string, any>`
+
+```typescript
+const params = useParams()
+```
+
+#### useSearch
+###### [🏠︎](#index) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useSearch
+
+Returns query parameters.
+
+- **Returns:** `Record<string, any>`
+
+```typescript
+const search = useSearch()
+```
+
+#### useBody
+###### [🏠︎](#index) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useBody
+
+Returns the request body.
+
+- **Returns:** `any`
+
+```typescript
+const body = useBody()
+```
+
+#### useClientIp
+###### [🏠︎](#index) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useClientIp
+
+Returns the client IP address.
+
+- **Returns:** `string`
+
+```typescript
+const ip = useClientIp()
+```
+
+### Shared
+###### [🏠︎](#index) / [Hooks](#hooks) / Shared
+
+#### useServer
+###### [🏠︎](#index) / [Hooks](#hooks) / [Shared](#shared-hooks) / useServer
+
+Returns the server instance.
+
+- **Returns:** `Server`
+
+```typescript
+const server = useServer()
+```
+
+#### useServerPort
+###### [🏠︎](#index) / [Hooks](#hooks) / [Shared](#shared-hooks) / useServerPort
+
+Returns the server port.
+
+- **Returns:** `number`
+
+```typescript
+const port = useServerPort()
+```
+
+#### useIsServerHttps
+###### [🏠︎](#index) / [Hooks](#hooks) / [Shared](#shared-hooks) / useIsServerHttps
+
+Returns whether the server uses HTTPS.
+
+- **Returns:** `boolean`
+
+```typescript
+const isHttps = useIsServerHttps()
+```
+
+#### useComponentName
+###### [🏠︎](#index) / [Hooks](#hooks) / [Shared](#shared-hooks) / useComponentName
+
+Returns the current component name.
+
+- **Returns:** `string`
+
+```typescript
+const name = useComponentName()
+```
+
+#### useServerPlugin
+###### [🏠︎](#index) / [Hooks](#hooks) / [Shared](#shared-hooks) / useServerPlugin
+
+Registers a server plugin.
+
+- **Returns:** `void`
+
+```typescript
+useServerPlugin(async () => {
+  // plugin logic
+})
+```
+
+## Links
+
+- [@innet/jsx](https://www.npmjs.com/package/@innet/jsx) — JSX component library
+- [@innet/dom](https://www.npmjs.com/package/@innet/dom) — Isomorphic DOM framework
+- [innet](https://www.npmjs.com/package/innet) — Core innet framework
+- [innetjs](https://www.npmjs.com/package/innetjs) — CLI tool
+- [OpenAPI 3.1 Spec](https://swagger.io/specification/)
+- [CommonMark Markdown](https://spec.commonmark.org)
+
+## Issues
+
+If you find a bug or have a suggestion, please file an issue on [GitHub](https://github.com/d8corp/innet-server/issues).
+
+[![issues](https://img.shields.io/github/issues-raw/d8corp/innet-server)](https://github.com/d8corp/innet-server/issues)
+
+
+
+
+
+## Server
+###### [🏠︎](#index) / [Core Concepts](#core-concepts) / Server [↓](#api)
+
+The `<server>` element is the root component that starts an HTTP(S) server. Use it to configure the server port, SSL certificates, and register lifecycle event handlers. All routes and APIs must be placed inside the `<server>` element.
+
+```typescript jsx
+export default (
+  <server port={3000}>
+    <api />
+  </server>
+)
+```
+
+#### <a id="server-port">port</a>
+###### [🏠︎](#index) / [Core Concepts](#core-concepts) / [Server](#server) / port
+
+Sets the server port. By default, uses port `80` for HTTP and `443` for HTTPS.
+
+- Type: `number`
+- Default: `80` (HTTP) or `443` (HTTPS)
+- Environment variable: `INNET_PORT`
+
+```typescript jsx
+<server port={3000} />
+```
+
+#### <a id="server-ssl">ssl</a>
+###### [🏠︎](#index) / [Core Concepts](#core-concepts) / [Server](#server) / ssl
+
+Configure HTTPS with SSL certificates.
+
+- Type: `{ cert: string; key: string }`
+- `cert` — Path to certificate file
+- `key` — Path to private key file
+- Environment variables: `INNET_SSL_CRT`, `INNET_SSL_KEY`
+
+```typescript jsx
+<server ssl={{ cert: './localhost.crt', key: './localhost.key' }} />
+```
+
+#### <a id="server-onstart">onStart</a>
+###### [🏠︎](#index) / [Core Concepts](#core-concepts) / [Server](#server) / onStart
+
+Callback function executed when the server starts.
+
+- Type: `() => void`
+
+```typescript jsx
+import { httpOnStart } from '@innet/server'
+
+export default <server onStart={httpOnStart} />
+```
+
+#### <a id="server-onrequest">onRequest</a>
+###### [🏠︎](#index) / [Core Concepts](#core-concepts) / [Server](#server) / onRequest
+
+Callback function executed for every request.
+
+- Type: `(req: IncomingMessage, res: ServerResponse) => void`
+
+```typescript jsx
+<server onRequest={(req, res) => console.log(req.url)} />
+```
+
+#### <a id="server-onerror">onError</a>
+###### [🏠︎](#index) / [Core Concepts](#core-concepts) / [Server](#server) / onError
+
+Callback function executed when a request error occurs.
+
+- Type: `(error: Error) => void`
+
+```typescript jsx
+<server onError={(error) => console.error(error)} />
+```
+
+#### <a id="server-onclose">onClose</a>
+###### [🏠︎](#index) / [Core Concepts](#core-concepts) / [Server](#server) / onClose
+
+Callback function executed when the server closes.
+
+- Type: `() => void`
+
+```typescript jsx
+<server onClose={() => console.log('Server closed')} />
+```
+
+### API
+###### [🏠︎](#index) / [Core Concepts](#core-concepts) / API [↑](#server) [↓](#endpoints)
+
+The `<api>` element defines a REST API with OpenAPI documentation. Place it inside `<server>` to register your endpoints and configure OpenAPI settings. The API documentation is automatically generated from your component structure.
+
+```typescript jsx
+<server>
+  <api
+    title='My API'
+    description='API description in **Markdown**'
+    version='1.0.0'
+    prefix='/api'
+  >
+    {/* endpoints here */}
+  </api>
+</server>
+```
+
+#### <a id="api-title">title</a>
+###### [🏠︎](#index) / [Core Concepts](#core-concepts) / [API](#api) / title
+
+The title of the API.
+
+- Type: `string`
+- Required: No
+- Default: empty string
+
+```typescript jsx
+<api title='My API' />
+```
+
+#### <a id="api-description">description</a>
+
+Description of the API. CommonMark (Markdown) syntax is supported.
+
+- Type: `string`
+- Required: No
+
+```typescript jsx
+<api description='**API** for user management' />
+```
+
+#### <a id="api-version">version</a>
+
+The version of the OpenAPI document.
+
+- Type: `string`
+- Default: `INNET_API_VERSION` or `'0.0.0'`
+
+```typescript jsx
+<api version='1.0.0' />
+```
+
+#### <a id="api-prefix">prefix</a>
+
+URL path prefix for all endpoints in this API.
+
+- Type: `string`
+- Default: `INNET_API_PREFIX` or empty
+- Environment variable: `INNET_API_PREFIX`
+
+```typescript jsx
+<api prefix='/api' />
+```
+
+#### <a id="api-include">include</a>
+
+Regular expression to include only matching URLs.
+
+- Type: `RegExp`
+
+```typescript jsx
+<api include={/^\/(api|openapi)/} />
+```
+
+#### <a id="api-exclude">exclude</a>
+
+Regular expression to exclude matching URLs.
+
+- Type: `RegExp`
+
+```typescript jsx
+<api exclude={/^\/health/} />
+```
+
+## Request Handling
+###### [🏠︎](#index) / Request Handling [↑](#core-concepts) [↓](#documentation)
+
+### Return
+###### [🏠︎](#index) / [Request Handling](#request-handling) / Return [↓](#preset)
+
+The `<return>` element handles endpoint responses and works like a `return` statement in functions. Only one `<return>` can execute per scope. Use it to respond with success/error, set headers, cookies, and conditionally control the request flow.
+
+**Success Response:**
+```typescript jsx
+<endpoint method='get' path='/users'>
+  <return>
+    <success>{{ users: [] }}</success>
+  </return>
+</endpoint>
+```
+
+**Error Response:**
+```typescript jsx
+<return>
+  <error status='notFound' code='userNotFound'>
+    {{ message: 'User not found' }}
+  </error>
+</return>
+```
+
+**Conditional Returns:**
+```typescript jsx
+<endpoint method='get' path='/users'>
+  <env is='dev'>
+    <return>
+      <error status={404} />
+    </return>
+  </env>
+  <return>
+    <success>{{ users: [] }}</success>
+  </return>
+</endpoint>
+```
+
+### Preset
+###### [🏠︎](#index) / [Request Handling](#request-handling) / Preset [↑](#return) [↓](#hooks)
+
+The `<preset>` element configures request scope without interrupting execution. Use it to set up headers, cookies, and other metadata that apply to multiple endpoints within an API or globally.
+
+```typescript jsx
+<api prefix='/api'>
+  <preset>
+    <header
+      key='Cache-Control'
+      value='no-cache, no-store, must-revalidate'
+    />
+  </preset>
+  {/* endpoints */}
+</api>
+```
+
+### Hooks
+###### [🏠︎](#index) / [Request Handling](#request-handling) / Hooks [↑](#preset)
+
+Hooks provide access to request/response context and server information inside components. They allow you to access HTTP headers, query parameters, body data, and more. Use them to implement request handling logic without manually passing props.
+
+**Request Data:**
+- `useRequest()` — HTTP request object
+- `useResponse()` — HTTP response object
+- `useHeaders()` — Request headers
+- `useCookies()` — Request cookies
+- `useParams()` — URL parameters
+- `useSearch()` — Query parameters
+- `useBody()` — Request body
+- `useClientIp()` — Client IP address
+- `usePath()` — Request path
+
+**Server Context:**
+- `useServer()` — HTTP server instance
+- `usePort()` — Server port
+- `useIsServerHttps()` — Is HTTPS?
+- `useComponentName()` — Current component name
+
+**Example:**
+```typescript jsx
+import { useParams, useRequest } from '@innet/server'
+
+export function GetUser() {
+  const { userId } = useParams()
+  const req = useRequest()
+  
+  return <success>{{ userId, method: req.method }}</success>
+}
+```
+
+## Documentation
+###### [🏠︎](#index) / Documentation [↑](#request-handling) [↓](#api-elements)
+
+### UI
+###### [🏠︎](#index) / [Documentation](#documentation) / UI [↓](#dts)
+
+Add interactive API documentation with the `<ui>` element.
+This automatically generates a beautiful, interactive web interface where users can explore and test your API endpoints.
+Choose from multiple documentation viewers like [Swagger UI](https://swagger.io/tools/swagger-ui/), [Scalar](https://scalar.com/), [RapiDoc](https://rapidocweb.com/), or [ReDoc](https://redocly.com/).
+
+```typescript jsx
+<api>
+  <ui /> {/* Swagger UI by default */}
+</api>
+```
+
+View documentation: http://localhost/ui
 
 #### html
+###### [🏠︎](#index) / [Documentation](#documentation) / [UI](#ui) / html
+Custom HTML template for the documentation viewer. Use built-in presets or provide custom HTML.
 
-You can provide custom HTML template for the documentation viewer.
-Built-in presets are available: `uiPresets.swagger`, `uiPresets.rapidoc`, `uiPresets.redoc`, `uiPresets.scalar`.
+- Type: `string`
+- Default: Swagger UI HTML template
 
-*src/app.tsx*
-```typescript jsx
+```tsx
 import { uiPresets } from '@innet/server'
 
 export default (
-  <server>
-    <api>
-      <ui html={uiPresets.rapidoc} />
-    </api>
-  </server>
+  <api>
+    <ui html={uiPresets.scalar} />
+  </api>
 )
 ```
 
-#### params
+#### <a id="ui-params">params</a>
+###### [🏠︎](#index) / [Documentation](#documentation) / [UI](#ui) / params
 
-You can pass additional parameters to the documentation viewer. Parameters depend on the selected UI library.
+Additional parameters to pass to the documentation viewer. Parameters vary by viewer type.
 
-For **Swagger UI** (default):
+- Type: `Record<string, any>`
+- Default: empty object
 
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <ui
-        params={{
-          docExpansion: 'full',
-          filter: true,
-          showExtensions: true,
-        }}
-      />
-    </api>
-  </server>
-)
+<api>
+  <ui
+    html={uiPresets.scalar}
+    params={{
+      theme: 'moon',
+      layout: 'classic'
+    }}
+  />
+</api>
 ```
 
-For **Scalar**:
+#### <a id="ui-path">path</a>
+###### [🏠︎](#index) / [Documentation](#documentation) / [UI](#ui) / path
 
-*src/app.tsx*
+The URL path where the documentation UI will be served.
+
+- Type: `string`
+- Default: `INNET_UI_PATH` or `'/ui'`
+- Environment variable: `INNET_UI_PATH`
+
 ```typescript jsx
-import { uiPresets } from '@innet/server'
-
-export default (
-  <server>
-    <api>
-      <ui
-        html={uiPresets.scalar}
-        params={{
-          theme: 'moon',
-          layout: 'classic',
-        }}
-      />
-    </api>
-  </server>
-)
+<api>
+  <ui path='/docs' />
+</api>
 ```
 
-For **RapiDoc**:
+### DTS
+###### [🏠︎](#index) / [Documentation](#documentation) / DTS [↑](#ui)
 
-*src/app.tsx*
+Automatically generate TypeScript type definitions for your entire API. The `<dts>` element creates type definitions based on your endpoint schemas, giving you full IDE autocomplete and type safety when consuming your API.
+
 ```typescript jsx
-import { uiPresets } from '@innet/server'
-
-export default (
-  <server>
-    <api>
-      <ui
-        html={uiPresets.rapidoc}
-        params={{
-          theme: 'dark',
-          layout: 'row',
-          showHeader: 'false',
-        }}
-      />
-    </api>
-  </server>
-)
+<api>
+  <dts
+    path='src/api.d.ts'
+    namespace='Api'
+  />
+</api>
 ```
 
-For **ReDoc**:
-
-*src/app.tsx*
-```typescript jsx
-import { uiPresets } from '@innet/server'
-
-export default (
-  <server>
-    <api>
-      <ui
-        html={uiPresets.redoc}
-        params={{
-          disableSearch: 'true',
-          hideDownloadButton: 'true',
-          nativeScrollbars: 'true',
-          theme: '{"sidebar": {"backgroundColor": "#d1e5ef"}}',
-        }}
-      />
-    </api>
-  </server>
-)
-```
-
-#### path
-
-You can change the documentation UI URL path by `path` property of `<ui>` element.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <ui path='/docs' />
-    </api>
-  </server>
-)
-```
-
-*default: `INNET_UI_PATH` || `'/ui'`*
-
-### \<env>
-
-[← back](#utils)
-
-This element helps to control content by `process.env`.
-
-There are a required field of `is`.
-If it's a `string` then an environment variable must be equal to the `string`.
-If it's an `array of string` then an environment variable must be included into the `array of string`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <env is='dev'>
-        <swagger />
-      </env>
-    </api>
-  </server>
-)
-```
-
-*The `<swagger />` will work only if `NODE_ENV` equals `dev`*
-
-#### of
-
-By default `of` equals `NODE_ENV`. You can check eny other environment variable.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <env
-        of='PORT'
-        is={[
-          '3000',
-          '8080',
-        ]}>
-        <swagger />
-      </env>
-    </api>
-  </server>
-)
-```
-
-### \<dts>
-
-[← back](#utils)
-
-Use `<dts>` element to add types generation.
-`<dts>` element MUST be placed in `<api>` element.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <dts />
-    </api>
-  </server>
-)
-```
-
-You do not need to import types, use `Api` namespace everywhere.
-Here is an example of generated types usage.
+Generated types are automatically available globally in the namespace (e.g., `Api.Endpoints`):
 
 ```typescript jsx
 import { useParams } from '@innet/server'
 
-import { todos } from '../todos'
-
-export function DeleteTodo () {
+export function DeleteTodo() {
   const { todoId } = useParams<Api.Endpoints['DELETE:/todos/{todoId}']['Params']>()
-
-  const todoIndex = todos.findIndex(({ id }) => id === todoId)
-
-  if (todoIndex === -1) {
-    return <error code='todoNotFound' status={404} />
-  }
-
-  todos.splice(todoIndex, 1)
-
+  
   return <success />
 }
 ```
 
-#### path
+#### <a id="dts-path">path</a>
 
-This is a path of api TypeScript types file, `<dts>` generates it.
-`'src/api.d.ts'` by default.
+Output path for the generated TypeScript definitions file.
 
-*src/app.tsx*
+- Type: `string`
+- Default: `'src/api.d.ts'`
+
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <dts path='src/types.d.ts' />
-    </api>
-  </server>
-)
+<dts path='src/types.d.ts' />
 ```
 
-#### namespace
+#### <a id="dts-namespace">namespace</a>
 
-This prop changes namespace for generated types. `'Api'` by default.
+Global namespace name for generated types.
 
-*src/app.tsx*
+- Type: `string`
+- Default: `'Api'`
+
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <dts namespace='API' />
-    </api>
-  </server>
-)
+<dts namespace='API' />
 ```
 
-### \<blacklist>
+## API Elements
+###### [🏠︎](#index) / API Elements [↑](#documentation) [↓](#schema-types)
 
-This element MUST be placed in `<api>` element.
+### Endpoint
+###### [🏠︎](#index) / [API Elements](#api-elements) / Endpoint [↓](#param)
 
-[← back](#utils)
-
-This element returns own content for a user from IPs list.
-
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <blacklist>
-        <error />
-      </blacklist>
-    </api>
-  </server>
-)
+<endpoint
+  method='post'
+  path='/users'
+  summary='Create user'
+  description='Creates a new user in the system'
+  operationId='createUser'
+  deprecated={false}
+  private={false}
+>
+  <param in='query' name='format' />
+  <body>
+    <object>
+      <field key='name'><string required /></field>
+      <field key='email'><string format='email' /></field>
+    </object>
+  </body>
+  <response status={201}>
+    <object>
+      <field key='id'><uuid readOnly /></field>
+      <field key='name'><string /></field>
+    </object>
+  </response>
+  <return>
+    <success status='created'>{{ id: 'uuid', name: 'John' }}</success>
+  </return>
+</endpoint>
 ```
 
-#### ip
+### Param
+###### [🏠︎](#index) / [API Elements](#api-elements) / Param [↑](#endpoint) [↓](#body)
 
-`ip` prop sets black IPs. By default, it equals `INNET_BLACKLIST_IP` node environment variable.
+Parameters allow you to specify query parameters, path parameters, headers, and cookies that your endpoint accepts. You define the parameter name, location, and validation schema. Parameters are automatically validated and documented in OpenAPI.
 
-You can split IPs by `,` char.
+Define endpoint parameters (query, header, cookie, path):
 
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <blacklist
-        ip='0.1.2.3,3.2.1.0'>
-        <error />
-      </blacklist>
-    </api>
-  </server>
-)
+<endpoint method='get' path='/users/{id}'>
+  <param in='path' name='id' required>
+    <uuid />
+  </param>
+  <param in='query' name='format' default='json'>
+    <string values={['json', 'xml']} />
+  </param>
+  <param in='header' name='authorization'>
+    <string />
+  </param>
+</endpoint>
 ```
 
-### \<whitelist>
-
-This element MUST be placed in `<api>` element.
-
-[← back](#utils)
-
-This element returns own content for a user IP, which is not in a list.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <whitelist>
-        <error />
-      </whitelist>
-    </api>
-  </server>
-)
-```
-
-#### ip
-
-`ip` prop sets white IPs. By default, it equals `INNET_WHITELIST_IP` node environment variable.
-
-You can split IPs by `,` char.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <whitelist
-        ip='0.1.2.3,3.2.1.0'>
-        <error />
-      </whitelist>
-    </api>
-  </server>
-)
-```
-
-### \<protection>
-
-This element MUST be placed in `<api>` element.
-
-[← back](#utils)
-
-This element adds protection page.
-You can use it when you want to protect your application.
-
-If protection failed content of the element should be used.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <protection>
-        <error
-          code='protection'
-          status='forbidden'
-        />
-      </protection>
-    </api>
-  </server>
-)
-```
-
-#### value
-
-This prop is a secret string of protection value.
-User must provide a protection query param equals the `value`.
-
-By default, the value is `undefined` and protection does not work.
-You can use `PROTECTION` env to set default protection `value`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <protection value='secret'>
-        <error
-          code='protection'
-          status='forbidden'
-        />
-      </protection>
-    </api>
-  </server>
-)
-```
-
-#### maxAge
-
-This prop sets how much time protection is qualified.
-
-By default, the prop equals a year.
-You can use `INNET_PROTECTION_MAX_AGE` env to set default `maxAge`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <protection
-        maxAge={24 * 60 * 60}
-        value='secret'>
-        <error
-          code='protection'
-          status='forbidden'
-        />
-      </protection>
-    </api>
-  </server>
-)
-```
-
-#### excludeIp
-
-This prop sets a list of IP addresses (split by `,`) to ignore the protection.
-
-You can use `INNET_PROTECTED_IP` env to set default `excludeIp`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <protection
-        excludeIp='0.0.0.0,127.0.0.0'
-        value='secret'>
-        <error
-          code='protection'
-          status='forbidden'
-        />
-      </protection>
-    </api>
-  </server>
-)
-```
-
-#### cookieKey
-
-This prop sets a cookie field name used to store protection of a user.
-
-By default, it equals `protection`.
-You can use `INNET_PROTECTION_COOKIE_KEY` env to set default `cookieKey`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <protection
-        cookieKey='secret'
-        value='secret'>
-        <error
-          code='protection'
-          status='forbidden'
-        />
-      </protection>
-    </api>
-  </server>
-)
-```
-
-#### searchKey
-
-This prop sets a search query field name used to check protection.
-
-By default, it equals `protection`.
-You can use `INNET_PROTECTION_SEARCH_KEY` env to set default `searchKey`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <protection
-        searchKey='secret'
-        value='secret'>
-        <error
-          code='protection'
-          status='forbidden'
-        />
-      </protection>
-    </api>
-  </server>
-)
-```
-
-## API Info
-
-The API information elements are here.
-
-[← back](#index)
-
-[\<license>](#license)  
-[\<contact>](#contact)  
-[\<host>](#host)  
-[\<variable>](#variable)
-
----
-
-### \<license>
-
-[← back](#api-info)
-
-`<license>` element MUST be placed in `<api>` element.
-Use `<license>` element to define the API license.
-
-#### name
-
-REQUIRED prop. The license name used for the API.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <license
-        name='Apache 2.0'
-      />
-    </api>
-  </server>
-)
-```
-
-#### identifier
-
-An [SPDX](https://spdx.org/spdx-specification-21-web-version#h.jxpfx0ykyb60) license expression for the API.
-The `identifier` field is mutually exclusive of the `url` prop.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <license
-        name='Apache 2.0'
-        identifier='Apache-2.0'
-      />
-    </api>
-  </server>
-)
-```
-
-#### url
-
-A URL to the license used for the API.
-This MUST be in the form of a URL.
-The `url` field is mutually exclusive of the `identifier` field.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <license
-        name='Apache 2.0'
-        url='https://www.apache.org/licenses/LICENSE-2.0.html'
-      />
-    </api>
-  </server>
-)
-```
-
-### \<contact>
-
-[← back](#api-info)
-
-`<contact>` element MUST be placed in `<api>` element.
-The contact information for the exposed API.
-
-#### name
-
-The identifying name of the contact person/organization.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <contact name='Mike' />
-    </api>
-  </server>
-)
-```
-
-#### email
-
-The email address of the contact person/organization.
-This MUST be in the form of an email address.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <contact
-        email='d8@cantinc.com'
-      />
-    </api>
-  </server>
-)
-```
-
-#### url
-
-The URL pointing to the contact information.
-This MUST be in the form of a URL.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <contact
-        url='https://...'
-      />
-    </api>
-  </server>
-)
-```
-
-### \<host>
-
-[← back](#api-info)
-
-`<host>` element MUST be placed in `<api>` element.
-
-This element adds a link to related documentation API.
-You can provide many stands like dev, stage or prod.
-
-#### url
-
-REQUIRED prop of URL to the target host.
-
-This URL supports Server Variables and MAY be relative,
-to indicate that the host location is relative to the location where the OpenAPI document is being served.
-Variable substitutions will be made when a variable is named in {brackets}.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <host
-        url='https://your.address/api'
-      />
-    </api>
-  </server>
-)
-```
-
-#### description
-
-An optional string describing the host designated by the URL.
-[CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <host
-        url='https://your.address/api'
-        description='Production server'
-      />
-    </api>
-  </server>
-)
-```
-
-### \<variable>
-
-[← back](#api-info)
-
-This element MUST be placed in `<host>` element and defines a variable from the `<host>`.
-
-#### key
-
-REQUIRED props. `key` is a server url parameter.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <host
-        url='https://{env}.your.address/api'
-        description='Test servers'>
-        <variable key='env' />
-      </host>
-    </api>
-  </server>
-)
-```
-
-#### value
-
-The `value` prop uses for substitution by default.
-If the `values` is defined, the `value` MUST exist in the `values`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <host
-        url='https://{env}.your.address/api'
-        description='Test servers'>
-        <variable
-          key='env'
-          value='stage'
-        />
-      </host>
-    </api>
-  </server>
-)
-```
-
-#### values
-
-An enumeration of string values to be used if the substitution options are from a limited set.
-The array MUST NOT be empty.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <host
-        url='https://{env}.your.address/api'
-        description='Test servers'>
-        <variable
-          key='env'
-          values={[
-            'stage',
-            'dev',
-            'qa',
-          ]}
-        />
-      </host>
-    </api>
-  </server>
-)
-```
-
-#### description
-
-An optional description for the server variable.
-[CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <host
-        url='https://{env}.your.address/api'
-        description='Test servers'>
-        <variable
-          key='env'
-          values={[
-            'stage',
-            'dev',
-            'qa',
-          ]}
-          description='Server environment'
-        />
-      </host>
-    </api>
-  </server>
-)
-```
-
-## Endpoints
-
-[← back](#index)
-
-[\<endpoint>](#endpoint)  
-[\<tag>](#tag)  
-[\<param>](#param)  
-[\<body>](#body)  
-[\<response>](#response)
-
----
-
-### \<endpoint>
-
-[← back](#endpoints)
-
-`<endpoint>` defines an endpoint of the API and MUST be placed in `<api>`.
-
-`<api>` uses a specific algorithm to find expected endpoint.
-
-It does no matter how many endpoints you have.
-It depends on the deep of path pieces.
-If you have the deep equals 1 (`/users`, `/user`, `/login`, `/logout`) the endpoint will be found immediately O(1).
-
-#### method
-
-A method of the endpoint.
-
-MUST be one of `'get' | 'post' | 'put' | 'patch' | 'delete' | 'options' | 'head' | 'trace'`
-
-#### path
-
-A relative path to an individual endpoint.
-
-The property MUST begin with a forward slash (/).
-
-Path templating is allowed.
-
-When matching URLs, concrete (non-templated) paths would be matched before their templated counterparts.
-Templated paths with the same hierarchy but different templated names MUST NOT exist as they are identical.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint
-        method='get'
-        path='/users'
-      />
-    </api>
-  </server>
-)
-```
-
-#### summary
-
-An optional, string summary, intended to apply to all operations in this path.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint
-        method='get'
-        path='/users'
-        summary='Returns users'
-      />
-    </api>
-  </server>
-)
-```
-
-#### description
-
-An optional, string description, intended to apply to all operations in this path.
-[CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint
-        method='get'
-        path='/users'
-        description='Users list query'
-      />
-    </api>
-  </server>
-)
-```
-
-#### deprecated
-
-Declares this operation to be deprecated.
-Consumers SHOULD refrain from usage of the declared operation.
-Default value is `false`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint
-        method='get'
-        path='/users'
-        deprecated
-      />
-    </api>
-  </server>
-)
-```
-
-#### private
-
-Declares this operation to make an endpoint private.
-That means the endpoint should not be described and will not be shown in the Open API documentation.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint
-        method='get'
-        path='/users'
-        private
-      />
-    </api>
-  </server>
-)
-```
-
-#### operationId
-
-`operationId` is an optional unique string used to identify an operation.
-If provided, these IDs must be unique among all operations described in your API.
-
-Tools and libraries MAY use the operationId to uniquely identify an operation, therefore, it is recommended to follow common programming naming conventions.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint
-        method='get'
-        path='/users'
-        operationId='getUsers'
-      />
-    </api>
-  </server>
-)
-```
-
-### \<tag>
-
-[← back](#endpoints)
-
-You can wrap endpoints by `<tag>` element to group the endpoints.
-You can see the changes in Swagger UI.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <tag name='user'>
-        <endpoint
-          method='get'
-          path='/users'
-        />
-        <endpoint
-          method='post'
-          path='/users'
-        />
-      </tag>
-    </api>
-  </server>
-)
-```
-
-#### group
-
-You can organize tags into groups using the `group` property.
-This adds tag groups support to the OpenAPI specification,
-which is displayed in documentation viewers.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <tag group='Authentication' name='auth'>
-        <endpoint method='post' path='/login' />
-        <endpoint method='post' path='/logout' />
-      </tag>
-      <tag group='Users' name='users'>
-        <endpoint method='get' path='/users' />
-        <endpoint method='post' path='/users' />
-      </tag>
-    </api>
-  </server>
-)
-```
-
-This will create tag groups in your OpenAPI documentation:
-- **Authentication** group containing the `auth` tag
-- **Users** group containing the `users` tag
-
-### \<param>
-
-[← back](#endpoints)
-
-Describes a single operation parameter.
-
-A unique parameter is defined by a combination of a `name` and location.
-
-##### Parameter Locations
-
-There are four possible parameter locations specified by the `in` prop:
-
-- **path** - Used together with [Path Templating](https://swagger.io/specification/#path-templating), where the parameter value is actually part of the operation's URL.
-  This does not include the host or base path of the API. For example, in `/items/{itemId}`, the path parameter is `itemId`.
-- **query** - Parameters that are appended to the URL. For example, in `/items?id=###`, the query parameter is `id`.
-- **header** - Custom headers that are expected as part of the request. Note that RFC7230 states header names are case insensitive.
-- **cookie** - Used to pass a specific cookie value to the API.
-
-#### in
+#### <a id="param-in">in</a>
 
 The location of the parameter.
-Possible values are `"query"`, `"header"`, `"path"` or `"cookie"`.
 
-#### name
+- Type: `'query' | 'header' | 'path' | 'cookie'`
+- Required: Yes
 
-The name of the parameter. Parameter names are *case sensitive*.
-
-- If `in` is "path", the `name` field MUST correspond to a template expression occurring within the `path` field in the `endpoint`. See [Path Templating](https://swagger.io/specification/#path-templating) for further information.
-- If `in` is "header" and the `name` field is "Accept", "Content-Type" or "Authorization", the parameter definition SHALL be ignored.
-- For all other cases, the `name` corresponds to the parameter name used by the `in` property.
-
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users/{userId}'>
-        <param in='path' name='userId' />
-      </endpoint>
-    </api>
-  </server>
-)
+<param in='query' name='search' />
 ```
 
-#### description
+#### <a id="param-name">name</a>
+
+The name of the parameter. Parameter names are case-sensitive.
+
+- Type: `string`
+- Required: Yes
+
+```typescript jsx
+<param in='query' name='search' />
+```
+
+#### <a id="param-description">description</a>
 
 A brief description of the parameter.
-This could contain examples of use.
-[CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users/{userId}'>
-        <param
-          in='path'
-          name='userId'
-          description='User identification number'
-        />
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### required
-
-Determines whether this parameter is mandatory.
-If the parameter location is "path", this property is `true` and its value MUST be `true`.
-Otherwise, the property MAY be included and its default value is `false`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='cookie'
-          name='token'
-          required
-        />
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### deprecated
-
-Specifies that a parameter is deprecated and SHOULD be transitioned out of usage.
-Default value is `false`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='status'
-          deprecated
-        />
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-### \<body>
-
-[← back](#endpoints)
-
-This element MUST be placed inside `<endpoint>`.
-It defines request body for the endpoint.
-`@innet/server` formats and validate the value automatically (real-time).
-
-*src/app.tsx*
-```typescript jsx
-return (
-  <server>
-    <api>
-      <endpoint method='post' path='/partners'>
-        <body>
-          <object>
-            <field key='name'>
-              <string example='CANTent.' />
-            </field>
-            <field key='gift'>
-              <boolean />
-            </field>
-            <field optional key='addresses'>
-              <array>
-                <number description='address id' />
-              </array>
-            </field>
-          </object>
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-### \<response>
-
-[← back](#endpoints)
-
-This element MUST be placed inside `<endpoint>`.
-It defines response body for the endpoint.
-
-*src/app.tsx*
-```typescript jsx
-return (
-  <server>
-    <api>
-      <endpoint method='get' path='/settings'>
-        <response>
-          <object />
-        </response>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### status
-A status of the `<response>`.
-Any [HTTP status code](https://swagger.io/specification/#http-codes) can be used as a number of the property.
-
-By default, `status` equals `'default'`.
-
-*src/app.tsx*
-```typescript jsx
-return (
-  <server>
-    <api>
-      <endpoint method='get' path='/settings'>
-        <response status={200}>
-          <object />
-        </response>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-To define a range of response codes, this field MAY contain the uppercase wildcard character `X`.
-For example, `2XX` represents all response codes between \[200-299].
-Only the following range definitions are allowed: `1XX`, `2XX`, `3XX`, `4XX` and `5XX`.
-
-*src/app.tsx*
-```typescript jsx
-return (
-  <server>
-    <api>
-      <endpoint method='get' path='/settings'>
-        <response status='2XX'>
-          <object />
-        </response>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-Many number statuses have a string id you can use on the property.
-
-*src/app.tsx*
-```typescript jsx
-return (
-  <server>
-    <api>
-      <endpoint method='get' path='/settings'>
-        <response status='notFound'>
-          <object />
-        </response>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-You can use many `<response>` elements in an endpoint.
-
-*src/app.tsx*
-```typescript jsx
-return (
-  <server>
-    <api>
-      <endpoint method='get' path='/settings'>
-        <response status='2XX'>
-          <object />
-        </response>
-        <response status='4XX'>
-          <object>
-            <field key='error'>
-              <string />
-            </field>
-            <field optional key='data'>
-              <object />
-            </field>
-          </object>
-        </response>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### type
-A media type of the `<response>`.
-
-By default, `type` equals `'application/json'`.
-
-*src/app.tsx*
-```typescript jsx
-return (
-  <server>
-    <api>
-      <endpoint method='get' path='/hello'>
-        <response type='text/html'>
-          Hello World!
-        </response>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-## Primitive Data
-
-[← back](#index)
-
-[\<any>](#any)  
-[\<null>](#null)  
-[\<boolean>](#boolean)  
-[\<string>](#string)  
-[\<number>](#number)  
-[\<integer>](#integer)  
-[\<date>](#date)  
-[\<uuid>](#uuid)  
-[\<binary>](#binary)
-
----
-
-### \<any>
-
-[← back](#primitive-data)
-
-The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
-It defines `any` value for a parent element.
-`@innet/server` formats and validate the value automatically (real-time).
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/todos'>
-        <param
-          in='query'
-          name='search'>
-          <any />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### default
-
-A default value for the `any`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='search'>
-          <any default={null} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### example
-
-An example value.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param
-          in='query'
-          name='active'>
-          <any example={false} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### description
-
-A description of the `any`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param
-          in='query'
-          name='active'>
-          <any
-            description='Active products param'
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-### \<null>
-
-[← back](#primitive-data)
-
-The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
-It defines `null` value for a parent element.
-`@innet/server` formats and validate the value automatically (real-time).
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/todos'>
-        <param
-          in='query'
-          name='search'>
-          <null />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### description
-
-A description of the `null`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param
-          in='query'
-          name='active'>
-          <null description='FIXME!' />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-### \<boolean>
-
-[← back](#primitive-data)
-
-The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
-It defines `boolean` value for a parent element.
-`@innet/server` formats and validate the value automatically (real-time).
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='active'>
-          <boolean />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### default
-
-A default value for the `boolean`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='active'>
-          <boolean default={false} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### example
-
-An example value.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param
-          in='query'
-          name='active'>
-          <boolean example={false} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### description
-
-A description of the `boolean`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param
-          in='query'
-          name='active'>
-          <boolean
-            description='Active products param'
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-### \<string>
-
-[← back](#primitive-data)
-
-The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
-It defines `string` value for a parent element.
-`@innet/server` formats and validate the value automatically (real-time).
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='search'>
-          <string />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### default
-
-A default value for the `string`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='status'>
-          <string default='active' />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-*By default, `status` query param equals `active`*
-
-#### example
-
-An example value.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param
-          in='query'
-          name='search'>
-          <string example='red socks' />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### description
-
-A description of the `string`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param
-          in='query'
-          name='search'>
-          <string
-            description='A search string'
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### values
-
-The enumeration of available `values`.
-If you provide the parameter value, which is not in the `values`, the server returns an error.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='status'>
-          <string
-            default='active'
-            values={[
-              'active',
-              'inactive',
-            ]}
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### min, max
-
-Those two props validate the `string` value by minimum and maximum length.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='name'>
-          <string min={1} max={128} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### pattern
-
-A `string` of `RegExp` or `RegExp`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='friendlyName'>
-          <string pattern='^[a-z_0-9]+$' />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-If you make a request to the API endpoint,
-with query parameter of `friendlyName` equals `no-friendly` (as example),
-you get an error:
-
-```json
-{
-  "error": "requestValidation",
-  "data": {
-    "error": "reg",
-    "data": {
-      "key": "friendlyName"
-    },
-    "in": "search"
-  }
-}
-```
-
-#### patternId
-
-This property adds an id of the pattern expression in error response.
-For example, You can use the id to load error message translations.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='friendlyName'>
-          <string
-            pattern='^[a-z_0-9]+$'
-            patternID='fname'
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-If you make a request to the API endpoint,
-with query parameter of `friendlyName` equals `no-friendly` (as example),
-you get an error:
-
-```json
-{
-  "error": "requestValidation",
-  "data": {
-    "error": "reg",
-    "data": {
-      "key": "friendlyName",
-      "regId": "fname"
-    },
-    "in": "search"
-  }
-}
-```
-
-#### format
-
-An optional format modifier serves as a hint at the contents and format of the string.
-Available formats include: `email`, `date-time`, `date`, `uri`, `hostname`, `ipv4`, `ipv6`, `uuid`, `byte`, `binary`, `password` or custom string.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param in='query' name='email'>
-          <string format='email' />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-### \<number>
-
-[← back](#primitive-data)
-
-The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
-It defines `number` value for a parent element.
-`@innet/server` formats and validate the value automatically (real-time).
-
-Correct numbers are from `-9007199254740991` to `9007199254740991`.
-This is a value of `Number.MAX_SAFE_INTEGER`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <number />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-*This example defines a `GET` endpoint on `/users` which has an optional query `number` parameter of `minAge`.*
-
-#### default
-
-A default value for the `number`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <number default={18} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-*By default, `minAge` query param equals `18`*
-
-#### example
-
-An example value.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <number example={18} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### description
-
-A description of the `number`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <number
-            example={18}
-            description='Age value'
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### values
-
-The enumeration of available `values`.
-If you provide the parameter value, which is not in the `values`, the server returns an error.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <number
-            example={18}
-            values={[
-              12,
-              16,
-              18,
-              21,
-            ]}
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### min, max
-
-Those two props validate the number value by minimum and maximum values.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <number min={1} max={5} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-*In this example `/products?rating=5` is valid and `/products?rating=6` is not*
-
-#### exclusiveMinimum, exclusiveMaximum
-
-These props restrict the value to be strictly greater than or less than the specified number.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <number 
-            exclusiveMinimum={0}
-            exclusiveMaximum={5}
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### multipleOf
-
-This prop restricts the value to be a multiple of the specified number.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='quantity'>
-          <number multipleOf={10} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### format
-
-An optional format modifier serves as a hint at the contents and format of the number.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='price'>
-          <number format='float' />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-### \<integer>
-
-[← back](#primitive-data)
-
-The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
-It defines `integer` value for a parent element.
-`@innet/server` formats and validate the value automatically (real-time).
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <integer />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-*This example defines a `GET` endpoint on `/users` which has an optional query `integer` parameter of `minAge`.*
-
-#### format
-
-You can set up the `integer` format.
-Possible values are `int32` or `int64`.
-By default, there are `int32` used.
-
-The format of `int32` means a number from `-2147483647` to `2147483647`.
-The format of `int64` converts the value to `BigInt` and placed between `-9223372036854775807` and `9223372036854775807`
-
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <integer format='int64' />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### default
-
-A default value for the `integer`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <integer default={18} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-*By default, `minAge` query param equals `18`*
-
-#### example
-
-An example value.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <integer example={18} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### description
+- Type: `string`
+- Required: No
 
-A description of the `integer`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <integer
-            example={18}
-            description='Age value'
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### values
-
-The enumeration of available `values`.
-If you provide the parameter value, which is not in the `values`, the server returns an error.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='minAge'>
-          <integer
-            example={18}
-            values={[
-              12,
-              16,
-              18,
-              21,
-            ]}
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### min, max
-
-Those two props validate the number value by minimum and maximum values.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <integer min={1} max={5} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-*In this example `/products?rating=5` is valid and `/products?rating=6` is not*
-
-#### exclusiveMinimum, exclusiveMaximum
-
-These props restrict the value to be strictly greater than or less than the specified number.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='count'>
-          <integer 
-            exclusiveMinimum={0}
-            exclusiveMaximum={100}
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### multipleOf
-
-This prop restricts the value to be a multiple of the specified number.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='quantity'>
-          <integer multipleOf={5} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-### \<date>
-
-[← back](#primitive-data)
-
-The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
-It defines `date` value for a parent element.
-`@innet/server` formats and validate the value automatically (real-time).
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='birthday'>
-          <date />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### default
-
-A default value for the `date`.
-Available values:
-- `string` - the date in ISO format
-- `number` - date timestamp
-- `Date` - JavaScript `Date` format
-- `'now'` - the string defines current date as default value.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='birthday'>
-          <date default='1950-02-15' />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### values
-
-The enumeration of available `values`.
-If you provide the parameter value, which is not in the `values`, the server returns an error.
-
-Available values:
-- `string` - the date in ISO format
-- `number` - date timestamp
-- `Date` - JavaScript `Date` format
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='birthday'>
-          <date
-            values={[
-              1,
-              new Date(),
-              '1950-02-15',
-            ]}
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### example
-
-An example value.
-
-Available values:
-- `string` - the date in ISO format
-- `number` - date timestamp
-- `Date` - JavaScript `Date` format
-- `'now'` - the string defines server start date as example.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='birthday'>
-          <date example={0} />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### description
-
-A description of the `date`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='birthday'>
-          <date
-            description='The user birthday'
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### min, max
-
-Those two pros limit the date period.
-
-Available values:
-- `string` - the date in ISO format
-- `number` - date timestamp
-- `Date` - JavaScript `Date` format
-- `'now'` - the string defines current server date as default.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <param
-          in='query'
-          name='birthday'>
-          <date
-            min='01-01-1900'
-            max='now'
-            description='The user birthday'
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-### \<uuid>
-
-[← back](#primitive-data)
-
-Universally unique identifier.
-
-The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
-It defines `string` value in `uuid` format for a parent element.
-`@innet/server` formats and validate the value automatically (real-time).
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/users'>
-        <param
-          in='cookie'
-          name='userId'>
-          <uuid />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### default
-
-A default value for the `uuid`.
-
-Available values:
-- `string` in uuid format
-- `new` generates a new uuid
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/users'>
-        <param
-          in='cookie'
-          name='userId'>
-          <uuid default='new' />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### values
-
-The enumeration of available `values`.
-If you provide the parameter value, which is not in the `values`, the server returns an error.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/users'>
-        <param
-          in='header'
-          name='uuid'>
-          <uuid
-            values={[
-              '123e4567-e89b-12d3-a456-426655440000',
-              '123e4567-e89b-12d3-a456-426614174000',
-            ]}
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### example
-
-An example value.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/users'>
-        <param
-          in='query'
-          name='active'>
-          <uuid
-            default='new'
-            example='123e4567-e89b-12d3-a456-426655440000'
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### description
-
-A description of the `boolean`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/users'>
-        <param
-          in='cookie'
-          name='userId'>
-          <uuid
-            default='new'
-            example='123e4567-e89b-12d3-a456-426655440000'
-            description='User ID for a new user'
-          />
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-### \<binary>
-
-[← back](#primitive-data)
-
-This is a binary type of data.
-There is one way to get the type, it is `multipart/form-data` usage.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/partner'>
-        <body>
-          <object>
-            <field key='icon'>
-              <binary />
-            </field>
-            <field key='name'>
-              <string />
-            </field>
-          </object>
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### description
-
-A description of the `binary`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/partner'>
-        <body>
-          <object>
-            <field key='icon'>
-              <binary
-                description='Square icon of the partner'
-              />
-            </field>
-          </object>
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### accept
-
-This prop defines available file format.
-It works the same as [accept](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/accept) attribute of HTML input element.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/partner'>
-        <body>
-          <object>
-            <field key='icon'>
-              <binary
-                accept='image/jpeg'
-                description='Square icon of the partner'
-              />
-            </field>
-          </object>
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### min, max
-
-Those two pros limit the file size.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/partner'>
-        <body>
-          <object>
-            <field key='icon'>
-              <binary
-                accept='image/jpeg'
-                description='Square icon of the partner'
-                min={1024}
-                max={10 * 1024 ** 2}
-              />
-            </field>
-          </object>
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-## List of Data
-
-[← back](#index)
-
-[\<tuple>](#tuple)  
-[\<array>](#array)  
-[\<object>](#object)  
-[\<field>](#field)  
-
----
-
-### \<tuple>
-
-[← back](#list-of-data)
-
-`<tuple>` element specifies schema parameter as a tuple of children elements.
-
-The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param name='rating' in='query'>
-          <tuple>
-            <number min={1} max={5} />
-            <number min={1} max={5} />
-          </tuple>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-This example defines that, `/products?rating=3&rating=4` is valid and `rating` MUST be from `3` to `4`.
-Also supports formats `/products?rating[]=3&rating[]=4` and `/products?rating[0]=3&rating[1]=4`.
-
-`/products?rating=3` or `/products?rating=1&rating=6` returns an error.
-
-You can add several elements in [\<response>](#response), [\<param>](#param) or [\<body>](#body) to define that one of the element is valid.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <number min={1} max={5} />
-          <tuple>
-            <number min={1} max={5} />
-            <number min={1} max={5} />
-          </tuple>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-This example defines that, `/products?rating=3&rating=4` is valid and `rating` MUST be from `3` to `4`.
-Also supports `/products?rating=3`, returns products have `rating` equals `3`.
-
-`/products?rating=text` or `/products?rating=1&rating=6` returns an error.
-
-#### default
-
-Defines default `<tuple>` value.
-
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <number min={1} max={5} />
-          <tuple default={[1, 5]}>
-            <number min={1} max={5} />
-            <number min={1} max={5} />
-          </tuple>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
+<param in='query' name='search' description='Search query string' />
 ```
 
-#### example
+#### <a id="param-required">required</a>
 
-Defines an example of the `<tuple>` value.
+Whether the parameter is mandatory.
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <number min={1} max={5} />
-          <tuple default={[1, 5]} example={[3, 5]}>
-            <number min={1} max={5} />
-            <number min={1} max={5} />
-          </tuple>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### description
+- Type: `boolean`
+- Default: `false` (except for path parameters, which are always required)
 
-Defines the `<tuple>` description.
-
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <number min={1} max={5} />
-          <tuple
-            description='A range of rating score'
-            default={[1, 5]}
-            example={[3, 5]}>
-            <number min={1} max={5} />
-            <number min={1} max={5} />
-          </tuple>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
+<param in='query' name='token' required />
 ```
-
-### \<array>
 
-[← back](#list-of-data)
+#### <a id="param-deprecated">deprecated</a>
 
-`<array>` element specifies schema parameter as an array of children elements.
+Mark the parameter as deprecated.
 
-The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
+- Type: `boolean`
+- Default: `false`
 
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <array>
-            <number min={1} max={5} />
-          </array>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
+<param in='query' name='oldParam' deprecated />
 ```
 
-This example defines that, `/products?rating=3&rating=4` is valid and `rating` MUST be `3` or `4`.
-Also supports formats `/products?rating[]=3&rating[]=4` and `/products?rating[0]=3&rating[1]=4`.
+### Body
+###### [🏠︎](#index) / [API Elements](#api-elements) / Body [↑](#param) [↓](#response)
 
-`/products?rating=3` and `/products?rating=1&rating=2&rating=3` also support.
+Define the structure and validation rules for the request body that your endpoint accepts. The body schema is automatically validated on every request and documented in OpenAPI. You can specify required/optional fields, data types, and validation constraints.
 
-#### default
+Define request body structure:
 
-Defines default `<array>` value.
-
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <array default={[1, 2, 3, 4, 5]}>
-            <number min={1} max={5} />
-          </array>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
+<body>
+  <object>
+    <field key='name' required>
+      <string min={1} max={100} />
+    </field>
+    <field key='age' optional>
+      <integer min={0} max={150} />
+    </field>
+    <field key='email'>
+      <string format='email' />
+    </field>
+  </object>
+</body>
 ```
-
-#### example
 
-Defines an example of the `<array>` value.
+Place `<body>` inside an `<endpoint>` to define what request data is expected. The body content should be a schema type (`<object>`, `<array>`, or a primitive type).
 
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <array example={[1, 3, 5]}>
-            <number min={1} max={5} />
-          </array>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
+<endpoint method='post' path='/users'>
+  <body>
+    <object>
+      <field key='name' required>
+        <string />
+      </field>
+    </object>
+  </body>
+</endpoint>
 ```
 
-#### description
+### Response
+###### [🏠︎](#index) / [API Elements](#api-elements) / Response [↑](#body)
 
-Defines the `<array>` description.
+Define what your endpoint will return to clients. Specify the response status code, data structure, and fields. You can define multiple response types for different HTTP status codes. All responses are automatically validated and documented in OpenAPI.
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='rating'>
-          <array
-            description='Values of rating score'
-            example={[3, 5]}>
-            <number min={1} max={5} />
-          </array>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### minItems, maxItems
+Define response structure and status:
 
-Those two props validate the array by minimum and maximum number of items.
-
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='tags'>
-          <array minItems={1} maxItems={10}>
-            <string />
-          </array>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### uniqueItems
-
-This prop validates that all items in the array are unique.
+<response status={200}>
+  <object>
+    <field key='data'>
+      <object />
+    </field>
+  </object>
+</response>
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/products'>
-        <param in='query' name='ids'>
-          <array uniqueItems>
-            <number />
-          </array>
-        </param>
-      </endpoint>
-    </api>
-  </server>
-)
+<response status={404}>
+  <object>
+    <field key='error'><string /></field>
+  </object>
+</response>
 ```
-
-### \<object>
-
-[← back](#list-of-data)
 
-The element MUST be placed inside one of [\<response>](#response), [\<param>](#param), [\<body>](#body).
-It defines `object` value for a parent element.
-`@innet/server` formats and validate the value automatically (real-time).
+#### <a id="response-status">status</a>
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/users'>
-        <body>
-          <object>
-            <string />
-          </object>
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
-```
+The HTTP status code for this response.
 
-#### default
+- Type: `number | string`
+- Examples: `200`, `404`, `'created'`, `'notFound'`, `'2XX'`, `'4XX'`
+- Default: `'default'`
 
-A default value for the `object`.
-
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/users'>
-        <body>
-          <object
-            default={{name: 'John'}}
-          />
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
+<response status={200}>
+  <object />
+</response>
 ```
-
-#### example
 
-An example value.
+#### <a id="response-type">type</a>
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/users'>
-        <body>
-        <object
-          example={{name: 'John'}}
-        />
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
-```
-
-#### description
+The media type of the response.
 
-A description of the `object`.
+- Type: `string`
+- Default: `'application/json'`
+- Examples: `'application/json'`, `'text/html'`, `'text/plain'`
 
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/users'>
-        <body>
-          <object
-            description='The object of a user'
-          />
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
+<response status={200} type='text/html'>
+  Hello World
+</response>
 ```
 
-### \<field>
+Place `<response>` inside an `<endpoint>` to define multiple possible responses:
 
-[← back](#list-of-data)
-
-The element MUST be placed inside [\<object>](#object).
-It defines a `field` of an `object` value for a parent element.
-`@innet/server` formats and validate the value automatically (real-time).
-
-`key` is REQUIRED prop of `<field>`, it defines a field name of the [\<object>](#object).
-
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/users'>
-        <body>
-          <object>
-            <field key='name' />
-            <field key='surname' />
-            <field key='birthbay' />
-          </object>
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
+<endpoint method='get' path='/users/{id}'>
+  <response status={200}>
+    <object>
+      <field key='id'><uuid /></field>
+      <field key='name'><string /></field>
+    </object>
+  </response>
+  <response status={404}>
+    <object>
+      <field key='error'><string /></field>
+    </object>
+  </response>
+</endpoint>
 ```
-
-#### optional
 
-By default, any field is required. You can set it as `optional` by this prop.
+## Customization
+###### [🏠︎](#index) / Customization [↑](#schema-types)
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/users'>
-        <body>
-        <object>
-          <field key='name' />
-          <field key='surname' />
-          <field optional key='birthbay' />
-        </object>
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
-```
+### Configuration
+###### [🏠︎](#index) / [Customization](#customization) / Configuration [↓](#utils)
 
-#### deprecated
+Configure your server with environment variables and props. Use these settings to customize port, API version, SSL certificates, and other server behavior for different environments (development, staging, production).
 
-You can deprecate a field.
+**Environment Variables:**
+- `INNET_PORT` — Server port (default: `80` or `443`)
+- `INNET_API_VERSION` — API version (default: `0.0.0`)
+- `INNET_API_PREFIX` — API URL prefix (default: empty)
+- `INNET_UI_PATH` — Swagger UI path (default: `/ui`)
+- `INNET_SSL_KEY` / `INNET_SSL_CRT` — HTTPS certificates
+- `NODE_ENV` — Environment (dev, prod, etc.)
 
-*src/app.tsx*
+**Server Setup:**
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/users'>
-        <body>
-        <object>
-          <field key='name' />
-          <field key='surname' />
-          <field deprecated optional key='birthbay' />
-        </object>
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
+<server
+  port={3000}
+  ssl={{
+    cert: './localhost.crt',
+    key: './localhost.key'
+  }}
+  onStart={() => console.log('Server started')}
+  onError={(error) => console.error(error)}
+>
+  {/* ... */}
+</server>
 ```
-
-#### readOnly
 
-You can mark a field as read-only, meaning it can only be returned in responses, not sent in requests.
+## Middleware & Utils
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='get' path='/users'>
-        <response>
-          <object>
-            <field key='id' readOnly>
-              <uuid />
-            </field>
-            <field key='name'>
-              <string />
-            </field>
-          </object>
-        </response>
-      </endpoint>
-    </api>
-  </server>
-)
-```
+Utility middleware elements for protecting your API, controlling access, and adding cross-cutting concerns. Use these to implement authentication, IP filtering, static file serving, redirects, proxying, and more. They work at different scopes (global server level or within specific APIs).
 
-#### writeOnly
+### Env
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Env [↓](#license)
 
-You can mark a field as write-only, meaning it can only be sent in requests, not returned in responses.
+Conditionally execute content based on environment variables.
 
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint method='post' path='/users'>
-        <body>
-          <object>
-            <field key='password' writeOnly>
-              <string />
-            </field>
-            <field key='name'>
-              <string />
-            </field>
-          </object>
-        </body>
-      </endpoint>
-    </api>
-  </server>
-)
+<api>
+  <env is='dev'>
+    <ui />
+  </env>
+</api>
 ```
-
-## Run-Time
-
-Next elements relate to run-time action.
-This action calls on user request.
 
-[← back](#index)
-  
-[\<success>](#success)  
-[\<error>](#error)  
-[\<proxy>](#proxy)  
-[\<redirect>](#redirect)  
-[\<cms>](#cms)  
-[\<file>](#file)  
-[\<header>](#header)  
-[\<cookie>](#cookie)
+#### <a id="env-is">is</a>
 
----
+Environment variable value to match.
 
-### \<success>
+- Type: `string | string[]`
+- Default: matches `NODE_ENV`
 
-[← back](#run-time)
-
-This is a base element to return a success data.
-
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <return>
-      <success />
-    </return>
-  </server>
-)
-```
-
-You will get a response with `204` status (`noContent`) and without content.
+<env is='production'>
+  {/* content */}
+</env>
 
-You can provide some data to the user by children.
-
-*src/app.tsx*
-```typescript jsx
-const data = {...}
-
-export default (
-  <server>
-    <return>
-      <success>
-        {data}
-      </success>
-    </return>
-  </server>
-)
+<env is={['staging', 'production']}>
+  {/* content */}
+</env>
 ```
-
-You will get `200` status (`ok`), with body equals data.
-
-#### status
 
-You can set response status by `status` prop of `<success>`.
+#### <a id="env-of">of</a>
 
-*src/app.tsx*
-```typescript jsx
-const data = {...}
-
-export default (
-  <server>
-    <return>
-      <success status='created'>
-        {data}
-      </success>
-    </return>
-  </server>
-)
-```
-
-You will get `201` status (`created`), with data as a content.
+Environment variable name to check.
 
-You can use a number of `status` prop.
+- Type: `string`
+- Default: `'NODE_ENV'`
 
-*src/app.tsx*
 ```typescript jsx
-const data = {...}
-
-export default (
-  <server>
-    <return>
-      <success status={201}>
-        {data}
-      </success>
-    </return>
-  </server>
-)
+<env of='APP_ENV' is='prod'>
+  {/* content */}
+</env>
 ```
 
-#### contentType
+### License
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / License [↑](#env) [↓](#contact)
 
-This props sets response content type.
-By default, it checks children element to define the prop.
+Define the license for your API.
 
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <return>
-      <success contentType='text/html'>
-        Hello World!
-      </success>
-    </return>
-  </server>
-)
+<api>
+  <license
+    name='Apache 2.0'
+    identifier='Apache-2.0'
+  />
+</api>
 ```
 
-### \<error>
+#### <a id="license-name">name</a>
 
-[← back](#run-time)
+The license name.
 
-Returns an error.
-This element MUST be placed in [\<return>](#return).
+- Type: `string`
+- Required: Yes
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <return>
-      <error />
-    </return>
-  </server>
-)
-```
+#### <a id="license-identifier">identifier</a>
 
-Place a data into the element to return an error with the data.
-
-*src/app.tsx*
-```typescript jsx
-const data = {...}
-
-export default (
-  <server>
-    <return>
-      <error>
-        {data}
-      </error>
-    </return>
-  </server>
-)
-```
+SPDX license expression (mutually exclusive with `url`).
 
-#### status
-You can change response status by `status` prop. By default, it is `520` (`unknownError`)
+- Type: `string`
 
-*src/app.tsx*
-```typescript jsx
-const data = {
-  message: 'User not found!'
-}
-
-export default (
-  <server>
-    <return>
-      <error status='notFound'>
-        {data}
-      </error>
-    </return>
-  </server>
-)
-```
+#### <a id="license-url">url</a>
 
-You can use a number with the status prop.
+URL to the license document (mutually exclusive with `identifier`).
 
-*src/app.tsx*
-```typescript jsx
-const data = {
-  message: 'User not found!'
-}
-
-export default (
-  <server>
-    <return>
-      <error status={404}>
-        {data}
-      </error>
-    </return>
-  </server>
-)
-```
+- Type: `string`
 
-#### code
-When you use `<error>` element a user get next response body.
-
-*for the previous example*
-```json
-{
-  "error": "undefined",
-  "data": {
-    "message": "User not found!"
-  }
-}
-```
+### Contact
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Contact [↑](#license) [↓](#host)
 
-You can change the `error` code by `code` property.
+Define contact information for the API.
 
-*src/app.tsx*
 ```typescript jsx
-const data = {
-  message: 'User not found!'
-}
-
-export default (
-  <server>
-    <return>
-      <error
-        code='noUser'
-        status='notFound'>
-        {data}
-      </error>
-    </return>
-  </server>
-)
-```
-
-Then you get
-
-*for the previous example*
-```json
-{
-  "error": "noUser",
-  "data": {
-    "message": "User not found!"
-  }
-}
+<api>
+  <contact
+    name='Support Team'
+    email='support@example.com'
+    url='https://support.example.com'
+  />
+</api>
 ```
-
-There are some default errors:
-
-- `undefined` - when you use `<error>` element without `code`.
-- `requestValidation` - when request data fails schema validation.
-- `requestBodyContentType` - when cannot parse body.
-- `unknown` - can because of JSON stringify fail or other errors.
 
-### \<proxy>
+#### <a id="contact-name">name</a>
 
-[← back](#run-time)
+Contact person or organization name.
 
-MUST be placed in [\<return>](#return).
+- Type: `string`
 
-You can easy proxy endpoints to another server/service.
+#### <a id="contact-email">email</a>
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint
-        path='/test'
-        method='get'>
-        <return>
-          <proxy to='https://...' />
-        </return>
-      </endpoint>
-    </api>
-    <return>
-      <proxy to='https://...' />
-    </return>
-  </server>
-)
-```
+Email address (must be valid email format).
 
-### \<redirect>
+- Type: `string`
 
-[← back](#run-time)
+#### <a id="contact-url">url</a>
 
-MUST be placed in [\<return>](#return).
+URL pointing to contact information.
 
-You can redirect users to another resource. It adds `Cache-Control` header by default.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint
-        path='/test'
-        method='get'>
-        <return>
-          <redirect to='https://...' />
-        </return>
-      </endpoint>
-    </api>
-    <return>
-      <redirect to='https://...' />
-    </return>
-  </server>
-)
-```
+- Type: `string`
 
-#### status
+### Host
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Host [↑](#contact) [↓](#variable)
 
-`<redirect>` element returns status `301` by default.
-You can change it by `status` property.
+Define a server URL/host for the API. Useful for documenting multiple deployment environments.
 
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <api>
-      <endpoint
-        path='/test'
-        method='get'>
-        <return>
-          <redirect
-            status='found'
-            to='https://...'
-          />
-        </return>
-      </endpoint>
-    </api>
-    <return>
-      <redirect
-        status={303}
-        to='https://...'
-      />
-    </return>
-  </server>
-)
+<api>
+  <host
+    url='https://api.example.com'
+    description='Production server'
+  />
+  <host
+    url='https://staging-api.example.com'
+    description='Staging server'
+  />
+</api>
 ```
 
-### \<cms>
+#### <a id="host-url">url</a>
 
-[← back](#run-time)
+The server URL (supports Server Variables with `{varName}`).
 
-MUST be placed in [\<return>](#return).
+- Type: `string`
+- Required: Yes
 
-`<cms>` helps to return files from a folder by path. It checks files run-time on the server.
+#### <a id="host-description">description</a>
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <return>
-      <cms />
-    </return>
-  </server>
-)
-```
+Description of the host/server.
 
-#### dir
+- Type: `string`
 
-By default, it equals `INNET_CMS_DIR` node env variable or the project folder.
-If you try the previous example on [http://localhost/package.json](http://localhost/package.json)
-you get the project `package.json` file.
+### Variable
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Variable [↑](#host) [↓](#blacklist)
 
-You can change root folder by `dir` property.
+Define a variable used in host URLs for substitution.
 
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <return>
-      <cms dir='src' />
-    </return>
-  </server>
-)
+<host url='https://{env}.example.com' description='Test servers'>
+  <variable
+    key='env'
+    values={['dev', 'staging', 'prod']}
+    value='staging'
+    description='Environment name'
+  />
+</host>
 ```
-
-Now you can try [http://localhost/index.tsx](http://localhost/index.tsx)
-you get the index file in `src` folder.
 
-#### prefix
+#### <a id="variable-key">key</a>
 
-`<cms>` matches full `path`, you should take it into account if you add `prefix` on `<api>`.
-By default, it equals `INNET_CMS_PREFIX` node env variable or `/`.
+Variable name (used in `{brackets}` in host URL).
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api prefix='/src'>
-      <return>
-        <cms />
-      </return>
-    </api>
-  </server>
-)
-```
+- Type: `string`
+- Required: Yes
 
-Here you can try [http://localhost/src/index.tsx](http://localhost/src/index.tsx)
-you get the index file in `src` folder.
+#### <a id="variable-value">value</a>
 
-You can reduce the path for matching by prefix property of `<cms>`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <api prefix='/api'>
-      <return>
-        <cms prefix='/api' />
-      </return>
-    </api>
-  </server>
-)
-```
+Default value for the variable.
 
-Now you can try [http://localhost/api/package.json](http://localhost/api/package.json)
+- Type: `string`
 
-#### children
+#### <a id="variable-values">values</a>
 
-You can handle if a file was not found by children elements of `<cms>`.
+Enumeration of allowed values.
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <return>
-      <cms>
-        <error status={404} />
-      </cms>
-    </return>
-  </server>
-)
-```
+- Type: `string[]`
 
-### \<file>
+#### <a id="variable-description">description</a>
 
-[← back](#run-time)
+Variable description.
 
-It returns a file. MUST be placed in [\<return>](#return).
+- Type: `string`
 
-It adds `Content-Length` and `Content-Type` automatically.
+### Blacklist
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Blacklist [↑](#variable) [↓](#whitelist)
 
-It has a REQUIRED property of `path`. 
+Block requests from specific IP addresses.
 
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <return>
-      <file path='package.json' />
-    </return>
-  </server>
-)
+<api>
+  <blacklist ip='192.168.1.1,10.0.0.1'>
+    <error status='forbidden' />
+  </blacklist>
+</api>
 ```
 
-For this example you get `package.json` file of the project on any path except for `/`.
-
-#### children
-
-You can handle if a file was not found by children elements of `<file>`.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <return>
-      <file path='file_is_not_exist.txt'>
-        <error status={404} />
-      </file>
-    </return>
-  </server>
-)
-```
+#### <a id="blacklist-ip">ip</a>
 
-### \<header>
+Comma-separated list of IP addresses to block.
 
-MUST be placed in [\<return>](#return).
+- Type: `string`
+- Environment variable: `INNET_BLACKLIST_IP`
 
-[← back](#run-time)
+### Whitelist
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Whitelist [↑](#blacklist) [↓](#protection)
 
-You can add an HTTP header into response by `<header>` element.
+Allow requests only from specific IP addresses.
 
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <return>
-      <header
-        key='Cache-Control'
-        value='no-cache, no-store, must-revalidate'
-      />
-      <success />
-    </return>
-  </server>
-)
+<api>
+  <whitelist ip='192.168.1.1,10.0.0.1'>
+    <error status='forbidden' />
+  </whitelist>
+</api>
 ```
-
-### \<cookie>
-
-MUST be placed in [\<return>](#return).
 
-[← back](#run-time)
+#### <a id="whitelist-ip">ip</a>
 
-You can add/remove a cookie into response by `<cookie>` element.
+Comma-separated list of IP addresses to allow.
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <return>
-      <cookie
-        key='token'
-        value='...'
-      />
-      <cookie
-        key='removedCookie'
-      />
-      <success />
-    </return>
-  </server>
-)
-```
+- Type: `string`
+- Environment variable: `INNET_WHITELIST_IP`
 
-#### domain
+### Protection
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Protection [↑](#whitelist) [↓](#header)
 
-The prop specifies the value for the [Domain Set-Cookie attribute](https://datatracker.ietf.org/doc/html/rfc6265#section-5.2.3).
-By default, no domain is set, and most clients will consider the cookie to apply to only the current domain.
+Protect your API with a secret value that must be provided by clients.
 
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <return>
-      <cookie
-        domain='.example.com'
-        key='token'
-        value='...'
-      />
-      <success />
-    </return>
-  </server>
-)
+<api>
+  <protection value='secret123'>
+    <error status='forbidden' />
+  </protection>
+</api>
 ```
 
-#### encode
+#### <a id="protection-value">value</a>
 
-Specifies a function that will be used to encode a cookie's value. Since value of a cookie has a limited character set (and must be a simple string), this function can be used to encode a value into a string suited for a cookie's value.
-The default function is the global encodeURIComponent, which will encode a JavaScript string into UTF-8 byte sequences and then URL-encode any that fall outside of the cookie range.
+Secret value that clients must provide.
 
-#### expires
+- Type: `string`
+- Environment variable: `PROTECTION`
 
-Specifies the Date object to be the value for the Expires [Set-Cookie attribute](https://datatracker.ietf.org/doc/html/rfc6265#section-5.2.1). By default, no expiration is set, and most clients will consider this a “non-persistent cookie” and will delete it on a condition like exiting a web browser application.
-Note the [cookie storage model specification](https://datatracker.ietf.org/doc/html/rfc6265#section-5.3) states that if both expires and maxAge are set, then maxAge takes precedence, but it is possible not all clients by obey this, so if both are set, they should point to the same date and time.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <return>
-      <cookie
-        expires={new Date('2050-01-01')}
-        key='token'
-        value='...'
-      />
-      <success />
-    </return>
-  </server>
-)
-```
+#### <a id="protection-maxage">maxAge</a>
 
-#### httpOnly
+How long (in seconds) the protection is valid.
 
-Specifies the boolean value for the [HttpOnly Set-Cookie attribute](https://datatracker.ietf.org/doc/html/rfc6265#section-5.2.6). When truthy, the HttpOnly attribute is set, otherwise it is not. By default, the HttpOnly attribute is not set.
-Note be careful when setting this to true, as compliant clients will not allow client-side JavaScript to see the cookie in document.cookie.
+- Type: `number`
+- Default: 31536000 (1 year)
+- Environment variable: `INNET_PROTECTION_MAX_AGE`
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <return>
-      <cookie
-        httpOnly
-        key='token'
-        value='...'
-      />
-      <success />
-    </return>
-  </server>
-)
-```
+#### <a id="protection-excludeip">excludeIp</a>
 
-#### maxAge
+Comma-separated list of IPs to exempt from protection.
 
-Specifies the number (in seconds) to be the value for the Max-Age Set-Cookie attribute. The given number will be converted to an integer by rounding down. By default, no maximum age is set.
-Note the [cookie storage model specification](https://datatracker.ietf.org/doc/html/rfc6265#section-5.3)  states that if both expires and maxAge are set, then maxAge takes precedence, but it is possible not all clients by obey this, so if both are set, they should point to the same date and time.
+- Type: `string`
+- Environment variable: `INNET_PROTECTED_IP`
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <return>
-      <cookie
-        httpOnly
-        maxAge={9999}
-        key='token'
-        value='...'
-      />
-      <success />
-    </return>
-  </server>
-)
-```
+#### <a id="protection-cookiekey">cookieKey</a>
 
-#### path
+Cookie name for storing protection state.
 
-Specifies the value for the [Path Set-Cookie attribute](https://datatracker.ietf.org/doc/html/rfc6265#section-5.2.4).
-By default, the path is considered the “default path”.
+- Type: `string`
+- Default: `'protection'`
+- Environment variable: `INNET_PROTECTION_COOKIE_KEY`
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <return>
-      <cookie
-        httpOnly
-        maxAge={9999}
-        path='/src'
-        key='token'
-        value='...'
-      />
-      <success />
-    </return>
-  </server>
-)
-```
+#### <a id="protection-searchkey">searchKey</a>
 
-#### priority
+Query parameter name for checking protection.
 
-Specifies the string to be the value for the «Priority Set-Cookie attribute».
+- Type: `string`
+- Default: `'protection'`
+- Environment variable: `INNET_PROTECTION_SEARCH_KEY`
 
-- `'low'` will set the Priority attribute to Low.
-- `'medium'` will set the Priority attribute to Medium, the default priority when not set.
-- `'high'` will set the Priority attribute to High.
+### Header
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Header [↑](#protection) [↓](#cookie)
 
-note This is an attribute that has not yet been fully standardized, and may change in the future. This also means many clients may ignore this attribute until they understand it.
+Set HTTP response headers.
 
-*src/app.tsx*
 ```typescript jsx
-export default (
-  <server>
-    <return>
-      <cookie
-        httpOnly
-        priority='high'
-        path='/src'
-        key='token'
-        value='...'
-      />
-      <success />
-    </return>
-  </server>
-)
+<return>
+  <header key='Cache-Control' value='no-cache' />
+  <success />
+</return>
 ```
 
-#### sameSite
+#### <a id="header-key">key</a>
 
-Specifies the `boolean` or `string` to be the value for the SameSite Set-Cookie attribute.
+Header name.
 
-- `true` will set the SameSite attribute to Strict for strict same site enforcement.
-- `false` will not set the SameSite attribute.
-- `'lax'` will set the SameSite attribute to Lax for lax same site enforcement.
-- `'strict'` will set the SameSite attribute to Strict for strict same site enforcement.
-- `'none'` will set the SameSite attribute to None for an explicit cross-site cookie.
+- Type: `string`
+- Required: Yes
 
-note This is an attribute that has not yet been fully standardized, and may change in the future.
-This also means many clients may ignore this attribute until they understand it.
+#### <a id="header-value">value</a>
 
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <return>
-      <cookie
-        httpOnly
-        sameSite
-        priority='high'
-        path='/src'
-        key='token'
-        value='...'
-      />
-      <success />
-    </return>
-  </server>
-)
-```
-
-#### secure
-
-Specifies the boolean value for the [Secure Set-Cookie attribute](https://datatracker.ietf.org/doc/html/rfc6265#section-5.2.5).
-When truthy, the Secure attribute is set, otherwise it is not.
-By default, the Secure attribute is not set.
-
-Note be careful when setting this to true, as compliant clients will not send the cookie back to the server in the future if the browser does not have an HTTPS connection.
-
-*src/app.tsx*
-```typescript jsx
-export default (
-  <server>
-    <return>
-      <cookie
-        httpOnly
-        secure
-        key='token'
-        value='...'
-      />
-      <success />
-    </return>
-  </server>
-)
-```
+Header value.
 
-## Components
+- Type: `string`
+- Required: Yes
 
-[← back](#index)
+### Cookie
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Cookie [↑](#header) [↓](#proxy)
 
-Component is a function which returns content that, like, placed instead of the component.
-Like you can inject a plugin between elements.
-Components are from [@innet/jsx](https://www.npmjs.com/package/@innet/jsx).
+Set HTTP cookies in the response.
 
-*src/SetToken.tsx*
 ```typescript jsx
-export const SetToken = ({ value }) => (
+<return>
   <cookie
+    key='sessionId'
+    value='abc123'
     httpOnly
     secure
-    key='token'
-    value={value}
+    sameSite
+    maxAge={86400}
   />
-)
+  <success />
+</return>
 ```
 
-and then you can use it inside `app.tsx`.
+#### <a id="cookie-key">key</a>
 
-*src/app.tsx*
-```typescript jsx
-import { SetToken } from './SetToken'
+Cookie name.
 
-export default (
-  <server>
-    <return>
-      <SetToken
-        value='...'
-      />
-      <success />
-    </return>
-  </server>
-)
-```
+- Type: `string`
+- Required: Yes
 
-You can use [hooks](#hooks) inside components.
+#### <a id="cookie-value">value</a>
 
-## Hooks
+Cookie value. Leave empty to delete the cookie.
 
-Hook functions give you all features to control parent element functionality.
+- Type: `string`
 
-[← back](#index)
+#### <a id="cookie-domain">domain</a>
 
-Real-time  
-[useRequest](#userequest)  
-[useResponse](#useresponse)  
-[useHeaders](#useheaders)  
-[useCookies](#usecookies)  
-[usePath](#usepath)  
-[useParams](#useparams)  
-[useSearch](#usesearch)  
-[useBody](#usebody)  
-[useClientIp](#useclientip)  
+Cookie domain.
 
-Server start  
-[useServerPlugin](#useserverplugin)
+- Type: `string`
 
-Both  
-[useServer](#useserver)  
-[usePort](#useport)  
-[useIsServerHttps](#useisserverhttps)  
-[useComponentName](#usecomponentname)
+#### <a id="cookie-encode">encode</a>
 
----
+Encoding function for the cookie value.
 
-### useRequest
+- Type: `(value: string) => string`
+- Default: `encodeURIComponent`
 
-[← back](#hooks)
+#### <a id="cookie-expires">expires</a>
 
-This hook MUST be used in a component placed in [\<return>](#return).
-This hook returns current request instance.
+Expiration date for the cookie.
 
-*src/Component.tsx*
+- Type: `Date`
 
-```typescript jsx
-import { useRequest } from '@innet/sever'
+#### <a id="cookie-httponly">httpOnly</a>
 
-export function Component () {
-  const request = useRequest()
+Hide cookie from JavaScript (HTTP requests only).
 
-  console.log(request)
+- Type: `boolean`
+- Default: `false`
 
-  return <success />
-}
-```
+#### <a id="cookie-maxage">maxAge</a>
 
-### useResponse
+Maximum age in seconds.
 
-[← back](#hooks)
+- Type: `number`
 
-This hook MUST be used in a component placed in [\<return>](#return).
-This hook returns current response instance.
+#### <a id="cookie-path">path</a>
 
-*src/Component.tsx*
+Cookie path.
 
-```typescript jsx
-import { useResponse } from '@innet/sever'
+- Type: `string`
+- Default: `'/'`
 
-export function Component () {
-  const response = useResponse()
+#### <a id="cookie-priority">priority</a>
 
-  console.log(response)
+Cookie priority level.
 
-  return <success />
-}
-```
+- Type: `'low' | 'medium' | 'high'`
 
-### useHeaders
+#### <a id="cookie-samesite">sameSite</a>
 
-[← back](#hooks)
+SameSite policy for CSRF protection.
 
-This hook MUST be used in a component placed in [\<return>](#return).
-This hook returns current request headers object.
+- Type: `boolean | 'lax' | 'strict' | 'none'`
 
-*src/Component.tsx*
+#### <a id="cookie-secure">secure</a>
+
+Only send cookie over HTTPS.
+
+- Type: `boolean`
+- Default: `false`
+
+### Proxy
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Proxy [↑](#cookie) [↓](#redirect)
+
+Forward requests to another server.
 
 ```typescript jsx
-import { useHeaders } from '@innet/sever'
-
-export function Component () {
-  const headers = useHeaders()
-
-  return <success>{{ headers }}</success>
-}
+<endpoint method='get' path='/external'>
+  <return>
+    <proxy to='https://api.example.com' />
+  </return>
+</endpoint>
 ```
 
-### useCookies
+#### <a id="proxy-to">to</a>
 
-[← back](#hooks)
+Target URL to proxy to.
 
-This hook MUST be used in a component placed in [\<return>](#return).
-This hook returns current request cookies object.
+- Type: `string`
+- Required: Yes
 
-*src/Component.tsx*
+### Redirect
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Redirect [↑](#proxy) [↓](#cms)
+
+Redirect requests to another URL.
 
 ```typescript jsx
-import { useCookies } from '@innet/sever'
-
-export function Component () {
-  const cookies = useCookies()
-
-  return <success>{{ cookies }}</success>
-}
+<return>
+  <redirect to='https://example.com' status={301} />
+</return>
 ```
 
-### usePath
+#### <a id="redirect-to">to</a>
 
-[← back](#hooks)
+Target URL for redirection.
 
-This hook MUST be used in a component placed in [\<return>](#return).
-This hook returns current request URL path as a `string`.
+- Type: `string`
+- Required: Yes
 
-*src/Component.tsx*
+#### <a id="redirect-status">status</a>
+
+HTTP status code for redirect.
+
+- Type: `number | string`
+- Default: `301` (moved permanently)
+- Examples: `301`, `302`, `'found'`, `'movedPermanently'`
+
+### CMS
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / CMS [↑](#redirect) [↓](#file)
+
+Serve static files from a directory.
 
 ```typescript jsx
-import { usePath } from '@innet/sever'
-
-export function Component () {
-  const path = usePath()
-
-  return <success>{{ path }}</success>
-}
+<return>
+  <cms dir='public' />
+</return>
 ```
 
-### useParams
+#### <a id="cms-dir">dir</a>
 
-[← back](#hooks)
+Root directory for file serving.
 
-This hook MUST be used in a component placed in [\<return>](#return).
-This hook returns an object of URL params you set by [\<param>](#param).
+- Type: `string`
+- Default: `INNET_CMS_DIR` or project root
+- Environment variable: `INNET_CMS_DIR`
 
-*src/Component.tsx*
+#### <a id="cms-prefix">prefix</a>
+
+URL path prefix to strip from requests.
+
+- Type: `string`
+- Default: `INNET_CMS_PREFIX` or `'/'`
+- Environment variable: `INNET_CMS_PREFIX`
+
+### File
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / File [↑](#cms) [↓](#success)
+
+Serve a single file.
+
 ```typescript jsx
-import { useParams } from '@innet/sever'
-
-export function Component () {
-  const params = useParams()
-
-  return <success>{params}</success>
-}
+<return>
+  <file path='package.json' />
+</return>
 ```
 
-### useSearch
+#### <a id="file-path">path</a>
 
-[← back](#hooks)
+Path to the file to serve.
 
-This hook MUST be used in a component placed in [\<return>](#return).
-This hook returns an object of URL query params.
+- Type: `string`
+- Required: Yes
 
-*src/Component.tsx*
+### Success
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Success [↑](#file) [↓](#error)
+
+Return a successful response with optional data.
+
 ```typescript jsx
-import { useSearch } from '@innet/sever'
-
-export function Component () {
-  const search = useSearch()
-
-  return <success>{search}</success>
-}
+<return>
+  <success status='created'>{{ id: 1, name: 'John' }}</success>
+</return>
 ```
 
-### useBody
+#### <a id="success-status">status</a>
 
-[← back](#hooks)
+HTTP status code for the response.
 
-This hook MUST be used in a component placed in [\<return>](#return).
-This hook returns current request body.
+- Type: `number | string`
+- Default: `200` (ok) or `204` (noContent) if no body
 
-*src/Component.tsx*
+#### <a id="success-contenttype">contentType</a>
+
+Content-Type header for the response.
+
+- Type: `string`
+- Default: auto-detected from body
+
+### Error
+###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Error [↑](#success)
+
+Return an error response.
+
 ```typescript jsx
-import { useBody } from '@innet/sever'
-
-export function Component () {
-  const body = useBody()
-
-  return <success>{body}</success>
-}
+<return>
+  <error status='notFound' code='userNotFound'>
+    {{ message: 'User not found' }}
+  </error>
+</return>
 ```
 
-### useClientIp
+#### <a id="error-status">status</a>
 
-[← back](#hooks)
+HTTP status code for the error.
 
-This hook returns request user IP.
-This hook MUST be used in a component placed in [\<return>](#return).
+- Type: `number | string`
+- Default: `520` (unknownError)
 
-*src/Component.tsx*
-```typescript jsx
-import { useClientIp } from '@innet/sever'
+#### <a id="error-code">code</a>
 
-export function Component () {
-  const ip = useClientIp()
-  
-  return <success>{{ ip }}</success>
-}
-```
+Error code identifier.
 
-### useServerPlugin
-
-[← back](#hooks)
-
-This hook adds a request plugin function.
-The function runs before check endpoints.
-If the function returns `true` the request handling stops, and you get full control over the request.
-
-This hook MUST be used in a component placed in [\<server>](#server).
-
-*src/SecretEndpoint.tsx*
-```typescript jsx
-import { useRequestPlugin, useAction } from '@innet/sever'
-
-export function SecretEndpoint () {
-  useServerPlugin(() => {
-    const action = useAction()
-
-    if (action.path.startsWith('/secret-endpoint')) {
-      return <success>A secret message</success>
-    }
-  })
-}
-```
-
-Then use the plugin in [\<server>](#server) or [\<api>](#api).
-
-*src/app.tsx*
-```typescript jsx
-import { SecretEndpoint } from './SecretEndpoint'
-
-export default (
-  <server>
-    <SecretEndpoint />
-    <return>
-      <error />
-    </return>
-  </server>
-)
-```
-
-Any endpoint returns an error except for `/secret-endpoint`.
-Elements order does not matter.
-
-### useServer
-
-[← back](#hooks)
-
-This hook MUST be used in a component placed in [\<server>](#server).
-This hook returns current http(s) server instance.
-
-*src/Component.tsx*
-```typescript jsx
-import { useServer } from '@innet/sever'
-
-export function Component () {
-  const server = useServer()
-
-  console.log(server)
-
-  return <success />
-}
-```
-
-### usePort
-
-[← back](#hooks)
-
-This hook MUST be used in a component placed in [\<server>](#server).
-This hook returns current http(s) server port.
-
-*src/LocalHost.tsx*
-```typescript jsx
-import { usePort } from '@innet/sever'
-
-export function LocalHost () {
-  const port = usePort()
-
-  return (
-    <host
-      description='Development'
-      url={`http://localhost:${port}/api`}
-    />
-  )
-}
-```
-
-### useIsServerHttps
-
-[← back](#hooks)
-
-This hook MUST be used in a component placed in [\<server>](#server).
-This hook returns `true` if it is https server and `false` if not.
-
-*src/LocalHost.tsx*
-```typescript jsx
-import { usePort, useIsServerHttps } from '@innet/sever'
-
-export function LocalHost () {
-  const https = useIsServerHttps() ? 'https' : 'http'
-  const port = usePort()
-
-  return (
-    <host
-      description='Development'
-      url={`${https}://localhost:${port}/api`}
-    />
-  )
-}
-```
-
-### useComponentName
-
-[← back](#hooks)
-
-This hook returns name of current component.
-
-*src/Component.tsx*
-```typescript jsx
-import { useComponentName } from '@innet/sever'
-
-export function Component () {
-// returns this ^-------^
-  const name = useComponentName()
-
-  return <success>{{ name }}</success>
-}
-```
-
-## Issues
-If you find a bug or have a suggestion, please file an issue on [GitHub](https://github.com/d8corp/innet-server/issues).
-
-[![issues](https://img.shields.io/github/issues-raw/d8corp/innet-server)](https://github.com/d8corp/innet-server/issues)
+- Type: `string`
+- Default: `'undefined'`

@@ -19,6 +19,7 @@ import { Action } from '../../../utils'
 
 export interface ServerProps {
   children?: any
+  formatError?: (target: { data: any, error: string }) => string
   onClose?: () => any
   onError?: (e: Error) => any
   onRequest?: (req: IncomingMessage, res: ServerResponse) => any
@@ -63,7 +64,7 @@ export const server: HandlerPlugin = () => {
 
   const server = https ? http2.createServer({ cert, key }) : http.createServer()
 
-  serverContext.set(handler, { port, server })
+  serverContext.set(handler, { port, props, server })
   serverPlugins.set(handler, plugins)
   serverPortContext.set(handler, port)
   serverHttpsContext.set(handler, https)

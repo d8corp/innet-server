@@ -21,7 +21,7 @@ export function file () {
   const res = useResponse()
 
   if (!res) {
-    useThrow('<{type}> MUST be in <request> or <fallback>')
+    useThrow('<{type}> MUST be in <return> or <preset>')
   }
 
   const { path } = props

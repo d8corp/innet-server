@@ -26,7 +26,9 @@ export function useSchemaType <T extends SchemaType> (
   {
     example,
     examples,
+    nullable,
     ref,
+    value,
     values,
     ...options
   }: ValuesSchemaProps<TypeMap<T>> | undefined = {},
@@ -52,10 +54,11 @@ export function useSchemaType <T extends SchemaType> (
 
     return (docs.components.schemas[ref] = {
       ...options,
+      const: value,
       enum: values,
       example,
       examples,
-      type: type === 'any' ? undefined : type,
+      type: type === 'any' ? undefined : nullable ? [type, 'null'] : type,
     } as any)
   }
 
@@ -69,9 +72,10 @@ export function useSchemaType <T extends SchemaType> (
   return useNewSchema({
     ...options,
     ...enumDescription,
+    const: value,
     enum: arrayValues,
     example,
     examples,
-    type: type === 'any' ? undefined : type as any,
+    type: type === 'any' ? undefined : nullable ? [type, 'null'] : type as any,
   })
 }

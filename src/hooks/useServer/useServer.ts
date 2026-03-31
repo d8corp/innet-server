@@ -4,10 +4,13 @@ import { type Server as HttpsServer } from 'https'
 
 import { useThrow } from '../useThrow'
 
+import { type ServerProps } from '../../plugins'
+
 export type ServerPlugin = () => any
 
 export interface ServerContext {
   port: number
+  props: ServerProps
   server: HttpServer | HttpsServer
 }
 

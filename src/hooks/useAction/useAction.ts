@@ -10,7 +10,7 @@ export function useAction (): Action {
   const action = useContext(actionContext)
 
   if (!action) {
-    useThrow('<{type}> MUST be in <request>, <preset> or <fallback>')
+    useThrow('<{type}> MUST be in <return> or <preset>')
   }
 
   return action
