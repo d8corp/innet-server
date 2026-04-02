@@ -9,13 +9,13 @@ declare namespace Api {
     size: number
     extension?: string
   }
-  namespace Schemas {
-    export type TodoSchemaBody = {
+  export interface Schemas {
+    TodoSchemaBody: {
       id: string
       title: string
       done: boolean | null
     }
-    export type TodoSchema = {
+    TodoSchema: {
       id: string
       title: string
       created: Date
@@ -24,12 +24,12 @@ declare namespace Api {
   }
   export interface Endpoints {
     ['GET:/todos']: {
-      Search: {
+      search: {
         done?: boolean
         page: number
         pageSize: number
       }
-      Response: {
+      response: {
         ['default']: {
           page: number
           pageSize: number
@@ -39,35 +39,40 @@ declare namespace Api {
      }
     }
     ['POST:/todos']: {
-      Body: Schemas.TodoSchemaBody
-      Response: {
+      body: Schemas.TodoSchemaBody
+      response: {
         ['default']: Schemas.TodoSchema
      }
     }
     ['GET:/todos/{todoId}']: {
-      Params: {
+      params: {
         todoId: string
       }
-      Response: {
+      response: {
         ['default']: Schemas.TodoSchema
      }
     }
     ['PATCH:/todos/{todoId}']: {
-      Params: {
+      params: {
         todoId: string
       }
-      Body: {
+      body: {
         done?: boolean
         title?: string
       }
     }
     ['DELETE:/todos/{todoId}']: {
-      Params: {
+      params: {
         todoId: string
       }
-      Response: {
+      response: {
         ['204']: void
      }
     }
   }
+}
+
+declare module '@innet/server' {
+  type ApiEndpoints = Api.Endpoints
+  type ApiSchemas = Api.Schemas
 }

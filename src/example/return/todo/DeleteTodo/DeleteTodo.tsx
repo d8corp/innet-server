@@ -3,7 +3,7 @@ import { useParams } from 'src'
 import { todos } from '../todos'
 
 export function DeleteTodo () {
-  const { todoId } = useParams<Api.Endpoints['DELETE:/todos/{todoId}']['Params']>()
+  const { todoId } = useParams<Api.Endpoints['DELETE:/todos/{todoId}']['params']>()
 
   const todoIndex = todos.findIndex(({ id }) => id === todoId)
 

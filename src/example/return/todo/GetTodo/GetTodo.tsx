@@ -3,7 +3,7 @@ import { useParams } from 'src'
 import { todos } from '../todos'
 
 export function GetTodo () {
-  const { todoId } = useParams<Api.Endpoints['GET:/todos/{todoId}']['Params']>()
+  const { todoId } = useParams<Api.Endpoints['GET:/todos/{todoId}']['params']>()
 
   const todo = todos.find(({ id }) => id === todoId)
 

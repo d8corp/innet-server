@@ -112,9 +112,9 @@ function generateTypes(docs, namespace = 'Api') {
     const schemas = (_a = docs.components) === null || _a === void 0 ? void 0 : _a.schemas;
     const paths = docs.paths;
     if (schemas) {
-        result += '  namespace Schemas {\n';
+        result += '  export interface Schemas {\n';
         for (const name in schemas) {
-            result += `    export type ${name} = ${generateSchemaTypes(schemas[name], 6)}`;
+            result += `    ${name}: ${generateSchemaTypes(schemas[name], 6)}`;
         }
         result += '  }\n';
     }
@@ -143,23 +143,23 @@ function generateTypes(docs, namespace = 'Api') {
                     params[param.in] += `        ${param.name}${splitter} ${generateSchemaTypes(param.schema)}`;
                 }
                 if (params.path) {
-                    result += `      Params: {\n${params.path}      }\n`;
+                    result += `      params: {\n${params.path}      }\n`;
                 }
                 if (params.query) {
-                    result += `      Search: {\n${params.query}      }\n`;
+                    result += `      search: {\n${params.query}      }\n`;
                 }
                 if (params.header) {
-                    result += `      Headers: {\n${params.header}      }\n`;
+                    result += `      headers: {\n${params.header}      }\n`;
                 }
                 if (params.cookie) {
-                    result += `      Cookies: {\n${params.cookie}      }\n`;
+                    result += `      cookies: {\n${params.cookie}      }\n`;
                 }
             }
             if (requestBody) {
-                result += `      Body: ${generateSchemaTypes(requestBody.content['multipart/form-data'].schema, 8)}`;
+                result += `      body: ${generateSchemaTypes(requestBody.content['multipart/form-data'].schema, 8)}`;
             }
             if (responses) {
-                result += '      Response: {\n';
+                result += '      response: {\n';
                 for (const key in responses) {
                     let multiple = false;
                     const response = responses[key];
@@ -183,7 +183,14 @@ function generateTypes(docs, namespace = 'Api') {
             result += '    }\n';
         }
     }
-    return result + '  }\n}';
+    const body = result + '  }\n}';
+    return `${body}
+
+declare module '@innet/server' {
+  type ApiEndpoints = ${namespace}.Endpoints
+  type ApiSchemas = ${namespace}.Schemas
+}
+`;
 }
 
 export { generateSchemaTypes, generateTypes };

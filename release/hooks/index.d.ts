@@ -6,6 +6,7 @@ export * from './useBodyFile';
 export * from './useClientIp';
 export * from './useComponentName';
 export * from './useCookies';
+export * from './useData';
 export * from './useEffect';
 export * from './useEndpoint';
 export * from './useHeaders';

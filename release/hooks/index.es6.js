@@ -6,6 +6,7 @@ import './useBodyFile/index.es6.js';
 import './useClientIp/index.es6.js';
 import './useComponentName/index.es6.js';
 import './useCookies/index.es6.js';
+import './useData/index.es6.js';
 import './useEffect/index.es6.js';
 import './useEndpoint/index.es6.js';
 import './useHeaders/index.es6.js';

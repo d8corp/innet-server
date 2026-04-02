@@ -7,7 +7,7 @@ export function GetTodos () {
     done,
     page,
     pageSize,
-  } = useSearch<Api.Endpoints['GET:/todos']['Search']>()
+  } = useSearch<Api.Endpoints['GET:/todos']['search']>()
 
   const rawTodos = done === undefined
     ? rootTodos
@@ -17,7 +17,7 @@ export function GetTodos () {
   const stop = start + Number(pageSize)
   const todos = rawTodos.slice(start, stop)
 
-  const data: Api.Endpoints['GET:/todos']['Response']['default'] = {
+  const data: Api.Endpoints['GET:/todos']['response']['default'] = {
     count: rootTodos.length,
     page,
     pageSize,

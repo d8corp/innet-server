@@ -2,6 +2,7 @@ import type { OpenAPIV3_1 as API } from 'openapi-types'
 
 import type { ApiErrorValue } from './constants'
 import { type ServerPlugin } from './hooks'
+import { type ResponseStatus } from './plugins'
 import { type Rule, type RulesErrors } from './utils/rules'
 
 // Open API
@@ -104,3 +105,17 @@ export interface ValuesSchemaProps<T> extends BaseSchemaProps<T> {
   value?: T
   values?: SchemaValues<T>
 }
+
+export type TResponse = Record<ResponseStatus, unknown>
+
+export interface TEndpoint {
+  body?: unknown
+  cookies?: Record<string, string>
+  headers?: Record<string, string>
+  params?: Record<string, unknown>
+  response?: Record<string, TResponse>
+  search?: Record<string, unknown>
+}
+
+export type ApiEndpoints = Record<string, TEndpoint>
+export type ApiSchemas = Record<string, unknown>

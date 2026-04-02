@@ -8,6 +8,7 @@ require('./useBodyFile/index.js');
 require('./useClientIp/index.js');
 require('./useComponentName/index.js');
 require('./useCookies/index.js');
+require('./useData/index.js');
 require('./useEffect/index.js');
 require('./useEndpoint/index.js');
 require('./useHeaders/index.js');

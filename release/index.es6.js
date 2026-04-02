@@ -12,6 +12,7 @@ export { bodyFileContext, useBodyFile } from './hooks/useBodyFile/useBodyFile.es
 export { useClientIp } from './hooks/useClientIp/useClientIp.es6.js';
 export { useComponentName } from './hooks/useComponentName/useComponentName.es6.js';
 export { useCookies } from './hooks/useCookies/useCookies.es6.js';
+export { useData } from './hooks/useData/useData.es6.js';
 export { useEffect } from './hooks/useEffect/useEffect.es6.js';
 export { endpointContext, useEndpoint } from './hooks/useEndpoint/useEndpoint.es6.js';
 export { useHeaders } from './hooks/useHeaders/useHeaders.es6.js';
