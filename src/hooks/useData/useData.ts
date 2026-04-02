@@ -8,17 +8,17 @@ import { useThrow } from '../useThrow'
 import { type ApiEndpoints, type TEndpoint } from '../../types'
 import { type Action } from '../../utils'
 
-type EndpointsWithField<Api, F extends string> = {
-  [K in keyof Api]: Api[K] extends { [K2 in F]: any } ? K : never
-}[keyof Api]
+type KeysWithField<F extends string> = {
+  [K in keyof ApiEndpoints]: F extends keyof ApiEndpoints[K] ? K : never
+}[keyof ApiEndpoints]
 
 export function useData<
   F extends Exclude<keyof TEndpoint, 'response'>,
-  D extends EndpointsWithField<ApiEndpoints, F> = EndpointsWithField<ApiEndpoints, F>
+  K extends KeysWithField<F> = KeysWithField<F>
 > (
   from: F,
-  path?: D,
-): ApiEndpoints[D][F] {
+  path?: K,
+): ApiEndpoints[K][F] {
   if (path) {
     const endpoint = useEndpoint()
     const endpointKey = `${endpoint.props.method.toUpperCase()}:${endpoint.props.path}`
@@ -38,5 +38,5 @@ export function useData<
     return useContext(paramsContext)
   }
 
-  return action[from as keyof Action] as ApiEndpoints[D][F]
+  return action[from as keyof Action] as any
 }
