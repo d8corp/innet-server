@@ -32,13 +32,15 @@ const success = () => {
             ? 'text/plain'
             : 'application/json');
         const content = contentType === 'application/json' ? JSONString.JSONString(child) : String(child);
-        res.setHeader('Content-Type', contentType);
-        res.setHeader('Content-Length', content.length);
+        res.setHeader('Content-Type', contentType === 'application/json'
+            ? 'application/json; charset=utf-8'
+            : contentType);
+        res.setHeader('Content-Length', Buffer.byteLength(content));
         if (contentType === 'application/json') {
-            res.write(JSONString.JSONString(child));
+            res.write(content, 'utf-8');
         }
         else {
-            res.write(String(child));
+            res.write(content);
         }
     }
     res.end();
