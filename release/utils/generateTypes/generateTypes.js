@@ -101,9 +101,7 @@ function generateSchemaTypes(schema, spaces = 2, lastChar = '\n') {
 }
 function generateTypes(docs, namespace = 'Api') {
     var _a;
-    let result = `import { Bin } from '@innet/server'
-declare namespace ${namespace} {
-`;
+    let result = '';
     const schemas = (_a = docs.components) === null || _a === void 0 ? void 0 : _a.schemas;
     const paths = docs.paths;
     if (schemas) {
@@ -178,8 +176,14 @@ declare namespace ${namespace} {
             result += '    }\n';
         }
     }
-    const body = result + '  }\n}';
-    return `${body}
+    const body = result + '  }';
+    return `import '@innet/server'
+${body.includes('Bin') ? 'import { Bin } from \'@innet/server\'\n' : ''}
+declare global {
+  namespace ${namespace} {
+  ${body}
+  }
+}
 
 declare module '@innet/server' {
   interface ApiEndpoints extends ${namespace}.Endpoints {}

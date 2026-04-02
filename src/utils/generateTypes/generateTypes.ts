@@ -126,9 +126,7 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2, l
 }
 
 export function generateTypes (docs: Document, namespace = 'Api'): string {
-  let result = `import { Bin } from '@innet/server'
-declare namespace ${namespace} {
-`
+  let result = ''
   const schemas = docs.components?.schemas
   const paths = docs.paths
 
@@ -224,9 +222,15 @@ declare namespace ${namespace} {
     }
   }
 
-  const body = result + '  }\n}'
+  const body = result + '  }'
 
-  return `${body}
+  return `import '@innet/server'
+${body.includes('Bin') ? 'import { Bin } from \'@innet/server\'\n' : ''}
+declare global {
+  namespace ${namespace} {
+  ${body}
+  }
+}
 
 declare module '@innet/server' {
   interface ApiEndpoints extends ${namespace}.Endpoints {}

@@ -1,15 +1,8 @@
-declare namespace Api {
-  export interface Bin {
-    filename: string
-    fieldName: string
-    originalFilename: string
-    path: string
-    type: string
-    disposition: string
-    size: number
-    extension?: string
-  }
-  export interface Schemas {
+import '@innet/server'
+
+declare global {
+  namespace Api {
+    export interface Schemas {
     TodoSchemaBody: {
       id: string
       title: string
@@ -70,9 +63,10 @@ declare namespace Api {
      }
     }
   }
+  }
 }
 
 declare module '@innet/server' {
-  type ApiEndpoints = Api.Endpoints
-  type ApiSchemas = Api.Schemas
+  interface ApiEndpoints extends Api.Endpoints {}
+  interface ApiSchemas extends Api.Schemas {}
 }

@@ -2,12 +2,15 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+var jsx = require('@innet/jsx');
 require('../useAction/index.js');
 require('../useEndpoint/index.js');
+require('../useParams/index.js');
 require('../useThrow/index.js');
 var useEndpoint = require('../useEndpoint/useEndpoint.js');
 var useThrow = require('../useThrow/useThrow.js');
 var useAction = require('../useAction/useAction.js');
+var useParams = require('../useParams/useParams.js');
 
 function useData(from, path) {
     if (path) {
@@ -20,6 +23,9 @@ function useData(from, path) {
     const action = useAction.useAction();
     if (!action) {
         useThrow.useThrow('<{type}> MUST be in <return> or <preset>');
+    }
+    if (from === 'params') {
+        return jsx.useContext(useParams.paramsContext);
     }
     return action[from];
 }
