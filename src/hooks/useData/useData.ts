@@ -8,9 +8,13 @@ import { useThrow } from '../useThrow'
 import { type ApiEndpoints, type TEndpoint } from '../../types'
 import { type Action } from '../../utils'
 
+type EndpointsWithField<Api, F extends string> = {
+  [K in keyof Api]: Api[K] extends { [K2 in F]: any } ? K : never
+}[keyof Api]
+
 export function useData<
   F extends Exclude<keyof TEndpoint, 'response'>,
-  D extends keyof ApiEndpoints = keyof ApiEndpoints
+  D extends EndpointsWithField<ApiEndpoints, F> = EndpointsWithField<ApiEndpoints, F>
 > (
   from: F,
   path?: D,
