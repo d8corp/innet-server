@@ -5,6 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
 require('../../../utils/index.js');
+var useServer = require('../../../hooks/useServer/useServer.js');
 var useResponse = require('../../../hooks/useResponse/useResponse.js');
 var JSONString = require('../../../utils/JSONString/JSONString.js');
 
@@ -62,14 +63,17 @@ const errorStatuses = {
     webServerIsDown: 521,
 };
 const error = () => {
-    const { children, ...props } = jsx.useProps();
+    var _a;
+    const server = useServer.useServer();
     const res = useResponse.useResponse();
     if (!res) {
-        throw Error('<error> MUST be in <request>');
+        throw Error('<error> MUST be in <return>');
     }
+    const { children, ...props } = jsx.useProps();
     const { code = 'undefined', status = 520, } = props;
     res.statusCode = typeof status === 'string' ? errorStatuses[status] : status;
-    const content = JSONString.JSONString({ data: children, error: code });
+    const format = (_a = server.props.formatError) !== null && _a !== void 0 ? _a : JSONString.JSONString;
+    const content = format({ data: children, error: code });
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Content-Length', content.length);
     res.write(content);

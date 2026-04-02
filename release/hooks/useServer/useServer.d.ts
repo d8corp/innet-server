@@ -1,9 +1,11 @@
 import { Context } from '@innet/jsx';
 import { type Server as HttpServer } from 'http';
 import { type Server as HttpsServer } from 'https';
+import { type ServerProps } from '../../plugins';
 export type ServerPlugin = () => any;
 export interface ServerContext {
     port: number;
+    props: ServerProps;
     server: HttpServer | HttpsServer;
 }
 export declare const serverContext: Context<ServerContext, ServerContext | undefined>;

@@ -10,7 +10,7 @@ var useThrow = require('../useThrow/useThrow.js');
 function useSearch() {
     const action = useAction.useAction();
     if (!action) {
-        useThrow.useThrow('<{type}> MUST be in <request> or <fallback>');
+        useThrow.useThrow('<{type}> MUST be in <return> or <preset>');
     }
     return action.search;
 }

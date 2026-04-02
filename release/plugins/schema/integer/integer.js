@@ -19,10 +19,10 @@ const integer = () => {
     const { default: defaultValue, example, examples, exclusiveMaximum, exclusiveMinimum, format = 'int32', max: max$1, min: min$1, multipleOf, values: values$1, ...props } = jsx.useProps() || {};
     const schema = useSchemaType.useSchemaType('integer', {
         ...props,
-        const: props.const !== undefined ? Number(props.const) : undefined,
         default: defaultValue !== undefined ? Number(defaultValue) : undefined,
         example: example !== undefined ? Number(example) : undefined,
         examples: examples === null || examples === void 0 ? void 0 : examples.map(Number),
+        value: props.value !== undefined ? Number(props.value) : undefined,
         values: values$1 && values.getArrayValues(values$1, Number),
     });
     if (schema) {

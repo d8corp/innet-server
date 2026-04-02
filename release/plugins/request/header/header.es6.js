@@ -6,7 +6,7 @@ import { useThrow } from '../../../hooks/useThrow/useThrow.es6.js';
 const header = () => {
     const res = useResponse();
     if (!res) {
-        useThrow('<{type}> MUST be in <request> or <fallback>');
+        useThrow('<{type}> MUST be in <return> or <preset>');
     }
     const { key, value, } = useProps();
     res.setHeader(key, value);

@@ -20,7 +20,7 @@ function file() {
     const { children, ...props } = jsx.useProps();
     const res = useResponse.useResponse();
     if (!res) {
-        useThrow.useThrow('<{type}> MUST be in <request> or <fallback>');
+        useThrow.useThrow('<{type}> MUST be in <return> or <preset>');
     }
     const { path } = props;
     if (fs__default["default"].existsSync(path)) {

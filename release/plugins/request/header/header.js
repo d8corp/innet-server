@@ -10,7 +10,7 @@ var useThrow = require('../../../hooks/useThrow/useThrow.js');
 const header = () => {
     const res = useResponse.useResponse();
     if (!res) {
-        useThrow.useThrow('<{type}> MUST be in <request> or <fallback>');
+        useThrow.useThrow('<{type}> MUST be in <return> or <preset>');
     }
     const { key, value, } = jsx.useProps();
     res.setHeader(key, value);

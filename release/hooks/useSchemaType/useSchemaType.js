@@ -7,7 +7,7 @@ require('../useNewSchema/index.js');
 var useApi = require('../useApi/useApi.js');
 var useNewSchema = require('../useNewSchema/useNewSchema.js');
 
-function useSchemaType(type, { example, examples, ref, values, ...options } = {}) {
+function useSchemaType(type, { example, examples, nullable, ref, value, values, ...options } = {}) {
     var _a;
     if (ref) {
         const { docs } = useApi.useApi();
@@ -25,10 +25,11 @@ function useSchemaType(type, { example, examples, ref, values, ...options } = {}
         }
         return (docs.components.schemas[ref] = {
             ...options,
+            const: value,
             enum: values,
             example,
             examples,
-            type: type === 'any' ? undefined : type,
+            type: type === 'any' ? undefined : nullable ? [type, 'null'] : type,
         });
     }
     const arrayValues = values ? Array.isArray(values) ? values : Object.keys(values) : values;
@@ -40,10 +41,11 @@ function useSchemaType(type, { example, examples, ref, values, ...options } = {}
     return useNewSchema.useNewSchema({
         ...options,
         ...enumDescription,
+        const: value,
         enum: arrayValues,
         example,
         examples,
-        type: type === 'any' ? undefined : type,
+        type: type === 'any' ? undefined : nullable ? [type, 'null'] : type,
     });
 }
 

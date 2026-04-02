@@ -6,7 +6,7 @@ import { useThrow } from '../useThrow/useThrow.es6.js';
 function useSearch() {
     const action = useAction();
     if (!action) {
-        useThrow('<{type}> MUST be in <request> or <fallback>');
+        useThrow('<{type}> MUST be in <return> or <preset>');
     }
     return action.search;
 }

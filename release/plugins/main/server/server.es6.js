@@ -36,7 +36,7 @@ const server = () => {
     const { onClose, onError, onRequest, onStart, port = Number((_c = env.INNET_PORT) !== null && _c !== void 0 ? _c : (https ? 443 : 80)), } = props;
     const plugins = new Set();
     const server = https ? http2.createServer({ cert, key }) : http.createServer();
-    serverContext.set(handler, { port, server });
+    serverContext.set(handler, { port, props, server });
     serverPlugins.set(handler, plugins);
     serverPortContext.set(handler, port);
     serverHttpsContext.set(handler, https);

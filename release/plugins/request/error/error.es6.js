@@ -1,6 +1,7 @@
 import { useProps } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
+import { useServer } from '../../../hooks/useServer/useServer.es6.js';
 import { useResponse } from '../../../hooks/useResponse/useResponse.es6.js';
 import { JSONString } from '../../../utils/JSONString/JSONString.es6.js';
 
@@ -58,14 +59,17 @@ const errorStatuses = {
     webServerIsDown: 521,
 };
 const error = () => {
-    const { children, ...props } = useProps();
+    var _a;
+    const server = useServer();
     const res = useResponse();
     if (!res) {
-        throw Error('<error> MUST be in <request>');
+        throw Error('<error> MUST be in <return>');
     }
+    const { children, ...props } = useProps();
     const { code = 'undefined', status = 520, } = props;
     res.statusCode = typeof status === 'string' ? errorStatuses[status] : status;
-    const content = JSONString({ data: children, error: code });
+    const format = (_a = server.props.formatError) !== null && _a !== void 0 ? _a : JSONString;
+    const content = format({ data: children, error: code });
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Content-Length', content.length);
     res.write(content);

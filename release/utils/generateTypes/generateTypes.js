@@ -2,6 +2,15 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
+function getElement(docs, target) {
+    var _a, _b, _c;
+    if (!target)
+        return target;
+    if ('$ref' in target) {
+        return (_c = (_b = (_a = docs.components) === null || _a === void 0 ? void 0 : _a.schemas) === null || _b === void 0 ? void 0 : _b[String(target.$ref).replace('#/components/schemas/', '')]) !== null && _c !== void 0 ? _c : target;
+    }
+    return target;
+}
 function hasDefault(target) {
     return Boolean(target && ('default' in target || 'x-default' in target));
 }
@@ -116,7 +125,7 @@ function generateTypes(docs, namespace = 'Api') {
                     query: '',
                 };
                 for (const param of parameters) {
-                    const splitter = param.in === 'path' || hasDefault(param.schema) || param.required ? ':' : '?:';
+                    const splitter = param.in === 'path' || hasDefault(getElement(docs, param.schema)) || param.required ? ':' : '?:';
                     params[param.in] += `        ${param.name}${splitter} ${generateSchemaTypes(param.schema)}`;
                 }
                 if (params.path) {

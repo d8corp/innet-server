@@ -3,6 +3,10 @@ import { type IncomingMessage, type ServerResponse } from 'http';
 import { type ServerStartParams, type SSL } from '../../../types';
 export interface ServerProps {
     children?: any;
+    formatError?: (target: {
+        data: any;
+        error: string;
+    }) => string;
     onClose?: () => any;
     onError?: (e: Error) => any;
     onRequest?: (req: IncomingMessage, res: ServerResponse) => any;
