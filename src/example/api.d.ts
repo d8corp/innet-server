@@ -13,13 +13,13 @@ declare namespace Api {
     export type TodoSchemaBody = {
       id: string
       title: string
-      done: boolean
+      done: boolean | null
     }
     export type TodoSchema = {
       id: string
       title: string
       created: Date
-      done: boolean
+      done: boolean | null
     }
   }
   export interface Endpoints {

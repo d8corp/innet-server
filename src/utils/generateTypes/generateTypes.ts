@@ -21,86 +21,108 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2, l
     return `Schemas.${(schema.$ref as string).slice(21)}${lastChar}`
   }
 
-  if (schema.type === 'integer') {
-    return `${schema.format === 'int64' ? 'bigint' : 'number'}${lastChar}`
-  }
+  const types = Array.isArray(schema.type) ? schema.type : [schema.type]
+  let scope = ''
 
-  if (schema.type === 'string') {
-    if (schema.format === 'date-time') {
-      return `Date${lastChar}`
-    }
+  for (let i = 0; i < types.length; i++) {
+    const type = types[i]
+    const operator = i ? ' | ' : ''
 
-    if (schema.format === 'binary') {
-      return `Bin${lastChar}`
-    }
+    if (schema.oneOf) {
+      let result = ''
 
-    return `string${lastChar}`
-  }
+      for (const item of schema.oneOf) {
+        if (result) {
+          result += ' | '
+        }
 
-  if (['boolean', 'null', 'number'].includes(schema.type as any)) {
-    return `${schema.type as string}${lastChar}`
-  }
-
-  if (schema.oneOf) {
-    let result = ''
-
-    for (const item of schema.oneOf) {
-      if (result) {
-        result += ' | '
+        result += generateSchemaTypes(item, spaces + 2, '')
       }
 
-      result += generateSchemaTypes(item, spaces + 2, '')
+      scope += `${operator}${result}`
+      continue
     }
 
-    return result + lastChar
-  }
+    if (!type) {
+      scope += `${operator}any`
+      continue
+    }
 
-  if (schema.type === 'array') {
-    if (!schema.items) return `any[]${lastChar}`
+    if (type === 'integer') {
+      scope += `${operator}${schema.format === 'int64' ? 'bigint' : 'number'}`
+      continue
+    }
 
-    return `Array<${generateSchemaTypes(schema.items, spaces + 2, '')}>${lastChar}`
-  }
-
-  if (!schema.type) {
-    return `any${lastChar}`
-  }
-
-  if (schema.type !== 'object') {
-    console.error('unknown type', schema)
-    return `any${lastChar}`
-  }
-
-  let result = '{\n'
-  const required = schema.required || []
-  const hasProps = Boolean(schema.properties && Object.keys(schema.properties).length)
-  const hasRestProps = Boolean(
-    typeof schema.additionalProperties === 'object' &&
-    Object.keys(schema.additionalProperties).length,
-  )
-
-  if (hasProps) {
-    for (const key in schema.properties) {
-      const prop = schema.properties[key]
-      const splitter = required.includes(key) || hasDefault(prop)
-        ? ':'
-        : '?:'
-
-      if ('deprecated' in prop && prop.deprecated) {
-        result += `${space}/** @deprecated */\n`
+    if (type === 'string') {
+      if (schema.format === 'date-time') {
+        scope += `${operator}Date`
+        continue
       }
 
-      result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}`
+      if (schema.format === 'binary') {
+        scope += `${operator}Bin`
+        continue
+      }
+
+      scope += `${operator}string`
+      continue
     }
+
+    if (['boolean', 'null', 'number'].includes(type)) {
+      scope += `${operator}${type}`
+      continue
+    }
+
+    if (type === 'array') {
+      if (schema.type !== 'array' || !schema.items) {
+        scope += `${operator}any[]`
+        continue
+      }
+
+      scope += `${operator}Array<${generateSchemaTypes(schema.items, spaces + 2, '')}>`
+      continue
+    }
+
+    if (type !== 'object') {
+      console.error('Error: Unknown Type', schema)
+      scope += `${operator}any`
+      continue
+    }
+
+    let result = '{\n'
+    const required = schema.required || []
+    const hasProps = Boolean(schema.properties && Object.keys(schema.properties).length)
+    const hasRestProps = Boolean(
+      typeof schema.additionalProperties === 'object' &&
+      Object.keys(schema.additionalProperties).length,
+    )
+
+    if (hasProps) {
+      for (const key in schema.properties) {
+        const prop = schema.properties[key]
+        const splitter = required.includes(key) || hasDefault(prop)
+          ? ':'
+          : '?:'
+
+        if ('deprecated' in prop && prop.deprecated) {
+          result += `${space}/** @deprecated */\n`
+        }
+
+        result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}`
+      }
+    }
+
+    if (hasRestProps) {
+      const value = hasProps
+        ? 'any\n'
+        : generateSchemaTypes(schema.additionalProperties as any, spaces + 2)
+      result += `${space}[key: string]: ${value}`
+    }
+
+    scope += `${operator}${result}${space.slice(0, -2)}}`
   }
 
-  if (hasRestProps) {
-    const value = hasProps
-      ? 'any\n'
-      : generateSchemaTypes(schema.additionalProperties as any, spaces + 2)
-    result += `${space}[key: string]: ${value}`
-  }
-
-  return `${result}${space.slice(0, -2)}}${lastChar}`
+  return `${scope}${lastChar}`
 }
 
 export function generateTypes (docs: Document, namespace = 'Api'): string {

@@ -22,7 +22,7 @@ export function TodoSchema ({ body }: TodoSchemaProps = {}) {
         </field>
       )}
       <field key='done' optional={body}>
-        <boolean default={body ? false : undefined} />
+        <boolean default={body ? false : undefined} nullable />
       </field>
     </object>
   )

@@ -19,67 +19,85 @@ function generateSchemaTypes(schema, spaces = 2, lastChar = '\n') {
     if ('$ref' in schema) {
         return `Schemas.${schema.$ref.slice(21)}${lastChar}`;
     }
-    if (schema.type === 'integer') {
-        return `${schema.format === 'int64' ? 'bigint' : 'number'}${lastChar}`;
-    }
-    if (schema.type === 'string') {
-        if (schema.format === 'date-time') {
-            return `Date${lastChar}`;
-        }
-        if (schema.format === 'binary') {
-            return `Bin${lastChar}`;
-        }
-        return `string${lastChar}`;
-    }
-    if (['boolean', 'null', 'number'].includes(schema.type)) {
-        return `${schema.type}${lastChar}`;
-    }
-    if (schema.oneOf) {
-        let result = '';
-        for (const item of schema.oneOf) {
-            if (result) {
-                result += ' | ';
+    const types = Array.isArray(schema.type) ? schema.type : [schema.type];
+    let scope = '';
+    for (let i = 0; i < types.length; i++) {
+        const type = types[i];
+        const operator = i ? ' | ' : '';
+        if (schema.oneOf) {
+            let result = '';
+            for (const item of schema.oneOf) {
+                if (result) {
+                    result += ' | ';
+                }
+                result += generateSchemaTypes(item, spaces + 2, '');
             }
-            result += generateSchemaTypes(item, spaces + 2, '');
+            scope += `${operator}${result}`;
+            continue;
         }
-        return result + lastChar;
-    }
-    if (schema.type === 'array') {
-        if (!schema.items)
-            return `any[]${lastChar}`;
-        return `Array<${generateSchemaTypes(schema.items, spaces + 2, '')}>${lastChar}`;
-    }
-    if (!schema.type) {
-        return `any${lastChar}`;
-    }
-    if (schema.type !== 'object') {
-        console.error('unknown type', schema);
-        return `any${lastChar}`;
-    }
-    let result = '{\n';
-    const required = schema.required || [];
-    const hasProps = Boolean(schema.properties && Object.keys(schema.properties).length);
-    const hasRestProps = Boolean(typeof schema.additionalProperties === 'object' &&
-        Object.keys(schema.additionalProperties).length);
-    if (hasProps) {
-        for (const key in schema.properties) {
-            const prop = schema.properties[key];
-            const splitter = required.includes(key) || hasDefault(prop)
-                ? ':'
-                : '?:';
-            if ('deprecated' in prop && prop.deprecated) {
-                result += `${space}/** @deprecated */\n`;
+        if (!type) {
+            scope += `${operator}any`;
+            continue;
+        }
+        if (type === 'integer') {
+            scope += `${operator}${schema.format === 'int64' ? 'bigint' : 'number'}`;
+            continue;
+        }
+        if (type === 'string') {
+            if (schema.format === 'date-time') {
+                scope += `${operator}Date`;
+                continue;
             }
-            result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}`;
+            if (schema.format === 'binary') {
+                scope += `${operator}Bin`;
+                continue;
+            }
+            scope += `${operator}string`;
+            continue;
         }
+        if (['boolean', 'null', 'number'].includes(type)) {
+            scope += `${operator}${type}`;
+            continue;
+        }
+        if (type === 'array') {
+            if (schema.type !== 'array' || !schema.items) {
+                scope += `${operator}any[]`;
+                continue;
+            }
+            scope += `${operator}Array<${generateSchemaTypes(schema.items, spaces + 2, '')}>`;
+            continue;
+        }
+        if (type !== 'object') {
+            console.error('Error: Unknown Type', schema);
+            scope += `${operator}any`;
+            continue;
+        }
+        let result = '{\n';
+        const required = schema.required || [];
+        const hasProps = Boolean(schema.properties && Object.keys(schema.properties).length);
+        const hasRestProps = Boolean(typeof schema.additionalProperties === 'object' &&
+            Object.keys(schema.additionalProperties).length);
+        if (hasProps) {
+            for (const key in schema.properties) {
+                const prop = schema.properties[key];
+                const splitter = required.includes(key) || hasDefault(prop)
+                    ? ':'
+                    : '?:';
+                if ('deprecated' in prop && prop.deprecated) {
+                    result += `${space}/** @deprecated */\n`;
+                }
+                result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}`;
+            }
+        }
+        if (hasRestProps) {
+            const value = hasProps
+                ? 'any\n'
+                : generateSchemaTypes(schema.additionalProperties, spaces + 2);
+            result += `${space}[key: string]: ${value}`;
+        }
+        scope += `${operator}${result}${space.slice(0, -2)}}`;
     }
-    if (hasRestProps) {
-        const value = hasProps
-            ? 'any\n'
-            : generateSchemaTypes(schema.additionalProperties, spaces + 2);
-        result += `${space}[key: string]: ${value}`;
-    }
-    return `${result}${space.slice(0, -2)}}${lastChar}`;
+    return `${scope}${lastChar}`;
 }
 function generateTypes(docs, namespace = 'Api') {
     var _a;
