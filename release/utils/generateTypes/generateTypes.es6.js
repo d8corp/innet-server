@@ -97,17 +97,8 @@ function generateSchemaTypes(schema, spaces = 2, lastChar = '\n') {
 }
 function generateTypes(docs, namespace = 'Api') {
     var _a;
-    let result = `declare namespace ${namespace} {
-  export interface Bin {
-    filename: string
-    fieldName: string
-    originalFilename: string
-    path: string
-    type: string
-    disposition: string
-    size: number
-    extension?: string
-  }
+    let result = `import { Bin } from '@innet/server'
+declare namespace ${namespace} {
 `;
     const schemas = (_a = docs.components) === null || _a === void 0 ? void 0 : _a.schemas;
     const paths = docs.paths;
@@ -187,8 +178,8 @@ function generateTypes(docs, namespace = 'Api') {
     return `${body}
 
 declare module '@innet/server' {
-  type ApiEndpoints = ${namespace}.Endpoints
-  type ApiSchemas = ${namespace}.Schemas
+  interface ApiEndpoints extends ${namespace}.Endpoints {}
+  interface ApiSchemas extends ${namespace}.Schemas {}
 }
 `;
 }

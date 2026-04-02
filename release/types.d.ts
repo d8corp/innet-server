@@ -75,6 +75,16 @@ export interface ValuesSchemaProps<T> extends BaseSchemaProps<T> {
     value?: T;
     values?: SchemaValues<T>;
 }
+export interface Bin {
+    disposition: string;
+    extension?: string;
+    fieldName: string;
+    filename: string;
+    originalFilename: string;
+    path: string;
+    size: number;
+    type: string;
+}
 export type TResponse = Record<ResponseStatus, unknown>;
 export interface TEndpoint {
     body?: unknown;
@@ -84,5 +94,9 @@ export interface TEndpoint {
     response?: Record<string, TResponse>;
     search?: Record<string, unknown>;
 }
-export type ApiEndpoints = Record<string, TEndpoint>;
-export type ApiSchemas = Record<string, unknown>;
+export interface ApiEndpoints {
+    [key: string]: TEndpoint;
+}
+export interface ApiSchemas {
+    [key: string]: unknown;
+}
