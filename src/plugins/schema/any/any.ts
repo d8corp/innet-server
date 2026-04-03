@@ -3,10 +3,10 @@ import { useProps } from '@innet/jsx'
 
 import { useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
-import { type BaseSchemaProps } from '../../../types'
+import { type SchemaProps } from '../../../types'
 import { defaultTo, pipe, type Rule } from '../../../utils'
 
-export interface AnyProps extends BaseSchemaProps <any> {}
+export interface AnyProps extends SchemaProps <any> {}
 
 export const any: HandlerPlugin = () => {
   const props = useProps<AnyProps>()

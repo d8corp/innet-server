@@ -11,10 +11,10 @@ import {
   useSchemaType,
 } from '../../../hooks'
 import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
-import { type ArraySchemaObject, type BaseSchemaProps, type SchemaObject } from '../../../types'
+import { type ArraySchemaObject, type SchemaObject, type SchemaProps } from '../../../types'
 import { defaultTo, pipe, required, type Rule, tupleOf } from '../../../utils'
 
-export interface TupleProps extends BaseSchemaProps <any[]> {
+export interface TupleProps extends SchemaProps <any[]> {
   children?: any
 }
 

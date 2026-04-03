@@ -3,10 +3,10 @@ import { useProps } from '@innet/jsx'
 
 import { useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
-import { type ValuesSchemaProps } from '../../../types'
+import { type SchemaProps } from '../../../types'
 import { defaultTo, getArrayValues, max as maximum, min as minimum, num, pipe, type Rule, values } from '../../../utils'
 
-export interface NumberProps extends ValuesSchemaProps <number> {
+export interface NumberProps extends SchemaProps <number> {
   /**
    * The `exclusiveMaximum` keyword is used to restrict the value to be less than the specified number.
    * @example For example, the following value is valid:

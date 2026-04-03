@@ -3,7 +3,7 @@ import { useProps } from '@innet/jsx'
 
 import { useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
-import { type ValuesSchemaProps } from '../../../types'
+import { type SchemaProps } from '../../../types'
 import {
   type DateFormat,
   dateTo as DateRule,
@@ -17,7 +17,7 @@ import {
 } from '../../../utils'
 import { dateFormat } from '../../../utils/dateFormat'
 
-export interface DateProps extends Omit<ValuesSchemaProps<DateFormat>, 'value'> {
+export interface DateProps extends Omit<SchemaProps<DateFormat>, 'value'> {
   const?: string
   max?: DateFormat
   min?: DateFormat

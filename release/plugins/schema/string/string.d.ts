@@ -1,6 +1,6 @@
 import { type HandlerPlugin } from 'innet';
-import { type ValuesSchemaProps } from '../../../types';
-export interface StringProps extends ValuesSchemaProps<string> {
+import { type SchemaProps } from '../../../types';
+export interface StringProps extends SchemaProps<string> {
     /**
      * An optional format modifier serves as a hint at the contents and format of the string.
      * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#strings

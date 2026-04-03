@@ -1,6 +1,6 @@
 import { type HandlerPlugin } from 'innet';
-import { type BaseSchemaProps } from '../../../types';
-export interface ObjectProps extends BaseSchemaProps<object> {
+import { type SchemaProps } from '../../../types';
+export interface ObjectProps extends SchemaProps<object> {
     children?: any;
 }
 export declare const object: HandlerPlugin;

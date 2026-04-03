@@ -1,6 +1,6 @@
 import { type HandlerPlugin } from 'innet';
-import { type BaseSchemaProps } from '../../../types';
-export interface ArrayProps extends BaseSchemaProps<any[]> {
+import { type SchemaProps } from '../../../types';
+export interface ArrayProps extends SchemaProps<any[]> {
     children?: any;
     maxItems?: number;
     minItems?: number;

@@ -13,10 +13,10 @@ import {
   useSchemaType,
 } from '../../../hooks'
 import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
-import { type BaseSchemaProps } from '../../../types'
+import { type SchemaProps } from '../../../types'
 import { defaultTo, getSafeSchema, type ObjectOf, objectOf, pipe, type Rule } from '../../../utils'
 
-export interface ObjectProps extends BaseSchemaProps <object> {
+export interface ObjectProps extends SchemaProps <object> {
   children?: any
 }
 

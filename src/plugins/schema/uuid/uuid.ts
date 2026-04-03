@@ -3,10 +3,10 @@ import { useProps } from '@innet/jsx'
 import { v4 } from 'uuid'
 
 import { useRule, useSchemaType } from '../../../hooks'
-import { type ValuesSchemaProps } from '../../../types'
+import { type SchemaProps } from '../../../types'
 import { defaultTo, getArrayValues, optional, pipe, type Rule, uuidTo, values } from '../../../utils'
 
-export interface UuidProps extends ValuesSchemaProps <string> {
+export interface UuidProps extends SchemaProps <string> {
   default?: 'new' | string
 }
 

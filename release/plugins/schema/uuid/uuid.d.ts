@@ -1,6 +1,6 @@
 import { type HandlerPlugin } from 'innet';
-import { type ValuesSchemaProps } from '../../../types';
-export interface UuidProps extends ValuesSchemaProps<string> {
+import { type SchemaProps } from '../../../types';
+export interface UuidProps extends SchemaProps<string> {
     default?: 'new' | string;
 }
 export declare const uuid: HandlerPlugin;

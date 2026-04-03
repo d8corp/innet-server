@@ -1,6 +1,6 @@
 import { type HandlerPlugin } from 'innet';
-import { type IntegerFormats, type ValuesSchemaProps } from '../../../types';
-export interface IntegerProps extends ValuesSchemaProps<bigint | number> {
+import { type IntegerFormats, type SchemaProps } from '../../../types';
+export interface IntegerProps extends SchemaProps<bigint | number> {
     /**
      * The `exclusiveMaximum` keyword is used to restrict the value to be less than the specified number.
      * @example For example, the following value is valid:

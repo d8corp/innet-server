@@ -2,7 +2,7 @@ import { type HandlerPlugin } from 'innet'
 import { useProps } from '@innet/jsx'
 
 import { useRule, useSchemaType } from '../../../hooks'
-import { type IntegerFormats, type ValuesSchemaProps } from '../../../types'
+import { type IntegerFormats, type SchemaProps } from '../../../types'
 import {
   defaultTo,
   getArrayValues,
@@ -15,7 +15,7 @@ import {
   values as valuesOf,
 } from '../../../utils'
 
-export interface IntegerProps extends ValuesSchemaProps<bigint | number> {
+export interface IntegerProps extends SchemaProps<bigint | number> {
   /**
    * The `exclusiveMaximum` keyword is used to restrict the value to be less than the specified number.
    * @example For example, the following value is valid:

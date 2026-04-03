@@ -3,10 +3,10 @@ import { useProps } from '@innet/jsx'
 
 import { useBlock, useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
-import { type BaseSchemaProps } from '../../../types'
+import { type SchemaProps } from '../../../types'
 import { defaultTo, pipe, type Rule } from '../../../utils'
 
-export interface BooleanProps extends BaseSchemaProps <boolean> {
+export interface BooleanProps extends SchemaProps <boolean> {
   const?: boolean
 }
 

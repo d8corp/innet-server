@@ -58,7 +58,8 @@ export interface ServerStartParams {
     https: boolean;
     port: number;
 }
-export interface BaseSchemaProps<T> {
+export type SchemaValues<T> = (T extends (number | string) ? Record<T, string> : never) | T[];
+export interface SchemaProps<T> {
     default?: T;
     deprecated?: boolean;
     description?: string;
@@ -68,12 +69,9 @@ export interface BaseSchemaProps<T> {
     readOnly?: boolean;
     ref?: string;
     title?: string;
-    writeOnly?: boolean;
-}
-export type SchemaValues<T> = (T extends (number | string) ? Record<T, string> : never) | T[];
-export interface ValuesSchemaProps<T> extends BaseSchemaProps<T> {
     value?: T;
     values?: SchemaValues<T>;
+    writeOnly?: boolean;
 }
 export type TResponse = Record<ResponseStatus, unknown>;
 export interface TEndpoint {

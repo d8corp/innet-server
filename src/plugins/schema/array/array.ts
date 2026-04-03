@@ -3,10 +3,10 @@ import { useContext, useProps } from '@innet/jsx'
 
 import { ruleContext, type SchemaContext, schemaContext, useBlock, useEffect, useSchemaType } from '../../../hooks'
 import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
-import { type ArraySchemaObject, type BaseSchemaProps, type SchemaObject } from '../../../types'
+import { type ArraySchemaObject, type SchemaObject, type SchemaProps } from '../../../types'
 import { arrayOf, defaultTo, oneOf, pipe, type Rule } from '../../../utils'
 
-export interface ArrayProps extends BaseSchemaProps <any[]> {
+export interface ArrayProps extends SchemaProps <any[]> {
   children?: any
   maxItems?: number
   minItems?: number
