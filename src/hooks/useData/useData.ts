@@ -19,17 +19,17 @@ export function useData<
 > (
   from: F,
   path?: K,
-  withThrow?: T,
-): T extends true ? ApiEndpoints[K][F] : ApiEndpoints[K][F] | undefined {
+  preventThrow?: T,
+): T extends true ? ApiEndpoints[K][F] | undefined : ApiEndpoints[K][F] {
   if (path) {
     const endpoint = useEndpoint()
     const endpointKey = `${endpoint.props.method.toUpperCase()}:${endpoint.props.path}`
 
     if (endpointKey !== path) {
-      if (withThrow) {
-        useThrow(`<{type}> MUST be in <endpoint> of ${path as string}`)
+      if (preventThrow) {
+        return undefined as T extends true ? ApiEndpoints[K][F] | undefined : ApiEndpoints[K][F]
       } else {
-        return undefined as T extends true ? ApiEndpoints[K][F] : ApiEndpoints[K][F] | undefined
+        useThrow(`<{type}> MUST be in <endpoint> of ${path as string}`)
       }
     }
   }
