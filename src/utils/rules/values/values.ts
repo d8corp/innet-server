@@ -1,9 +1,10 @@
 import { RulesError } from '../helpers'
 
-import { type SchemaValues } from '../../../types'
+import type { SchemaValues } from '../../../types'
 
-export function getArrayValues<T, F extends (value: T | string) => any = () => T> (values: SchemaValues<T>, format: F = (value => value) as F): ReturnType<F>[] {
-  return Array.isArray(values) ? values.map(format) : Object.keys(values).map(format)
+export function getArrayValues<T extends Record<number | string, unknown> | unknown[]> (values: T): T extends SchemaValues<infer V> ? V[] : never {
+  // @ts-expect-error TODO: Fix types
+  return Array.isArray(values) ? values : Object.keys(values)
 }
 
 export function values<T> (values: T[]) {

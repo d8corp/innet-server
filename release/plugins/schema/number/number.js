@@ -45,7 +45,7 @@ const number = () => {
     }
     rules.push(num.num);
     if (props.values) {
-        rules.push(values.values(values.getArrayValues(props.values, Number)));
+        rules.push(values.values(values.getArrayValues(props.values).map(Number)));
     }
     if (min$1 !== undefined) {
         rules.push(min.min(min$1));

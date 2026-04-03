@@ -16,10 +16,13 @@ var pipe = require('../../../utils/rules/pipe/pipe.js');
 
 const uuid = () => {
     const { default: defaultValue, ...props } = jsx.useProps();
-    const schema = useSchemaType.useSchemaType('string', {
+    const params = {
         ...props,
-        default: defaultValue === 'new' ? undefined : defaultValue,
-    });
+    };
+    if (defaultValue !== 'new') {
+        params.default = defaultValue;
+    }
+    const schema = useSchemaType.useSchemaType('string', params);
     // @ts-expect-error: FIXME
     schema.format = 'uuid';
     if (defaultValue === 'new') {

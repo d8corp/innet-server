@@ -1,7 +1,7 @@
 import './handler/index.es6.js';
 import './hooks/index.es6.js';
 import './plugins/index.es6.js';
-import './types.es6.js';
+import './types/index.es6.js';
 import './utils/index.es6.js';
 export { JSXPlugins, arrayPlugins, handler as default, fnPlugins, handler, objectPlugins, promisePlugins } from './handler/handler.es6.js';
 export { actionContext, useAction } from './hooks/useAction/useAction.es6.js';

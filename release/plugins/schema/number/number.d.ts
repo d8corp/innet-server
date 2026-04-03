@@ -1,6 +1,6 @@
 import { type HandlerPlugin } from 'innet';
 import { type SchemaProps } from '../../../types';
-export interface NumberProps extends SchemaProps<number> {
+export type NumberProps = SchemaProps<number> & {
     /**
      * The `exclusiveMaximum` keyword is used to restrict the value to be less than the specified number.
      * @example For example, the following value is valid:
@@ -37,5 +37,5 @@ export interface NumberProps extends SchemaProps<number> {
      * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
      * */
     multipleOf?: number;
-}
+};
 export declare const number: HandlerPlugin;

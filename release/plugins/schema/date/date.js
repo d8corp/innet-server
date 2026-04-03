@@ -24,11 +24,11 @@ const date = () => {
     const normMax = dateFormat.dateFormat(max);
     const normDefault = dateFormat.dateFormat(defaultValue);
     const normExample = dateFormat.dateFormat(example);
-    const normValues = values$1 && values.getArrayValues(values$1, dateFormat.dateFormat);
+    const normValues = values$1 && values.getArrayValues(values$1).map(dateFormat.dateFormat);
     // @ts-expect-error: FIXME
     const stringValues = normValues === null || normValues === void 0 ? void 0 : normValues.map(value => value.toISOString());
     const normExamples = examples === null || examples === void 0 ? void 0 : examples.map(dateFormat.dateFormat);
-    const schema = useSchemaType.useSchemaType('string', {
+    const params = {
         ...props,
         default: defaultValue === 'now' ? undefined : normDefault === null || normDefault === void 0 ? void 0 : normDefault.toISOString(),
         example: normExample === null || normExample === void 0 ? void 0 : normExample.toISOString(),
@@ -36,7 +36,8 @@ const date = () => {
         // @ts-expect-error: FIXME
         examples: normExamples === null || normExamples === void 0 ? void 0 : normExamples.map(example => example.toISOString()),
         values: stringValues,
-    });
+    };
+    const schema = useSchemaType.useSchemaType('string', params);
     const rules = [];
     if (defaultValue !== undefined) {
         rules.push(defaultTo.defaultTo(defaultValue === 'now' ? () => new Date(Date.now()) : normDefault));

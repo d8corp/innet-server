@@ -15,7 +15,7 @@ import {
   values as valuesOf,
 } from '../../../utils'
 
-export interface IntegerProps extends SchemaProps<bigint | number> {
+export type IntegerProps = SchemaProps<bigint | number> & {
   /**
    * The `exclusiveMaximum` keyword is used to restrict the value to be less than the specified number.
    * @example For example, the following value is valid:
@@ -83,7 +83,7 @@ export const integer: HandlerPlugin = () => {
     example: example !== undefined ? Number(example) : undefined,
     examples: examples?.map(Number),
     value: props.value !== undefined ? Number(props.value) : undefined,
-    values: values && getArrayValues(values, Number),
+    values: values && getArrayValues(values).map(Number),
   })
 
   if (schema) {
@@ -121,7 +121,7 @@ export const integer: HandlerPlugin = () => {
   rules.push(int(format))
 
   if (values) {
-    rules.push(valuesOf(getArrayValues(values, int(format))))
+    rules.push(valuesOf(getArrayValues(values).filter((v) => v !== null).map(v => int(format)(v))))
   }
 
   if (min !== undefined) {

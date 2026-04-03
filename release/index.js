@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 require('./handler/index.js');
 require('./hooks/index.js');
 require('./plugins/index.js');
-require('./types.js');
+require('./types/index.js');
 require('./utils/index.js');
 var handler = require('./handler/handler.js');
 var useAction = require('./hooks/useAction/useAction.js');

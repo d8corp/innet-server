@@ -5,7 +5,7 @@ import { type ObjectType, type SchemaObject, type SchemaProps } from '../../type
 
 export type SchemaType = 'any' | ObjectType
 
-type TypeMap <T extends SchemaType> = T extends 'integer' | 'number'
+export type SchemaTypeMap <T extends SchemaType> = T extends 'integer' | 'number'
   ? number
   : T extends 'string'
     ? string
@@ -31,7 +31,7 @@ export function useSchemaType <T extends SchemaType> (
     value,
     values,
     ...options
-  }: SchemaProps<TypeMap<T>> | undefined = {},
+  }: SchemaProps<SchemaTypeMap<T>> | undefined = {},
 ): SchemaObject | undefined {
   if (ref) {
     const { docs } = useApi()

@@ -1,8 +1,8 @@
 import type { OpenAPIV3_1 as API } from 'openapi-types';
-import type { ApiErrorValue } from './constants';
-import { type ServerPlugin } from './hooks';
-import { type ResponseStatus } from './plugins';
-import { type Rule, type RulesErrors } from './utils/rules';
+import type { ApiErrorValue } from '../constants';
+import { type ServerPlugin } from '../hooks';
+import { type ResponseStatus } from '../plugins';
+import { type Rule, type RulesErrors } from '../utils/rules';
 export type TagObject = API.TagObject;
 export type Document = API.Document;
 export type ServerObject = API.ServerObject;
@@ -59,13 +59,13 @@ export interface ServerStartParams {
     port: number;
 }
 export type SchemaValues<T> = (T extends (number | string) ? Record<T, string> : never) | T[];
-export interface SchemaProps<T> {
-    default?: T;
+export interface BaseSchemaProps<T, D = T> {
+    default?: D;
     deprecated?: boolean;
     description?: string;
     example?: T;
     examples?: T[];
-    nullable?: boolean;
+    nullable?: false;
     readOnly?: boolean;
     ref?: string;
     title?: string;
@@ -73,6 +73,10 @@ export interface SchemaProps<T> {
     values?: SchemaValues<T>;
     writeOnly?: boolean;
 }
+export interface NullableSchemaProps<T, D = T> extends Omit<BaseSchemaProps<T | null, D | null>, 'nullable'> {
+    nullable: true;
+}
+export type SchemaProps<T, D = T> = BaseSchemaProps<T, D> | NullableSchemaProps<T, D>;
 export type TResponse = Record<ResponseStatus, unknown>;
 export interface TEndpoint {
     body?: unknown;

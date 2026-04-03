@@ -6,7 +6,7 @@ import { useParentRule } from '../../../hooks/useParentRule'
 import { type SchemaProps } from '../../../types'
 import { defaultTo, pipe, type Rule } from '../../../utils'
 
-export interface AnyProps extends SchemaProps <any> {}
+export type AnyProps = SchemaProps<any>
 
 export const any: HandlerPlugin = () => {
   const props = useProps<AnyProps>()

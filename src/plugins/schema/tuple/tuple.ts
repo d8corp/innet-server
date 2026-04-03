@@ -14,8 +14,8 @@ import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
 import { type ArraySchemaObject, type SchemaObject, type SchemaProps } from '../../../types'
 import { defaultTo, pipe, required, type Rule, tupleOf } from '../../../utils'
 
-export interface TupleProps extends SchemaProps <any[]> {
-  children?: any
+export type TupleProps = SchemaProps<any[]> & {
+  children?: JSX.Element
 }
 
 export const tuple: HandlerPlugin = () => {

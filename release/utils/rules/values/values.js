@@ -4,8 +4,9 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var helpers = require('../helpers.js');
 
-function getArrayValues(values, format = (value => value)) {
-    return Array.isArray(values) ? values.map(format) : Object.keys(values).map(format);
+function getArrayValues(values) {
+    // @ts-expect-error TODO: Fix types
+    return Array.isArray(values) ? values : Object.keys(values);
 }
 function values(values) {
     return (value, data) => {

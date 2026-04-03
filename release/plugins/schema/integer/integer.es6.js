@@ -19,7 +19,7 @@ const integer = () => {
         example: example !== undefined ? Number(example) : undefined,
         examples: examples === null || examples === void 0 ? void 0 : examples.map(Number),
         value: props.value !== undefined ? Number(props.value) : undefined,
-        values: values$1 && getArrayValues(values$1, Number),
+        values: values$1 && getArrayValues(values$1).map(Number),
     });
     if (schema) {
         if (format) {
@@ -47,7 +47,7 @@ const integer = () => {
     }
     rules.push(int(format));
     if (values$1) {
-        rules.push(values(getArrayValues(values$1, int(format))));
+        rules.push(values(getArrayValues(values$1).filter((v) => v !== null).map(v => int(format)(v))));
     }
     if (min$1 !== undefined) {
         rules.push(min(min$1));

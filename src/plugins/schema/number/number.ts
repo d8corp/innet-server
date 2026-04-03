@@ -6,7 +6,7 @@ import { useParentRule } from '../../../hooks/useParentRule'
 import { type SchemaProps } from '../../../types'
 import { defaultTo, getArrayValues, max as maximum, min as minimum, num, pipe, type Rule, values } from '../../../utils'
 
-export interface NumberProps extends SchemaProps <number> {
+export type NumberProps = SchemaProps<number> & {
   /**
    * The `exclusiveMaximum` keyword is used to restrict the value to be less than the specified number.
    * @example For example, the following value is valid:
@@ -97,7 +97,7 @@ export const number: HandlerPlugin = () => {
   rules.push(num)
 
   if (props.values) {
-    rules.push(values(getArrayValues(props.values, Number)))
+    rules.push(values(getArrayValues(props.values).map(Number)))
   }
 
   if (min !== undefined) {

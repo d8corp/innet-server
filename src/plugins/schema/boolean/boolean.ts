@@ -6,9 +6,7 @@ import { useParentRule } from '../../../hooks/useParentRule'
 import { type SchemaProps } from '../../../types'
 import { defaultTo, pipe, type Rule } from '../../../utils'
 
-export interface BooleanProps extends SchemaProps <boolean> {
-  const?: boolean
-}
+export type BooleanProps = SchemaProps<boolean>
 
 export const boolean: HandlerPlugin = () => {
   useBlock('path')

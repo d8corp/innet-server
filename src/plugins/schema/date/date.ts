@@ -7,6 +7,7 @@ import { type SchemaProps } from '../../../types'
 import {
   type DateFormat,
   dateTo as DateRule,
+  type DefaultDateFormat,
   defaultTo,
   getArrayValues,
   maxDate,
@@ -17,7 +18,7 @@ import {
 } from '../../../utils'
 import { dateFormat } from '../../../utils/dateFormat'
 
-export interface DateProps extends SchemaProps<DateFormat> {
+export type DateProps = SchemaProps<DateFormat, DefaultDateFormat> & {
   max?: DateFormat
   min?: DateFormat
 }
@@ -37,20 +38,22 @@ export const date: HandlerPlugin = () => {
   const normMax = dateFormat(max)
   const normDefault = dateFormat(defaultValue)
   const normExample = dateFormat(example)
-  const normValues = values && getArrayValues(values, dateFormat)
+  const normValues = values && getArrayValues(values).map(dateFormat)
   // @ts-expect-error: FIXME
   const stringValues = normValues?.map(value => value.toISOString())
   const normExamples = examples?.map(dateFormat)
 
-  const schema = useSchemaType('string', {
+  const params: SchemaProps<string> = {
     ...props,
     default: defaultValue === 'now' ? undefined : normDefault?.toISOString(),
     example: normExample?.toISOString(),
-    value: value instanceof Date ? value.toISOString() : typeof value === 'number' ? new Date(value).toISOString() : value,
+    value: value instanceof Date ? value.toISOString() : typeof value === 'number' ? new Date(value).toISOString() : value as string,
     // @ts-expect-error: FIXME
     examples: normExamples?.map(example => example.toISOString()),
     values: stringValues,
-  })
+  }
+
+  const schema = useSchemaType('string', params)
 
   const rules: Rule[] = []
 

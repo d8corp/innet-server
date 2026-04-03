@@ -16,8 +16,8 @@ import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
 import { type SchemaProps } from '../../../types'
 import { defaultTo, getSafeSchema, type ObjectOf, objectOf, pipe, type Rule } from '../../../utils'
 
-export interface ObjectProps extends SchemaProps <object> {
-  children?: any
+export type ObjectProps = SchemaProps<object> & {
+  children?: JSX.Element
 }
 
 export const object: HandlerPlugin = () => {

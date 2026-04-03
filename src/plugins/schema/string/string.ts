@@ -15,7 +15,7 @@ import {
   values,
 } from '../../../utils'
 
-export interface StringProps extends SchemaProps <string> {
+export type StringProps = SchemaProps<string> & {
   /**
    * An optional format modifier serves as a hint at the contents and format of the string.
    * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#strings

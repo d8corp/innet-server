@@ -12,10 +12,13 @@ import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 
 const uuid = () => {
     const { default: defaultValue, ...props } = useProps();
-    const schema = useSchemaType('string', {
+    const params = {
         ...props,
-        default: defaultValue === 'new' ? undefined : defaultValue,
-    });
+    };
+    if (defaultValue !== 'new') {
+        params.default = defaultValue;
+    }
+    const schema = useSchemaType('string', params);
     // @ts-expect-error: FIXME
     schema.format = 'uuid';
     if (defaultValue === 'new') {

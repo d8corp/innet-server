@@ -6,8 +6,8 @@ import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
 import { type ArraySchemaObject, type SchemaObject, type SchemaProps } from '../../../types'
 import { arrayOf, defaultTo, oneOf, pipe, type Rule } from '../../../utils'
 
-export interface ArrayProps extends SchemaProps <any[]> {
-  children?: any
+export type ArrayProps = SchemaProps<any[]> & {
+  children?: JSX.Element
   maxItems?: number
   minItems?: number
   uniqueItems?: boolean

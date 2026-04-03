@@ -6,9 +6,7 @@ import { useRule, useSchemaType } from '../../../hooks'
 import { type SchemaProps } from '../../../types'
 import { defaultTo, getArrayValues, optional, pipe, type Rule, uuidTo, values } from '../../../utils'
 
-export interface UuidProps extends SchemaProps <string> {
-  default?: 'new' | string
-}
+export type UuidProps = SchemaProps<string, 'new' | string>
 
 export const uuid: HandlerPlugin = () => {
   const {
@@ -16,10 +14,15 @@ export const uuid: HandlerPlugin = () => {
     ...props
   } = useProps<UuidProps>()
 
-  const schema = useSchemaType('string', {
+  const params: SchemaProps<string> = {
     ...props,
-    default: defaultValue === 'new' ? undefined : defaultValue,
-  })
+  }
+
+  if (defaultValue !== 'new') {
+    params.default = defaultValue
+  }
+
+  const schema = useSchemaType('string', params)
   // @ts-expect-error: FIXME
   schema.format = 'uuid'
 
