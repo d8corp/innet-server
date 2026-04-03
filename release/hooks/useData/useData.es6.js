@@ -8,12 +8,17 @@ import { useThrow } from '../useThrow/useThrow.es6.js';
 import { useAction } from '../useAction/useAction.es6.js';
 import { paramsContext } from '../useParams/useParams.es6.js';
 
-function useData(from, path) {
+function useData(from, path, withThrow) {
     if (path) {
         const endpoint = useEndpoint();
         const endpointKey = `${endpoint.props.method.toUpperCase()}:${endpoint.props.path}`;
         if (endpointKey !== path) {
-            useThrow(`<{type}> MUST be in <endpoint> of ${path}`);
+            if (withThrow) {
+                useThrow(`<{type}> MUST be in <endpoint> of ${path}`);
+            }
+            else {
+                return undefined;
+            }
         }
     }
     const action = useAction();

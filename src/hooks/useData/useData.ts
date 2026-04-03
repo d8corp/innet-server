@@ -14,17 +14,23 @@ type KeysWithField<F extends string> = {
 
 export function useData<
   F extends Exclude<keyof TEndpoint, 'response'>,
-  K extends KeysWithField<F> = KeysWithField<F>
+  K extends KeysWithField<F> = KeysWithField<F>,
+  T extends boolean = false
 > (
   from: F,
   path?: K,
-): ApiEndpoints[K][F] {
+  withThrow?: T,
+): T extends true ? ApiEndpoints[K][F] : ApiEndpoints[K][F] | undefined {
   if (path) {
     const endpoint = useEndpoint()
     const endpointKey = `${endpoint.props.method.toUpperCase()}:${endpoint.props.path}`
 
     if (endpointKey !== path) {
-      useThrow(`<{type}> MUST be in <endpoint> of ${path as string}`)
+      if (withThrow) {
+        useThrow(`<{type}> MUST be in <endpoint> of ${path as string}`)
+      } else {
+        return undefined as T extends true ? ApiEndpoints[K][F] : ApiEndpoints[K][F] | undefined
+      }
     }
   }
 

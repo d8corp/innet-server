@@ -1,8 +1,8 @@
 import { RulesError } from '../helpers'
 
-import { type ISODate } from '../../../types'
+import { type ISOString } from '../../../types'
 
-export type DateFormat = Date | ISODate | number
+export type DateFormat = Date | ISOString | number
 export type DefaultDateFormat = 'now' | DateFormat
 
 export function dateTo (value: any, data?: object) {

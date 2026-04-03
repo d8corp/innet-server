@@ -12,12 +12,17 @@ var useThrow = require('../useThrow/useThrow.js');
 var useAction = require('../useAction/useAction.js');
 var useParams = require('../useParams/useParams.js');
 
-function useData(from, path) {
+function useData(from, path, withThrow) {
     if (path) {
         const endpoint = useEndpoint.useEndpoint();
         const endpointKey = `${endpoint.props.method.toUpperCase()}:${endpoint.props.path}`;
         if (endpointKey !== path) {
-            useThrow.useThrow(`<{type}> MUST be in <endpoint> of ${path}`);
+            if (withThrow) {
+                useThrow.useThrow(`<{type}> MUST be in <endpoint> of ${path}`);
+            }
+            else {
+                return undefined;
+            }
         }
     }
     const action = useAction.useAction();
