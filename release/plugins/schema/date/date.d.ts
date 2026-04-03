@@ -1,8 +1,7 @@
 import { type HandlerPlugin } from 'innet';
 import { type SchemaProps } from '../../../types';
 import { type DateFormat } from '../../../utils';
-export interface DateProps extends Omit<SchemaProps<DateFormat>, 'value'> {
-    const?: string;
+export interface DateProps extends SchemaProps<DateFormat> {
     max?: DateFormat;
     min?: DateFormat;
 }

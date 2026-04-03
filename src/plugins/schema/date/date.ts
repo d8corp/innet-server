@@ -17,8 +17,7 @@ import {
 } from '../../../utils'
 import { dateFormat } from '../../../utils/dateFormat'
 
-export interface DateProps extends Omit<SchemaProps<DateFormat>, 'value'> {
-  const?: string
+export interface DateProps extends SchemaProps<DateFormat> {
   max?: DateFormat
   min?: DateFormat
 }
@@ -30,6 +29,7 @@ export const date: HandlerPlugin = () => {
     examples,
     max,
     min,
+    value,
     values,
     ...props
   } = useProps<DateProps>() || {}
@@ -46,6 +46,7 @@ export const date: HandlerPlugin = () => {
     ...props,
     default: defaultValue === 'now' ? undefined : normDefault?.toISOString(),
     example: normExample?.toISOString(),
+    value: value instanceof Date ? value.toISOString() : typeof value === 'number' ? new Date(value).toISOString() : value,
     // @ts-expect-error: FIXME
     examples: normExamples?.map(example => example.toISOString()),
     values: stringValues,

@@ -15,7 +15,7 @@ import { useRule } from '../../../hooks/useRule/useRule.es6.js';
 import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 
 const date = () => {
-    const { default: defaultValue, example, examples, max, min, values: values$1, ...props } = useProps() || {};
+    const { default: defaultValue, example, examples, max, min, value, values: values$1, ...props } = useProps() || {};
     const normMin = dateFormat(min);
     const normMax = dateFormat(max);
     const normDefault = dateFormat(defaultValue);
@@ -28,6 +28,7 @@ const date = () => {
         ...props,
         default: defaultValue === 'now' ? undefined : normDefault === null || normDefault === void 0 ? void 0 : normDefault.toISOString(),
         example: normExample === null || normExample === void 0 ? void 0 : normExample.toISOString(),
+        value: value instanceof Date ? value.toISOString() : typeof value === 'number' ? new Date(value).toISOString() : value,
         // @ts-expect-error: FIXME
         examples: normExamples === null || normExamples === void 0 ? void 0 : normExamples.map(example => example.toISOString()),
         values: stringValues,
