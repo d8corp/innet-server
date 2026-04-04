@@ -1,7 +1,7 @@
 import { type HandlerPlugin } from 'innet'
-import { useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 
-import { useRule, useSchemaType } from '../../../hooks'
+import { bodyContext, useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
 import { type SchemaProps } from '../../../types'
 import {
@@ -34,6 +34,8 @@ export const date: HandlerPlugin = () => {
     values,
     ...props
   } = useProps<DateProps>() || {}
+  const isBody = Boolean(useContext(bodyContext))
+  const hasRules = !isBody || !props.readOnly
   const normMin = dateFormat(min)
   const normMax = dateFormat(max)
   const normDefault = dateFormat(defaultValue)
@@ -86,6 +88,8 @@ export const date: HandlerPlugin = () => {
     // @ts-expect-error: FIXME
     schema['x-default'] = 'now'
   }
+
+  if (!hasRules) return
 
   if (defaultValue === undefined) {
     const parentRule = useParentRule()

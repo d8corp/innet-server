@@ -1,8 +1,8 @@
 import { type HandlerPlugin } from 'innet'
-import { useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 import { v4 } from 'uuid'
 
-import { useRule, useSchemaType } from '../../../hooks'
+import { bodyContext, useRule, useSchemaType } from '../../../hooks'
 import { type SchemaProps } from '../../../types'
 import { defaultTo, getArrayValues, optional, pipe, type Rule, uuidTo, values } from '../../../utils'
 
@@ -13,6 +13,8 @@ export const uuid: HandlerPlugin = () => {
     default: defaultValue,
     ...props
   } = useProps<UuidProps>()
+  const isBody = Boolean(useContext(bodyContext))
+  const hasRules = !isBody || !props.readOnly
 
   const params: SchemaProps<string> = {
     ...props,
@@ -30,6 +32,8 @@ export const uuid: HandlerPlugin = () => {
     // @ts-expect-error: FIXME
     schema['x-default'] = defaultValue
   }
+
+  if (!hasRules) return
 
   const rules: Rule[] = []
 

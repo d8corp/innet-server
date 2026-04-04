@@ -1,7 +1,15 @@
 import { type HandlerPlugin, innet, useNewHandler } from 'innet'
 import { useContext, useProps } from '@innet/jsx'
 
-import { ruleContext, type SchemaContext, schemaContext, useBlock, useEffect, useSchemaType } from '../../../hooks'
+import {
+  bodyContext,
+  ruleContext,
+  type SchemaContext,
+  schemaContext,
+  useBlock,
+  useEffect,
+  useSchemaType,
+} from '../../../hooks'
 import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
 import { type ArraySchemaObject, type SchemaObject, type SchemaProps } from '../../../types'
 import { arrayOf, defaultTo, oneOf, pipe, type Rule } from '../../../utils'
@@ -27,6 +35,8 @@ export const array: HandlerPlugin = () => {
   } = useProps<ArrayProps>()
 
   const schema = useSchemaType('array', props) as ArraySchemaObject
+  const isBody = Boolean(useContext(bodyContext))
+  const hasRules = !isBody || !props.readOnly
 
   const fieldSchema: SchemaObject = {}
   handler[schemaContext.key] = fieldSchema satisfies SchemaContext
@@ -45,7 +55,7 @@ export const array: HandlerPlugin = () => {
     schema.uniqueItems = uniqueItems
   }
 
-  if (setRule) {
+  if (setRule && hasRules) {
     let oneOfRulesMap: Rule[]
     const rules: Rule[] = []
     const parentRule = useParentRule()

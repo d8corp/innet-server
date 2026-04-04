@@ -1,7 +1,7 @@
 import { type HandlerPlugin } from 'innet'
-import { useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 
-import { useRule, useSchemaType } from '../../../hooks'
+import { bodyContext, useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
 import { type SchemaProps } from '../../../types'
 import { defaultTo, getArrayValues, max as maximum, min as minimum, num, pipe, type Rule, values } from '../../../utils'
@@ -59,6 +59,8 @@ export const number: HandlerPlugin = () => {
     multipleOf,
     ...props
   } = useProps<NumberProps>() || {}
+  const isBody = Boolean(useContext(bodyContext))
+  const hasRules = !isBody || !props.readOnly
 
   const schema = useSchemaType('number', props)
 
@@ -87,6 +89,8 @@ export const number: HandlerPlugin = () => {
       schema.multipleOf = Number(multipleOf)
     }
   }
+
+  if (!hasRules) return
 
   const rules: Rule[] = []
 

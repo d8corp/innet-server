@@ -1,7 +1,7 @@
 import { type HandlerPlugin } from 'innet'
-import { useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 
-import { useBlock, useRule, useSchemaType } from '../../../hooks'
+import { bodyContext, useBlock, useRule, useSchemaType } from '../../../hooks'
 import { type SchemaProps } from '../../../types'
 import { nullable } from '../../../utils'
 
@@ -9,7 +9,12 @@ export type NullProps = SchemaProps<null>
 
 export const nullPlugin: HandlerPlugin = () => {
   useBlock('path', 'query', 'cookie', 'header')
-  useSchemaType('null', useProps<NullProps>())
+  const props = useProps<NullProps>()
+  useSchemaType('null', props)
+  const isBody = Boolean(useContext(bodyContext))
+  const hasRules = !isBody || !props.readOnly
+
+  if (!hasRules) return
 
   useRule(nullable)
 }

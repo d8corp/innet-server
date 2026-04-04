@@ -11,7 +11,14 @@ import {
   useAction,
   useServerPlugin,
 } from '../../../hooks'
-import { type Document, type Endpoint, type Endpoints, type EndpointsMethods } from '../../../types'
+import {
+  type ApiErrorSchema,
+  type ApiErrorSchemaRefs,
+  type Document,
+  type Endpoint,
+  type Endpoints,
+  type EndpointsMethods,
+} from '../../../types'
 import { type Action, JSONString } from '../../../utils'
 import { type Rule, RulesError } from '../../../utils/rules'
 
@@ -20,12 +27,21 @@ export interface ApiProps {
   /** A description of the API. [CommonMark syntax](https://spec.commonmark.or.org) MAY be used for rich text representation. */
   description?: string
 
+  /** URL path prefix scopes the API. */
+  errorShema?: Partial<ApiErrorSchema>
+
+  /** Error schema reference names. */
+  errorShemaRefs?: Partial<ApiErrorSchemaRefs>
+
   exclude?: RegExp
 
   include?: RegExp
 
   /** URL path prefix scopes the API. */
   prefix?: string
+
+  /** It turns on auto-generation for schemas. */
+  schemaGeneration?: boolean
 
   /** A short summary of the API. */
   summary?: string
@@ -50,9 +66,12 @@ export const api: HandlerPlugin = () => {
 
   const {
     children,
+    errorShema,
+    errorShemaRefs,
     exclude,
     include,
     prefix = process.env.INNET_API_PREFIX || '',
+    schemaGeneration,
     title = '',
     version = process.env.INNET_API_VERSION || '0.0.0',
     ...rest
@@ -178,9 +197,7 @@ export const api: HandlerPlugin = () => {
             if (!action.body) {
               res.statusCode = 400
               res.setHeader('Content-Type', 'application/json')
-              res.write(JSONString({
-                error: 'requestBodyContentType',
-              }))
+              res.write(JSONString({ error: 'requestBodyContentType' }))
               res.end()
 
               return true

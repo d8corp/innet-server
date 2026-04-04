@@ -14,6 +14,142 @@ declare global {
       created: Date
       done: boolean | null
     }
+    ApiValidationError: {
+      data?: {
+          error: string
+          in: string
+          key?: string
+        } | {
+          error: string
+          in: string
+          key?: string
+          value: any
+        } | {
+          accept: string
+          error: string
+          in: string
+          key?: string
+          value: any
+        } | {
+          error: string
+          in: string
+          key?: string
+        } | {
+          error: string
+          in: string
+          key?: string
+          value: any
+        } | {
+          error: string
+          format: string
+          in: string
+          key?: string
+          max?: number | string
+          min?: number | string
+          value: any
+        } | {
+          error: string
+          in: string
+          key?: string
+          max: number
+          value: any
+        } | {
+          error: string
+          in: string
+          key?: string
+          max: Date
+          value: Date
+        } | {
+          error: string
+          in: string
+          key?: string
+          max: number | string
+          value: any
+        } | {
+          error: string
+          in: string
+          key?: string
+          max: number
+          value: string
+        } | {
+          error: string
+          in: string
+          key?: string
+          min: number
+          value: any
+        } | {
+          error: string
+          in: string
+          key?: string
+          min: Date
+          value: Date
+        } | {
+          error: string
+          in: string
+          key?: string
+          min: number | string
+          value: any
+        } | {
+          error: string
+          in: string
+          key?: string
+          min: number
+          value: string
+        } | {
+          error: string
+          in: string
+          key?: string
+        } | {
+          error: string
+          in: string
+          key?: string
+          value: any
+        } | {
+          error: string
+          in: string
+          key?: string
+          value: any
+        } | {
+          error: string
+          errors: Array<{
+            }>
+          in: string
+          key?: string
+        } | {
+          error: string
+          in: string
+          key?: string
+          pattern: string
+          patternId: string
+          value: any
+        } | {
+          error: string
+          in: string
+          key?: string
+        } | {
+          error: string
+          in: string
+          key?: string
+        } | {
+          error: string
+          in: string
+          key?: string
+        } | {
+          error: string
+          in: string
+          key?: string
+        } | {
+          error: string
+          in: string
+          key?: string
+          value: any
+          values: Array<any>
+        }
+      error?: string
+    }
+    ApiRequestBodyContentTypeError: {
+      error?: string
+    }
   }
   export interface Endpoints {
     ['GET:/todos']: {
@@ -23,6 +159,7 @@ declare global {
         pageSize: number
       }
       response: {
+        ['400']: Schemas.ApiValidationError
         ['default']: {
           page: number
           pageSize: number
@@ -34,6 +171,7 @@ declare global {
     ['POST:/todos']: {
       body: Schemas.TodoSchemaBody
       response: {
+        ['400']: Schemas.ApiRequestBodyContentTypeError | Schemas.ApiValidationError
         ['default']: Schemas.TodoSchema
      }
     }
@@ -42,6 +180,7 @@ declare global {
         todoId: string
       }
       response: {
+        ['400']: Schemas.ApiValidationError
         ['default']: Schemas.TodoSchema
      }
     }
@@ -53,6 +192,9 @@ declare global {
         done?: boolean
         title?: string
       }
+      response: {
+        ['400']: Schemas.ApiRequestBodyContentTypeError | Schemas.ApiValidationError
+     }
     }
     ['DELETE:/todos/{todoId}']: {
       params: {
@@ -60,6 +202,7 @@ declare global {
       }
       response: {
         ['204']: void
+        ['400']: Schemas.ApiValidationError
      }
     }
   }

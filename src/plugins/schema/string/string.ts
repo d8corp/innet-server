@@ -1,7 +1,7 @@
 import { type HandlerPlugin } from 'innet'
-import { useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 
-import { useApi, useRule, useSchemaType } from '../../../hooks'
+import { bodyContext, useApi, useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
 import { type SchemaProps } from '../../../types'
 import {
@@ -65,6 +65,8 @@ export const string: HandlerPlugin = () => {
   } = useProps<StringProps>() || {}
   const { refRules } = useApi()
   const schema = useSchemaType('string', props)
+  const isBody = Boolean(useContext(bodyContext))
+  const hasRules = !isBody || !props.readOnly
 
   if (schema) {
     const rules: Rule[] = []
@@ -102,6 +104,8 @@ export const string: HandlerPlugin = () => {
       rules.push(patternTo(pattern, patternId))
     }
 
+    if (!hasRules) return
+
     const rule = pipe(...rules)
 
     if (props.ref) {
@@ -114,7 +118,7 @@ export const string: HandlerPlugin = () => {
       const parentRule = useParentRule()
       useRule(parentRule(rule))
     }
-  } else if (props.ref) {
+  } else if (props.ref && hasRules) {
     if (props.default !== undefined) {
       useRule(refRules[props.ref])
     } else {

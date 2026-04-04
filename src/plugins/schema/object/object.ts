@@ -1,7 +1,8 @@
 import { type HandlerPlugin, innet, useNewHandler } from 'innet'
-import { useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 
 import {
+  bodyContext,
   objectRuleContext,
   objectSchemaContext,
   ruleContext,
@@ -27,6 +28,8 @@ export const object: HandlerPlugin = () => {
     children,
     ...props
   } = useProps<ObjectProps>()
+  const isBody = Boolean(useContext(bodyContext))
+  const hasRules = !isBody || !props.readOnly
   const { refRules } = useApi()
 
   const schema = useSchemaType('object', props)
@@ -38,39 +41,6 @@ export const object: HandlerPlugin = () => {
     schemaContext.set(handler, schema.additionalProperties)
     parentRuleContext.reset(handler)
 
-    const rules: Rule[] = []
-    const rulesMap: ObjectOf = {}
-
-    if (props?.default !== undefined) {
-      rules.push(defaultTo(props.default))
-    }
-
-    let childRule: Rule = v => v
-
-    const restRule: Rule = (value, data) => childRule(value, data)
-
-    if (props?.default !== undefined) {
-      rules.push(objectOf(rulesMap, restRule))
-    } else {
-      const parentRule = useParentRule()
-      rules.push(parentRule(objectOf(rulesMap, restRule)))
-    }
-
-    const rule = pipe(...rules)
-
-    if (props.ref) {
-      refRules[props.ref] = rule
-    }
-
-    useRule(rule)
-    objectRuleContext.set(handler, rulesMap)
-    ruleContext.set(handler, rule => {
-      childRule = rule
-    })
-    parentRuleContext.reset(handler)
-
-    innet(children, handler)
-
     useEffect(() => {
       const safeSchema = getSafeSchema(schema)
 
@@ -78,7 +48,42 @@ export const object: HandlerPlugin = () => {
         delete safeSchema.additionalProperties
       }
     })
-  } else if (props.ref) {
+
+    if (hasRules) {
+      const rules: Rule[] = []
+      const rulesMap: ObjectOf = {}
+
+      if (props?.default !== undefined) {
+        rules.push(defaultTo(props.default))
+      }
+
+      let childRule: Rule = v => v
+
+      const restRule: Rule = (value, data) => childRule(value, data)
+
+      if (props?.default !== undefined) {
+        rules.push(objectOf(rulesMap, restRule))
+      } else {
+        const parentRule = useParentRule()
+        rules.push(parentRule(objectOf(rulesMap, restRule)))
+      }
+
+      const rule = pipe(...rules)
+
+      if (props.ref) {
+        refRules[props.ref] = rule
+      }
+
+      useRule(rule)
+      objectRuleContext.set(handler, rulesMap)
+      ruleContext.set(handler, rule => {
+        childRule = rule
+      })
+      parentRuleContext.reset(handler)
+    }
+
+    innet(children, handler)
+  } else if (props.ref && hasRules) {
     useRule(refRules[props.ref])
   }
 }

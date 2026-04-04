@@ -1,7 +1,7 @@
 import { type HandlerPlugin } from 'innet'
-import { useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 
-import { useBlock, useRule, useSchemaType } from '../../../hooks'
+import { bodyContext, useBlock, useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
 import { type SchemaProps } from '../../../types'
 import { defaultTo, pipe, type Rule } from '../../../utils'
@@ -12,6 +12,10 @@ export const boolean: HandlerPlugin = () => {
   useBlock('path')
   const props = useProps<BooleanProps>()
   useSchemaType('boolean', props)
+  const isBody = Boolean(useContext(bodyContext))
+  const hasRules = !isBody || !props.readOnly
+
+  if (!hasRules) return
 
   const rules: Rule[] = []
 

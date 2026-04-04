@@ -2,7 +2,7 @@ import { type HandlerPlugin, innet, useNewHandler } from 'innet'
 import { useChildren, useContext } from '@innet/jsx'
 
 import { allBodyTypes } from '../../../constants'
-import { bodyFileContext, endpointContext, ruleContext, schemaContext, useEffect } from '../../../hooks'
+import { bodyContext, endpointContext, ruleContext, schemaContext, useEffect } from '../../../hooks'
 import type { EndpointRules, RequestBodyObject, SchemaObject } from '../../../types'
 import { getOrAdd } from '../../../utils'
 
@@ -42,14 +42,15 @@ export const body: HandlerPlugin = () => {
   const rules: EndpointRules = getOrAdd(endpoint, 'endpoint.rules', [{}, {}])
   let fileUsed = false
 
-  bodyFileContext.set(handler, () => {
-    fileUsed = true
+  bodyContext.set(handler, {
+    useFile: () => {
+      fileUsed = true
+    },
   })
+
   ruleContext.set(handler, rule => {
     rules.body = rule
   })
-
-  innet(children, handler)
 
   useEffect(() => {
     if (fileUsed) {
@@ -60,4 +61,6 @@ export const body: HandlerPlugin = () => {
       }
     }
   })
+
+  innet(children, handler)
 }

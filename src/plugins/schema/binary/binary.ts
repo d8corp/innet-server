@@ -1,7 +1,7 @@
 import { type HandlerPlugin } from 'innet'
-import { useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 
-import { useBlock, useBodyFile, useRule, useSchemaType } from '../../../hooks'
+import { bodyContext, useBlock, useBodyContext, useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
 import { bin, binaryAccept, maxBin, minBin, pipe, type Rule } from '../../../utils'
 
@@ -19,14 +19,18 @@ export interface BinaryProps {
 
 export const binary: HandlerPlugin = () => {
   useBlock('path')
-  useBodyFile()
+  useBodyContext().useFile()
 
   const props = useProps<BinaryProps>()
   const schema = useSchemaType('string', props)
+  const isBody = Boolean(useContext(bodyContext))
+  const hasRules = !isBody || !props.readOnly
 
   if (schema) {
     schema.format = 'binary'
   }
+
+  if (!hasRules) return
 
   const rules: Rule[] = []
 

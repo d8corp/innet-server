@@ -1,7 +1,8 @@
 import { type HandlerPlugin, innet, useNewHandler } from 'innet'
-import { useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 
 import {
+  bodyContext,
   ruleContext,
   type SchemaContext,
   schemaContext,
@@ -26,6 +27,8 @@ export const tuple: HandlerPlugin = () => {
     children,
     ...props
   } = useProps<TupleProps>()
+  const isBody = Boolean(useContext(bodyContext))
+  const hasRules = !isBody || !props.readOnly
   const schema = useSchemaType('array', props) as ArraySchemaObject
 
   if (schema) {
@@ -35,33 +38,35 @@ export const tuple: HandlerPlugin = () => {
     // @ts-expect-error: FIXME
     schema.prefixItems = schemas
 
-    const rulesMap: Rule[] = []
-    const rules: Rule[] = []
+    if (hasRules) {
+      const rulesMap: Rule[] = []
+      const rules: Rule[] = []
 
-    if (props.default !== undefined) {
-      rules.push(defaultTo(props.default))
+      if (props.default !== undefined) {
+        rules.push(defaultTo(props.default))
+      }
+
+      if (props.default !== undefined) {
+        rules.push(tupleOf(rulesMap))
+      } else {
+        const parentRule = useParentRule()
+        rules.push(parentRule(tupleOf(rulesMap)))
+      }
+
+      useRule(pipe(...rules))
+
+      parentRuleContext.set(handler, rule => required(rule))
+      ruleContext.set(handler, rule => {
+        rulesMap.push(rule)
+      })
+
+      useEffect(() => {
+        if (!rulesMap.length) {
+          throw Error('<tuple> MUST have content')
+        }
+      })
     }
-
-    if (props.default !== undefined) {
-      rules.push(tupleOf(rulesMap))
-    } else {
-      const parentRule = useParentRule()
-      rules.push(parentRule(tupleOf(rulesMap)))
-    }
-
-    useRule(pipe(...rules))
-
-    parentRuleContext.set(handler, rule => required(rule))
-    ruleContext.set(handler, rule => {
-      rulesMap.push(rule)
-    })
 
     innet(children, handler)
-
-    useEffect(() => {
-      if (!rulesMap.length) {
-        throw Error('<tuple> MUST have content')
-      }
-    })
   }
 }

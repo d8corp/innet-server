@@ -1,7 +1,7 @@
 import { type HandlerPlugin } from 'innet'
-import { useProps } from '@innet/jsx'
+import { useContext, useProps } from '@innet/jsx'
 
-import { useRule, useSchemaType } from '../../../hooks'
+import { bodyContext, useRule, useSchemaType } from '../../../hooks'
 import { type IntegerFormats, type SchemaProps } from '../../../types'
 import {
   defaultTo,
@@ -77,6 +77,9 @@ export const integer: HandlerPlugin = () => {
     values,
     ...props
   } = useProps<IntegerProps>() || {}
+  const isBody = Boolean(useContext(bodyContext))
+  const hasRules = !isBody || !props.readOnly
+
   const schema = useSchemaType('integer', {
     ...props,
     default: defaultValue !== undefined ? Number(defaultValue) : undefined,
@@ -111,6 +114,8 @@ export const integer: HandlerPlugin = () => {
       schema.multipleOf = Number(multipleOf)
     }
   }
+
+  if (!hasRules) return
 
   const rules: Rule[] = []
 

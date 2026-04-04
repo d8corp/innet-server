@@ -1,9 +1,53 @@
 import { type HandlerPlugin, innet, useNewHandler } from 'innet'
 import { useProps } from '@innet/jsx'
+import { type OpenAPIV3_1 } from 'openapi-types'
 
-import { endpointContext, type ServerPlugin, serverPlugins, useApi, useTag } from '../../../hooks'
+import { defaultRequestBodyContentTypeSchema, defaultRequestValidationSchema } from '../../../constants'
+import { endpointContext, type ServerPlugin, serverPlugins, useApi, useEffect, useTag } from '../../../hooks'
 import { type EndpointsMethods, type OperationObject } from '../../../types'
 import { getEndpoint } from '../../../utils'
+
+function addErrorRequest<T extends OpenAPIV3_1.ReferenceObject | OpenAPIV3_1.ResponseObject> (errorSchema: OpenAPIV3_1.ReferenceObject | OpenAPIV3_1.SchemaObject, response: T): T {
+  if (!response) {
+    return {
+      content: {
+        'application/json': {
+          schema: errorSchema,
+        },
+      },
+    } as unknown as T
+  }
+
+  if (!('content' in response)) {
+    console.error('Cannot find content in response: ', response)
+    return response
+  }
+
+  if (!('application/json' in response.content!)) {
+    response.content!['application/json'] = {
+      schema: errorSchema,
+    }
+    return response
+  }
+
+  const schema = response.content['application/json'].schema
+
+  if (!schema) {
+    response.content['application/json'].schema = errorSchema
+    return response
+  }
+
+  if ('oneOf' in schema) {
+    schema.oneOf!.push(errorSchema)
+    return response
+  }
+
+  response.content['application/json'].schema = {
+    oneOf: [schema, errorSchema],
+  }
+
+  return response
+}
 
 export interface EndpointProps {
   children?: any
@@ -45,6 +89,9 @@ export interface EndpointProps {
    * */
   private?: boolean
 
+  /** It turns on auto-generation for schemas. */
+  schemaGeneration?: boolean
+
   /**
    * An optional, string summary, intended to apply to all operations in this path.
    * */
@@ -59,6 +106,7 @@ export const endpoint: HandlerPlugin = () => {
   const {
     docs,
     endpoints,
+    props: apiProps,
   } = useApi()
 
   const {
@@ -69,6 +117,7 @@ export const endpoint: HandlerPlugin = () => {
     operationId,
     path,
     private: privateMode,
+    schemaGeneration = apiProps.schemaGeneration,
     summary,
   } = props
 
@@ -115,6 +164,56 @@ export const endpoint: HandlerPlugin = () => {
   }
 
   const endpoint = getEndpoint(path, endpoints[method])
+
+  if (schemaGeneration) {
+    useEffect(() => {
+      if (operation.requestBody || operation.parameters?.length) {
+        if (!operation.responses) {
+          operation.responses = {}
+        }
+
+        if (!docs.components) {
+          docs.components = {}
+        }
+
+        if (!docs.components.schemas) {
+          docs.components.schemas = {}
+        }
+
+        const ref = apiProps.errorShemaRefs?.requestValidation ?? 'ApiValidationError'
+
+        if (!(ref in docs.components.schemas)) {
+          docs.components.schemas[ref] = apiProps.errorShema?.requestValidation ?? defaultRequestValidationSchema
+        }
+
+        operation.responses[400] = addErrorRequest({ $ref: `#/components/schemas/${ref}` }, operation.responses[400])
+      }
+    })
+
+    useEffect(() => {
+      if (operation.requestBody) {
+        if (!operation.responses) {
+          operation.responses = {}
+        }
+
+        if (!docs.components) {
+          docs.components = {}
+        }
+
+        if (!docs.components.schemas) {
+          docs.components.schemas = {}
+        }
+
+        const ref = apiProps.errorShemaRefs?.requestValidation ?? 'ApiRequestBodyContentTypeError'
+
+        if (!(ref in docs.components.schemas)) {
+          docs.components.schemas[ref] = apiProps.errorShema?.requestBodyContentType ?? defaultRequestBodyContentTypeSchema
+        }
+
+        operation.responses[400] = addErrorRequest({ $ref: `#/components/schemas/${ref}` }, operation.responses[400])
+      }
+    })
+  }
 
   // @ts-expect-error: it's always an object
   endpointContext.set(handler, { endpoint, operation, props })
