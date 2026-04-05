@@ -8,9 +8,11 @@ import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
 import { int } from '../../../utils/rules/int/int.es6.js';
 import { min } from '../../../utils/rules/min/min.es6.js';
 import { max } from '../../../utils/rules/max/max.es6.js';
+import { oneOf } from '../../../utils/rules/oneOf/oneOf.es6.js';
+import { nullable } from '../../../utils/rules/nullable/nullable.es6.js';
+import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 import { useRule } from '../../../hooks/useRule/useRule.es6.js';
 import { optional } from '../../../utils/rules/optional/optional.es6.js';
-import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 
 const integer = () => {
     const { default: defaultValue, example, examples, exclusiveMaximum, exclusiveMinimum, format = 'int32', max: max$1, min: min$1, multipleOf, values: values$1, ...props } = useProps() || {};
@@ -60,11 +62,12 @@ const integer = () => {
     if (max$1 !== undefined) {
         rules.push(max(max$1));
     }
+    const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules);
     if (defaultValue === undefined) {
-        useRule(optional(pipe(...rules)));
+        useRule(optional(rule));
     }
     else {
-        useRule(pipe(...rules));
+        useRule(rule);
     }
 };
 

@@ -15,9 +15,11 @@ var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
 var dateTo = require('../../../utils/rules/dateTo/dateTo.js');
 var minDate = require('../../../utils/rules/minDate/minDate.js');
 var maxDate = require('../../../utils/rules/maxDate/maxDate.js');
+var oneOf = require('../../../utils/rules/oneOf/oneOf.js');
+var nullable = require('../../../utils/rules/nullable/nullable.js');
+var pipe = require('../../../utils/rules/pipe/pipe.js');
 var useParentRule = require('../../../hooks/useParentRule/useParentRule.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
-var pipe = require('../../../utils/rules/pipe/pipe.js');
 
 const date = () => {
     const { default: defaultValue, example, examples, max, min, value, values: values$1, ...props } = jsx.useProps() || {};
@@ -67,12 +69,13 @@ const date = () => {
     }
     if (!hasRules)
         return;
+    const rule = props.nullable ? oneOf.oneOf([nullable.nullable, pipe.pipe(...rules)]) : pipe.pipe(...rules);
     if (defaultValue === undefined) {
         const parentRule = useParentRule.useParentRule();
-        useRule.useRule(parentRule(pipe.pipe(...rules)));
+        useRule.useRule(parentRule(rule));
     }
     else {
-        useRule.useRule(pipe.pipe(...rules));
+        useRule.useRule(rule);
     }
 };
 

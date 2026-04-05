@@ -14,6 +14,8 @@ var values = require('../../../utils/rules/values/values.js');
 var minLength = require('../../../utils/rules/minLength/minLength.js');
 var maxLength = require('../../../utils/rules/maxLength/maxLength.js');
 var pattern = require('../../../utils/rules/pattern/pattern.js');
+var oneOf = require('../../../utils/rules/oneOf/oneOf.js');
+var nullable = require('../../../utils/rules/nullable/nullable.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
 var useParentRule = require('../../../hooks/useParentRule/useParentRule.js');
@@ -53,7 +55,7 @@ const string = () => {
         }
         if (!hasRules)
             return;
-        const rule = pipe.pipe(...rules);
+        const rule = props.nullable ? oneOf.oneOf([nullable.nullable, pipe.pipe(...rules)]) : pipe.pipe(...rules);
         if (props.ref) {
             refRules[props.ref] = rule;
         }

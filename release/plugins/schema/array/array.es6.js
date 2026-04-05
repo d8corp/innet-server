@@ -13,6 +13,7 @@ import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
 import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 import { arrayOf } from '../../../utils/rules/arrayOf/arrayOf.es6.js';
 import { oneOf } from '../../../utils/rules/oneOf/oneOf.es6.js';
+import { nullable } from '../../../utils/rules/nullable/nullable.es6.js';
 import { useEffect } from '../../../hooks/useEffect/useEffect.es6.js';
 
 const array = () => {
@@ -52,13 +53,14 @@ const array = () => {
             }
             else {
                 oneOfRulesMap = [rule];
-                setRule(rootRule(oneOf(oneOfRulesMap)));
+                const mainRule = rootRule(oneOf(oneOfRulesMap));
+                setRule(props.nullable ? oneOf([nullable, mainRule]) : mainRule);
             }
         });
         innet(children, handler);
         useEffect(() => {
-            if (!oneOfRulesMap && setRule) {
-                setRule(rootRule(e => e));
+            if (!oneOfRulesMap) {
+                setRule(props.nullable ? oneOf([nullable, rootRule(e => e)]) : rootRule(e => e));
             }
         });
         return;

@@ -11,9 +11,11 @@ import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
 import { dateTo } from '../../../utils/rules/dateTo/dateTo.es6.js';
 import { minDate } from '../../../utils/rules/minDate/minDate.es6.js';
 import { maxDate } from '../../../utils/rules/maxDate/maxDate.es6.js';
+import { oneOf } from '../../../utils/rules/oneOf/oneOf.es6.js';
+import { nullable } from '../../../utils/rules/nullable/nullable.es6.js';
+import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 import { useParentRule } from '../../../hooks/useParentRule/useParentRule.es6.js';
 import { useRule } from '../../../hooks/useRule/useRule.es6.js';
-import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 
 const date = () => {
     const { default: defaultValue, example, examples, max, min, value, values: values$1, ...props } = useProps() || {};
@@ -63,12 +65,13 @@ const date = () => {
     }
     if (!hasRules)
         return;
+    const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules);
     if (defaultValue === undefined) {
         const parentRule = useParentRule();
-        useRule(parentRule(pipe(...rules)));
+        useRule(parentRule(rule));
     }
     else {
-        useRule(pipe(...rules));
+        useRule(rule);
     }
 };
 

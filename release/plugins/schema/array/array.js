@@ -17,6 +17,7 @@ var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
 var arrayOf = require('../../../utils/rules/arrayOf/arrayOf.js');
 var oneOf = require('../../../utils/rules/oneOf/oneOf.js');
+var nullable = require('../../../utils/rules/nullable/nullable.js');
 var useEffect = require('../../../hooks/useEffect/useEffect.js');
 
 const array = () => {
@@ -56,13 +57,14 @@ const array = () => {
             }
             else {
                 oneOfRulesMap = [rule];
-                setRule(rootRule(oneOf.oneOf(oneOfRulesMap)));
+                const mainRule = rootRule(oneOf.oneOf(oneOfRulesMap));
+                setRule(props.nullable ? oneOf.oneOf([nullable.nullable, mainRule]) : mainRule);
             }
         });
         innet.innet(children, handler);
         useEffect.useEffect(() => {
-            if (!oneOfRulesMap && setRule) {
-                setRule(rootRule(e => e));
+            if (!oneOfRulesMap) {
+                setRule(props.nullable ? oneOf.oneOf([nullable.nullable, rootRule(e => e)]) : rootRule(e => e));
             }
         });
         return;

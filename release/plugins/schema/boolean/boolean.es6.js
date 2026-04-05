@@ -6,9 +6,11 @@ import { useBlock } from '../../../hooks/useBlock/useBlock.es6.js';
 import { useSchemaType } from '../../../hooks/useSchemaType/useSchemaType.es6.js';
 import { bodyContext } from '../../../hooks/useBodyContext/useBodyContext.es6.js';
 import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
+import { oneOf } from '../../../utils/rules/oneOf/oneOf.es6.js';
+import { nullable } from '../../../utils/rules/nullable/nullable.es6.js';
+import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 import { useParentRule } from '../../../hooks/useParentRule/useParentRule.es6.js';
 import { useRule } from '../../../hooks/useRule/useRule.es6.js';
-import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 
 const boolean = () => {
     useBlock('path');
@@ -23,12 +25,13 @@ const boolean = () => {
         rules.push(defaultTo(props.default));
     }
     rules.push(val => val === 'true' || (val === 'false' ? false : Boolean(val)));
-    if ((props === null || props === void 0 ? void 0 : props.default) === undefined) {
+    const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules);
+    if (props.default === undefined) {
         const parentRule = useParentRule();
-        useRule(parentRule(pipe(...rules)));
+        useRule(parentRule(rule));
     }
     else {
-        useRule(pipe(...rules));
+        useRule(rule);
     }
 };
 

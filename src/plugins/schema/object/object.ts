@@ -15,7 +15,7 @@ import {
 } from '../../../hooks'
 import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
 import { type SchemaProps } from '../../../types'
-import { defaultTo, getSafeSchema, type ObjectOf, objectOf, pipe, type Rule } from '../../../utils'
+import { defaultTo, getSafeSchema, nullable, type ObjectOf, objectOf, oneOf, pipe, type Rule } from '../../../utils'
 
 export type ObjectProps = SchemaProps<object> & {
   children?: JSX.Element
@@ -68,7 +68,7 @@ export const object: HandlerPlugin = () => {
         rules.push(parentRule(objectOf(rulesMap, restRule)))
       }
 
-      const rule = pipe(...rules)
+      const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules)
 
       if (props.ref) {
         refRules[props.ref] = rule

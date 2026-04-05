@@ -13,9 +13,11 @@ var num = require('../../../utils/rules/num/num.js');
 var values = require('../../../utils/rules/values/values.js');
 var min = require('../../../utils/rules/min/min.js');
 var max = require('../../../utils/rules/max/max.js');
+var oneOf = require('../../../utils/rules/oneOf/oneOf.js');
+var nullable = require('../../../utils/rules/nullable/nullable.js');
+var pipe = require('../../../utils/rules/pipe/pipe.js');
 var useParentRule = require('../../../hooks/useParentRule/useParentRule.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
-var pipe = require('../../../utils/rules/pipe/pipe.js');
 
 const number = () => {
     const { exclusiveMaximum, exclusiveMinimum, format, max: max$1, min: min$1, multipleOf, ...props } = jsx.useProps() || {};
@@ -58,12 +60,13 @@ const number = () => {
     if (max$1 !== undefined) {
         rules.push(max.max(max$1));
     }
+    const rule = props.nullable ? oneOf.oneOf([nullable.nullable, pipe.pipe(...rules)]) : pipe.pipe(...rules);
     if (props.default === undefined) {
         const rootRule = useParentRule.useParentRule();
-        useRule.useRule(rootRule(pipe.pipe(...rules)));
+        useRule.useRule(rootRule(rule));
     }
     else {
-        useRule.useRule(pipe.pipe(...rules));
+        useRule.useRule(rule);
     }
 };
 

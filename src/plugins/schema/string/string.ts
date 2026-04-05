@@ -9,6 +9,8 @@ import {
   getArrayValues,
   maxLength,
   minLength,
+  nullable,
+  oneOf,
   pattern as patternTo,
   pipe,
   type Rule,
@@ -106,7 +108,7 @@ export const string: HandlerPlugin = () => {
 
     if (!hasRules) return
 
-    const rule = pipe(...rules)
+    const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules)
 
     if (props.ref) {
       refRules[props.ref] = rule

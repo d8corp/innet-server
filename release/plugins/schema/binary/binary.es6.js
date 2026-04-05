@@ -10,8 +10,10 @@ import { minBin } from '../../../utils/rules/minBin/minBin.es6.js';
 import { maxBin } from '../../../utils/rules/maxBin/maxBin.es6.js';
 import { binaryAccept } from '../../../utils/rules/binaryAccept/binaryAccept.es6.js';
 import { useParentRule } from '../../../hooks/useParentRule/useParentRule.es6.js';
-import { useRule } from '../../../hooks/useRule/useRule.es6.js';
+import { oneOf } from '../../../utils/rules/oneOf/oneOf.es6.js';
+import { nullable } from '../../../utils/rules/nullable/nullable.es6.js';
 import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
+import { useRule } from '../../../hooks/useRule/useRule.es6.js';
 
 const binary = () => {
     useBlock('path');
@@ -37,7 +39,8 @@ const binary = () => {
         rules.push(binaryAccept(props.accept));
     }
     const parentRule = useParentRule();
-    useRule(parentRule(pipe(...rules)));
+    const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules);
+    useRule(parentRule(rule));
 };
 
 export { binary };

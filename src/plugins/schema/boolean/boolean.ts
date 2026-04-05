@@ -4,7 +4,7 @@ import { useContext, useProps } from '@innet/jsx'
 import { bodyContext, useBlock, useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
 import { type SchemaProps } from '../../../types'
-import { defaultTo, pipe, type Rule } from '../../../utils'
+import { defaultTo, nullable, oneOf, pipe, type Rule } from '../../../utils'
 
 export type BooleanProps = SchemaProps<boolean>
 
@@ -25,10 +25,12 @@ export const boolean: HandlerPlugin = () => {
 
   rules.push(val => val === 'true' || (val === 'false' ? false : Boolean(val)))
 
-  if (props?.default === undefined) {
+  const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules)
+
+  if (props.default === undefined) {
     const parentRule = useParentRule()
-    useRule(parentRule(pipe(...rules)))
+    useRule(parentRule(rule))
   } else {
-    useRule(pipe(...rules))
+    useRule(rule)
   }
 }

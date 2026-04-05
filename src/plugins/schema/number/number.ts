@@ -4,7 +4,18 @@ import { useContext, useProps } from '@innet/jsx'
 import { bodyContext, useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
 import { type SchemaProps } from '../../../types'
-import { defaultTo, getArrayValues, max as maximum, min as minimum, num, pipe, type Rule, values } from '../../../utils'
+import {
+  defaultTo,
+  getArrayValues,
+  max as maximum,
+  min as minimum,
+  nullable,
+  num,
+  oneOf,
+  pipe,
+  type Rule,
+  values,
+} from '../../../utils'
 
 export type NumberProps = SchemaProps<number> & {
   /**
@@ -112,10 +123,12 @@ export const number: HandlerPlugin = () => {
     rules.push(maximum(max))
   }
 
+  const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules)
+
   if (props.default === undefined) {
     const rootRule = useParentRule()
-    useRule(rootRule(pipe(...rules)))
+    useRule(rootRule(rule))
   } else {
-    useRule(pipe(...rules))
+    useRule(rule)
   }
 }

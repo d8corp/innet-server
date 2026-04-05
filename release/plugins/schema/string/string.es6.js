@@ -10,6 +10,8 @@ import { values, getArrayValues } from '../../../utils/rules/values/values.es6.j
 import { minLength } from '../../../utils/rules/minLength/minLength.es6.js';
 import { maxLength } from '../../../utils/rules/maxLength/maxLength.es6.js';
 import { pattern } from '../../../utils/rules/pattern/pattern.es6.js';
+import { oneOf } from '../../../utils/rules/oneOf/oneOf.es6.js';
+import { nullable } from '../../../utils/rules/nullable/nullable.es6.js';
 import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 import { useRule } from '../../../hooks/useRule/useRule.es6.js';
 import { useParentRule } from '../../../hooks/useParentRule/useParentRule.es6.js';
@@ -49,7 +51,7 @@ const string = () => {
         }
         if (!hasRules)
             return;
-        const rule = pipe(...rules);
+        const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules);
         if (props.ref) {
             refRules[props.ref] = rule;
         }

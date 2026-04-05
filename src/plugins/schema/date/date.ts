@@ -12,6 +12,8 @@ import {
   getArrayValues,
   maxDate,
   minDate,
+  nullable,
+  oneOf,
   pipe,
   type Rule,
   values as valuesOf,
@@ -91,10 +93,12 @@ export const date: HandlerPlugin = () => {
 
   if (!hasRules) return
 
+  const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules)
+
   if (defaultValue === undefined) {
     const parentRule = useParentRule()
-    useRule(parentRule(pipe(...rules)))
+    useRule(parentRule(rule))
   } else {
-    useRule(pipe(...rules))
+    useRule(rule)
   }
 }

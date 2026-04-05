@@ -14,8 +14,10 @@ var minBin = require('../../../utils/rules/minBin/minBin.js');
 var maxBin = require('../../../utils/rules/maxBin/maxBin.js');
 var binaryAccept = require('../../../utils/rules/binaryAccept/binaryAccept.js');
 var useParentRule = require('../../../hooks/useParentRule/useParentRule.js');
-var useRule = require('../../../hooks/useRule/useRule.js');
+var oneOf = require('../../../utils/rules/oneOf/oneOf.js');
+var nullable = require('../../../utils/rules/nullable/nullable.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
+var useRule = require('../../../hooks/useRule/useRule.js');
 
 const binary = () => {
     useBlock.useBlock('path');
@@ -41,7 +43,8 @@ const binary = () => {
         rules.push(binaryAccept.binaryAccept(props.accept));
     }
     const parentRule = useParentRule.useParentRule();
-    useRule.useRule(parentRule(pipe.pipe(...rules)));
+    const rule = props.nullable ? oneOf.oneOf([nullable.nullable, pipe.pipe(...rules)]) : pipe.pipe(...rules);
+    useRule.useRule(parentRule(rule));
 };
 
 exports.binary = binary;

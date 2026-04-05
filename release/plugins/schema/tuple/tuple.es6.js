@@ -10,8 +10,10 @@ import { schemaContext } from '../../../hooks/useSchemaContext/useSchemaContext.
 import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
 import { tupleOf } from '../../../utils/rules/tupleOf/tupleOf.es6.js';
 import { useParentRule, parentRuleContext } from '../../../hooks/useParentRule/useParentRule.es6.js';
-import { useRule, ruleContext } from '../../../hooks/useRule/useRule.es6.js';
+import { oneOf } from '../../../utils/rules/oneOf/oneOf.es6.js';
+import { nullable } from '../../../utils/rules/nullable/nullable.es6.js';
 import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
+import { useRule, ruleContext } from '../../../hooks/useRule/useRule.es6.js';
 import { required } from '../../../utils/rules/required/required.es6.js';
 import { useEffect } from '../../../hooks/useEffect/useEffect.es6.js';
 
@@ -32,15 +34,14 @@ const tuple = () => {
             const rules = [];
             if (props.default !== undefined) {
                 rules.push(defaultTo(props.default));
-            }
-            if (props.default !== undefined) {
                 rules.push(tupleOf(rulesMap));
             }
             else {
                 const parentRule = useParentRule();
                 rules.push(parentRule(tupleOf(rulesMap)));
             }
-            useRule(pipe(...rules));
+            const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules);
+            useRule(rule);
             parentRuleContext.set(handler, rule => required(rule));
             ruleContext.set(handler, rule => {
                 rulesMap.push(rule);

@@ -12,9 +12,11 @@ var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
 var int = require('../../../utils/rules/int/int.js');
 var min = require('../../../utils/rules/min/min.js');
 var max = require('../../../utils/rules/max/max.js');
+var oneOf = require('../../../utils/rules/oneOf/oneOf.js');
+var nullable = require('../../../utils/rules/nullable/nullable.js');
+var pipe = require('../../../utils/rules/pipe/pipe.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
 var optional = require('../../../utils/rules/optional/optional.js');
-var pipe = require('../../../utils/rules/pipe/pipe.js');
 
 const integer = () => {
     const { default: defaultValue, example, examples, exclusiveMaximum, exclusiveMinimum, format = 'int32', max: max$1, min: min$1, multipleOf, values: values$1, ...props } = jsx.useProps() || {};
@@ -64,11 +66,12 @@ const integer = () => {
     if (max$1 !== undefined) {
         rules.push(max.max(max$1));
     }
+    const rule = props.nullable ? oneOf.oneOf([nullable.nullable, pipe.pipe(...rules)]) : pipe.pipe(...rules);
     if (defaultValue === undefined) {
-        useRule.useRule(optional.optional(pipe.pipe(...rules)));
+        useRule.useRule(optional.optional(rule));
     }
     else {
-        useRule.useRule(pipe.pipe(...rules));
+        useRule.useRule(rule);
     }
 };
 

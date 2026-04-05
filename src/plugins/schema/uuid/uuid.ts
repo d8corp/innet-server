@@ -4,7 +4,7 @@ import { v4 } from 'uuid'
 
 import { bodyContext, useRule, useSchemaType } from '../../../hooks'
 import { type SchemaProps } from '../../../types'
-import { defaultTo, getArrayValues, optional, pipe, type Rule, uuidTo, values } from '../../../utils'
+import { defaultTo, getArrayValues, nullable, oneOf, optional, pipe, type Rule, uuidTo, values } from '../../../utils'
 
 export type UuidProps = SchemaProps<string, 'new' | string>
 
@@ -47,9 +47,11 @@ export const uuid: HandlerPlugin = () => {
     rules.push(values(getArrayValues(props.values)))
   }
 
+  const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules)
+
   if (defaultValue === undefined) {
-    useRule(optional(pipe(...rules)))
+    useRule(optional(rule))
   } else {
-    useRule(pipe(...rules))
+    useRule(rule)
   }
 }

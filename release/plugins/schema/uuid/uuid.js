@@ -11,9 +11,11 @@ var useSchemaType = require('../../../hooks/useSchemaType/useSchemaType.js');
 var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
 var uuidTo = require('../../../utils/rules/uuidTo/uuidTo.js');
 var values = require('../../../utils/rules/values/values.js');
+var oneOf = require('../../../utils/rules/oneOf/oneOf.js');
+var nullable = require('../../../utils/rules/nullable/nullable.js');
+var pipe = require('../../../utils/rules/pipe/pipe.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
 var optional = require('../../../utils/rules/optional/optional.js');
-var pipe = require('../../../utils/rules/pipe/pipe.js');
 
 const uuid = () => {
     const { default: defaultValue, ...props } = jsx.useProps();
@@ -42,11 +44,12 @@ const uuid = () => {
     if (props.values) {
         rules.push(values.values(values.getArrayValues(props.values)));
     }
+    const rule = props.nullable ? oneOf.oneOf([nullable.nullable, pipe.pipe(...rules)]) : pipe.pipe(...rules);
     if (defaultValue === undefined) {
-        useRule.useRule(optional.optional(pipe.pipe(...rules)));
+        useRule.useRule(optional.optional(rule));
     }
     else {
-        useRule.useRule(pipe.pipe(...rules));
+        useRule.useRule(rule);
     }
 };
 

@@ -14,8 +14,10 @@ var useSchemaContext = require('../../../hooks/useSchemaContext/useSchemaContext
 var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
 var tupleOf = require('../../../utils/rules/tupleOf/tupleOf.js');
 var useParentRule = require('../../../hooks/useParentRule/useParentRule.js');
-var useRule = require('../../../hooks/useRule/useRule.js');
+var oneOf = require('../../../utils/rules/oneOf/oneOf.js');
+var nullable = require('../../../utils/rules/nullable/nullable.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
+var useRule = require('../../../hooks/useRule/useRule.js');
 var required = require('../../../utils/rules/required/required.js');
 var useEffect = require('../../../hooks/useEffect/useEffect.js');
 
@@ -36,15 +38,14 @@ const tuple = () => {
             const rules = [];
             if (props.default !== undefined) {
                 rules.push(defaultTo.defaultTo(props.default));
-            }
-            if (props.default !== undefined) {
                 rules.push(tupleOf.tupleOf(rulesMap));
             }
             else {
                 const parentRule = useParentRule.useParentRule();
                 rules.push(parentRule(tupleOf.tupleOf(rulesMap)));
             }
-            useRule.useRule(pipe.pipe(...rules));
+            const rule = props.nullable ? oneOf.oneOf([nullable.nullable, pipe.pipe(...rules)]) : pipe.pipe(...rules);
+            useRule.useRule(rule);
             useParentRule.parentRuleContext.set(handler, rule => required.required(rule));
             useRule.ruleContext.set(handler, rule => {
                 rulesMap.push(rule);

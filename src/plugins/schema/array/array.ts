@@ -12,7 +12,7 @@ import {
 } from '../../../hooks'
 import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
 import { type ArraySchemaObject, type SchemaObject, type SchemaProps } from '../../../types'
-import { arrayOf, defaultTo, oneOf, pipe, type Rule } from '../../../utils'
+import { arrayOf, defaultTo, nullable, oneOf, pipe, type Rule } from '../../../utils'
 
 export type ArrayProps = SchemaProps<any[]> & {
   children?: JSX.Element
@@ -74,15 +74,16 @@ export const array: HandlerPlugin = () => {
         oneOfRulesMap.push(rule)
       } else {
         oneOfRulesMap = [rule]
-        setRule(rootRule(oneOf(oneOfRulesMap)))
+        const mainRule = rootRule(oneOf(oneOfRulesMap))
+        setRule(props.nullable ? oneOf([nullable, mainRule]) : mainRule)
       }
     })
 
     innet(children, handler)
 
     useEffect(() => {
-      if (!oneOfRulesMap && setRule) {
-        setRule(rootRule(e => e))
+      if (!oneOfRulesMap) {
+        setRule(props.nullable ? oneOf([nullable, rootRule(e => e)]) : rootRule(e => e))
       }
     })
 

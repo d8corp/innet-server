@@ -13,7 +13,7 @@ import {
 } from '../../../hooks'
 import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
 import { type ArraySchemaObject, type SchemaObject, type SchemaProps } from '../../../types'
-import { defaultTo, pipe, required, type Rule, tupleOf } from '../../../utils'
+import { defaultTo, nullable, oneOf, pipe, required, type Rule, tupleOf } from '../../../utils'
 
 export type TupleProps = SchemaProps<any[]> & {
   children?: JSX.Element
@@ -44,16 +44,15 @@ export const tuple: HandlerPlugin = () => {
 
       if (props.default !== undefined) {
         rules.push(defaultTo(props.default))
-      }
-
-      if (props.default !== undefined) {
         rules.push(tupleOf(rulesMap))
       } else {
         const parentRule = useParentRule()
         rules.push(parentRule(tupleOf(rulesMap)))
       }
 
-      useRule(pipe(...rules))
+      const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules)
+
+      useRule(rule)
 
       parentRuleContext.set(handler, rule => required(rule))
       ruleContext.set(handler, rule => {

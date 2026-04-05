@@ -7,9 +7,11 @@ import { useSchemaType } from '../../../hooks/useSchemaType/useSchemaType.es6.js
 import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
 import { uuidTo } from '../../../utils/rules/uuidTo/uuidTo.es6.js';
 import { values, getArrayValues } from '../../../utils/rules/values/values.es6.js';
+import { oneOf } from '../../../utils/rules/oneOf/oneOf.es6.js';
+import { nullable } from '../../../utils/rules/nullable/nullable.es6.js';
+import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 import { useRule } from '../../../hooks/useRule/useRule.es6.js';
 import { optional } from '../../../utils/rules/optional/optional.es6.js';
-import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 
 const uuid = () => {
     const { default: defaultValue, ...props } = useProps();
@@ -38,11 +40,12 @@ const uuid = () => {
     if (props.values) {
         rules.push(values(getArrayValues(props.values)));
     }
+    const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules);
     if (defaultValue === undefined) {
-        useRule(optional(pipe(...rules)));
+        useRule(optional(rule));
     }
     else {
-        useRule(pipe(...rules));
+        useRule(rule);
     }
 };
 

@@ -9,6 +9,8 @@ import {
   int,
   max as maximum,
   min as minimum,
+  nullable,
+  oneOf,
   optional,
   pipe,
   type Rule,
@@ -137,9 +139,11 @@ export const integer: HandlerPlugin = () => {
     rules.push(maximum(max))
   }
 
+  const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules)
+
   if (defaultValue === undefined) {
-    useRule(optional(pipe(...rules)))
+    useRule(optional(rule))
   } else {
-    useRule(pipe(...rules))
+    useRule(rule)
   }
 }

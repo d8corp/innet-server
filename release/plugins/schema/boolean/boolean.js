@@ -10,9 +10,11 @@ var useBlock = require('../../../hooks/useBlock/useBlock.js');
 var useSchemaType = require('../../../hooks/useSchemaType/useSchemaType.js');
 var useBodyContext = require('../../../hooks/useBodyContext/useBodyContext.js');
 var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
+var oneOf = require('../../../utils/rules/oneOf/oneOf.js');
+var nullable = require('../../../utils/rules/nullable/nullable.js');
+var pipe = require('../../../utils/rules/pipe/pipe.js');
 var useParentRule = require('../../../hooks/useParentRule/useParentRule.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
-var pipe = require('../../../utils/rules/pipe/pipe.js');
 
 const boolean = () => {
     useBlock.useBlock('path');
@@ -27,12 +29,13 @@ const boolean = () => {
         rules.push(defaultTo.defaultTo(props.default));
     }
     rules.push(val => val === 'true' || (val === 'false' ? false : Boolean(val)));
-    if ((props === null || props === void 0 ? void 0 : props.default) === undefined) {
+    const rule = props.nullable ? oneOf.oneOf([nullable.nullable, pipe.pipe(...rules)]) : pipe.pipe(...rules);
+    if (props.default === undefined) {
         const parentRule = useParentRule.useParentRule();
-        useRule.useRule(parentRule(pipe.pipe(...rules)));
+        useRule.useRule(parentRule(rule));
     }
     else {
-        useRule.useRule(pipe.pipe(...rules));
+        useRule.useRule(rule);
     }
 };
 

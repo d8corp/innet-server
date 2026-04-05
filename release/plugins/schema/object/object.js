@@ -18,6 +18,8 @@ var useEffect = require('../../../hooks/useEffect/useEffect.js');
 var getSafeSchema = require('../../../utils/getSafeSchema/getSafeSchema.js');
 var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
 var objectOf = require('../../../utils/rules/objectOf/objectOf.js');
+var oneOf = require('../../../utils/rules/oneOf/oneOf.js');
+var nullable = require('../../../utils/rules/nullable/nullable.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
 var useObjectRule = require('../../../hooks/useObjectRule/useObjectRule.js');
@@ -56,7 +58,7 @@ const object = () => {
                 const parentRule = useParentRule.useParentRule();
                 rules.push(parentRule(objectOf.objectOf(rulesMap, restRule)));
             }
-            const rule = pipe.pipe(...rules);
+            const rule = props.nullable ? oneOf.oneOf([nullable.nullable, pipe.pipe(...rules)]) : pipe.pipe(...rules);
             if (props.ref) {
                 refRules[props.ref] = rule;
             }

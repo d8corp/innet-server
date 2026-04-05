@@ -9,9 +9,11 @@ import { num } from '../../../utils/rules/num/num.es6.js';
 import { values, getArrayValues } from '../../../utils/rules/values/values.es6.js';
 import { min } from '../../../utils/rules/min/min.es6.js';
 import { max } from '../../../utils/rules/max/max.es6.js';
+import { oneOf } from '../../../utils/rules/oneOf/oneOf.es6.js';
+import { nullable } from '../../../utils/rules/nullable/nullable.es6.js';
+import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 import { useParentRule } from '../../../hooks/useParentRule/useParentRule.es6.js';
 import { useRule } from '../../../hooks/useRule/useRule.es6.js';
-import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 
 const number = () => {
     const { exclusiveMaximum, exclusiveMinimum, format, max: max$1, min: min$1, multipleOf, ...props } = useProps() || {};
@@ -54,12 +56,13 @@ const number = () => {
     if (max$1 !== undefined) {
         rules.push(max(max$1));
     }
+    const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules);
     if (props.default === undefined) {
         const rootRule = useParentRule();
-        useRule(rootRule(pipe(...rules)));
+        useRule(rootRule(rule));
     }
     else {
-        useRule(pipe(...rules));
+        useRule(rule);
     }
 };
 

@@ -14,6 +14,8 @@ import { useEffect } from '../../../hooks/useEffect/useEffect.es6.js';
 import { getSafeSchema } from '../../../utils/getSafeSchema/getSafeSchema.es6.js';
 import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
 import { objectOf } from '../../../utils/rules/objectOf/objectOf.es6.js';
+import { oneOf } from '../../../utils/rules/oneOf/oneOf.es6.js';
+import { nullable } from '../../../utils/rules/nullable/nullable.es6.js';
 import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 import { useRule, ruleContext } from '../../../hooks/useRule/useRule.es6.js';
 import { objectRuleContext } from '../../../hooks/useObjectRule/useObjectRule.es6.js';
@@ -52,7 +54,7 @@ const object = () => {
                 const parentRule = useParentRule();
                 rules.push(parentRule(objectOf(rulesMap, restRule)));
             }
-            const rule = pipe(...rules);
+            const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules);
             if (props.ref) {
                 refRules[props.ref] = rule;
             }

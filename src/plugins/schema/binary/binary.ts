@@ -3,18 +3,13 @@ import { useContext, useProps } from '@innet/jsx'
 
 import { bodyContext, useBlock, useBodyContext, useRule, useSchemaType } from '../../../hooks'
 import { useParentRule } from '../../../hooks/useParentRule'
-import { bin, binaryAccept, maxBin, minBin, pipe, type Rule } from '../../../utils'
+import type { SchemaProps } from '../../../types'
+import { bin, binaryAccept, maxBin, minBin, nullable, oneOf, pipe, type Rule } from '../../../utils'
 
-export interface BinaryProps {
+export type BinaryProps = SchemaProps<string> & {
   accept?: string
-  deprecated: boolean
-  description?: string
   max?: number
   min?: number
-  readOnly: boolean
-  ref?: string
-  title?: string
-  writeOnly: boolean
 }
 
 export const binary: HandlerPlugin = () => {
@@ -49,5 +44,6 @@ export const binary: HandlerPlugin = () => {
   }
 
   const parentRule = useParentRule()
-  useRule(parentRule(pipe(...rules)))
+  const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules)
+  useRule(parentRule(rule))
 }
