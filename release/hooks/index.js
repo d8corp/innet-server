@@ -4,7 +4,7 @@ require('./useAction/index.js');
 require('./useApi/index.js');
 require('./useBlock/index.js');
 require('./useBody/index.js');
-require('./useBodyFile/index.js');
+require('./useBodyContext/index.js');
 require('./useClientIp/index.js');
 require('./useComponentName/index.js');
 require('./useCookies/index.js');

@@ -33,6 +33,8 @@ require('./values/index.js');
 
 
 
+exports.inValidationValues = constants.inValidationValues;
+exports.rulesErrorSchemas = constants.rulesErrorSchemas;
 exports.rulesErrors = constants.rulesErrors;
 exports.RulesError = helpers.RulesError;
 exports.addKey = helpers.addKey;

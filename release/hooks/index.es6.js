@@ -2,7 +2,7 @@ import './useAction/index.es6.js';
 import './useApi/index.es6.js';
 import './useBlock/index.es6.js';
 import './useBody/index.es6.js';
-import './useBodyFile/index.es6.js';
+import './useBodyContext/index.es6.js';
 import './useClientIp/index.es6.js';
 import './useComponentName/index.es6.js';
 import './useCookies/index.es6.js';

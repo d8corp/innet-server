@@ -8,6 +8,7 @@ require('../../../hooks/useParentRule/index.js');
 require('../../../utils/index.js');
 var useApi = require('../../../hooks/useApi/useApi.js');
 var useSchemaType = require('../../../hooks/useSchemaType/useSchemaType.js');
+var useBodyContext = require('../../../hooks/useBodyContext/useBodyContext.js');
 var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
 var values = require('../../../utils/rules/values/values.js');
 var minLength = require('../../../utils/rules/minLength/minLength.js');
@@ -21,6 +22,8 @@ const string = () => {
     const { format, max, min, pattern: pattern$1, patternId, ...props } = jsx.useProps() || {};
     const { refRules } = useApi.useApi();
     const schema = useSchemaType.useSchemaType('string', props);
+    const isBody = Boolean(jsx.useContext(useBodyContext.bodyContext));
+    const hasRules = !isBody || !props.readOnly;
     if (schema) {
         const rules = [];
         if (format !== undefined) {
@@ -48,6 +51,8 @@ const string = () => {
             schema.pattern = String(pattern$1);
             rules.push(pattern.pattern(pattern$1, patternId));
         }
+        if (!hasRules)
+            return;
         const rule = pipe.pipe(...rules);
         if (props.ref) {
             refRules[props.ref] = rule;
@@ -60,7 +65,7 @@ const string = () => {
             useRule.useRule(parentRule(rule));
         }
     }
-    else if (props.ref) {
+    else if (props.ref && hasRules) {
         if (props.default !== undefined) {
             useRule.useRule(refRules[props.ref]);
         }

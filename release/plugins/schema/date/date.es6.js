@@ -1,8 +1,9 @@
-import { useProps } from '@innet/jsx';
+import { useProps, useContext } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../hooks/useParentRule/index.es6.js';
 import '../../../utils/index.es6.js';
 import '../../../utils/dateFormat/index.es6.js';
+import { bodyContext } from '../../../hooks/useBodyContext/useBodyContext.es6.js';
 import { dateFormat } from '../../../utils/dateFormat/dateFormat.es6.js';
 import { getArrayValues, values } from '../../../utils/rules/values/values.es6.js';
 import { useSchemaType } from '../../../hooks/useSchemaType/useSchemaType.es6.js';
@@ -16,6 +17,8 @@ import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 
 const date = () => {
     const { default: defaultValue, example, examples, max, min, value, values: values$1, ...props } = useProps() || {};
+    const isBody = Boolean(useContext(bodyContext));
+    const hasRules = !isBody || !props.readOnly;
     const normMin = dateFormat(min);
     const normMax = dateFormat(max);
     const normDefault = dateFormat(defaultValue);
@@ -58,6 +61,8 @@ const date = () => {
         // @ts-expect-error: FIXME
         schema['x-default'] = 'now';
     }
+    if (!hasRules)
+        return;
     if (defaultValue === undefined) {
         const parentRule = useParentRule();
         useRule(parentRule(pipe(...rules)));

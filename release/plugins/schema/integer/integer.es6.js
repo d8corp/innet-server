@@ -1,6 +1,7 @@
-import { useProps } from '@innet/jsx';
+import { useProps, useContext } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
+import { bodyContext } from '../../../hooks/useBodyContext/useBodyContext.es6.js';
 import { useSchemaType } from '../../../hooks/useSchemaType/useSchemaType.es6.js';
 import { getArrayValues, values } from '../../../utils/rules/values/values.es6.js';
 import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
@@ -13,6 +14,8 @@ import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 
 const integer = () => {
     const { default: defaultValue, example, examples, exclusiveMaximum, exclusiveMinimum, format = 'int32', max: max$1, min: min$1, multipleOf, values: values$1, ...props } = useProps() || {};
+    const isBody = Boolean(useContext(bodyContext));
+    const hasRules = !isBody || !props.readOnly;
     const schema = useSchemaType('integer', {
         ...props,
         default: defaultValue !== undefined ? Number(defaultValue) : undefined,
@@ -41,6 +44,8 @@ const integer = () => {
             schema.multipleOf = Number(multipleOf);
         }
     }
+    if (!hasRules)
+        return;
     const rules = [];
     if (defaultValue !== undefined) {
         rules.push(defaultTo(defaultValue));

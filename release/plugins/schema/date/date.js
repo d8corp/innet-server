@@ -7,6 +7,7 @@ require('../../../hooks/index.js');
 require('../../../hooks/useParentRule/index.js');
 require('../../../utils/index.js');
 require('../../../utils/dateFormat/index.js');
+var useBodyContext = require('../../../hooks/useBodyContext/useBodyContext.js');
 var dateFormat = require('../../../utils/dateFormat/dateFormat.js');
 var values = require('../../../utils/rules/values/values.js');
 var useSchemaType = require('../../../hooks/useSchemaType/useSchemaType.js');
@@ -20,6 +21,8 @@ var pipe = require('../../../utils/rules/pipe/pipe.js');
 
 const date = () => {
     const { default: defaultValue, example, examples, max, min, value, values: values$1, ...props } = jsx.useProps() || {};
+    const isBody = Boolean(jsx.useContext(useBodyContext.bodyContext));
+    const hasRules = !isBody || !props.readOnly;
     const normMin = dateFormat.dateFormat(min);
     const normMax = dateFormat.dateFormat(max);
     const normDefault = dateFormat.dateFormat(defaultValue);
@@ -62,6 +65,8 @@ const date = () => {
         // @ts-expect-error: FIXME
         schema['x-default'] = 'now';
     }
+    if (!hasRules)
+        return;
     if (defaultValue === undefined) {
         const parentRule = useParentRule.useParentRule();
         useRule.useRule(parentRule(pipe.pipe(...rules)));

@@ -1,8 +1,9 @@
-import { useProps } from '@innet/jsx';
+import { useProps, useContext } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../hooks/useParentRule/index.es6.js';
 import '../../../utils/index.es6.js';
 import { useSchemaType } from '../../../hooks/useSchemaType/useSchemaType.es6.js';
+import { bodyContext } from '../../../hooks/useBodyContext/useBodyContext.es6.js';
 import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
 import { useParentRule } from '../../../hooks/useParentRule/useParentRule.es6.js';
 import { useRule } from '../../../hooks/useRule/useRule.es6.js';
@@ -11,6 +12,10 @@ import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 const any = () => {
     const props = useProps();
     useSchemaType('any', props);
+    const isBody = Boolean(useContext(bodyContext));
+    const hasRules = !isBody || !props.readOnly;
+    if (!hasRules)
+        return;
     const rules = [];
     if ((props === null || props === void 0 ? void 0 : props.default) !== undefined) {
         rules.push(defaultTo(props.default));

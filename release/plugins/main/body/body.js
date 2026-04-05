@@ -10,7 +10,7 @@ require('../../../utils/index.js');
 var useEndpoint = require('../../../hooks/useEndpoint/useEndpoint.js');
 var useSchemaContext = require('../../../hooks/useSchemaContext/useSchemaContext.js');
 var getOrAdd = require('../../../utils/getOrAdd/getOrAdd.js');
-var useBodyFile = require('../../../hooks/useBodyFile/useBodyFile.js');
+var useBodyContext = require('../../../hooks/useBodyContext/useBodyContext.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
 var useEffect = require('../../../hooks/useEffect/useEffect.js');
 
@@ -37,13 +37,14 @@ const body = () => {
     useSchemaContext.schemaContext.set(handler, schema);
     const rules = getOrAdd.getOrAdd(endpoint, 'endpoint.rules', [{}, {}]);
     let fileUsed = false;
-    useBodyFile.bodyFileContext.set(handler, () => {
-        fileUsed = true;
+    useBodyContext.bodyContext.set(handler, {
+        useFile: () => {
+            fileUsed = true;
+        },
     });
     useRule.ruleContext.set(handler, rule => {
         rules.body = rule;
     });
-    innet.innet(children, handler);
     useEffect.useEffect(() => {
         if (fileUsed) {
             requestBody.content['multipart/form-data'] = { schema };
@@ -54,6 +55,7 @@ const body = () => {
             }
         }
     });
+    innet.innet(children, handler);
 };
 
 exports.body = body;

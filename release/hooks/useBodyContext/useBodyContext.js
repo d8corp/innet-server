@@ -6,14 +6,14 @@ var jsx = require('@innet/jsx');
 require('../useThrow/index.js');
 var useThrow = require('../useThrow/useThrow.js');
 
-const bodyFileContext = new jsx.Context();
-function useBodyFile() {
-    const bodyFile = jsx.useContext(bodyFileContext);
-    if (!bodyFile) {
+const bodyContext = new jsx.Context();
+function useBodyContext() {
+    const context = jsx.useContext(bodyContext);
+    if (!context) {
         useThrow.useThrow('<{type}> MUST be in <body>');
     }
-    bodyFile();
+    return context;
 }
 
-exports.bodyFileContext = bodyFileContext;
-exports.useBodyFile = useBodyFile;
+exports.bodyContext = bodyContext;
+exports.useBodyContext = useBodyContext;

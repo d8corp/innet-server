@@ -1,7 +1,8 @@
-import { useProps } from '@innet/jsx';
+import { useProps, useContext } from '@innet/jsx';
 import { v4 } from 'uuid';
 import '../../../hooks/index.es6.js';
 import '../../../utils/index.es6.js';
+import { bodyContext } from '../../../hooks/useBodyContext/useBodyContext.es6.js';
 import { useSchemaType } from '../../../hooks/useSchemaType/useSchemaType.es6.js';
 import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
 import { uuidTo } from '../../../utils/rules/uuidTo/uuidTo.es6.js';
@@ -12,6 +13,8 @@ import { pipe } from '../../../utils/rules/pipe/pipe.es6.js';
 
 const uuid = () => {
     const { default: defaultValue, ...props } = useProps();
+    const isBody = Boolean(useContext(bodyContext));
+    const hasRules = !isBody || !props.readOnly;
     const params = {
         ...props,
     };
@@ -25,6 +28,8 @@ const uuid = () => {
         // @ts-expect-error: FIXME
         schema['x-default'] = defaultValue;
     }
+    if (!hasRules)
+        return;
     const rules = [];
     if (defaultValue !== undefined) {
         rules.push(defaultTo(defaultValue === 'new' ? v4 : defaultValue));

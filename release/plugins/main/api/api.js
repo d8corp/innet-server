@@ -18,7 +18,7 @@ var useParams = require('../../../hooks/useParams/useParams.js');
 const api = () => {
     const handler = innet.useNewHandler();
     const props = jsx.useProps();
-    const { children, exclude, include, prefix = process.env.INNET_API_PREFIX || '', title = '', version = process.env.INNET_API_VERSION || '0.0.0', ...rest } = props;
+    const { children, errorShema, errorShemaRefs, exclude, include, prefix = process.env.INNET_API_PREFIX || '', schemaGeneration, title = '', version = process.env.INNET_API_VERSION || '0.0.0', ...rest } = props;
     const info = { ...rest, title, version };
     const endpoints = {};
     const docs = {
@@ -124,9 +124,7 @@ const api = () => {
                         if (!action.body) {
                             res.statusCode = 400;
                             res.setHeader('Content-Type', 'application/json');
-                            res.write(JSONString.JSONString({
-                                error: 'requestBodyContentType',
-                            }));
+                            res.write(JSONString.JSONString({ error: 'requestBodyContentType' }));
                             res.end();
                             return true;
                         }

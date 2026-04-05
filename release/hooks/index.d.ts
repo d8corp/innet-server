@@ -2,7 +2,7 @@ export * from './useAction';
 export * from './useApi';
 export * from './useBlock';
 export * from './useBody';
-export * from './useBodyFile';
+export * from './useBodyContext';
 export * from './useClientIp';
 export * from './useComponentName';
 export * from './useCookies';

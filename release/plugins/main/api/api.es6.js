@@ -14,7 +14,7 @@ import { paramsContext } from '../../../hooks/useParams/useParams.es6.js';
 const api = () => {
     const handler = useNewHandler();
     const props = useProps();
-    const { children, exclude, include, prefix = process.env.INNET_API_PREFIX || '', title = '', version = process.env.INNET_API_VERSION || '0.0.0', ...rest } = props;
+    const { children, errorShema, errorShemaRefs, exclude, include, prefix = process.env.INNET_API_PREFIX || '', schemaGeneration, title = '', version = process.env.INNET_API_VERSION || '0.0.0', ...rest } = props;
     const info = { ...rest, title, version };
     const endpoints = {};
     const docs = {
@@ -120,9 +120,7 @@ const api = () => {
                         if (!action.body) {
                             res.statusCode = 400;
                             res.setHeader('Content-Type', 'application/json');
-                            res.write(JSONString({
-                                error: 'requestBodyContentType',
-                            }));
+                            res.write(JSONString({ error: 'requestBodyContentType' }));
                             res.end();
                             return true;
                         }

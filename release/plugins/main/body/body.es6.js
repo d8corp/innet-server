@@ -6,7 +6,7 @@ import '../../../utils/index.es6.js';
 import { endpointContext } from '../../../hooks/useEndpoint/useEndpoint.es6.js';
 import { schemaContext } from '../../../hooks/useSchemaContext/useSchemaContext.es6.js';
 import { getOrAdd } from '../../../utils/getOrAdd/getOrAdd.es6.js';
-import { bodyFileContext } from '../../../hooks/useBodyFile/useBodyFile.es6.js';
+import { bodyContext } from '../../../hooks/useBodyContext/useBodyContext.es6.js';
 import { ruleContext } from '../../../hooks/useRule/useRule.es6.js';
 import { useEffect } from '../../../hooks/useEffect/useEffect.es6.js';
 
@@ -33,13 +33,14 @@ const body = () => {
     schemaContext.set(handler, schema);
     const rules = getOrAdd(endpoint, 'endpoint.rules', [{}, {}]);
     let fileUsed = false;
-    bodyFileContext.set(handler, () => {
-        fileUsed = true;
+    bodyContext.set(handler, {
+        useFile: () => {
+            fileUsed = true;
+        },
     });
     ruleContext.set(handler, rule => {
         rules.body = rule;
     });
-    innet(children, handler);
     useEffect(() => {
         if (fileUsed) {
             requestBody.content['multipart/form-data'] = { schema };
@@ -50,6 +51,7 @@ const body = () => {
             }
         }
     });
+    innet(children, handler);
 };
 
 export { body };

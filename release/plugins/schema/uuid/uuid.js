@@ -6,6 +6,7 @@ var jsx = require('@innet/jsx');
 var uuid$1 = require('uuid');
 require('../../../hooks/index.js');
 require('../../../utils/index.js');
+var useBodyContext = require('../../../hooks/useBodyContext/useBodyContext.js');
 var useSchemaType = require('../../../hooks/useSchemaType/useSchemaType.js');
 var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
 var uuidTo = require('../../../utils/rules/uuidTo/uuidTo.js');
@@ -16,6 +17,8 @@ var pipe = require('../../../utils/rules/pipe/pipe.js');
 
 const uuid = () => {
     const { default: defaultValue, ...props } = jsx.useProps();
+    const isBody = Boolean(jsx.useContext(useBodyContext.bodyContext));
+    const hasRules = !isBody || !props.readOnly;
     const params = {
         ...props,
     };
@@ -29,6 +32,8 @@ const uuid = () => {
         // @ts-expect-error: FIXME
         schema['x-default'] = defaultValue;
     }
+    if (!hasRules)
+        return;
     const rules = [];
     if (defaultValue !== undefined) {
         rules.push(defaultTo.defaultTo(defaultValue === 'new' ? uuid$1.v4 : defaultValue));

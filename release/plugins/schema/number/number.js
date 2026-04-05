@@ -6,6 +6,7 @@ var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
 require('../../../hooks/useParentRule/index.js');
 require('../../../utils/index.js');
+var useBodyContext = require('../../../hooks/useBodyContext/useBodyContext.js');
 var useSchemaType = require('../../../hooks/useSchemaType/useSchemaType.js');
 var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
 var num = require('../../../utils/rules/num/num.js');
@@ -18,6 +19,8 @@ var pipe = require('../../../utils/rules/pipe/pipe.js');
 
 const number = () => {
     const { exclusiveMaximum, exclusiveMinimum, format, max: max$1, min: min$1, multipleOf, ...props } = jsx.useProps() || {};
+    const isBody = Boolean(jsx.useContext(useBodyContext.bodyContext));
+    const hasRules = !isBody || !props.readOnly;
     const schema = useSchemaType.useSchemaType('number', props);
     if (schema) {
         if (format !== undefined) {
@@ -39,6 +42,8 @@ const number = () => {
             schema.multipleOf = Number(multipleOf);
         }
     }
+    if (!hasRules)
+        return;
     const rules = [];
     if (props.default !== undefined) {
         rules.push(defaultTo.defaultTo(props.default));

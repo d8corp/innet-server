@@ -6,6 +6,7 @@ import '../../../utils/index.es6.js';
 import { useBlock } from '../../../hooks/useBlock/useBlock.es6.js';
 import { ruleContext } from '../../../hooks/useRule/useRule.es6.js';
 import { useSchemaType } from '../../../hooks/useSchemaType/useSchemaType.es6.js';
+import { bodyContext } from '../../../hooks/useBodyContext/useBodyContext.es6.js';
 import { schemaContext } from '../../../hooks/useSchemaContext/useSchemaContext.es6.js';
 import { useParentRule, parentRuleContext } from '../../../hooks/useParentRule/useParentRule.es6.js';
 import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
@@ -20,6 +21,8 @@ const array = () => {
     const handler = useNewHandler();
     const { children, maxItems, minItems, uniqueItems, ...props } = useProps();
     const schema = useSchemaType('array', props);
+    const isBody = Boolean(useContext(bodyContext));
+    const hasRules = !isBody || !props.readOnly;
     const fieldSchema = {};
     handler[schemaContext.key] = fieldSchema;
     schema.items = fieldSchema;
@@ -32,7 +35,7 @@ const array = () => {
     if (uniqueItems) {
         schema.uniqueItems = uniqueItems;
     }
-    if (setRule) {
+    if (setRule && hasRules) {
         let oneOfRulesMap;
         const rules = [];
         const parentRule = useParentRule();

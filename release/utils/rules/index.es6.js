@@ -1,7 +1,7 @@
 import './arrayOf/index.es6.js';
 import './bin/index.es6.js';
 import './binaryAccept/index.es6.js';
-export { rulesErrors } from './constants.es6.js';
+export { inValidationValues, rulesErrorSchemas, rulesErrors } from './constants.es6.js';
 import './dateTo/index.es6.js';
 import './defaultTo/index.es6.js';
 export { RulesError, addKey } from './helpers.es6.js';

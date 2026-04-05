@@ -10,6 +10,7 @@ require('../../../utils/index.js');
 var useBlock = require('../../../hooks/useBlock/useBlock.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
 var useSchemaType = require('../../../hooks/useSchemaType/useSchemaType.js');
+var useBodyContext = require('../../../hooks/useBodyContext/useBodyContext.js');
 var useSchemaContext = require('../../../hooks/useSchemaContext/useSchemaContext.js');
 var useParentRule = require('../../../hooks/useParentRule/useParentRule.js');
 var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
@@ -24,6 +25,8 @@ const array = () => {
     const handler = innet.useNewHandler();
     const { children, maxItems, minItems, uniqueItems, ...props } = jsx.useProps();
     const schema = useSchemaType.useSchemaType('array', props);
+    const isBody = Boolean(jsx.useContext(useBodyContext.bodyContext));
+    const hasRules = !isBody || !props.readOnly;
     const fieldSchema = {};
     handler[useSchemaContext.schemaContext.key] = fieldSchema;
     schema.items = fieldSchema;
@@ -36,7 +39,7 @@ const array = () => {
     if (uniqueItems) {
         schema.uniqueItems = uniqueItems;
     }
-    if (setRule) {
+    if (setRule && hasRules) {
         let oneOfRulesMap;
         const rules = [];
         const parentRule = useParentRule.useParentRule();

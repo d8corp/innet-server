@@ -8,7 +8,7 @@ export { actionContext, useAction } from './hooks/useAction/useAction.es6.js';
 export { apiContext, useApi } from './hooks/useApi/useApi.es6.js';
 export { useBlock } from './hooks/useBlock/useBlock.es6.js';
 export { useBody } from './hooks/useBody/useBody.es6.js';
-export { bodyFileContext, useBodyFile } from './hooks/useBodyFile/useBodyFile.es6.js';
+export { bodyContext, useBodyContext } from './hooks/useBodyContext/useBodyContext.es6.js';
 export { useClientIp } from './hooks/useClientIp/useClientIp.es6.js';
 export { useComponentName } from './hooks/useComponentName/useComponentName.es6.js';
 export { useCookies } from './hooks/useCookies/useCookies.es6.js';
@@ -95,7 +95,7 @@ export { EMPTY_SEARCH, parseSearch } from './utils/parseSearch/parseSearch.es6.j
 export { arrayOf } from './utils/rules/arrayOf/arrayOf.es6.js';
 export { bin } from './utils/rules/bin/bin.es6.js';
 export { binaryAccept } from './utils/rules/binaryAccept/binaryAccept.es6.js';
-export { rulesErrors } from './utils/rules/constants.es6.js';
+export { inValidationValues, rulesErrorSchemas, rulesErrors } from './utils/rules/constants.es6.js';
 export { dateTo } from './utils/rules/dateTo/dateTo.es6.js';
 export { defaultTo } from './utils/rules/defaultTo/defaultTo.es6.js';
 export { RulesError, addKey } from './utils/rules/helpers.es6.js';

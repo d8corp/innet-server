@@ -1,9 +1,10 @@
-import { useProps } from '@innet/jsx';
+import { useProps, useContext } from '@innet/jsx';
 import '../../../hooks/index.es6.js';
 import '../../../hooks/useParentRule/index.es6.js';
 import '../../../utils/index.es6.js';
 import { useApi } from '../../../hooks/useApi/useApi.es6.js';
 import { useSchemaType } from '../../../hooks/useSchemaType/useSchemaType.es6.js';
+import { bodyContext } from '../../../hooks/useBodyContext/useBodyContext.es6.js';
 import { defaultTo } from '../../../utils/rules/defaultTo/defaultTo.es6.js';
 import { values, getArrayValues } from '../../../utils/rules/values/values.es6.js';
 import { minLength } from '../../../utils/rules/minLength/minLength.es6.js';
@@ -17,6 +18,8 @@ const string = () => {
     const { format, max, min, pattern: pattern$1, patternId, ...props } = useProps() || {};
     const { refRules } = useApi();
     const schema = useSchemaType('string', props);
+    const isBody = Boolean(useContext(bodyContext));
+    const hasRules = !isBody || !props.readOnly;
     if (schema) {
         const rules = [];
         if (format !== undefined) {
@@ -44,6 +47,8 @@ const string = () => {
             schema.pattern = String(pattern$1);
             rules.push(pattern(pattern$1, patternId));
         }
+        if (!hasRules)
+            return;
         const rule = pipe(...rules);
         if (props.ref) {
             refRules[props.ref] = rule;
@@ -56,7 +61,7 @@ const string = () => {
             useRule(parentRule(rule));
         }
     }
-    else if (props.ref) {
+    else if (props.ref && hasRules) {
         if (props.default !== undefined) {
             useRule(refRules[props.ref]);
         }

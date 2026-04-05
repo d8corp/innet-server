@@ -35,6 +35,8 @@ export interface EndpointProps {
      * That means the endpoint should not be described and will not be shown in the Open API documentation.
      * */
     private?: boolean;
+    /** It turns on auto-generation for schemas. */
+    schemaGeneration?: boolean;
     /**
      * An optional, string summary, intended to apply to all operations in this path.
      * */

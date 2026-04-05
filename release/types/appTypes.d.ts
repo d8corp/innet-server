@@ -1,4 +1,4 @@
-import type { OpenAPIV3_1 as API } from 'openapi-types';
+import type { OpenAPIV3_1 as API, OpenAPIV3_1 } from 'openapi-types';
 import type { ApiErrorValue } from '../constants';
 import { type ServerPlugin } from '../hooks';
 import { type ResponseStatus } from '../plugins';
@@ -58,6 +58,8 @@ export interface ServerStartParams {
     https: boolean;
     port: number;
 }
+export type ApiErrorSchema = Record<ApiErrorValue, OpenAPIV3_1.ReferenceObject | OpenAPIV3_1.SchemaObject>;
+export type ApiErrorSchemaRefs = Record<ApiErrorValue, string>;
 export type SchemaValues<T> = (T extends (number | string) ? Record<T, string> : never) | T[];
 export interface BaseSchemaProps<T, D = T> {
     default?: D;

@@ -8,6 +8,7 @@ require('../../../hooks/useParentRule/index.js');
 require('../../../utils/index.js');
 var useBlock = require('../../../hooks/useBlock/useBlock.js');
 var useSchemaType = require('../../../hooks/useSchemaType/useSchemaType.js');
+var useBodyContext = require('../../../hooks/useBodyContext/useBodyContext.js');
 var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
 var useParentRule = require('../../../hooks/useParentRule/useParentRule.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
@@ -17,6 +18,10 @@ const boolean = () => {
     useBlock.useBlock('path');
     const props = jsx.useProps();
     useSchemaType.useSchemaType('boolean', props);
+    const isBody = Boolean(jsx.useContext(useBodyContext.bodyContext));
+    const hasRules = !isBody || !props.readOnly;
+    if (!hasRules)
+        return;
     const rules = [];
     if ((props === null || props === void 0 ? void 0 : props.default) !== undefined) {
         rules.push(defaultTo.defaultTo(props.default));

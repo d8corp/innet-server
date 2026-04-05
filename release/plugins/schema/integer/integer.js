@@ -5,6 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
 require('../../../utils/index.js');
+var useBodyContext = require('../../../hooks/useBodyContext/useBodyContext.js');
 var useSchemaType = require('../../../hooks/useSchemaType/useSchemaType.js');
 var values = require('../../../utils/rules/values/values.js');
 var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
@@ -17,6 +18,8 @@ var pipe = require('../../../utils/rules/pipe/pipe.js');
 
 const integer = () => {
     const { default: defaultValue, example, examples, exclusiveMaximum, exclusiveMinimum, format = 'int32', max: max$1, min: min$1, multipleOf, values: values$1, ...props } = jsx.useProps() || {};
+    const isBody = Boolean(jsx.useContext(useBodyContext.bodyContext));
+    const hasRules = !isBody || !props.readOnly;
     const schema = useSchemaType.useSchemaType('integer', {
         ...props,
         default: defaultValue !== undefined ? Number(defaultValue) : undefined,
@@ -45,6 +48,8 @@ const integer = () => {
             schema.multipleOf = Number(multipleOf);
         }
     }
+    if (!hasRules)
+        return;
     const rules = [];
     if (defaultValue !== undefined) {
         rules.push(defaultTo.defaultTo(defaultValue));
