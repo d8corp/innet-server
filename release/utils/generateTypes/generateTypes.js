@@ -17,7 +17,7 @@ function hasDefault(target) {
 function generateSchemaTypes(schema, spaces = 2, lastChar = '\n') {
     const space = [...new Array(spaces)].map(() => ' ').join('');
     if ('$ref' in schema) {
-        return `Schemas.${schema.$ref.slice(21)}${lastChar}`;
+        return `Schemas['${schema.$ref.slice(21)}']${lastChar}`;
     }
     const types = Array.isArray(schema.type) ? schema.type : [schema.type];
     let scope = '';

@@ -18,7 +18,7 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2, l
   const space = [...new Array(spaces)].map(() => ' ').join('')
 
   if ('$ref' in schema) {
-    return `Schemas.${(schema.$ref as string).slice(21)}${lastChar}`
+    return `Schemas['${(schema.$ref as string).slice(21)}']${lastChar}`
   }
 
   const types = Array.isArray(schema.type) ? schema.type : [schema.type]

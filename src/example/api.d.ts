@@ -159,20 +159,20 @@ declare global {
         pageSize: number
       }
       response: {
-        ['400']: Schemas.ApiValidationError
+        ['400']: Schemas['ApiValidationError']
         ['default']: {
           page: number
           pageSize: number
           count: number
-          todos: Array<Schemas.TodoSchema>
+          todos: Array<Schemas['TodoSchema']>
         }
      }
     }
     ['POST:/todos']: {
-      body: Schemas.TodoSchemaBody
+      body: Schemas['TodoSchemaBody']
       response: {
-        ['400']: Schemas.ApiRequestBodyContentTypeError | Schemas.ApiValidationError
-        ['default']: Schemas.TodoSchema
+        ['400']: Schemas['ApiRequestBodyContentTypeError'] | Schemas['ApiValidationError']
+        ['default']: Schemas['TodoSchema']
      }
     }
     ['GET:/todos/{todoId}']: {
@@ -180,8 +180,8 @@ declare global {
         todoId: string
       }
       response: {
-        ['400']: Schemas.ApiValidationError
-        ['default']: Schemas.TodoSchema
+        ['400']: Schemas['ApiValidationError']
+        ['default']: Schemas['TodoSchema']
      }
     }
     ['PATCH:/todos/{todoId}']: {
@@ -193,7 +193,7 @@ declare global {
         title?: string
       }
       response: {
-        ['400']: Schemas.ApiRequestBodyContentTypeError | Schemas.ApiValidationError
+        ['400']: Schemas['ApiRequestBodyContentTypeError'] | Schemas['ApiValidationError']
      }
     }
     ['DELETE:/todos/{todoId}']: {
@@ -202,7 +202,7 @@ declare global {
       }
       response: {
         ['204']: void
-        ['400']: Schemas.ApiValidationError
+        ['400']: Schemas['ApiValidationError']
      }
     }
   }
