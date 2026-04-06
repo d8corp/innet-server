@@ -1,14 +1,15 @@
+import { useHandler } from 'innet'
 import { onDestroy } from 'watch-state'
 
 import { type ServerPlugin } from '../useServer'
 import { useServerPlugins } from '../useServerPlugins'
 
 export function useServerPlugin (listener: ServerPlugin) {
-  const requests = useServerPlugins()
+  const plugins = useServerPlugins()
 
-  requests.add(listener)
+  plugins.set(listener, useHandler())
 
   onDestroy(() => {
-    requests.delete(listener)
+    plugins.delete(listener)
   })
 }

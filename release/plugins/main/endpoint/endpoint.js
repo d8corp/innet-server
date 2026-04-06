@@ -83,10 +83,10 @@ const endpoint = () => {
         paths[path][method] = operation;
     }
     if (!endpoints[method]) {
-        endpoints[method] = { key: '', plugins: new Set() };
+        endpoints[method] = { key: '', plugins: new Map() };
     }
     const endpoint = getEndpoint.getEndpoint(path, endpoints[method]);
-    if (schemaGeneration) {
+    if (endpoint && schemaGeneration) {
         useEffect.useEffect(() => {
             var _a, _b, _c, _d, _e;
             if (operation.requestBody || ((_a = operation.parameters) === null || _a === void 0 ? void 0 : _a.length)) {

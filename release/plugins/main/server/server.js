@@ -16,7 +16,6 @@ var useServerPort = require('../../../hooks/useServerPort/useServerPort.js');
 var useIsServerHttps = require('../../../hooks/useIsServerHttps/useIsServerHttps.js');
 var Action = require('../../../utils/action/Action.js');
 var useAction = require('../../../hooks/useAction/useAction.js');
-var useRequestHandler = require('../../../hooks/useRequestHandler/useRequestHandler.js');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -44,7 +43,7 @@ const server = () => {
     }
     const https = Boolean(key && cert);
     const { onClose, onError, onRequest, onStart, port = Number((_c = env.INNET_PORT) !== null && _c !== void 0 ? _c : (https ? 443 : 80)), } = props;
-    const plugins = new Set();
+    const plugins = new Map();
     const server = https ? http2__default["default"].createServer({ cert, key }) : http__default["default"].createServer();
     useServer.serverContext.set(handler, { port, props, server });
     useServerPlugins.serverPlugins.set(handler, plugins);
@@ -64,12 +63,12 @@ const server = () => {
         const action = new Action.Action(req, res);
         const requestHandler = Object.create(handler);
         useAction.actionContext.set(requestHandler, action);
-        useRequestHandler.requestHandlerContext.set(requestHandler, requestHandler);
         async function server() {
             const app = innet.useApp();
-            const handler = innet.useHandler();
-            for (const plugin of plugins) {
-                const result = await innet.net(plugin, app, handler);
+            for (const [plugin, handler] of plugins) {
+                const actionHandler = Object.create(handler);
+                useAction.actionContext.set(actionHandler, action);
+                const result = await innet.net(plugin, app, actionHandler);
                 if (result !== undefined) {
                     return result;
                 }

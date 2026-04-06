@@ -1,4 +1,4 @@
-import { type HandlerPlugin, innet, net, useApp, useHandler, useNewHandler } from 'innet'
+import { type Handler, type HandlerPlugin, innet, net, useApp, useNewHandler } from 'innet'
 import { useProps } from '@innet/jsx'
 import fs from 'fs'
 import http, { type IncomingMessage, type ServerResponse } from 'http'
@@ -7,7 +7,6 @@ import { onDestroy } from 'watch-state'
 
 import {
   actionContext,
-  requestHandlerContext,
   serverContext,
   serverHttpsContext,
   type ServerPlugin,
@@ -60,7 +59,7 @@ export const server: HandlerPlugin = () => {
     onStart,
     port = Number(env.INNET_PORT ?? (https ? 443 : 80)),
   } = props
-  const plugins = new Set<ServerPlugin>()
+  const plugins = new Map<ServerPlugin, Handler>()
 
   const server = https ? http2.createServer({ cert, key }) : http.createServer()
 
@@ -86,14 +85,14 @@ export const server: HandlerPlugin = () => {
     const action = new Action(req, res)
     const requestHandler = Object.create(handler)
     actionContext.set(requestHandler, action)
-    requestHandlerContext.set(requestHandler, requestHandler)
 
     async function server () {
       const app = useApp()
-      const handler = useHandler()
 
-      for (const plugin of plugins) {
-        const result = await net(plugin, app, handler)
+      for (const [plugin, handler] of plugins) {
+        const actionHandler = Object.create(handler)
+        actionContext.set(actionHandler, action)
+        const result = await net(plugin, app, actionHandler)
 
         if (result !== undefined) {
           return result

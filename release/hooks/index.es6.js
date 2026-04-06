@@ -20,7 +20,6 @@ import './useParam/index.es6.js';
 import './useParams/index.es6.js';
 import './usePath/index.es6.js';
 import './useRequest/index.es6.js';
-import './useRequestHandler/index.es6.js';
 import './useResponse/index.es6.js';
 import './useRule/index.es6.js';
 import './useSchemaContext/index.es6.js';

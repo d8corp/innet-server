@@ -1,3 +1,4 @@
+import { type Handler } from 'innet'
 import type { OpenAPIV3_1 as API, OpenAPIV3_1 } from 'openapi-types'
 
 import type { ApiErrorValue } from '../constants'
@@ -57,7 +58,7 @@ export interface Endpoint<
 > {
   dynamic?: Endpoint<I, O, E, P, D>[]
   key: string
-  plugins: Set<ServerPlugin>
+  plugins: Map<ServerPlugin, Handler>
   rules?: EndpointRules
   rulesMaps?: EndpointRulesMaps
   static?: Record<string, Endpoint<I, O, E, P, D>>

@@ -26,7 +26,6 @@ export { paramContext, useParam } from './hooks/useParam/useParam.es6.js';
 export { paramsContext, useParams } from './hooks/useParams/useParams.es6.js';
 export { usePath } from './hooks/usePath/usePath.es6.js';
 export { useRequest } from './hooks/useRequest/useRequest.es6.js';
-export { requestHandlerContext, useRequestHandler } from './hooks/useRequestHandler/useRequestHandler.es6.js';
 export { useResponse } from './hooks/useResponse/useResponse.es6.js';
 export { ruleContext, useRule, useSetRule } from './hooks/useRule/useRule.es6.js';
 export { schemaContext, useSchemaContext } from './hooks/useSchemaContext/useSchemaContext.es6.js';

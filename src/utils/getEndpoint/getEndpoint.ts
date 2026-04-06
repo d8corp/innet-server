@@ -1,6 +1,6 @@
 import { type Endpoint } from '../../types'
 
-export function getEndpoint (path: string, parentEndpoint: Endpoint) {
+export function getEndpoint (path: string, parentEndpoint: Endpoint): Endpoint | undefined {
   const splitPath = path.split('/').slice(1)
 
   for (let deep = 0; deep < splitPath.length; deep++) {
@@ -13,7 +13,7 @@ export function getEndpoint (path: string, parentEndpoint: Endpoint) {
       }
 
       if (!parentEndpoint.static[key]) {
-        parentEndpoint.static[key] = { key, plugins: new Set() }
+        parentEndpoint.static[key] = { key, plugins: new Map() }
       }
 
       parentEndpoint = parentEndpoint.static[key]
@@ -29,7 +29,7 @@ export function getEndpoint (path: string, parentEndpoint: Endpoint) {
       parentEndpoint.dynamic = []
     }
 
-    const newEndpoint: Endpoint = { key, plugins: new Set() }
+    const newEndpoint: Endpoint = { key, plugins: new Map() }
 
     parentEndpoint.dynamic.push(newEndpoint)
     parentEndpoint = newEndpoint

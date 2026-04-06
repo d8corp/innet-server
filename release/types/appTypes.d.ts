@@ -1,3 +1,4 @@
+import { type Handler } from 'innet';
 import type { OpenAPIV3_1 as API, OpenAPIV3_1 } from 'openapi-types';
 import type { ApiErrorValue } from '../constants';
 import { type ServerPlugin } from '../hooks';
@@ -39,7 +40,7 @@ export interface EndpointRulesMaps {
 export interface Endpoint<I = unknown, O = unknown, E extends ApiErrorValue = ApiErrorValue, P extends InValidationErrorParam = InValidationErrorParam, D extends ValidationErrorData = ValidationErrorData> {
     dynamic?: Endpoint<I, O, E, P, D>[];
     key: string;
-    plugins: Set<ServerPlugin>;
+    plugins: Map<ServerPlugin, Handler>;
     rules?: EndpointRules;
     rulesMaps?: EndpointRulesMaps;
     static?: Record<string, Endpoint<I, O, E, P, D>>;

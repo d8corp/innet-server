@@ -1,4 +1,4 @@
-import { type HandlerPlugin, innet, net, useApp, useNewHandler } from 'innet'
+import { type Handler, type HandlerPlugin, innet, net, useApp, useNewHandler } from 'innet'
 import { useProps } from '@innet/jsx'
 
 import {
@@ -85,7 +85,7 @@ export const api: HandlerPlugin = () => {
     openapi: '3.1.0',
     paths: {},
   }
-  const plugins = new Set<ServerPlugin>()
+  const plugins = new Map<ServerPlugin, Handler>()
 
   const context: ApiContext = { docs, endpoints, prefix, props, refRules: {} }
 
@@ -113,7 +113,6 @@ export const api: HandlerPlugin = () => {
 
     if (!condition(action as any)) return
 
-    const actionHandler = useNewHandler()
     const path = action.parsedUrl.path
     const url = path.endsWith('/') ? path.slice(0, -1) : path
     const {
@@ -206,11 +205,16 @@ export const api: HandlerPlugin = () => {
             if (checkActionRules(bodyRules, 'body')) return true
           }
 
-          paramsContext.set(actionHandler, params)
+          const app = useApp()
 
-          for (const plugin of runEndpoint.plugins) {
-            const result = await plugin()
+          for (const [plugin, handler] of runEndpoint.plugins) {
+            const actionHandler = Object.create(handler)
+            paramsContext.set(actionHandler, params)
+            actionContext.set(actionHandler, action)
+            const result = await net(plugin, app, actionHandler)
+
             if (result === undefined) continue
+
             innet(result, actionHandler)
             return true
           }
@@ -248,7 +252,7 @@ export const api: HandlerPlugin = () => {
       }
     }
 
-    for (const plugin of plugins) {
+    for (const [plugin, handler] of plugins) {
       const newHandler = Object.create(handler)
       actionContext.set(newHandler, action)
 

@@ -26,7 +26,7 @@ const api = () => {
         openapi: '3.1.0',
         paths: {},
     };
-    const plugins = new Set();
+    const plugins = new Map();
     const context = { docs, endpoints, prefix, props, refRules: {} };
     const condition = (action) => {
         const path = action.parsedUrl.path;
@@ -47,7 +47,6 @@ const api = () => {
         const action = useAction.useAction();
         if (!condition(action))
             return;
-        const actionHandler = innet.useNewHandler();
         const path = action.parsedUrl.path;
         const url = path.endsWith('/') ? path.slice(0, -1) : path;
         const { req, res, } = action;
@@ -131,9 +130,12 @@ const api = () => {
                         if (checkActionRules(bodyRules, 'body'))
                             return true;
                     }
-                    useParams.paramsContext.set(actionHandler, params);
-                    for (const plugin of runEndpoint.plugins) {
-                        const result = await plugin();
+                    const app = innet.useApp();
+                    for (const [plugin, handler] of runEndpoint.plugins) {
+                        const actionHandler = Object.create(handler);
+                        useParams.paramsContext.set(actionHandler, params);
+                        useAction.actionContext.set(actionHandler, action);
+                        const result = await innet.net(plugin, app, actionHandler);
                         if (result === undefined)
                             continue;
                         innet.innet(result, actionHandler);
@@ -166,7 +168,7 @@ const api = () => {
                 }
             }
         }
-        for (const plugin of plugins) {
+        for (const [plugin, handler] of plugins) {
             const newHandler = Object.create(handler);
             useAction.actionContext.set(newHandler, action);
             const result = await innet.net(plugin, app, newHandler);

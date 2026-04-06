@@ -1,4 +1,4 @@
-import { useNewHandler, useApp, useHandler, net, innet } from 'innet';
+import { useNewHandler, useApp, net, innet } from 'innet';
 import { useProps } from '@innet/jsx';
 import fs from 'node:fs';
 import http from 'node:http';
@@ -12,7 +12,6 @@ import { serverPortContext } from '../../../hooks/useServerPort/useServerPort.es
 import { serverHttpsContext } from '../../../hooks/useIsServerHttps/useIsServerHttps.es6.js';
 import { Action } from '../../../utils/action/Action.es6.js';
 import { actionContext } from '../../../hooks/useAction/useAction.es6.js';
-import { requestHandlerContext } from '../../../hooks/useRequestHandler/useRequestHandler.es6.js';
 
 const server = () => {
     var _a, _b, _c;
@@ -34,7 +33,7 @@ const server = () => {
     }
     const https = Boolean(key && cert);
     const { onClose, onError, onRequest, onStart, port = Number((_c = env.INNET_PORT) !== null && _c !== void 0 ? _c : (https ? 443 : 80)), } = props;
-    const plugins = new Set();
+    const plugins = new Map();
     const server = https ? http2.createServer({ cert, key }) : http.createServer();
     serverContext.set(handler, { port, props, server });
     serverPlugins.set(handler, plugins);
@@ -54,12 +53,12 @@ const server = () => {
         const action = new Action(req, res);
         const requestHandler = Object.create(handler);
         actionContext.set(requestHandler, action);
-        requestHandlerContext.set(requestHandler, requestHandler);
         async function server() {
             const app = useApp();
-            const handler = useHandler();
-            for (const plugin of plugins) {
-                const result = await net(plugin, app, handler);
+            for (const [plugin, handler] of plugins) {
+                const actionHandler = Object.create(handler);
+                actionContext.set(actionHandler, action);
+                const result = await net(plugin, app, actionHandler);
                 if (result !== undefined) {
                     return result;
                 }

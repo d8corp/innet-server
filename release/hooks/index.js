@@ -22,7 +22,6 @@ require('./useParam/index.js');
 require('./useParams/index.js');
 require('./usePath/index.js');
 require('./useRequest/index.js');
-require('./useRequestHandler/index.js');
 require('./useResponse/index.js');
 require('./useRule/index.js');
 require('./useSchemaContext/index.js');

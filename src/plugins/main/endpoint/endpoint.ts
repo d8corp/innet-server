@@ -3,7 +3,7 @@ import { useProps } from '@innet/jsx'
 import { type OpenAPIV3_1 } from 'openapi-types'
 
 import { defaultRequestBodyContentTypeSchema, defaultRequestValidationSchema } from '../../../constants'
-import { endpointContext, type ServerPlugin, serverPlugins, useApi, useEffect, useTag } from '../../../hooks'
+import { endpointContext, serverPlugins, useApi, useEffect, useTag } from '../../../hooks'
 import { type EndpointsMethods, type OperationObject } from '../../../types'
 import { getEndpoint } from '../../../utils'
 
@@ -160,12 +160,12 @@ export const endpoint: HandlerPlugin = () => {
   }
 
   if (!endpoints[method]) {
-    endpoints[method] = { key: '', plugins: new Set<ServerPlugin>() }
+    endpoints[method] = { key: '', plugins: new Map() }
   }
 
   const endpoint = getEndpoint(path, endpoints[method])
 
-  if (schemaGeneration) {
+  if (endpoint && schemaGeneration) {
     useEffect(() => {
       if (operation.requestBody || operation.parameters?.length) {
         if (!operation.responses) {
