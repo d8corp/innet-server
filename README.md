@@ -7,7 +7,7 @@
 
 <h1 align="center">@innet/server</h1>
 
-<p align="center">Backend Server Framework</p>
+<p align="center">JavaScript Backend Framework</p>
 
 <br>
 
@@ -37,18 +37,17 @@
 
 <br>
 
-`@innet/server` is an **isomorphic backend framework** built with **JSX components**. Create REST APIs with **OpenAPI documentation** automatically generated, **real-time validation**, and **type-safe contracts** — all in a declarative, component-based syntax.
+`@innet/server` is a backend framework that brings HTML-like declarative markup to server-side.
 
-- **JSX Backend** — Write backend with React-like component syntax
-- **OpenAPI First** — Generate OpenAPI 3.1.0 documentation automatically
-- **Type-Safe** — Full TypeScript support with automatic type inference
-- **Real-Time Validation** — Validate request/response data automatically
+- **JSX** — Write backend with HTML-like syntax
+- **Components** — React-like component-driven approach
+- **OpenAPI** — Generate OpenAPI 3.1.0 documentation automatically
+- **Type-Safe** — Full TypeScript support
+- **Validation** — Validate request data automatically
 - **UI** — Built-in interactive API documentation with `Swagger`, `Scalar`, `RapiDoc`, `ReDoc` or your own viewer
-- **Component-Driven** — Reusable, composable business logic
 - **Contract-First** — Define API contracts before implementation
-- **Framework Agnostic** — Works with any runtime (Node.js, Deno, Bun)
+- **Runtime Agnostic** — Works with any runtime (Node.js, Deno, Bun)
 - **Zero Configuration** — Works out of the box with sensible defaults
-- **Decorator-Free** — No decorators or annotations needed
 
 Built on top of [innet](https://www.npmjs.com/package/innet).
 
