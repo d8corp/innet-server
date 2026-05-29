@@ -2,25 +2,23 @@
 
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / Schemas [↑](https://github.com/d8corp/innet-server/blob/2.0/readme/README_ELEMENTS.md) [↓](#hooks)
 
-<sup>
-  <details>
-    <summary>&nbsp;📁 <a href="#shared-props">Shared Props</a></summary>
-    <blockquote>
-      <h6>├ 🏷️ <a href="#title">title</a></h6>
-      <h6>├ 🏷️ <a href="#description">description</a></h6>
-      <h6>├ 🏷️ <a href="#deprecated">deprecated</a></h6>
-      <h6>├ 🏷️ <a href="#ref">ref</a></h6>
-      <h6>├ 🏷️ <a href="#readonly">readOnly</a></h6>
-      <h6>├ 🏷️ <a href="#writeonly">writeOnly</a></h6>
-      <h6>├ 🏷️ <a href="#nullable">nullable</a></h6>
-      <h6>├ 🏷️ <a href="#example">example</a></h6>
-      <h6>├ 🏷️ <a href="#examples">examples</a></h6>
-      <h6>├ 🏷️ <a href="#default">default</a></h6>
-      <h6>├ 🏷️ <a href="#value">value</a></h6>
-      <h6>└ 🏷️ <a href="#values">values</a></h6>
-    </blockquote>
-  </details>
-</sup>
+<details>
+  <summary><sup>&nbsp;📁 <a href="#shared-props">Shared Props</a></sup></summary>
+  <blockquote>
+    ├ 🏷️ <a href="#title">title</a><br/>
+    ├ 🏷️ <a href="#description">description</a><br/>
+    ├ 🏷️ <a href="#deprecated">deprecated</a><br/>
+    ├ 🏷️ <a href="#ref">ref</a><br/>
+    ├ 🏷️ <a href="#readonly">readOnly</a><br/>
+    ├ 🏷️ <a href="#writeonly">writeOnly</a><br/>
+    ├ 🏷️ <a href="#nullable">nullable</a><br/>
+    ├ 🏷️ <a href="#example">example</a><br/>
+    ├ 🏷️ <a href="#examples">examples</a><br/>
+    ├ 🏷️ <a href="#default">default</a><br/>
+    ├ 🏷️ <a href="#value">value</a><br/>
+    └ 🏷️ <a href="#values">values</a><br/>
+  </blockquote>
+</details>
 <sub>
   <details>
     <summary>&nbsp;📁 <a href="#collections">Collections</a></summary>
