@@ -139,7 +139,7 @@ Schemas define the structure and validation rules for your API data. Use declara
 </sub>
 
 All schema elements support common properties for documentation and behavior control.
-Use these props across any schema type (`<string>`, `<number>`, `<object>`, `<array>`, etc.) to provide metadata, validation hints, and type constraints.
+Use these props across any schema type (`<string>`, `<number>`, `<object>`, `<array>`, etc.)
 
 ### title
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Shared Props](#shared-props) / title [↓](#description)
