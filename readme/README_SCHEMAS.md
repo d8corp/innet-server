@@ -156,7 +156,7 @@ Human-readable title for the schema element.
 ### description
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Shared Props](#shared-props) / description [↑](#title) [↓](#deprecated)
 
-Detailed description of the schema.
+Detailed description of the schema element.
 Supports CommonMark (Markdown) syntax.
 
 - **Type:** `string`
@@ -169,7 +169,7 @@ Supports CommonMark (Markdown) syntax.
 ### deprecated
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Shared Props](#shared-props) / deprecated [↑](#description) [↓](#ref)
 
-Mark schema as deprecated.
+Mark schema element as deprecated.
 
 - **Type:** `boolean`
 - **Default:** `false`
