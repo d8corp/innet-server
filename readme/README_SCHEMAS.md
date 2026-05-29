@@ -2,6 +2,7 @@
 
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / Schemas [↑](https://github.com/d8corp/innet-server/blob/2.0/readme/README_ELEMENTS.md) [↓](#hooks)
 
+<sup>
 <details>
   <summary>&nbsp;📁 <a href="#shared-props">Shared Props</a></summary>
   <blockquote>
@@ -99,6 +100,7 @@
     └ 🧩 <a href="#any">&lt;any&gt;</a><br>
   </blockquote>
 </details>
+</sup>
 
 Schemas define the structure and validation rules for your API data. Use declarative elements to describe parameters, request bodies, and response formats. Schemas support primitives, collections, validation constraints, and automatic TypeScript type generation.
 
