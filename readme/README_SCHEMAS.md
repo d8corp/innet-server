@@ -117,24 +117,26 @@ Schemas define the structure and validation rules for your API data. Use declara
 
 ## Shared Props
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Shared Props](#shared-props) [↓](#collections)
-
-<details>
-  <summary>&nbsp;🏷️ Props</summary>
-  <blockquote>
-    🏷️ <a href="#title">title</a><br>
-    🏷️ <a href="#description">description</a><br>
-    🏷️ <a href="#deprecated">deprecated</a><br>
-    🏷️ <a href="#ref">ref</a><br>
-    🏷️ <a href="#readonly">readOnly</a><br>
-    🏷️ <a href="#writeonly">writeOnly</a><br>
-    🏷️ <a href="#nullable">nullable</a><br>
-    🏷️ <a href="#example">example</a><br>
-    🏷️ <a href="#examples">examples</a><br>
-    🏷️ <a href="#default">default</a><br>
-    🏷️ <a href="#value">value</a><br>
-    🏷️ <a href="#values">values</a><br>
-  </blockquote>
-</details>
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>🏷️ <a href="#title">title</a></p>
+      <p>🏷️ <a href="#description">description</a></p>
+      <p>🏷️ <a href="#deprecated">deprecated</a></p>
+      <p>🏷️ <a href="#ref">ref</a></p>
+      <p>🏷️ <a href="#readonly">readOnly</a></p>
+      <p>🏷️ <a href="#writeonly">writeOnly</a></p>
+      <p>🏷️ <a href="#nullable">nullable</a></p>
+      <p>🏷️ <a href="#example">example</a></p>
+      <p>🏷️ <a href="#examples">examples</a></p>
+      <p>🏷️ <a href="#default">default</a></p>
+      <p>🏷️ <a href="#value">value</a></p>
+      <p>🏷️ <a href="#values">values</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 All schema elements support common properties for documentation and behavior control.
 Use these props across any schema type (`<string>`, `<number>`, `<object>`, `<array>`, etc.) to provide metadata, validation hints, and type constraints.
