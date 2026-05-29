@@ -5,18 +5,18 @@
   <details>
     <summary>&nbsp;📁 <a href="#shared-props">Shared Props</a></summary>
     <blockquote>
-      ├ 🏷️ <a href="#title">title</a><br/>
-      ├ 🏷️ <a href="#description">description</a><br/>
-      ├ 🏷️ <a href="#deprecated">deprecated</a><br/>
-      ├ 🏷️ <a href="#ref">ref</a><br/>
-      ├ 🏷️ <a href="#readonly">readOnly</a><br/>
-      ├ 🏷️ <a href="#writeonly">writeOnly</a><br/>
-      ├ 🏷️ <a href="#nullable">nullable</a><br/>
-      ├ 🏷️ <a href="#example">example</a><br/>
-      ├ 🏷️ <a href="#examples">examples</a><br/>
-      ├ 🏷️ <a href="#default">default</a><br/>
-      ├ 🏷️ <a href="#value">value</a><br/>
-      └ 🏷️ <a href="#values">values</a><br/>
+      <details>├ 🏷️ <a href="#title">title</a><br/></details>
+      <details>├ 🏷️ <a href="#description">description</a><br/></details>
+      <details>├ 🏷️ <a href="#deprecated">deprecated</a><br/></details>
+      <details>├ 🏷️ <a href="#ref">ref</a><br/></details>
+      <details>├ 🏷️ <a href="#readonly">readOnly</a><br/></details>
+      <details>├ 🏷️ <a href="#writeonly">writeOnly</a><br/></details>
+      <details>├ 🏷️ <a href="#nullable">nullable</a><br/></details>
+      <details>├ 🏷️ <a href="#example">example</a><br/></details>
+      <details>├ 🏷️ <a href="#examples">examples</a><br/></details>
+      <details>├ 🏷️ <a href="#default">default</a><br/></details>
+      <details>├ 🏷️ <a href="#value">value</a><br/></details>
+      <details>└ 🏷️ <a href="#values">values</a><br/></details>
     </blockquote>
   </details>
   <details>
