@@ -144,7 +144,7 @@ Use these props across any schema type (`<string>`, `<number>`, `<object>`, `<ar
 ### title
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Shared Props](#shared-props) / title [↓](#description)
 
-Human-readable title for the schema.
+Human-readable title for the schema element.
 
 - **Type:** `string`
 - **Default:** -
