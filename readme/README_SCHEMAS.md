@@ -2,103 +2,109 @@
 
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / Schemas [↑](https://github.com/d8corp/innet-server/blob/2.0/readme/README_ELEMENTS.md) [↓](#hooks)
 
-<details>
-  <summary>&nbsp;📁 <a href="#shared-props">Shared Props</a></summary>
-  <blockquote>
-    ├ 🏷️ <a href="#title">title</a><br/>
-    ├ 🏷️ <a href="#description">description</a><br/>
-    ├ 🏷️ <a href="#deprecated">deprecated</a><br/>
-    ├ 🏷️ <a href="#ref">ref</a><br/>
-    ├ 🏷️ <a href="#readonly">readOnly</a><br/>
-    ├ 🏷️ <a href="#writeonly">writeOnly</a><br/>
-    ├ 🏷️ <a href="#nullable">nullable</a><br/>
-    ├ 🏷️ <a href="#example">example</a><br/>
-    ├ 🏷️ <a href="#examples">examples</a><br/>
-    ├ 🏷️ <a href="#default">default</a><br/>
-    ├ 🏷️ <a href="#value">value</a><br/>
-    └ 🏷️ <a href="#values">values</a><br/>
-  </blockquote>
-</details>
-<details>
-  <summary>&nbsp;📁 <a href="#collections">Collections</a></summary>
-  <blockquote>
-    <details>
-      <summary>&nbsp;🧩 <a href="#object">&lt;object&gt;</a></summary>
-      <blockquote>
-        <details>
-          <summary>&nbsp;🧩 <a href="#field">&lt;field&gt;</a></summary>
-          <blockquote>
-            ├ 🏷️ <a href="#field-key">key</a><br>
-            └ 🏷️ <a href="#field-optional">optional</a><br>
-          </blockquote>
-        </details>
-      </blockquote>
-    </details>
-    <details>
-      <summary>&nbsp;🧩 <a href="#array">&lt;array&gt;</a></summary>
-      <blockquote>
-        ├ 🏷️ <a href="#array-minitems">minItems</a><br>
-        ├ 🏷️ <a href="#array-maxitems">maxItems</a><br>
-        └ 🏷️ <a href="#array-uniqueitems">uniqueItems</a>
-      </blockquote>
-    </details>
-    └ 🧩 <a href="#tuple">&lt;tuple&gt;</a><br>
-  </blockquote>
-</details>
-<details>
-  <summary>&nbsp;📁 <a href="#primitives">Primitives</a></summary>
-  <blockquote>
-    <details>
-      <summary>&nbsp;🧩 <a href="#string">&lt;string&gt;</a></summary>
-      <blockquote>
-        ├ 🏷️ <a href="#string-min">min</a><br>
-        ├ 🏷️ <a href="#string-max">max</a><br>
-        ├ 🏷️ <a href="#string-pattern">pattern</a><br>
-        └ 🏷️ <a href="#string-patternid">patternId</a>
-      </blockquote>
-    </details>
-    <details>
-      <summary>&nbsp;🧩 <a href="#number">&lt;number&gt;</a></summary>
-      <blockquote>
-        ├ 🏷️ <a href="#num-min">min</a><br>
-        ├ 🏷️ <a href="#num-max">max</a><br>
-        ├ 🏷️ <a href="#num-exclusivemin">exclusiveMin</a><br>
-        ├ 🏷️ <a href="#num-exclusivemax">exclusiveMax</a><br>
-        └ 🏷️ <a href="#num-multipleof">multipleOf</a>
-      </blockquote>
-    </details>
-    <details>
-      <summary>&nbsp;🧩 <a href="#integer">&lt;integer&gt;</a></summary>
-      <blockquote>
-        ├ 🏷️ <a href="#int-format">format</a><br>
-        ├ 🏷️ <a href="#int-min">min</a><br>
-        ├ 🏷️ <a href="#int-max">max</a><br>
-        ├ 🏷️ <a href="#int-exclusivemin">exclusiveMin</a><br>
-        ├ 🏷️ <a href="#int-exclusivemax">exclusiveMax</a><br>
-        └ 🏷️ <a href="#int-multipleof">multipleOf</a>
-      </blockquote>
-    </details>
-    <details>
-      <summary>&nbsp;🧩 <a href="#date">&lt;date&gt;</a></summary>
-      <blockquote>
-        ├ 🏷️ <a href="#date-min">min</a><br>
-        └ 🏷️ <a href="#date-max">max</a>
-      </blockquote>
-    </details>
-    <details>
-      <summary>&nbsp;🧩 <a href="#binary">&lt;binary&gt;</a></summary>
-      <blockquote>
-        ├ 🏷️ <a href="#binary-accept">accept</a><br>
-        ├ 🏷️ <a href="#binary-min">min</a><br>
-        └ 🏷️ <a href="#binary-max">max</a>
-      </blockquote>
-    </details>
-    ├ 🧩 <a href="#uuid">&lt;uuid&gt;</a><br>
-    ├ 🧩 <a href="#boolean">&lt;boolean&gt;</a><br>
-    ├ 🧩 <a href="#null">&lt;null&gt;</a><br>
-    └ 🧩 <a href="#any">&lt;any&gt;</a><br>
-  </blockquote>
-</details>
+<sup>
+  <details>
+    <summary>&nbsp;📁 <a href="#shared-props">Shared Props</a></summary>
+    <blockquote>
+      <p></p>
+      <p>├ 🏷️ <a href="#title">title</a></p>
+      <p>├ 🏷️ <a href="#description">description</a></p>
+      <p>├ 🏷️ <a href="#deprecated">deprecated</a></p>
+      <p>├ 🏷️ <a href="#ref">ref</a></p>
+      <p>├ 🏷️ <a href="#readonly">readOnly</a></p>
+      <p>├ 🏷️ <a href="#writeonly">writeOnly</a></p>
+      <p>├ 🏷️ <a href="#nullable">nullable</a></p>
+      <p>├ 🏷️ <a href="#example">example</a></p>
+      <p>├ 🏷️ <a href="#examples">examples</a></p>
+      <p>├ 🏷️ <a href="#default">default</a></p>
+      <p>├ 🏷️ <a href="#value">value</a></p>
+      <p>└ 🏷️ <a href="#values">values</a></p>
+    </blockquote>
+  </details>
+  <details>
+    <summary>&nbsp;📁 <a href="#collections">Collections</a></summary>
+    <blockquote>
+      <p></p>
+      <details>
+        <summary>&nbsp;🧩 <a href="#object">&lt;object&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <details>
+            <summary>&nbsp;🧩 <a href="#field">&lt;field&gt;</a></summary>
+            <blockquote>
+              <p></p>
+              <p>├ 🏷️ <a href="#field-key">key</a></p>
+              <p>└ 🏷️ <a href="#field-optional">optional</a></p>
+            </blockquote>
+          </details>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#array">&lt;array&gt;</a></summary>
+        <blockquote>
+          ├ 🏷️ <a href="#array-minitems">minItems</a><br>
+          ├ 🏷️ <a href="#array-maxitems">maxItems</a><br>
+          └ 🏷️ <a href="#array-uniqueitems">uniqueItems</a>
+        </blockquote>
+      </details>
+      <p>└ 🧩 <a href="#tuple">&lt;tuple&gt;</a></p>
+    </blockquote>
+  </details>
+  <details>
+    <summary>&nbsp;📁 <a href="#primitives">Primitives</a></summary>
+    <blockquote>
+      <details>
+        <summary>&nbsp;🧩 <a href="#string">&lt;string&gt;</a></summary>
+        <blockquote>
+          ├ 🏷️ <a href="#string-min">min</a><br>
+          ├ 🏷️ <a href="#string-max">max</a><br>
+          ├ 🏷️ <a href="#string-pattern">pattern</a><br>
+          └ 🏷️ <a href="#string-patternid">patternId</a>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#number">&lt;number&gt;</a></summary>
+        <blockquote>
+          ├ 🏷️ <a href="#num-min">min</a><br>
+          ├ 🏷️ <a href="#num-max">max</a><br>
+          ├ 🏷️ <a href="#num-exclusivemin">exclusiveMin</a><br>
+          ├ 🏷️ <a href="#num-exclusivemax">exclusiveMax</a><br>
+          └ 🏷️ <a href="#num-multipleof">multipleOf</a>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#integer">&lt;integer&gt;</a></summary>
+        <blockquote>
+          ├ 🏷️ <a href="#int-format">format</a><br>
+          ├ 🏷️ <a href="#int-min">min</a><br>
+          ├ 🏷️ <a href="#int-max">max</a><br>
+          ├ 🏷️ <a href="#int-exclusivemin">exclusiveMin</a><br>
+          ├ 🏷️ <a href="#int-exclusivemax">exclusiveMax</a><br>
+          └ 🏷️ <a href="#int-multipleof">multipleOf</a>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#date">&lt;date&gt;</a></summary>
+        <blockquote>
+          ├ 🏷️ <a href="#date-min">min</a><br>
+          └ 🏷️ <a href="#date-max">max</a>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#binary">&lt;binary&gt;</a></summary>
+        <blockquote>
+          ├ 🏷️ <a href="#binary-accept">accept</a><br>
+          ├ 🏷️ <a href="#binary-min">min</a><br>
+          └ 🏷️ <a href="#binary-max">max</a>
+        </blockquote>
+      </details>
+      ├ 🧩 <a href="#uuid">&lt;uuid&gt;</a><br>
+      ├ 🧩 <a href="#boolean">&lt;boolean&gt;</a><br>
+      ├ 🧩 <a href="#null">&lt;null&gt;</a><br>
+      └ 🧩 <a href="#any">&lt;any&gt;</a><br>
+    </blockquote>
+  </details>
+</sup>
 
 Schemas define the structure and validation rules for your API data. Use declarative elements to describe parameters, request bodies, and response formats. Schemas support primitives, collections, validation constraints, and automatic TypeScript type generation.
 
