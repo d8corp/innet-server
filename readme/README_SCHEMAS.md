@@ -42,9 +42,10 @@
       <details>
         <summary>&nbsp;🧩 <a href="#array">&lt;array&gt;</a></summary>
         <blockquote>
-          ├ 🏷️ <a href="#array-minitems">minItems</a><br>
-          ├ 🏷️ <a href="#array-maxitems">maxItems</a><br>
-          └ 🏷️ <a href="#array-uniqueitems">uniqueItems</a>
+          <p></p>
+          <p>├ 🏷️ <a href="#array-minitems">minItems</a></p>
+          <p>├ 🏷️ <a href="#array-maxitems">maxItems</a></p>
+          <p>└ 🏷️ <a href="#array-uniqueitems">uniqueItems</a></p>
         </blockquote>
       </details>
       <p>└ 🧩 <a href="#tuple">&lt;tuple&gt;</a></p>
@@ -53,55 +54,61 @@
   <details>
     <summary>&nbsp;📁 <a href="#primitives">Primitives</a></summary>
     <blockquote>
+      <p></p>
       <details>
         <summary>&nbsp;🧩 <a href="#string">&lt;string&gt;</a></summary>
         <blockquote>
-          ├ 🏷️ <a href="#string-min">min</a><br>
-          ├ 🏷️ <a href="#string-max">max</a><br>
-          ├ 🏷️ <a href="#string-pattern">pattern</a><br>
-          └ 🏷️ <a href="#string-patternid">patternId</a>
+          <p></p>
+          <p>├ 🏷️ <a href="#string-min">min</a></p>
+          <p>├ 🏷️ <a href="#string-max">max</a></p>
+          <p>├ 🏷️ <a href="#string-pattern">pattern</a></p>
+          <p>└ 🏷️ <a href="#string-patternid">patternId</a></p>
         </blockquote>
       </details>
       <details>
         <summary>&nbsp;🧩 <a href="#number">&lt;number&gt;</a></summary>
         <blockquote>
-          ├ 🏷️ <a href="#num-min">min</a><br>
-          ├ 🏷️ <a href="#num-max">max</a><br>
-          ├ 🏷️ <a href="#num-exclusivemin">exclusiveMin</a><br>
-          ├ 🏷️ <a href="#num-exclusivemax">exclusiveMax</a><br>
-          └ 🏷️ <a href="#num-multipleof">multipleOf</a>
+          <p></p>
+          <p>├ 🏷️ <a href="#num-min">min</a></p>
+          <p>├ 🏷️ <a href="#num-max">max</a></p>
+          <p>├ 🏷️ <a href="#num-exclusivemin">exclusiveMin</a></p>
+          <p>├ 🏷️ <a href="#num-exclusivemax">exclusiveMax</a></p>
+          <p>└ 🏷️ <a href="#num-multipleof">multipleOf</a></p>
         </blockquote>
       </details>
       <details>
         <summary>&nbsp;🧩 <a href="#integer">&lt;integer&gt;</a></summary>
         <blockquote>
-          ├ 🏷️ <a href="#int-format">format</a><br>
-          ├ 🏷️ <a href="#int-min">min</a><br>
-          ├ 🏷️ <a href="#int-max">max</a><br>
-          ├ 🏷️ <a href="#int-exclusivemin">exclusiveMin</a><br>
-          ├ 🏷️ <a href="#int-exclusivemax">exclusiveMax</a><br>
-          └ 🏷️ <a href="#int-multipleof">multipleOf</a>
+          <p></p>
+          <p>├ 🏷️ <a href="#int-format">format</a></p>
+          <p>├ 🏷️ <a href="#int-min">min</a></p>
+          <p>├ 🏷️ <a href="#int-max">max</a></p>
+          <p>├ 🏷️ <a href="#int-exclusivemin">exclusiveMin</a></p>
+          <p>├ 🏷️ <a href="#int-exclusivemax">exclusiveMax</a></p>
+          <p>└ 🏷️ <a href="#int-multipleof">multipleOf</a></p>
         </blockquote>
       </details>
       <details>
         <summary>&nbsp;🧩 <a href="#date">&lt;date&gt;</a></summary>
         <blockquote>
-          ├ 🏷️ <a href="#date-min">min</a><br>
-          └ 🏷️ <a href="#date-max">max</a>
+          <p></p>
+          <p>├ 🏷️ <a href="#date-min">min</a></p>
+          <p>└ 🏷️ <a href="#date-max">max</a></p>
         </blockquote>
       </details>
       <details>
         <summary>&nbsp;🧩 <a href="#binary">&lt;binary&gt;</a></summary>
         <blockquote>
-          ├ 🏷️ <a href="#binary-accept">accept</a><br>
-          ├ 🏷️ <a href="#binary-min">min</a><br>
-          └ 🏷️ <a href="#binary-max">max</a>
+          <p></p>
+          <p>├ 🏷️ <a href="#binary-accept">accept</a></p>
+          <p>├ 🏷️ <a href="#binary-min">min</a></p>
+          <p>└ 🏷️ <a href="#binary-max">max</a></p>
         </blockquote>
       </details>
-      ├ 🧩 <a href="#uuid">&lt;uuid&gt;</a><br>
-      ├ 🧩 <a href="#boolean">&lt;boolean&gt;</a><br>
-      ├ 🧩 <a href="#null">&lt;null&gt;</a><br>
-      └ 🧩 <a href="#any">&lt;any&gt;</a><br>
+      <p>├ 🧩 <a href="#uuid">&lt;uuid&gt;</a></p>
+      <p>├ 🧩 <a href="#boolean">&lt;boolean&gt;</a></p>
+      <p>├ 🧩 <a href="#null">&lt;null&gt;</a></p>
+      <p>└ 🧩 <a href="#any">&lt;any&gt;</a></p>
     </blockquote>
   </details>
 </sup>
