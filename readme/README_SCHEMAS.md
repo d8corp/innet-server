@@ -309,9 +309,11 @@ Enumeration of allowed values.
   <details>
     <summary>&nbsp;🧩 Components</summary>
     <blockquote>
+      <p></p>
       <details>
         <summary>&nbsp;🧩 <a href="#object">&lt;object&gt;</a></summary>
         <blockquote>
+          <p></p>
           <details>
             <summary>&nbsp;🧩 <a href="#field">&lt;field&gt;</a></summary>
             <blockquote>
@@ -331,7 +333,7 @@ Enumeration of allowed values.
           <p>└ 🏷️ <a href="#array-uniqueitems">uniqueItems</a></p>
         </blockquote>
       </details>
-      └ 🧩 <a href="#tuple">&lt;tuple&gt;</a><br>
+      <p>└ 🧩 <a href="#tuple">&lt;tuple&gt;</a></p>
     </blockquote>
   </details>
 </sub>
