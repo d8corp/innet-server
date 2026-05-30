@@ -269,13 +269,14 @@ Array of example values for documentation.
 ### default
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Shared Props](#shared-props) / default [↑](#examples) [↓](#value)
 
-Default value if not specified.
+When a field with a `default` value is not provided in the request, the system automatically uses the default value instead.
+The default value is also displayed in API documentation to help developers understand the expected behavior.
 
 - **Type:** `T`
 - **Default:** -
 
 ```typescript jsx
-<string default='anonymous' />
+<number default={1} />
 ```
 
 ### value
