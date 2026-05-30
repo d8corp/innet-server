@@ -305,33 +305,36 @@ Enumeration of allowed values.
 
 ## Collections
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) [↑](#shared-props) [↓](#primitives)
-
-<details>
-  <summary>&nbsp;🧩 Components</summary>
-  <blockquote>
-    <details>
-      <summary>&nbsp;🧩 <a href="#object">&lt;object&gt;</a></summary>
-      <blockquote>
-        <details>
-          <summary>&nbsp;🧩 <a href="#field">&lt;field&gt;</a></summary>
-          <blockquote>
-            ├ 🏷️ <a href="#field-key">key</a><br>
-            └ 🏷️ <a href="#field-optional">optional</a><br>
-          </blockquote>
-        </details>
-      </blockquote>
-    </details>
-    <details>
-      <summary>&nbsp;🧩 <a href="#array">&lt;array&gt;</a></summary>
-      <blockquote>
-        ├ 🏷️ <a href="#array-minitems">minItems</a><br>
-        ├ 🏷️ <a href="#array-maxitems">maxItems</a><br>
-        └ 🏷️ <a href="#array-uniqueitems">uniqueItems</a>
-      </blockquote>
-    </details>
-    └ 🧩 <a href="#tuple">&lt;tuple&gt;</a><br>
-  </blockquote>
-</details>
+<sub>
+  <details>
+    <summary>&nbsp;🧩 Components</summary>
+    <blockquote>
+      <details>
+        <summary>&nbsp;🧩 <a href="#object">&lt;object&gt;</a></summary>
+        <blockquote>
+          <details>
+            <summary>&nbsp;🧩 <a href="#field">&lt;field&gt;</a></summary>
+            <blockquote>
+              <p></p>
+              <p>├ 🏷️ <a href="#field-key">key</a></p>
+              <p>└ 🏷️ <a href="#field-optional">optional</a></p>
+            </blockquote>
+          </details>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#array">&lt;array&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├ 🏷️ <a href="#array-minitems">minItems</a></p>
+          <p>├ 🏷️ <a href="#array-maxitems">maxItems</a></p>
+          <p>└ 🏷️ <a href="#array-uniqueitems">uniqueItems</a></p>
+        </blockquote>
+      </details>
+      └ 🧩 <a href="#tuple">&lt;tuple&gt;</a><br>
+    </blockquote>
+  </details>
+</sub>
 
 Collection types for building complex, structured schemas. Use these to define objects with named fields, arrays of items, or fixed-length tuples with specific types for each position.
 
