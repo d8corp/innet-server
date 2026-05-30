@@ -181,7 +181,9 @@ Mark schema element as deprecated.
 ### ref
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Shared Props](#shared-props) / ref [↑](#deprecated) [↓](#readOnly)
 
-Reference name for the schema (used for TypeScript type generation).
+When you assign a `ref` to a schema, the system registers it as a reusable component in the OpenAPI specification under `components/schemas` and generates a corresponding TypeScript type with that name. This allows you to reference the same schema across multiple endpoints without duplication, and import the generated type in your code for type-safe development.
+
+Use `ref` for schemas that appear in multiple places in your API. The name must be unique across your entire API and will be used as-is for the TypeScript interface or type alias name.
 
 - **Type:** `string`
 - **Default:** -
