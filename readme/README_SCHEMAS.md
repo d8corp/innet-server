@@ -304,7 +304,8 @@ Enumeration of allowed values.
 ```
 
 ## Collections
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) [↑](#shared-props) [↓](#primitives)
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / Collections [↑](#shared-props) [↓](#primitives)
+
 <sub>
   <details>
     <summary>&nbsp;🧩 Components</summary>
@@ -343,18 +344,22 @@ Collection types for building complex, structured schemas. Use these to define o
 ### Object
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / Object [↓](#array)
 
-<details>
-  <summary>&nbsp;🧩 Components</summary>
-  <blockquote>
-    <details>
-      <summary>&nbsp;🧩 <a href="#field">&lt;field&gt;</a></summary>
-      <blockquote>
-        ├ 🏷️ <a href="#field-key">key</a><br>
-        └ 🏷️ <a href="#field-optional">optional</a><br>
-      </blockquote>
-    </details>
-  </blockquote>
-</details>
+<sub>
+  <details>
+    <summary>&nbsp;🧩 Components</summary>
+    <blockquote>
+      <p></p>
+      <details>
+        <summary>&nbsp;🧩 <a href="#field">&lt;field&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├ 🏷️ <a href="#field-key">key</a></p>
+          <p>└ 🏷️ <a href="#field-optional">optional</a></p>
+        </blockquote>
+      </details>
+    </blockquote>
+  </details>
+</sub>
 
 Objects represent structured data with named fields. 
 Use `<object>` to define complex schemas with multiple properties, each with its own type and validation rules.
@@ -365,10 +370,10 @@ Objects can be nested to create deeply structured data models.
   <field key='id' readOnly>
     <uuid />
   </field>
-  <field key='name' required>
+  <field key='name'>
     <string min={1} max={100} />
   </field>
-  <field key='email' required>
+  <field key='email'>
     <string format='email' />
   </field>
   <field key='role' optional default='user'>
@@ -380,13 +385,16 @@ Objects can be nested to create deeply structured data models.
 ### Field
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Object](#object) / Field [↑](#object) [↓](#array)
 
-<details>
-  <summary>&nbsp;🏷 Props</summary>
-  <blockquote>
-    ├ 🏷️ <a href="#field-key">key</a><br>
-    └ 🏷️ <a href="#field-optional">optional</a><br>
-  </blockquote>
-</details>
+<sub>
+  <details>
+    <summary>&nbsp;🏷 Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├ 🏷️ <a href="#field-key">key</a></p>
+      <p>└ 🏷️ <a href="#field-optional">optional</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 Defines a single field within an `<object>`.
 
@@ -435,14 +443,17 @@ Mark field as optional (not required).
 ### Array
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / Array [↑](#object) [↓](#tuple)
 
-<details>
-  <summary>&nbsp;🏷️ Props</summary>
-  <blockquote>
-    ├ 🏷️ <a href="#array-minitems">minItems</a><br>
-    ├ 🏷️ <a href="#array-maxitems">maxItems</a><br>
-    └ 🏷️ <a href="#array-uniqueitems">uniqueItems</a><br>
-  </blockquote>
-</details>
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├ 🏷️ <a href="#array-minitems">minItems</a></p>
+      <p>├ 🏷️ <a href="#array-maxitems">maxItems</a></p>
+      <p>└ 🏷️ <a href="#array-uniqueitems">uniqueItems</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 Arrays represent collections of items of the same type. Use `<array>` to define lists of primitives or complex objects. Control the number of items with `minItems` and `maxItems`, and ensure uniqueness with `uniqueItems`.
 
@@ -510,60 +521,68 @@ A fixed-length array with specific types for each position.
 ## Primitives
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) [↑](#collections)
 
-<details>
-  <summary>&nbsp;🧩 Components</summary>
-  <blockquote>
-    <details>
-      <summary>&nbsp;🧩 <a href="#string">&lt;string&gt;</a></summary>
-      <blockquote>
-        ├ 🏷️ <a href="#string-min">min</a><br>
-        ├ 🏷️ <a href="#string-max">max</a><br>
-        ├ 🏷️ <a href="#string-pattern">pattern</a><br>
-        └ 🏷️ <a href="#string-patternid">patternId</a><br>
-      </blockquote>
-    </details>
-    <details>
-      <summary>&nbsp;🧩 <a href="#number">&lt;number&gt;</a></summary>
-      <blockquote>
-        ├ 🏷️ <a href="#num-min">min</a><br>
-        ├ 🏷️ <a href="#num-max">max</a><br>
-        ├ 🏷️ <a href="#num-exclusivemin">exclusiveMin</a><br>
-        ├ 🏷️ <a href="#num-exclusivemax">exclusiveMax</a><br>
-        └ 🏷️ <a href="#num-multipleof">multipleOf</a><br>
-      </blockquote>
-    </details>
-    <details>
-      <summary>&nbsp;🧩 <a href="#integer">&lt;integer&gt;</a></summary>
-      <blockquote>
-        ├ 🏷️ <a href="#int-format">format</a><br>
-        ├ 🏷️ <a href="#int-min">min</a><br>
-        ├ 🏷️ <a href="#int-max">max</a><br>
-        ├ 🏷️ <a href="#int-exclusivemin">exclusiveMin</a><br>
-        ├ 🏷️ <a href="#int-exclusivemax">exclusiveMax</a><br>
-        └ 🏷️ <a href="#int-multipleof">multipleOf</a><br>
-      </blockquote>
-    </details>
-    <details>
-      <summary>&nbsp;🧩 <a href="#date">&lt;date&gt;</a></summary>
-      <blockquote>
-        ├ 🏷️ <a href="#date-min">min</a><br>
-        └ 🏷️ <a href="#date-max">max</a><br>
-      </blockquote>
-    </details>
-    <details>
-      <summary>&nbsp;🧩 <a href="#binary">&lt;binary&gt;</a></summary>
-      <blockquote>
-        ├ 🏷️ <a href="#binary-accept">accept</a><br>
-        ├ 🏷️ <a href="#binary-min">min</a><br>
-        └ 🏷️ <a href="#binary-max">max</a><br>
-      </blockquote>
-    </details>
-    ├ 🧩 <a href="#uuid">&lt;uuid&gt;</a><br>
-    ├ 🧩 <a href="#boolean">&lt;boolean&gt;</a><br>
-    ├ 🧩 <a href="#null">&lt;null&gt;</a><br>
-    └ 🧩 <a href="#any">&lt;any&gt;</a><br>
-  </blockquote>
-</details>
+<sub>
+  <details>
+    <summary>&nbsp;🧩 Components</summary>
+    <blockquote>
+      <p></p>
+      <details>
+        <summary>&nbsp;🧩 <a href="#string">&lt;string&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├ 🏷️ <a href="#string-min">min</a></p>
+          <p>├ 🏷️ <a href="#string-max">max</a></p>
+          <p>├ 🏷️ <a href="#string-pattern">pattern</a></p>
+          <p>└ 🏷️ <a href="#string-patternid">patternId</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#number">&lt;number&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├ 🏷️ <a href="#num-min">min</a></p>
+          <p>├ 🏷️ <a href="#num-max">max</a></p>
+          <p>├ 🏷️ <a href="#num-exclusivemin">exclusiveMin</a></p>
+          <p>├ 🏷️ <a href="#num-exclusivemax">exclusiveMax</a></p>
+          <p>└ 🏷️ <a href="#num-multipleof">multipleOf</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#integer">&lt;integer&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├ 🏷️ <a href="#int-format">format</a></p>
+          <p>├ 🏷️ <a href="#int-min">min</a></p>
+          <p>├ 🏷️ <a href="#int-max">max</a></p>
+          <p>├ 🏷️ <a href="#int-exclusivemin">exclusiveMin</a></p>
+          <p>├ 🏷️ <a href="#int-exclusivemax">exclusiveMax</a></p>
+          <p>└ 🏷️ <a href="#int-multipleof">multipleOf</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#date">&lt;date&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├ 🏷️ <a href="#date-min">min</a></p>
+          <p>└ 🏷️ <a href="#date-max">max</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#binary">&lt;binary&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├ 🏷️ <a href="#binary-accept">accept</a></p>
+          <p>├ 🏷️ <a href="#binary-min">min</a></p>
+          <p>└ 🏷️ <a href="#binary-max">max</a></p>
+        </blockquote>
+      </details>
+      <p>├ 🧩 <a href="#uuid">&lt;uuid&gt;</a></p>
+      <p>├ 🧩 <a href="#boolean">&lt;boolean&gt;</a></p>
+      <p>├ 🧩 <a href="#null">&lt;null&gt;</a></p>
+      <p>└ 🧩 <a href="#any">&lt;any&gt;</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 Primitive data types are the building blocks of your API schemas. They represent single values like strings, numbers, booleans, and dates. All primitives support common properties like title, description, examples, defaults, and validation rules. Use them to define the data types for parameters, request bodies, and responses.
 
@@ -572,15 +591,18 @@ All primitives support: `title`, `description`, `deprecated`, `readOnly`, `write
 ### String
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / String [↓](#number)
 
-<details>
-  <summary>&nbsp;🏷️ Props</summary>
-  <blockquote>
-    ├ 🏷️ <a href="#string-min">min</a><br>
-    ├ 🏷️ <a href="#string-max">max</a><br>
-    ├ 🏷️ <a href="#string-pattern">pattern</a><br>
-    └ 🏷️ <a href="#string-patternid">patternId</a><br>
-  </blockquote>
-</details>
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├ 🏷️ <a href="#string-min">min</a></p>
+      <p>├ 🏷️ <a href="#string-max">max</a></p>
+      <p>├ 🏷️ <a href="#string-pattern">pattern</a></p>
+      <p>└ 🏷️ <a href="#string-patternid">patternId</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 Text data with optional validation.
 
@@ -641,16 +663,19 @@ Pattern identifier for error messages.
 ### Number
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / Number [↑](#string) [↓](#integer)
 
-<details>
-  <summary>&nbsp;🏷️ Props</summary>
-  <blockquote>
-    ├ 🏷️ <a href="#num-min">min</a><br>
-    ├ 🏷️ <a href="#num-max">max</a><br>
-    ├ 🏷️ <a href="#num-exclusivemin">exclusiveMin</a><br>
-    ├ 🏷️ <a href="#num-exclusivemax">exclusiveMax</a><br>
-    └ 🏷️ <a href="#num-multipleof">multipleOf</a><br>
-  </blockquote>
-</details>
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├ 🏷️ <a href="#num-min">min</a></p>
+      <p>├ 🏷️ <a href="#num-max">max</a></p>
+      <p>├ 🏷️ <a href="#num-exclusivemin">exclusiveMin</a></p>
+      <p>├ 🏷️ <a href="#num-exclusivemax">exclusiveMax</a></p>
+      <p>└ 🏷️ <a href="#num-multipleof">multipleOf</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 Decimal number with optional validation.
 
@@ -723,17 +748,20 @@ Value must be a multiple of the specified number.
 ### Integer
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / Integer [↑](#number) [↓](#date)
 
-<details>
-  <summary>&nbsp;🏷️ Props</summary>
-  <blockquote>
-    ├ 🏷️ <a href="#int-format">format</a><br>
-    ├ 🏷️ <a href="#int-min">min</a><br>
-    ├ 🏷️ <a href="#int-max">max</a><br>
-    ├ 🏷️ <a href="#int-exclusivemin">exclusiveMin</a><br>
-    ├ 🏷️ <a href="#int-exclusivemax">exclusiveMax</a><br>
-    └ 🏷️ <a href="#int-multipleof">multipleOf</a><br>
-  </blockquote>
-</details>
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├ 🏷️ <a href="#int-format">format</a></p>
+      <p>├ 🏷️ <a href="#int-min">min</a></p>
+      <p>├ 🏷️ <a href="#int-max">max</a></p>
+      <p>├ 🏷️ <a href="#int-exclusivemin">exclusiveMin</a></p>
+      <p>├ 🏷️ <a href="#int-exclusivemax">exclusiveMax</a></p>
+      <p>└ 🏷️ <a href="#int-multipleof">multipleOf</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 Whole number with optional validation.
 
@@ -818,13 +846,16 @@ Value must be a multiple of the specified number.
 ### Date
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / Date [↑](#integer) [↓](#binary)
 
-<details>
-  <summary>&nbsp;🏷️ Props</summary>
-  <blockquote>
-    ├ 🏷️ <a href="#date-min">min</a><br>
-    └ 🏷️ <a href="#date-max">max</a><br>
-  </blockquote>
-</details>
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├ 🏷️ <a href="#date-min">min</a></p>
+      <p>└ 🏷️ <a href="#date-max">max</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 ISO 8601 date format.
 
@@ -861,14 +892,17 @@ Maximum date.
 ### Binary
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / Binary [↑](#date) [↓](#uuid)
 
-<details>
-  <summary>&nbsp;🏷️ Props</summary>
-  <blockquote>
-    ├ 🏷️ <a href="#binary-accept">accept</a><br>
-    ├ 🏷️ <a href="#binary-min">min</a><br>
-    └ 🏷️ <a href="#binary-max">max</a><br>
-  </blockquote>
-</details>
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├ 🏷️ <a href="#binary-accept">accept</a></p>
+      <p>├ 🏷️ <a href="#binary-min">min</a></p>
+      <p>└ 🏷️ <a href="#binary-max">max</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 File upload or binary data. Typically used with multipart/form-data.
 
