@@ -187,11 +187,15 @@ Reference name for the schema (used for TypeScript type generation).
 - **Default:** -
 
 ```typescript jsx
-<object ref='Todo'>
-  <field key='id'><uuid /></field>
-  <field key='title'><string /></field>
-  <field key='done'><boolean /></field>
-</object>
+function Todo () {
+  return (
+    <object ref='Todo'>
+      <field key='id'><uuid /></field>
+      <field key='title'><string /></field>
+      <field key='done'><boolean /></field>
+    </object>
+  )
+}
 ```
 
 ### readOnly
