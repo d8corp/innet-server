@@ -116,7 +116,7 @@
 Schemas define the structure and validation rules for your API data. Use declarative elements to describe parameters, request bodies, and response formats. Schemas support primitives, collections, validation constraints, and automatic TypeScript type generation.
 
 ## Shared Props
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Shared Props](#shared-props) [↓](#collections)
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / Shared Props [↓](#collections)
 <sub>
   <details>
     <summary>&nbsp;🏷️ Props</summary>

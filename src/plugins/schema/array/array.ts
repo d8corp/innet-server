@@ -16,9 +16,9 @@ import { arrayOf, defaultTo, nullable, oneOf, pipe, type Rule } from '../../../u
 
 export type ArrayProps = SchemaProps<any[]> & {
   children?: JSX.Element
-  maxItems?: number
-  minItems?: number
-  uniqueItems?: boolean
+  max?: number
+  min?: number
+  unique?: boolean
 }
 
 export const array: HandlerPlugin = () => {
@@ -28,9 +28,9 @@ export const array: HandlerPlugin = () => {
   const handler = useNewHandler()
   const {
     children,
-    maxItems,
-    minItems,
-    uniqueItems,
+    max,
+    min,
+    unique,
     ...props
   } = useProps<ArrayProps>()
 
@@ -43,16 +43,16 @@ export const array: HandlerPlugin = () => {
 
   schema.items = fieldSchema
 
-  if (maxItems) {
-    schema.maxItems = maxItems
+  if (max) {
+    schema.maxItems = max
   }
 
-  if (minItems) {
-    schema.minItems = minItems
+  if (min) {
+    schema.minItems = min
   }
 
-  if (uniqueItems) {
-    schema.uniqueItems = uniqueItems
+  if (unique) {
+    schema.uniqueItems = unique
   }
 
   if (setRule && hasRules) {
