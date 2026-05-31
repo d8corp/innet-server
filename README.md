@@ -62,6 +62,7 @@ Built on top of [innet](https://www.npmjs.com/package/innet).
 - [OpenAPI 3.1 Spec](https://swagger.io/specification/)
 - [CommonMark Markdown](https://spec.commonmark.org)
 
-If you find a bug or have a suggestion, please file an issue on [GitHub](https://github.com/d8corp/innet-server/issues).
+**Contributions are welcome!** Please feel free to submit [issues](https://github.com/d8corp/innet-server/issues) and [pull requests](https://github.com/d8corp/innet-server/pulls).
 
 [![issues](https://img.shields.io/github/issues-raw/d8corp/innet-server)](https://github.com/d8corp/innet-server/issues)
+[![pulls](https://img.shields.io/github/issues-pr-raw/d8corp/innet-server)](https://github.com/d8corp/innet-server/pulls)
