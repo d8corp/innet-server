@@ -448,23 +448,23 @@ Mark field as optional (not required).
     <summary>&nbsp;🏷️ Props</summary>
     <blockquote>
       <p></p>
-      <p>├ 🏷️ <a href="#array-minitems">minItems</a></p>
-      <p>├ 🏷️ <a href="#array-maxitems">maxItems</a></p>
-      <p>└ 🏷️ <a href="#array-uniqueitems">uniqueItems</a></p>
+      <p>├ 🏷️ <a href="#array-min">min</a></p>
+      <p>├ 🏷️ <a href="#array-max">max</a></p>
+      <p>└ 🏷️ <a href="#array-unique">unique</a></p>
     </blockquote>
   </details>
 </sub>
 
-Arrays represent collections of items of the same type. Use `<array>` to define lists of primitives or complex objects. Control the number of items with `minItems` and `maxItems`, and ensure uniqueness with `uniqueItems`.
+Arrays represent collections of items of the same type. Use `<array>` to define lists of primitives or complex objects. Control the number of items with `min` and `max`, and ensure uniqueness with `unique`.
 
 ```typescript jsx
-<array minItems={1} maxItems={10} uniqueItems>
+<array min={1} max={10} unique>
   <string />
 </array>
 ```
 
-#### minItems
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / minItems [↓](#array-maxitems)
+#### min
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / min [↓](#array-maxitems)
 
 Minimum number of items in the array.
 
@@ -472,13 +472,13 @@ Minimum number of items in the array.
 - **Default:** -
 
 ```typescript jsx
-<array minItems={1}>
+<array min={1}>
   <string />
 </array>
 ```
 
-#### maxItems
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / maxItems [↑](#array-minitems) [↓](#array-uniqueitems)
+#### max
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / max [↑](#array-minitems) [↓](#array-uniqueitems)
 
 Maximum number of items in the array.
 
@@ -486,13 +486,13 @@ Maximum number of items in the array.
 - **Default:** -
 
 ```typescript jsx
-<array maxItems={10}>
+<array max={10}>
   <string />
 </array>
 ```
 
-#### uniqueItems
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / uniqueItems [↑](#array-maxitems)
+#### unique
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / unique [↑](#array-maxitems)
 
 All items must be unique.
 
@@ -500,7 +500,7 @@ All items must be unique.
 - **Default:** `false`
 
 ```typescript jsx
-<array uniqueItems>
+<array unique>
   <string />
 </array>
 ```
