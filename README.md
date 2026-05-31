@@ -51,8 +51,6 @@
 
 Built on top of [innet](https://www.npmjs.com/package/innet).
 
-Check [Documentation](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md).
-
 [![stars](https://img.shields.io/github/stars/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/stargazers)
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
 
