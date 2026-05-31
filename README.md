@@ -56,22 +56,6 @@ Check [Documentation](https://github.com/d8corp/innet-server/blob/2.0/readme/REA
 [![stars](https://img.shields.io/github/stars/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/stargazers)
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
 
-## Install
-
-The easiest way to get started is with the [innetjs](https://www.npmjs.com/package/innetjs) CLI:
-
-```shell
-npx innetjs init my-app -t api
-```
-
-Or install manually:
-
-```shell
-npm install @innet/server innet
-```
-
-## Links
-
 - [Documentation](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md) — Documentation for `@innet/server`
 - [@innet/dom](https://www.npmjs.com/package/@innet/dom) — Isomorphic DOM framework
 - [@innet/jsx](https://www.npmjs.com/package/@innet/jsx) — JSX component library
@@ -79,8 +63,6 @@ npm install @innet/server innet
 - [innetjs](https://www.npmjs.com/package/innetjs) — CLI tool
 - [OpenAPI 3.1 Spec](https://swagger.io/specification/)
 - [CommonMark Markdown](https://spec.commonmark.org)
-
-## Issues
 
 If you find a bug or have a suggestion, please file an issue on [GitHub](https://github.com/d8corp/innet-server/issues).
 
