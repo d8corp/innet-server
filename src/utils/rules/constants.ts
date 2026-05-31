@@ -31,6 +31,9 @@ export const rulesErrors = [
   'binaryAccept',
   'minBin',
   'maxBin',
+  'unique',
+  'minItems',
+  'maxItems',
 ] as const
 
 export const rulesErrorSchemas: Record<RulesErrors, OpenAPIV3_1.ReferenceObject | OpenAPIV3_1.SchemaObject> = {
@@ -241,6 +244,32 @@ export const rulesErrorSchemas: Record<RulesErrors, OpenAPIV3_1.ReferenceObject 
     title: 'maximum',
     type: 'object',
   },
+  maxItems: {
+    description: 'The array should not exceed the maximum limit',
+    properties: {
+      error: {
+        const: 'maxItems',
+        type: 'string',
+      },
+      in: {
+        enum: inValidationValues,
+        type: 'string',
+      },
+      key: {
+        type: 'string',
+      },
+      max: {
+        type: 'number',
+      },
+      value: {
+        items: {},
+        type: 'array',
+      },
+    },
+    required: ['error', 'in', 'key', 'value', 'max'],
+    title: 'maxItems',
+    type: 'object',
+  },
   maxLength: {
     description: 'The string length should not exceed the maximum limit',
     properties: {
@@ -340,6 +369,32 @@ export const rulesErrorSchemas: Record<RulesErrors, OpenAPIV3_1.ReferenceObject 
     },
     required: ['error', 'in', 'min', 'value'],
     title: 'minimum',
+    type: 'object',
+  },
+  minItems: {
+    description: 'The array should not be earlier than the minimum limit',
+    properties: {
+      error: {
+        const: 'minItems',
+        type: 'string',
+      },
+      in: {
+        enum: inValidationValues,
+        type: 'string',
+      },
+      key: {
+        type: 'string',
+      },
+      min: {
+        type: 'number',
+      },
+      value: {
+        items: {},
+        type: 'array',
+      },
+    },
+    required: ['error', 'in', 'key', 'value', 'min'],
+    title: 'minItems',
     type: 'object',
   },
   minLength: {
@@ -532,6 +587,29 @@ export const rulesErrorSchemas: Record<RulesErrors, OpenAPIV3_1.ReferenceObject 
     },
     required: ['error', 'in'],
     title: 'tuple',
+    type: 'object',
+  },
+  unique: {
+    description: 'Values in the array should be unique',
+    properties: {
+      error: {
+        const: 'unique',
+        type: 'string',
+      },
+      in: {
+        enum: inValidationValues,
+        type: 'string',
+      },
+      key: {
+        type: 'string',
+      },
+      value: {
+        items: {},
+        type: 'array',
+      },
+    },
+    required: ['error', 'in', 'key', 'value'],
+    title: 'unique',
     type: 'object',
   },
   uuid: {

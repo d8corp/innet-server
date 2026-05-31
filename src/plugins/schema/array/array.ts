@@ -12,7 +12,17 @@ import {
 } from '../../../hooks'
 import { parentRuleContext, useParentRule } from '../../../hooks/useParentRule'
 import { type ArraySchemaObject, type SchemaObject, type SchemaProps } from '../../../types'
-import { arrayOf, defaultTo, nullable, oneOf, pipe, type Rule } from '../../../utils'
+import {
+  arrayOf,
+  defaultTo,
+  maxItems,
+  minItems,
+  nullable,
+  oneOf,
+  pipe,
+  type Rule,
+  unique as uniqueRule,
+} from '../../../utils'
 
 export type ArrayProps = SchemaProps<any[]> & {
   children?: JSX.Element
@@ -60,8 +70,20 @@ export const array: HandlerPlugin = () => {
     const rules: Rule[] = []
     const parentRule = useParentRule()
 
-    if (props?.default !== undefined) {
+    if (props.default !== undefined) {
       rules.push(defaultTo(props.default))
+    }
+
+    if (unique) {
+      rules.push(uniqueRule)
+    }
+
+    if (min) {
+      rules.push(minItems(min))
+    }
+
+    if (max) {
+      rules.push(maxItems(max))
     }
 
     const rootRule = props?.default === undefined
