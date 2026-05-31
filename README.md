@@ -72,7 +72,7 @@ npm install @innet/server innet
 
 ## Links
 
-- [Documentation](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md)
+- [Documentation](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md) — Documentation for `@innet/server`
 - [@innet/dom](https://www.npmjs.com/package/@innet/dom) — Isomorphic DOM framework
 - [@innet/jsx](https://www.npmjs.com/package/@innet/jsx) — JSX component library
 - [innet](https://www.npmjs.com/package/innet) — Core innet framework
