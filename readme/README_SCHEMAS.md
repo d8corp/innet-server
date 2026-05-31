@@ -464,7 +464,7 @@ Arrays represent collections of items of the same type. Use `<array>` to define 
 ```
 
 #### min
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / min [↓](#array-maxitems)
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / min [↓](#array-max)
 
 Minimum number of items in the array.
 
@@ -478,7 +478,7 @@ Minimum number of items in the array.
 ```
 
 #### max
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / max [↑](#array-minitems) [↓](#array-uniqueitems)
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / max [↑](#array-min) [↓](#array-unique)
 
 Maximum number of items in the array.
 
@@ -491,8 +491,8 @@ Maximum number of items in the array.
 </array>
 ```
 
-#### unique
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / unique [↑](#array-maxitems)
+<h4 id="array-unique">unique</h4>
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / unique [↑](#array-max)
 
 All items must be unique.
 
