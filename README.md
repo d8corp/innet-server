@@ -30,9 +30,6 @@
   <a href="https://github.com/d8corp/innet-server/blob/main/CHANGELOG.md" target="_blank">
     <img src="https://img.shields.io/badge/Changelog-⋮-brightgreen" alt="@innet/server changelog">
   </a>
-  <a href="https://github.com/d8corp/innet-server/issues" target="_blank">
-    <img src="https://img.shields.io/github/issues-raw/d8corp/innet-server" alt="@innet/server issues">
-  </a>
 </div>
 
 <br>
