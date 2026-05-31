@@ -53,6 +53,7 @@ Built on top of [innet](https://www.npmjs.com/package/innet).
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
 
 - [Documentation](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md) — Documentation for `@innet/server`
+- [Example](https://github.com/d8corp/innet-server/tree/2.0/src/example) — TODO Example for `@innet/server`
 - [@innet/dom](https://www.npmjs.com/package/@innet/dom) — Isomorphic DOM framework
 - [@innet/jsx](https://www.npmjs.com/package/@innet/jsx) — JSX component library
 - [innet](https://www.npmjs.com/package/innet) — Core innet framework
