@@ -463,7 +463,8 @@ Arrays represent collections of items of the same type. Use `<array>` to define 
 </array>
 ```
 
-#### min
+<h4 id="array-min">min</h4>
+
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / min [↓](#array-max)
 
 Minimum number of items in the array.
@@ -477,7 +478,8 @@ Minimum number of items in the array.
 </array>
 ```
 
-#### max
+<h4 id="array-max">max</h4>
+
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / max [↑](#array-min) [↓](#array-unique)
 
 Maximum number of items in the array.
@@ -492,6 +494,7 @@ Maximum number of items in the array.
 ```
 
 <h4 id="array-unique">unique</h4>
+
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / unique [↑](#array-max)
 
 All items must be unique.
