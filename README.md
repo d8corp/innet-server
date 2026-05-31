@@ -50,6 +50,7 @@
 - **Zero Configuration** — Works out of the box with sensible defaults
 
 Built on top of [innet](https://www.npmjs.com/package/innet).
+Check [Documentation](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md).
 
 [![stars](https://img.shields.io/github/stars/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/stargazers)
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
@@ -70,8 +71,9 @@ npm install @innet/server innet
 
 ## Links
 
-- [@innet/jsx](https://www.npmjs.com/package/@innet/jsx) — JSX component library
+- [Documentation](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md)
 - [@innet/dom](https://www.npmjs.com/package/@innet/dom) — Isomorphic DOM framework
+- [@innet/jsx](https://www.npmjs.com/package/@innet/jsx) — JSX component library
 - [innet](https://www.npmjs.com/package/innet) — Core innet framework
 - [innetjs](https://www.npmjs.com/package/innetjs) — CLI tool
 - [OpenAPI 3.1 Spec](https://swagger.io/specification/)
