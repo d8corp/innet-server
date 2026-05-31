@@ -34,7 +34,7 @@
 
 <br>
 
-`@innet/server` is a backend framework that brings HTML-like declarative markup to server-side.
+`@innet/server` is a backend framework that brings **HTML-like** declarative markup to **server-side**.
 
 - **JSX** — Write backend with HTML-like syntax
 - **Components** — React-like component-driven approach
