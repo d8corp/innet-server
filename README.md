@@ -55,7 +55,6 @@ Built on top of [innet](https://www.npmjs.com/package/innet).
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
 
 ## Install
-###### [🏠︎](#index) / Install [↓](#quick-start)
 
 The easiest way to get started is with the [innetjs](https://www.npmjs.com/package/innetjs) CLI:
 
