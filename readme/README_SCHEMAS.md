@@ -43,9 +43,9 @@
         <summary>&nbsp;🧩 <a href="#array">&lt;array&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>├ 🏷️ <a href="#array-minitems">minItems</a></p>
-          <p>├ 🏷️ <a href="#array-maxitems">maxItems</a></p>
-          <p>└ 🏷️ <a href="#array-uniqueitems">uniqueItems</a></p>
+          <p>├ 🏷️ <a href="#array-min">min</a></p>
+          <p>├ 🏷️ <a href="#array-max">max</a></p>
+          <p>└ 🏷️ <a href="#array-unique">unique</a></p>
         </blockquote>
       </details>
       <p>└ 🧩 <a href="#tuple">&lt;tuple&gt;</a></p>
@@ -329,9 +329,9 @@ Enumeration of allowed values.
         <summary>&nbsp;🧩 <a href="#array">&lt;array&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>├ 🏷️ <a href="#array-minitems">minItems</a></p>
-          <p>├ 🏷️ <a href="#array-maxitems">maxItems</a></p>
-          <p>└ 🏷️ <a href="#array-uniqueitems">uniqueItems</a></p>
+          <p>├ 🏷️ <a href="#array-min">min</a></p>
+          <p>├ 🏷️ <a href="#array-max">max</a></p>
+          <p>└ 🏷️ <a href="#array-unique">unique</a></p>
         </blockquote>
       </details>
       <p>└ 🧩 <a href="#tuple">&lt;tuple&gt;</a></p>
