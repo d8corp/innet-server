@@ -54,10 +54,11 @@ Built on top of [innet](https://www.npmjs.com/package/innet).
 
 - [Documentation](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md) — Documentation for `@innet/server`
 - [Example](https://github.com/d8corp/innet-server/tree/2.0/src/example) — TODO Example for `@innet/server`
-- [@innet/dom](https://www.npmjs.com/package/@innet/dom) — Isomorphic DOM framework
-- [@innet/jsx](https://www.npmjs.com/package/@innet/jsx) — JSX component library
 - [innet](https://www.npmjs.com/package/innet) — Core innet framework
 - [innetjs](https://www.npmjs.com/package/innetjs) — CLI tool
+- [@innet/jsx](https://www.npmjs.com/package/@innet/jsx) — JSX component library
+- [@innet/dom](https://www.npmjs.com/package/@innet/dom) — FE framework
+- [@innet/native](https://www.npmjs.com/package/@innet/native) — Mobile app framework
 - [OpenAPI 3.1 Spec](https://swagger.io/specification/)
 - [CommonMark Markdown](https://spec.commonmark.org)
 
