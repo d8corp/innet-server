@@ -83,6 +83,7 @@ export interface SSL {
 }
 
 export interface ServerStartParams {
+  apiPaths: string[]
   https: boolean
   port: number
 }

@@ -5,16 +5,21 @@ import http, { type IncomingMessage, type ServerResponse } from 'http'
 import http2 from 'https'
 import { onDestroy } from 'watch-state'
 
+import { type ApiProps } from '../api'
+
 import {
   actionContext,
+  type ServerContext,
   serverContext,
   serverHttpsContext,
   type ServerPlugin,
   serverPlugins,
   serverPortContext,
+  useApi,
 } from '../../../hooks'
 import { type ServerStartParams, type SSL } from '../../../types'
 import { Action } from '../../../utils'
+import { type UiProps } from '../../utils'
 
 export interface ServerProps {
   children?: any
@@ -60,10 +65,25 @@ export const server: HandlerPlugin = () => {
     port = Number(env.INNET_PORT ?? (https ? 443 : 80)),
   } = props
   const plugins = new Map<ServerPlugin, Handler>()
+  const apiPaths: string[] = []
 
   const server = https ? http2.createServer({ cert, key }) : http.createServer()
 
-  serverContext.set(handler, { port, props, server })
+  const context: ServerContext = {
+    initAPI: (props: ApiProps) => {
+      apiPaths.push(props.prefix || '')
+    },
+    initUI: (props: UiProps) => {
+      const { prefix } = useApi()
+
+      apiPaths.push(`${prefix}${props.path ?? (process.env.INNET_UI_PATH || '/ui')}`)
+    },
+    port,
+    props,
+    server,
+  }
+
+  serverContext.set(handler, context)
   serverPlugins.set(handler, plugins)
   serverPortContext.set(handler, port)
   serverHttpsContext.set(handler, https)
@@ -106,6 +126,6 @@ export const server: HandlerPlugin = () => {
   innet(props.children, handler)
 
   server.listen(port, () => {
-    onStart?.({ https, port })
+    onStart?.({ apiPaths, https, port })
   })
 }

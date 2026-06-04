@@ -68,6 +68,12 @@ declare global {
         } | {
           error: string
           in: string
+          key: string
+          max: number
+          value: Array<any>
+        } | {
+          error: string
+          in: string
           key?: string
           max: number
           value: string
@@ -89,6 +95,12 @@ declare global {
           key?: string
           min: number | string
           value: any
+        } | {
+          error: string
+          in: string
+          key: string
+          min: number
+          value: Array<any>
         } | {
           error: string
           in: string
@@ -134,6 +146,11 @@ declare global {
           error: string
           in: string
           key?: string
+        } | {
+          error: string
+          in: string
+          key: string
+          value: Array<any>
         } | {
           error: string
           in: string

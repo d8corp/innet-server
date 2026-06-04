@@ -9,6 +9,7 @@ import {
   type ServerPlugin,
   serverPlugins,
   useAction,
+  useServer,
   useServerPlugin,
 } from '../../../hooks'
 import {
@@ -63,6 +64,7 @@ export interface ApiProps {
 export const api: HandlerPlugin = () => {
   const handler = useNewHandler()
   const props = useProps<ApiProps>()
+  const server = useServer()
 
   const {
     children,
@@ -76,6 +78,8 @@ export const api: HandlerPlugin = () => {
     version = process.env.INNET_API_VERSION || '0.0.0',
     ...rest
   } = props
+
+  server.initAPI(props)
 
   const info = { ...rest, title, version }
 

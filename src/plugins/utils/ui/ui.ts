@@ -2,7 +2,7 @@ import { type HandlerPlugin } from 'innet'
 import { placeholder } from '@cantinc/utils'
 import { useProps } from '@innet/jsx'
 
-import { useAction, useApi, useServerPlugin } from '../../../hooks'
+import { useAction, useApi, useServer, useServerPlugin } from '../../../hooks'
 import rapidoc from './rapidoc.html'
 import redoc from './redoc.html'
 import scalar from './scalar.html'
@@ -21,11 +21,17 @@ export interface UiProps {
 }
 
 export const ui: HandlerPlugin = () => {
+  const { initUI } = useServer()
+
+  const props = useProps<UiProps>() || {}
+
   const {
     html = uiPresets.swagger,
     params = {},
     path = process.env.INNET_UI_PATH || '/ui',
-  } = useProps<UiProps>() || {}
+  } = props
+
+  initUI(props)
 
   const {
     docs,
