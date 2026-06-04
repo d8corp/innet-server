@@ -1,6 +1,6 @@
-# Documentation for @innet/server
+# @innet/server Docs
 
-This is the detailed documentation for `@innet/server` — a JavaScript Backend Framework with a declarative JSX approach to building APIs.
+Detailed documentation for `@innet/server` — a JavaScript Backend Framework with a declarative JSX approach to building APIs.
 
 This documentation is organized into sections for easy navigation. Use the expandable menu below to explore all available elements, schemas, hooks, and configuration options.
 
