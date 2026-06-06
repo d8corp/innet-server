@@ -8,7 +8,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
 
 <sub>
   <details>
-    <summary>&nbsp;🚀 <a href="./INSTALL.md">Install</a></summary>
+    <summary>&nbsp;📦 <a href="./INSTALL.md">Install</a></summary>
     <blockquote>
       <p></p>
       <p>├ 📁 <a href="./INSTALL.md#innetjs-cli">InnetJS CLI</a></p>
