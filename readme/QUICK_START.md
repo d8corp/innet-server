@@ -6,7 +6,7 @@
     <summary>&nbsp;📦 <a href="#setup-environment">Setup Environment</a></summary>
     <blockquote>
       <p></p>
-      <p>├  📁 <a href="./INSTALL.md#innetjs-cli">InnetJS CLI</a></p>
+      <p>├  📁 <a href="./INSTALL.md#app">App</a></p>
       <p>╘  📁 <a href="./INSTALL.md#library">Library</a></p>
     </blockquote>
   </details>
@@ -23,8 +23,14 @@ You'll also need a basic understanding of TypeScript and JSX.
 ###### [🏠︎](./README.md) / [Quick Start](#quick-start) / 📦 Setup Environment [↓](#hello-world)
 
 <sub>
-  <p>📁 <a href="#app">App</a></p>
-  <p>📁 <a href="#library">Library</a></p>
+  <details>
+    <summary>&nbsp;📁 Sections</summary>
+    <blockquote>
+      <p></p>
+      <p>├  📁 <a href="./INSTALL.md#app">App</a></p>
+      <p>╘  📁 <a href="./INSTALL.md#library">Library</a></p>
+    </blockquote>
+  </details>
 </sub>
 
 ### App
