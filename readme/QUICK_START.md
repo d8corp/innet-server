@@ -28,7 +28,7 @@ You'll also need a basic understanding of TypeScript and JSX.
 </sub>
 
 ### App
-###### [🏠︎](./README.md) / [Quick Start](#quick-start) / [Setup Environment(#setup-environment) / App [↓](#library)
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / [Setup Environment](#setup-environment) / App [↓](#library)
 
 The easiest way to create a backend API application is with the [innetjs](https://www.npmjs.com/package/innetjs) CLI:
 
@@ -51,7 +51,7 @@ npm run build
 ```
 
 ### Library
-###### [🏠︎](./README.md) / [Quick Start](#quick-start) / [Setup Environment(#setup-environment) / Library [↑](#app)
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / [Setup Environment](#setup-environment) / Library [↑](#app)
 
 This example shows how to create a library based on `@innet/server`:
 
