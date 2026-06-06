@@ -39,6 +39,11 @@ You'll also need a basic understanding of TypeScript and JSX.
   </details>
 </sub>
 
+You can set up your environment in two ways: create a ready-to-run application or a library for integration into other projects.
+Both options use the `innetjs` CLI tool with preconfigured templates.
+
+Choose the approach that fits your needs.
+
 ### App
 ###### [🏠︎](./README.md) / [Quick Start](#quick-start) / [Setup Environment](#setup-environment) / App [↓](#library)
 
