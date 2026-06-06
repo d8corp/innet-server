@@ -200,4 +200,8 @@ export default (
 
 Test the endpoint: `curl http://localhost/hello?name=John` — returns `{"message":"Hello John!"}`
 
+---
+
+#### [Elements →](./ELEMENTS.md)
+
 
