@@ -7,7 +7,7 @@
 </sub>
 
 ## InnetJS CLI
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Install](#install) / InnetJS CLI [↓](#library)
+###### [🏠︎](./README.md) / [Install](#install) / InnetJS CLI [↓](#library)
 
 The easiest way to create a backend API application is with the [innetjs](https://www.npmjs.com/package/innetjs) CLI:
 
@@ -30,7 +30,7 @@ npm run build
 ```
 
 ## Library
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Install](#install) / Library [↑](#innetjs-cli)
+###### [🏠︎](./README.md) / [Install](#install) / Library [↑](#innetjs-cli)
 
 This example shows how to create a library based on `@innet/server`:
 
