@@ -47,13 +47,14 @@ Choose the approach that fits your needs.
 ### App
 ###### [🏠︎](./README.md) / [Quick Start](#quick-start) / [Setup Environment](#setup-environment) / App [↓](#library)
 
-The easiest way to create a backend API application is with the [innetjs](https://www.npmjs.com/package/innetjs) CLI:
+Create a new backend API application using the [innetjs](https://www.npmjs.com/package/innetjs) CLI:
 
 ```shell
 npx innetjs init my-app -t api
 ```
 
-This template is available at [here](https://github.com/d8corp/innetjs-templates/tree/api)
+Replace `my-app` with your desired application name (this will be the folder name).
+The `-t` flag specifies the template to use. The `api` template is available at [here](https://github.com/d8corp/innetjs-templates/tree/api)
 
 To run the project in development mode:
 
