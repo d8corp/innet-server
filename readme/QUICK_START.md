@@ -3,17 +3,17 @@
 
 <sub>
   <details>
-    <summary> 📦 <a href="./INSTALL.md">Setup Environment</a></summary>
+    <summary> 📦 <a href="./INSTALL.md">Setup Environment</a></summary>
     <blockquote>
       <p></p>
-      <p>├ 📁 <a href="./INSTALL.md#innetjs-cli">InnetJS CLI</a></p>
-      <p>╘ 📁 <a href="./INSTALL.md#library">Library</a></p>
+      <p>├  📁 <a href="./INSTALL.md#innetjs-cli">InnetJS CLI</a></p>
+      <p>╘  📁 <a href="./INSTALL.md#library">Library</a></p>
     </blockquote>
   </details>
-  <p>├ 📁 <a href="#hello-world">Hello World</a></p>
-  <p>├ 📁 <a href="#api-example">API Example</a></p>
-  <p>├ 📁 <a href="#endpoint-example">Endpoint Example</a></p>
-  <p>╘ 📁 <a href="#component-example">Component Example</a></p>
+  <p>├  📁 <a href="#hello-world">Hello World</a></p>
+  <p>├  📁 <a href="#api-example">API Example</a></p>
+  <p>├  📁 <a href="#endpoint-example">Endpoint Example</a></p>
+  <p>╘  📁 <a href="#component-example">Component Example</a></p>
 </sub>
 
 Before you begin, make sure you have Node.js (v18 or later) installed.
