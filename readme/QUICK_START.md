@@ -27,8 +27,8 @@ You'll also need a basic understanding of TypeScript and JSX.
     <summary>&nbsp;📁 Sections</summary>
     <blockquote>
       <p></p>
-      <p>├  📁 <a href="./INSTALL.md#app">App</a></p>
-      <p>╘  📁 <a href="./INSTALL.md#library">Library</a></p>
+      <p>├  📁 <a href="#app">App</a></p>
+      <p>╘  📁 <a href="#library">Library</a></p>
     </blockquote>
   </details>
 </sub>
