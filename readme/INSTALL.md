@@ -3,7 +3,7 @@
 <sub>
 &nbsp; <p>📦 <a href="./INSTALL.md">Install</a></p>
   <p>├ 📁 <a href="#innetjs-cli">InnetJS CLI</a></p>
-  <p>└ 📁 <a href="#library">Library</a></p>
+  <p>╘ 📁 <a href="#library">Library</a></p>
 </sub>
 
 ## InnetJS CLI

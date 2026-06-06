@@ -12,7 +12,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
     <blockquote>
       <p></p>
       <p>├ 📁 <a href="./INSTALL.md#innetjs-cli">InnetJS CLI</a></p>
-      <p>└ 📁 <a href="./INSTALL.md#library">Library</a></p>
+      <p>╘ 📁 <a href="./INSTALL.md#library">Library</a></p>
     </blockquote>
   </details>
   <details>
@@ -22,7 +22,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
       <p><p>├ 📁 <a href="#hello-world">Hello World</a></p>
       <p><p>├ 📁 <a href="#api-example">API Example</a></p>
       <p><p>├ 📁 <a href="#endpoint-example">Endpoint Example</a></p>
-      <p><p>└ 📁 <a href="#component-example">Component Example</a></p>
+      <p><p>╘ 📁 <a href="#component-example">Component Example</a></p>
     </blockquote>
   </details>
   <details>
@@ -34,7 +34,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
         <blockquote>
           <p></p>
           <p>├ 🏷️ <a href="#env-is">is</a></p>
-          <p>└ 🏷️ <a href="#env-of">of</a></p>
+          <p>╘ 🏷️ <a href="#env-of">of</a></p>
         </blockquote>
       </details>
       <details>
@@ -52,14 +52,14 @@ For a quick overview and introduction, see the [main README](../README.md) in th
             <summary>&nbsp;🧩 <a href="#blacklist">&lt;blacklist&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>└ 🏷️ <a href="#blacklist-ip">ip</a></p>
+              <p>╘ 🏷️ <a href="#blacklist-ip">ip</a></p>
             </blockquote>
           </details>
           <details>
             <summary>&nbsp;🧩 <a href="#whitelist">&lt;whitelist&gt;</a></summary>
             <blockquote>
               <p></p>           
-              <p>└ 🏷️ <a href="#whitelist-ip">ip</a></p>
+              <p>╘ 🏷️ <a href="#whitelist-ip">ip</a></p>
             </blockquote>
           </details>
           <details>
@@ -70,7 +70,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
               <p>├ 🏷️ <a href="#protection-maxage">maxAge</a></p>
               <p>├ 🏷️ <a href="#protection-excludeip">excludeIp</a></p>
               <p>├ 🏷️ <a href="#protection-cookiekey">cookieKey</a></p>
-              <p>└ 🏷️ <a href="#protection-searchkey">searchKey</a></p>
+              <p>╘ 🏷️ <a href="#protection-searchkey">searchKey</a></p>
             </blockquote>
           </details>
           <details>
@@ -82,7 +82,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <blockquote>
                   <p></p>
                   <p>├ 🏷️ <a href="#header-key">key</a></p>
-                  <p>└ 🏷️ <a href="#header-value">value</a></p>
+                  <p>╘ 🏷️ <a href="#header-value">value</a></p>
                 </blockquote>
               </details>
               <details>
@@ -99,7 +99,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                   <p>├ 🏷️ <a href="#cookie-path">path</a></p>
                   <p>├ 🏷️ <a href="#cookie-priority">priority</a></p>
                   <p>├ 🏷️ <a href="#cookie-samesite">sameSite</a></p>
-                  <p>└ 🏷️ <a href="#cookie-secure">secure</a></p>
+                  <p>╘ 🏷️ <a href="#cookie-secure">secure</a></p>
                 </blockquote>
               </details>
             </blockquote>
@@ -113,7 +113,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <blockquote>
                   <p></p>
                   <p>├ 🏷️ <a href="#success-status">status</a></p>
-                  <p>└ 🏷️ <a href="#success-contenttype">contentType</a></p>
+                  <p>╘ 🏷️ <a href="#success-contenttype">contentType</a></p>
                 </blockquote>
               </details>
               <details>
@@ -121,14 +121,14 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <blockquote>
                   <p></p>
                   <p>├ 🏷️ <a href="#error-status">status</a></p>
-                  <p>└ 🏷️ <a href="#error-code">code</a></p>
+                  <p>╘ 🏷️ <a href="#error-code">code</a></p>
                 </blockquote>
               </details>
               <details>
                 <summary>&nbsp;🧩 <a href="#proxy">&lt;proxy&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>└ 🏷️ <a href="#proxy-to">to</a></p>
+                  <p>╘ 🏷️ <a href="#proxy-to">to</a></p>
                 </blockquote>
               </details>
               <details>
@@ -136,7 +136,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <blockquote>
                   <p></p>
                   <p>├ 🏷️ <a href="#redirect-to">to</a></p>
-                  <p>└ 🏷️ <a href="#redirect-status">status</a></p>
+                  <p>╘ 🏷️ <a href="#redirect-status">status</a></p>
                 </blockquote>
               </details>
               <details>
@@ -144,14 +144,14 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <blockquote>
                   <p></p>
                   <p>├ 🏷️ <a href="#cms-dir">dir</a></p>
-                  <p>└ 🏷️ <a href="#cms-prefix">prefix</a></p>
+                  <p>╘ 🏷️ <a href="#cms-prefix">prefix</a></p>
                 </blockquote>
               </details>
               <details>
                 <summary>&nbsp;🧩 <a href="#file">&lt;file&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>└ 🏷️ <a href="#file-path">path</a></p>
+                  <p>╘ 🏷️ <a href="#file-path">path</a></p>
                 </blockquote>
               </details>
             </blockquote>
@@ -179,7 +179,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                       <p>├ 🏷️ <a href="#variable-key">key</a></p>
                       <p>├ 🏷️ <a href="#variable-value">value</a></p>
                       <p>├ 🏷️ <a href="#variable-values">values</a></p>
-                      <p>└ 🏷️ <a href="#variable-description">description</a></p>
+                      <p>╘ 🏷️ <a href="#variable-description">description</a></p>
                     </blockquote>
                   </details>
                 </blockquote>
@@ -190,7 +190,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                   <p></p>
                   <p>├ 🏷️ <a href="#license-name">name</a></p>
                   <p>├ 🏷️ <a href="#license-identifier">identifier</a></p>
-                  <p>└ 🏷️ <a href="#license-url">url</a></p>
+                  <p>╘ 🏷️ <a href="#license-url">url</a></p>
                 </blockquote>
               </details>
               <details>
@@ -199,7 +199,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                   <p></p>
                   <p>├ 🏷️ <a href="#contact-name">name</a></p>
                   <p>├ 🏷️ <a href="#contact-email">email</a></p>
-                  <p>└ 🏷️ <a href="#contact-url">url</a></p>
+                  <p>╘ 🏷️ <a href="#contact-url">url</a></p>
                 </blockquote>
               </details>
               <details>
@@ -208,7 +208,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                   <p></p>
                   <p>├ 🏷️ <a href="#ui-html">html</a></p>
                   <p>├ 🏷️ <a href="#ui-params">params</a></p>
-                  <p>└ 🏷️ <a href="#ui-path">path</a></p>
+                  <p>╘ 🏷️ <a href="#ui-path">path</a></p>
                 </blockquote>
               </details>
               <details>
@@ -216,7 +216,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <blockquote>
                   <p></p>
                   <p>├ 🏷️ <a href="#dts-path">path</a></p>
-                  <p>└ 🏷️ <a href="#dts-namespace">namespace</a></p>
+                  <p>╘ 🏷️ <a href="#dts-namespace">namespace</a></p>
                 </blockquote>
               </details>
               <details>
@@ -224,7 +224,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <blockquote>
                   <p></p>
                   <p>├ 🏷️ <a href="#tag-name">name</a></p>
-                  <p>└ 🏷️ <a href="#tag-group">group</a></p>
+                  <p>╘ 🏷️ <a href="#tag-group">group</a></p>
                 </blockquote>
               </details>
               <details>
@@ -247,7 +247,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                       <p>├ 🏷️ <a href="#param-name">name</a></p>
                       <p>├ 🏷️ <a href="#param-description">description</a></p>
                       <p>├ 🏷️ <a href="#param-required">required</a></p>
-                      <p>└ 🏷️ <a href="#param-deprecated">deprecated</a></p>
+                      <p>╘ 🏷️ <a href="#param-deprecated">deprecated</a></p>
                     </blockquote>
                   </details>
                   <details>
@@ -255,7 +255,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                     <blockquote>
                       <p></p>
                       <p>├ 🏷️ <a href="#response-status">status</a></p>
-                      <p>└ 🏷️ <a href="#response-type">type</a></p>
+                      <p>╘ 🏷️ <a href="#response-type">type</a></p>
                     </blockquote>
                   </details>
                 </blockquote>
@@ -285,7 +285,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
           <p>├ 🏷️ <a href="#schema-values">values</a></p>
           <p>├ 🏷️ <a href="#schema-readonly">readOnly</a></p>
           <p>├ 🏷️ <a href="#schema-writeonly">writeOnly</a></p>
-          <p>└ 🏷️ <a href="#schema-deprecated">deprecated</a></p>
+          <p>╘ 🏷️ <a href="#schema-deprecated">deprecated</a></p>
         </blockquote>
       </details>
       <details>
@@ -304,7 +304,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                   <p>├ 🏷️ <a href="#field-optional">optional</a></p>
                   <p>├ 🏷️ <a href="#field-deprecated">deprecated</a></p>
                   <p>├ 🏷️ <a href="#field-readonly">readOnly</a></p>
-                  <p>└ 🏷️ <a href="#field-writeonly">writeOnly</a></p>
+                  <p>╘ 🏷️ <a href="#field-writeonly">writeOnly</a></p>
                 </blockquote>
               </details>
             </blockquote>
@@ -315,10 +315,10 @@ For a quick overview and introduction, see the [main README](../README.md) in th
               <p></p>
               <p>├ 🏷️ <a href="#array-minitems">minItems</a></p>
               <p>├ 🏷️ <a href="#array-maxitems">maxItems</a></p>
-              <p>└ 🏷️ <a href="#array-uniqueitems">uniqueItems</a></p>
+              <p>╘ 🏷️ <a href="#array-uniqueitems">uniqueItems</a></p>
             </blockquote>
           </details>
-          <p>└ 🧩 <a href="#tuple">&lt;tuple&gt;</a></p>
+          <p>╘ 🧩 <a href="#tuple">&lt;tuple&gt;</a></p>
         </blockquote>
       </details>
       <details>
@@ -332,7 +332,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
               <p>├ 🏷️ <a href="#string-min">min</a></p>
               <p>├ 🏷️ <a href="#string-max">max</a></p>
               <p>├ 🏷️ <a href="#string-pattern">pattern</a></p>
-              <p>└ 🏷️ <a href="#string-patternid">patternId</a></p>
+              <p>╘ 🏷️ <a href="#string-patternid">patternId</a></p>
             </blockquote>
           </details>
           <details>
@@ -343,7 +343,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
               <p>├ 🏷️ <a href="#num-max">max</a></p>
               <p>├ 🏷️ <a href="#num-exclusivemin">exclusiveMin</a></p>
               <p>├ 🏷️ <a href="#num-exclusivemax">exclusiveMax</a></p>
-              <p>└ 🏷️ <a href="#num-multipleof">multipleOf</a></p>
+              <p>╘ 🏷️ <a href="#num-multipleof">multipleOf</a></p>
             </blockquote>
           </details>
           <details>
@@ -355,7 +355,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
               <p>├ 🏷️ <a href="#int-max">max</a></p>
               <p>├ 🏷️ <a href="#int-exclusivemin">exclusiveMin</a></p>
               <p>├ 🏷️ <a href="#int-exclusivemax">exclusiveMax</a></p>
-              <p>└ 🏷️ <a href="#int-multipleof">multipleOf</a></p>
+              <p>╘ 🏷️ <a href="#int-multipleof">multipleOf</a></p>
             </blockquote>
           </details>
           <details>
@@ -363,7 +363,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
             <blockquote>
               <p></p>
               <p>├ 🏷️ <a href="#date-min">min</a></p>
-              <p>└ 🏷️ <a href="#date-max">max</a></p>
+              <p>╘ 🏷️ <a href="#date-max">max</a></p>
             </blockquote>
           </details>
           <details>
@@ -372,13 +372,13 @@ For a quick overview and introduction, see the [main README](../README.md) in th
               <p></p>
               <p>├ 🏷️ <a href="#binary-accept">accept</a></p>
               <p>├ 🏷️ <a href="#binary-min">min</a></p>
-              <p>└ 🏷️ <a href="#binary-max">max</a></p>
+              <p>╘ 🏷️ <a href="#binary-max">max</a></p>
             </blockquote>
           </details>
           <p>├ 🧩 <a href="#uuid">&lt;uuid&gt;</a></p>
           <p>├ 🧩 <a href="#boolean">&lt;boolean&gt;</a></p>
           <p>├ 🧩 <a href="#null">&lt;null&gt;</a></p>
-          <p>└ 🧩 <a href="#any">&lt;any&gt;</a></p>
+          <p>╘ 🧩 <a href="#any">&lt;any&gt;</a></p>
         </blockquote>
       </details>
     </blockquote>
@@ -399,7 +399,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
           <p>├ 🪝 <a href="#useparams">useParams</a></p>
           <p>├ 🪝 <a href="#usesearch">useSearch</a></p>
           <p>├ 🪝 <a href="#usebody">useBody</a></p>
-          <p>└ 🪝 <a href="#useclientip">useClientIp</a></p>
+          <p>╘ 🪝 <a href="#useclientip">useClientIp</a></p>
         </blockquote>
       </details>
       <details>
@@ -410,7 +410,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
           <p>├ 🪝 <a href="#useserverport">useServerPort</a></p>
           <p>├ 🪝 <a href="#useisserverhttps">useIsServerHttps</a></p>
           <p>├ 🪝 <a href="#usecomponentname">useComponentName</a></p>
-          <p>└ 🪝 <a href="#useserverplugin">useServerPlugin</a></p>
+          <p>╘ 🪝 <a href="#useserverplugin">useServerPlugin</a></p>
         </blockquote>
       </details>
     </blockquote>
@@ -437,7 +437,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
       <p>├ 🏷️ <a href="#innet_dts_path">INNET_DTS_PATH</a></p>
       <p>├ 🏷️ <a href="#innet_dts_namespace">INNET_DTS_NAMESPACE</a></p>
       <p>├ 🏷️ <a href="#innet_ui_path">INNET_UI_PATH</a></p>
-      <p>└ 🏷️ <a href="#innet_swagger_path">INNET_SWAGGER_PATH</a></p>
+      <p>╘ 🏷️ <a href="#innet_swagger_path">INNET_SWAGGER_PATH</a></p>
     </blockquote>
   </details>
 </sub>
