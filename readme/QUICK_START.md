@@ -3,7 +3,7 @@
 
 <sub>
   <details>
-    <summary>&nbsp;📦 <a href="./INSTALL.md">Setup Environment</a></summary>
+    <summary> 📦 <a href="./INSTALL.md">Setup Environment</a></summary>
     <blockquote>
       <p></p>
       <p>├ 📁 <a href="./INSTALL.md#innetjs-cli">InnetJS CLI</a></p>
