@@ -6,8 +6,8 @@
     <summary>&nbsp;📦 <a href="#setup-environment">Setup Environment</a></summary>
     <blockquote>
       <p></p>
-      <p>├  📁 <a href="./INSTALL.md#app">App</a></p>
-      <p>╘  📁 <a href="./INSTALL.md#library">Library</a></p>
+      <p>├  📁 <a href="#app">App</a></p>
+      <p>╘  📁 <a href="#library">Library</a></p>
     </blockquote>
   </details>
   <p>├  📁 <a href="#hello-world">Hello World</a></p>
