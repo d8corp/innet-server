@@ -20,7 +20,7 @@ Before you begin, make sure you have Node.js (v18 or later) installed.
 You'll also need a basic understanding of TypeScript and JSX.
 
 ## Setup Environment
-###### [🏠︎](./README.md) / [Quick Start](#quick-start) / 📦 Setup Environment [↓](#hello-world)
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / Setup Environment [↓](#hello-world)
 
 <sub>
   <details>
