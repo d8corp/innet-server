@@ -1,7 +1,75 @@
 # Quick Start
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md) / Quick Start [↓](https://github.com/d8corp/innet-server/blob/2.0/readme/COMPONENTS.md)
+###### [🏠︎](./README.md) / Quick Start [↓](./ELEMENTS.md)
 
-Before you begin, make sure you have Node.js (v18 or later) installed. You'll also need a basic understanding of TypeScript and JSX.
+<sub>
+  <blockquote>
+    <p>🚀 <a href="#quick-start">Quick Start</a></p>
+    <details>
+      <summary>&nbsp;📦 <a href="./INSTALL.md">Setup Environment</a></summary>
+      <blockquote>
+        <p></p>
+        <p>├ 📁 <a href="./INSTALL.md#innetjs-cli">InnetJS CLI</a></p>
+        <p>╘ 📁 <a href="./INSTALL.md#library">Library</a></p>
+      </blockquote>
+    </details>
+    <p>├ 📁 <a href="#hello-world">Hello World</a></p>
+    <p>├ 📁 <a href="#api-example">API Example</a></p>
+    <p>├ 📁 <a href="#endpoint-example">Endpoint Example</a></p>
+    <p>╘ 📁 <a href="#component-example">Component Example</a></p>
+  </blockquote>
+</sub>
+
+Before you begin, make sure you have Node.js (v18 or later) installed.
+You'll also need a basic understanding of TypeScript and JSX.
+
+## Setup Environment
+
+<sub>
+&nbsp; <p>📦 <a href="./INSTALL.md">Install</a></p>
+  <p>├ 📁 <a href="#innetjs-cli">InnetJS CLI</a></p>
+  <p>╘ 📁 <a href="#library">Library</a></p>
+</sub>
+
+## InnetJS CLI
+###### [🏠︎](./README.md) / [Install](#install) / InnetJS CLI [↓](#library)
+
+The easiest way to create a backend API application is with the [innetjs](https://www.npmjs.com/package/innetjs) CLI:
+
+```shell
+npx innetjs init my-app -t api
+```
+
+This template is available at [here](https://github.com/d8corp/innetjs-templates/tree/api)
+
+To run the project in development mode:
+
+```shell
+npm start
+```
+
+To build the production version:
+
+```shell
+npm run build
+```
+
+## Library
+###### [🏠︎](./README.md) / [Install](#install) / Library [↑](#innetjs-cli)
+
+This example shows how to create a library based on `@innet/server`:
+
+```shell
+npx innetjs init my-lib -t api-lib
+```
+
+This template is available at [here](https://github.com/d8corp/innetjs-templates/tree/api-lib)
+
+To build the production version:
+
+```shell
+npm run build
+```
+
 
 ## Hello World
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md) / [Quick Start](#quick-start) / Hello World [↓](#api-example)
