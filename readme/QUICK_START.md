@@ -71,20 +71,21 @@ npm run build
 ### Library
 ###### [🏠︎](./README.md) / [Quick Start](#quick-start) / [Setup Environment](#setup-environment) / Library [↑](#app)
 
-This example shows how to create a library based on `@innet/server`:
+Create reusable component libraries for `@innet/server` that can be shared and integrated across multiple projects:
 
 ```shell
 npx innetjs init my-lib -t api-lib
 ```
 
-This template is available at [here](https://github.com/d8corp/innetjs-templates/tree/api-lib)
+Replace `my-lib` with your desired library name (this will be the folder name).
+The `-t` flag specifies the template to use.
+The `api-lib` template is available [here](https://github.com/d8corp/innetjs-templates/tree/api-lib).
 
 To build the production version:
 
 ```shell
 npm run build
 ```
-
 
 ## Hello World
 ###### [🏠︎](./README.md) / [Quick Start](#quick-start) / Hello World [↓](#api-example)
