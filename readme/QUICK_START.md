@@ -40,7 +40,7 @@ You'll also need a basic understanding of [TypeScript](https://www.typescriptlan
 </sub>
 
 You can set up your environment in two ways: create a ready-to-run application or a library for integration into other projects.
-Both options use the `innetjs` CLI tool with preconfigured templates.
+Both options use the [innetjs](https://www.npmjs.com/package/innetjs) CLI tool with preconfigured templates.
 
 Choose the approach that fits your needs.
 
