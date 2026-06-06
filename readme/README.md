@@ -19,10 +19,10 @@ For a quick overview and introduction, see the [main README](../README.md) in th
           <p>╘ 📁 <a href="./INSTALL.md#library">Library</a></p>
         </blockquote>
       </details>
-      <p>├  📁 <a href="#hello-world">Hello World</a></p>
-      <p>├  📁 <a href="#api-example">API Example</a></p>
-      <p>├  📁 <a href="#endpoint-example">Endpoint Example</a></p>
-      <p>╘  📁 <a href="#component-example">Component Example</a></p>
+      <p>├  📁 <a href="#hello-world">Hello World</a></p>
+      <p>├  📁 <a href="#api-example">API Example</a></p>
+      <p>├  📁 <a href="#endpoint-example">Endpoint Example</a></p>
+      <p>╘  📁 <a href="#component-example">Component Example</a></p>
     </blockquote>
   </details>
   <details>
