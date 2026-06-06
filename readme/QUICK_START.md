@@ -7,7 +7,7 @@
     <blockquote>
       <p></p>
       <details>
-        <summary>&nbsp;📦 <a href="#setup-environment">Setup Environment</a></summary>
+        <summary>&nbsp;📦 <a href="#environment">Environment</a></summary>
         <blockquote>
           <p></p>
           <p>├  📁 <a href="#app">App</a></p>
@@ -25,8 +25,8 @@
 Before you begin, make sure you have [Node.js](https://nodejs.org/en) (v18 or later) installed.
 You'll also need a basic understanding of [TypeScript](https://www.typescriptlang.org/) and [JSX](https://www.typescriptlang.org/docs/handbook/jsx.html).
 
-## Setup Environment
-###### [🏠︎](./README.md) / [Quick Start](#quick-start) / Setup Environment [↓](#hello-world)
+## Environment
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / Environment [↓](#hello-world)
 
 <sub>
   <details>
@@ -45,7 +45,7 @@ Both options use the [innetjs](https://www.npmjs.com/package/innetjs) CLI tool w
 Choose the approach that fits your needs.
 
 ### App
-###### [🏠︎](./README.md) / [Quick Start](#quick-start) / [Setup Environment](#setup-environment) / App [↓](#library)
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / [Environment](#environment) / App [↓](#library)
 
 Create a new backend API application using the [innetjs](https://www.npmjs.com/package/innetjs) CLI:
 
@@ -69,7 +69,7 @@ npm run build
 ```
 
 ### Library
-###### [🏠︎](./README.md) / [Quick Start](#quick-start) / [Setup Environment](#setup-environment) / Library [↑](#app)
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / [Environment](#environment) / Library [↑](#app)
 
 Create reusable component libraries for `@innet/server` that can be shared and integrated across multiple projects:
 
@@ -88,7 +88,7 @@ npm run build
 ```
 
 ## Hello World
-###### [🏠︎](./README.md) / [Quick Start](#quick-start) / Hello World [↓](#api-example)
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / Hello World [↑](#environment) [↓](#api-example)
 
 Start your first `@innet/server` application. This minimal example shows how to create a server that responds to any request with a simple text message. Perfect for verifying your setup works correctly.
 
@@ -167,11 +167,10 @@ This example shows how to extract endpoint logic into a separate component.
 
 *src/app.tsx*
 ```typescript jsx
-import { useSearch } from '@innet/server'
+import { useData } from '@innet/server'
 
 function Hello () {
-  const search = useSearch<any>()
-  const name: string = search?.name ?? 'World'
+  const { name = 'World'} = useData('search', 'GET:/hello')
 
   return (
     <success>
@@ -187,6 +186,9 @@ export default (
         method='get'
         path='/hello'
         summary='Greet the user'>
+        <param in='query' name='name'>
+          <string />
+        </param>
         <return>
           <Hello />
         </return>
