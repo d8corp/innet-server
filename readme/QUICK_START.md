@@ -3,32 +3,32 @@
 
 <sub>
   <details>
-    <summary> 📦 <a href="./INSTALL.md">Setup Environment</a></summary>
+    <summary>&nbsp;📦 <a href="#setup-environment">Setup Environment</a></summary>
     <blockquote>
       <p></p>
-      <p>├  📁 <a href="./INSTALL.md#innetjs-cli">InnetJS CLI</a></p>
-      <p>╘  📁 <a href="./INSTALL.md#library">Library</a></p>
+      <p>├  📁 <a href="./INSTALL.md#innetjs-cli">InnetJS CLI</a></p>
+      <p>╘  📁 <a href="./INSTALL.md#library">Library</a></p>
     </blockquote>
   </details>
-  <p>├  📁 <a href="#hello-world">Hello World</a></p>
-  <p>├  📁 <a href="#api-example">API Example</a></p>
-  <p>├  📁 <a href="#endpoint-example">Endpoint Example</a></p>
-  <p>╘  📁 <a href="#component-example">Component Example</a></p>
+  <p>├  📁 <a href="#hello-world">Hello World</a></p>
+  <p>├  📁 <a href="#api-example">API Example</a></p>
+  <p>├  📁 <a href="#endpoint-example">Endpoint Example</a></p>
+  <p>╘  📁 <a href="#component-example">Component Example</a></p>
 </sub>
 
 Before you begin, make sure you have Node.js (v18 or later) installed.
 You'll also need a basic understanding of TypeScript and JSX.
 
 ## Setup Environment
+###### [🏠︎](./README.md) / [🚀](#quick-start) / 📦 Setup Environment [↓](#hello-world)
 
 <sub>
-&nbsp; <p>📦 <a href="./INSTALL.md">Install</a></p>
-  <p>├ 📁 <a href="#innetjs-cli">InnetJS CLI</a></p>
-  <p>╘ 📁 <a href="#library">Library</a></p>
+  <p>📁 <a href="#app">App</a></p>
+  <p>📁 <a href="#library">Library</a></p>
 </sub>
 
-## InnetJS CLI
-###### [🏠︎](./README.md) / [Install](#install) / InnetJS CLI [↓](#library)
+### App
+###### [🏠︎](./README.md) / [🚀](#quick-start) / [📦](#setup-environment) / App [↓](#library)
 
 The easiest way to create a backend API application is with the [innetjs](https://www.npmjs.com/package/innetjs) CLI:
 
@@ -50,8 +50,8 @@ To build the production version:
 npm run build
 ```
 
-## Library
-###### [🏠︎](./README.md) / [Install](#install) / Library [↑](#innetjs-cli)
+### Library
+###### [🏠︎](./README.md) / [🚀](#quick-start) / [📦](#setup-environment) / Library [↑](#app)
 
 This example shows how to create a library based on `@innet/server`:
 
@@ -69,7 +69,7 @@ npm run build
 
 
 ## Hello World
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md) / [Quick Start](#quick-start) / Hello World [↓](#api-example)
+###### [🏠︎](./README.md) / [🚀](#quick-start) / Hello World [↓](#api-example)
 
 Start your first `@innet/server` application. This minimal example shows how to create a server that responds to any request with a simple text message. Perfect for verifying your setup works correctly.
 
@@ -96,7 +96,7 @@ export default (
 Start with `npm start`, then open http://localhost — you'll see `Hello World!` displayed.
 
 ## API Example
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md) / [Quick Start](#quick-start) / API Example [↑](#hello-world) [↓](#endpoint-example)
+###### [🏠︎](./README.md) / [🚀](#quick-start) / API Example [↑](#hello-world) [↓](#endpoint-example)
 
 Generate OpenAPI documentation without writing any endpoints.
 This shows the automatic OpenAPI 3.1.0 structure that `@innet/server` creates.
@@ -113,7 +113,7 @@ export default (
 Open http://localhost — you'll see OpenAPI 3.1.0 JSON structure with API metadata.
 
 ## Endpoint Example
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md) / [Quick Start](#quick-start) / Endpoint Example [↑](#api-example) [↓](#component-example)
+###### [🏠︎](./README.md) / [🚀](#quick-start) / Endpoint Example [↑](#api-example) [↓](#component-example)
 
 Build an API endpoint with automatic OpenAPI documentation.
 This example demonstrates how to define an endpoint with HTTP method, path, and response handler.
@@ -141,7 +141,7 @@ export default (
 Test the endpoint: `curl http://localhost/hello` — returns `{"message":"Hello!"}`
 
 ## Component Example
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md) / [Quick Start](#quick-start) / Component Example [↑](#endpoint-example)
+###### [🏠︎](./README.md) / [🚀](#quick-start) / Component Example [↑](#endpoint-example)
 
 Create reusable components for your business logic.
 This example shows how to extract endpoint logic into a separate component.

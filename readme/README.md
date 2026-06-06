@@ -15,14 +15,14 @@ For a quick overview and introduction, see the [main README](../README.md) in th
         <summary>&nbsp;📦 <a href="./QUICK_START.md#setup-environment">Setup Environment</a></summary>
         <blockquote>
           <p></p>
-          <p>├  📁 <a href="./INSTALL.md#innetjs-cli">InnetJS CLI</a></p>
-          <p>╘  📁 <a href="./INSTALL.md#library">Library</a></p>
+          <p>├  📁 <a href="./QUICK_START.md#app">App</a></p>
+          <p>╘  📁 <a href="./QUICK_START.md#library">Library</a></p>
         </blockquote>
       </details>
-      <p>├  📁 <a href="#hello-world">Hello World</a></p>
-      <p>├  📁 <a href="#api-example">API Example</a></p>
-      <p>├  📁 <a href="#endpoint-example">Endpoint Example</a></p>
-      <p>╘  📁 <a href="#component-example">Component Example</a></p>
+      <p>├  📁 <a href="./QUICK_START#hello-world">Hello World</a></p>
+      <p>├  📁 <a href="./QUICK_START#api-example">API Example</a></p>
+      <p>├  📁 <a href="./QUICK_START#endpoint-example">Endpoint Example</a></p>
+      <p>╘  📁 <a href="./QUICK_START#component-example">Component Example</a></p>
     </blockquote>
   </details>
   <details>
