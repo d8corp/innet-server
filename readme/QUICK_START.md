@@ -1,5 +1,5 @@
 # Quick Start
-###### [🏠︎](./README.md) / 🚀 Quick Start [↓](./ELEMENTS.md)
+###### [🏠︎](./README.md) / Quick Start [↓](./ELEMENTS.md)
 
 <sub>
   <details>
@@ -20,7 +20,7 @@ Before you begin, make sure you have Node.js (v18 or later) installed.
 You'll also need a basic understanding of TypeScript and JSX.
 
 ## Setup Environment
-###### [🏠︎](./README.md) / [🚀](#quick-start) / 📦 Setup Environment [↓](#hello-world)
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / 📦 Setup Environment [↓](#hello-world)
 
 <sub>
   <p>📁 <a href="#app">App</a></p>
@@ -28,7 +28,7 @@ You'll also need a basic understanding of TypeScript and JSX.
 </sub>
 
 ### App
-###### [🏠︎](./README.md) / [🚀](#quick-start) / [📦](#setup-environment) / App [↓](#library)
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / [Setup Environment(#setup-environment) / App [↓](#library)
 
 The easiest way to create a backend API application is with the [innetjs](https://www.npmjs.com/package/innetjs) CLI:
 
@@ -51,7 +51,7 @@ npm run build
 ```
 
 ### Library
-###### [🏠︎](./README.md) / [🚀](#quick-start) / [📦](#setup-environment) / Library [↑](#app)
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / [Setup Environment(#setup-environment) / Library [↑](#app)
 
 This example shows how to create a library based on `@innet/server`:
 
@@ -69,7 +69,7 @@ npm run build
 
 
 ## Hello World
-###### [🏠︎](./README.md) / [🚀](#quick-start) / Hello World [↓](#api-example)
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / Hello World [↓](#api-example)
 
 Start your first `@innet/server` application. This minimal example shows how to create a server that responds to any request with a simple text message. Perfect for verifying your setup works correctly.
 
@@ -96,7 +96,7 @@ export default (
 Start with `npm start`, then open http://localhost — you'll see `Hello World!` displayed.
 
 ## API Example
-###### [🏠︎](./README.md) / [🚀](#quick-start) / API Example [↑](#hello-world) [↓](#endpoint-example)
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / API Example [↑](#hello-world) [↓](#endpoint-example)
 
 Generate OpenAPI documentation without writing any endpoints.
 This shows the automatic OpenAPI 3.1.0 structure that `@innet/server` creates.
@@ -113,7 +113,7 @@ export default (
 Open http://localhost — you'll see OpenAPI 3.1.0 JSON structure with API metadata.
 
 ## Endpoint Example
-###### [🏠︎](./README.md) / [🚀](#quick-start) / Endpoint Example [↑](#api-example) [↓](#component-example)
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / Endpoint Example [↑](#api-example) [↓](#component-example)
 
 Build an API endpoint with automatic OpenAPI documentation.
 This example demonstrates how to define an endpoint with HTTP method, path, and response handler.
@@ -141,7 +141,7 @@ export default (
 Test the endpoint: `curl http://localhost/hello` — returns `{"message":"Hello!"}`
 
 ## Component Example
-###### [🏠︎](./README.md) / [🚀](#quick-start) / Component Example [↑](#endpoint-example)
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / Component Example [↑](#endpoint-example)
 
 Create reusable components for your business logic.
 This example shows how to extract endpoint logic into a separate component.
