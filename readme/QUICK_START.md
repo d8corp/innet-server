@@ -17,7 +17,8 @@
       <p>├  📁 <a href="#hello-world">Hello World</a></p>
       <p>├  📁 <a href="#api-example">API Example</a></p>
       <p>├  📁 <a href="#endpoint-example">Endpoint Example</a></p>
-      <p>╘  📁 <a href="#component-example">Component Example</a></p>
+      <p>├  📁 <a href="#component-example">Component Example</a></p>
+      <p>╘  📁 <a href="#components">Components</a></p>
     </blockquote>
   </details>
 </sub>
@@ -160,7 +161,7 @@ export default (
 Test the endpoint: `curl http://localhost/hello` — returns `{"message":"Hello!"}`
 
 ## Component Example
-###### [🏠︎](./README.md) / [Quick Start](#quick-start) / Component Example [↑](#endpoint-example)
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / Component Example [↑](#endpoint-example) [↓](#components)
 
 Create reusable components for your business logic.
 This example shows how to extract endpoint logic into a separate component.
@@ -201,6 +202,71 @@ export default (
 Test the endpoint: `curl http://localhost/hello?name=John` — returns `{"message":"Hello John!"}`
 
 ---
+
+## Components
+###### [🏠︎](./README.md) / [Quick Start](#quick-start) / Components [↑](#component-example)
+
+A Component is a function that returns content which gets rendered in place of the component itself.
+Think of it as a way to inject custom logic between elements.
+Components come from [@innet/jsx](https://www.npmjs.com/package/@innet/jsx).
+
+*src/SetToken.tsx*
+```typescript jsx
+export interface SetTokenProps {
+  value: string
+}
+
+export const SetToken = ({ value }: SetTokenProps) => (
+  <cookie
+    httpOnly
+    secure
+    key='token'
+    value={value}
+  />
+)
+```
+
+and then you can use it inside `app.tsx`.
+
+*src/app.tsx*
+```typescript jsx
+import { SetToken } from './SetToken'
+
+export default (
+  <server>
+    <return>
+      <SetToken
+        value='...'
+      />
+      <success />
+    </return>
+  </server>
+)
+```
+Async components allow you to perform asynchronous operations (database queries, external API calls, file operations) before returning elements.
+Simply declare the component as an `async function` and you can use `await` inside it.
+
+*src/SetToken.tsx*
+```typescript jsx
+export interface SetTokenProps {
+  value: string
+}
+
+export async function SetToken ({ value }: SetTokenProps) {
+  await saveToken(value)
+
+  return (
+    <cookie
+      httpOnly
+      secure
+      key='token'
+      value={value}
+    />
+  )
+}
+```
+
+You can use [hooks](./HOOKS.md) inside components.
 
 #### [Elements →](./ELEMENTS.md)
 

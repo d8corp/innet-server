@@ -22,7 +22,8 @@ For a quick overview and introduction, see the [main README](../README.md) in th
       <p>├  📁 <a href="./QUICK_START.md#hello-world">Hello World</a></p>
       <p>├  📁 <a href="./QUICK_START.md#api-example">API Example</a></p>
       <p>├  📁 <a href="./QUICK_START.md#endpoint-example">Endpoint Example</a></p>
-      <p>╘  📁 <a href="./QUICK_START.md#component-example">Component Example</a></p>
+      <p>├  📁 <a href="./QUICK_START.md#component-example">Component Example</a></p>
+      <p>╘  📁 <a href="./QUICK_START.md#components">Components</a></p>
     </blockquote>
   </details>
   <details>
