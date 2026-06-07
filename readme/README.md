@@ -267,177 +267,177 @@ For a quick overview and introduction, see the [main README](../README.md) in th
     </blockquote>
   </details>
   <details>
-    <summary>&nbsp;🗂️ <a href="#schemas">Schemas</a></summary>
+    <summary>&nbsp;🗂️ <a href="./SCHEMAS.md">Schemas</a></summary>
     <blockquote>
       <p></p>
       <details>
-        <summary>&nbsp;📁 <a href="#schemas-props">Props</a></summary>
+        <summary>&nbsp;📁 <a href="./SCHEMAS.md#schemas-props">Props</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🏷️ <a href="#schema-title">title</a></p>
-          <p>├  🏷️ <a href="#schema-description">description</a></p>
-          <p>├  🏷️ <a href="#schema-examples">examples</a></p>
-          <p>├  🏷️ <a href="#schema-example">example</a></p>
-          <p>├  🏷️ <a href="#schema-default">default</a></p>
-          <p>├  🏷️ <a href="#schema-nullable">nullable</a></p>
-          <p>├  🏷️ <a href="#schema-ref">ref</a></p>
-          <p>├  🏷️ <a href="#schema-const">const</a></p>
-          <p>├  🏷️ <a href="#schema-values">values</a></p>
-          <p>├  🏷️ <a href="#schema-readonly">readOnly</a></p>
-          <p>├  🏷️ <a href="#schema-writeonly">writeOnly</a></p>
-          <p>╘  🏷️ <a href="#schema-deprecated">deprecated</a></p>
+          <p>├  🏷️ <a href="./SCHEMAS.md#schema-title">title</a></p>
+          <p>├  🏷️ <a href="./SCHEMAS.md#schema-description">description</a></p>
+          <p>├  🏷️ <a href="./SCHEMAS.md#schema-examples">examples</a></p>
+          <p>├  🏷️ <a href="./SCHEMAS.md#schema-example">example</a></p>
+          <p>├  🏷️ <a href="./SCHEMAS.md#schema-default">default</a></p>
+          <p>├  🏷️ <a href="./SCHEMAS.md#schema-nullable">nullable</a></p>
+          <p>├  🏷️ <a href="./SCHEMAS.md#schema-ref">ref</a></p>
+          <p>├  🏷️ <a href="./SCHEMAS.md#schema-const">const</a></p>
+          <p>├  🏷️ <a href="./SCHEMAS.md#schema-values">values</a></p>
+          <p>├  🏷️ <a href="./SCHEMAS.md#schema-readonly">readOnly</a></p>
+          <p>├  🏷️ <a href="./SCHEMAS.md#schema-writeonly">writeOnly</a></p>
+          <p>╘  🏷️ <a href="./SCHEMAS.md#schema-deprecated">deprecated</a></p>
         </blockquote>
       </details>
       <details>
-        <summary>&nbsp;📁 <a href="#collections">Collections</a></summary>
+        <summary>&nbsp;📁 <a href="./SCHEMAS.md#collections">Collections</a></summary>
         <blockquote>
           <p></p>
           <details>
-            <summary>&nbsp;🧩 <a href="#object">&lt;object&gt;</a></summary>
+            <summary>&nbsp;🧩 <a href="./SCHEMAS.md#object">&lt;object&gt;</a></summary>
             <blockquote>
               <p></p>
               <details>
-                <summary>&nbsp;🧩 <a href="#field">&lt;field&gt;</a></summary>
+                <summary>&nbsp;🧩 <a href="./SCHEMAS.md#field">&lt;field&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#field-key">key</a></p>
-                  <p>├  🏷️ <a href="#field-optional">optional</a></p>
-                  <p>├  🏷️ <a href="#field-deprecated">deprecated</a></p>
-                  <p>├  🏷️ <a href="#field-readonly">readOnly</a></p>
-                  <p>╘  🏷️ <a href="#field-writeonly">writeOnly</a></p>
+                  <p>├  🏷️ <a href="./SCHEMAS.md#field-key">key</a></p>
+                  <p>├  🏷️ <a href="./SCHEMAS.md#field-optional">optional</a></p>
+                  <p>├  🏷️ <a href="./SCHEMAS.md#field-deprecated">deprecated</a></p>
+                  <p>├  🏷️ <a href="./SCHEMAS.md#field-readonly">readOnly</a></p>
+                  <p>╘  🏷️ <a href="./SCHEMAS.md#field-writeonly">writeOnly</a></p>
                 </blockquote>
               </details>
             </blockquote>
           </details>
           <details>
-            <summary>&nbsp;🧩 <a href="#array">&lt;array&gt;</a></summary>
+            <summary>&nbsp;🧩 <a href="./SCHEMAS.md#array">&lt;array&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#array-minitems">minItems</a></p>
-              <p>├  🏷️ <a href="#array-maxitems">maxItems</a></p>
-              <p>╘  🏷️ <a href="#array-uniqueitems">uniqueItems</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#array-minitems">minItems</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#array-maxitems">maxItems</a></p>
+              <p>╘  🏷️ <a href="./SCHEMAS.md#array-uniqueitems">uniqueItems</a></p>
             </blockquote>
           </details>
-          <p>╘  🧩 <a href="#tuple">&lt;tuple&gt;</a></p>
+          <p>╘  🧩 <a href="./SCHEMAS.md#tuple">&lt;tuple&gt;</a></p>
         </blockquote>
       </details>
       <details>
-        <summary>&nbsp;📁 <a href="#primitive-data">Primitives</a></summary>
+        <summary>&nbsp;📁 <a href="./SCHEMAS.md#primitive-data">Primitives</a></summary>
         <blockquote>
           <p></p>
           <details>
-            <summary>&nbsp;🧩 <a href="#string">&lt;string&gt;</a></summary>
+            <summary>&nbsp;🧩 <a href="./SCHEMAS.md#string">&lt;string&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#string-min">min</a></p>
-              <p>├  🏷️ <a href="#string-max">max</a></p>
-              <p>├  🏷️ <a href="#string-pattern">pattern</a></p>
-              <p>╘  🏷️ <a href="#string-patternid">patternId</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#string-min">min</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#string-max">max</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#string-pattern">pattern</a></p>
+              <p>╘  🏷️ <a href="./SCHEMAS.md#string-patternid">patternId</a></p>
             </blockquote>
           </details>
           <details>
-            <summary>&nbsp;🧩 <a href="#number">&lt;number&gt;</a></summary>
+            <summary>&nbsp;🧩 <a href="./SCHEMAS.md#number">&lt;number&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#num-min">min</a></p>
-              <p>├  🏷️ <a href="#num-max">max</a></p>
-              <p>├  🏷️ <a href="#num-exclusivemin">exclusiveMin</a></p>
-              <p>├  🏷️ <a href="#num-exclusivemax">exclusiveMax</a></p>
-              <p>╘  🏷️ <a href="#num-multipleof">multipleOf</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#num-min">min</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#num-max">max</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#num-exclusivemin">exclusiveMin</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#num-exclusivemax">exclusiveMax</a></p>
+              <p>╘  🏷️ <a href="./SCHEMAS.md#num-multipleof">multipleOf</a></p>
             </blockquote>
           </details>
           <details>
-            <summary>&nbsp;🧩 <a href="#integer">&lt;integer&gt;</a></summary>
+            <summary>&nbsp;🧩 <a href="./SCHEMAS.md#integer">&lt;integer&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#int-format">format</a></p>
-              <p>├  🏷️ <a href="#int-min">min</a></p>
-              <p>├  🏷️ <a href="#int-max">max</a></p>
-              <p>├  🏷️ <a href="#int-exclusivemin">exclusiveMin</a></p>
-              <p>├  🏷️ <a href="#int-exclusivemax">exclusiveMax</a></p>
-              <p>╘  🏷️ <a href="#int-multipleof">multipleOf</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#int-format">format</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#int-min">min</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#int-max">max</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#int-exclusivemin">exclusiveMin</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#int-exclusivemax">exclusiveMax</a></p>
+              <p>╘  🏷️ <a href="./SCHEMAS.md#int-multipleof">multipleOf</a></p>
             </blockquote>
           </details>
           <details>
-            <summary>&nbsp;🧩 <a href="#date">&lt;date&gt;</a></summary>
+            <summary>&nbsp;🧩 <a href="./SCHEMAS.md#date">&lt;date&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#date-min">min</a></p>
-              <p>╘  🏷️ <a href="#date-max">max</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#date-min">min</a></p>
+              <p>╘  🏷️ <a href="./SCHEMAS.md#date-max">max</a></p>
             </blockquote>
           </details>
           <details>
-            <summary>&nbsp;🧩 <a href="#binary">&lt;binary&gt;</a></summary>
+            <summary>&nbsp;🧩 <a href="./SCHEMAS.md#binary">&lt;binary&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#binary-accept">accept</a></p>
-              <p>├  🏷️ <a href="#binary-min">min</a></p>
-              <p>╘  🏷️ <a href="#binary-max">max</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#binary-accept">accept</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#binary-min">min</a></p>
+              <p>╘  🏷️ <a href="./SCHEMAS.md#binary-max">max</a></p>
             </blockquote>
           </details>
-          <p>├  🧩 <a href="#uuid">&lt;uuid&gt;</a></p>
-          <p>├  🧩 <a href="#boolean">&lt;boolean&gt;</a></p>
-          <p>├  🧩 <a href="#null">&lt;null&gt;</a></p>
-          <p>╘  🧩 <a href="#any">&lt;any&gt;</a></p>
+          <p>├  🧩 <a href="./SCHEMAS.md#uuid">&lt;uuid&gt;</a></p>
+          <p>├  🧩 <a href="./SCHEMAS.md#boolean">&lt;boolean&gt;</a></p>
+          <p>├  🧩 <a href="./SCHEMAS.md#null">&lt;null&gt;</a></p>
+          <p>╘  🧩 <a href="./SCHEMAS.md#any">&lt;any&gt;</a></p>
         </blockquote>
       </details>
     </blockquote>
   </details>
   <details>
-    <summary>&nbsp;🪝 <a href="#hooks">Hooks</a></summary>
+    <summary>&nbsp;🪝 <a href="./HOOKS.md">Hooks</a></summary>
     <blockquote>
       <p></p>
       <details>
-        <summary>&nbsp;📁 <a href="#runtime-hooks">Runtime</a></summary>
+        <summary>&nbsp;📁 <a href="./HOOKS.md#runtime-hooks">Runtime</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🪝 <a href="#userequest">useRequest</a></p>
-          <p>├  🪝 <a href="#useresponse">useResponse</a></p>
-          <p>├  🪝 <a href="#usepath">usePath</a></p>
-          <p>├  🪝 <a href="#useheaders">useHeaders</a></p>
-          <p>├  🪝 <a href="#usecookies">useCookies</a></p>
-          <p>├  🪝 <a href="#useparams">useParams</a></p>
-          <p>├  🪝 <a href="#usesearch">useSearch</a></p>
-          <p>├  🪝 <a href="#usebody">useBody</a></p>
-          <p>╘  🪝 <a href="#useclientip">useClientIp</a></p>
+          <p>├  🪝 <a href="./HOOKS.md#userequest">useRequest</a></p>
+          <p>├  🪝 <a href="./HOOKS.md#useresponse">useResponse</a></p>
+          <p>├  🪝 <a href="./HOOKS.md#usepath">usePath</a></p>
+          <p>├  🪝 <a href="./HOOKS.md#useheaders">useHeaders</a></p>
+          <p>├  🪝 <a href="./HOOKS.md#usecookies">useCookies</a></p>
+          <p>├  🪝 <a href="./HOOKS.md#useparams">useParams</a></p>
+          <p>├  🪝 <a href="./HOOKS.md#usesearch">useSearch</a></p>
+          <p>├  🪝 <a href="./HOOKS.md#usebody">useBody</a></p>
+          <p>╘  🪝 <a href="./HOOKS.md#useclientip">useClientIp</a></p>
         </blockquote>
       </details>
       <details>
-        <summary>&nbsp;📁 <a href="#shared-hooks">Shared</a></summary>
+        <summary>&nbsp;📁 <a href="./HOOKS.md#shared-hooks">Shared</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🪝 <a href="#useserver">useServer</a></p>
-          <p>├  🪝 <a href="#useserverport">useServerPort</a></p>
-          <p>├  🪝 <a href="#useisserverhttps">useIsServerHttps</a></p>
-          <p>├  🪝 <a href="#usecomponentname">useComponentName</a></p>
-          <p>╘  🪝 <a href="#useserverplugin">useServerPlugin</a></p>
+          <p>├  🪝 <a href="./HOOKS.md#useserver">useServer</a></p>
+          <p>├  🪝 <a href="./HOOKS.md#useserverport">useServerPort</a></p>
+          <p>├  🪝 <a href="./HOOKS.md#useisserverhttps">useIsServerHttps</a></p>
+          <p>├  🪝 <a href="./HOOKS.md#usecomponentname">useComponentName</a></p>
+          <p>╘  🪝 <a href="./HOOKS.md#useserverplugin">useServerPlugin</a></p>
         </blockquote>
       </details>
     </blockquote>
   </details>
   <details>
-    <summary>&nbsp;⚙️ <a href="#configuration">Configuration</a></summary>
+    <summary>&nbsp;⚙️ <a href="./CONFIGURATION.md">Configuration</a></summary>
     <blockquote>
       <p></p>
-      <p>├  🏷️ <a href="#innet_port">INNET_PORT</a></p>
-      <p>├  🏷️ <a href="#innet_ssl_crt">INNET_SSL_CRT</a></p>
-      <p>├  🏷️ <a href="#innet_ssl_key">INNET_SSL_KEY</a></p>
-      <p>├  🏷️ <a href="#innet_api_prefix">INNET_API_PREFIX</a></p>
-      <p>├  🏷️ <a href="#innet_api_version">INNET_API_VERSION</a></p>
-      <p>├  🏷️ <a href="#innet_api_enum_description_key">INNET_API_ENUM_DESCRIPTION_KEY</a></p>
-      <p>├  🏷️ <a href="#innet_cms_dir">INNET_CMS_DIR</a></p>
-      <p>├  🏷️ <a href="#innet_cms_prefix">INNET_CMS_PREFIX</a></p>
-      <p>├  🏷️ <a href="#innet_blacklist_ip">INNET_BLACKLIST_IP</a></p>
-      <p>├  🏷️ <a href="#innet_whitelist_ip">INNET_WHITELIST_IP</a></p>
-      <p>├  🏷️ <a href="#innet_protection">INNET_PROTECTION</a></p>
-      <p>├  🏷️ <a href="#innet_protection_max_age">INNET_PROTECTION_MAX_AGE</a></p>
-      <p>├  🏷️ <a href="#innet_protection_cookie_key">INNET_PROTECTION_COOKIE_KEY</a></p>
-      <p>├  🏷️ <a href="#innet_protection_search_key">INNET_PROTECTION_SEARCH_KEY</a></p>
-      <p>├  🏷️ <a href="#innet_protected_ip">INNET_PROTECTED_IP</a></p>
-      <p>├  🏷️ <a href="#innet_dts_path">INNET_DTS_PATH</a></p>
-      <p>├  🏷️ <a href="#innet_dts_namespace">INNET_DTS_NAMESPACE</a></p>
-      <p>├  🏷️ <a href="#innet_ui_path">INNET_UI_PATH</a></p>
-      <p>╘  🏷️ <a href="#innet_swagger_path">INNET_SWAGGER_PATH</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_port">INNET_PORT</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_ssl_crt">INNET_SSL_CRT</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_ssl_key">INNET_SSL_KEY</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_api_prefix">INNET_API_PREFIX</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_api_version">INNET_API_VERSION</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_api_enum_description_key">INNET_API_ENUM_DESCRIPTION_KEY</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_cms_dir">INNET_CMS_DIR</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_cms_prefix">INNET_CMS_PREFIX</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_blacklist_ip">INNET_BLACKLIST_IP</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_whitelist_ip">INNET_WHITELIST_IP</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_protection">INNET_PROTECTION</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_protection_max_age">INNET_PROTECTION_MAX_AGE</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_protection_cookie_key">INNET_PROTECTION_COOKIE_KEY</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_protection_search_key">INNET_PROTECTION_SEARCH_KEY</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_protected_ip">INNET_PROTECTED_IP</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_dts_path">INNET_DTS_PATH</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_dts_namespace">INNET_DTS_NAMESPACE</a></p>
+      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_ui_path">INNET_UI_PATH</a></p>
+      <p>╘  🏷️ <a href="./CONFIGURATION.md#innet_swagger_path">INNET_SWAGGER_PATH</a></p>
     </blockquote>
   </details>
 </sub>
