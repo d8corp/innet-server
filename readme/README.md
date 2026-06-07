@@ -27,236 +27,236 @@ For a quick overview and introduction, see the [main README](../README.md) in th
     </blockquote>
   </details>
   <details>
-    <summary>&nbsp;🗂 <a href="./QUICK_START.md">Elements</a></summary>
+    <summary>&nbsp;🗂 <a href="./ELEMENTS.md">Elements</a></summary>
     <blockquote>
       <p></p>
       <details>
-        <summary>&nbsp;🧩 <a href="./QUICK_START.md#env">&lt;env&gt;</a></summary>
+        <summary>&nbsp;🧩 <a href="./ELEMENTS.md#env">&lt;env&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🏷️ <a href="./QUICK_START.md#env-is">is</a></p>
-          <p>╘  🏷️ <a href="./QUICK_START.md#env-of">of</a></p>
+          <p>├  🏷️ <a href="./ELEMENTS.md#env-is">is</a></p>
+          <p>╘  🏷️ <a href="./ELEMENTS.md#env-of">of</a></p>
         </blockquote>
       </details>
       <details>
-        <summary>&nbsp;🧩 <a href="#server">&lt;server&gt;</a></summary>
+        <summary>&nbsp;🧩 <a href="./ELEMENTS.md#server">&lt;server&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🏷️ <a href="#server-port">port</a></p>
-          <p>├  🏷️ <a href="#server-ssl">ssl</a></p>
-          <p>├  🏷️ <a href="#server-format-error">formatError</a></p>
-          <p>├  🏷️ <a href="#server-onstart">onStart</a></p>
-          <p>├  🏷️ <a href="#server-onrequest">onRequest</a></p>
-          <p>├  🏷️ <a href="#server-onerror">onError</a></p>
-          <p>├  🏷️ <a href="#server-onclose">onClose</a></p>
+          <p>├  🏷️ <a href="./ELEMENTS.md#server-port">port</a></p>
+          <p>├  🏷️ <a href="./ELEMENTS.md#server-ssl">ssl</a></p>
+          <p>├  🏷️ <a href="./ELEMENTS.md#server-format-error">formatError</a></p>
+          <p>├  🏷️ <a href="./ELEMENTS.md#server-onstart">onStart</a></p>
+          <p>├  🏷️ <a href="./ELEMENTS.md#server-onrequest">onRequest</a></p>
+          <p>├  🏷️ <a href="./ELEMENTS.md#server-onerror">onError</a></p>
+          <p>├  🏷️ <a href="./ELEMENTS.md#server-onclose">onClose</a></p>
           <details>
-            <summary>&nbsp;🧩 <a href="#blacklist">&lt;blacklist&gt;</a></summary>
+            <summary>&nbsp;🧩 <a href="./ELEMENTS.md#blacklist">&lt;blacklist&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>╘  🏷️ <a href="#blacklist-ip">ip</a></p>
+              <p>╘  🏷️ <a href="./ELEMENTS.md#blacklist-ip">ip</a></p>
             </blockquote>
           </details>
           <details>
-            <summary>&nbsp;🧩 <a href="#whitelist">&lt;whitelist&gt;</a></summary>
+            <summary>&nbsp;🧩 <a href="./ELEMENTS.md#whitelist">&lt;whitelist&gt;</a></summary>
             <blockquote>
               <p></p>           
-              <p>╘  🏷️ <a href="#whitelist-ip">ip</a></p>
+              <p>╘  🏷️ <a href="./ELEMENTS.md#whitelist-ip">ip</a></p>
             </blockquote>
           </details>
           <details>
-            <summary>&nbsp;🧩 <a href="#protection">&lt;protection&gt;</a></summary>
+            <summary>&nbsp;🧩 <a href="./ELEMENTS.md#protection">&lt;protection&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#protection-value">value</a></p>
-              <p>├  🏷️ <a href="#protection-maxage">maxAge</a></p>
-              <p>├  🏷️ <a href="#protection-excludeip">excludeIp</a></p>
-              <p>├  🏷️ <a href="#protection-cookiekey">cookieKey</a></p>
-              <p>╘  🏷️ <a href="#protection-searchkey">searchKey</a></p>
+              <p>├  🏷️ <a href="./ELEMENTS.md#protection-value">value</a></p>
+              <p>├  🏷️ <a href="./ELEMENTS.md#protection-maxage">maxAge</a></p>
+              <p>├  🏷️ <a href="./ELEMENTS.md#protection-excludeip">excludeIp</a></p>
+              <p>├  🏷️ <a href="./ELEMENTS.md#protection-cookiekey">cookieKey</a></p>
+              <p>╘  🏷️ <a href="./ELEMENTS.md#protection-searchkey">searchKey</a></p>
             </blockquote>
           </details>
           <details>
-            <summary>&nbsp;🧩 <a href="#preset">&lt;preset&gt;</a></summary>
+            <summary>&nbsp;🧩 <a href="./ELEMENTS.md#preset">&lt;preset&gt;</a></summary>
             <blockquote>
               <p></p>
               <details>
-                <summary>&nbsp;🧩 <a href="#header">&lt;header&gt;</a></summary>
+                <summary>&nbsp;🧩 <a href="./ELEMENTS.md#header">&lt;header&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#header-key">key</a></p>
-                  <p>╘  🏷️ <a href="#header-value">value</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#header-key">key</a></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#header-value">value</a></p>
                 </blockquote>
               </details>
               <details>
-                <summary>&nbsp;🧩 <a href="#cookie">&lt;cookie&gt;</a></summary>
+                <summary>&nbsp;🧩 <a href="./ELEMENTS.md#cookie">&lt;cookie&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#cookie-key">key</a></p>
-                  <p>├  🏷️ <a href="#cookie-value">value</a></p>
-                  <p>├  🏷️ <a href="#cookie-domain">domain</a></p>
-                  <p>├  🏷️ <a href="#cookie-encode">encode</a></p>
-                  <p>├  🏷️ <a href="#cookie-expires">expires</a></p>
-                  <p>├  🏷️ <a href="#cookie-httponly">httpOnly</a></p>
-                  <p>├  🏷️ <a href="#cookie-maxage">maxAge</a></p>
-                  <p>├  🏷️ <a href="#cookie-path">path</a></p>
-                  <p>├  🏷️ <a href="#cookie-priority">priority</a></p>
-                  <p>├  🏷️ <a href="#cookie-samesite">sameSite</a></p>
-                  <p>╘  🏷️ <a href="#cookie-secure">secure</a></p>
-                </blockquote>
-              </details>
-            </blockquote>
-          </details>
-          <details>
-            <summary>&nbsp;🧩 <a href="#return">&lt;return&gt;</a></summary>
-            <blockquote>
-              <p></p>
-              <details>
-                <summary>&nbsp;🧩 <a href="#success">&lt;success&gt;</a></summary>
-                <blockquote>
-                  <p></p>
-                  <p>├  🏷️ <a href="#success-status">status</a></p>
-                  <p>╘  🏷️ <a href="#success-contenttype">contentType</a></p>
-                </blockquote>
-              </details>
-              <details>
-                <summary>&nbsp;🧩 <a href="#error">&lt;error&gt;</a></summary>
-                <blockquote>
-                  <p></p>
-                  <p>├  🏷️ <a href="#error-status">status</a></p>
-                  <p>╘  🏷️ <a href="#error-code">code</a></p>
-                </blockquote>
-              </details>
-              <details>
-                <summary>&nbsp;🧩 <a href="#proxy">&lt;proxy&gt;</a></summary>
-                <blockquote>
-                  <p></p>
-                  <p>╘  🏷️ <a href="#proxy-to">to</a></p>
-                </blockquote>
-              </details>
-              <details>
-                <summary>&nbsp;🧩 <a href="#redirect">&lt;redirect&gt;</a></summary>
-                <blockquote>
-                  <p></p>
-                  <p>├  🏷️ <a href="#redirect-to">to</a></p>
-                  <p>╘  🏷️ <a href="#redirect-status">status</a></p>
-                </blockquote>
-              </details>
-              <details>
-                <summary>&nbsp;🧩 <a href="#cms">&lt;cms&gt;</a></summary>
-                <blockquote>
-                  <p></p>
-                  <p>├  🏷️ <a href="#cms-dir">dir</a></p>
-                  <p>╘  🏷️ <a href="#cms-prefix">prefix</a></p>
-                </blockquote>
-              </details>
-              <details>
-                <summary>&nbsp;🧩 <a href="#file">&lt;file&gt;</a></summary>
-                <blockquote>
-                  <p></p>
-                  <p>╘  🏷️ <a href="#file-path">path</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#cookie-key">key</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#cookie-value">value</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#cookie-domain">domain</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#cookie-encode">encode</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#cookie-expires">expires</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#cookie-httponly">httpOnly</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#cookie-maxage">maxAge</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#cookie-path">path</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#cookie-priority">priority</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#cookie-samesite">sameSite</a></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#cookie-secure">secure</a></p>
                 </blockquote>
               </details>
             </blockquote>
           </details>
           <details>
-            <summary>&nbsp;🧩 <a href="#api">&lt;api&gt;</a></summary>
+            <summary>&nbsp;🧩 <a href="./ELEMENTS.md#return">&lt;return&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#api-title">title</a></p>
-              <p>├  🏷️ <a href="#api-description">description</a></p>
-              <p>├  🏷️ <a href="#api-version">version</a></p>
-              <p>├  🏷️ <a href="#api-prefix">prefix</a></p>
-              <p>├  🏷️ <a href="#api-include">include</a></p>
-              <p>├  🏷️ <a href="#api-exclude">exclude</a></p>
               <details>
-                <summary>&nbsp;🧩 <a href="#host">&lt;host&gt;</a></summary>
+                <summary>&nbsp;🧩 <a href="./ELEMENTS.md#success">&lt;success&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#host-url">url</a></p>
-                  <p>├  🏷️ <a href="#host-description">description</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#success-status">status</a></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#success-contenttype">contentType</a></p>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="./ELEMENTS.md#error">&lt;error&gt;</a></summary>
+                <blockquote>
+                  <p></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#error-status">status</a></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#error-code">code</a></p>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="./ELEMENTS.md#proxy">&lt;proxy&gt;</a></summary>
+                <blockquote>
+                  <p></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#proxy-to">to</a></p>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="./ELEMENTS.md#redirect">&lt;redirect&gt;</a></summary>
+                <blockquote>
+                  <p></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#redirect-to">to</a></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#redirect-status">status</a></p>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="./ELEMENTS.md#cms">&lt;cms&gt;</a></summary>
+                <blockquote>
+                  <p></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#cms-dir">dir</a></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#cms-prefix">prefix</a></p>
+                </blockquote>
+              </details>
+              <details>
+                <summary>&nbsp;🧩 <a href="./ELEMENTS.md#file">&lt;file&gt;</a></summary>
+                <blockquote>
+                  <p></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#file-path">path</a></p>
+                </blockquote>
+              </details>
+            </blockquote>
+          </details>
+          <details>
+            <summary>&nbsp;🧩 <a href="./ELEMENTS.md#api">&lt;api&gt;</a></summary>
+            <blockquote>
+              <p></p>
+              <p>├  🏷️ <a href="./ELEMENTS.md#api-title">title</a></p>
+              <p>├  🏷️ <a href="./ELEMENTS.md#api-description">description</a></p>
+              <p>├  🏷️ <a href="./ELEMENTS.md#api-version">version</a></p>
+              <p>├  🏷️ <a href="./ELEMENTS.md#api-prefix">prefix</a></p>
+              <p>├  🏷️ <a href="./ELEMENTS.md#api-include">include</a></p>
+              <p>├  🏷️ <a href="./ELEMENTS.md#api-exclude">exclude</a></p>
+              <details>
+                <summary>&nbsp;🧩 <a href="./ELEMENTS.md#host">&lt;host&gt;</a></summary>
+                <blockquote>
+                  <p></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#host-url">url</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#host-description">description</a></p>
                   <details>
-                    <summary>&nbsp;🧩 <a href="#variable">&lt;variable&gt;</a></summary>
+                    <summary>&nbsp;🧩 <a href="./ELEMENTS.md#variable">&lt;variable&gt;</a></summary>
                     <blockquote>
                       <p></p>
-                      <p>├  🏷️ <a href="#variable-key">key</a></p>
-                      <p>├  🏷️ <a href="#variable-value">value</a></p>
-                      <p>├  🏷️ <a href="#variable-values">values</a></p>
-                      <p>╘  🏷️ <a href="#variable-description">description</a></p>
+                      <p>├  🏷️ <a href="./ELEMENTS.md#variable-key">key</a></p>
+                      <p>├  🏷️ <a href="./ELEMENTS.md#variable-value">value</a></p>
+                      <p>├  🏷️ <a href="./ELEMENTS.md#variable-values">values</a></p>
+                      <p>╘  🏷️ <a href="./ELEMENTS.md#variable-description">description</a></p>
                     </blockquote>
                   </details>
                 </blockquote>
               </details>
               <details>
-                <summary>&nbsp;🧩 <a href="#license">&lt;license&gt;</a></summary>
+                <summary>&nbsp;🧩 <a href="./ELEMENTS.md#license">&lt;license&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#license-name">name</a></p>
-                  <p>├  🏷️ <a href="#license-identifier">identifier</a></p>
-                  <p>╘  🏷️ <a href="#license-url">url</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#license-name">name</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#license-identifier">identifier</a></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#license-url">url</a></p>
                 </blockquote>
               </details>
               <details>
-                <summary>&nbsp;🧩 <a href="#contact">&lt;contact&gt;</a></summary>
+                <summary>&nbsp;🧩 <a href="./ELEMENTS.md#contact">&lt;contact&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#contact-name">name</a></p>
-                  <p>├  🏷️ <a href="#contact-email">email</a></p>
-                  <p>╘  🏷️ <a href="#contact-url">url</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#contact-name">name</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#contact-email">email</a></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#contact-url">url</a></p>
                 </blockquote>
               </details>
               <details>
-                <summary>&nbsp;🧩 <a href="#ui">&lt;ui&gt;</a></summary>
+                <summary>&nbsp;🧩 <a href="./ELEMENTS.md#ui">&lt;ui&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#ui-html">html</a></p>
-                  <p>├  🏷️ <a href="#ui-params">params</a></p>
-                  <p>╘  🏷️ <a href="#ui-path">path</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#ui-html">html</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#ui-params">params</a></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#ui-path">path</a></p>
                 </blockquote>
               </details>
               <details>
-                <summary>&nbsp;🧩 <a href="#dts">&lt;dts&gt;</a></summary>
+                <summary>&nbsp;🧩 <a href="./ELEMENTS.md#dts">&lt;dts&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#dts-path">path</a></p>
-                  <p>╘  🏷️ <a href="#dts-namespace">namespace</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#dts-path">path</a></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#dts-namespace">namespace</a></p>
                 </blockquote>
               </details>
               <details>
-                <summary>&nbsp;🧩 <a href="#tag">&lt;tag&gt;</a></summary>
+                <summary>&nbsp;🧩 <a href="./ELEMENTS.md#tag">&lt;tag&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#tag-name">name</a></p>
-                  <p>╘  🏷️ <a href="#tag-group">group</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#tag-name">name</a></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#tag-group">group</a></p>
                 </blockquote>
               </details>
               <details>
-                <summary>&nbsp;🧩 <a href="#endpoint">&lt;endpoint&gt;</a></summary>
+                <summary>&nbsp;🧩 <a href="./ELEMENTS.md#endpoint">&lt;endpoint&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#endpoint-method">method</a></p>
-                  <p>├  🏷️ <a href="#endpoint-path">path</a></p>
-                  <p>├  🏷️ <a href="#endpoint-summary">summary</a></p>
-                  <p>├  🏷️ <a href="#endpoint-description">description</a></p>
-                  <p>├  🏷️ <a href="#endpoint-deprecated">deprecated</a></p>
-                  <p>├  🏷️ <a href="#endpoint-private">private</a></p>
-                  <p>├  🏷️ <a href="#endpoint-operationid">operationId</a></p>
-                  <p>├  🧩 <a href="#body">&lt;body&gt;</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#endpoint-method">method</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#endpoint-path">path</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#endpoint-summary">summary</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#endpoint-description">description</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#endpoint-deprecated">deprecated</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#endpoint-private">private</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#endpoint-operationid">operationId</a></p>
+                  <p>├  🧩 <a href="./ELEMENTS.md#body">&lt;body&gt;</a></p>
                   <details>
-                    <summary>&nbsp;🧩 <a href="#param">&lt;param&gt;</a></summary>
+                    <summary>&nbsp;🧩 <a href="./ELEMENTS.md#param">&lt;param&gt;</a></summary>
                     <blockquote>
                       <p></p>
-                      <p>├  🏷️ <a href="#param-in">in</a></p>
-                      <p>├  🏷️ <a href="#param-name">name</a></p>
-                      <p>├  🏷️ <a href="#param-description">description</a></p>
-                      <p>├  🏷️ <a href="#param-required">required</a></p>
-                      <p>╘  🏷️ <a href="#param-deprecated">deprecated</a></p>
+                      <p>├  🏷️ <a href="./ELEMENTS.md#param-in">in</a></p>
+                      <p>├  🏷️ <a href="./ELEMENTS.md#param-name">name</a></p>
+                      <p>├  🏷️ <a href="./ELEMENTS.md#param-description">description</a></p>
+                      <p>├  🏷️ <a href="./ELEMENTS.md#param-required">required</a></p>
+                      <p>╘  🏷️ <a href="./ELEMENTS.md#param-deprecated">deprecated</a></p>
                     </blockquote>
                   </details>
                   <details>
-                    <summary>&nbsp;🧩 <a href="#response">&lt;response&gt;</a></summary>
+                    <summary>&nbsp;🧩 <a href="./ELEMENTS.md#response">&lt;response&gt;</a></summary>
                     <blockquote>
                       <p></p>
-                      <p>├  🏷️ <a href="#response-status">status</a></p>
-                      <p>╘  🏷️ <a href="#response-type">type</a></p>
+                      <p>├  🏷️ <a href="./ELEMENTS.md#response-status">status</a></p>
+                      <p>╘  🏷️ <a href="./ELEMENTS.md#response-type">type</a></p>
                     </blockquote>
                   </details>
                 </blockquote>
