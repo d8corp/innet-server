@@ -170,7 +170,7 @@ This example shows how to extract endpoint logic into a separate component.
 import { useData } from '@innet/server'
 
 function Hello () {
-  const { name = 'World'} = useData('search', 'GET:/hello')
+  const { name } = useData('search', 'GET:/hello')
 
   return (
     <success>
@@ -187,7 +187,7 @@ export default (
         path='/hello'
         summary='Greet the user'>
         <param in='query' name='name'>
-          <string />
+          <string default='World' />
         </param>
         <return>
           <Hello />
