@@ -317,7 +317,7 @@ Environment variable name to check.
       <p>├  🏷️ <a href="#server-onstart">onStart</a></p>
       <p>├  🏷️ <a href="#server-onrequest">onRequest</a></p>
       <p>├  🏷️ <a href="#server-onerror">onError</a></p>
-      <p>├  🏷️ <a href="#server-onclose">onClose</a></p>
+      <p>╘  🏷️ <a href="#server-onclose">onClose</a></p>
     </blockquote>
   </details>
   <details>
