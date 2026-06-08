@@ -642,6 +642,16 @@ Callback function executed when the server closes.
 ## Blacklist
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) /  Blacklist [↓](#server-whitelist)
 
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>╘  🏷️ <a href="#blacklist-ip">ip</a></p>
+    </blockquote>
+  </details>
+</sub>
+
 Block requests from specific IP addresses.
 
 ```typescript jsx
