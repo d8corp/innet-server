@@ -699,6 +699,71 @@ Comma-separated list of IP addresses to allow.
 - Type: `string`
 - Environment variable: `INNET_WHITELIST_IP`
 
+## Protection
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / Protection [↑](#whitelist) [↓](#preset)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#protection-value">value</a></p>
+      <p>├  🏷️ <a href="#protection-maxage">maxAge</a></p>
+      <p>├  🏷️ <a href="#protection-excludeip">excludeIp</a></p>
+      <p>├  🏷️ <a href="#protection-cookiekey">cookieKey</a></p>
+      <p>╘  🏷️ <a href="#protection-searchkey">searchKey</a></p>
+    </blockquote>
+  </details>
+</sub>
+
+Protect your API with a secret value that must be provided by clients.
+
+```typescript jsx
+<api>
+  <protection value='secret123'>
+    <error status='forbidden' />
+  </protection>
+</api>
+```
+
+#### <a id="protection-value">value</a>
+
+Secret value that clients must provide.
+
+- Type: `string`
+- Environment variable: `PROTECTION`
+
+#### <a id="protection-maxage">maxAge</a>
+
+How long (in seconds) the protection is valid.
+
+- Type: `number`
+- Default: 31536000 (1 year)
+- Environment variable: `INNET_PROTECTION_MAX_AGE`
+
+#### <a id="protection-excludeip">excludeIp</a>
+
+Comma-separated list of IPs to exempt from protection.
+
+- Type: `string`
+- Environment variable: `INNET_PROTECTED_IP`
+
+#### <a id="protection-cookiekey">cookieKey</a>
+
+Cookie name for storing protection state.
+
+- Type: `string`
+- Default: `'protection'`
+- Environment variable: `INNET_PROTECTION_COOKIE_KEY`
+
+#### <a id="protection-searchkey">searchKey</a>
+
+Query parameter name for checking protection.
+
+- Type: `string`
+- Default: `'protection'`
+- Environment variable: `INNET_PROTECTION_SEARCH_KEY`
+
 ## API
 ###### [🏠︎](./README.md) / [Elements](#elements) / API [↑](#server) [↓](#endpoints)
 
@@ -1383,57 +1448,6 @@ Enumeration of allowed values.
 Variable description.
 
 - Type: `string`
-
-### Protection
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Protection [↑](#whitelist) [↓](#header)
-
-Protect your API with a secret value that must be provided by clients.
-
-```typescript jsx
-<api>
-  <protection value='secret123'>
-    <error status='forbidden' />
-  </protection>
-</api>
-```
-
-#### <a id="protection-value">value</a>
-
-Secret value that clients must provide.
-
-- Type: `string`
-- Environment variable: `PROTECTION`
-
-#### <a id="protection-maxage">maxAge</a>
-
-How long (in seconds) the protection is valid.
-
-- Type: `number`
-- Default: 31536000 (1 year)
-- Environment variable: `INNET_PROTECTION_MAX_AGE`
-
-#### <a id="protection-excludeip">excludeIp</a>
-
-Comma-separated list of IPs to exempt from protection.
-
-- Type: `string`
-- Environment variable: `INNET_PROTECTED_IP`
-
-#### <a id="protection-cookiekey">cookieKey</a>
-
-Cookie name for storing protection state.
-
-- Type: `string`
-- Default: `'protection'`
-- Environment variable: `INNET_PROTECTION_COOKIE_KEY`
-
-#### <a id="protection-searchkey">searchKey</a>
-
-Query parameter name for checking protection.
-
-- Type: `string`
-- Default: `'protection'`
-- Environment variable: `INNET_PROTECTION_SEARCH_KEY`
 
 ### Header
 ###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Header [↑](#protection) [↓](#cookie)
