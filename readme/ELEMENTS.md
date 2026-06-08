@@ -1,5 +1,5 @@
 # Elements
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md) / Elements [↑](./QUICK_START.md) [↓](./SCHEMAS.md)
+###### [🏠︎](./README.md) / Elements [↑](./QUICK_START.md) [↓](./SCHEMAS.md)
 
 <sub>
   <details>
@@ -245,9 +245,62 @@
   </details>
 </sub>
 
+## Env
+###### [🏠︎](./README.md) / [Elements](#elements) / Env
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="./ELEMENTS.md#env-is">is</a></p>
+      <p>╘  🏷️ <a href="./ELEMENTS.md#env-of">of</a></p>
+    </blockquote>
+  </details>
+</sub>
+
+Conditionally execute content based on environment variables.
+
+```typescript jsx
+<api>
+  <env is='dev'>
+    <ui />
+  </env>
+</api>
+```
+
+#### <a id="env-is">is</a>
+
+Environment variable value to match.
+
+- Type: `string | string[]`
+- Default: matches `NODE_ENV`
+
+```typescript jsx
+<env is='production'>
+  {/* content */}
+</env>
+
+<env is={['staging', 'production']}>
+  {/* content */}
+</env>
+```
+
+#### <a id="env-of">of</a>
+
+Environment variable name to check.
+
+- Type: `string`
+- Default: `'NODE_ENV'`
+
+```typescript jsx
+<env of='APP_ENV' is='prod'>
+  {/* content */}
+</env>
+```
 
 ## Server
-###### [🏠︎](#index) / [Core Concepts](#core-concepts) / Server [↓](#api)
+###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / Server [↓](#api)
 
 The `<server>` element is the root component that starts an HTTP(S) server. Use it to configure the server port, SSL certificates, and register lifecycle event handlers. All routes and APIs must be placed inside the `<server>` element.
 
@@ -260,7 +313,7 @@ export default (
 ```
 
 #### <a id="server-port">port</a>
-###### [🏠︎](#index) / [Core Concepts](#core-concepts) / [Server](#server) / port
+###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / [Server](#server) / port
 
 Sets the server port. By default, uses port `80` for HTTP and `443` for HTTPS.
 
@@ -273,7 +326,7 @@ Sets the server port. By default, uses port `80` for HTTP and `443` for HTTPS.
 ```
 
 #### <a id="server-ssl">ssl</a>
-###### [🏠︎](#index) / [Core Concepts](#core-concepts) / [Server](#server) / ssl
+###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / [Server](#server) / ssl
 
 Configure HTTPS with SSL certificates.
 
@@ -287,7 +340,7 @@ Configure HTTPS with SSL certificates.
 ```
 
 #### <a id="server-onstart">onStart</a>
-###### [🏠︎](#index) / [Core Concepts](#core-concepts) / [Server](#server) / onStart
+###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / [Server](#server) / onStart
 
 Callback function executed when the server starts.
 
@@ -300,7 +353,7 @@ export default <server onStart={httpOnStart} />
 ```
 
 #### <a id="server-onrequest">onRequest</a>
-###### [🏠︎](#index) / [Core Concepts](#core-concepts) / [Server](#server) / onRequest
+###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / [Server](#server) / onRequest
 
 Callback function executed for every request.
 
@@ -311,7 +364,7 @@ Callback function executed for every request.
 ```
 
 #### <a id="server-onerror">onError</a>
-###### [🏠︎](#index) / [Core Concepts](#core-concepts) / [Server](#server) / onError
+###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / [Server](#server) / onError
 
 Callback function executed when a request error occurs.
 
@@ -322,7 +375,7 @@ Callback function executed when a request error occurs.
 ```
 
 #### <a id="server-onclose">onClose</a>
-###### [🏠︎](#index) / [Core Concepts](#core-concepts) / [Server](#server) / onClose
+###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / [Server](#server) / onClose
 
 Callback function executed when the server closes.
 
@@ -333,7 +386,7 @@ Callback function executed when the server closes.
 ```
 
 ### API
-###### [🏠︎](#index) / [Core Concepts](#core-concepts) / API [↑](#server) [↓](#endpoints)
+###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / API [↑](#server) [↓](#endpoints)
 
 The `<api>` element defines a REST API with OpenAPI documentation. Place it inside `<server>` to register your endpoints and configure OpenAPI settings. The API documentation is automatically generated from your component structure.
 
@@ -351,7 +404,7 @@ The `<api>` element defines a REST API with OpenAPI documentation. Place it insi
 ```
 
 #### <a id="api-title">title</a>
-###### [🏠︎](#index) / [Core Concepts](#core-concepts) / [API](#api) / title
+###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / [API](#api) / title
 
 The title of the API.
 
@@ -418,10 +471,10 @@ Regular expression to exclude matching URLs.
 ```
 
 ## Request Handling
-###### [🏠︎](#index) / Request Handling [↑](#core-concepts) [↓](#documentation)
+###### [🏠︎](./README.md) / Request Handling [↑](#core-concepts) [↓](#documentation)
 
 ### Return
-###### [🏠︎](#index) / [Request Handling](#request-handling) / Return [↓](#preset)
+###### [🏠︎](./README.md) / [Request Handling](#request-handling) / Return [↓](#preset)
 
 The `<return>` element handles endpoint responses and works like a `return` statement in functions. Only one `<return>` can execute per scope. Use it to respond with success/error, set headers, cookies, and conditionally control the request flow.
 
@@ -458,7 +511,7 @@ The `<return>` element handles endpoint responses and works like a `return` stat
 ```
 
 ### Preset
-###### [🏠︎](#index) / [Request Handling](#request-handling) / Preset [↑](#return) [↓](#hooks)
+###### [🏠︎](./README.md) / [Request Handling](#request-handling) / Preset [↑](#return) [↓](#hooks)
 
 The `<preset>` element configures request scope without interrupting execution. Use it to set up headers, cookies, and other metadata that apply to multiple endpoints within an API or globally.
 
@@ -475,7 +528,7 @@ The `<preset>` element configures request scope without interrupting execution. 
 ```
 
 ### Hooks
-###### [🏠︎](#index) / [Request Handling](#request-handling) / Hooks [↑](#preset)
+###### [🏠︎](./README.md) / [Request Handling](#request-handling) / Hooks [↑](#preset)
 
 Hooks provide access to request/response context and server information inside components. They allow you to access HTTP headers, query parameters, body data, and more. Use them to implement request handling logic without manually passing props.
 
@@ -509,10 +562,10 @@ export function GetUser() {
 ```
 
 ## Documentation
-###### [🏠︎](#index) / Documentation [↑](#request-handling) [↓](#api-elements)
+###### [🏠︎](./README.md) / Documentation [↑](#request-handling) [↓](#api-elements)
 
 ### UI
-###### [🏠︎](#index) / [Documentation](#documentation) / UI [↓](#dts)
+###### [🏠︎](./README.md) / [Documentation](#documentation) / UI [↓](#dts)
 
 Add interactive API documentation with the `<ui>` element.
 This automatically generates a beautiful, interactive web interface where users can explore and test your API endpoints.
@@ -527,7 +580,7 @@ Choose from multiple documentation viewers like [Swagger UI](https://swagger.io/
 View documentation: http://localhost/ui
 
 #### html
-###### [🏠︎](#index) / [Documentation](#documentation) / [UI](#ui) / html
+###### [🏠︎](./README.md) / [Documentation](#documentation) / [UI](#ui) / html
 Custom HTML template for the documentation viewer. Use built-in presets or provide custom HTML.
 
 - Type: `string`
@@ -544,7 +597,7 @@ export default (
 ```
 
 #### <a id="ui-params">params</a>
-###### [🏠︎](#index) / [Documentation](#documentation) / [UI](#ui) / params
+###### [🏠︎](./README.md) / [Documentation](#documentation) / [UI](#ui) / params
 
 Additional parameters to pass to the documentation viewer. Parameters vary by viewer type.
 
@@ -564,7 +617,7 @@ Additional parameters to pass to the documentation viewer. Parameters vary by vi
 ```
 
 #### <a id="ui-path">path</a>
-###### [🏠︎](#index) / [Documentation](#documentation) / [UI](#ui) / path
+###### [🏠︎](./README.md) / [Documentation](#documentation) / [UI](#ui) / path
 
 The URL path where the documentation UI will be served.
 
@@ -579,7 +632,7 @@ The URL path where the documentation UI will be served.
 ```
 
 ### DTS
-###### [🏠︎](#index) / [Documentation](#documentation) / DTS [↑](#ui)
+###### [🏠︎](./README.md) / [Documentation](#documentation) / DTS [↑](#ui)
 
 Automatically generate TypeScript type definitions for your entire API. The `<dts>` element creates type definitions based on your endpoint schemas, giving you full IDE autocomplete and type safety when consuming your API.
 
@@ -627,10 +680,10 @@ Global namespace name for generated types.
 ```
 
 ## API Elements
-###### [🏠︎](#index) / API Elements [↑](#documentation) [↓](#schema-types)
+###### [🏠︎](./README.md) / API Elements [↑](#documentation) [↓](#schema-types)
 
 ### Endpoint
-###### [🏠︎](#index) / [API Elements](#api-elements) / Endpoint [↓](#param)
+###### [🏠︎](./README.md) / [API Elements](#api-elements) / Endpoint [↓](#param)
 
 ```typescript jsx
 <endpoint
@@ -662,7 +715,7 @@ Global namespace name for generated types.
 ```
 
 ### Param
-###### [🏠︎](#index) / [API Elements](#api-elements) / Param [↑](#endpoint) [↓](#body)
+###### [🏠︎](./README.md) / [API Elements](#api-elements) / Param [↑](#endpoint) [↓](#body)
 
 Parameters allow you to specify query parameters, path parameters, headers, and cookies that your endpoint accepts. You define the parameter name, location, and validation schema. Parameters are automatically validated and documented in OpenAPI.
 
@@ -738,7 +791,7 @@ Mark the parameter as deprecated.
 ```
 
 ### Body
-###### [🏠︎](#index) / [API Elements](#api-elements) / Body [↑](#param) [↓](#response)
+###### [🏠︎](./README.md) / [API Elements](#api-elements) / Body [↑](#param) [↓](#response)
 
 Define the structure and validation rules for the request body that your endpoint accepts. The body schema is automatically validated on every request and documented in OpenAPI. You can specify required/optional fields, data types, and validation constraints.
 
@@ -775,7 +828,7 @@ Place `<body>` inside an `<endpoint>` to define what request data is expected. T
 ```
 
 ### Response
-###### [🏠︎](#index) / [API Elements](#api-elements) / Response [↑](#body)
+###### [🏠︎](./README.md) / [API Elements](#api-elements) / Response [↑](#body)
 
 Define what your endpoint will return to clients. Specify the response status code, data structure, and fields. You can define multiple response types for different HTTP status codes. All responses are automatically validated and documented in OpenAPI.
 
@@ -844,10 +897,10 @@ Place `<response>` inside an `<endpoint>` to define multiple possible responses:
 ```
 
 ## Customization
-###### [🏠︎](#index) / Customization [↑](#schema-types)
+###### [🏠︎](./README.md) / Customization [↑](#schema-types)
 
 ### Configuration
-###### [🏠︎](#index) / [Customization](#customization) / Configuration [↓](#utils)
+###### [🏠︎](./README.md) / [Customization](#customization) / Configuration [↓](#utils)
 
 Configure your server with environment variables and props. Use these settings to customize port, API version, SSL certificates, and other server behavior for different environments (development, staging, production).
 
@@ -878,51 +931,9 @@ Configure your server with environment variables and props. Use these settings t
 
 Utility middleware elements for protecting your API, controlling access, and adding cross-cutting concerns. Use these to implement authentication, IP filtering, static file serving, redirects, proxying, and more. They work at different scopes (global server level or within specific APIs).
 
-### Env
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Env [↓](#license)
-
-Conditionally execute content based on environment variables.
-
-```typescript jsx
-<api>
-  <env is='dev'>
-    <ui />
-  </env>
-</api>
-```
-
-#### <a id="env-is">is</a>
-
-Environment variable value to match.
-
-- Type: `string | string[]`
-- Default: matches `NODE_ENV`
-
-```typescript jsx
-<env is='production'>
-  {/* content */}
-</env>
-
-<env is={['staging', 'production']}>
-  {/* content */}
-</env>
-```
-
-#### <a id="env-of">of</a>
-
-Environment variable name to check.
-
-- Type: `string`
-- Default: `'NODE_ENV'`
-
-```typescript jsx
-<env of='APP_ENV' is='prod'>
-  {/* content */}
-</env>
-```
 
 ### License
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / License [↑](#env) [↓](#contact)
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / License [↑](#env) [↓](#contact)
 
 Define the license for your API.
 
@@ -955,7 +966,7 @@ URL to the license document (mutually exclusive with `identifier`).
 - Type: `string`
 
 ### Contact
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Contact [↑](#license) [↓](#host)
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Contact [↑](#license) [↓](#host)
 
 Define contact information for the API.
 
@@ -988,7 +999,7 @@ URL pointing to contact information.
 - Type: `string`
 
 ### Host
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Host [↑](#contact) [↓](#variable)
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Host [↑](#contact) [↓](#variable)
 
 Define a server URL/host for the API. Useful for documenting multiple deployment environments.
 
@@ -1019,7 +1030,7 @@ Description of the host/server.
 - Type: `string`
 
 ### Variable
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Variable [↑](#host) [↓](#blacklist)
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Variable [↑](#host) [↓](#blacklist)
 
 Define a variable used in host URLs for substitution.
 
@@ -1060,7 +1071,7 @@ Variable description.
 - Type: `string`
 
 ### Blacklist
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Blacklist [↑](#variable) [↓](#whitelist)
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Blacklist [↑](#variable) [↓](#whitelist)
 
 Block requests from specific IP addresses.
 
@@ -1080,7 +1091,7 @@ Comma-separated list of IP addresses to block.
 - Environment variable: `INNET_BLACKLIST_IP`
 
 ### Whitelist
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Whitelist [↑](#blacklist) [↓](#protection)
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Whitelist [↑](#blacklist) [↓](#protection)
 
 Allow requests only from specific IP addresses.
 
@@ -1100,7 +1111,7 @@ Comma-separated list of IP addresses to allow.
 - Environment variable: `INNET_WHITELIST_IP`
 
 ### Protection
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Protection [↑](#whitelist) [↓](#header)
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Protection [↑](#whitelist) [↓](#header)
 
 Protect your API with a secret value that must be provided by clients.
 
@@ -1151,7 +1162,7 @@ Query parameter name for checking protection.
 - Environment variable: `INNET_PROTECTION_SEARCH_KEY`
 
 ### Header
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Header [↑](#protection) [↓](#cookie)
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Header [↑](#protection) [↓](#cookie)
 
 Set HTTP response headers.
 
@@ -1177,7 +1188,7 @@ Header value.
 - Required: Yes
 
 ### Cookie
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Cookie [↑](#header) [↓](#proxy)
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Cookie [↑](#header) [↓](#proxy)
 
 Set HTTP cookies in the response.
 
@@ -1267,7 +1278,7 @@ Only send cookie over HTTPS.
 - Default: `false`
 
 ### Proxy
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Proxy [↑](#cookie) [↓](#redirect)
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Proxy [↑](#cookie) [↓](#redirect)
 
 Forward requests to another server.
 
@@ -1287,7 +1298,7 @@ Target URL to proxy to.
 - Required: Yes
 
 ### Redirect
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Redirect [↑](#proxy) [↓](#cms)
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Redirect [↑](#proxy) [↓](#cms)
 
 Redirect requests to another URL.
 
@@ -1313,7 +1324,7 @@ HTTP status code for redirect.
 - Examples: `301`, `302`, `'found'`, `'movedPermanently'`
 
 ### CMS
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / CMS [↑](#redirect) [↓](#file)
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / CMS [↑](#redirect) [↓](#file)
 
 Serve static files from a directory.
 
@@ -1340,7 +1351,7 @@ URL path prefix to strip from requests.
 - Environment variable: `INNET_CMS_PREFIX`
 
 ### File
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / File [↑](#cms) [↓](#success)
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / File [↑](#cms) [↓](#success)
 
 Serve a single file.
 
@@ -1358,7 +1369,7 @@ Path to the file to serve.
 - Required: Yes
 
 ### Success
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Success [↑](#file) [↓](#error)
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Success [↑](#file) [↓](#error)
 
 Return a successful response with optional data.
 
@@ -1383,7 +1394,7 @@ Content-Type header for the response.
 - Default: auto-detected from body
 
 ### Error
-###### [🏠︎](#index) / [Middleware & Utils](#middleware--utils) / Error [↑](#success)
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Error [↑](#success)
 
 Return an error response.
 
