@@ -639,6 +639,26 @@ Callback function executed when the server closes.
 <server onClose={() => console.log('Server closed')} />
 ```
 
+## Blacklist
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) /  Blacklist [↓](#server-whitelist)
+
+Block requests from specific IP addresses.
+
+```typescript jsx
+<api>
+  <blacklist ip='192.168.1.1,10.0.0.1'>
+    <error status='forbidden' />
+  </blacklist>
+</api>
+```
+
+#### <a id="blacklist-ip">ip</a>
+
+Comma-separated list of IP addresses to block.
+
+- Type: `string`
+- Environment variable: `INNET_BLACKLIST_IP`
+
 ### API
 ###### [🏠︎](./README.md) / [Elements](#elements) / API [↑](#server) [↓](#endpoints)
 
@@ -1323,26 +1343,6 @@ Enumeration of allowed values.
 Variable description.
 
 - Type: `string`
-
-### Blacklist
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Blacklist [↑](#variable) [↓](#whitelist)
-
-Block requests from specific IP addresses.
-
-```typescript jsx
-<api>
-  <blacklist ip='192.168.1.1,10.0.0.1'>
-    <error status='forbidden' />
-  </blacklist>
-</api>
-```
-
-#### <a id="blacklist-ip">ip</a>
-
-Comma-separated list of IP addresses to block.
-
-- Type: `string`
-- Environment variable: `INNET_BLACKLIST_IP`
 
 ### Whitelist
 ###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Whitelist [↑](#blacklist) [↓](#protection)
