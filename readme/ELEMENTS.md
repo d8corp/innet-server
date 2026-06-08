@@ -669,7 +669,37 @@ Comma-separated list of IP addresses to block.
 - Type: `string`
 - Environment variable: `INNET_BLACKLIST_IP`
 
-### API
+## Whitelist
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / Whitelist [↑](#blacklist) [↓](#protection)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>╘  🏷️ <a href="#whitelist-ip">ip</a></p>
+    </blockquote>
+  </details>
+</sub>
+
+Allow requests only from specific IP addresses.
+
+```typescript jsx
+<api>
+  <whitelist ip='192.168.1.1,10.0.0.1'>
+    <error status='forbidden' />
+  </whitelist>
+</api>
+```
+
+#### <a id="whitelist-ip">ip</a>
+
+Comma-separated list of IP addresses to allow.
+
+- Type: `string`
+- Environment variable: `INNET_WHITELIST_IP`
+
+## API
 ###### [🏠︎](./README.md) / [Elements](#elements) / API [↑](#server) [↓](#endpoints)
 
 The `<api>` element defines a REST API with OpenAPI documentation. Place it inside `<server>` to register your endpoints and configure OpenAPI settings. The API documentation is automatically generated from your component structure.
@@ -753,36 +783,6 @@ Regular expression to exclude matching URLs.
 ```typescript jsx
 <api exclude={/^\/health/} />
 ```
-
-## Whitelist
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / Whitelist [↑](#blacklist) [↓](#protection)
-
-<sub>
-  <details>
-    <summary>&nbsp;🏷️ Props</summary>
-    <blockquote>
-      <p></p>
-      <p>╘  🏷️ <a href="#whitelist-ip">ip</a></p>
-    </blockquote>
-  </details>
-</sub>
-
-Allow requests only from specific IP addresses.
-
-```typescript jsx
-<api>
-  <whitelist ip='192.168.1.1,10.0.0.1'>
-    <error status='forbidden' />
-  </whitelist>
-</api>
-```
-
-#### <a id="whitelist-ip">ip</a>
-
-Comma-separated list of IP addresses to allow.
-
-- Type: `string`
-- Environment variable: `INNET_WHITELIST_IP`
 
 ## Request Handling
 ###### [🏠︎](./README.md) / Request Handling [↑](#elements) [↓](#documentation)
