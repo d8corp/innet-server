@@ -304,7 +304,7 @@ Environment variable name to check.
 ```
 
 ## Server
-###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / Server [↓](#api)
+###### [🏠︎](./README.md) / [Elements](#elements) / Server [↓](#api)
 
 The `<server>` element is the root component that starts an HTTP(S) server. Use it to configure the server port, SSL certificates, and register lifecycle event handlers. All routes and APIs must be placed inside the `<server>` element.
 
@@ -317,7 +317,7 @@ export default (
 ```
 
 #### <a id="server-port">port</a>
-###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / [Server](#server) / port
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / port
 
 Sets the server port. By default, uses port `80` for HTTP and `443` for HTTPS.
 
@@ -330,7 +330,7 @@ Sets the server port. By default, uses port `80` for HTTP and `443` for HTTPS.
 ```
 
 #### <a id="server-ssl">ssl</a>
-###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / [Server](#server) / ssl
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / ssl
 
 Configure HTTPS with SSL certificates.
 
@@ -344,7 +344,7 @@ Configure HTTPS with SSL certificates.
 ```
 
 #### <a id="server-onstart">onStart</a>
-###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / [Server](#server) / onStart
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / onStart
 
 Callback function executed when the server starts.
 
@@ -357,7 +357,7 @@ export default <server onStart={httpOnStart} />
 ```
 
 #### <a id="server-onrequest">onRequest</a>
-###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / [Server](#server) / onRequest
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / onRequest
 
 Callback function executed for every request.
 
@@ -368,7 +368,7 @@ Callback function executed for every request.
 ```
 
 #### <a id="server-onerror">onError</a>
-###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / [Server](#server) / onError
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / onError
 
 Callback function executed when a request error occurs.
 
@@ -379,7 +379,7 @@ Callback function executed when a request error occurs.
 ```
 
 #### <a id="server-onclose">onClose</a>
-###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / [Server](#server) / onClose
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / onClose
 
 Callback function executed when the server closes.
 
@@ -390,7 +390,7 @@ Callback function executed when the server closes.
 ```
 
 ### API
-###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / API [↑](#server) [↓](#endpoints)
+###### [🏠︎](./README.md) / [Elements](#elements) / API [↑](#server) [↓](#endpoints)
 
 The `<api>` element defines a REST API with OpenAPI documentation. Place it inside `<server>` to register your endpoints and configure OpenAPI settings. The API documentation is automatically generated from your component structure.
 
@@ -408,7 +408,7 @@ The `<api>` element defines a REST API with OpenAPI documentation. Place it insi
 ```
 
 #### <a id="api-title">title</a>
-###### [🏠︎](./README.md) / [Core Concepts](#core-concepts) / [API](#api) / title
+###### [🏠︎](./README.md) / [Elements](#elements) / [API](#api) / title
 
 The title of the API.
 
@@ -475,7 +475,7 @@ Regular expression to exclude matching URLs.
 ```
 
 ## Request Handling
-###### [🏠︎](./README.md) / Request Handling [↑](#core-concepts) [↓](#documentation)
+###### [🏠︎](./README.md) / Request Handling [↑](#elements) [↓](#documentation)
 
 ### Return
 ###### [🏠︎](./README.md) / [Request Handling](#request-handling) / Return [↓](#preset)
