@@ -250,7 +250,7 @@ They define server configuration, request handling logic, endpoints, routing, mi
 Use JSX syntax to compose these elements into a complete API structure with automatic OpenAPI documentation generation.
 
 ## Env
-###### [🏠︎](./README.md) / [Elements](#elements) / Env
+###### [🏠︎](./README.md) / [Elements](#elements) / Env [↓](#server)
 
 <sub>
   <details>
