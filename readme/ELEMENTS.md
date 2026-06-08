@@ -245,6 +245,10 @@
   </details>
 </sub>
 
+Elements are the declarative building blocks of your API server.
+They define server configuration, request handling logic, endpoints, routing, middleware, and response behavior.
+Use JSX syntax to compose these elements into a complete API structure with automatic OpenAPI documentation generation.
+
 ## Env
 ###### [🏠︎](./README.md) / [Elements](#elements) / Env
 
