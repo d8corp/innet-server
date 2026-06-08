@@ -640,7 +640,7 @@ Callback function executed when the server closes.
 ```
 
 ## Blacklist
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) /  Blacklist [↓](#server-whitelist)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / Blacklist [↓](#server-whitelist)
 
 <sub>
   <details>
@@ -663,6 +663,7 @@ Block requests from specific IP addresses.
 ```
 
 #### <a id="blacklist-ip">ip</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Blacklist](#blacklist) / ip
 
 Comma-separated list of IP addresses to block.
 
@@ -693,6 +694,7 @@ Allow requests only from specific IP addresses.
 ```
 
 #### <a id="whitelist-ip">ip</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Whitelist](#whitelist) / ip
 
 Comma-separated list of IP addresses to allow.
 
@@ -727,6 +729,7 @@ Protect your API with a secret value that must be provided by clients.
 ```
 
 #### <a id="protection-value">value</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Protection](#protection) / value [↓](#protection-maxage)
 
 Secret value that clients must provide.
 
@@ -734,6 +737,7 @@ Secret value that clients must provide.
 - Environment variable: `PROTECTION`
 
 #### <a id="protection-maxage">maxAge</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Protection](#protection) / maxAge [↑](#protection-value) [↓](#protection-excludeip)
 
 How long (in seconds) the protection is valid.
 
@@ -742,6 +746,7 @@ How long (in seconds) the protection is valid.
 - Environment variable: `INNET_PROTECTION_MAX_AGE`
 
 #### <a id="protection-excludeip">excludeIp</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Protection](#protection) / excludeIp [↑](#protection-maxage) [↓](#protection-cookiekey)
 
 Comma-separated list of IPs to exempt from protection.
 
@@ -749,6 +754,7 @@ Comma-separated list of IPs to exempt from protection.
 - Environment variable: `INNET_PROTECTED_IP`
 
 #### <a id="protection-cookiekey">cookieKey</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Protection](#protection) / cookieKey [↑](#protection-excludeip) [↓](#protection-searchkey)
 
 Cookie name for storing protection state.
 
@@ -757,6 +763,7 @@ Cookie name for storing protection state.
 - Environment variable: `INNET_PROTECTION_COOKIE_KEY`
 
 #### <a id="protection-searchkey">searchKey</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Protection](#protection) / searchKey [↑](#protection-cookiekey)
 
 Query parameter name for checking protection.
 
