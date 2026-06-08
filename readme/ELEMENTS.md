@@ -594,7 +594,7 @@ Allows you to customize the JSON structure returned to clients when an error occ
 ```
 
 #### <a id="server-onstart">onStart</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / onStart
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / onStart [↑](#format-error) [↓](#server-onrequest)
 
 Callback function executed when the server starts.
 
@@ -607,7 +607,7 @@ export default <server onStart={httpOnStart} />
 ```
 
 #### <a id="server-onrequest">onRequest</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / onRequest
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / onRequest [↑](#server-onstart) [↓](#server-onerror)
 
 Callback function executed for every request.
 
@@ -618,7 +618,7 @@ Callback function executed for every request.
 ```
 
 #### <a id="server-onerror">onError</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / onError
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / onError [↑](#server-onrequest) [↓](#server-onclose)
 
 Callback function executed when a request error occurs.
 
@@ -629,7 +629,7 @@ Callback function executed when a request error occurs.
 ```
 
 #### <a id="server-onclose">onClose</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / onClose
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / onClose [↑](#server-onerror)
 
 Callback function executed when the server closes.
 
