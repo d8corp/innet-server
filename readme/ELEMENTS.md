@@ -304,7 +304,7 @@ Environment variable name to check.
 ```
 
 ## Server
-###### [🏠︎](./README.md) / [Elements](#elements) / Server [↓](#api)
+###### [🏠︎](./README.md) / [Elements](#elements) / Server [↑](#env)
 
 The `<server>` element is the root component that starts an HTTP(S) server. Use it to configure the server port, SSL certificates, and register lifecycle event handlers. All routes and APIs must be placed inside the `<server>` element.
 
