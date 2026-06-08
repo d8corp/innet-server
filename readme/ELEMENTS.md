@@ -566,7 +566,7 @@ Sets the server port. By default, uses port `80` for HTTP and `443` for HTTPS.
 ```
 
 #### <a id="server-ssl">ssl</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / ssl [↓](#server-format-error) [↑](#server-port)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / ssl [↑](#server-port) [↓](#server-format-error)
 
 Configure HTTPS with SSL certificates.
 
@@ -580,7 +580,7 @@ Configure HTTPS with SSL certificates.
 ```
 
 #### <a id="server-format-error">formatError</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / formatError [↓](#server-onstart) [↑](#server-ssl)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / formatError [↑](#server-ssl) [↓](#server-onstart)
 
 Custom function to format error responses.
 Allows you to customize the JSON structure returned to clients when an error occurs.
