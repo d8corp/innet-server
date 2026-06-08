@@ -566,7 +566,7 @@ Sets the server port. By default, uses port `80` for HTTP and `443` for HTTPS.
 ```
 
 #### <a id="server-ssl">ssl</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / ssl
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / ssl [↓](#server-format-error) [↑](#server-port)
 
 Configure HTTPS with SSL certificates.
 
@@ -577,6 +577,20 @@ Configure HTTPS with SSL certificates.
 
 ```typescript jsx
 <server ssl={{ cert: './localhost.crt', key: './localhost.key' }} />
+```
+
+#### <a id="server-format-error">formatError</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / formatError [↓](#server-onstart) [↑](#server-ssl)
+
+Custom function to format error responses.
+Allows you to customize the JSON structure returned to clients when an error occurs.
+
+- Type: `{ error: string; data: any }`
+- `error` — Unique error code
+- `data` — Error content
+
+```typescript jsx
+<server formatError={({ error, data }) => JSON.stringify({ err: error, data })} />
 ```
 
 #### <a id="server-onstart">onStart</a>
