@@ -773,6 +773,58 @@ Query parameter name for checking protection.
 - Default: `'protection'`
 - Environment variable: `INNET_PROTECTION_SEARCH_KEY`
 
+## Preset
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / Preset [↑](#protection) [↓](#return)
+
+<sub>
+  <details>
+    <summary>&nbsp;🧩 Elements</summary>
+    <blockquote>
+      <p></p>
+      <details>
+        <summary>&nbsp;🧩 <a href="#header">&lt;header&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#header-key">key</a></p>
+          <p>╘  🏷️ <a href="#header-value">value</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#cookie">&lt;cookie&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#cookie-key">key</a></p>
+          <p>├  🏷️ <a href="#cookie-value">value</a></p>
+          <p>├  🏷️ <a href="#cookie-domain">domain</a></p>
+          <p>├  🏷️ <a href="#cookie-encode">encode</a></p>
+          <p>├  🏷️ <a href="#cookie-expires">expires</a></p>
+          <p>├  🏷️ <a href="#cookie-httponly">httpOnly</a></p>
+          <p>├  🏷️ <a href="#cookie-maxage">maxAge</a></p>
+          <p>├  🏷️ <a href="#cookie-path">path</a></p>
+          <p>├  🏷️ <a href="#cookie-priority">priority</a></p>
+          <p>├  🏷️ <a href="#cookie-samesite">sameSite</a></p>
+          <p>╘  🏷️ <a href="#cookie-secure">secure</a></p>
+        </blockquote>
+      </details>
+    </blockquote>
+  </details>
+</sub>
+
+The `<preset>` element configures request scope without interrupting execution.
+Use it to set up headers, cookies, and other metadata that apply to multiple endpoints within an API or globally.
+
+```typescript jsx
+<api prefix='/api'>
+  <preset>
+    <header
+      key='Cache-Control'
+      value='no-cache, no-store, must-revalidate'
+    />
+  </preset>
+  {/* endpoints */}
+</api>
+```
+
 ## API
 ###### [🏠︎](./README.md) / [Elements](#elements) / API [↑](#server) [↓](#endpoints)
 
@@ -896,23 +948,6 @@ The `<return>` element handles endpoint responses and works like a `return` stat
     <success>{{ users: [] }}</success>
   </return>
 </endpoint>
-```
-
-### Preset
-###### [🏠︎](./README.md) / [Request Handling](#request-handling) / Preset [↑](#return) [↓](#hooks)
-
-The `<preset>` element configures request scope without interrupting execution. Use it to set up headers, cookies, and other metadata that apply to multiple endpoints within an API or globally.
-
-```typescript jsx
-<api prefix='/api'>
-  <preset>
-    <header
-      key='Cache-Control'
-      value='no-cache, no-store, must-revalidate'
-    />
-  </preset>
-  {/* endpoints */}
-</api>
 ```
 
 ### Hooks
