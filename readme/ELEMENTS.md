@@ -883,6 +883,26 @@ Header value.
 ## Cookie
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / Cookie [↑](#header)
 
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#cookie-key">key</a></p>
+      <p>├  🏷️ <a href="#cookie-value">value</a></p>
+      <p>├  🏷️ <a href="#cookie-domain">domain</a></p>
+      <p>├  🏷️ <a href="#cookie-encode">encode</a></p>
+      <p>├  🏷️ <a href="#cookie-expires">expires</a></p>
+      <p>├  🏷️ <a href="#cookie-httponly">httpOnly</a></p>
+      <p>├  🏷️ <a href="#cookie-maxage">maxAge</a></p>
+      <p>├  🏷️ <a href="#cookie-path">path</a></p>
+      <p>├  🏷️ <a href="#cookie-priority">priority</a></p>
+      <p>├  🏷️ <a href="#cookie-samesite">sameSite</a></p>
+      <p>╘  🏷️ <a href="#cookie-secure">secure</a></p>
+    </blockquote>
+  </details>
+</sub>
+
 Set HTTP cookies in the response.
 
 ```typescript jsx
@@ -900,6 +920,7 @@ Set HTTP cookies in the response.
 ```
 
 #### <a id="cookie-key">key</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / [Cookie](#cookie) / key [↓](#cookie-value)
 
 Cookie name.
 
@@ -907,18 +928,21 @@ Cookie name.
 - Required: Yes
 
 #### <a id="cookie-value">value</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / [Cookie](#cookie) / value [↑](#cookie-key) [↓](#cookie-domain)
 
 Cookie value. Leave empty to delete the cookie.
 
 - Type: `string`
 
 #### <a id="cookie-domain">domain</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / [Cookie](#cookie) / domain [↑](#cookie-value) [↓](#cookie-encode)
 
 Cookie domain.
 
 - Type: `string`
 
 #### <a id="cookie-encode">encode</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / [Cookie](#cookie) / encode [↑](#cookie-domain) [↓](#cookie-expires)
 
 Encoding function for the cookie value.
 
@@ -926,12 +950,14 @@ Encoding function for the cookie value.
 - Default: `encodeURIComponent`
 
 #### <a id="cookie-expires">expires</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / [Cookie](#cookie) / expires [↑](#cookie-encode) [↓](#cookie-httponly)
 
 Expiration date for the cookie.
 
 - Type: `Date`
 
 #### <a id="cookie-httponly">httpOnly</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / [Cookie](#cookie) / httpOnly [↑](#cookie-expires) [↓](#cookie-maxage)
 
 Hide cookie from JavaScript (HTTP requests only).
 
@@ -939,12 +965,14 @@ Hide cookie from JavaScript (HTTP requests only).
 - Default: `false`
 
 #### <a id="cookie-maxage">maxAge</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / [Cookie](#cookie) / maxAge [↑](#cookie-httponly) [↓](#cookie-path)
 
 Maximum age in seconds.
 
 - Type: `number`
 
 #### <a id="cookie-path">path</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / [Cookie](#cookie) / path [↑](#cookie-maxage) [↓](#cookie-priority)
 
 Cookie path.
 
@@ -952,18 +980,21 @@ Cookie path.
 - Default: `'/'`
 
 #### <a id="cookie-priority">priority</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / [Cookie](#cookie) / priority [↑](#cookie-path) [↓](#cookie-samesite)
 
 Cookie priority level.
 
 - Type: `'low' | 'medium' | 'high'`
 
 #### <a id="cookie-samesite">sameSite</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / [Cookie](#cookie) / sameSite [↑](#cookie-priority) [↓](#cookie-secure)
 
 SameSite policy for CSRF protection.
 
 - Type: `boolean | 'lax' | 'strict' | 'none'`
 
 #### <a id="cookie-secure">secure</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / [Cookie](#cookie) / secure [↑](#cookie-samesite)
 
 Only send cookie over HTTPS.
 
