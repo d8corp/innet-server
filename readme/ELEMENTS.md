@@ -1006,6 +1006,61 @@ Only send cookie over HTTPS.
 ## Return
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / Return [↓](#api)
 
+<sub>
+  <details>
+    <summary>&nbsp;🧩 Elements</summary>
+    <blockquote>
+      <p></p>
+      <details>
+        <summary>&nbsp;🧩 <a href="#success">&lt;success&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#success-status">status</a></p>
+          <p>╘  🏷️ <a href="#success-contenttype">contentType</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#error">&lt;error&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#error-status">status</a></p>
+          <p>╘  🏷️ <a href="#error-code">code</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#proxy">&lt;proxy&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>╘  🏷️ <a href="#proxy-to">to</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#redirect">&lt;redirect&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#redirect-to">to</a></p>
+          <p>╘  🏷️ <a href="#redirect-status">status</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#cms">&lt;cms&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#cms-dir">dir</a></p>
+          <p>╘  🏷️ <a href="#cms-prefix">prefix</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#file">&lt;file&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>╘  🏷️ <a href="#file-path">path</a></p>
+        </blockquote>
+      </details>
+    </blockquote>
+</details>
+</sub>
+
 The `<return>` element handles endpoint responses and works like a `return` statement in functions.
 Only one `<return>` can execute per scope.
 Use it to respond with success/error, set headers, cookies, and conditionally control the request flow.
