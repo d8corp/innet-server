@@ -828,6 +828,17 @@ Use it to set up headers, cookies, and other metadata that apply to multiple end
 ## Header
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / Header [↓](#cookie)
 
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#header-key">key</a></p>
+      <p>╘  🏷️ <a href="#header-value">value</a></p>
+    </blockquote>
+  </details>
+</sub>
+
 Configure HTTP response headers that will be sent to clients.
 Use inside `<preset>` to apply headers to multiple endpoints, or inside `<return>` for specific responses.
 
@@ -854,6 +865,7 @@ Use inside `<preset>` to apply headers to multiple endpoints, or inside `<return
 ```
 
 #### <a id="header-key">key</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / [Header](#header) / key [↓](#header-value)
 
 Header name.
 
@@ -861,6 +873,7 @@ Header name.
 - Required: Yes
 
 #### <a id="header-value">value</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / [Header](#header) / value [↑](#header-key)
 
 Header value.
 
