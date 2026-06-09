@@ -274,6 +274,7 @@ Conditionally execute content based on environment variables.
 ```
 
 #### <a id="env-is">is</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Env](#env) / is [↓](#env-of)
 
 Environment variable value to match.
 
@@ -291,6 +292,7 @@ Environment variable value to match.
 ```
 
 #### <a id="env-of">of</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Env](#env) / of [↑](#env-is)
 
 Environment variable name to check.
 
