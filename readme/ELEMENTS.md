@@ -642,7 +642,7 @@ Callback function executed when the server closes.
 ```
 
 ## Blacklist
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / Blacklist [↓](#server-whitelist)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / Blacklist [↓](#whitelist)
 
 <sub>
   <details>
