@@ -542,7 +542,9 @@ Environment variable name to check.
   </details>
 </sub>
 
-The `<server>` element is the root component that starts an HTTP(S) server. Use it to configure the server port, SSL certificates, and register lifecycle event handlers. All routes and APIs must be placed inside the `<server>` element.
+The `<server>` is the root element that starts an HTTP(S) server.
+Use it to configure the server port, SSL certificates, and register lifecycle event handlers.
+All routes and APIs must be placed inside the `<server>` element.
 
 ```typescript jsx
 export default (
