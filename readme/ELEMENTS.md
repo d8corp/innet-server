@@ -1003,6 +1003,45 @@ Only send cookie over HTTPS.
 - Type: `boolean`
 - Default: `false`
 
+## Return
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / Return [↓](#api)
+
+The `<return>` element handles endpoint responses and works like a `return` statement in functions.
+Only one `<return>` can execute per scope.
+Use it to respond with success/error, set headers, cookies, and conditionally control the request flow.
+
+**Success Response:**
+```typescript jsx
+<endpoint method='get' path='/users'>
+  <return>
+    <success>{{ users: [] }}</success>
+  </return>
+</endpoint>
+```
+
+**Error Response:**
+```typescript jsx
+<return>
+  <error status='notFound' code='userNotFound'>
+    {{ message: 'User not found' }}
+  </error>
+</return>
+```
+
+**Conditional Returns:**
+```typescript jsx
+<endpoint method='get' path='/users'>
+  <env is='dev'>
+    <return>
+      <error status={404} />
+    </return>
+  </env>
+  <return>
+    <success>{{ users: [] }}</success>
+  </return>
+</endpoint>
+```
+
 ## API
 ###### [🏠︎](./README.md) / [Elements](#elements) / API [↑](#server) [↓](#endpoints)
 
@@ -1090,43 +1129,6 @@ Regular expression to exclude matching URLs.
 
 ## Request Handling
 ###### [🏠︎](./README.md) / Request Handling [↑](#elements) [↓](#documentation)
-
-### Return
-###### [🏠︎](./README.md) / [Request Handling](#request-handling) / Return [↓](#preset)
-
-The `<return>` element handles endpoint responses and works like a `return` statement in functions. Only one `<return>` can execute per scope. Use it to respond with success/error, set headers, cookies, and conditionally control the request flow.
-
-**Success Response:**
-```typescript jsx
-<endpoint method='get' path='/users'>
-  <return>
-    <success>{{ users: [] }}</success>
-  </return>
-</endpoint>
-```
-
-**Error Response:**
-```typescript jsx
-<return>
-  <error status='notFound' code='userNotFound'>
-    {{ message: 'User not found' }}
-  </error>
-</return>
-```
-
-**Conditional Returns:**
-```typescript jsx
-<endpoint method='get' path='/users'>
-  <env is='dev'>
-    <return>
-      <error status={404} />
-    </return>
-  </env>
-  <return>
-    <success>{{ users: [] }}</success>
-  </return>
-</endpoint>
-```
 
 ### Hooks
 ###### [🏠︎](./README.md) / [Request Handling](#request-handling) / Hooks [↑](#preset)
