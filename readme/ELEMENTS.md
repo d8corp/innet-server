@@ -828,13 +828,29 @@ Use it to set up headers, cookies, and other metadata that apply to multiple end
 ## Header
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / Header [↓](#cookie)
 
-Set HTTP response headers.
+Configure HTTP response headers that will be sent to clients.
+Use inside `<preset>` to apply headers to multiple endpoints, or inside `<return>` for specific responses.
 
 ```typescript jsx
-<return>
-  <header key='Cache-Control' value='no-cache' />
-  <success />
-</return>
+<server>
+  <preset>
+    <header key='Cache-Control' value='no-cache' />
+    {/* For any response */}
+  </preset>
+  <api>
+    <preset>
+      <header key='Cache-Control' value='no-cache' />
+      {/* For api response */}
+    </preset>
+    <endpoint method='get' path='/todos'>
+      <return>
+        <header key='Cache-Control' value='private, no-store' />
+        {/* For todos response */}
+        <success>{[]}</success>
+      </return>
+    </endpoint>
+  </api>
+</server>
 ```
 
 #### <a id="header-key">key</a>
