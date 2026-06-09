@@ -852,7 +852,7 @@ Header value.
 - Required: Yes
 
 ## Cookie
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Cookie [↑](#header) [↓](#proxy)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / Cookie [↑](#header)
 
 Set HTTP cookies in the response.
 
