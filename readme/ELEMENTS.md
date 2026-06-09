@@ -825,6 +825,122 @@ Use it to set up headers, cookies, and other metadata that apply to multiple end
 </api>
 ```
 
+## Header
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Preset](#preset) / Header [↓](#cookie)
+
+Set HTTP response headers.
+
+```typescript jsx
+<return>
+  <header key='Cache-Control' value='no-cache' />
+  <success />
+</return>
+```
+
+#### <a id="header-key">key</a>
+
+Header name.
+
+- Type: `string`
+- Required: Yes
+
+#### <a id="header-value">value</a>
+
+Header value.
+
+- Type: `string`
+- Required: Yes
+
+## Cookie
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Cookie [↑](#header) [↓](#proxy)
+
+Set HTTP cookies in the response.
+
+```typescript jsx
+<return>
+  <cookie
+    key='sessionId'
+    value='abc123'
+    httpOnly
+    secure
+    sameSite
+    maxAge={86400}
+  />
+  <success />
+</return>
+```
+
+#### <a id="cookie-key">key</a>
+
+Cookie name.
+
+- Type: `string`
+- Required: Yes
+
+#### <a id="cookie-value">value</a>
+
+Cookie value. Leave empty to delete the cookie.
+
+- Type: `string`
+
+#### <a id="cookie-domain">domain</a>
+
+Cookie domain.
+
+- Type: `string`
+
+#### <a id="cookie-encode">encode</a>
+
+Encoding function for the cookie value.
+
+- Type: `(value: string) => string`
+- Default: `encodeURIComponent`
+
+#### <a id="cookie-expires">expires</a>
+
+Expiration date for the cookie.
+
+- Type: `Date`
+
+#### <a id="cookie-httponly">httpOnly</a>
+
+Hide cookie from JavaScript (HTTP requests only).
+
+- Type: `boolean`
+- Default: `false`
+
+#### <a id="cookie-maxage">maxAge</a>
+
+Maximum age in seconds.
+
+- Type: `number`
+
+#### <a id="cookie-path">path</a>
+
+Cookie path.
+
+- Type: `string`
+- Default: `'/'`
+
+#### <a id="cookie-priority">priority</a>
+
+Cookie priority level.
+
+- Type: `'low' | 'medium' | 'high'`
+
+#### <a id="cookie-samesite">sameSite</a>
+
+SameSite policy for CSRF protection.
+
+- Type: `boolean | 'lax' | 'strict' | 'none'`
+
+#### <a id="cookie-secure">secure</a>
+
+Only send cookie over HTTPS.
+
+- Type: `boolean`
+- Default: `false`
+
 ## API
 ###### [🏠︎](./README.md) / [Elements](#elements) / API [↑](#server) [↓](#endpoints)
 
@@ -1492,122 +1608,6 @@ Enumeration of allowed values.
 Variable description.
 
 - Type: `string`
-
-### Header
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Header [↑](#protection) [↓](#cookie)
-
-Set HTTP response headers.
-
-```typescript jsx
-<return>
-  <header key='Cache-Control' value='no-cache' />
-  <success />
-</return>
-```
-
-#### <a id="header-key">key</a>
-
-Header name.
-
-- Type: `string`
-- Required: Yes
-
-#### <a id="header-value">value</a>
-
-Header value.
-
-- Type: `string`
-- Required: Yes
-
-### Cookie
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Cookie [↑](#header) [↓](#proxy)
-
-Set HTTP cookies in the response.
-
-```typescript jsx
-<return>
-  <cookie
-    key='sessionId'
-    value='abc123'
-    httpOnly
-    secure
-    sameSite
-    maxAge={86400}
-  />
-  <success />
-</return>
-```
-
-#### <a id="cookie-key">key</a>
-
-Cookie name.
-
-- Type: `string`
-- Required: Yes
-
-#### <a id="cookie-value">value</a>
-
-Cookie value. Leave empty to delete the cookie.
-
-- Type: `string`
-
-#### <a id="cookie-domain">domain</a>
-
-Cookie domain.
-
-- Type: `string`
-
-#### <a id="cookie-encode">encode</a>
-
-Encoding function for the cookie value.
-
-- Type: `(value: string) => string`
-- Default: `encodeURIComponent`
-
-#### <a id="cookie-expires">expires</a>
-
-Expiration date for the cookie.
-
-- Type: `Date`
-
-#### <a id="cookie-httponly">httpOnly</a>
-
-Hide cookie from JavaScript (HTTP requests only).
-
-- Type: `boolean`
-- Default: `false`
-
-#### <a id="cookie-maxage">maxAge</a>
-
-Maximum age in seconds.
-
-- Type: `number`
-
-#### <a id="cookie-path">path</a>
-
-Cookie path.
-
-- Type: `string`
-- Default: `'/'`
-
-#### <a id="cookie-priority">priority</a>
-
-Cookie priority level.
-
-- Type: `'low' | 'medium' | 'high'`
-
-#### <a id="cookie-samesite">sameSite</a>
-
-SameSite policy for CSRF protection.
-
-- Type: `boolean | 'lax' | 'strict' | 'none'`
-
-#### <a id="cookie-secure">secure</a>
-
-Only send cookie over HTTPS.
-
-- Type: `boolean`
-- Default: `false`
 
 ### Proxy
 ###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Proxy [↑](#cookie) [↓](#redirect)
