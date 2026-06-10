@@ -1521,6 +1521,174 @@ Regular expression to exclude matching URLs.
 <api exclude={/^\/health/} />
 ```
 
+## Host
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / Host [↓](#license)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#host-url">url</a></p>
+      <p>╘  🏷️ <a href="#host-description">description</a></p>
+    </blockquote>
+  </details>
+  <details>
+    <summary>&nbsp;🧩 Elements</summary>
+    <blockquote>
+      <p></p>
+      <details>
+        <summary>&nbsp;🧩 <a href="#variable">&lt;variable&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#variable-key">key</a></p>
+          <p>├  🏷️ <a href="#variable-value">value</a></p>
+          <p>├  🏷️ <a href="#variable-values">values</a></p>
+          <p>╘  🏷️ <a href="#variable-description">description</a></p>
+        </blockquote>
+      </details>
+    </blockquote>
+  </details>
+</sub>
+
+Define a server URL/host for the API. Useful for documenting multiple deployment environments.
+
+```typescript jsx
+<api>
+  <host
+    url='https://api.example.com'
+    description='Production server'
+  />
+  <host
+    url='https://staging-api.example.com'
+    description='Staging server'
+  />
+</api>
+```
+
+#### <a id="host-url">url</a>
+
+The server URL (supports Server Variables with `{varName}`).
+
+- Type: `string`
+- Required: Yes
+
+#### <a id="host-description">description</a>
+
+Description of the host/server.
+
+- Type: `string`
+
+## Variable
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Variable [↑](#host) [↓](#blacklist)
+
+Define a variable used in host URLs for substitution.
+
+```typescript jsx
+<host url='https://{env}.example.com' description='Test servers'>
+  <variable
+    key='env'
+    values={['dev', 'staging', 'prod']}
+    value='staging'
+    description='Environment name'
+  />
+</host>
+```
+
+#### <a id="variable-key">key</a>
+
+Variable name (used in `{brackets}` in host URL).
+
+- Type: `string`
+- Required: Yes
+
+#### <a id="variable-value">value</a>
+
+Default value for the variable.
+
+- Type: `string`
+
+#### <a id="variable-values">values</a>
+
+Enumeration of allowed values.
+
+- Type: `string[]`
+
+#### <a id="variable-description">description</a>
+
+Variable description.
+
+- Type: `string`
+
+## License
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / License [↑](#env) [↓](#contact)
+
+Define the license for your API.
+
+```typescript jsx
+<api>
+  <license
+    name='Apache 2.0'
+    identifier='Apache-2.0'
+  />
+</api>
+```
+
+#### <a id="license-name">name</a>
+
+The license name.
+
+- Type: `string`
+- Required: Yes
+
+#### <a id="license-identifier">identifier</a>
+
+SPDX license expression (mutually exclusive with `url`).
+
+- Type: `string`
+
+#### <a id="license-url">url</a>
+
+URL to the license document (mutually exclusive with `identifier`).
+
+- Type: `string`
+
+## Contact
+###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Contact [↑](#license) [↓](#host)
+
+Define contact information for the API.
+
+```typescript jsx
+<api>
+  <contact
+    name='Support Team'
+    email='support@example.com'
+    url='https://support.example.com'
+  />
+</api>
+```
+
+#### <a id="contact-name">name</a>
+
+Contact person or organization name.
+
+- Type: `string`
+
+#### <a id="contact-email">email</a>
+
+Email address (must be valid email format).
+
+- Type: `string`
+
+#### <a id="contact-url">url</a>
+
+URL pointing to contact information.
+
+- Type: `string`
+
+---
+
+
 ## Request Handling
 ###### [🏠︎](./README.md) / Request Handling [↑](#elements) [↓](#documentation)
 
@@ -1927,146 +2095,5 @@ Configure your server with environment variables and props. Use these settings t
 ## Middleware & Utils
 
 Utility middleware elements for protecting your API, controlling access, and adding cross-cutting concerns. Use these to implement authentication, IP filtering, static file serving, redirects, proxying, and more. They work at different scopes (global server level or within specific APIs).
-
-
-### License
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / License [↑](#env) [↓](#contact)
-
-Define the license for your API.
-
-```typescript jsx
-<api>
-  <license
-    name='Apache 2.0'
-    identifier='Apache-2.0'
-  />
-</api>
-```
-
-#### <a id="license-name">name</a>
-
-The license name.
-
-- Type: `string`
-- Required: Yes
-
-#### <a id="license-identifier">identifier</a>
-
-SPDX license expression (mutually exclusive with `url`).
-
-- Type: `string`
-
-#### <a id="license-url">url</a>
-
-URL to the license document (mutually exclusive with `identifier`).
-
-- Type: `string`
-
-### Contact
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Contact [↑](#license) [↓](#host)
-
-Define contact information for the API.
-
-```typescript jsx
-<api>
-  <contact
-    name='Support Team'
-    email='support@example.com'
-    url='https://support.example.com'
-  />
-</api>
-```
-
-#### <a id="contact-name">name</a>
-
-Contact person or organization name.
-
-- Type: `string`
-
-#### <a id="contact-email">email</a>
-
-Email address (must be valid email format).
-
-- Type: `string`
-
-#### <a id="contact-url">url</a>
-
-URL pointing to contact information.
-
-- Type: `string`
-
-### Host
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Host [↑](#contact) [↓](#variable)
-
-Define a server URL/host for the API. Useful for documenting multiple deployment environments.
-
-```typescript jsx
-<api>
-  <host
-    url='https://api.example.com'
-    description='Production server'
-  />
-  <host
-    url='https://staging-api.example.com'
-    description='Staging server'
-  />
-</api>
-```
-
-#### <a id="host-url">url</a>
-
-The server URL (supports Server Variables with `{varName}`).
-
-- Type: `string`
-- Required: Yes
-
-#### <a id="host-description">description</a>
-
-Description of the host/server.
-
-- Type: `string`
-
-### Variable
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Variable [↑](#host) [↓](#blacklist)
-
-Define a variable used in host URLs for substitution.
-
-```typescript jsx
-<host url='https://{env}.example.com' description='Test servers'>
-  <variable
-    key='env'
-    values={['dev', 'staging', 'prod']}
-    value='staging'
-    description='Environment name'
-  />
-</host>
-```
-
-#### <a id="variable-key">key</a>
-
-Variable name (used in `{brackets}` in host URL).
-
-- Type: `string`
-- Required: Yes
-
-#### <a id="variable-value">value</a>
-
-Default value for the variable.
-
-- Type: `string`
-
-#### <a id="variable-values">values</a>
-
-Enumeration of allowed values.
-
-- Type: `string[]`
-
-#### <a id="variable-description">description</a>
-
-Variable description.
-
-- Type: `string`
-
----
 
 #### [← Quick Start](./QUICK_START.md) | [Schemas →](./SCHEMAS.md)
