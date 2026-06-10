@@ -1567,6 +1567,7 @@ Define a server URL/host for the API. Useful for documenting multiple deployment
 ```
 
 #### <a id="host-url">url</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Host](#host) / url [↓](#host-description)
 
 The server URL (supports Server Variables with `{varName}`).
 
@@ -1574,6 +1575,7 @@ The server URL (supports Server Variables with `{varName}`).
 - Required: Yes
 
 #### <a id="host-description">description</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Host](#host) / description [↑](#host-url)
 
 Description of the host/server.
 
