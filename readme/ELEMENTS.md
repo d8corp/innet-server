@@ -1004,7 +1004,7 @@ Only send cookie over HTTPS.
 - Default: `false`
 
 ## Return
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / Return [↓](#api)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / Return [↑](#preset) [↓](#api)
 
 <sub>
   <details>
