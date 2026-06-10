@@ -1182,7 +1182,7 @@ Error code identifier.
 
 <sub>
   <details>
-    <summary>&nbsp;🧩 Props</summary>
+    <summary>&nbsp;🏷️ Props</summary>
     <blockquote>
       <p></p>
       <p>╘  🏷️ <a href="#proxy-to">to</a></p>
