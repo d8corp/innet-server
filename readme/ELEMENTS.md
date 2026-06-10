@@ -1317,7 +1317,122 @@ Path to the file to serve.
 - Required: Yes
 
 ## API
-###### [🏠︎](./README.md) / [Elements](#elements) / API [↑](#server) [↓](#endpoints)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / API [↑](#return)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#api-title">title</a></p>
+      <p>├  🏷️ <a href="#api-description">description</a></p>
+      <p>├  🏷️ <a href="#api-version">version</a></p>
+      <p>├  🏷️ <a href="#api-prefix">prefix</a></p>
+      <p>├  🏷️ <a href="#api-include">include</a></p>
+      <p>╘  🏷️ <a href="#api-exclude">exclude</a></p>
+    </blockquote>
+  </details>
+  <details>
+    <summary>&nbsp;🧩 Elements</summary>
+    <blockquote>
+      <p></p>
+      <details>
+        <summary>&nbsp;🧩 <a href="#host">&lt;host&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#host-url">url</a></p>
+          <p>├  🏷️ <a href="#host-description">description</a></p>
+          <details>
+            <summary>&nbsp;🧩 <a href="#variable">&lt;variable&gt;</a></summary>
+            <blockquote>
+              <p></p>
+              <p>├  🏷️ <a href="#variable-key">key</a></p>
+              <p>├  🏷️ <a href="#variable-value">value</a></p>
+              <p>├  🏷️ <a href="#variable-values">values</a></p>
+              <p>╘  🏷️ <a href="#variable-description">description</a></p>
+            </blockquote>
+          </details>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#license">&lt;license&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#license-name">name</a></p>
+          <p>├  🏷️ <a href="#license-identifier">identifier</a></p>
+          <p>╘  🏷️ <a href="#license-url">url</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#contact">&lt;contact&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#contact-name">name</a></p>
+          <p>├  🏷️ <a href="#contact-email">email</a></p>
+          <p>╘  🏷️ <a href="#contact-url">url</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#ui">&lt;ui&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#ui-html">html</a></p>
+          <p>├  🏷️ <a href="#ui-params">params</a></p>
+          <p>╘  🏷️ <a href="#ui-path">path</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#dts">&lt;dts&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#dts-path">path</a></p>
+          <p>╘  🏷️ <a href="#dts-namespace">namespace</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#tag">&lt;tag&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#tag-name">name</a></p>
+          <p>╘  🏷️ <a href="#tag-group">group</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#endpoint">&lt;endpoint&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#endpoint-method">method</a></p>
+          <p>├  🏷️ <a href="#endpoint-path">path</a></p>
+          <p>├  🏷️ <a href="#endpoint-summary">summary</a></p>
+          <p>├  🏷️ <a href="#endpoint-description">description</a></p>
+          <p>├  🏷️ <a href="#endpoint-deprecated">deprecated</a></p>
+          <p>├  🏷️ <a href="#endpoint-private">private</a></p>
+          <p>├  🏷️ <a href="#endpoint-operationid">operationId</a></p>
+          <p>├  🧩 <a href="#body">&lt;body&gt;</a></p>
+          <details>
+            <summary>&nbsp;🧩 <a href="#param">&lt;param&gt;</a></summary>
+            <blockquote>
+              <p></p>
+              <p>├  🏷️ <a href="#param-in">in</a></p>
+              <p>├  🏷️ <a href="#param-name">name</a></p>
+              <p>├  🏷️ <a href="#param-description">description</a></p>
+              <p>├  🏷️ <a href="#param-required">required</a></p>
+              <p>╘  🏷️ <a href="#param-deprecated">deprecated</a></p>
+            </blockquote>
+          </details>
+          <details>
+            <summary>&nbsp;🧩 <a href="#response">&lt;response&gt;</a></summary>
+            <blockquote>
+              <p></p>
+              <p>├  🏷️ <a href="#response-status">status</a></p>
+              <p>╘  🏷️ <a href="#response-type">type</a></p>
+            </blockquote>
+          </details>
+        </blockquote>
+      </details>
+    </blockquote>
+  </details>
+</sub>
 
 The `<api>` element defines a REST API with OpenAPI documentation. Place it inside `<server>` to register your endpoints and configure OpenAPI settings. The API documentation is automatically generated from your component structure.
 
