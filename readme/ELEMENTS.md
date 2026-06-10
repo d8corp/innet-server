@@ -1177,6 +1177,148 @@ Error code identifier.
 - Type: `string`
 - Default: `'undefined'`
 
+## Proxy
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / Proxy [↑](#error) [↓](#redirect)
+
+<sub>
+  <details>
+    <summary>&nbsp;🧩 Props</summary>
+    <blockquote>
+      <p></p>
+      <p>╘  🏷️ <a href="#proxy-to">to</a></p>
+    </blockquote>
+  </details>
+</sub>
+
+Forward requests to another server.
+
+```typescript jsx
+<endpoint method='get' path='/external'>
+  <return>
+    <proxy to='https://api.example.com' />
+  </return>
+</endpoint>
+```
+
+#### <a id="proxy-to">to</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / [Proxy](#proxy) / to
+
+Target URL to proxy to.
+
+- Type: `string`
+- Required: Yes
+
+## Redirect
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / Redirect [↑](#proxy) [↓](#cms)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#redirect-to">to</a></p>
+      <p>╘  🏷️ <a href="#redirect-status">status</a></p>
+    </blockquote>
+  </details>
+</sub>
+
+Redirect requests to another URL.
+
+```typescript jsx
+<return>
+  <redirect to='https://example.com' status={301} />
+</return>
+```
+
+#### <a id="redirect-to">to</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / [Redirect](#redirect) / to [↓](#redirect-status)
+
+Target URL for redirection.
+
+- Type: `string`
+- Required: Yes
+
+#### <a id="redirect-status">status</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / [Redirect](#redirect) / status [↑](#redirect-to)
+
+HTTP status code for redirect.
+
+- Type: `number | string`
+- Default: `301` (moved permanently)
+- Examples: `301`, `302`, `'found'`, `'movedPermanently'
+
+## CMS
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / CMS [↑](#redirect) [↓](#file)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#cms-dir">dir</a></p>
+      <p>╘  🏷️ <a href="#cms-prefix">prefix</a></p>
+    </blockquote>
+  </details>
+</sub>
+
+Serve static files from a directory.
+
+```typescript jsx
+<return>
+  <cms dir='public' />
+</return>
+```
+
+#### <a id="cms-dir">dir</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / [CMS](#cms) / dir [↓](#cms-prefix)
+
+Root directory for file serving.
+
+- Type: `string`
+- Default: `INNET_CMS_DIR` or project root
+- Environment variable: `INNET_CMS_DIR`
+
+#### <a id="cms-prefix">prefix</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / [CMS](#cms) / prefix [↑](#cms-dir)
+
+URL path prefix to strip from requests.
+
+- Type: `string`
+- Default: `INNET_CMS_PREFIX` or `'/'`
+- Environment variable: `INNET_CMS_PREFIX`
+
+## File
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / File [↑](#cms)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>╘  🏷️ <a href="#file-path">path</a></p>
+    </blockquote>
+  </details>
+</sub>
+
+Serve a single file.
+
+```typescript jsx
+<return>
+  <file path='package.json' />
+</return>
+```
+
+#### <a id="file-path">path</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / [File](#file) / path
+
+Path to the file to serve.
+
+- Type: `string`
+- Required: Yes
+
+---
+
+#### [← Quick Start](./QUICK_START.md) | [Schemas →](./SCHEMAS.md)
 
 ## API
 ###### [🏠︎](./README.md) / [Elements](#elements) / API [↑](#server) [↓](#endpoints)
@@ -1808,98 +1950,3 @@ Enumeration of allowed values.
 Variable description.
 
 - Type: `string`
-
-### Proxy
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Proxy [↑](#cookie) [↓](#redirect)
-
-Forward requests to another server.
-
-```typescript jsx
-<endpoint method='get' path='/external'>
-  <return>
-    <proxy to='https://api.example.com' />
-  </return>
-</endpoint>
-```
-
-#### <a id="proxy-to">to</a>
-
-Target URL to proxy to.
-
-- Type: `string`
-- Required: Yes
-
-### Redirect
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Redirect [↑](#proxy) [↓](#cms)
-
-Redirect requests to another URL.
-
-```typescript jsx
-<return>
-  <redirect to='https://example.com' status={301} />
-</return>
-```
-
-#### <a id="redirect-to">to</a>
-
-Target URL for redirection.
-
-- Type: `string`
-- Required: Yes
-
-#### <a id="redirect-status">status</a>
-
-HTTP status code for redirect.
-
-- Type: `number | string`
-- Default: `301` (moved permanently)
-- Examples: `301`, `302`, `'found'`, `'movedPermanently'`
-
-### CMS
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / CMS [↑](#redirect) [↓](#file)
-
-Serve static files from a directory.
-
-```typescript jsx
-<return>
-  <cms dir='public' />
-</return>
-```
-
-#### <a id="cms-dir">dir</a>
-
-Root directory for file serving.
-
-- Type: `string`
-- Default: `INNET_CMS_DIR` or project root
-- Environment variable: `INNET_CMS_DIR`
-
-#### <a id="cms-prefix">prefix</a>
-
-URL path prefix to strip from requests.
-
-- Type: `string`
-- Default: `INNET_CMS_PREFIX` or `'/'`
-- Environment variable: `INNET_CMS_PREFIX`
-
-### File
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / File [↑](#cms) [↓](#success)
-
-Serve a single file.
-
-```typescript jsx
-<return>
-  <file path='package.json' />
-</return>
-```
-
-#### <a id="file-path">path</a>
-
-Path to the file to serve.
-
-- Type: `string`
-- Required: Yes
-
----
-
-#### [← Quick Start](./QUICK_START.md) | [Schemas →](./SCHEMAS.md)
