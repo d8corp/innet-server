@@ -1450,7 +1450,7 @@ The `<api>` element defines a REST API with OpenAPI documentation. Place it insi
 ```
 
 #### <a id="api-title">title</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [API](#api) / title
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / title [↓](#api-description)
 
 The title of the API.
 
@@ -1463,6 +1463,7 @@ The title of the API.
 ```
 
 #### <a id="api-description">description</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / description [↑](#api-title) [↓](#api-version)
 
 Description of the API. CommonMark (Markdown) syntax is supported.
 
@@ -1474,6 +1475,7 @@ Description of the API. CommonMark (Markdown) syntax is supported.
 ```
 
 #### <a id="api-version">version</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / version [↑](#api-description) [↓](#api-prefix)
 
 The version of the OpenAPI document.
 
@@ -1485,6 +1487,7 @@ The version of the OpenAPI document.
 ```
 
 #### <a id="api-prefix">prefix</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / prefix [↑](#api-version) [↓](#api-include)
 
 URL path prefix for all endpoints in this API.
 
@@ -1497,6 +1500,7 @@ URL path prefix for all endpoints in this API.
 ```
 
 #### <a id="api-include">include</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / include [↑](#api-prefix) [↓](#api-exclude)
 
 Regular expression to include only matching URLs.
 
@@ -1507,6 +1511,7 @@ Regular expression to include only matching URLs.
 ```
 
 #### <a id="api-exclude">exclude</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / exclude [↑](#api-include)
 
 Regular expression to exclude matching URLs.
 
