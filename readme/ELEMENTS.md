@@ -1316,10 +1316,6 @@ Path to the file to serve.
 - Type: `string`
 - Required: Yes
 
----
-
-#### [← Quick Start](./QUICK_START.md) | [Schemas →](./SCHEMAS.md)
-
 ## API
 ###### [🏠︎](./README.md) / [Elements](#elements) / API [↑](#server) [↓](#endpoints)
 
@@ -1950,3 +1946,7 @@ Enumeration of allowed values.
 Variable description.
 
 - Type: `string`
+
+---
+
+#### [← Quick Start](./QUICK_START.md) | [Schemas →](./SCHEMAS.md)
