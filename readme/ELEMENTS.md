@@ -1097,6 +1097,87 @@ Use it to respond with success/error, set headers, cookies, and conditionally co
 </endpoint>
 ```
 
+## Success
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / Success [↓](#error)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#success-status">status</a></p>
+      <p>╘  🏷️ <a href="#success-contenttype">contentType</a></p>
+    </blockquote>
+  </details>
+</sub>
+
+Return a successful response with optional data.
+
+```typescript jsx
+<return>
+  <success status='created'>
+    {{ id: 1, name: 'John' }}
+  </success>
+</return>
+```
+
+#### <a id="success-status">status</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / [Success](#success) / status [↓](#success-contenttype)
+
+HTTP status code for the response.
+
+- Type: `number | string`
+- Default: `200` (ok) or `204` (noContent) if no body
+
+#### <a id="success-contenttype">contentType</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / [Success](#success) / contentType [↑](#success-status)
+
+Content-Type header for the response.
+
+- Type: `string`
+- Default: auto-detected from body
+
+## Error
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / Error [↑](#success) [↓](#proxy)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#error-status">status</a></p>
+      <p>╘  🏷️ <a href="#error-code">code</a></p>
+    </blockquote>
+  </details>
+</sub>
+
+Return an error response.
+
+```typescript jsx
+<return>
+  <error status='notFound' code='userNotFound'>
+    {{ message: 'User not found' }}
+  </error>
+</return>
+```
+
+#### <a id="error-status">status</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / [Error](#error) / status [↓](#error-code)
+
+HTTP status code for the error.
+
+- Type: `number | string`
+- Default: `520` (unknownError)
+
+#### <a id="error-code">code</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / [Error](#error) / code [↑](#error-status)
+
+Error code identifier.
+
+- Type: `string`
+- Default: `'undefined'`
+
+
 ## API
 ###### [🏠︎](./README.md) / [Elements](#elements) / API [↑](#server) [↓](#endpoints)
 
@@ -1818,58 +1899,6 @@ Path to the file to serve.
 
 - Type: `string`
 - Required: Yes
-
-### Success
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Success [↑](#file) [↓](#error)
-
-Return a successful response with optional data.
-
-```typescript jsx
-<return>
-  <success status='created'>{{ id: 1, name: 'John' }}</success>
-</return>
-```
-
-#### <a id="success-status">status</a>
-
-HTTP status code for the response.
-
-- Type: `number | string`
-- Default: `200` (ok) or `204` (noContent) if no body
-
-#### <a id="success-contenttype">contentType</a>
-
-Content-Type header for the response.
-
-- Type: `string`
-- Default: auto-detected from body
-
-### Error
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Error [↑](#success)
-
-Return an error response.
-
-```typescript jsx
-<return>
-  <error status='notFound' code='userNotFound'>
-    {{ message: 'User not found' }}
-  </error>
-</return>
-```
-
-#### <a id="error-status">status</a>
-
-HTTP status code for the error.
-
-- Type: `number | string`
-- Default: `520` (unknownError)
-
-#### <a id="error-code">code</a>
-
-Error code identifier.
-
-- Type: `string`
-- Default: `'undefined'`
 
 ---
 
