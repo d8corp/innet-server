@@ -1815,8 +1815,8 @@ The URL path where the documentation UI will be served.
 </api>
 ```
 
-## dts
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / dts [↑](#ui) [↓](#tag)
+## DTS
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / DTS [↑](#ui) [↓](#tag)
 
 <sub>
   <details>
