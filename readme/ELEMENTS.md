@@ -1876,8 +1876,8 @@ Global namespace name for generated types.
 <dts namespace='API' />
 ```
 
-## tag
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / tag [↑](#dts) [↓](#endpoint)
+## Tag
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / Tag [↑](#dts) [↓](#endpoint)
 
 <sub>
   <details>
@@ -1904,7 +1904,7 @@ Tags allow you to group related endpoints together in the API documentation, mak
 ```
 
 #### <a id="tag-name">name</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [tag](#tag) / name [↓](#tag-group)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Tag](#tag) / name [↓](#tag-group)
 
 The name of the tag used to group endpoints.
 
@@ -1916,7 +1916,7 @@ The name of the tag used to group endpoints.
 ```
 
 #### <a id="tag-group">group</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [tag](#tag) / group [↑](#tag-name)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Tag](#tag) / group [↑](#tag-name)
 
 Optional group name for organizing multiple tags into logical sections in the documentation.
 
