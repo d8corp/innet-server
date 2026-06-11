@@ -153,7 +153,7 @@
                     <summary>&nbsp;🧩 <a href="#variable">&lt;variable&gt;</a></summary>
                     <blockquote>
                       <p></p>
-                      <p>├  🏷️ <a href="#variable-key">key</a><sup>*</sup></p>
+                      <p>├  🏷️ <a href="#variable-key">key</a>*</p>
                       <p>├  🏷️ <a href="#variable-value">value</a></p>
                       <p>├  🏷️ <a href="#variable-values">values</a></p>
                       <p>╘  🏷️ <a href="#variable-description">description</a></p>
@@ -165,7 +165,7 @@
                 <summary>&nbsp;🧩 <a href="#license">&lt;license&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#license-name">name</a><sup>*</sup></p>
+                  <p>├  🏷️ <a href="#license-name">name</a>*</p>
                   <p>├  🏷️ <a href="#license-identifier">identifier</a></p>
                   <p>╘  🏷️ <a href="#license-url">url</a></p>
                 </blockquote>
@@ -454,7 +454,7 @@ Environment variable name to check.
                 <summary>&nbsp;🧩 <a href="#variable">&lt;variable&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#variable-key">key</a><sup>*</sup></p>
+                  <p>├  🏷️ <a href="#variable-key">key</a>*</p>
                   <p>├  🏷️ <a href="#variable-value">value</a></p>
                   <p>├  🏷️ <a href="#variable-values">values</a></p>
                   <p>╘  🏷️ <a href="#variable-description">description</a></p>
@@ -466,7 +466,7 @@ Environment variable name to check.
             <summary>&nbsp;🧩 <a href="#license">&lt;license&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#license-name">name</a><sup>*</sup></p>
+              <p>├  🏷️ <a href="#license-name">name</a>*</p>
               <p>├  🏷️ <a href="#license-identifier">identifier</a></p>
               <p>╘  🏷️ <a href="#license-url">url</a></p>
             </blockquote>
@@ -1346,7 +1346,7 @@ Path to the file to serve.
             <summary>&nbsp;🧩 <a href="#variable">&lt;variable&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#variable-key">key</a><sup>*</sup></p>
+              <p>├  🏷️ <a href="#variable-key">key</a>*</p>
               <p>├  🏷️ <a href="#variable-value">value</a></p>
               <p>├  🏷️ <a href="#variable-values">values</a></p>
               <p>╘  🏷️ <a href="#variable-description">description</a></p>
@@ -1358,7 +1358,7 @@ Path to the file to serve.
         <summary>&nbsp;🧩 <a href="#license">&lt;license&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🏷️ <a href="#license-name">name</a><sup>*</sup></p>
+          <p>├  🏷️ <a href="#license-name">name</a>*</p>
           <p>├  🏷️ <a href="#license-identifier">identifier</a></p>
           <p>╘  🏷️ <a href="#license-url">url</a></p>
         </blockquote>
@@ -1541,7 +1541,7 @@ Regular expression to exclude matching URLs.
         <summary>&nbsp;🧩 <a href="#variable">&lt;variable&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🏷️ <a href="#variable-key">key</a><sup>*</sup></p>
+          <p>├  🏷️ <a href="#variable-key">key</a>*</p>
           <p>├  🏷️ <a href="#variable-value">value</a></p>
           <p>├  🏷️ <a href="#variable-values">values</a></p>
           <p>╘  🏷️ <a href="#variable-description">description</a></p>
@@ -1589,7 +1589,7 @@ Description of the host/server.
     <summary>&nbsp;🏷️ Props</summary>
     <blockquote>
       <p></p>
-      <p>├  🏷️ <a href="#variable-key">key</a><sup>*</sup></p>
+      <p>├  🏷️ <a href="#variable-key">key</a>*</p>
       <p>├  🏷️ <a href="#variable-value">value</a></p>
       <p>├  🏷️ <a href="#variable-values">values</a></p>
       <p>╘  🏷️ <a href="#variable-description">description</a></p>
@@ -1647,7 +1647,7 @@ Variable description.
     <summary>&nbsp;🏷️ Props</summary>
     <blockquote>
       <p></p>
-      <p>├  🏷️ <a href="#license-name">name</a><sup>*</sup></p>
+      <p>├  🏷️ <a href="#license-name">name</a>*</p>
       <p>├  🏷️ <a href="#license-identifier">identifier</a></p>
       <p>╘  🏷️ <a href="#license-url">url</a></p>
     </blockquote>
@@ -1882,7 +1882,7 @@ Global namespace name for generated types.
     <summary>&nbsp;🏷️ Props</summary>
     <blockquote>
       <p></p>
-      <p>├  🏷️ <a href="#tag-name">name</a><sup>*</sup></p>
+      <p>├  🏷️ <a href="#tag-name">name</a>*</p>
       <p>╘  🏷️ <a href="#tag-group">group</a></p>
     </blockquote>
   </details>
