@@ -1814,8 +1814,8 @@ The URL path where the documentation UI will be served.
 </api>
 ```
 
-## DTS
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / DTS [↑](#ui) [↓](#tag)
+## dts
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / dts [↑](#ui) [↓](#tag)
 
 <sub>
   <details>
@@ -1868,6 +1868,53 @@ Global namespace name for generated types.
 
 - Type: `string`
 - Default: `'Api'`
+
+```typescript jsx
+<dts namespace='API' />
+```
+
+## tag
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / tag [↑](#dts) [↓](#endpoint)
+
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#tag-name">name<sup>*</sup></a></p>
+      <p>╘  🏷️ <a href="#tag-group">group</a></p>
+    </blockquote>
+  </details>
+</sub>
+
+???
+
+```typescript jsx
+<api>
+  <dts
+    path='src/api.d.ts'
+    namespace='Api'
+  />
+</api>
+```
+
+#### <a id="tag-name">name</a>
+
+???
+
+- Type: `string`
+- Required: Yes
+
+```typescript jsx
+<dts path='src/types.d.ts' />
+```
+
+#### <a id="tag-group">group</a>
+
+???
+
+- Type: `string`
 
 ```typescript jsx
 <dts namespace='API' />
