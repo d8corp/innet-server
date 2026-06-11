@@ -1735,50 +1735,20 @@ URL pointing to contact information.
 
 - Type: `string`
 
----
+## UI
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / UI [↑](#contact) [↓](#dts)
 
-## Request Handling
-###### [🏠︎](./README.md) / Request Handling [↑](#elements) [↓](#documentation)
-
-### Hooks
-###### [🏠︎](./README.md) / [Request Handling](#request-handling) / Hooks [↑](#preset)
-
-Hooks provide access to request/response context and server information inside components. They allow you to access HTTP headers, query parameters, body data, and more. Use them to implement request handling logic without manually passing props.
-
-**Request Data:**
-- `useRequest()` — HTTP request object
-- `useResponse()` — HTTP response object
-- `useHeaders()` — Request headers
-- `useCookies()` — Request cookies
-- `useParams()` — URL parameters
-- `useSearch()` — Query parameters
-- `useBody()` — Request body
-- `useClientIp()` — Client IP address
-- `usePath()` — Request path
-
-**Server Context:**
-- `useServer()` — HTTP server instance
-- `usePort()` — Server port
-- `useIsServerHttps()` — Is HTTPS?
-- `useComponentName()` — Current component name
-
-**Example:**
-```typescript jsx
-import { useParams, useRequest } from '@innet/server'
-
-export function GetUser() {
-  const { userId } = useParams()
-  const req = useRequest()
-  
-  return <success>{{ userId, method: req.method }}</success>
-}
-```
-
-## Documentation
-###### [🏠︎](./README.md) / Documentation [↑](#request-handling) [↓](#api-elements)
-
-### UI
-###### [🏠︎](./README.md) / [Documentation](#documentation) / UI [↓](#dts)
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#ui-html">html</a></p>
+      <p>├  🏷️ <a href="#ui-params">params</a></p>
+      <p>╘  🏷️ <a href="#ui-path">path</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 Add interactive API documentation with the `<ui>` element.
 This automatically generates a beautiful, interactive web interface where users can explore and test your API endpoints.
@@ -1844,8 +1814,19 @@ The URL path where the documentation UI will be served.
 </api>
 ```
 
-### DTS
-###### [🏠︎](./README.md) / [Documentation](#documentation) / DTS [↑](#ui)
+## DTS
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / DTS [↑](#ui) [↓](#tag)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#dts-path">path</a></p>
+      <p>╘  🏷️ <a href="#dts-namespace">namespace</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 Automatically generate TypeScript type definitions for your entire API. The `<dts>` element creates type definitions based on your endpoint schemas, giving you full IDE autocomplete and type safety when consuming your API.
 
@@ -1891,6 +1872,49 @@ Global namespace name for generated types.
 ```typescript jsx
 <dts namespace='API' />
 ```
+
+---
+
+## Request Handling
+###### [🏠︎](./README.md) / Request Handling [↑](#elements) [↓](#documentation)
+
+### Hooks
+###### [🏠︎](./README.md) / [Request Handling](#request-handling) / Hooks [↑](#preset)
+
+Hooks provide access to request/response context and server information inside components. They allow you to access HTTP headers, query parameters, body data, and more. Use them to implement request handling logic without manually passing props.
+
+**Request Data:**
+- `useRequest()` — HTTP request object
+- `useResponse()` — HTTP response object
+- `useHeaders()` — Request headers
+- `useCookies()` — Request cookies
+- `useParams()` — URL parameters
+- `useSearch()` — Query parameters
+- `useBody()` — Request body
+- `useClientIp()` — Client IP address
+- `usePath()` — Request path
+
+**Server Context:**
+- `useServer()` — HTTP server instance
+- `usePort()` — Server port
+- `useIsServerHttps()` — Is HTTPS?
+- `useComponentName()` — Current component name
+
+**Example:**
+```typescript jsx
+import { useParams, useRequest } from '@innet/server'
+
+export function GetUser() {
+  const { userId } = useParams()
+  const req = useRequest()
+  
+  return <success>{{ userId, method: req.method }}</success>
+}
+```
+
+## Documentation
+###### [🏠︎](./README.md) / Documentation [↑](#request-handling) [↓](#api-elements)
+
 
 ## API Elements
 ###### [🏠︎](./README.md) / API Elements [↑](#documentation) [↓](#schema-types)
