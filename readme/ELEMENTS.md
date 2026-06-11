@@ -1640,7 +1640,19 @@ Variable description.
 - Type: `string`
 
 ## License
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / License [↑](#env) [↓](#contact)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / License [↑](#host) [↓](#contact)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#license-name">name</a></p>
+      <p>├  🏷️ <a href="#license-identifier">identifier</a></p>
+      <p>╘  🏷️ <a href="#license-url">url</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 Define the license for your API.
 
@@ -1654,6 +1666,7 @@ Define the license for your API.
 ```
 
 #### <a id="license-name">name</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [License](#license) / name [↓](#license-identifier)
 
 The license name.
 
@@ -1661,19 +1674,33 @@ The license name.
 - Required: Yes
 
 #### <a id="license-identifier">identifier</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [License](#license) / identifier [↑](#license-name) [↓](#license-url)
 
 SPDX license expression (mutually exclusive with `url`).
 
 - Type: `string`
 
 #### <a id="license-url">url</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [License](#license) / url [↑](#license-identifier)
 
 URL to the license document (mutually exclusive with `identifier`).
 
 - Type: `string`
 
 ## Contact
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Contact [↑](#license) [↓](#host)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / Contact [↑](#license) [↓](#ui)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#contact-name">name</a></p>
+      <p>├  🏷️ <a href="#contact-email">email</a></p>
+      <p>╘  🏷️ <a href="#contact-url">url</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 Define contact information for the API.
 
@@ -1688,25 +1715,27 @@ Define contact information for the API.
 ```
 
 #### <a id="contact-name">name</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Contact](#contact) / name [↓](#contact-email)
 
 Contact person or organization name.
 
 - Type: `string`
 
 #### <a id="contact-email">email</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Contact](#contact) / email [↑](#contact-name) [↓](#contact-url)
 
 Email address (must be valid email format).
 
 - Type: `string`
 
 #### <a id="contact-url">url</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Contact](#contact) / url [↑](#contact-email)
 
 URL pointing to contact information.
 
 - Type: `string`
 
 ---
-
 
 ## Request Handling
 ###### [🏠︎](./README.md) / Request Handling [↑](#elements) [↓](#documentation)
