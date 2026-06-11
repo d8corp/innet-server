@@ -1928,6 +1928,80 @@ Optional group name for organizing multiple tags into logical sections in the do
 </tag>
 ```
 
+## Endpoint
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / Endpoint [↑](#tag)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#endpoint-method">method</a></p>
+      <p>├  🏷️ <a href="#endpoint-path">path</a></p>
+      <p>├  🏷️ <a href="#endpoint-summary">summary</a></p>
+      <p>├  🏷️ <a href="#endpoint-description">description</a></p>
+      <p>├  🏷️ <a href="#endpoint-deprecated">deprecated</a></p>
+      <p>├  🏷️ <a href="#endpoint-private">private</a></p>
+      <p>├  🏷️ <a href="#endpoint-operationid">operationId</a></p>
+    </blockquote>
+  </details>
+  <details>
+    <summary>&nbsp;🧩 Elements</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🧩 <a href="#body">&lt;body&gt;</a></p>
+      <details>
+        <summary>&nbsp;🧩 <a href="#param">&lt;param&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#param-in">in</a></p>
+          <p>├  🏷️ <a href="#param-name">name</a></p>
+          <p>├  🏷️ <a href="#param-description">description</a></p>
+          <p>├  🏷️ <a href="#param-required">required</a></p>
+          <p>╘  🏷️ <a href="#param-deprecated">deprecated</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#response">&lt;response&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🏷️ <a href="#response-status">status</a></p>
+          <p>╘  🏷️ <a href="#response-type">type</a></p>
+        </blockquote>
+      </details>
+    </blockquote>
+  </details>
+</sub>
+
+```typescript jsx
+<endpoint
+  method='post'
+  path='/users'
+  summary='Create user'
+  description='Creates a new user in the system'
+  operationId='createUser'
+  deprecated={false}
+  private={false}
+>
+  <param in='query' name='format' />
+  <body>
+    <object>
+      <field key='name'><string required /></field>
+      <field key='email'><string format='email' /></field>
+    </object>
+  </body>
+  <response status={201}>
+    <object>
+      <field key='id'><uuid readOnly /></field>
+      <field key='name'><string /></field>
+    </object>
+  </response>
+  <return>
+    <success status='created'>{{ id: 'uuid', name: 'John' }}</success>
+  </return>
+</endpoint>
+```
+
 ---
 
 ## Request Handling
@@ -1973,38 +2047,6 @@ export function GetUser() {
 
 ## API Elements
 ###### [🏠︎](./README.md) / API Elements [↑](#documentation) [↓](#schema-types)
-
-### Endpoint
-###### [🏠︎](./README.md) / [API Elements](#api-elements) / Endpoint [↓](#param)
-
-```typescript jsx
-<endpoint
-  method='post'
-  path='/users'
-  summary='Create user'
-  description='Creates a new user in the system'
-  operationId='createUser'
-  deprecated={false}
-  private={false}
->
-  <param in='query' name='format' />
-  <body>
-    <object>
-      <field key='name'><string required /></field>
-      <field key='email'><string format='email' /></field>
-    </object>
-  </body>
-  <response status={201}>
-    <object>
-      <field key='id'><uuid readOnly /></field>
-      <field key='name'><string /></field>
-    </object>
-  </response>
-  <return>
-    <success status='created'>{{ id: 'uuid', name: 'John' }}</success>
-  </return>
-</endpoint>
-```
 
 ### Param
 ###### [🏠︎](./README.md) / [API Elements](#api-elements) / Param [↑](#endpoint) [↓](#body)
