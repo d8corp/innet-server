@@ -1582,7 +1582,20 @@ Description of the host/server.
 - Type: `string`
 
 ## Variable
-###### [🏠︎](./README.md) / [Middleware & Utils](#middleware--utils) / Variable [↑](#host) [↓](#blacklist)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Host](#host) / Variable
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#variable-key">key</a></p>
+      <p>├  🏷️ <a href="#variable-value">value</a></p>
+      <p>├  🏷️ <a href="#variable-values">values</a></p>
+      <p>╘  🏷️ <a href="#variable-description">description</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 Define a variable used in host URLs for substitution.
 
@@ -1598,6 +1611,7 @@ Define a variable used in host URLs for substitution.
 ```
 
 #### <a id="variable-key">key</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Host](#host) / [Variable](#variable) / key [↓](#variable-value)
 
 Variable name (used in `{brackets}` in host URL).
 
@@ -1605,18 +1619,21 @@ Variable name (used in `{brackets}` in host URL).
 - Required: Yes
 
 #### <a id="variable-value">value</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Host](#host) / [Variable](#variable) / value [↑](#variable-key) [↓](#variable-values)
 
 Default value for the variable.
 
 - Type: `string`
 
 #### <a id="variable-values">values</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Host](#host) / [Variable](#variable) / values [↑](#variable-value) [↓](#variable-description)
 
 Enumeration of allowed values.
 
 - Type: `string[]`
 
 #### <a id="variable-description">description</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Host](#host) / [Variable](#variable) / description [↑](#variable-values)
 
 Variable description.
 
