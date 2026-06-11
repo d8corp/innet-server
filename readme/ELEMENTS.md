@@ -1762,8 +1762,9 @@ Choose from multiple documentation viewers like [Swagger UI](https://swagger.io/
 
 View documentation: http://localhost/ui
 
-#### html
-###### [🏠︎](./README.md) / [Documentation](#documentation) / [UI](#ui) / html
+#### <a id="ui-html">html</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [UI](#ui) / html [↓](#ui-params)
+
 Custom HTML template for the documentation viewer. Use built-in presets or provide custom HTML.
 
 - Type: `string`
@@ -1780,7 +1781,7 @@ export default (
 ```
 
 #### <a id="ui-params">params</a>
-###### [🏠︎](./README.md) / [Documentation](#documentation) / [UI](#ui) / params
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [UI](#ui) / params [↑](#ui-html)
 
 Additional parameters to pass to the documentation viewer. Parameters vary by viewer type.
 
@@ -1852,6 +1853,7 @@ export function DeleteTodo() {
 ```
 
 #### <a id="dts-path">path</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [dts](#dts) / path [↓](#dts-namespace)
 
 Output path for the generated TypeScript definitions file.
 
@@ -1863,6 +1865,7 @@ Output path for the generated TypeScript definitions file.
 ```
 
 #### <a id="dts-namespace">namespace</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [dts](#dts) / namespace [↑](#dts-path)
 
 Global namespace name for generated types.
 
@@ -1876,7 +1879,6 @@ Global namespace name for generated types.
 ## tag
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / tag [↑](#dts) [↓](#endpoint)
 
-
 <sub>
   <details>
     <summary>&nbsp;🏷️ Props</summary>
@@ -1888,36 +1890,42 @@ Global namespace name for generated types.
   </details>
 </sub>
 
-???
+Organize and categorize your API endpoints using tags.
+Tags allow you to group related endpoints together in the API documentation, making it easier for users to navigate and understand your API structure.
 
 ```typescript jsx
 <api>
-  <dts
-    path='src/api.d.ts'
-    namespace='Api'
-  />
+  <tag name='Users' group='Management'>
+    <endpoint method='get' path='/users'>
+      {/* ... */}
+    </endpoint>
+  </tag>
 </api>
 ```
 
 #### <a id="tag-name">name</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [tag](#tag) / name [↓](#tag-group)
 
-???
+The name of the tag used to group endpoints.
 
 - Type: `string`
 - Required: Yes
 
 ```typescript jsx
-<dts path='src/types.d.ts' />
+<tag name='Users'>{/* ... */}</tag>
 ```
 
 #### <a id="tag-group">group</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [tag](#tag) / group [↑](#tag-name)
 
-???
+Optional group name for organizing multiple tags into logical sections in the documentation.
 
 - Type: `string`
 
 ```typescript jsx
-<dts namespace='API' />
+<tag name='Users' group='Management'>
+  {/* ... */}
+</tag>
 ```
 
 ---
