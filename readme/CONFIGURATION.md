@@ -1,6 +1,34 @@
 # Configuration
 ###### [🏠︎](#index) / Configuration [↑](#quick-start) [↓](#components)
 
+<sub>
+  <details>
+    <summary>&nbsp;🏷️️ Variables</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#innet_port">INNET_PORT</a></p>
+      <p>├  🏷️ <a href="#innet_ssl_crt">INNET_SSL_CRT</a></p>
+      <p>├  🏷️ <a href="#innet_ssl_key">INNET_SSL_KEY</a></p>
+      <p>├  🏷️ <a href="#innet_api_prefix">INNET_API_PREFIX</a></p>
+      <p>├  🏷️ <a href="#innet_api_version">INNET_API_VERSION</a></p>
+      <p>├  🏷️ <a href="#innet_api_enum_description_key">INNET_API_ENUM_DESCRIPTION_KEY</a></p>
+      <p>├  🏷️ <a href="#innet_cms_dir">INNET_CMS_DIR</a></p>
+      <p>├  🏷️ <a href="#innet_cms_prefix">INNET_CMS_PREFIX</a></p>
+      <p>├  🏷️ <a href="#innet_blacklist_ip">INNET_BLACKLIST_IP</a></p>
+      <p>├  🏷️ <a href="#innet_whitelist_ip">INNET_WHITELIST_IP</a></p>
+      <p>├  🏷️ <a href="#innet_protection">INNET_PROTECTION</a></p>
+      <p>├  🏷️ <a href="#innet_protection_max_age">INNET_PROTECTION_MAX_AGE</a></p>
+      <p>├  🏷️ <a href="#innet_protection_cookie_key">INNET_PROTECTION_COOKIE_KEY</a></p>
+      <p>├  🏷️ <a href="#innet_protection_search_key">INNET_PROTECTION_SEARCH_KEY</a></p>
+      <p>├  🏷️ <a href="#innet_protected_ip">INNET_PROTECTED_IP</a></p>
+      <p>├  🏷️ <a href="#innet_dts_path">INNET_DTS_PATH</a></p>
+      <p>├  🏷️ <a href="#innet_dts_namespace">INNET_DTS_NAMESPACE</a></p>
+      <p>├  🏷️ <a href="#innet_ui_path">INNET_UI_PATH</a></p>
+      <p>╘  🏷️ <a href="#innet_swagger_path">INNET_SWAGGER_PATH</a></p>
+    </blockquote>
+  </details>
+</sub>
+
 Configure the server and API behavior using environment variables.
 
 ### Server Settings
