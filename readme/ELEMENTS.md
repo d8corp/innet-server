@@ -2004,51 +2004,7 @@ Optional group name for organizing multiple tags into logical sections in the do
 
 ---
 
-## Request Handling
-###### [🏠︎](./README.md) / Request Handling [↑](#elements) [↓](#documentation)
-
-### Hooks
-###### [🏠︎](./README.md) / [Request Handling](#request-handling) / Hooks [↑](#preset)
-
-Hooks provide access to request/response context and server information inside components. They allow you to access HTTP headers, query parameters, body data, and more. Use them to implement request handling logic without manually passing props.
-
-**Request Data:**
-- `useRequest()` — HTTP request object
-- `useResponse()` — HTTP response object
-- `useHeaders()` — Request headers
-- `useCookies()` — Request cookies
-- `useParams()` — URL parameters
-- `useSearch()` — Query parameters
-- `useBody()` — Request body
-- `useClientIp()` — Client IP address
-- `usePath()` — Request path
-
-**Server Context:**
-- `useServer()` — HTTP server instance
-- `usePort()` — Server port
-- `useIsServerHttps()` — Is HTTPS?
-- `useComponentName()` — Current component name
-
-**Example:**
-```typescript jsx
-import { useParams, useRequest } from '@innet/server'
-
-export function GetUser() {
-  const { userId } = useParams()
-  const req = useRequest()
-  
-  return <success>{{ userId, method: req.method }}</success>
-}
-```
-
-## Documentation
-###### [🏠︎](./README.md) / Documentation [↑](#request-handling) [↓](#api-elements)
-
-
-## API Elements
-###### [🏠︎](./README.md) / API Elements [↑](#documentation) [↓](#schema-types)
-
-### Param
+## Param
 ###### [🏠︎](./README.md) / [API Elements](#api-elements) / Param [↑](#endpoint) [↓](#body)
 
 Parameters allow you to specify query parameters, path parameters, headers, and cookies that your endpoint accepts. You define the parameter name, location, and validation schema. Parameters are automatically validated and documented in OpenAPI.
@@ -2124,7 +2080,7 @@ Mark the parameter as deprecated.
 <param in='query' name='oldParam' deprecated />
 ```
 
-### Body
+## Body
 ###### [🏠︎](./README.md) / [API Elements](#api-elements) / Body [↑](#param) [↓](#response)
 
 Define the structure and validation rules for the request body that your endpoint accepts. The body schema is automatically validated on every request and documented in OpenAPI. You can specify required/optional fields, data types, and validation constraints.
@@ -2161,7 +2117,7 @@ Place `<body>` inside an `<endpoint>` to define what request data is expected. T
 </endpoint>
 ```
 
-### Response
+## Response
 ###### [🏠︎](./README.md) / [API Elements](#api-elements) / Response [↑](#body)
 
 Define what your endpoint will return to clients. Specify the response status code, data structure, and fields. You can define multiple response types for different HTTP status codes. All responses are automatically validated and documented in OpenAPI.
@@ -2260,9 +2216,5 @@ Configure your server with environment variables and props. Use these settings t
   {/* ... */}
 </server>
 ```
-
-## Middleware & Utils
-
-Utility middleware elements for protecting your API, controlling access, and adding cross-cutting concerns. Use these to implement authentication, IP filtering, static file serving, redirects, proxying, and more. They work at different scopes (global server level or within specific APIs).
 
 #### [← Quick Start](./QUICK_START.md) | [Schemas →](./SCHEMAS.md)
