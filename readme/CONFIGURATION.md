@@ -7,7 +7,7 @@
     <blockquote>
       <p></p>
       <details>
-        <summary>&nbsp;📁️ Server Settings</summary>
+        <summary>&nbsp;📁️ [Server Settings](#server-settings)</summary>
         <blockquote>
           <p></p>
           <p>├  🏷️ <a href="#innet_port">INNET_PORT</a></p>
