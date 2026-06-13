@@ -200,6 +200,8 @@ INNET_API_ENUM_DESCRIPTION_KEY=x-enum-descriptions
   </details>
 </sub>
 
+Configure static CMS file serving and URL routing for the CMS.
+
 ### <a id="innet_cms_dir">INNET_CMS_DIR</a>
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / [CMS Settings](#cms-settings) / INNET_CMS_DIR [↓](#innet_cms_prefix)
 Directory for static CMS files.
