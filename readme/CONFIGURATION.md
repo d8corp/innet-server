@@ -89,6 +89,18 @@ Configure the server and API behavior using environment variables.
 ## Server Settings
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / Server Settings [↓](#api-settings)
 
+<sub>
+  <details>
+    <summary>&nbsp;🏷️️ Settings</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#innet_port">INNET_PORT</a></p>
+      <p>├  🏷️ <a href="#innet_ssl_crt">INNET_SSL_CRT</a></p>
+      <p>╘  🏷️ <a href="#innet_ssl_key">INNET_SSL_KEY</a></p>
+    </blockquote>
+  </details>
+</sub>
+
 Configure the port and SSL certificate settings for your server.
 
 ### <a id="innet_port">INNET_PORT</a>
