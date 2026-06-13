@@ -137,7 +137,7 @@ INNET_SSL_KEY=./certs/server.key
 ```
 
 ## API Settings
-###### [🏠︎](./README.md) / [Configuration](#configuration) / API Settings [↓](#cms-settings)
+###### [🏠︎](./README.md) / [Configuration](#configuration) / API Settings [↑](#server-settings) [↓](#cms-settings)
 
 Define API prefix, version, and customize how enums are described in your OpenAPI specification.
 
@@ -175,7 +175,7 @@ INNET_API_ENUM_DESCRIPTION_KEY=x-enum-descriptions
 ```
 
 ## CMS Settings
-###### [🏠︎](./README.md) / [Configuration](#configuration) / CMS Settings [↓](#security-settings)
+###### [🏠︎](./README.md) / [Configuration](#configuration) / CMS Settings [↑](#api-settings) [↓](#security-settings)
 
 ### <a id="innet_cms_dir">INNET_CMS_DIR</a>
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / [CMS Settings](#cms-settings) / INNET_CMS_DIR [↓](#innet_cms_prefix)
@@ -200,7 +200,7 @@ INNET_CMS_PREFIX=/static
 ```
 
 ## Security Settings
-###### [🏠︎](./README.md) / [Configuration](#configuration) / Security Settings [↓](#documentation-settings)
+###### [🏠︎](./README.md) / [Configuration](#configuration) / Security Settings [↑](#cms-settings) [↓](#documentation-settings)
 
 Manage IP filtering, protection tokens, and security policies for your server.
 
@@ -282,7 +282,7 @@ INNET_PROTECTED_IP=127.0.0.1
 ```
 
 ## Documentation Settings
-###### [🏠︎](./README.md) / [Configuration](#configuration) / Documentation Settings [↓](#innet_dts_path)
+###### [🏠︎](./README.md) / [Configuration](#configuration) / Documentation Settings [↑](#security-settings)
 
 Configure TypeScript definition generation and API documentation UI settings.
 
