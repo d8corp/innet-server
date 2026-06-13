@@ -60,31 +60,31 @@
 
 Configure the server and API behavior using environment variables.
 
-| Parameter                           | Default                         | Used by                      |
-|-------------------------------------|----------------------------------|------------------------------|
-| **Server Settings**                 |                                  |                              |
-| [`INNET_PORT`](#innet_port)         | `80` (HTTP) or `443` (HTTPS)     | `<server port={...}>`        |
-| [`INNET_SSL_CRT`](#innet_ssl_crt)   | `localhost.crt`                  | `<server ssl>`               |
-| [`INNET_SSL_KEY`](#innet_ssl_key)   | `localhost.key`                  | `<server ssl>`               |
-| **API Settings**                    |                                  |                              |
-| [`INNET_API_PREFIX`](#innet_api_prefix) | `''` (empty string)          | `<api prefix>`               |
-| [`INNET_API_VERSION`](#innet_api_version) | `'0.0.0'`                  | `<api version>`              |
-| [`INNET_API_ENUM_DESCRIPTION_KEY`](#innet_api_enum_description_key) | `'x-enumNames'` | Schema enums |
-| **CMS Settings**                    |                                  |                              |
-| [`INNET_CMS_DIR`](#innet_cms_dir)   | `'.'`                            | `<cms dir>`                  |
-| [`INNET_CMS_PREFIX`](#innet_cms_prefix) | `'/'`                        | `<cms prefix>`               |
-| **Security Settings**               |                                  |                              |
-| [`INNET_BLACKLIST_IP`](#innet_blacklist_ip) | `undefined`             | `<blacklist ip>`             |
-| [`INNET_WHITELIST_IP`](#innet_whitelist_ip) | `undefined`             | `<whitelist ip>`             |
-| [`INNET_PROTECTION`](#innet_protection) | `undefined`                | `<protection value>`         |
-| [`INNET_PROTECTION_MAX_AGE`](#innet_protection_max_age) | `31536000` (1 year) | `<protection maxAge>` |
-| [`INNET_PROTECTION_COOKIE_KEY`](#innet_protection_cookie_key) | `'protection'` | `<protection cookieKey>` |
-| [`INNET_PROTECTION_SEARCH_KEY`](#innet_protection_search_key) | `'protection'` | `<protection searchKey>` |
-| [`INNET_PROTECTED_IP`](#innet_protected_ip) | `undefined`          | `<protection excludeIp>`     |
-| **Documentation Settings**          |                                  |                              |
-| [`INNET_DTS_PATH`](#innet_dts_path) | `'src/apiTypes.d.ts'`            | `<dts path>`                 |
-| [`INNET_DTS_NAMESPACE`](#innet_dts_namespace) | `undefined`          | `<dts namespace>`            |
-| [`INNET_UI_PATH`](#innet_ui_path)   | `'/ui'`                          | `<ui path>`                  |
+| Parameter                           | Default                         | Used by                      | Description                                          |
+|-------------------------------------|----------------------------------|------------------------------|------------------------------------------------------|
+| **Server Settings**                 |                                  |                              |                                                      |
+| [`INNET_PORT`](#innet_port)         | `80` (HTTP) or `443` (HTTPS)     | `<server port={...}>`        | Server port number.                                  |
+| [`INNET_SSL_CRT`](#innet_ssl_crt)   | `localhost.crt`                  | `<server ssl>`               | Path to SSL certificate file.                        |
+| [`INNET_SSL_KEY`](#innet_ssl_key)   | `localhost.key`                  | `<server ssl>`               | Path to SSL private key file.                        |
+| **API Settings**                    |                                  |                              |                                                      |
+| [`INNET_API_PREFIX`](#innet_api_prefix) | `''` (empty string)          | `<api prefix>`               | URL prefix for all API endpoints.                    |
+| [`INNET_API_VERSION`](#innet_api_version) | `'0.0.0'`                  | `<api version>`              | API version string.                                  |
+| [`INNET_API_ENUM_DESCRIPTION_KEY`](#innet_api_enum_description_key) | `'x-enumNames'` | Schema enums | Key name for enum descriptions in OpenAPI spec.     |
+| **CMS Settings**                    |                                  |                              |                                                      |
+| [`INNET_CMS_DIR`](#innet_cms_dir)   | `'.'`                            | `<cms dir>`                  | Directory for static CMS files.                      |
+| [`INNET_CMS_PREFIX`](#innet_cms_prefix) | `'/'`                        | `<cms prefix>`               | URL prefix for CMS routes.                           |
+| **Security Settings**               |                                  |                              |                                                      |
+| [`INNET_BLACKLIST_IP`](#innet_blacklist_ip) | `undefined`             | `<blacklist ip>`             | IP address to blacklist.                             |
+| [`INNET_WHITELIST_IP`](#innet_whitelist_ip) | `undefined`             | `<whitelist ip>`             | IP address to whitelist.                             |
+| [`INNET_PROTECTION`](#innet_protection) | `undefined`                | `<protection value>`         | Protection token value.                              |
+| [`INNET_PROTECTION_MAX_AGE`](#innet_protection_max_age) | `31536000` (1 year) | `<protection maxAge>` | Protection token max age in seconds.                 |
+| [`INNET_PROTECTION_COOKIE_KEY`](#innet_protection_cookie_key) | `'protection'` | `<protection cookieKey>` | Cookie name for protection token.                    |
+| [`INNET_PROTECTION_SEARCH_KEY`](#innet_protection_search_key) | `'protection'` | `<protection searchKey>` | Query parameter name for protection token.           |
+| [`INNET_PROTECTED_IP`](#innet_protected_ip) | `undefined`          | `<protection excludeIp>`     | IP address to exclude from protection.               |
+| **Documentation Settings**          |                                  |                              |                                                      |
+| [`INNET_DTS_PATH`](#innet_dts_path) | `'src/apiTypes.d.ts'`            | `<dts path>`                 | Path for generated TypeScript definition file.       |
+| [`INNET_DTS_NAMESPACE`](#innet_dts_namespace) | `undefined`          | `<dts namespace>`            | Namespace for generated TypeScript types.            |
+| [`INNET_UI_PATH`](#innet_ui_path)   | `'/ui'`                          | `<ui path>`                  | URL path for API documentation UI.                   |
 
 ## Server Settings
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / Server Settings [↓](#components)
