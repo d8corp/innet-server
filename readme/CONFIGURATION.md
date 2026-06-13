@@ -87,7 +87,7 @@ Configure the server and API behavior using environment variables.
 | [`INNET_UI_PATH`](#innet_ui_path)   | `'/ui'`                          | `<ui path>`                  | URL path for API documentation UI.                   |
 
 ## Server Settings
-###### [🏠︎](./README.md) / [Configuration](#configuration) / Server Settings [↓](#components)
+###### [🏠︎](./README.md) / [Configuration](#configuration) / Server Settings [↓](#api-settings)
 
 Configure the port and SSL certificate settings for your server.
 
@@ -103,7 +103,7 @@ INNET_PORT=3000
 ```
 
 ### <a id="innet_ssl_crt">INNET_SSL_CRT</a>
-###### [🏠︎](./README.md) / [Configuration](#configuration) / [Server Settings](#server-settings) / INNET_SSL_CRT [↓](#innet_ssl_key)
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Server Settings](#server-settings) / INNET_SSL_CRT [↑](#innet_port) [↓](#innet_ssl_key)
 Path to SSL certificate file.
 
 - **Default:** `localhost.crt`
@@ -114,7 +114,7 @@ INNET_SSL_CRT=./certs/server.crt
 ```
 
 ### <a id="innet_ssl_key">INNET_SSL_KEY</a>
-###### [🏠︎](./README.md) / [Configuration](#configuration) / [Server Settings](#server-settings) / INNET_SSL_KEY [↓](#api-settings)
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Server Settings](#server-settings) / INNET_SSL_KEY [↑](#innet_ssl_crt)
 Path to SSL private key file.
 
 - **Default:** `localhost.key`
