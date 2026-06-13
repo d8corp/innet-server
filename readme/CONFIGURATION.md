@@ -121,8 +121,10 @@ INNET_SSL_KEY=./certs/server.key
 ```
 
 ## API Settings
+###### [🏠︎](./README.md) / [Configuration](#configuration) / API Settings [↓](#cms-settings)
 
 ### <a id="innet_api_prefix">INNET_API_PREFIX</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [API Settings](#api-settings) / INNET_API_PREFIX [↓](#innet_api_version)
 URL prefix for all API endpoints.
 
 - **Default:** `''` (empty string)
@@ -133,6 +135,7 @@ INNET_API_PREFIX=/api/v1
 ```
 
 ### <a id="innet_api_version">INNET_API_VERSION</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [API Settings](#api-settings) / INNET_API_VERSION [↓](#innet_api_enum_description_key)
 API version string.
 
 - **Default:** `'0.0.0'`
@@ -143,6 +146,7 @@ INNET_API_VERSION=1.0.0
 ```
 
 ### <a id="innet_api_enum_description_key">INNET_API_ENUM_DESCRIPTION_KEY</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [API Settings](#api-settings) / INNET_API_ENUM_DESCRIPTION_KEY [↓](#cms-settings)
 Key name for enum descriptions in OpenAPI spec.
 
 - **Default:** `'x-enumNames'`
@@ -153,8 +157,10 @@ INNET_API_ENUM_DESCRIPTION_KEY=x-enum-descriptions
 ```
 
 ## CMS Settings
+###### [🏠︎](./README.md) / [Configuration](#configuration) / CMS Settings [↓](#security-settings)
 
 ### <a id="innet_cms_dir">INNET_CMS_DIR</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [CMS Settings](#cms-settings) / INNET_CMS_DIR [↓](#innet_cms_prefix)
 Directory for static CMS files.
 
 - **Default:** `'.'`
@@ -165,6 +171,7 @@ INNET_CMS_DIR=./public
 ```
 
 ### <a id="innet_cms_prefix">INNET_CMS_PREFIX</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [CMS Settings](#cms-settings) / INNET_CMS_PREFIX [↓](#security-settings)
 URL prefix for CMS routes.
 
 - **Default:** `'/'`
@@ -175,8 +182,10 @@ INNET_CMS_PREFIX=/static
 ```
 
 ## Security Settings
+###### [🏠︎](./README.md) / [Configuration](#configuration) / Security Settings [↓](#documentation-settings)
 
 ### <a id="innet_blacklist_ip">INNET_BLACKLIST_IP</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Security Settings](#security-settings) / INNET_BLACKLIST_IP [↓](#innet_whitelist_ip)
 IP address to blacklist.
 
 - **Default:** `undefined`
@@ -187,6 +196,7 @@ INNET_BLACKLIST_IP=192.168.1.100
 ```
 
 ### <a id="innet_whitelist_ip">INNET_WHITELIST_IP</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Security Settings](#security-settings) / INNET_WHITELIST_IP [↓](#innet_protection)
 IP address to whitelist.
 
 - **Default:** `undefined`
@@ -197,6 +207,7 @@ INNET_WHITELIST_IP=10.0.0.1
 ```
 
 ### <a id="innet_protection">INNET_PROTECTION</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Security Settings](#security-settings) / INNET_PROTECTION [↓](#innet_protection_max_age)
 Protection token value.
 
 - **Default:** `undefined`
@@ -207,6 +218,7 @@ INNET_PROTECTION=secret-token
 ```
 
 ### <a id="innet_protection_max_age">INNET_PROTECTION_MAX_AGE</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Security Settings](#security-settings) / INNET_PROTECTION_MAX_AGE [↓](#innet_protection_cookie_key)
 Protection token max age in seconds.
 
 - **Default:** `31536000` (1 year)
@@ -217,6 +229,7 @@ INNET_PROTECTION_MAX_AGE=86400
 ```
 
 ### <a id="innet_protection_cookie_key">INNET_PROTECTION_COOKIE_KEY</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Security Settings](#security-settings) / INNET_PROTECTION_COOKIE_KEY [↓](#innet_protection_search_key)
 Cookie name for protection token.
 
 - **Default:** `'protection'`
@@ -269,6 +282,7 @@ INNET_DTS_NAMESPACE=API
 ```
 
 ### <a id="innet_ui_path">INNET_UI_PATH</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Documentation Settings](#documentation-settings) / INNET_UI_PATH
 URL path for API documentation UI.
 
 - **Default:** `'/ui'`
