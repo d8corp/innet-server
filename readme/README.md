@@ -437,8 +437,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
       <p>├  🏷️ <a href="./CONFIGURATION.md#innet_protected_ip">INNET_PROTECTED_IP</a></p>
       <p>├  🏷️ <a href="./CONFIGURATION.md#innet_dts_path">INNET_DTS_PATH</a></p>
       <p>├  🏷️ <a href="./CONFIGURATION.md#innet_dts_namespace">INNET_DTS_NAMESPACE</a></p>
-      <p>├  🏷️ <a href="./CONFIGURATION.md#innet_ui_path">INNET_UI_PATH</a></p>
-      <p>╘  🏷️ <a href="./CONFIGURATION.md#innet_swagger_path">INNET_SWAGGER_PATH</a></p>
+      <p>╘  🏷️ <a href="./CONFIGURATION.md#innet_ui_path">INNET_UI_PATH</a></p>
     </blockquote>
   </details>
 </sub>

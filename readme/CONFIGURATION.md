@@ -51,8 +51,7 @@
           <p></p>
           <p>├  🏷️ <a href="#innet_dts_path">INNET_DTS_PATH</a></p>
           <p>├  🏷️ <a href="#innet_dts_namespace">INNET_DTS_NAMESPACE</a></p>
-          <p>├  🏷️ <a href="#innet_ui_path">INNET_UI_PATH</a></p>
-          <p>╘  🏷️ <a href="#innet_swagger_path">INNET_SWAGGER_PATH</a></p>
+          <p>╘  🏷️ <a href="#innet_ui_path">INNET_UI_PATH</a></p>
         </blockquote>
       </details>
     </blockquote>
@@ -61,11 +60,37 @@
 
 Configure the server and API behavior using environment variables.
 
+| Parameter                           | Default                         | Used by                      |
+|-------------------------------------|----------------------------------|------------------------------|
+| **Server Settings**                 |                                  |                              |
+| [`INNET_PORT`](#innet_port)         | `80` (HTTP) or `443` (HTTPS)     | `<server port={...}>`        |
+| [`INNET_SSL_CRT`](#innet_ssl_crt)   | `localhost.crt`                  | `<server ssl>`               |
+| [`INNET_SSL_KEY`](#innet_ssl_key)   | `localhost.key`                  | `<server ssl>`               |
+| **API Settings**                    |                                  |                              |
+| [`INNET_API_PREFIX`](#innet_api_prefix) | `''` (empty string)          | `<api prefix>`               |
+| [`INNET_API_VERSION`](#innet_api_version) | `'0.0.0'`                  | `<api version>`              |
+| [`INNET_API_ENUM_DESCRIPTION_KEY`](#innet_api_enum_description_key) | `'x-enumNames'` | Schema enums |
+| **CMS Settings**                    |                                  |                              |
+| [`INNET_CMS_DIR`](#innet_cms_dir)   | `'.'`                            | `<cms dir>`                  |
+| [`INNET_CMS_PREFIX`](#innet_cms_prefix) | `'/'`                        | `<cms prefix>`               |
+| **Security Settings**               |                                  |                              |
+| [`INNET_BLACKLIST_IP`](#innet_blacklist_ip) | `undefined`             | `<blacklist ip>`             |
+| [`INNET_WHITELIST_IP`](#innet_whitelist_ip) | `undefined`             | `<whitelist ip>`             |
+| [`INNET_PROTECTION`](#innet_protection) | `undefined`                | `<protection value>`         |
+| [`INNET_PROTECTION_MAX_AGE`](#innet_protection_max_age) | `31536000` (1 year) | `<protection maxAge>` |
+| [`INNET_PROTECTION_COOKIE_KEY`](#innet_protection_cookie_key) | `'protection'` | `<protection cookieKey>` |
+| [`INNET_PROTECTION_SEARCH_KEY`](#innet_protection_search_key) | `'protection'` | `<protection searchKey>` |
+| [`INNET_PROTECTED_IP`](#innet_protected_ip) | `undefined`          | `<protection excludeIp>`     |
+| **Documentation Settings**          |                                  |                              |
+| [`INNET_DTS_PATH`](#innet_dts_path) | `'src/apiTypes.d.ts'`            | `<dts path>`                 |
+| [`INNET_DTS_NAMESPACE`](#innet_dts_namespace) | `undefined`          | `<dts namespace>`            |
+| [`INNET_UI_PATH`](#innet_ui_path)   | `'/ui'`                          | `<ui path>`                  |
+
 ## Server Settings
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / Server Settings [↓](#components)
 
-### INNET_PORT
-###### [🏠︎](./README.md) / [Configuration](#configuration) / [Server Settings](#server-settings) [↓](#innet_ssl_crt)
+### <a id="innet_port">INNET_PORT</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Server Settings](#server-settings) / INNET_PORT [↓](#innet_ssl_crt)
 Server port number.
 
 - **Default:** `80` (HTTP) or `443` (HTTPS)
@@ -75,7 +100,7 @@ Server port number.
 INNET_PORT=3000
 ```
 
-### INNET_SSL_CRT
+### <a id="innet_ssl_crt">INNET_SSL_CRT</a>
 Path to SSL certificate file.
 
 - **Default:** `localhost.crt`
@@ -251,14 +276,4 @@ URL path for API documentation UI.
 
 ```shell
 INNET_UI_PATH=/docs
-```
-
-### <a id="innet_swagger_path">INNET_SWAGGER_PATH</a>
-URL path for Swagger UI.
-
-- **Default:** `'/swagger-ui'`
-- **Used by:** `<swagger path>`
-
-```shell
-INNET_SWAGGER_PATH=/swagger
 ```
