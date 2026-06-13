@@ -72,8 +72,6 @@ import {
   type StringProps,
   success,
   type SuccessProps,
-  swagger,
-  type SwaggerProps,
   tag,
   type TagProps,
   tuple,
@@ -127,7 +125,6 @@ export const JSXPlugins = {
   server,
   string,
   success,
-  swagger,
   tag,
   tuple,
   ui,
@@ -214,8 +211,6 @@ declare global {
       server: ServerProps
       string: StringProps
       success: SuccessProps
-      /** @deprecated Use <ui> */
-      swagger: SwaggerProps
       tag: TagProps
       tuple: TupleProps
       ui: UiProps
