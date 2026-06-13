@@ -63,7 +63,7 @@ Configure the server and API behavior using environment variables.
 | Parameter                           | Default                         | Used by                      | Description                                          |
 |-------------------------------------|----------------------------------|------------------------------|------------------------------------------------------|
 | **Server Settings**                 |                                  |                              |                                                      |
-| [`INNET_PORT`](#innet_port)         | `80` (HTTP) or `443` (HTTPS)     | `<server port={...}>`        | Server port number.                                  |
+| [`INNET_PORT`](#innet_port)         | `80` (HTTP) or `443` (HTTPS)     | `<server port>`        | Server port number.                                  |
 | [`INNET_SSL_CRT`](#innet_ssl_crt)   | `localhost.crt`                  | `<server ssl>`               | Path to SSL certificate file.                        |
 | [`INNET_SSL_KEY`](#innet_ssl_key)   | `localhost.key`                  | `<server ssl>`               | Path to SSL private key file.                        |
 | **API Settings**                    |                                  |                              |                                                      |
