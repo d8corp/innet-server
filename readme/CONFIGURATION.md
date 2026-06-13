@@ -139,6 +139,18 @@ INNET_SSL_KEY=./certs/server.key
 ## API Settings
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / API Settings [↑](#server-settings) [↓](#cms-settings)
 
+<sub>
+  <details>
+    <summary>&nbsp;🏷️️ Settings</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#innet_api_prefix">INNET_API_PREFIX</a></p>
+      <p>├  🏷️ <a href="#innet_api_version">INNET_API_VERSION</a></p>
+      <p>╘  🏷️ <a href="#innet_api_enum_description_key">INNET_API_ENUM_DESCRIPTION_KEY</a></p>
+    </blockquote>
+  </details>
+</sub>
+
 Define API prefix, version, and customize how enums are described in your OpenAPI specification.
 
 ### <a id="innet_api_prefix">INNET_API_PREFIX</a>
@@ -177,6 +189,17 @@ INNET_API_ENUM_DESCRIPTION_KEY=x-enum-descriptions
 ## CMS Settings
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / CMS Settings [↑](#api-settings) [↓](#security-settings)
 
+<sub>
+  <details>
+    <summary>&nbsp;🏷️️ Settings</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#innet_cms_dir">INNET_CMS_DIR</a></p>
+      <p>╘  🏷️ <a href="#innet_cms_prefix">INNET_CMS_PREFIX</a></p>
+    </blockquote>
+  </details>
+</sub>
+
 ### <a id="innet_cms_dir">INNET_CMS_DIR</a>
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / [CMS Settings](#cms-settings) / INNET_CMS_DIR [↓](#innet_cms_prefix)
 Directory for static CMS files.
@@ -201,6 +224,22 @@ INNET_CMS_PREFIX=/static
 
 ## Security Settings
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / Security Settings [↑](#cms-settings) [↓](#documentation-settings)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️️ Settings</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#innet_blacklist_ip">INNET_BLACKLIST_IP</a></p>
+      <p>├  🏷️ <a href="#innet_whitelist_ip">INNET_WHITELIST_IP</a></p>
+      <p>├  🏷️ <a href="#innet_protection">INNET_PROTECTION</a></p>
+      <p>├  🏷️ <a href="#innet_protection_max_age">INNET_PROTECTION_MAX_AGE</a></p>
+      <p>├  🏷️ <a href="#innet_protection_cookie_key">INNET_PROTECTION_COOKIE_KEY</a></p>
+      <p>├  🏷️ <a href="#innet_protection_search_key">INNET_PROTECTION_SEARCH_KEY</a></p>
+      <p>╘  🏷️ <a href="#innet_protected_ip">INNET_PROTECTED_IP</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 Manage IP filtering, protection tokens, and security policies for your server.
 
@@ -283,6 +322,18 @@ INNET_PROTECTED_IP=127.0.0.1
 
 ## Documentation Settings
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / Documentation Settings [↑](#security-settings)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️️ Settings</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#innet_dts_path">INNET_DTS_PATH</a></p>
+      <p>├  🏷️ <a href="#innet_dts_namespace">INNET_DTS_NAMESPACE</a></p>
+      <p>╘  🏷️ <a href="#innet_ui_path">INNET_UI_PATH</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 Configure TypeScript definition generation and API documentation UI settings.
 
