@@ -1,5 +1,5 @@
 # Configuration
-###### [🏠︎](#index) / Configuration [↑](#quick-start) [↓](#components)
+###### [🏠︎](./README.md) / Configuration [↑](#quick-start) [↓](#components)
 
 <sub>
   <details>
@@ -16,7 +16,7 @@
         </blockquote>
       </details>
       <details>
-        <summary>&nbsp;📁️ API Settings</summary>
+        <summary>&nbsp;📁️ <a href="#api-settings">API Settings</a></summary>
         <blockquote>
           <p></p>
           <p>├  🏷️ <a href="#innet_api_prefix">INNET_API_PREFIX</a></p>
@@ -25,7 +25,7 @@
         </blockquote>
       </details>
       <details>
-        <summary>&nbsp;📁️ CMS Settings</summary>
+        <summary>&nbsp;📁️ <a href="#cms-settings">CMS Settings</a></summary>
         <blockquote>
           <p></p>
           <p>├  🏷️ <a href="#innet_cms_dir">INNET_CMS_DIR</a></p>
@@ -33,7 +33,7 @@
         </blockquote>
       </details>
       <details>
-        <summary>&nbsp;📁️ Security Settings</summary>
+        <summary>&nbsp;📁️ <a href="#security-settings">Security Settings</a></summary>
         <blockquote>
           <p></p>
           <p>├  🏷️ <a href="#innet_blacklist_ip">INNET_BLACKLIST_IP</a></p>
@@ -46,7 +46,7 @@
         </blockquote>
       </details>
       <details>
-        <summary>&nbsp;📁️ Documentation Settings</summary>
+        <summary>&nbsp;📁️ <a href="#documentation-settings">Documentation Settings</a></summary>
         <blockquote>
           <p></p>
           <p>├  🏷️ <a href="#innet_dts_path">INNET_DTS_PATH</a></p>
@@ -61,11 +61,11 @@
 
 Configure the server and API behavior using environment variables.
 
-### Server Settings
-###### [🏠︎](#index) / [Configuration](#configuration) / Server Settings [↓](#components)
+## Server Settings
+###### [🏠︎](./README.md) / [Configuration](#configuration) / Server Settings [↓](#components)
 
-#### INNET_PORT
-###### [🏠︎](#index) / [Configuration](#configuration) / [Server Settings](#server-settings) [↓](#innet_ssl_crt)
+### INNET_PORT
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Server Settings](#server-settings) [↓](#innet_ssl_crt)
 Server port number.
 
 - **Default:** `80` (HTTP) or `443` (HTTPS)
@@ -75,7 +75,7 @@ Server port number.
 INNET_PORT=3000
 ```
 
-#### INNET_SSL_CRT
+### INNET_SSL_CRT
 Path to SSL certificate file.
 
 - **Default:** `localhost.crt`
@@ -85,7 +85,7 @@ Path to SSL certificate file.
 INNET_SSL_CRT=./certs/server.crt
 ```
 
-#### <a id="innet_ssl_key">INNET_SSL_KEY</a>
+### <a id="innet_ssl_key">INNET_SSL_KEY</a>
 Path to SSL private key file.
 
 - **Default:** `localhost.key`
@@ -95,9 +95,9 @@ Path to SSL private key file.
 INNET_SSL_KEY=./certs/server.key
 ```
 
-### API Settings
+## API Settings
 
-#### <a id="innet_api_prefix">INNET_API_PREFIX</a>
+### <a id="innet_api_prefix">INNET_API_PREFIX</a>
 URL prefix for all API endpoints.
 
 - **Default:** `''` (empty string)
@@ -107,7 +107,7 @@ URL prefix for all API endpoints.
 INNET_API_PREFIX=/api/v1
 ```
 
-#### <a id="innet_api_version">INNET_API_VERSION</a>
+### <a id="innet_api_version">INNET_API_VERSION</a>
 API version string.
 
 - **Default:** `'0.0.0'`
@@ -117,7 +117,7 @@ API version string.
 INNET_API_VERSION=1.0.0
 ```
 
-#### <a id="innet_api_enum_description_key">INNET_API_ENUM_DESCRIPTION_KEY</a>
+### <a id="innet_api_enum_description_key">INNET_API_ENUM_DESCRIPTION_KEY</a>
 Key name for enum descriptions in OpenAPI spec.
 
 - **Default:** `'x-enumNames'`
@@ -127,9 +127,9 @@ Key name for enum descriptions in OpenAPI spec.
 INNET_API_ENUM_DESCRIPTION_KEY=x-enum-descriptions
 ```
 
-### CMS Settings
+## CMS Settings
 
-#### <a id="innet_cms_dir">INNET_CMS_DIR</a>
+### <a id="innet_cms_dir">INNET_CMS_DIR</a>
 Directory for static CMS files.
 
 - **Default:** `'.'`
@@ -139,7 +139,7 @@ Directory for static CMS files.
 INNET_CMS_DIR=./public
 ```
 
-#### <a id="innet_cms_prefix">INNET_CMS_PREFIX</a>
+### <a id="innet_cms_prefix">INNET_CMS_PREFIX</a>
 URL prefix for CMS routes.
 
 - **Default:** `'/'`
@@ -149,9 +149,9 @@ URL prefix for CMS routes.
 INNET_CMS_PREFIX=/static
 ```
 
-### Security Settings
+## Security Settings
 
-#### <a id="innet_blacklist_ip">INNET_BLACKLIST_IP</a>
+### <a id="innet_blacklist_ip">INNET_BLACKLIST_IP</a>
 IP address to blacklist.
 
 - **Default:** `undefined`
@@ -161,7 +161,7 @@ IP address to blacklist.
 INNET_BLACKLIST_IP=192.168.1.100
 ```
 
-#### <a id="innet_whitelist_ip">INNET_WHITELIST_IP</a>
+### <a id="innet_whitelist_ip">INNET_WHITELIST_IP</a>
 IP address to whitelist.
 
 - **Default:** `undefined`
@@ -171,7 +171,7 @@ IP address to whitelist.
 INNET_WHITELIST_IP=10.0.0.1
 ```
 
-#### <a id="innet_protection">INNET_PROTECTION</a>
+### <a id="innet_protection">INNET_PROTECTION</a>
 Protection token value.
 
 - **Default:** `undefined`
@@ -181,7 +181,7 @@ Protection token value.
 INNET_PROTECTION=secret-token
 ```
 
-#### <a id="innet_protection_max_age">INNET_PROTECTION_MAX_AGE</a>
+### <a id="innet_protection_max_age">INNET_PROTECTION_MAX_AGE</a>
 Protection token max age in seconds.
 
 - **Default:** `31536000` (1 year)
@@ -191,7 +191,7 @@ Protection token max age in seconds.
 INNET_PROTECTION_MAX_AGE=86400
 ```
 
-#### <a id="innet_protection_cookie_key">INNET_PROTECTION_COOKIE_KEY</a>
+### <a id="innet_protection_cookie_key">INNET_PROTECTION_COOKIE_KEY</a>
 Cookie name for protection token.
 
 - **Default:** `'protection'`
@@ -201,7 +201,7 @@ Cookie name for protection token.
 INNET_PROTECTION_COOKIE_KEY=auth_token
 ```
 
-#### <a id="innet_protection_search_key">INNET_PROTECTION_SEARCH_KEY</a>
+### <a id="innet_protection_search_key">INNET_PROTECTION_SEARCH_KEY</a>
 Query parameter name for protection token.
 
 - **Default:** `'protection'`
@@ -211,7 +211,7 @@ Query parameter name for protection token.
 INNET_PROTECTION_SEARCH_KEY=token
 ```
 
-#### <a id="innet_protected_ip">INNET_PROTECTED_IP</a>
+### <a id="innet_protected_ip">INNET_PROTECTED_IP</a>
 IP address to exclude from protection.
 
 - **Default:** `undefined`
@@ -221,9 +221,9 @@ IP address to exclude from protection.
 INNET_PROTECTED_IP=127.0.0.1
 ```
 
-### Documentation Settings
+## Documentation Settings
 
-#### <a id="innet_dts_path">INNET_DTS_PATH</a>
+### <a id="innet_dts_path">INNET_DTS_PATH</a>
 Path for generated TypeScript definition file.
 
 - **Default:** `'src/apiTypes.d.ts'`
@@ -233,7 +233,7 @@ Path for generated TypeScript definition file.
 INNET_DTS_PATH=./types/api.d.ts
 ```
 
-#### <a id="innet_dts_namespace">INNET_DTS_NAMESPACE</a>
+### <a id="innet_dts_namespace">INNET_DTS_NAMESPACE</a>
 Namespace for generated TypeScript types.
 
 - **Default:** `undefined`
@@ -243,7 +243,7 @@ Namespace for generated TypeScript types.
 INNET_DTS_NAMESPACE=API
 ```
 
-#### <a id="innet_ui_path">INNET_UI_PATH</a>
+### <a id="innet_ui_path">INNET_UI_PATH</a>
 URL path for API documentation UI.
 
 - **Default:** `'/ui'`
@@ -253,7 +253,7 @@ URL path for API documentation UI.
 INNET_UI_PATH=/docs
 ```
 
-#### <a id="innet_swagger_path">INNET_SWAGGER_PATH</a>
+### <a id="innet_swagger_path">INNET_SWAGGER_PATH</a>
 URL path for Swagger UI.
 
 - **Default:** `'/swagger-ui'`
