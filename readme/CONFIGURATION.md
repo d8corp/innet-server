@@ -101,6 +101,7 @@ INNET_PORT=3000
 ```
 
 ### <a id="innet_ssl_crt">INNET_SSL_CRT</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Server Settings](#server-settings) / INNET_SSL_CRT [↓](#innet_ssl_key)
 Path to SSL certificate file.
 
 - **Default:** `localhost.crt`
@@ -111,6 +112,7 @@ INNET_SSL_CRT=./certs/server.crt
 ```
 
 ### <a id="innet_ssl_key">INNET_SSL_KEY</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Server Settings](#server-settings) / INNET_SSL_KEY [↓](#api-settings)
 Path to SSL private key file.
 
 - **Default:** `localhost.key`
@@ -240,6 +242,7 @@ INNET_PROTECTION_COOKIE_KEY=auth_token
 ```
 
 ### <a id="innet_protection_search_key">INNET_PROTECTION_SEARCH_KEY</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Security Settings](#security-settings) / INNET_PROTECTION_SEARCH_KEY [↓](#innet_protected_ip)
 Query parameter name for protection token.
 
 - **Default:** `'protection'`
@@ -250,6 +253,7 @@ INNET_PROTECTION_SEARCH_KEY=token
 ```
 
 ### <a id="innet_protected_ip">INNET_PROTECTED_IP</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Security Settings](#security-settings) / INNET_PROTECTED_IP [↓](#documentation-settings)
 IP address to exclude from protection.
 
 - **Default:** `undefined`
@@ -260,8 +264,10 @@ INNET_PROTECTED_IP=127.0.0.1
 ```
 
 ## Documentation Settings
+###### [🏠︎](./README.md) / [Configuration](#configuration) / Documentation Settings [↓](#innet_dts_path)
 
 ### <a id="innet_dts_path">INNET_DTS_PATH</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Documentation Settings](#documentation-settings) / INNET_DTS_PATH [↓](#innet_dts_namespace)
 Path for generated TypeScript definition file.
 
 - **Default:** `'src/apiTypes.d.ts'`
@@ -272,6 +278,7 @@ INNET_DTS_PATH=./types/api.d.ts
 ```
 
 ### <a id="innet_dts_namespace">INNET_DTS_NAMESPACE</a>
+###### [🏠︎](./README.md) / [Configuration](#configuration) / [Documentation Settings](#documentation-settings) / INNET_DTS_NAMESPACE [↓](#innet_ui_path)
 Namespace for generated TypeScript types.
 
 - **Default:** `undefined`
