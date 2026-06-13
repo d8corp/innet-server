@@ -89,6 +89,8 @@ Configure the server and API behavior using environment variables.
 ## Server Settings
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / Server Settings [↓](#components)
 
+Configure the port and SSL certificate settings for your server.
+
 ### <a id="innet_port">INNET_PORT</a>
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / [Server Settings](#server-settings) / INNET_PORT [↓](#innet_ssl_crt)
 Server port number.
@@ -124,6 +126,8 @@ INNET_SSL_KEY=./certs/server.key
 
 ## API Settings
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / API Settings [↓](#cms-settings)
+
+Define API prefix, version, and customize how enums are described in your OpenAPI specification.
 
 ### <a id="innet_api_prefix">INNET_API_PREFIX</a>
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / [API Settings](#api-settings) / INNET_API_PREFIX [↓](#innet_api_version)
@@ -185,6 +189,8 @@ INNET_CMS_PREFIX=/static
 
 ## Security Settings
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / Security Settings [↓](#documentation-settings)
+
+Manage IP filtering, protection tokens, and security policies for your server.
 
 ### <a id="innet_blacklist_ip">INNET_BLACKLIST_IP</a>
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / [Security Settings](#security-settings) / INNET_BLACKLIST_IP [↓](#innet_whitelist_ip)
@@ -265,6 +271,8 @@ INNET_PROTECTED_IP=127.0.0.1
 
 ## Documentation Settings
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / Documentation Settings [↓](#innet_dts_path)
+
+Configure TypeScript definition generation and API documentation UI settings.
 
 ### <a id="innet_dts_path">INNET_DTS_PATH</a>
 ###### [🏠︎](./README.md) / [Configuration](#configuration) / [Documentation Settings](#documentation-settings) / INNET_DTS_PATH [↓](#innet_dts_namespace)
