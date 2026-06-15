@@ -2002,7 +2002,42 @@ Optional group name for organizing multiple tags into logical sections in the do
 </endpoint>
 ```
 
----
+## Body
+###### [🏠︎](./README.md) / [API Elements](#api-elements) / Body [↑](#param) [↓](#response)
+
+Define the structure and validation rules for the request body that your endpoint accepts. The body schema is automatically validated on every request and documented in OpenAPI. You can specify required/optional fields, data types, and validation constraints.
+
+Define request body structure:
+
+```typescript jsx
+<body>
+  <object>
+    <field key='name' required>
+      <string min={1} max={100} />
+    </field>
+    <field key='age' optional>
+      <integer min={0} max={150} />
+    </field>
+    <field key='email'>
+      <string format='email' />
+    </field>
+  </object>
+</body>
+```
+
+Place `<body>` inside an `<endpoint>` to define what request data is expected. The body content should be a schema type (`<object>`, `<array>`, or a primitive type).
+
+```typescript jsx
+<endpoint method='post' path='/users'>
+  <body>
+    <object>
+      <field key='name' required>
+        <string />
+      </field>
+    </object>
+  </body>
+</endpoint>
+```
 
 ## Param
 ###### [🏠︎](./README.md) / [API Elements](#api-elements) / Param [↑](#endpoint) [↓](#body)
@@ -2080,43 +2115,6 @@ Mark the parameter as deprecated.
 <param in='query' name='oldParam' deprecated />
 ```
 
-## Body
-###### [🏠︎](./README.md) / [API Elements](#api-elements) / Body [↑](#param) [↓](#response)
-
-Define the structure and validation rules for the request body that your endpoint accepts. The body schema is automatically validated on every request and documented in OpenAPI. You can specify required/optional fields, data types, and validation constraints.
-
-Define request body structure:
-
-```typescript jsx
-<body>
-  <object>
-    <field key='name' required>
-      <string min={1} max={100} />
-    </field>
-    <field key='age' optional>
-      <integer min={0} max={150} />
-    </field>
-    <field key='email'>
-      <string format='email' />
-    </field>
-  </object>
-</body>
-```
-
-Place `<body>` inside an `<endpoint>` to define what request data is expected. The body content should be a schema type (`<object>`, `<array>`, or a primitive type).
-
-```typescript jsx
-<endpoint method='post' path='/users'>
-  <body>
-    <object>
-      <field key='name' required>
-        <string />
-      </field>
-    </object>
-  </body>
-</endpoint>
-```
-
 ## Response
 ###### [🏠︎](./README.md) / [API Elements](#api-elements) / Response [↑](#body)
 
@@ -2186,35 +2184,6 @@ Place `<response>` inside an `<endpoint>` to define multiple possible responses:
 </endpoint>
 ```
 
-## Customization
-###### [🏠︎](./README.md) / Customization [↑](#schema-types)
-
-### Configuration
-###### [🏠︎](./README.md) / [Customization](#customization) / Configuration [↓](#utils)
-
-Configure your server with environment variables and props. Use these settings to customize port, API version, SSL certificates, and other server behavior for different environments (development, staging, production).
-
-**Environment Variables:**
-- `INNET_PORT` — Server port (default: `80` or `443`)
-- `INNET_API_VERSION` — API version (default: `0.0.0`)
-- `INNET_API_PREFIX` — API URL prefix (default: empty)
-- `INNET_UI_PATH` — Swagger UI path (default: `/ui`)
-- `INNET_SSL_KEY` / `INNET_SSL_CRT` — HTTPS certificates
-- `NODE_ENV` — Environment (dev, prod, etc.)
-
-**Server Setup:**
-```typescript jsx
-<server
-  port={3000}
-  ssl={{
-    cert: './localhost.crt',
-    key: './localhost.key'
-  }}
-  onStart={() => console.log('Server started')}
-  onError={(error) => console.error(error)}
->
-  {/* ... */}
-</server>
-```
+---
 
 #### [← Quick Start](./QUICK_START.md) | [Schemas →](./SCHEMAS.md)
