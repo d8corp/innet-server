@@ -385,3 +385,7 @@ URL path for API documentation UI.
 ```shell
 INNET_UI_PATH=/docs
 ```
+
+---
+
+#### [← Hooks](./HOOKS.md)
