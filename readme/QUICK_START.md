@@ -268,6 +268,8 @@ export async function SetToken ({ value }: SetTokenProps) {
 
 You can use [hooks](./HOOKS.md) inside components.
 
+---
+
 #### [Elements →](./ELEMENTS.md)
 
 
