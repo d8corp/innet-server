@@ -2002,6 +2002,91 @@ Optional group name for organizing multiple tags into logical sections in the do
 </endpoint>
 ```
 
+#### <a id="endpoint-method">method</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / method [↓](#endpoint-path)
+
+HTTP method for the endpoint.
+
+- Type: `'get' | 'post' | 'put' | 'patch' | 'delete' | 'head' | 'options'`
+- Required: Yes
+
+```typescript jsx
+<endpoint method='get' path='/users' />
+```
+
+#### <a id="endpoint-path">path</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / path [↑](#endpoint-method) [↓](#endpoint-summary)
+
+URL path for the endpoint. Can contain path parameters in curly braces.
+
+- Type: `string`
+- Required: Yes
+
+```typescript jsx
+<endpoint method='get' path='/users/{id}' />
+```
+
+#### <a id="endpoint-summary">summary</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / summary [↑](#endpoint-path) [↓](#endpoint-description)
+
+Brief summary of the endpoint.
+
+- Type: `string`
+
+```typescript jsx
+<endpoint method='get' path='/users' summary='Get all users' />
+```
+
+#### <a id="endpoint-description">description</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / description [↑](#endpoint-summary) [↓](#endpoint-deprecated)
+
+Detailed description of the endpoint. CommonMark (Markdown) syntax is supported.
+
+- Type: `string`
+
+```typescript jsx
+<endpoint 
+  method='get' 
+  path='/users' 
+  description='Retrieves a list of **all users** in the system'
+/>
+```
+
+#### <a id="endpoint-deprecated">deprecated</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / deprecated [↑](#endpoint-description) [↓](#endpoint-private)
+
+Mark the endpoint as deprecated.
+
+- Type: `boolean`
+- Default: `false`
+
+```typescript jsx
+<endpoint method='get' path='/old-endpoint' deprecated />
+```
+
+#### <a id="endpoint-private">private</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / private [↑](#endpoint-deprecated) [↓](#endpoint-operationid)
+
+Hide the endpoint from OpenAPI documentation.
+
+- Type: `boolean`
+- Default: `false`
+
+```typescript jsx
+<endpoint method='get' path='/internal' private />
+```
+
+#### <a id="endpoint-operationid">operationId</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / operationId [↑](#endpoint-private)
+
+Unique identifier for the operation, used to identify the operation in OpenAPI.
+
+- Type: `string`
+
+```typescript jsx
+<endpoint method='get' path='/users' operationId='getAllUsers' />
+```
+
 ## Body
 ###### [🏠︎](./README.md) / [API Elements](#api-elements) / Body [↑](#param) [↓](#response)
 
