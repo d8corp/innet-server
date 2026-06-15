@@ -2088,7 +2088,7 @@ Unique identifier for the operation, used to identify the operation in OpenAPI.
 ```
 
 ## Body
-###### [🏠︎](./README.md) / [API Elements](#api-elements) / Body [↑](#param) [↓](#response)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / Body [↑](#param) [↓](#response)
 
 Define the structure and validation rules for the request body that your endpoint accepts. The body schema is automatically validated on every request and documented in OpenAPI. You can specify required/optional fields, data types, and validation constraints.
 
@@ -2125,7 +2125,21 @@ Place `<body>` inside an `<endpoint>` to define what request data is expected. T
 ```
 
 ## Param
-###### [🏠︎](./README.md) / [API Elements](#api-elements) / Param [↑](#endpoint) [↓](#body)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / Param [↑](#body) [↓](#response)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#param-in">in</a></p>
+      <p>├  🏷️ <a href="#param-name">name</a></p>
+      <p>├  🏷️ <a href="#param-description">description</a></p>
+      <p>├  🏷️ <a href="#param-required">required</a></p>
+      <p>╘  🏷️ <a href="#param-deprecated">deprecated</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 Parameters allow you to specify query parameters, path parameters, headers, and cookies that your endpoint accepts. You define the parameter name, location, and validation schema. Parameters are automatically validated and documented in OpenAPI.
 
@@ -2146,6 +2160,7 @@ Define endpoint parameters (query, header, cookie, path):
 ```
 
 #### <a id="param-in">in</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / [Param](#param) / in [↓](#param-name)
 
 The location of the parameter.
 
@@ -2157,6 +2172,7 @@ The location of the parameter.
 ```
 
 #### <a id="param-name">name</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / [Param](#param) / name [↑](#param-in) [↓](#param-description)
 
 The name of the parameter. Parameter names are case-sensitive.
 
@@ -2168,6 +2184,7 @@ The name of the parameter. Parameter names are case-sensitive.
 ```
 
 #### <a id="param-description">description</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / [Param](#param) / description [↑](#param-name) [↓](#param-required)
 
 A brief description of the parameter.
 
@@ -2179,6 +2196,7 @@ A brief description of the parameter.
 ```
 
 #### <a id="param-required">required</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / [Param](#param) / required [↑](#param-description) [↓](#param-deprecated)
 
 Whether the parameter is mandatory.
 
@@ -2190,6 +2208,7 @@ Whether the parameter is mandatory.
 ```
 
 #### <a id="param-deprecated">deprecated</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / [Param](#param) / deprecated [↑](#param-required)
 
 Mark the parameter as deprecated.
 
@@ -2201,7 +2220,18 @@ Mark the parameter as deprecated.
 ```
 
 ## Response
-###### [🏠︎](./README.md) / [API Elements](#api-elements) / Response [↑](#body)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / Response [↑](#param)
+
+<sub>
+  <details>
+    <summary>&nbsp;🏷️ Props</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🏷️ <a href="#response-status">status</a></p>
+      <p>╘  🏷️ <a href="#response-type">type</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 Define what your endpoint will return to clients. Specify the response status code, data structure, and fields. You can define multiple response types for different HTTP status codes. All responses are automatically validated and documented in OpenAPI.
 
@@ -2224,6 +2254,7 @@ Define response structure and status:
 ```
 
 #### <a id="response-status">status</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / [Response](#response) / status [↓](#response-type)
 
 The HTTP status code for this response.
 
@@ -2238,6 +2269,7 @@ The HTTP status code for this response.
 ```
 
 #### <a id="response-type">type</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / [Response](#response) / type [↑](#response-status)
 
 The media type of the response.
 
