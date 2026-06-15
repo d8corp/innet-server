@@ -60,6 +60,20 @@
 
 Configure the server and API behavior using environment variables.
 
+When developing with [innetjs](./QUICK_START.md#environment) you can create a `.env` file at the project root and place environment variables there for local development.
+This is useful to keep local settings (server port, API prefixes, test keys, etc.) outside of source code and avoid leaking them to CI.
+
+Example `.env` file:
+
+```env
+INNET_PORT=3000
+INNET_API_PREFIX=/api/v1
+INNET_PROTECTION=dev-secret-token
+```
+
+Note: loading a `.env` file depends on your project setup (for example via the `dotenv` package or your bundler/dev server). 
+In production you should provide environment variables at the system or CI/CD level — treat the `.env` file as a local development convenience only.
+
 | Parameter                           | Default                         | Used by                      | Description                                          |
 |-------------------------------------|----------------------------------|------------------------------|------------------------------------------------------|
 | **Server Settings**                 |                                  |                              |                                                      |
