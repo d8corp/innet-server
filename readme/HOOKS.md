@@ -1,6 +1,41 @@
 # Hooks
 ###### [🏠︎](./README.md) / Hooks [↑](./SCHEMAS.md) [↓](./CONFIGURATION.md)
 
+<sub>
+  <details>
+    <summary>&nbsp;📁 Sections</summary>
+    <blockquote>
+      <p></p>
+      <details>
+        <summary>&nbsp;📁 <a href="#runtime-hooks">Runtime</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🪝 <a href="#userequest">useRequest</a></p>
+          <p>├  🪝 <a href="#useresponse">useResponse</a></p>
+          <p>├  🪝 <a href="#usepath">usePath</a></p>
+          <p>├  🪝 <a href="#useheaders">useHeaders</a></p>
+          <p>├  🪝 <a href="#usecookies">useCookies</a></p>
+          <p>├  🪝 <a href="#useparams">useParams</a></p>
+          <p>├  🪝 <a href="#usesearch">useSearch</a></p>
+          <p>├  🪝 <a href="#usebody">useBody</a></p>
+          <p>╘  🪝 <a href="#useclientip">useClientIp</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;📁 <a href="shared-hooks">Shared</a></summary>
+        <blockquote>
+          <p></p>
+          <p>├  🪝 <a href="#useserver">useServer</a></p>
+          <p>├  🪝 <a href="#useserverport">useServerPort</a></p>
+          <p>├  🪝 <a href="#useisserverhttps">useIsServerHttps</a></p>
+          <p>├  🪝 <a href="#usecomponentname">useComponentName</a></p>
+          <p>╘  🪝 <a href="#useserverplugin">useServerPlugin</a></p>
+        </blockquote>
+      </details>
+    </blockquote>
+  </details>
+</sub>
+
 Hooks provide access to request/response context and server information inside components. They allow you to access HTTP headers, query parameters, body data, and more. Use them to implement request handling logic without manually passing props.
 
 **Request Data:**
