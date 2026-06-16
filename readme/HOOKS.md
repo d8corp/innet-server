@@ -38,23 +38,6 @@
 
 Hooks provide access to request/response context and server information inside components. They allow you to access HTTP headers, query parameters, body data, and more. Use them to implement request handling logic without manually passing props.
 
-**Request Data:**
-- `useRequest()` — HTTP request object
-- `useResponse()` — HTTP response object
-- `useHeaders()` — Request headers
-- `useCookies()` — Request cookies
-- `useParams()` — URL parameters
-- `useSearch()` — Query parameters
-- `useBody()` — Request body
-- `useClientIp()` — Client IP address
-- `usePath()` — Request path
-
-**Server Context:**
-- `useServer()` — HTTP server instance
-- `usePort()` — Server port
-- `useIsServerHttps()` — Is HTTPS?
-- `useComponentName()` — Current component name
-
 **Example:**
 ```typescript jsx
 import { useParams, useRequest } from '@innet/server'
