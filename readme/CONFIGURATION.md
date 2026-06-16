@@ -1,5 +1,5 @@
 # Configuration
-###### [🏠︎](./README.md) / Configuration [↑](./HOOKS.md) [↓](#components)
+###### [🏠︎](./README.md) / Configuration [↑](./HOOKS.md)
 
 <sub>
   <details>
