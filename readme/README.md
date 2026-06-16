@@ -441,3 +441,17 @@ For a quick overview and introduction, see the [main README](../README.md) in th
     </blockquote>
   </details>
 </sub>
+
+### Support the Project
+
+If this project has saved you time or helped you in your work, feel free to support its development.
+
+**USDT [TRC20]:**
+```
+TAuYWzaQJUc9mEMMMSQULjGf5HBwJ1KtzF
+```
+
+**USDT [TON]:**
+```
+UQBXPxkhCvJp3hDH800Q4o0MXakYj1Uo7aki2fFJfZ6la2Yh
+```
