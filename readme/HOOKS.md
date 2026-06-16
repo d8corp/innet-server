@@ -7,7 +7,7 @@
     <blockquote>
       <p></p>
       <details>
-        <summary>&nbsp;📁 <a href="#runtime-hooks">Runtime</a></summary>
+        <summary>&nbsp;📁 <a href="#runtime">Runtime</a></summary>
         <blockquote>
           <p></p>
           <p>├  🪝 <a href="#userequest">useRequest</a></p>
@@ -22,7 +22,7 @@
         </blockquote>
       </details>
       <details>
-        <summary>&nbsp;📁 <a href="shared-hooks">Shared</a></summary>
+        <summary>&nbsp;📁 <a href="shared">Shared</a></summary>
         <blockquote>
           <p></p>
           <p>├  🪝 <a href="#useserver">useServer</a></p>
