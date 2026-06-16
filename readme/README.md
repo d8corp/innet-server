@@ -442,8 +442,6 @@ For a quick overview and introduction, see the [main README](../README.md) in th
   </details>
 </sub>
 
-### Support the Project
-
 If this project has saved you time or helped you in your work, feel free to support its development.
 
 **USDT [TRC20]:**
