@@ -314,9 +314,9 @@ For a quick overview and introduction, see the [main README](../README.md) in th
             <summary>&nbsp;🧩 <a href="./SCHEMAS.md#array">&lt;array&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="./SCHEMAS.md#array-minitems">minItems</a></p>
-              <p>├  🏷️ <a href="./SCHEMAS.md#array-maxitems">maxItems</a></p>
-              <p>╘  🏷️ <a href="./SCHEMAS.md#array-uniqueitems">uniqueItems</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#array-min">min</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#array-max">max</a></p>
+              <p>╘  🏷️ <a href="./SCHEMAS.md#array-unique">unique</a></p>
             </blockquote>
           </details>
           <p>╘  🧩 <a href="./SCHEMAS.md#tuple">&lt;tuple&gt;</a></p>
