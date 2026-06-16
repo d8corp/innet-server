@@ -1,6 +1,6 @@
 # Schemas
 
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / Schemas [↑](https://github.com/d8corp/innet-server/blob/2.0/readme/README_ELEMENTS.md) [↓](#hooks)
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / Schemas [↑](./ELEMENTS.md) [↓](./HOOKS.md)
 
 <sub>
   <details>
