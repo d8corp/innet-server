@@ -66,3 +66,11 @@ Built on top of [innet](https://www.npmjs.com/package/innet).
 
 [![issues](https://img.shields.io/github/issues-raw/d8corp/innet-server)](https://github.com/d8corp/innet-server/issues)
 [![pulls](https://img.shields.io/github/issues-pr-raw/d8corp/innet-server)](https://github.com/d8corp/innet-server/pulls)
+
+### Support the Project
+
+If this project has saved you time or helped you in your work, feel free to support its development.
+
+- USDT TRC20: `TAuYWzaQJUc9mEMMMSQULjGf5HBwJ1KtzF`
+- USDT TON: `UQBXPxkhCvJp3hDH800Q4o0MXakYj1Uo7aki2fFJfZ6la2Yh`
+
