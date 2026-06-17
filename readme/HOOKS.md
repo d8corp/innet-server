@@ -59,7 +59,7 @@ export function GetUser() {
 ```
 
 ### Runtime
-###### [🏠︎](./README.md) / [Hooks](#hooks) / Runtime
+###### [🏠︎](./README.md) / [Hooks](#hooks) / Runtime [↓](#initialization)
 
 <sub>
   <details>
@@ -178,7 +178,7 @@ Returns the client IP address.
 const ip = useClientIp()
 ```
 
-### Initialization
+### Initialization [↑](#runtime) [↓](#shared)
 
 <sub>
   <details>
@@ -203,8 +203,8 @@ useServerPlugin(async () => {
 })
 ```
 
-### Initialization
-###### [🏠︎](./README.md) / [Hooks](#hooks) / Initialization
+### Shared
+###### [🏠︎](./README.md) / [Hooks](#hooks) / Shared  [↑](#initialization)
 
 <sub>
   <details>
