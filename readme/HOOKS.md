@@ -79,6 +79,8 @@ export function GetUser() {
   </details>
 </sub>
 
+These hooks can only be used inside a server plugin (useServerPlugin) during request handling. They are designed to process user requests and provide access to request/response data.
+
 #### useRequest
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useRequest
 
@@ -191,6 +193,8 @@ const ip = useClientIp()
   </details>
 </sub>
 
+These hooks are used only during initialization and cannot be used when processing user requests to the server.
+
 #### useServerPlugin
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useServerPlugin
 
@@ -219,6 +223,8 @@ useServerPlugin(async () => {
     </blockquote>
   </details>
 </sub>
+
+These hooks can be used both during initialization and when processing user requests to the server.
 
 #### useServer
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useServer
