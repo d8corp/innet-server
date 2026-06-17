@@ -82,7 +82,7 @@ export function GetUser() {
 These hooks can only be used inside a server plugin (useServerPlugin) during request handling. They are designed to process user requests and provide access to request/response data.
 
 ### useRequest
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useRequest
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useRequest [↓](#useresponse)
 
 Returns the HTTP request object.
 
@@ -93,7 +93,7 @@ const request = useRequest()
 ```
 
 ### useResponse
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useResponse
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useResponse [↑](#userequest) [↓](#usepath)
 
 Returns the HTTP response object.
 
@@ -104,7 +104,7 @@ const response = useResponse()
 ```
 
 ### usePath
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / usePath
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / usePath [↑](#useresponse) [↓](#useheaders)
 
 Returns the request path.
 
@@ -115,7 +115,7 @@ const path = usePath()
 ```
 
 ### useHeaders
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useHeaders
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useHeaders [↑](#usepath) [↓](#usecookies)
 
 Returns request headers.
 
@@ -126,7 +126,7 @@ const headers = useHeaders()
 ```
 
 ### useCookies
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useCookies
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useCookies [↑](#useheaders) [↓](#useparams)
 
 Returns request cookies.
 
@@ -137,7 +137,7 @@ const cookies = useCookies()
 ```
 
 ### useParams
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useParams
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useParams [↑](#usecookies) [↓](#usesearch)
 
 Returns URL path parameters.
 
@@ -148,7 +148,7 @@ const params = useParams()
 ```
 
 ### useSearch
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useSearch
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useSearch [↑](#useparams) [↓](#usebody)
 
 Returns query parameters.
 
@@ -159,7 +159,7 @@ const search = useSearch()
 ```
 
 ### useBody
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useBody
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useBody [↑](#usesearch) [↓](#useclientip)
 
 Returns the request body.
 
@@ -170,7 +170,7 @@ const body = useBody()
 ```
 
 ### useClientIp
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useClientIp
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useClientIp [↑](#usebody)
 
 Returns the client IP address.
 
@@ -231,7 +231,7 @@ function MyComponent () {
 These hooks can be used both during initialization and when processing user requests to the server.
 
 ### useServer
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useServer
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useServer [↓](#useserverport)
 
 Returns `ServerContext` with the server instance.
 
@@ -248,7 +248,7 @@ function MyComponent () {
 ```
 
 ### useServerPort
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useServerPort
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useServerPort [↑](#useserver) [↓](#useisserverhttps)
 
 Returns the server port.
 
@@ -261,7 +261,7 @@ function MyComponent () {
 ```
 
 ### useIsServerHttps
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useIsServerHttps
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useIsServerHttps [↑](#useserverport) [↓](#usecomponentname)
 
 Returns whether the server uses HTTPS.
 
@@ -274,7 +274,7 @@ function MyComponent () {
 ```
 
 ### useComponentName
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useComponentName
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useComponentName [↑](#useisserverhttps)
 
 Returns the current component name. Useful for debugging.
 
