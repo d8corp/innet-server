@@ -82,7 +82,7 @@ export function GetUser() {
 These hooks can only be used inside a server plugin (useServerPlugin) during request handling. They are designed to process user requests and provide access to request/response data.
 
 #### useRequest
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useRequest
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useRequest
 
 Returns the HTTP request object.
 
@@ -93,7 +93,7 @@ const request = useRequest()
 ```
 
 #### useResponse
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useResponse
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useResponse
 
 Returns the HTTP response object.
 
@@ -104,7 +104,7 @@ const response = useResponse()
 ```
 
 #### usePath
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / usePath
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / usePath
 
 Returns the request path.
 
@@ -115,7 +115,7 @@ const path = usePath()
 ```
 
 #### useHeaders
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useHeaders
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useHeaders
 
 Returns request headers.
 
@@ -126,7 +126,7 @@ const headers = useHeaders()
 ```
 
 #### useCookies
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useCookies
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useCookies
 
 Returns request cookies.
 
@@ -137,7 +137,7 @@ const cookies = useCookies()
 ```
 
 #### useParams
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useParams
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useParams
 
 Returns URL path parameters.
 
@@ -148,7 +148,7 @@ const params = useParams()
 ```
 
 #### useSearch
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useSearch
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useSearch
 
 Returns query parameters.
 
@@ -159,7 +159,7 @@ const search = useSearch()
 ```
 
 #### useBody
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useBody
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useBody
 
 Returns the request body.
 
@@ -170,7 +170,7 @@ const body = useBody()
 ```
 
 #### useClientIp
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useClientIp
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useClientIp
 
 Returns the client IP address.
 

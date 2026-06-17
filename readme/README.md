@@ -389,7 +389,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
     <blockquote>
       <p></p>
       <details>
-        <summary>&nbsp;📁 <a href="./HOOKS.md#runtime-hooks">Runtime</a></summary>
+        <summary>&nbsp;📁 <a href="./HOOKS.md#runtime">Runtime</a></summary>
         <blockquote>
           <p></p>
           <p>├  🪝 <a href="./HOOKS.md#userequest">useRequest</a></p>
