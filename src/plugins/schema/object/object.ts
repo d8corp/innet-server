@@ -1,6 +1,8 @@
 import { type HandlerPlugin, innet, useNewHandler } from 'innet'
 import { useContext, useProps } from '@innet/jsx'
 
+import { formatObjectChildren } from './helpers'
+
 import {
   bodyContext,
   objectRuleContext,
@@ -28,6 +30,7 @@ export const object: HandlerPlugin = () => {
     children,
     ...props
   } = useProps<ObjectProps>()
+
   const isBody = Boolean(useContext(bodyContext))
   const hasRules = !isBody || !props.readOnly
   const { refRules } = useApi()
@@ -82,7 +85,7 @@ export const object: HandlerPlugin = () => {
       parentRuleContext.reset(handler)
     }
 
-    innet(children, handler)
+    innet(formatObjectChildren(children), handler)
   } else if (props.ref && hasRules) {
     useRule(refRules[props.ref])
   }

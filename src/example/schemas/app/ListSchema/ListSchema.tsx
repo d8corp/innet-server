@@ -8,10 +8,10 @@ export function ListSchema ({
   key,
 }: ListSchemaProps) {
   return (
-    <object description='test1'>
-      <field key='page'><integer default={1} /></field>
-      <field key='pageSize'><number example={10} /></field>
-      <field key='count'><number default={11} /></field>
+    <object>
+      page: <integer default={1} />
+      pageSize: <number example={10} />
+      count: <number default={11} />
       <field key={key}>
         <array>
           {children}

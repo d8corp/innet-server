@@ -374,6 +374,19 @@ Objects represent structured data with named fields.
 Use `<object>` to define complex schemas with multiple properties, each with its own type and validation rules.
 Objects can be nested to create deeply structured data models.
 
+#### Simple Fields
+
+```typescript jsx
+<object description='User object'>
+  id: <uuid readOnly />
+  name: <string min={1} max={100} />
+  email: <string format='email' />
+  role?: <string default='user' values={['admin', 'user', 'guest']} />
+</object>
+```
+
+#### Detailed Fields
+
 ```typescript jsx
 <object description='User object'>
   <field key='id' readOnly>

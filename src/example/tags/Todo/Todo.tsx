@@ -26,8 +26,8 @@ export function Todo () {
         <param in='path' name='todoId'><uuid /></param>
         <body>
           <object>
-            <field key='done' optional><boolean /></field>
-            <field key='title' optional><string /></field>
+            done?: <boolean />
+            title?: <string />
           </object>
         </body>
         <return><EditTodo /></return>
