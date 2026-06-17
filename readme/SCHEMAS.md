@@ -59,7 +59,7 @@
         </blockquote>
       </details>
       <details>
-        <summary>&nbsp;📁 <a href="#primitive-data">Primitives</a></summary>
+        <summary>&nbsp;📁 <a href="#primitives">Primitives</a></summary>
         <blockquote>
           <p></p>
           <details>

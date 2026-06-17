@@ -323,7 +323,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
         </blockquote>
       </details>
       <details>
-        <summary>&nbsp;📁 <a href="./SCHEMAS.md#primitive-data">Primitives</a></summary>
+        <summary>&nbsp;📁 <a href="./SCHEMAS.md#primitives">Primitives</a></summary>
         <blockquote>
           <p></p>
           <details>
