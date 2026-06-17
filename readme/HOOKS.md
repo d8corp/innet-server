@@ -203,9 +203,13 @@ Registers a server plugin.
 - **Returns:** `void`
 
 ```typescript
-useServerPlugin(async () => {
-  // plugin logic
-})
+function MyComponent () {
+  // Initialisation
+
+  useServerPlugin(async () => {
+    // User request
+  })
+}
 ```
 
 ## Shared
