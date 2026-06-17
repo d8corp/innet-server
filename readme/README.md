@@ -404,14 +404,20 @@ For a quick overview and introduction, see the [main README](../README.md) in th
         </blockquote>
       </details>
       <details>
+        <summary>&nbsp;📁 <a href="./HOOKS.md#initialization">Initialization</a></summary>
+        <blockquote>
+          <p></p>
+          <p>╘  🪝 <a href="./HOOKS.md#useserverplugin">useServerPlugin</a></p>
+        </blockquote>
+      </details>
+      <details>
         <summary>&nbsp;📁 <a href="./HOOKS.md#shared-hooks">Shared</a></summary>
         <blockquote>
           <p></p>
           <p>├  🪝 <a href="./HOOKS.md#useserver">useServer</a></p>
           <p>├  🪝 <a href="./HOOKS.md#useserverport">useServerPort</a></p>
           <p>├  🪝 <a href="./HOOKS.md#useisserverhttps">useIsServerHttps</a></p>
-          <p>├  🪝 <a href="./HOOKS.md#usecomponentname">useComponentName</a></p>
-          <p>╘  🪝 <a href="./HOOKS.md#useserverplugin">useServerPlugin</a></p>
+          <p>╘  🪝 <a href="./HOOKS.md#usecomponentname">useComponentName</a></p>
         </blockquote>
       </details>
     </blockquote>

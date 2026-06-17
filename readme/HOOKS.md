@@ -22,21 +22,29 @@
         </blockquote>
       </details>
       <details>
-        <summary>&nbsp;📁 <a href="#shared">Shared</a></summary>
+        <summary>&nbsp;📁 <a href="#initialization">Initialization</a></summary>
+        <blockquote>
+          <p></p>
+          <p>╘  🪝 <a href="#useserverplugin">useServerPlugin</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;📁 <a href="#initialization">Initialization</a></summary>
         <blockquote>
           <p></p>
           <p>├  🪝 <a href="#useserver">useServer</a></p>
           <p>├  🪝 <a href="#useserverport">useServerPort</a></p>
           <p>├  🪝 <a href="#useisserverhttps">useIsServerHttps</a></p>
-          <p>├  🪝 <a href="#usecomponentname">useComponentName</a></p>
-          <p>╘  🪝 <a href="#useserverplugin">useServerPlugin</a></p>
+          <p>╘  🪝 <a href="#usecomponentname">useComponentName</a></p>
         </blockquote>
       </details>
     </blockquote>
   </details>
 </sub>
 
-Hooks provide access to request/response context and server information inside components. They allow you to access HTTP headers, query parameters, body data, and more. Use them to implement request handling logic without manually passing props.
+Hooks provide access to request/response context and server information inside components.
+They allow you to access HTTP headers, query parameters, body data, and more.
+Use them to implement request handling logic.
 
 **Example:**
 ```typescript jsx
@@ -152,11 +160,26 @@ Returns the client IP address.
 const ip = useClientIp()
 ```
 
-### Shared
-###### [🏠︎](./README.md) / [Hooks](#hooks) / Shared
+### Initialization
+
+#### useServerPlugin
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useServerPlugin
+
+Registers a server plugin.
+
+- **Returns:** `void`
+
+```typescript
+useServerPlugin(async () => {
+  // plugin logic
+})
+```
+
+### Initialization
+###### [🏠︎](./README.md) / [Hooks](#hooks) / Initialization
 
 #### useServer
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Shared](#shared-hooks) / useServer
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useServer
 
 Returns the server instance.
 
@@ -167,7 +190,7 @@ const server = useServer()
 ```
 
 #### useServerPort
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Shared](#shared-hooks) / useServerPort
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useServerPort
 
 Returns the server port.
 
@@ -178,7 +201,7 @@ const port = useServerPort()
 ```
 
 #### useIsServerHttps
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Shared](#shared-hooks) / useIsServerHttps
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useIsServerHttps
 
 Returns whether the server uses HTTPS.
 
@@ -189,7 +212,7 @@ const isHttps = useIsServerHttps()
 ```
 
 #### useComponentName
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Shared](#shared-hooks) / useComponentName
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useComponentName
 
 Returns the current component name.
 
@@ -197,19 +220,6 @@ Returns the current component name.
 
 ```typescript
 const name = useComponentName()
-```
-
-#### useServerPlugin
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Shared](#shared-hooks) / useServerPlugin
-
-Registers a server plugin.
-
-- **Returns:** `void`
-
-```typescript
-useServerPlugin(async () => {
-  // plugin logic
-})
 ```
 
 ---
