@@ -376,6 +376,10 @@ Objects can be nested to create deeply structured data models.
 
 #### Simple Fields
 
+Use the shorthand syntax to quickly define object fields by specifying the field name and type inline.
+This is a concise way to describe simple objects without wrapping each field in a `<field>` element.
+Add a `?` after the field name to mark it as optional (not required).
+
 ```typescript jsx
 <object description='User object'>
   id: <uuid readOnly />
@@ -386,6 +390,10 @@ Objects can be nested to create deeply structured data models.
 ```
 
 #### Detailed Fields
+
+Use the explicit `<field>` element syntax when you need more control over individual field properties or when defining complex nested structures.
+This approach is more verbose but provides clarity for each field's configuration.
+You can also mix both syntaxes in the same object for maximum flexibility.
 
 ```typescript jsx
 <object description='User object'>
