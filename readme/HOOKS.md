@@ -229,12 +229,18 @@ These hooks can be used both during initialization and when processing user requ
 ### useServer
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useServer
 
-Returns the server instance.
+Returns `ServerContext` with the server instance.
 
 - **Returns:** `Server`
 
 ```typescript
-const server = useServer()
+function MyComponent () {
+  const context = useServer()
+  // context instanceof ServerContext
+
+  const { server } = context
+  // server instanceof HttpServer or HttpsServer
+}
 ```
 
 ### useServerPort
@@ -245,7 +251,9 @@ Returns the server port.
 - **Returns:** `number`
 
 ```typescript
-const port = useServerPort()
+function MyComponent () {
+  const port = useServerPort()
+}
 ```
 
 ### useIsServerHttps
@@ -256,18 +264,28 @@ Returns whether the server uses HTTPS.
 - **Returns:** `boolean`
 
 ```typescript
-const isHttps = useIsServerHttps()
+function MyComponent () {
+  const isHttps = useIsServerHttps()
+}
 ```
 
 ### useComponentName
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useComponentName
 
-Returns the current component name.
+Returns the current component name. Useful for debugging.
 
 - **Returns:** `string`
 
 ```typescript
-const name = useComponentName()
+function useMyHook () {
+  const name = useComponentName()
+  console.log(name)
+}
+
+function MyComponent () {
+  useMyHook()
+  // logs: MyComponent
+}
 ```
 
 ---
