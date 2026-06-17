@@ -3,211 +3,206 @@ import '@innet/server'
 declare global {
   namespace Api {
     export interface Schemas {
-    TodoSchemaBody: {
-      id: string
-      title: string
-      done: boolean | null
-    }
-    TodoSchema: {
-      id: string
-      title: string
-      created: Date
-      done: boolean | null
+    Todo: {
+      'id': string
+      'created': Date
+      'title': string
+      'done': boolean
     }
     ApiValidationError: {
-      data?: {
-          error: string
-          in: string
-          key?: string
+      'data'?: {
+          'error': string
+          'in': string
+          'key'?: string
         } | {
-          error: string
-          in: string
-          key?: string
-          value: any
+          'error': string
+          'in': string
+          'key'?: string
+          'value': any
         } | {
-          accept: string
-          error: string
-          in: string
-          key?: string
-          value: any
+          'accept': string
+          'error': string
+          'in': string
+          'key'?: string
+          'value': any
         } | {
-          error: string
-          in: string
-          key?: string
+          'error': string
+          'in': string
+          'key'?: string
         } | {
-          error: string
-          in: string
-          key?: string
-          value: any
+          'error': string
+          'in': string
+          'key'?: string
+          'value': any
         } | {
-          error: string
-          format: string
-          in: string
-          key?: string
-          max?: number | string
-          min?: number | string
-          value: any
+          'error': string
+          'format': string
+          'in': string
+          'key'?: string
+          'max'?: number | string
+          'min'?: number | string
+          'value': any
         } | {
-          error: string
-          in: string
-          key?: string
-          max: number
-          value: any
+          'error': string
+          'in': string
+          'key'?: string
+          'max': number
+          'value': any
         } | {
-          error: string
-          in: string
-          key?: string
-          max: Date
-          value: Date
+          'error': string
+          'in': string
+          'key'?: string
+          'max': Date
+          'value': Date
         } | {
-          error: string
-          in: string
-          key?: string
-          max: number | string
-          value: any
+          'error': string
+          'in': string
+          'key'?: string
+          'max': number | string
+          'value': any
         } | {
-          error: string
-          in: string
-          key: string
-          max: number
-          value: Array<any>
+          'error': string
+          'in': string
+          'key': string
+          'max': number
+          'value': Array<any>
         } | {
-          error: string
-          in: string
-          key?: string
-          max: number
-          value: string
+          'error': string
+          'in': string
+          'key'?: string
+          'max': number
+          'value': string
         } | {
-          error: string
-          in: string
-          key?: string
-          min: number
-          value: any
+          'error': string
+          'in': string
+          'key'?: string
+          'min': number
+          'value': any
         } | {
-          error: string
-          in: string
-          key?: string
-          min: Date
-          value: Date
+          'error': string
+          'in': string
+          'key'?: string
+          'min': Date
+          'value': Date
         } | {
-          error: string
-          in: string
-          key?: string
-          min: number | string
-          value: any
+          'error': string
+          'in': string
+          'key'?: string
+          'min': number | string
+          'value': any
         } | {
-          error: string
-          in: string
-          key: string
-          min: number
-          value: Array<any>
+          'error': string
+          'in': string
+          'key': string
+          'min': number
+          'value': Array<any>
         } | {
-          error: string
-          in: string
-          key?: string
-          min: number
-          value: string
+          'error': string
+          'in': string
+          'key'?: string
+          'min': number
+          'value': string
         } | {
-          error: string
-          in: string
-          key?: string
+          'error': string
+          'in': string
+          'key'?: string
         } | {
-          error: string
-          in: string
-          key?: string
-          value: any
+          'error': string
+          'in': string
+          'key'?: string
+          'value': any
         } | {
-          error: string
-          in: string
-          key?: string
-          value: any
+          'error': string
+          'in': string
+          'key'?: string
+          'value': any
         } | {
-          error: string
-          errors: Array<{
+          'error': string
+          'errors': Array<{
             }>
-          in: string
-          key?: string
+          'in': string
+          'key'?: string
         } | {
-          error: string
-          in: string
-          key?: string
-          pattern: string
-          patternId: string
-          value: any
+          'error': string
+          'in': string
+          'key'?: string
+          'pattern': string
+          'patternId': string
+          'value': any
         } | {
-          error: string
-          in: string
-          key?: string
+          'error': string
+          'in': string
+          'key'?: string
         } | {
-          error: string
-          in: string
-          key?: string
+          'error': string
+          'in': string
+          'key'?: string
         } | {
-          error: string
-          in: string
-          key?: string
+          'error': string
+          'in': string
+          'key'?: string
         } | {
-          error: string
-          in: string
-          key: string
-          value: Array<any>
+          'error': string
+          'in': string
+          'key': string
+          'value': Array<any>
         } | {
-          error: string
-          in: string
-          key?: string
+          'error': string
+          'in': string
+          'key'?: string
         } | {
-          error: string
-          in: string
-          key?: string
-          value: any
-          values: Array<any>
+          'error': string
+          'in': string
+          'key'?: string
+          'value': any
+          'values': Array<any>
         }
-      error?: string
+      'error'?: string
     }
     ApiRequestBodyContentTypeError: {
-      error?: string
+      'error'?: string
     }
   }
-  export interface Endpoints {
+    export interface Endpoints {
     ['GET:/todos']: {
       search: {
-        done?: boolean
-        page: number
-        pageSize: number
+        'done'?: boolean
+        'page': number
+        'pageSize': number
       }
       response: {
         ['400']: Schemas['ApiValidationError']
         ['default']: {
-          page: number
-          pageSize: number
-          count: number
-          todos: Array<Schemas['TodoSchema']>
+          'page': number
+          'pageSize': number
+          'count': number
+          'todos': Array<Schemas['Todo']>
         }
      }
     }
     ['POST:/todos']: {
-      body: Schemas['TodoSchemaBody']
+      body: Schemas['Todo']
       response: {
         ['400']: Schemas['ApiRequestBodyContentTypeError'] | Schemas['ApiValidationError']
-        ['default']: Schemas['TodoSchema']
+        ['default']: Schemas['Todo']
      }
     }
     ['GET:/todos/{todoId}']: {
       params: {
-        todoId: string
+        'todoId': string
       }
       response: {
         ['400']: Schemas['ApiValidationError']
-        ['default']: Schemas['TodoSchema']
+        ['default']: Schemas['Todo']
      }
     }
     ['PATCH:/todos/{todoId}']: {
       params: {
-        todoId: string
+        'todoId': string
       }
       body: {
-        done?: boolean
-        title?: string
+        'done'?: boolean
+        'title'?: string
       }
       response: {
         ['400']: Schemas['ApiRequestBodyContentTypeError'] | Schemas['ApiValidationError']
@@ -215,7 +210,7 @@ declare global {
     }
     ['DELETE:/todos/{todoId}']: {
       params: {
-        todoId: string
+        'todoId': string
       }
       response: {
         ['204']: void

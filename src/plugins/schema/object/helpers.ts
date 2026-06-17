@@ -6,6 +6,7 @@ export function formatObjectChildren (children: any): any {
   }
 
   const result = []
+  let keyTemp = ''
 
   for (let i = 0; i < children.length; i++) {
     const child = children[i]
@@ -15,15 +16,17 @@ export function formatObjectChildren (children: any): any {
       continue
     }
 
-    const keyRaw = child.trim()
+    keyTemp += child.trim()
 
-    if (!keyRaw.endsWith(':')) {
+    if (typeof children[i + 1] === 'string') continue
+
+    if (!keyTemp.endsWith(':')) {
       result.push(child)
       continue
     }
 
-    const optional = keyRaw.endsWith('?:')
-    const key = keyRaw.slice(0, optional ? -2 : -1)
+    const optional = keyTemp.endsWith('?:')
+    const key = keyTemp.slice(0, optional ? -2 : -1)
 
     result.push({
       props: {
@@ -35,6 +38,7 @@ export function formatObjectChildren (children: any): any {
     })
 
     i++
+    keyTemp = ''
   }
 
   return result

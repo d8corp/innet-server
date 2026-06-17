@@ -108,7 +108,7 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2, l
           result += `${space}/** @deprecated */\n`
         }
 
-        result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}`
+        result += `${space}'${key}'${splitter} ${generateSchemaTypes(prop, spaces + 2)}`
       }
     }
 
@@ -140,7 +140,7 @@ export function generateTypes (docs: Document, namespace = 'Api'): string {
     result += '  }\n'
   }
 
-  result += '  export interface Endpoints {\n'
+  result += '    export interface Endpoints {\n'
 
   for (const path in paths) {
     const pathObject = paths[path]
@@ -167,7 +167,7 @@ export function generateTypes (docs: Document, namespace = 'Api'): string {
 
         for (const param of parameters) {
           const splitter = param.in === 'path' || hasDefault(getElement(docs, param.schema)) || param.required ? ':' : '?:'
-          params[param.in as InParam] += `        ${param.name as string}${splitter} ${generateSchemaTypes(param.schema)}`
+          params[param.in as InParam] += `        '${param.name as string}'${splitter} ${generateSchemaTypes(param.schema)}`
         }
 
         if (params.path) {

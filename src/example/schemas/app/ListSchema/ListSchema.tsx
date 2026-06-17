@@ -1,5 +1,5 @@
 export interface ListSchemaProps {
-  children: any
+  children: JSX.Element
   key: string
 }
 
@@ -12,11 +12,7 @@ export function ListSchema ({
       page: <integer default={1} />
       pageSize: <number example={10} />
       count: <number default={11} />
-      <field key={key}>
-        <array>
-          {children}
-        </array>
-      </field>
+      {key}: <array>{children}</array>
     </object>
   )
 }
