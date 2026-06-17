@@ -381,7 +381,7 @@ Objects can be nested to create deeply structured data models.
   id: <uuid readOnly />
   name: <string min={1} max={100} />
   email: <string format='email' />
-  role?: <string default='user' values={['admin', 'user', 'guest']} />
+  role: <string default='user' values={['admin', 'user', 'guest']} />
 </object>
 ```
 
@@ -398,7 +398,7 @@ Objects can be nested to create deeply structured data models.
   <field key='email'>
     <string format='email' />
   </field>
-  <field key='role' optional default='user'>
+  <field key='role' default='user'>
     <string values={['admin', 'user', 'guest']} />
   </field>
 </object>
