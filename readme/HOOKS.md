@@ -81,7 +81,7 @@ export function GetUser() {
 
 These hooks can only be used inside a server plugin (useServerPlugin) during request handling. They are designed to process user requests and provide access to request/response data.
 
-#### useRequest
+### useRequest
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useRequest
 
 Returns the HTTP request object.
@@ -92,7 +92,7 @@ Returns the HTTP request object.
 const request = useRequest()
 ```
 
-#### useResponse
+### useResponse
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useResponse
 
 Returns the HTTP response object.
@@ -103,7 +103,7 @@ Returns the HTTP response object.
 const response = useResponse()
 ```
 
-#### usePath
+### usePath
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / usePath
 
 Returns the request path.
@@ -114,7 +114,7 @@ Returns the request path.
 const path = usePath()
 ```
 
-#### useHeaders
+### useHeaders
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useHeaders
 
 Returns request headers.
@@ -125,7 +125,7 @@ Returns request headers.
 const headers = useHeaders()
 ```
 
-#### useCookies
+### useCookies
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useCookies
 
 Returns request cookies.
@@ -136,7 +136,7 @@ Returns request cookies.
 const cookies = useCookies()
 ```
 
-#### useParams
+### useParams
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useParams
 
 Returns URL path parameters.
@@ -147,7 +147,7 @@ Returns URL path parameters.
 const params = useParams()
 ```
 
-#### useSearch
+### useSearch
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useSearch
 
 Returns query parameters.
@@ -158,7 +158,7 @@ Returns query parameters.
 const search = useSearch()
 ```
 
-#### useBody
+### useBody
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useBody
 
 Returns the request body.
@@ -169,7 +169,7 @@ Returns the request body.
 const body = useBody()
 ```
 
-#### useClientIp
+### useClientIp
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useClientIp
 
 Returns the client IP address.
@@ -195,7 +195,7 @@ const ip = useClientIp()
 
 These hooks are used only during initialization and cannot be used when processing user requests to the server.
 
-#### useServerPlugin
+### useServerPlugin
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useServerPlugin
 
 Registers a server plugin.
@@ -226,7 +226,7 @@ useServerPlugin(async () => {
 
 These hooks can be used both during initialization and when processing user requests to the server.
 
-#### useServer
+### useServer
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useServer
 
 Returns the server instance.
@@ -237,7 +237,7 @@ Returns the server instance.
 const server = useServer()
 ```
 
-#### useServerPort
+### useServerPort
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useServerPort
 
 Returns the server port.
@@ -248,7 +248,7 @@ Returns the server port.
 const port = useServerPort()
 ```
 
-#### useIsServerHttps
+### useIsServerHttps
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useIsServerHttps
 
 Returns whether the server uses HTTPS.
@@ -259,7 +259,7 @@ Returns whether the server uses HTTPS.
 const isHttps = useIsServerHttps()
 ```
 
-#### useComponentName
+### useComponentName
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useComponentName
 
 Returns the current component name.
