@@ -178,7 +178,8 @@ Returns the client IP address.
 const ip = useClientIp()
 ```
 
-### Initialization [↑](#runtime) [↓](#shared)
+### Initialization
+###### [🏠︎](./README.md) / [Hooks](#hooks) / Initialization [↑](#runtime) [↓](#shared)
 
 <sub>
   <details>
