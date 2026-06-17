@@ -79,7 +79,8 @@ export function GetUser() {
   </details>
 </sub>
 
-These hooks can only be used inside a server plugin (useServerPlugin) during request handling. They are designed to process user requests and provide access to request/response data.
+These hooks can only be used inside a server plugin ([useServerPlugin](#useserverplugin)) during request handling.
+They are designed to process user requests and provide access to request/response data.
 
 ### useRequest
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useRequest [↓](#useresponse)
