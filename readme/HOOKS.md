@@ -61,6 +61,24 @@ export function GetUser() {
 ### Runtime
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / Runtime
 
+<sub>
+  <details>
+    <summary>&nbsp;🪝 Hooks</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🪝 <a href="#userequest">useRequest</a></p>
+      <p>├  🪝 <a href="#useresponse">useResponse</a></p>
+      <p>├  🪝 <a href="#usepath">usePath</a></p>
+      <p>├  🪝 <a href="#useheaders">useHeaders</a></p>
+      <p>├  🪝 <a href="#usecookies">useCookies</a></p>
+      <p>├  🪝 <a href="#useparams">useParams</a></p>
+      <p>├  🪝 <a href="#usesearch">useSearch</a></p>
+      <p>├  🪝 <a href="#usebody">useBody</a></p>
+      <p>╘  🪝 <a href="#useclientip">useClientIp</a></p>
+    </blockquote>
+  </details>
+</sub>
+
 #### useRequest
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime-hooks) / useRequest
 
@@ -162,6 +180,16 @@ const ip = useClientIp()
 
 ### Initialization
 
+<sub>
+  <details>
+    <summary>&nbsp;🪝 Hooks</summary>
+    <blockquote>
+      <p></p>
+      <p>╘  🪝 <a href="#useserverplugin">useServerPlugin</a></p>
+    </blockquote>
+  </details>
+</sub>
+
 #### useServerPlugin
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useServerPlugin
 
@@ -177,6 +205,19 @@ useServerPlugin(async () => {
 
 ### Initialization
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / Initialization
+
+<sub>
+  <details>
+    <summary>&nbsp;🪝 Hooks</summary>
+    <blockquote>
+      <p></p>
+      <p>├  🪝 <a href="#useserver">useServer</a></p>
+      <p>├  🪝 <a href="#useserverport">useServerPort</a></p>
+      <p>├  🪝 <a href="#useisserverhttps">useIsServerHttps</a></p>
+      <p>╘  🪝 <a href="#usecomponentname">useComponentName</a></p>
+    </blockquote>
+  </details>
+</sub>
 
 #### useServer
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Initialization](#initialization-hooks) / useServer
