@@ -1,5 +1,5 @@
 import { AddTodo, DeleteTodo, EditTodo, GetTodo, GetTodos } from '../../handlers'
-import { ListQueryParams, ListSchema, Todo } from '../../schemas'
+import { ListQueryParams, ListSchema, Todo, TodoNotFound } from '../../schemas'
 
 export function TodoEndpoints () {
   return (
@@ -20,17 +20,20 @@ export function TodoEndpoints () {
       <endpoint method='get' operationId='getTodo' path='/todos/{todoId}' summary='Returns a todo'>
         <param in='path' name='todoId'><uuid /></param>
         <response description='Response Description'><Todo /></response>
+        <response description='Todo not found' status={404}><TodoNotFound /></response>
         <return><GetTodo /></return>
       </endpoint>
       <endpoint method='patch' operationId='setTodo' path='/todos/{todoId}' summary='Change a todo'>
         <param in='path' name='todoId'><uuid /></param>
         <body><Todo type='Edit' /></body>
+        <response description='Todo not found' status={404}><TodoNotFound /></response>
         <response description='Success Operation' status='noContent' />
         <return><EditTodo /></return>
       </endpoint>
       <endpoint method='delete' operationId='deleteTodo' path='/todos/{todoId}' summary='Delete a todo'>
         <param in='path' name='todoId'><uuid /></param>
         <response status='noContent' />
+        <response description='Todo not found' status={404}><TodoNotFound /></response>
         <return><DeleteTodo /></return>
       </endpoint>
     </tag>

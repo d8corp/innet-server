@@ -21,9 +21,12 @@ declare global {
       'title': string
       'done': boolean
     }
+    TodoNotFound: {
+      'error': string
+    }
     TodoEdit: {
       'title'?: string
-      'done': boolean
+      'done'?: boolean
     }
     ApiValidationError: {
       'data'?: {
@@ -204,6 +207,7 @@ declare global {
       }
       response: {
         ['400']: Schemas['ApiValidationError']
+        ['404']: Schemas['TodoNotFound']
         ['default']: Schemas['Todo']
      }
     }
@@ -215,6 +219,7 @@ declare global {
       response: {
         ['204']: void
         ['400']: Schemas['ApiRequestBodyContentTypeError'] | Schemas['ApiValidationError']
+        ['404']: Schemas['TodoNotFound']
      }
     }
     ['DELETE:/todos/{todoId}']: {
@@ -224,6 +229,7 @@ declare global {
       response: {
         ['204']: void
         ['400']: Schemas['ApiValidationError']
+        ['404']: Schemas['TodoNotFound']
      }
     }
   }
