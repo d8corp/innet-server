@@ -1,6 +1,6 @@
 import { useSearch } from 'src'
 
-import { todos as rootTodos } from '../../../mocks/todos'
+import { todos as rootTodos } from '../../mocks/todos'
 
 export function GetTodos () {
   const {

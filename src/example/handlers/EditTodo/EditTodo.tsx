@@ -1,6 +1,6 @@
 import { useBody, useParams } from 'src'
 
-import { todos } from '../../../mocks/todos'
+import { todos } from '../../mocks/todos'
 
 export function EditTodo () {
   const { todoId } = useParams<Api.Endpoints['PATCH:/todos/{todoId}']['params']>()

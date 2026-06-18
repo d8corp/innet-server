@@ -1,6 +1,6 @@
 import { useParams } from 'src'
 
-import { todos } from '../../../mocks/todos'
+import { todos } from '../../mocks/todos'
 
 export function GetTodo () {
   const { todoId } = useParams<Api.Endpoints['GET:/todos/{todoId}']['params']>()
