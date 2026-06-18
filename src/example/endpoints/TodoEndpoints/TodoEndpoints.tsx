@@ -1,4 +1,4 @@
-import { AddTodo, DeleteTodo, EditTodo, GetTodo, GetTodos } from '../../return'
+import { AddTodo, DeleteTodo, EditTodo, GetTodo, GetTodos } from '../../handlers'
 import { ListQueryParams, ListSchema, Todo } from '../../schemas'
 
 export function TodoEndpoints () {
