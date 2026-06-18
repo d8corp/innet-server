@@ -6,8 +6,8 @@ export function Todo ({ type = '' }: TodoProps) {
   if (type === 'Add') {
     return (
       <object ref='TodoAdd'>
-        id: <uuid default='new' readOnly />
-        created: <date default='now' readOnly />
+        id?: <uuid default='new' readOnly />
+        created?: <date default='now' readOnly />
         title: <string example='Check @innet/dom librarry' />
         done?: <boolean default={false} />
       </object>
@@ -18,17 +18,17 @@ export function Todo ({ type = '' }: TodoProps) {
     return (
       <object ref='TodoEdit'>
         title?: <string example='Check @innet/dom librarry' />
-        done?: <boolean default={false} />
+        done?: <boolean />
       </object>
     )
   }
 
   return (
     <object ref='Todo'>
-      id: <uuid default='new' />
-      created: <date default='now' />
+      id: <uuid />
+      created: <date />
       title: <string example='Check @innet/dom librarry' />
-      done: <boolean default={false} />
+      done: <boolean />
     </object>
   )
 }

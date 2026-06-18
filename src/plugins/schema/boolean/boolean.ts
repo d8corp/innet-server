@@ -31,6 +31,6 @@ export const boolean: HandlerPlugin = () => {
     const parentRule = useParentRule()
     useRule(parentRule(rule))
   } else {
-    useRule(rule, true)
+    useRule(rule)
   }
 }

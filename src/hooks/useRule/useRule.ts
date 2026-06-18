@@ -4,7 +4,7 @@ import { useThrow } from '../useThrow'
 
 import { type Rule } from '../../utils/rules'
 
-export type RuleContext = (rule: Rule, optional?: boolean) => void
+export type RuleContext = (rule: Rule) => void
 
 export const ruleContext = new Context<RuleContext, null>(null)
 
@@ -18,6 +18,6 @@ export function useSetRule () {
   return setFormatter
 }
 
-export function useRule (rule: Rule, optional?: boolean) {
-  useSetRule()(rule, optional)
+export function useRule (rule: Rule) {
+  useSetRule()(rule)
 }

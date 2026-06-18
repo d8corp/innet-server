@@ -37,7 +37,7 @@ export const uuid: HandlerPlugin = () => {
 
   if (!hasRules) {
     if (defaultValue !== undefined) {
-      useRule(defaultTo(defaultValue === 'new' ? v4 : defaultValue), true)
+      useRule(defaultTo(defaultValue === 'new' ? v4 : defaultValue))
     }
 
     return

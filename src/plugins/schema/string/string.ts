@@ -115,14 +115,14 @@ export const string: HandlerPlugin = () => {
     }
 
     if (props.default !== undefined) {
-      useRule(rule, true)
+      useRule(rule)
     } else {
       const parentRule = useParentRule()
       useRule(parentRule(rule))
     }
   } else if (props.ref && hasRules) {
     if (props.default !== undefined) {
-      useRule(refRules[props.ref], true)
+      useRule(refRules[props.ref])
     } else {
       const parentRule = useParentRule()
       useRule(parentRule(refRules[props.ref]))
