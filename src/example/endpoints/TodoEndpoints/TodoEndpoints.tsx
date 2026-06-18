@@ -24,9 +24,8 @@ export function TodoEndpoints () {
       </endpoint>
       <endpoint method='patch' operationId='setTodo' path='/todos/{todoId}' summary='Change a todo'>
         <param in='path' name='todoId'><uuid /></param>
-        <body>
-          <Todo />
-        </body>
+        <body><Todo /></body>
+        <response description='Success Operation' status='noContent' />
         <return><EditTodo /></return>
       </endpoint>
       <endpoint method='delete' operationId='deleteTodo' path='/todos/{todoId}' summary='Delete a todo'>

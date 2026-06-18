@@ -203,6 +203,7 @@ declare global {
       }
       body: Schemas['Todo']
       response: {
+        ['204']: void
         ['400']: Schemas['ApiRequestBodyContentTypeError'] | Schemas['ApiValidationError']
      }
     }
