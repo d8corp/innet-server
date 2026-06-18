@@ -12,12 +12,14 @@ declare global {
     TodoAdd: {
       'id': string
       'created': Date
+      'changed': Date | null
       'title': string
       'done': boolean
     }
     Todo: {
       'id': string
       'created': Date
+      'changed': Date | null
       'title': string
       'done': boolean
     }
@@ -25,6 +27,7 @@ declare global {
       'error': string
     }
     TodoEdit: {
+      'changed': Date
       'title'?: string
       'done'?: boolean
     }
