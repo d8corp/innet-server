@@ -13,7 +13,7 @@ export function TodoEndpoints () {
         <return><GetTodos /></return>
       </endpoint>
       <endpoint method='post' operationId='addTodo' path='/todos' summary='Add a todo'>
-        <body><Todo body /></body>
+        <body><Todo /></body>
         <response><Todo /></response>
         <return><AddTodo /></return>
       </endpoint>
