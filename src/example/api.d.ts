@@ -3,6 +3,12 @@ import '@innet/server'
 declare global {
   namespace Api {
     export interface Schemas {
+    ListSchemaTodos: {
+      'page': number
+      'pageSize': number
+      'count': number
+      'todos': Array<Schemas['Todo']>
+    }
     Todo: {
       'id': string
       'created': Date
@@ -172,12 +178,7 @@ declare global {
       }
       response: {
         ['400']: Schemas['ApiValidationError']
-        ['default']: {
-          'page': number
-          'pageSize': number
-          'count': number
-          'todos': Array<Schemas['Todo']>
-        }
+        ['default']: Schemas['ListSchemaTodos']
      }
     }
     ['POST:/todos']: {
