@@ -25,10 +25,7 @@ export function TodoEndpoints () {
       <endpoint method='patch' operationId='setTodo' path='/todos/{todoId}' summary='Change a todo'>
         <param in='path' name='todoId'><uuid /></param>
         <body>
-          <object>
-            done?: <boolean />
-            title?: <string />
-          </object>
+          <Todo />
         </body>
         <return><EditTodo /></return>
       </endpoint>

@@ -201,10 +201,7 @@ declare global {
       params: {
         'todoId': string
       }
-      body: {
-        'done'?: boolean
-        'title'?: string
-      }
+      body: Schemas['Todo']
       response: {
         ['400']: Schemas['ApiRequestBodyContentTypeError'] | Schemas['ApiValidationError']
      }
