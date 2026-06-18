@@ -72,8 +72,8 @@ export const field: HandlerPlugin = () => {
   }
 
   const map = useObjectRule()
-  ruleContext.set(handler, rule => {
-    if (optional) {
+  ruleContext.set(handler, (rule, opt) => {
+    if (optional || opt) {
       map[key] = rule
     } else {
       map[key] = required(rule)

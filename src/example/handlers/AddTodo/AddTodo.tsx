@@ -5,10 +5,7 @@ import { todos } from '../../mocks/todos'
 export function AddTodo () {
   const todo = useBody<Api.Endpoints['POST:/todos']['body']>()
 
-  todos.push({
-    ...todo,
-    created: new Date(),
-  })
+  todos.push(todo)
 
   return <success>{todo}</success>
 }

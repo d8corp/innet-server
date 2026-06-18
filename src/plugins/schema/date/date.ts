@@ -91,7 +91,13 @@ export const date: HandlerPlugin = () => {
     schema['x-default'] = 'now'
   }
 
-  if (!hasRules) return
+  if (!hasRules) {
+    if (defaultValue !== undefined) {
+      useRule(defaultTo(defaultValue === 'now' ? () => new Date(Date.now()) : normDefault), true)
+    }
+
+    return
+  }
 
   const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules)
 
@@ -99,6 +105,6 @@ export const date: HandlerPlugin = () => {
     const parentRule = useParentRule()
     useRule(parentRule(rule))
   } else {
-    useRule(rule)
+    useRule(rule, true)
   }
 }

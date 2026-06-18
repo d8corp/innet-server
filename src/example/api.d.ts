@@ -9,10 +9,20 @@ declare global {
       'count': number
       'todos': Array<Schemas['Todo']>
     }
+    TodoAdd: {
+      'id': string
+      'created': Date
+      'title': string
+      'done': boolean
+    }
     Todo: {
       'id': string
       'created': Date
       'title': string
+      'done': boolean
+    }
+    TodoEdit: {
+      'title'?: string
       'done': boolean
     }
     ApiValidationError: {
@@ -182,7 +192,7 @@ declare global {
      }
     }
     ['POST:/todos']: {
-      body: Schemas['Todo']
+      body: Schemas['TodoAdd']
       response: {
         ['400']: Schemas['ApiRequestBodyContentTypeError'] | Schemas['ApiValidationError']
         ['default']: Schemas['Todo']
@@ -201,7 +211,7 @@ declare global {
       params: {
         'todoId': string
       }
-      body: Schemas['Todo']
+      body: Schemas['TodoEdit']
       response: {
         ['204']: void
         ['400']: Schemas['ApiRequestBodyContentTypeError'] | Schemas['ApiValidationError']

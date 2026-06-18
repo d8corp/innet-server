@@ -13,7 +13,7 @@ export function TodoEndpoints () {
         <return><GetTodos /></return>
       </endpoint>
       <endpoint method='post' operationId='addTodo' path='/todos' summary='Add a todo'>
-        <body><Todo /></body>
+        <body><Todo type='Add' /></body>
         <response><Todo /></response>
         <return><AddTodo /></return>
       </endpoint>
@@ -24,7 +24,7 @@ export function TodoEndpoints () {
       </endpoint>
       <endpoint method='patch' operationId='setTodo' path='/todos/{todoId}' summary='Change a todo'>
         <param in='path' name='todoId'><uuid /></param>
-        <body><Todo /></body>
+        <body><Todo type='Edit' /></body>
         <response description='Success Operation' status='noContent' />
         <return><EditTodo /></return>
       </endpoint>

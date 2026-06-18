@@ -25,15 +25,23 @@ export const uuid: HandlerPlugin = () => {
   }
 
   const schema = useSchemaType('string', params)
-  // @ts-expect-error: FIXME
-  schema.format = 'uuid'
 
-  if (defaultValue === 'new') {
-    // @ts-expect-error: FIXME
-    schema['x-default'] = defaultValue
+  if (schema) {
+    schema.format = 'uuid'
+
+    if (defaultValue === 'new') {
+      // @ts-expect-error: FIXME
+      schema['x-default'] = defaultValue
+    }
   }
 
-  if (!hasRules) return
+  if (!hasRules) {
+    if (defaultValue !== undefined) {
+      useRule(defaultTo(defaultValue === 'new' ? v4 : defaultValue), true)
+    }
+
+    return
+  }
 
   const rules: Rule[] = []
 
