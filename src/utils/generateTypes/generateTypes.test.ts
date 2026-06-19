@@ -160,72 +160,72 @@ const docs: any = {
   tags: [{ description: 'Todo API', name: 'todo' }],
 }
 
-const serverTypes = `declare namespace Api {
-  export interface Bin {
-    filename: string
-    fieldName: string
-    originalFilename: string
-    path: string
-    type: string
-    disposition: string
-    size: number
-    extension?: string
-  }
-  namespace Schemas {
-    export type TodoSchema = {
-      done: boolean
-      id: string
-      title: string
-    }
-    export type TodoSchemaAdd = {
-      done: boolean
-      id: string
-      title: string
-    }
-  }
-  export interface Endpoints {
-    ['GET:/todos']: {
-      Search: {
-        done?: boolean
-        page: number
-        pageSize: number
+const serverTypes = `import '@innet/server'
+
+declare global {
+  namespace Api {
+    export interface Schemas {
+      TodoSchema: {
+        'done': boolean
+        'id': string
+        'title': string
       }
-      Response: {
-        ['default']: {
-          count: number
-          page: number
-          pageSize: number
-          todos: Array<Schemas.TodoSchema>
+      TodoSchemaAdd: {
+        'done': boolean
+        'id': string
+        'title': string
+      }
+    }
+    export interface Endpoints {
+      ['GET:/todos']: {
+        search: {
+          'done'?: boolean
+          'page': number
+          'pageSize': number
         }
-     }
-    }
-    ['POST:/todos']: {
-      Body: Schemas.TodoSchemaAdd
-    }
-    ['DELETE:/todos/{todoId}']: {
-      Params: {
-        todoId: string
+        response: {
+          ['default']: {
+            'count': number
+            'page': number
+            'pageSize': number
+            'todos': Array<Schemas['TodoSchema']>
+          }
+        }
       }
-    }
-    ['GET:/todos/{todoId}']: {
-      Params: {
-        todoId: string
+      ['POST:/todos']: {
+        body: Schemas['TodoSchemaAdd']
       }
-      Response: {
-        ['default']: Schemas.TodoSchema
-     }
-    }
-    ['PATCH:/todos/{todoId}']: {
-      Params: {
-        todoId: string
+      ['DELETE:/todos/{todoId}']: {
+        params: {
+          'todoId': string
+        }
       }
-      Body: {
-        done?: boolean
-        title?: string
+      ['GET:/todos/{todoId}']: {
+        params: {
+          'todoId': string
+        }
+        response: {
+          ['default']: Schemas['TodoSchema']
+        }
+      }
+      ['PATCH:/todos/{todoId}']: {
+        params: {
+          'todoId': string
+        }
+        body: {
+        'done'?: boolean
+        'title'?: string
+      }
       }
     }
   }
-}`
+}
+
+declare module '@innet/server' {
+  interface ApiEndpoints extends Api.Endpoints {}
+  interface ApiSchemas extends Api.Schemas {}
+}
+`
 
 describe('generateTypes', () => {
   it('should works', () => {
