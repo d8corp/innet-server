@@ -155,7 +155,7 @@ export function generateTypes (docs: Document, namespace = 'Api'): string {
         result += '      /** @deprecated */\n'
       }
 
-      result += `      ['${method.toUpperCase()}:${path}']: {\n`
+      result += `      '${method.toUpperCase()}:${path}': {\n`
 
       if (parameters) {
         const params: Record<InParam, string> = {
@@ -196,7 +196,7 @@ export function generateTypes (docs: Document, namespace = 'Api'): string {
         for (const key in responses) {
           let multiple = false
           const response = responses[key]
-          result += `          ['${key}']: `
+          result += `          '${key}': `
 
           if (!response.content) {
             result += 'void'

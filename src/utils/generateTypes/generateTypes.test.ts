@@ -177,14 +177,14 @@ declare global {
       }
     }
     export interface Endpoints {
-      ['GET:/todos']: {
+      'GET:/todos': {
         search: {
           'done'?: boolean
           'page': number
           'pageSize': number
         }
         response: {
-          ['default']: {
+          'default': {
             'count': number
             'page': number
             'pageSize': number
@@ -192,23 +192,23 @@ declare global {
           }
         }
       }
-      ['POST:/todos']: {
+      'POST:/todos': {
         body: Schemas['TodoSchemaAdd']
       }
-      ['DELETE:/todos/{todoId}']: {
+      'DELETE:/todos/{todoId}': {
         params: {
           'todoId': string
         }
       }
-      ['GET:/todos/{todoId}']: {
+      'GET:/todos/{todoId}': {
         params: {
           'todoId': string
         }
         response: {
-          ['default']: Schemas['TodoSchema']
+          'default': Schemas['TodoSchema']
         }
       }
-      ['PATCH:/todos/{todoId}']: {
+      'PATCH:/todos/{todoId}': {
         params: {
           'todoId': string
         }

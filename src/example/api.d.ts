@@ -186,53 +186,53 @@ declare global {
       }
     }
     export interface Endpoints {
-      ['GET:/todos']: {
+      'GET:/todos': {
         search: {
           'done'?: boolean
           'page': number
           'pageSize': number
         }
         response: {
-          ['400']: Schemas['ApiValidationError']
-          ['default']: Schemas['ListSchemaTodos']
+          '400': Schemas['ApiValidationError']
+          'default': Schemas['ListSchemaTodos']
         }
       }
-      ['POST:/todos']: {
+      'POST:/todos': {
         body: Schemas['TodoAdd']
         response: {
-          ['400']: Schemas['ApiRequestBodyContentTypeError'] | Schemas['ApiValidationError']
-          ['default']: Schemas['Todo']
+          '400': Schemas['ApiRequestBodyContentTypeError'] | Schemas['ApiValidationError']
+          'default': Schemas['Todo']
         }
       }
-      ['GET:/todos/{todoId}']: {
+      'GET:/todos/{todoId}': {
         params: {
           'todoId': string
         }
         response: {
-          ['400']: Schemas['ApiValidationError']
-          ['404']: Schemas['TodoNotFound']
-          ['default']: Schemas['Todo']
+          '400': Schemas['ApiValidationError']
+          '404': Schemas['TodoNotFound']
+          'default': Schemas['Todo']
         }
       }
-      ['PATCH:/todos/{todoId}']: {
+      'PATCH:/todos/{todoId}': {
         params: {
           'todoId': string
         }
         body: Schemas['TodoEdit']
         response: {
-          ['204']: void
-          ['400']: Schemas['ApiRequestBodyContentTypeError'] | Schemas['ApiValidationError']
-          ['404']: Schemas['TodoNotFound']
+          '204': void
+          '400': Schemas['ApiRequestBodyContentTypeError'] | Schemas['ApiValidationError']
+          '404': Schemas['TodoNotFound']
         }
       }
-      ['DELETE:/todos/{todoId}']: {
+      'DELETE:/todos/{todoId}': {
         params: {
           'todoId': string
         }
         response: {
-          ['204']: void
-          ['400']: Schemas['ApiValidationError']
-          ['404']: Schemas['TodoNotFound']
+          '204': void
+          '400': Schemas['ApiValidationError']
+          '404': Schemas['TodoNotFound']
         }
       }
     }
