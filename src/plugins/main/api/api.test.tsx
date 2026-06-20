@@ -1,0 +1,84 @@
+import { innet } from 'innet'
+import { Watch } from 'watch-state'
+
+import { handler } from '../../../handler'
+
+function run (app: any) {
+  const server = new Watch(() => {
+    innet(app, handler)
+  })
+
+  return () => server.destroy()
+}
+
+describe('api', () => {
+  it('Should return base OpenAPI', async () => {
+    const stop = run(
+      <server>
+        <api />
+      </server>,
+    )
+
+    const res = await fetch('http://localhost:80')
+    const json = await res.json()
+
+    stop()
+
+    expect(json).toEqual({
+      info: {
+        title: '',
+        version: '0.0.0',
+      },
+      openapi: '3.1.0',
+      paths: {},
+    })
+  })
+  describe('props', () => {
+    describe('prefix', () => {
+      it('Should use prefix', async () => {
+        const stop = run(
+          <server>
+            <api prefix='/api' />
+          </server>,
+        )
+
+        const res = await fetch('http://localhost/api')
+        const json = await res.json()
+
+        stop()
+
+        expect(json).toEqual({
+          info: {
+            title: '',
+            version: '0.0.0',
+          },
+          openapi: '3.1.0',
+          paths: {},
+        })
+      })
+    })
+    describe('title', () => {
+      it('Should return title', async () => {
+        const stop = run(
+          <server>
+            <api title='Test' />
+          </server>,
+        )
+
+        const res = await fetch('http://localhost')
+        const json = await res.json()
+
+        stop()
+
+        expect(json).toEqual({
+          info: {
+            title: 'Test',
+            version: '0.0.0',
+          },
+          openapi: '3.1.0',
+          paths: {},
+        })
+      })
+    })
+  })
+})
