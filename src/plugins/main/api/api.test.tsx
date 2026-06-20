@@ -80,5 +80,100 @@ describe('api', () => {
         })
       })
     })
+    describe('version', () => {
+      it('Should return version', async () => {
+        const stop = run(
+          <server>
+            <api version='1.0.0' />
+          </server>,
+        )
+
+        const res = await fetch('http://localhost')
+        const json = await res.json()
+
+        stop()
+
+        expect(json).toEqual({
+          info: {
+            title: '',
+            version: '1.0.0',
+          },
+          openapi: '3.1.0',
+          paths: {},
+        })
+      })
+    })
+    describe('description', () => {
+      it('Should return description', async () => {
+        const stop = run(
+          <server>
+            <api description='Test' />
+          </server>,
+        )
+
+        const res = await fetch('http://localhost')
+        const json = await res.json()
+
+        stop()
+
+        expect(json).toEqual({
+          info: {
+            description: 'Test',
+            title: '',
+            version: '0.0.0',
+          },
+          openapi: '3.1.0',
+          paths: {},
+        })
+      })
+    })
+    describe('summary', () => {
+      it('Should return summary', async () => {
+        const stop = run(
+          <server>
+            <api summary='Test' />
+          </server>,
+        )
+
+        const res = await fetch('http://localhost')
+        const json = await res.json()
+
+        stop()
+
+        expect(json).toEqual({
+          info: {
+            summary: 'Test',
+            title: '',
+            version: '0.0.0',
+          },
+          openapi: '3.1.0',
+          paths: {},
+        })
+      })
+    })
+    describe('termsOfService', () => {
+      it('Should return termsOfService', async () => {
+        const stop = run(
+          <server>
+            <api termsOfService='Test' />
+          </server>,
+        )
+
+        const res = await fetch('http://localhost')
+        const json = await res.json()
+
+        stop()
+
+        expect(json).toEqual({
+          info: {
+            termsOfService: 'Test',
+            title: '',
+            version: '0.0.0',
+          },
+          openapi: '3.1.0',
+          paths: {},
+        })
+      })
+    })
   })
 })

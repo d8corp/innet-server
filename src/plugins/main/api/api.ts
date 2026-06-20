@@ -49,8 +49,10 @@ export interface ApiProps {
 
   /** A URL to the Terms of Service for the API. This MUST be in the form of a URL. */
   termsOfService?: string
+
   /** The title of the API. */
   title?: string
+
   /**
    * The version of the OpenAPI document (which is distinct from the
    * [OpenAPI Specification version](https://swagger.io/specification/#oas-version)
