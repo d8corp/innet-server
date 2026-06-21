@@ -19,7 +19,7 @@ describe('api', () => {
       </server>,
     )
 
-    const res = await fetch('http://localhost:80')
+    const res = await fetch('http://localhost')
     const json = await res.json()
 
     stop()
