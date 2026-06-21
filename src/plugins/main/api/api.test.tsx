@@ -1,28 +1,17 @@
-import { innet } from 'innet'
-import { Watch } from 'watch-state'
-
-import { handler } from '../../../handler'
-
-function run (app: any) {
-  const server = new Watch(() => {
-    innet(app, handler)
-  })
-
-  return () => server.destroy()
-}
+import { runTest } from '../../../testing'
 
 describe('api', () => {
   it('Should return base OpenAPI', async () => {
-    const stop = run(
-      <server>
+    const stop = await runTest((onStart, onEnd) => (
+      <server onClose={onEnd} onStart={onStart}>
         <api />
-      </server>,
+      </server>),
     )
 
     const res = await fetch('http://localhost')
     const json = await res.json()
 
-    stop()
+    await stop()
 
     expect(json).toEqual({
       info: {
@@ -36,16 +25,16 @@ describe('api', () => {
   describe('props', () => {
     describe('prefix', () => {
       it('Should use prefix', async () => {
-        const stop = run(
-          <server>
+        const stop = await runTest((onStart, onEnd) => (
+          <server onClose={onEnd} onStart={onStart}>
             <api prefix='/api' />
-          </server>,
+          </server>),
         )
 
         const res = await fetch('http://localhost/api')
         const json = await res.json()
 
-        stop()
+        await stop()
 
         expect(json).toEqual({
           info: {
@@ -59,16 +48,16 @@ describe('api', () => {
     })
     describe('title', () => {
       it('Should return title', async () => {
-        const stop = run(
-          <server>
+        const stop = await runTest((onStart, onEnd) => (
+          <server onClose={onEnd} onStart={onStart}>
             <api title='Test' />
-          </server>,
+          </server>),
         )
 
         const res = await fetch('http://localhost')
         const json = await res.json()
 
-        stop()
+        await stop()
 
         expect(json).toEqual({
           info: {
@@ -82,16 +71,16 @@ describe('api', () => {
     })
     describe('version', () => {
       it('Should return version', async () => {
-        const stop = run(
-          <server>
+        const stop = await runTest((onStart, onEnd) => (
+          <server onClose={onEnd} onStart={onStart}>
             <api version='1.0.0' />
-          </server>,
+          </server>),
         )
 
         const res = await fetch('http://localhost')
         const json = await res.json()
 
-        stop()
+        await stop()
 
         expect(json).toEqual({
           info: {
@@ -105,16 +94,16 @@ describe('api', () => {
     })
     describe('description', () => {
       it('Should return description', async () => {
-        const stop = run(
-          <server>
+        const stop = await runTest((onStart, onEnd) => (
+          <server onClose={onEnd} onStart={onStart}>
             <api description='Test' />
-          </server>,
+          </server>),
         )
 
         const res = await fetch('http://localhost')
         const json = await res.json()
 
-        stop()
+        await stop()
 
         expect(json).toEqual({
           info: {
@@ -129,16 +118,16 @@ describe('api', () => {
     })
     describe('summary', () => {
       it('Should return summary', async () => {
-        const stop = run(
-          <server>
+        const stop = await runTest((onStart, onEnd) => (
+          <server onClose={onEnd} onStart={onStart}>
             <api summary='Test' />
-          </server>,
+          </server>),
         )
 
         const res = await fetch('http://localhost')
         const json = await res.json()
 
-        stop()
+        await stop()
 
         expect(json).toEqual({
           info: {
@@ -153,16 +142,16 @@ describe('api', () => {
     })
     describe('termsOfService', () => {
       it('Should return termsOfService', async () => {
-        const stop = run(
-          <server>
+        const stop = await runTest((onStart, onEnd) => (
+          <server onClose={onEnd} onStart={onStart}>
             <api termsOfService='Test' />
-          </server>,
+          </server>),
         )
 
         const res = await fetch('http://localhost')
         const json = await res.json()
 
-        stop()
+        await stop()
 
         expect(json).toEqual({
           info: {
