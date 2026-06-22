@@ -75,8 +75,3 @@ If this project has saved you time or helped you in your work, feel free to supp
 ```
 TAuYWzaQJUc9mEMMMSQULjGf5HBwJ1KtzF
 ```
-
-**USDT [TON]:**
-```
-UQBXPxkhCvJp3hDH800Q4o0MXakYj1Uo7aki2fFJfZ6la2Yh
-```
