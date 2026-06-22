@@ -2,7 +2,7 @@ import { type HandlerPlugin } from 'innet'
 import { useContext, useProps } from '@innet/jsx'
 
 import { bodyContext, useRule, useSchemaType } from '../../../hooks'
-import { type IntegerFormats, type SchemaProps } from '../../../types'
+import { type MakeRequired, type SchemaProps } from '../../../types'
 import {
   defaultTo,
   getArrayValues,
@@ -17,7 +17,7 @@ import {
   values as valuesOf,
 } from '../../../utils'
 
-export type IntegerProps = SchemaProps<bigint | number> & {
+type IntProps<T extends bigint | number> = SchemaProps<T> & {
   /**
    * The `exclusiveMaximum` keyword is used to restrict the value to be less than the specified number.
    * @example For example, the following value is valid:
@@ -26,7 +26,7 @@ export type IntegerProps = SchemaProps<bigint | number> & {
    * ```
    * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
    * */
-  exclusiveMaximum?: bigint | boolean | number
+  exclusiveMaximum?: T | boolean
 
   /**
    * The `exclusiveMinimum` keyword is used to restrict the value to be greater than the specified number.
@@ -36,7 +36,7 @@ export type IntegerProps = SchemaProps<bigint | number> & {
    * ```
    * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
    * */
-  exclusiveMinimum?: bigint | boolean | number
+  exclusiveMinimum?: T | boolean
 
   /**
    * An optional format modifier serves as a hint at the contents and format of the string.
@@ -46,13 +46,13 @@ export type IntegerProps = SchemaProps<bigint | number> & {
    * ```
    * @see https://swagger.io/docs/specification/data-models/data-types/#numbers
    * */
-  format?: IntegerFormats
+  format?: T extends bigint ? 'int64' : 'int32'
 
   /** Validate the integer number value by maximum. */
-  max?: bigint | number
+  max?: T
 
   /** Validate the integer number value by minimum. */
-  min?: bigint | number
+  min?: T
 
   /**
    * The `multipleOf` keyword is used to restrict the value to be a multiple of the specified number.
@@ -62,9 +62,10 @@ export type IntegerProps = SchemaProps<bigint | number> & {
    * ```
    * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
    * */
-  multipleOf?: bigint | number
+  multipleOf?: T
 }
 
+export type IntegerProps = IntProps<number> | MakeRequired<IntProps<bigint>, 'format'>
 export const integer: HandlerPlugin = () => {
   const {
     default: defaultValue,
