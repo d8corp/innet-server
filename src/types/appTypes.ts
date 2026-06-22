@@ -94,17 +94,40 @@ export type ApiErrorSchemaRefs = Record<ApiErrorValue, string>
 export type SchemaValues<T> = (T extends (number | string) ? Record<T, string> : never) | T[]
 
 export interface BaseSchemaProps<T, D = T> {
+  /** Default value for the schema */
   default?: D
+
+  /** Indicates that the schema is deprecated */
   deprecated?: boolean
+
+  /** Schema description in CommonMark format */
   description?: string
+
+  /** Example value */
   example?: T
+
+  /** Array of example values */
   examples?: T[]
+
+  /** Indicates that the value can be null */
   nullable?: false
+
+  /** Indicates that the value is read-only */
   readOnly?: boolean
+
+  /** Reference to a schema component in OpenAPI */
   ref?: string
+
+  /** Schema title */
   title?: string
+
+  /** Specific value */
   value?: T
+
+  /** Allowed values (enum) or dictionary of values with descriptions */
   values?: SchemaValues<T>
+
+  /** Indicates that the value is write-only */
   writeOnly?: boolean
 }
 

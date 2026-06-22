@@ -25,9 +25,16 @@ import {
 } from '../../../utils'
 
 export type ArrayProps = SchemaProps<any[]> & {
+  /** Nested schema elements defining array items */
   children?: JSX.Element
+
+  /** Maximum number of items (maxItems) */
   max?: number
+
+  /** Minimum number of items (minItems) */
   min?: number
+
+  /** Whether array items must be unique (uniqueItems) */
   unique?: boolean
 }
 
