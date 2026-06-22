@@ -1974,30 +1974,29 @@ Optional group name for organizing multiple tags into logical sections in the do
 </sub>
 
 ```typescript jsx
-<endpoint
-  method='post'
-  path='/users'
-  summary='Create user'
-  description='Creates a new user in the system'
-  operationId='createUser'
-  deprecated={false}
-  private={false}
->
-  <param in='query' name='format' />
-  <body>
+<endpoint operationId='getTodos' method='get' path='/todos' summary='Get list of todos'>
+  <param in='query' name='done'><boolean /></param>
+  <param in='query' name='page'><number default={1} /></param>
+  <param in='query' name='pageSize'><number default={12} /></param>
+  <response description='Response Description'>
     <object>
-      <field key='name'><string required /></field>
-      <field key='email'><string format='email' /></field>
-    </object>
-  </body>
-  <response status={201}>
-    <object>
-      <field key='id'><uuid readOnly /></field>
-      <field key='name'><string /></field>
+      page: <number default={1} />
+      pageSize: <number example={10} />
+      count: <number default={11} />
+      todos: 
+        <array>
+          <object>
+            id: <uuid />
+            created: <date />
+            changed: <date nullable />
+            title: <string example='Check @innet/dom librarry' />
+            done: <boolean />
+          </object>
+        </array>
     </object>
   </response>
   <return>
-    <success status='created'>{{ id: 'uuid', name: 'John' }}</success>
+    <success>{{ page: 1, pageSize: 10, count: 0, todos: [] }}</success>
   </return>
 </endpoint>
 ```
