@@ -37,6 +37,14 @@
 `@innet/server` is a backend framework that brings **HTML-like** declarative markup to **server-side**. 
 It can be used for convenient defining of backend API contracts, for creating mock servers, and for building complete production-ready APIs.
 
+```tsx
+<server>
+  <return>
+    <success>Hello World!</success>
+  </return>
+</server>
+```
+
 - **JSX** — Write backend with HTML-like syntax
 - **Components** — React-like component-driven approach
 - **OpenAPI** — Generate OpenAPI 3.1.0 documentation automatically
