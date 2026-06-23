@@ -2092,35 +2092,30 @@ Unique identifier for the operation, used to identify the operation in OpenAPI.
 ## Body
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / Body [↑](#param) [↓](#response)
 
-Define the structure and validation rules for the request body that your endpoint accepts. The body schema is automatically validated on every request and documented in OpenAPI. You can specify required/optional fields, data types, and validation constraints.
+Define the structure and validation rules for the request body that your endpoint accepts. 
+The body schema is automatically validated on every request and documented in OpenAPI.
+You can specify required/optional fields, data types, and validation constraints.
 
 Define request body structure:
 
 ```typescript jsx
 <body>
   <object>
-    <field key='name' required>
-      <string min={1} max={100} />
-    </field>
-    <field key='age' optional>
-      <integer min={0} max={150} />
-    </field>
-    <field key='email'>
-      <string format='email' />
-    </field>
+    name: <string min={1} max={100} />
+    email: <string format='email' />
+    age?: <integer min={0} max={150} />
   </object>
 </body>
 ```
 
-Place `<body>` inside an `<endpoint>` to define what request data is expected. The body content should be a schema type (`<object>`, `<array>`, or a primitive type).
+Place `<body>` inside an `<endpoint>` to define what request data is expected.
+The body content should be a schema type (`<object>`, `<array>`, or a primitive type).
 
 ```typescript jsx
 <endpoint method='post' path='/users'>
   <body>
     <object>
-      <field key='name' required>
-        <string />
-      </field>
+      name: <string />
     </object>
   </body>
 </endpoint>
