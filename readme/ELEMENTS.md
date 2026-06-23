@@ -1756,7 +1756,7 @@ Choose from multiple documentation viewers like [Swagger UI](https://swagger.io/
 
 ```typescript jsx
 <api>
-  <ui /> {/* Swagger UI by default */}
+  <ui />
 </api>
 ```
 
