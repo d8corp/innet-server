@@ -2274,7 +2274,7 @@ The media type of the response.
 
 ```typescript jsx
 <response status={200} type='text/html'>
-  Hello World
+  <string value='Hello World' />
 </response>
 ```
 
@@ -2284,13 +2284,13 @@ Place `<response>` inside an `<endpoint>` to define multiple possible responses:
 <endpoint method='get' path='/users/{id}'>
   <response status={200}>
     <object>
-      <field key='id'><uuid /></field>
-      <field key='name'><string /></field>
+      id: <uuid />
+      name: <string />
     </object>
   </response>
   <response status={404}>
     <object>
-      <field key='error'><string /></field>
+      error: <string />
     </object>
   </response>
 </endpoint>
