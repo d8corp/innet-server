@@ -2138,17 +2138,17 @@ The body content should be a schema type (`<object>`, `<array>`, or a primitive 
   </details>
 </sub>
 
-Parameters allow you to specify query parameters, path parameters, headers, and cookies that your endpoint accepts. You define the parameter name, location, and validation schema. Parameters are automatically validated and documented in OpenAPI.
+Parameters allow you to specify query parameters, path parameters, headers, and cookies that your endpoint accepts.
+You define the parameter name, location, and validation schema.
+Parameters are automatically validated and documented in OpenAPI.
 
 Define endpoint parameters (query, header, cookie, path):
 
 ```typescript jsx
 <endpoint method='get' path='/users/{id}'>
-  <param in='path' name='id' required>
-    <uuid />
-  </param>
-  <param in='query' name='format' default='json'>
-    <string values={['json', 'xml']} />
+  <param in='path' name='id'><uuid /></param>
+  <param in='query' name='format'>
+    <string default='json' values={['json', 'xml']} />
   </param>
   <param in='header' name='authorization'>
     <string />
