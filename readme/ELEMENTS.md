@@ -1973,6 +1973,9 @@ Optional group name for organizing multiple tags into logical sections in the do
   </details>
 </sub>
 
+Define individual API endpoints with their HTTP method, path, parameters, request body, and responses.
+The `<endpoint>` element is the core building block of your API, combining contract definition with implementation logic.
+
 ```typescript jsx
 <endpoint operationId='getTodos' method='get' path='/todos' summary='Get list of todos'>
   <param in='query' name='done'><boolean /></param>
