@@ -2237,15 +2237,13 @@ Define response structure and status:
 ```typescript jsx
 <response status={200}>
   <object>
-    <field key='data'>
-      <object />
-    </field>
+    data: <object />
   </object>
 </response>
 
 <response status={404}>
   <object>
-    <field key='error'><string /></field>
+    error: <string />
   </object>
 </response>
 ```
