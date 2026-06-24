@@ -229,14 +229,13 @@ import { SetToken } from './SetToken'
 export default (
   <server>
     <return>
-      <SetToken
-        value='...'
-      />
+      <SetToken value='secret_token' />
       <success />
     </return>
   </server>
 )
 ```
+
 Async components allow you to perform asynchronous operations (database queries, external API calls, file operations) before returning elements.
 Simply declare the component as an `async function` and you can use `await` inside it.
 
