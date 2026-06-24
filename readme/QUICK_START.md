@@ -155,7 +155,7 @@ export default (
 )
 ```
 
-Test the endpoint: `curl http://localhost/hello` — returns `{"message":"Hello!"}`
+Test the endpoint: http://localhost/hello — returns `{"message":"Hello!"}`
 
 ## Component Example
 ###### [🏠︎](./README.md) / [Quick Start](#quick-start) / Component Example [↑](#endpoint-example) [↓](#components)
