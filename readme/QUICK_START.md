@@ -193,7 +193,7 @@ export default (
 )
 ```
 
-Test the endpoint: `curl http://localhost/hello?name=John` — returns `{"message":"Hello John!"}`
+Test the endpoint: http://localhost/hello?name=John — returns `{"message":"Hello John!"}`
 
 ---
 
