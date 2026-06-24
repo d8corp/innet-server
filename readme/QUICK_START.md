@@ -143,10 +143,7 @@ This example demonstrates how to define an endpoint with HTTP method, path, and 
 export default (
   <server>
     <api title='My API' version='1.0.0'>
-      <endpoint
-        method='get'
-        path='/hello'
-        summary='Greet the user'>
+      <endpoint method='get' path='/hello' summary='Greet the user'>
         <return>
           <success>
             {{ message: 'Hello!' }}
