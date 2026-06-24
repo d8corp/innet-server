@@ -560,6 +560,7 @@ export default (
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / port [↓](#server-ssl)
 
 Sets the server port. By default, uses port `80` for HTTP and `443` for HTTPS.
+HTTPS mode is automatically enabled when SSL certificates are provided via the `ssl` parameter.
 
 - Type: `number`
 - Default: `80` (HTTP) or `443` (HTTPS)
