@@ -180,10 +180,7 @@ function Hello () {
 export default (
   <server>
     <api title='My API' version='1.0.0'>
-      <endpoint
-        method='get'
-        path='/hello'
-        summary='Greet the user'>
+      <endpoint method='get' path='/hello' summary='Greet the user'>
         <param in='query' name='name'>
           <string default='World' />
         </param>
