@@ -1860,7 +1860,7 @@ Generated types are automatically available globally in the namespace (e.g., `Ap
 import { useParams } from '@innet/server'
 
 export function DeleteTodo() {
-  const { todoId } = useParams<Api.Endpoints['DELETE:/todos/{todoId}']['Params']>()
+  const { todoId } = useParams<Api.Endpoints['DELETE:/todos/{todoId}']['params']>()
   
   return <success />
 }
