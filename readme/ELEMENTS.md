@@ -573,14 +573,29 @@ Sets the server port. By default, uses port `80` for HTTP and `443` for HTTPS.
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / ssl [↑](#server-port) [↓](#server-format-error)
 
 Configure HTTPS with SSL certificates.
+The framework automatically detects whether the provided strings are file paths or certificate contents.
+If the string starts with `-----BEGIN CERTIFICATE-----` or `-----BEGIN PRIVATE KEY-----`, it's treated as direct content.
+Otherwise, it's treated as a file path and the content is read from disk.
 
 - Type: `{ cert: string; key: string }`
-- `cert` — Path to certificate file
-- `key` — Path to private key file
+- `cert` — Path to certificate file or certificate content
+- `key` — Path to private key file or private key content
+- Default: `{ cert: 'localhost.crt', key: 'localhost.key' }`
 - Environment variables: `INNET_SSL_CRT`, `INNET_SSL_KEY`
+
+Using file paths:
 
 ```typescript jsx
 <server ssl={{ cert: './localhost.crt', key: './localhost.key' }} />
+```
+
+Using inline certificate content:
+
+```typescript jsx
+<server ssl={{
+  cert: '-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----',
+  key: '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----'
+}} />
 ```
 
 #### <a id="server-format-error">formatError</a>
