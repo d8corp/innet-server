@@ -1261,7 +1261,7 @@ HTTP status code for redirect.
 
 - Type: `number | string`
 - Default: `301` (moved permanently)
-- Examples: `301`, `302`, `'found'`, `'movedPermanently'
+- Examples: `301`, `302`, `'found'`, `'movedPermanently'`
 
 ## CMS
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Return](#return) / CMS [↑](#redirect) [↓](#file)
