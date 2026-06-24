@@ -1471,7 +1471,6 @@ The `<api>` element defines a REST API with OpenAPI documentation. Place it insi
 The title of the API.
 
 - Type: `string`
-- Required: No
 - Default: empty string
 
 ```typescript jsx
@@ -1484,7 +1483,6 @@ The title of the API.
 Description of the API. CommonMark (Markdown) syntax is supported.
 
 - Type: `string`
-- Required: No
 
 ```typescript jsx
 <api description='**API** for user management' />
@@ -2202,7 +2200,6 @@ The name of the parameter. Parameter names are case-sensitive.
 A brief description of the parameter.
 
 - Type: `string`
-- Required: No
 
 ```typescript jsx
 <param in='query' name='search' description='Search query string' />
