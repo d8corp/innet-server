@@ -618,7 +618,7 @@ Allows you to customize the JSON structure returned to clients when an error occ
 
 Callback function executed when the server starts.
 
-- Type: `() => void`
+- Type: `(params: ServerStartParams) => any`
 
 ```typescript jsx
 import { httpOnStart } from '@innet/server'
