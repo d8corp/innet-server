@@ -282,6 +282,7 @@ If the current environment variable value matches the specified value(s), the co
 You can provide a single string or an array of strings to match against the environment variable.
 
 - Type: `string | string[]`
+- Required: Yes
 
 ```typescript jsx
 <env is='production'>
