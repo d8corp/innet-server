@@ -58,7 +58,7 @@
                 <summary>&nbsp;🧩 <a href="#header">&lt;header&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#header-key">key</a></p>
+                  <p>├  🏷️ <a href="#header-key">key</a>*</p>
                   <p>╘  🏷️ <a href="#header-value">value</a></p>
                 </blockquote>
               </details>
@@ -359,7 +359,7 @@ Environment variable name to check.
             <summary>&nbsp;🧩 <a href="#header">&lt;header&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#header-key">key</a></p>
+              <p>├  🏷️ <a href="#header-key">key</a>*</p>
               <p>╘  🏷️ <a href="#header-value">value</a></p>
             </blockquote>
           </details>
@@ -803,7 +803,7 @@ Query parameter name for checking protection.
         <summary>&nbsp;🧩 <a href="#header">&lt;header&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🏷️ <a href="#header-key">key</a></p>
+          <p>├  🏷️ <a href="#header-key">key</a>*</p>
           <p>╘  🏷️ <a href="#header-value">value</a></p>
         </blockquote>
       </details>
@@ -851,7 +851,7 @@ Use it to set up headers, cookies, and other metadata that apply to multiple end
     <summary>&nbsp;🏷️ Props</summary>
     <blockquote>
       <p></p>
-      <p>├  🏷️ <a href="#header-key">key</a></p>
+      <p>├  🏷️ <a href="#header-key">key</a>*</p>
       <p>╘  🏷️ <a href="#header-value">value</a></p>
     </blockquote>
   </details>
