@@ -90,7 +90,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <summary>&nbsp;🧩 <a href="./ELEMENTS.md#cookie">&lt;cookie&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="./ELEMENTS.md#cookie-key">key</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#cookie-key">key</a>*</p>
                   <p>├  🏷️ <a href="./ELEMENTS.md#cookie-value">value</a></p>
                   <p>├  🏷️ <a href="./ELEMENTS.md#cookie-domain">domain</a></p>
                   <p>├  🏷️ <a href="./ELEMENTS.md#cookie-encode">encode</a></p>

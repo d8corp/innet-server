@@ -66,7 +66,7 @@
                 <summary>&nbsp;🧩 <a href="#cookie">&lt;cookie&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#cookie-key">key</a></p>
+                  <p>├  🏷️ <a href="#cookie-key">key</a>*</p>
                   <p>├  🏷️ <a href="#cookie-value">value</a></p>
                   <p>├  🏷️ <a href="#cookie-domain">domain</a></p>
                   <p>├  🏷️ <a href="#cookie-encode">encode</a></p>
@@ -367,7 +367,7 @@ Environment variable name to check.
             <summary>&nbsp;🧩 <a href="#cookie">&lt;cookie&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#cookie-key">key</a></p>
+              <p>├  🏷️ <a href="#cookie-key">key</a>*</p>
               <p>├  🏷️ <a href="#cookie-value">value</a></p>
               <p>├  🏷️ <a href="#cookie-domain">domain</a></p>
               <p>├  🏷️ <a href="#cookie-encode">encode</a></p>
@@ -811,7 +811,7 @@ Query parameter name for checking protection.
         <summary>&nbsp;🧩 <a href="#cookie">&lt;cookie&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🏷️ <a href="#cookie-key">key</a></p>
+          <p>├  🏷️ <a href="#cookie-key">key</a>*</p>
           <p>├  🏷️ <a href="#cookie-value">value</a></p>
           <p>├  🏷️ <a href="#cookie-domain">domain</a></p>
           <p>├  🏷️ <a href="#cookie-encode">encode</a></p>
@@ -906,7 +906,7 @@ Header value.
     <summary>&nbsp;🏷️ Props</summary>
     <blockquote>
       <p></p>
-      <p>├  🏷️ <a href="#cookie-key">key</a></p>
+      <p>├  🏷️ <a href="#cookie-key">key</a>*</p>
       <p>├  🏷️ <a href="#cookie-value">value</a></p>
       <p>├  🏷️ <a href="#cookie-domain">domain</a></p>
       <p>├  🏷️ <a href="#cookie-encode">encode</a></p>
