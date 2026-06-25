@@ -59,7 +59,7 @@
                 <blockquote>
                   <p></p>
                   <p>├  🏷️ <a href="#header-key">key</a>*</p>
-                  <p>╘  🏷️ <a href="#header-value">value</a></p>
+                  <p>╘  🏷️ <a href="#header-value">value</a>*</p>
                 </blockquote>
               </details>
               <details>
@@ -360,7 +360,7 @@ Environment variable name to check.
             <blockquote>
               <p></p>
               <p>├  🏷️ <a href="#header-key">key</a>*</p>
-              <p>╘  🏷️ <a href="#header-value">value</a></p>
+              <p>╘  🏷️ <a href="#header-value">value</a>*</p>
             </blockquote>
           </details>
           <details>
@@ -804,7 +804,7 @@ Query parameter name for checking protection.
         <blockquote>
           <p></p>
           <p>├  🏷️ <a href="#header-key">key</a>*</p>
-          <p>╘  🏷️ <a href="#header-value">value</a></p>
+          <p>╘  🏷️ <a href="#header-value">value</a>*</p>
         </blockquote>
       </details>
       <details>
@@ -852,7 +852,7 @@ Use it to set up headers, cookies, and other metadata that apply to multiple end
     <blockquote>
       <p></p>
       <p>├  🏷️ <a href="#header-key">key</a>*</p>
-      <p>╘  🏷️ <a href="#header-value">value</a></p>
+      <p>╘  🏷️ <a href="#header-value">value</a>*</p>
     </blockquote>
   </details>
 </sub>
