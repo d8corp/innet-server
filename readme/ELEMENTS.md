@@ -747,7 +747,7 @@ Protect your API with a secret value that must be provided by clients.
 
 ```tsx
 <api>
-  <protection value='secret123'>
+  <protection>
     <error status='forbidden' />
   </protection>
 </api>
@@ -759,7 +759,7 @@ Protect your API with a secret value that must be provided by clients.
 Secret value that clients must provide.
 
 - Type: `string`
-- Environment variable: `PROTECTION`
+- Environment variable: `INNET_PROTECTION`
 
 #### <a id="protection-maxage">maxAge</a>
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [Protection](#protection) / maxAge [↑](#protection-value) [↓](#protection-excludeip)
