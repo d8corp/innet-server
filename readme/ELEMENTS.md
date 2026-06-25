@@ -105,14 +105,14 @@
                 <summary>&nbsp;🧩 <a href="#proxy">&lt;proxy&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>╘  🏷️ <a href="#proxy-to">to</a></p>
+                  <p>╘  🏷️ <a href="#proxy-to">to</a>*</p>
                 </blockquote>
               </details>
               <details>
                 <summary>&nbsp;🧩 <a href="#redirect">&lt;redirect&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#redirect-to">to</a></p>
+                  <p>├  🏷️ <a href="#redirect-to">to</a>*</p>
                   <p>╘  🏷️ <a href="#redirect-status">status</a></p>
                 </blockquote>
               </details>
@@ -128,7 +128,7 @@
                 <summary>&nbsp;🧩 <a href="#file">&lt;file&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>╘  🏷️ <a href="#file-path">path</a></p>
+                  <p>╘  🏷️ <a href="#file-path">path</a>*</p>
                 </blockquote>
               </details>
             </blockquote>
@@ -409,14 +409,14 @@ Environment variable name to check.
             <summary>&nbsp;🧩 <a href="#proxy">&lt;proxy&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>╘  🏷️ <a href="#proxy-to">to</a></p>
+              <p>╘  🏷️ <a href="#proxy-to">to</a>*</p>
             </blockquote>
           </details>
           <details>
             <summary>&nbsp;🧩 <a href="#redirect">&lt;redirect&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#redirect-to">to</a></p>
+              <p>├  🏷️ <a href="#redirect-to">to</a>*</p>
               <p>╘  🏷️ <a href="#redirect-status">status</a></p>
             </blockquote>
           </details>
@@ -432,7 +432,7 @@ Environment variable name to check.
             <summary>&nbsp;🧩 <a href="#file">&lt;file&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>╘  🏷️ <a href="#file-path">path</a></p>
+              <p>╘  🏷️ <a href="#file-path">path</a>*</p>
             </blockquote>
           </details>
         </blockquote>
@@ -1052,14 +1052,14 @@ Only send cookie over HTTPS.
         <summary>&nbsp;🧩 <a href="#proxy">&lt;proxy&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>╘  🏷️ <a href="#proxy-to">to</a></p>
+          <p>╘  🏷️ <a href="#proxy-to">to</a>*</p>
         </blockquote>
       </details>
       <details>
         <summary>&nbsp;🧩 <a href="#redirect">&lt;redirect&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🏷️ <a href="#redirect-to">to</a></p>
+          <p>├  🏷️ <a href="#redirect-to">to</a>*</p>
           <p>╘  🏷️ <a href="#redirect-status">status</a></p>
         </blockquote>
       </details>
@@ -1075,7 +1075,7 @@ Only send cookie over HTTPS.
         <summary>&nbsp;🧩 <a href="#file">&lt;file&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>╘  🏷️ <a href="#file-path">path</a></p>
+          <p>╘  🏷️ <a href="#file-path">path</a>*</p>
         </blockquote>
       </details>
     </blockquote>
@@ -1206,7 +1206,7 @@ Error code identifier.
     <summary>&nbsp;🏷️ Props</summary>
     <blockquote>
       <p></p>
-      <p>╘  🏷️ <a href="#proxy-to">to</a></p>
+      <p>╘  🏷️ <a href="#proxy-to">to</a>*</p>
     </blockquote>
   </details>
 </sub>
@@ -1237,7 +1237,7 @@ Target URL to proxy to.
     <summary>&nbsp;🏷️ Props</summary>
     <blockquote>
       <p></p>
-      <p>├  🏷️ <a href="#redirect-to">to</a></p>
+      <p>├  🏷️ <a href="#redirect-to">to</a>*</p>
       <p>╘  🏷️ <a href="#redirect-status">status</a></p>
     </blockquote>
   </details>
@@ -1316,7 +1316,7 @@ URL path prefix to strip from requests.
     <summary>&nbsp;🏷️ Props</summary>
     <blockquote>
       <p></p>
-      <p>╘  🏷️ <a href="#file-path">path</a></p>
+      <p>╘  🏷️ <a href="#file-path">path</a>*</p>
     </blockquote>
   </details>
 </sub>

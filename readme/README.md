@@ -129,14 +129,14 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <summary>&nbsp;🧩 <a href="./ELEMENTS.md#proxy">&lt;proxy&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>╘  🏷️ <a href="./ELEMENTS.md#proxy-to">to</a></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#proxy-to">to</a>*</p>
                 </blockquote>
               </details>
               <details>
                 <summary>&nbsp;🧩 <a href="./ELEMENTS.md#redirect">&lt;redirect&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="./ELEMENTS.md#redirect-to">to</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#redirect-to">to</a>*</p>
                   <p>╘  🏷️ <a href="./ELEMENTS.md#redirect-status">status</a></p>
                 </blockquote>
               </details>
@@ -152,7 +152,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <summary>&nbsp;🧩 <a href="./ELEMENTS.md#file">&lt;file&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>╘  🏷️ <a href="./ELEMENTS.md#file-path">path</a></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#file-path">path</a>*</p>
                 </blockquote>
               </details>
             </blockquote>
