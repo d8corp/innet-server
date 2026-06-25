@@ -13,10 +13,11 @@ export interface EnvProps {
    * @example
    * ```tsx
    * <env is="production">
-   *   {...}
+   *   <ui />
    * </env>
+   *
    * <env is={['development', 'staging']}>
-   *   {...}
+   *   <dts />
    * </env>
    * ```
    * */
@@ -30,7 +31,7 @@ export interface EnvProps {
    * @example
    * ```tsx
    * <env of="APP_ENV" is="production">
-   *   {...}
+   *   <ui />
    * </env>
    * ```
    *  */
