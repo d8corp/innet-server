@@ -278,8 +278,10 @@ Conditionally execute content based on environment variables.
 
 Environment variable value to match.
 
+If the current environment variable value matches the specified value(s), the content inside the `<env>` component will be executed.
+You can provide a single string or an array of strings to match against the environment variable.
+
 - Type: `string | string[]`
-- Default: matches `NODE_ENV`
 
 ```typescript jsx
 <env is='production'>
