@@ -4,7 +4,24 @@ import { useProps } from '@innet/jsx'
 import { useResponse, useThrow } from '../../../hooks'
 
 export interface HeaderProps {
+  /**
+   * Header name.
+   *
+   * @example
+   * ```tsx
+   * <header key="Cache-Control" value="no-cache" />
+   * ```
+   */
   key: string
+
+  /**
+   * Header value.
+   *
+   * @example
+   * ```tsx
+   * <header key="Cache-Control" value="no-cache" />
+   * ```
+   */
   value: string
 }
 

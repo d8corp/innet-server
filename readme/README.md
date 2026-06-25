@@ -83,7 +83,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <blockquote>
                   <p></p>
                   <p>├  🏷️ <a href="./ELEMENTS.md#header-key">key</a>*</p>
-                  <p>╘  🏷️ <a href="./ELEMENTS.md#header-value">value</a></p>
+                  <p>╘  🏷️ <a href="./ELEMENTS.md#header-value">value</a>*</p>
                 </blockquote>
               </details>
               <details>
