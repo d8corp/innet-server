@@ -265,7 +265,7 @@ Use JSX syntax to compose these elements into a complete API structure with auto
 
 Conditionally execute content based on environment variables.
 
-```typescript jsx
+```tsx
 <api>
   <env is='dev'>
     <ui />
@@ -284,7 +284,7 @@ You can provide a single string or an array of strings to match against the envi
 - Type: `string | string[]`
 - Required: Yes
 
-```typescript jsx
+```tsx
 <env is='production'>
   {/* content */}
 </env>
@@ -302,7 +302,7 @@ Environment variable name to check.
 - Type: `string`
 - Default: `'NODE_ENV'`
 
-```typescript jsx
+```tsx
 <env of='APP_ENV' is='prod'>
   {/* content */}
 </env>
@@ -551,12 +551,10 @@ The `<server>` is the root element that starts an HTTP(S) server.
 Use it to configure the server port, SSL certificates, and register lifecycle event handlers.
 All routes and APIs must be placed inside the `<server>` element.
 
-```typescript jsx
-export default (
-  <server port={3000}>
-    <api />
-  </server>
-)
+```tsx
+<server port={3000}>
+  <api />
+</server>
 ```
 
 #### <a id="server-port">port</a>
@@ -569,7 +567,7 @@ HTTPS mode is automatically enabled when SSL certificates are provided via the `
 - Default: `80` (HTTP) or `443` (HTTPS)
 - Environment variable: `INNET_PORT`
 
-```typescript jsx
+```tsx
 <server port={3000} />
 ```
 
@@ -589,13 +587,13 @@ Otherwise, it's treated as a file path and the content is read from disk.
 
 Using file paths:
 
-```typescript jsx
+```tsx
 <server ssl={{ cert: './localhost.crt', key: './localhost.key' }} />
 ```
 
 Using inline certificate content:
 
-```typescript jsx
+```tsx
 <server ssl={{
   cert: '-----BEGIN CERTIFICATE-----\n...\n-----END CERTIFICATE-----',
   key: '-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----'
@@ -612,8 +610,12 @@ Allows you to customize the JSON structure returned to clients when an error occ
 - `error` — Unique error code
 - `data` — Error content
 
-```typescript jsx
-<server formatError={({ error, data }) => JSON.stringify({ err: error, data })} />
+```tsx
+<server formatError={({ error, data }) => JSON.stringify({ err: error, data })}>
+  <return>
+    <error />
+  </return>
+</server>
 ```
 
 #### <a id="server-onstart">onStart</a>
@@ -623,7 +625,7 @@ Callback function executed when the server starts.
 
 - Type: `(params: ServerStartParams) => any`
 
-```typescript jsx
+```tsx
 import { httpOnStart } from '@innet/server'
 
 export default <server onStart={httpOnStart} />
@@ -636,7 +638,7 @@ Callback function executed for every request.
 
 - Type: `(req: IncomingMessage, res: ServerResponse) => void`
 
-```typescript jsx
+```tsx
 <server onRequest={(req, res) => console.log(req.url)} />
 ```
 
@@ -647,7 +649,7 @@ Callback function executed when a request error occurs.
 
 - Type: `(error: Error) => void`
 
-```typescript jsx
+```tsx
 <server onError={(error) => console.error(error)} />
 ```
 
@@ -658,7 +660,7 @@ Callback function executed when the server closes.
 
 - Type: `() => void`
 
-```typescript jsx
+```tsx
 <server onClose={() => console.log('Server closed')} />
 ```
 
@@ -677,7 +679,7 @@ Callback function executed when the server closes.
 
 Block requests from specific IP addresses.
 
-```typescript jsx
+```tsx
 <api>
   <blacklist ip='192.168.1.1,10.0.0.1'>
     <error status='forbidden' />
@@ -708,7 +710,7 @@ Comma-separated list of IP addresses to block.
 
 Allow requests only from specific IP addresses.
 
-```typescript jsx
+```tsx
 <api>
   <whitelist ip='192.168.1.1,10.0.0.1'>
     <error status='forbidden' />
@@ -743,7 +745,7 @@ Comma-separated list of IP addresses to allow.
 
 Protect your API with a secret value that must be provided by clients.
 
-```typescript jsx
+```tsx
 <api>
   <protection value='secret123'>
     <error status='forbidden' />
@@ -834,7 +836,7 @@ Query parameter name for checking protection.
 The `<preset>` element configures request scope without interrupting execution.
 Use it to set up headers, cookies, and other metadata that apply to multiple endpoints within an API or globally.
 
-```typescript jsx
+```tsx
 <api prefix='/api'>
   <preset>
     <header
@@ -863,7 +865,7 @@ Use it to set up headers, cookies, and other metadata that apply to multiple end
 Configure HTTP response headers that will be sent to clients.
 Use inside `<preset>` to apply headers to multiple endpoints, or inside `<return>` for specific responses.
 
-```typescript jsx
+```tsx
 <server>
   <preset>
     <header key='Cache-Control' value='no-cache' />
@@ -926,7 +928,7 @@ Header value.
 
 Set HTTP cookies in the response.
 
-```typescript jsx
+```tsx
 <return>
   <cookie
     key='sessionId'
@@ -1085,7 +1087,7 @@ Only one `<return>` can execute per scope.
 Use it to respond with success/error, set headers, cookies, and conditionally control the request flow.
 
 **Success Response:**
-```typescript jsx
+```tsx
 <endpoint method='get' path='/users'>
   <return>
     <success>{{ users: [] }}</success>
@@ -1094,7 +1096,7 @@ Use it to respond with success/error, set headers, cookies, and conditionally co
 ```
 
 **Error Response:**
-```typescript jsx
+```tsx
 <return>
   <error status='notFound' code='userNotFound'>
     {{ message: 'User not found' }}
@@ -1103,7 +1105,7 @@ Use it to respond with success/error, set headers, cookies, and conditionally co
 ```
 
 **Conditional Returns:**
-```typescript jsx
+```tsx
 <endpoint method='get' path='/users'>
   <env is='dev'>
     <return>
@@ -1132,7 +1134,7 @@ Use it to respond with success/error, set headers, cookies, and conditionally co
 
 Return a successful response with optional data.
 
-```typescript jsx
+```tsx
 <return>
   <success status='created'>
     {{ id: 1, name: 'John' }}
@@ -1172,7 +1174,7 @@ Content-Type header for the response.
 
 Return an error response.
 
-```typescript jsx
+```tsx
 <return>
   <error status='notFound' code='userNotFound'>
     {{ message: 'User not found' }}
@@ -1211,7 +1213,7 @@ Error code identifier.
 
 Forward requests to another server.
 
-```typescript jsx
+```tsx
 <endpoint method='get' path='/external'>
   <return>
     <proxy to='https://api.example.com' />
@@ -1243,7 +1245,7 @@ Target URL to proxy to.
 
 Redirect requests to another URL.
 
-```typescript jsx
+```tsx
 <return>
   <redirect to='https://example.com' status={301} />
 </return>
@@ -1282,7 +1284,7 @@ HTTP status code for redirect.
 
 Serve static files from a directory.
 
-```typescript jsx
+```tsx
 <return>
   <cms dir='public' />
 </return>
@@ -1321,7 +1323,7 @@ URL path prefix to strip from requests.
 
 Serve a single file.
 
-```typescript jsx
+```tsx
 <return>
   <file path='package.json' />
 </return>
@@ -1455,7 +1457,7 @@ Path to the file to serve.
 
 The `<api>` element defines a REST API with OpenAPI documentation. Place it inside `<server>` to register your endpoints and configure OpenAPI settings. The API documentation is automatically generated from your component structure.
 
-```typescript jsx
+```tsx
 <server>
   <api
     title='My API'
@@ -1476,7 +1478,7 @@ The title of the API.
 - Type: `string`
 - Default: empty string
 
-```typescript jsx
+```tsx
 <api title='My API' />
 ```
 
@@ -1487,7 +1489,7 @@ Description of the API. CommonMark (Markdown) syntax is supported.
 
 - Type: `string`
 
-```typescript jsx
+```tsx
 <api description='**API** for user management' />
 ```
 
@@ -1499,7 +1501,7 @@ The version of the OpenAPI document.
 - Type: `string`
 - Default: `INNET_API_VERSION` or `'0.0.0'`
 
-```typescript jsx
+```tsx
 <api version='1.0.0' />
 ```
 
@@ -1512,7 +1514,7 @@ URL path prefix for all endpoints in this API.
 - Default: `INNET_API_PREFIX` or empty
 - Environment variable: `INNET_API_PREFIX`
 
-```typescript jsx
+```tsx
 <api prefix='/api' />
 ```
 
@@ -1523,7 +1525,7 @@ Regular expression to include only matching URLs.
 
 - Type: `RegExp`
 
-```typescript jsx
+```tsx
 <api include={/^\/(api|openapi)/} />
 ```
 
@@ -1534,7 +1536,7 @@ Regular expression to exclude matching URLs.
 
 - Type: `RegExp`
 
-```typescript jsx
+```tsx
 <api exclude={/^\/health/} />
 ```
 
@@ -1570,7 +1572,7 @@ Regular expression to exclude matching URLs.
 
 Define a server URL/host for the API. Useful for documenting multiple deployment environments.
 
-```typescript jsx
+```tsx
 <api>
   <host
     url='https://api.example.com'
@@ -1616,7 +1618,7 @@ Description of the host/server.
 
 Define a variable used in host URLs for substitution.
 
-```typescript jsx
+```tsx
 <host url='https://{env}.example.com' description='Test servers'>
   <variable
     key='env'
@@ -1673,7 +1675,7 @@ Variable description.
 
 Define the license for your API.
 
-```typescript jsx
+```tsx
 <api>
   <license
     name='Apache 2.0'
@@ -1721,7 +1723,7 @@ URL to the license document (mutually exclusive with `identifier`).
 
 Define contact information for the API.
 
-```typescript jsx
+```tsx
 <api>
   <contact
     name='Support Team'
@@ -1771,7 +1773,7 @@ Add interactive API documentation with the `<ui>` element.
 This automatically generates a beautiful, interactive web interface where users can explore and test your API endpoints.
 Choose from multiple documentation viewers like [Swagger UI](https://swagger.io/tools/swagger-ui/), [Scalar](https://scalar.com/), [RapiDoc](https://rapidocweb.com/), or [ReDoc](https://redocly.com/).
 
-```typescript jsx
+```tsx
 <api>
   <ui />
 </api>
@@ -1805,7 +1807,7 @@ Additional parameters to pass to the documentation viewer. Parameters vary by vi
 - Type: `Record<string, any>`
 - Default: empty object
 
-```typescript jsx
+```tsx
 <api>
   <ui
     html={uiPresets.scalar}
@@ -1826,7 +1828,7 @@ The URL path where the documentation UI will be served.
 - Default: `INNET_UI_PATH` or `'/ui'`
 - Environment variable: `INNET_UI_PATH`
 
-```typescript jsx
+```tsx
 <api>
   <ui path='/docs' />
 </api>
@@ -1848,7 +1850,7 @@ The URL path where the documentation UI will be served.
 
 Automatically generate TypeScript type definitions for your entire API. The `<dts>` element creates type definitions based on your endpoint schemas, giving you full IDE autocomplete and type safety when consuming your API.
 
-```typescript jsx
+```tsx
 <api>
   <dts
     path='src/api.d.ts'
@@ -1859,7 +1861,7 @@ Automatically generate TypeScript type definitions for your entire API. The `<dt
 
 Generated types are automatically available globally in the namespace (e.g., `Api.Endpoints`):
 
-```typescript jsx
+```tsx
 import { useParams } from '@innet/server'
 
 export function DeleteTodo() {
@@ -1877,7 +1879,7 @@ Output path for the generated TypeScript definitions file.
 - Type: `string`
 - Default: `'src/api.d.ts'`
 
-```typescript jsx
+```tsx
 <dts path='src/types.d.ts' />
 ```
 
@@ -1889,7 +1891,7 @@ Global namespace name for generated types.
 - Type: `string`
 - Default: `'Api'`
 
-```typescript jsx
+```tsx
 <dts namespace='API' />
 ```
 
@@ -1910,7 +1912,7 @@ Global namespace name for generated types.
 Organize and categorize your API endpoints using tags.
 Tags allow you to group related endpoints together in the API documentation, making it easier for users to navigate and understand your API structure.
 
-```typescript jsx
+```tsx
 <api>
   <tag name='Users' group='Management'>
     <endpoint method='get' path='/users'>
@@ -1928,7 +1930,7 @@ The name of the tag used to group endpoints.
 - Type: `string`
 - Required: Yes
 
-```typescript jsx
+```tsx
 <tag name='Users'>{/* ... */}</tag>
 ```
 
@@ -1939,7 +1941,7 @@ Optional group name for organizing multiple tags into logical sections in the do
 
 - Type: `string`
 
-```typescript jsx
+```tsx
 <tag name='Users' group='Management'>
   {/* ... */}
 </tag>
@@ -1993,7 +1995,7 @@ Optional group name for organizing multiple tags into logical sections in the do
 Define individual API endpoints with their HTTP method, path, parameters, request body, and responses.
 The `<endpoint>` element is the core building block of your API, combining contract definition with implementation logic.
 
-```typescript jsx
+```tsx
 <endpoint operationId='getTodos' method='get' path='/todos' summary='Get list of todos'>
   <param in='query' name='done'><boolean /></param>
   <param in='query' name='page'><number default={1} /></param>
@@ -2029,7 +2031,7 @@ HTTP method for the endpoint.
 - Type: `'get' | 'post' | 'put' | 'patch' | 'delete' | 'head' | 'options'`
 - Required: Yes
 
-```typescript jsx
+```tsx
 <endpoint method='get' path='/users' />
 ```
 
@@ -2041,7 +2043,7 @@ URL path for the endpoint. Can contain path parameters in curly braces.
 - Type: `string`
 - Required: Yes
 
-```typescript jsx
+```tsx
 <endpoint method='get' path='/users/{id}' />
 ```
 
@@ -2052,7 +2054,7 @@ Brief summary of the endpoint.
 
 - Type: `string`
 
-```typescript jsx
+```tsx
 <endpoint method='get' path='/users' summary='Get all users' />
 ```
 
@@ -2063,7 +2065,7 @@ Detailed description of the endpoint. CommonMark (Markdown) syntax is supported.
 
 - Type: `string`
 
-```typescript jsx
+```tsx
 <endpoint 
   method='get' 
   path='/users' 
@@ -2079,7 +2081,7 @@ Mark the endpoint as deprecated.
 - Type: `boolean`
 - Default: `false`
 
-```typescript jsx
+```tsx
 <endpoint method='get' path='/old-endpoint' deprecated />
 ```
 
@@ -2091,7 +2093,7 @@ Hide the endpoint from OpenAPI documentation.
 - Type: `boolean`
 - Default: `false`
 
-```typescript jsx
+```tsx
 <endpoint method='get' path='/internal' private />
 ```
 
@@ -2102,7 +2104,7 @@ Unique identifier for the operation, used to identify the operation in OpenAPI.
 
 - Type: `string`
 
-```typescript jsx
+```tsx
 <endpoint method='get' path='/users' operationId='getAllUsers' />
 ```
 
@@ -2115,7 +2117,7 @@ You can specify required/optional fields, data types, and validation constraints
 
 Define request body structure:
 
-```typescript jsx
+```tsx
 <body>
   <object>
     name: <string min={1} max={100} />
@@ -2128,7 +2130,7 @@ Define request body structure:
 Place `<body>` inside an `<endpoint>` to define what request data is expected.
 The body content should be a schema type (`<object>`, `<array>`, or a primitive type).
 
-```typescript jsx
+```tsx
 <endpoint method='post' path='/users'>
   <body>
     <object>
@@ -2161,7 +2163,7 @@ Parameters are automatically validated and documented in OpenAPI.
 
 Define endpoint parameters (query, header, cookie, path):
 
-```typescript jsx
+```tsx
 <endpoint method='get' path='/users/{id}'>
   <param in='path' name='id'><uuid /></param>
   <param in='query' name='format'>
@@ -2181,7 +2183,7 @@ The location of the parameter.
 - Type: `'query' | 'header' | 'path' | 'cookie'`
 - Required: Yes
 
-```typescript jsx
+```tsx
 <param in='query' name='search' />
 ```
 
@@ -2193,7 +2195,7 @@ The name of the parameter. Parameter names are case-sensitive.
 - Type: `string`
 - Required: Yes
 
-```typescript jsx
+```tsx
 <param in='query' name='search' />
 ```
 
@@ -2204,7 +2206,7 @@ A brief description of the parameter.
 
 - Type: `string`
 
-```typescript jsx
+```tsx
 <param in='query' name='search' description='Search query string' />
 ```
 
@@ -2216,7 +2218,7 @@ Whether the parameter is mandatory.
 - Type: `boolean`
 - Default: `false` (except for path parameters, which are always required)
 
-```typescript jsx
+```tsx
 <param in='query' name='token' required />
 ```
 
@@ -2228,7 +2230,7 @@ Mark the parameter as deprecated.
 - Type: `boolean`
 - Default: `false`
 
-```typescript jsx
+```tsx
 <param in='query' name='oldParam' deprecated />
 ```
 
@@ -2250,7 +2252,7 @@ Define what your endpoint will return to clients. Specify the response status co
 
 Define response structure and status:
 
-```typescript jsx
+```tsx
 <response status={200}>
   <object>
     data: <object />
@@ -2273,7 +2275,7 @@ The HTTP status code for this response.
 - Examples: `200`, `404`, `'created'`, `'notFound'`, `'2XX'`, `'4XX'`
 - Default: `'default'`
 
-```typescript jsx
+```tsx
 <response status={200}>
   <object />
 </response>
@@ -2288,7 +2290,7 @@ The media type of the response.
 - Default: `'application/json'`
 - Examples: `'application/json'`, `'text/html'`, `'text/plain'`
 
-```typescript jsx
+```tsx
 <response status={200} type='text/html'>
   <string value='Hello World' />
 </response>
@@ -2296,7 +2298,7 @@ The media type of the response.
 
 Place `<response>` inside an `<endpoint>` to define multiple possible responses:
 
-```typescript jsx
+```tsx
 <endpoint method='get' path='/users/{id}'>
   <response status={200}>
     <object>

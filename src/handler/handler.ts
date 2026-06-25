@@ -260,8 +260,21 @@ declare global {
       response: ResponseProps
       /** Handles endpoint responses and works like a `return` statement in functions. Only one can execute per scope. */
       return: ReturnProps
-      /** The root element that starts an HTTP(S) server. Configure server port, SSL certificates, and lifecycle events. */
+
+      /**
+       * The `<server>` is the root element that starts an HTTP(S) server.
+       * Use it to configure the server port, SSL certificates, and register lifecycle event handlers.
+       * All routes and APIs must be placed inside the `<server>` element.
+       *
+       * @example
+       * ```tsx
+       * <server port={3000}>
+       *   <api />
+       * </server>
+       * ```
+       * */
       server: ServerProps
+
       /** Text data with optional validation. */
       string: StringProps
       /** Return a successful response with optional data. */
