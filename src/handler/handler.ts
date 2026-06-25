@@ -203,7 +203,19 @@ declare global {
       dts: DtsProps
       /** Defines a REST API endpoint with request/response specifications. */
       endpoint: EndpointProps
-      /** Conditionally execute content based on environment variables. */
+
+      /**
+       * Conditionally execute content based on environment variables.
+       *
+       * @example
+       * ```tsx
+       * <api>
+       *   <env is='dev'>
+       *     <ui />
+       *   </env>
+       * </api>
+       * ```
+       * */
       env: EnvProps
       /** Return an error response. */
       error: ErrorProps

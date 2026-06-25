@@ -15,7 +15,8 @@ export interface EnvProps {
    * <env is="production">
    *   <ui />
    * </env>
-   *
+   * ```
+   * ```tsx
    * <env is={['development', 'staging']}>
    *   <dts />
    * </env>
