@@ -204,7 +204,7 @@ export const endpoint: HandlerPlugin = () => {
           docs.components.schemas = {}
         }
 
-        const ref = apiProps.errorShemaRefs?.requestValidation ?? 'ApiRequestBodyContentTypeError'
+        const ref = apiProps.errorShemaRefs?.requestBodyContentType ?? 'ApiRequestBodyContentTypeError'
 
         if (!(ref in docs.components.schemas)) {
           docs.components.schemas[ref] = apiProps.errorShema?.requestBodyContentType ?? defaultRequestBodyContentTypeSchema
