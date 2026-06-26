@@ -1556,6 +1556,7 @@ Available error codes: `requestValidation`, `requestBodyContentType`.
 Only works when `schemaGeneration` is enabled.
 
 - Type: `Partial<ApiErrorSchema>`
+- Default: `defaultRequestBodyContentTypeSchema` and `defaultRequestValidationSchema`
 
 ```tsx
 <api
@@ -1582,6 +1583,13 @@ Available error codes: `requestValidation`, `requestBodyContentType`.
 Only works when `schemaGeneration` is enabled.
 
 - Type: `Partial<ApiErrorSchemaRefs>`
+- Default:
+```json
+{         
+  "requestValidation": "ApiValidationError",
+  "requestBodyContentType": "ApiRequestBodyContentTypeError"
+}
+```
 
 ```tsx
 <api
