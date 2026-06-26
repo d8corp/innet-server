@@ -165,6 +165,9 @@ For a quick overview and introduction, see the [main README](../README.md) in th
               <p>├  🏷️ <a href="./ELEMENTS.md#api-description">description</a></p>
               <p>├  🏷️ <a href="./ELEMENTS.md#api-version">version</a></p>
               <p>├  🏷️ <a href="./ELEMENTS.md#api-prefix">prefix</a></p>
+              <p>├  🏷️ <a href="./ELEMENTS#api-schemageneration">schemaGeneration</a></p>
+              <p>├  🏷️ <a href="./ELEMENTS#api-errorschema">errorSchema</a></p>
+              <p>├  🏷️ <a href="./ELEMENTS#api-errorshemarefs">errorSchemaRefs</a></p>
               <p>├  🏷️ <a href="./ELEMENTS.md#api-include">include</a></p>
               <p>├  🏷️ <a href="./ELEMENTS.md#api-exclude">exclude</a></p>
               <details>

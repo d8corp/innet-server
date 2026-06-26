@@ -53,7 +53,7 @@ export interface ApiProps {
    * ```tsx
    * <api
    *   schemaGeneration
-   *   errorShema={{
+   *   errorSchema={{
    *     requestValidation: {
    *       type: 'object',
    *       properties: {
@@ -65,7 +65,7 @@ export interface ApiProps {
    * />
    * ```
    */
-  errorShema?: Partial<ApiErrorSchema>
+  errorSchema?: Partial<ApiErrorSchema>
 
   /**
    * Override default OpenAPI component schema reference names for built-in API errors.
@@ -79,14 +79,14 @@ export interface ApiProps {
    * ```tsx
    * <api
    *   schemaGeneration
-   *   errorShemaRefs={{
+   *   errorSchemaRefs={{
    *     requestValidation: 'CustomValidationError',
    *     requestBodyContentType: 'CustomContentTypeError'
    *   }}
    * />
    * ```
    */
-  errorShemaRefs?: Partial<ApiErrorSchemaRefs>
+  errorSchemaRefs?: Partial<ApiErrorSchemaRefs>
 
   /**
    * Regular expression to exclude paths from the API.
@@ -129,13 +129,13 @@ export interface ApiProps {
    * - Returns 'requestValidation' error (400) when request data fails validation rules
    * - Returns 'requestBodyContentType' error (400) when required body is missing or has unsupported content type
    *
-   * Works together with `errorShema` and `errorShemaRefs` to customize these built-in error schemas.
+   * Works together with `errorSchema` and `errorSchemaRefs` to customize these built-in error schemas.
    *
    * @example
    * ```tsx
    * <api
    *   schemaGeneration
-   *   errorShemaRefs={{
+   *   errorSchemaRefs={{
    *     requestValidation: 'ValidationError'
    *   }}
    * />
@@ -199,8 +199,8 @@ export const api: HandlerPlugin = () => {
 
   const {
     children,
-    errorShema,
-    errorShemaRefs,
+    errorSchema,
+    errorSchemaRefs,
     exclude,
     include,
     prefix = process.env.INNET_API_PREFIX || '',

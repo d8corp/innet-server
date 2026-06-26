@@ -141,6 +141,9 @@
               <p>├  🏷️ <a href="#api-description">description</a></p>
               <p>├  🏷️ <a href="#api-version">version</a></p>
               <p>├  🏷️ <a href="#api-prefix">prefix</a></p>
+              <p>├  🏷️ <a href="#api-schemageneration">schemaGeneration</a></p>
+              <p>├  🏷️ <a href="#api-errorschema">errorSchema</a></p>
+              <p>├  🏷️ <a href="#api-errorshemarefs">errorSchemaRefs</a></p>
               <p>├  🏷️ <a href="#api-include">include</a></p>
               <p>├  🏷️ <a href="#api-exclude">exclude</a></p>
               <details>
@@ -445,6 +448,9 @@ Environment variable name to check.
           <p>├  🏷️ <a href="#api-description">description</a></p>
           <p>├  🏷️ <a href="#api-version">version</a></p>
           <p>├  🏷️ <a href="#api-prefix">prefix</a></p>
+          <p>├  🏷️ <a href="#api-schemageneration">schemaGeneration</a></p>
+          <p>├  🏷️ <a href="#api-errorschema">errorSchema</a></p>
+          <p>├  🏷️ <a href="#api-errorshemarefs">errorSchemaRefs</a></p>
           <p>├  🏷️ <a href="#api-include">include</a></p>
           <p>├  🏷️ <a href="#api-exclude">exclude</a></p>
           <details>
@@ -1349,6 +1355,9 @@ Path to the file to serve.
       <p>├  🏷️ <a href="#api-description">description</a></p>
       <p>├  🏷️ <a href="#api-version">version</a></p>
       <p>├  🏷️ <a href="#api-prefix">prefix</a></p>
+      <p>├  🏷️ <a href="#api-schemageneration">schemaGeneration</a></p>
+      <p>├  🏷️ <a href="#api-errorschema">errorSchema</a></p>
+      <p>├  🏷️ <a href="#api-errorshemarefs">errorSchemaRefs</a></p>
       <p>├  🏷️ <a href="#api-include">include</a></p>
       <p>╘  🏷️ <a href="#api-exclude">exclude</a></p>
     </blockquote>
@@ -1519,7 +1528,7 @@ URL path prefix for all endpoints in this API.
 ```
 
 #### <a id="api-schemageneration">schemaGeneration</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / schemaGeneration [↑](#api-prefix) [↓](#api-errorshema)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / schemaGeneration [↑](#api-prefix) [↓](#api-errorschema)
 
 Enable automatic schema generation for OpenAPI documentation.
 When enabled, generates schemas for request/response validation and error responses.
@@ -1528,7 +1537,7 @@ Affects validation of request parameters (path, query, header, cookie, body):
 - Returns `requestValidation` error (400) when request data fails validation rules
 - Returns `requestBodyContentType` error (400) when required body is missing or has unsupported content type
 
-Works together with errorShema and errorShemaRefs to customize these built-in error schemas.
+Works together with errorSchema and errorSchemaRefs to customize these built-in error schemas.
 
 - Type: `boolean`
 - Default: `false`
@@ -1546,8 +1555,8 @@ Works together with errorShema and errorShemaRefs to customize these built-in er
 </api>
 ```
 
-#### <a id="api-errorshema">errorShema</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / errorShema [↑](#api-schemageneration) [↓](#api-errorshemarefs)
+#### <a id="api-errorschema">errorSchema</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / errorSchema [↑](#api-schemageneration) [↓](#api-errorshemarefs)
 
 Override default OpenAPI schemas for built-in API error responses.
 Allows customization of error data structure for automatic validation errors.
@@ -1561,7 +1570,7 @@ Only works when `schemaGeneration` is enabled.
 ```tsx
 <api
   schemaGeneration
-  errorShema={{
+  errorSchema={{
     requestValidation: {
       type: 'object',
       properties: {
@@ -1573,8 +1582,8 @@ Only works when `schemaGeneration` is enabled.
 />
 ```
 
-#### <a id="api-errorshemarefs">errorShemaRefs</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / errorShemaRefs [↑](#api-errorshema) [↓](#api-include)
+#### <a id="api-errorshemarefs">errorSchemaRefs</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / errorSchemaRefs [↑](#api-errorschema) [↓](#api-include)
 
 Override default OpenAPI component schema reference names for built-in API errors.
 Useful when you want to use custom schema names in OpenAPI documentation.
@@ -1594,7 +1603,7 @@ Only works when `schemaGeneration` is enabled.
 ```tsx
 <api
   schemaGeneration
-  errorShemaRefs={{
+  errorSchemaRefs={{
     requestValidation: 'CustomValidationError',
     requestBodyContentType: 'CustomContentTypeError'
   }}

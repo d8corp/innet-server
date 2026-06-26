@@ -180,10 +180,10 @@ export const endpoint: HandlerPlugin = () => {
           docs.components.schemas = {}
         }
 
-        const ref = apiProps.errorShemaRefs?.requestValidation ?? 'ApiValidationError'
+        const ref = apiProps.errorSchemaRefs?.requestValidation ?? 'ApiValidationError'
 
         if (!(ref in docs.components.schemas)) {
-          docs.components.schemas[ref] = apiProps.errorShema?.requestValidation ?? defaultRequestValidationSchema
+          docs.components.schemas[ref] = apiProps.errorSchema?.requestValidation ?? defaultRequestValidationSchema
         }
 
         operation.responses[400] = addErrorRequest({ $ref: `#/components/schemas/${ref}` }, operation.responses[400])
@@ -204,10 +204,10 @@ export const endpoint: HandlerPlugin = () => {
           docs.components.schemas = {}
         }
 
-        const ref = apiProps.errorShemaRefs?.requestBodyContentType ?? 'ApiRequestBodyContentTypeError'
+        const ref = apiProps.errorSchemaRefs?.requestBodyContentType ?? 'ApiRequestBodyContentTypeError'
 
         if (!(ref in docs.components.schemas)) {
-          docs.components.schemas[ref] = apiProps.errorShema?.requestBodyContentType ?? defaultRequestBodyContentTypeSchema
+          docs.components.schemas[ref] = apiProps.errorSchema?.requestBodyContentType ?? defaultRequestBodyContentTypeSchema
         }
 
         operation.responses[400] = addErrorRequest({ $ref: `#/components/schemas/${ref}` }, operation.responses[400])
