@@ -2466,8 +2466,19 @@ All responses are automatically documented in OpenAPI.
 </endpoint>
 ```
 
+#### <a id="response-description">description</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / [Response](#response) / description [↓](#response-status)
+
+A description of the response. CommonMark (Markdown) syntax is supported.
+
+- Type: `string`
+
+```tsx
+<response description='Empty response' />
+```
+
 #### <a id="response-status">status</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / [Response](#response) / status [↓](#response-type)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / [Response](#response) / status [↑](#response-description) [↓](#response-type)
 
 The HTTP status code for this response.
 
@@ -2495,8 +2506,8 @@ The media type of the response.
 - Examples: `'application/json'`, `'text/html'`, `'text/plain'`
 
 ```tsx
-<response type='text/html'>
-  <string value='<html><body>Hello World!</body></html>' />
+<response type='text/plain'>
+  <string value='Hello World!' />
 </response>
 ```
 
