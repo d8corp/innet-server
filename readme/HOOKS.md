@@ -215,10 +215,7 @@ If the component is used in the wrong endpoint, you'll get a validation error wi
     at <App> (/.../src/index.tsx:6:7)
     at ... (8 more node_modules calls)
       [cause]: Error: <AddTodo> MUST be in <endpoint> of POST:/todos
-      at Object.useThrow (/.../node_modules/@innet/server/hooks/useThrow/useThrow.js:10:11)
-      at Object.queueNanotask (/.../node_modules/queue-nano-task/queueNanotask.js:18:41)
-      at Object.innet (/.../node_modules/innet/innet.js:28:19) {
-      at ... (1 more node_modules calls)
+      at ... (4 more node_modules calls)
       at AddTodo (/.../src/requests/todo/AddTodo/AddTodo.tsx:6:16)
       at ... (7 more node_modules calls)
 ```
