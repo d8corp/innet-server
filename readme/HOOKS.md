@@ -190,10 +190,11 @@ When used with the `<dts>` element, this hook provides automatic type inference 
 ```tsx
 import { useData } from '@innet/server'
 
-export function GetTodos() {
-  const { page, pageSize } = useData('search', 'GET:/todos')
-  // Full type inference and autocomplete for query parameters
-  
+export function AddTodo () {
+  const todo = useData('body', 'POST:/todos')
+
+  todos.push(todo)
+
   return <success />
 }
 ```
