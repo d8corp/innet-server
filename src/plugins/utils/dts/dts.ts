@@ -6,7 +6,28 @@ import { useApi, useEffect } from '../../../hooks'
 import { generateTypes } from '../../../utils'
 
 export interface DtsProps {
+  /**
+   * Global namespace name for generated types.
+   *
+   * @default 'Api'
+   *
+   * @example
+   * ```tsx
+   * <dts namespace='API' />
+   * ```
+   */
   namespace?: string
+
+  /**
+   * Output path for the generated TypeScript definitions file.
+   *
+   * @default 'src/api.d.ts'
+   *
+   * @example
+   * ```tsx
+   * <dts path='src/types.d.ts' />
+   * ```
+   */
   path?: string
 }
 

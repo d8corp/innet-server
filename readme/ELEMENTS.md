@@ -2033,6 +2033,19 @@ export function DeleteTodo() {
 }
 ```
 
+Generated types enable typed hooks with full autocomplete:
+
+```tsx
+import { useData } from '@innet/server'
+
+export function GetTodos() {
+  const { page, pageSize } = useData('search', 'GET:/todos')
+  // Full type inference and autocomplete for query params
+  
+  return <success />
+}
+```
+
 #### <a id="dts-path">path</a>
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [dts](#dts) / path [↓](#dts-namespace)
 
