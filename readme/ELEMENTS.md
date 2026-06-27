@@ -203,7 +203,7 @@
                 <summary>&nbsp;🧩 <a href="#tag">&lt;tag&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#tag-name">name</a></p>
+                  <p>├  🏷️ <a href="#tag-name">name</a>*</p>
                   <p>╘  🏷️ <a href="#tag-group">group</a></p>
                 </blockquote>
               </details>
@@ -510,7 +510,7 @@ Environment variable name to check.
             <summary>&nbsp;🧩 <a href="#tag">&lt;tag&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#tag-name">name</a></p>
+              <p>├  🏷️ <a href="#tag-name">name</a>*</p>
               <p>╘  🏷️ <a href="#tag-group">group</a></p>
             </blockquote>
           </details>
@@ -1423,7 +1423,7 @@ Path to the file to serve.
         <summary>&nbsp;🧩 <a href="#tag">&lt;tag&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🏷️ <a href="#tag-name">name</a></p>
+          <p>├  🏷️ <a href="#tag-name">name</a>*</p>
           <p>╘  🏷️ <a href="#tag-group">group</a></p>
         </blockquote>
       </details>
@@ -2090,9 +2090,9 @@ Tags allow you to group related endpoints together in the API documentation, mak
 ```tsx
 <api>
   <tag name='Users' group='Management'>
-    <endpoint method='get' path='/users'>
-      {/* ... */}
-    </endpoint>
+    <endpoint method='get' path='/users' />
+    <endpoint method='get' path='/users/{userId}' />
+    <endpoint method='post' path='/users' />
   </tag>
 </api>
 ```
@@ -2100,13 +2100,16 @@ Tags allow you to group related endpoints together in the API documentation, mak
 #### <a id="tag-name">name</a>
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Tag](#tag) / name [↓](#tag-group)
 
-The name of the tag used to group endpoints.
+The name of the `tag` used to group endpoints.
 
 - Type: `string`
 - Required: Yes
 
 ```tsx
-<tag name='Users'>{/* ... */}</tag>
+<tag name='Users'>
+  <endpoint method='get' path='/users' />
+  <endpoint method='get' path='/users/{userId}' />
+</tag>
 ```
 
 #### <a id="tag-group">group</a>
@@ -2118,7 +2121,8 @@ Optional group name for organizing multiple tags into logical sections in the do
 
 ```tsx
 <tag name='Users' group='Management'>
-  {/* ... */}
+  <endpoint method='get' path='/users' />
+  <endpoint method='get' path='/users/{userId}' />
 </tag>
 ```
 
