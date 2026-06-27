@@ -15,9 +15,15 @@ const inMap: Record<InParam, keyof EndpointRules> = {
 
 export interface ParamProps {
   children?: any
+
   /**
    * Specifies that a parameter is deprecated and SHOULD be transitioned out of usage.
    * Default value is `false`.
+   *
+   * @example
+   * ```tsx
+   * <param in='query' name='oldParam' deprecated />
+   * ```
    * */
   deprecated?: boolean
 
@@ -25,12 +31,22 @@ export interface ParamProps {
    * A brief description of the parameter.
    * This could contain examples of use.
    * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
+   *
+   * @example
+   * ```tsx
+   * <param in='query' name='search' description='Search query string' />
+   * ```
    * */
   description?: string
 
   /**
    * The location of the parameter.
    * Possible values are "query", "header", "path" or "cookie".
+   *
+   * @example
+   * ```tsx
+   * <param in='query' name='search' />
+   * ```
    * */
   in: InParam
 
@@ -40,6 +56,11 @@ export interface ParamProps {
    * - If `in` is "path", the `name` field MUST correspond to a template expression occurring within the `path` field in the `endpoint`. See [Path Templating](https://swagger.io/specification/#path-templating) for further information.
    * - If `in` is "header" and the `name` field is "Accept", "Content-Type" or "Authorization", the parameter definition SHALL be ignored.
    * - For all other cases, the `name` corresponds to the parameter name used by the `in` property.
+   *
+   * @example
+   * ```tsx
+   * <param in='query' name='search' />
+   * ```
    * */
   name: string
 
@@ -47,6 +68,11 @@ export interface ParamProps {
    * Determines whether this parameter is mandatory.
    * If the parameter location is "path", this property is `true` and its value MUST be `true`.
    * Otherwise, the property MAY be included and its default value is `false`.
+   *
+   * @example
+   * ```tsx
+   * <param in='query' name='token' required />
+   * ```
    * */
   required?: boolean
 }
