@@ -150,7 +150,7 @@
                 <summary>&nbsp;🧩 <a href="#host">&lt;host&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#host-url">url</a></p>
+                  <p>├  🏷️ <a href="#host-url">url</a>*</p>
                   <p>├  🏷️ <a href="#host-description">description</a></p>
                   <details>
                     <summary>&nbsp;🧩 <a href="#variable">&lt;variable&gt;</a></summary>
@@ -457,7 +457,7 @@ Environment variable name to check.
             <summary>&nbsp;🧩 <a href="#host">&lt;host&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#host-url">url</a></p>
+              <p>├  🏷️ <a href="#host-url">url</a>*</p>
               <p>├  🏷️ <a href="#host-description">description</a></p>
               <details>
                 <summary>&nbsp;🧩 <a href="#variable">&lt;variable&gt;</a></summary>
@@ -1370,7 +1370,7 @@ Path to the file to serve.
         <summary>&nbsp;🧩 <a href="#host">&lt;host&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🏷️ <a href="#host-url">url</a></p>
+          <p>├  🏷️ <a href="#host-url">url</a>*</p>
           <p>├  🏷️ <a href="#host-description">description</a></p>
           <details>
             <summary>&nbsp;🧩 <a href="#variable">&lt;variable&gt;</a></summary>
@@ -1640,7 +1640,7 @@ Regular expression to exclude matching URLs.
     <summary>&nbsp;🏷️ Props</summary>
     <blockquote>
       <p></p>
-      <p>├  🏷️ <a href="#host-url">url</a></p>
+      <p>├  🏷️ <a href="#host-url">url</a>*</p>
       <p>╘  🏷️ <a href="#host-description">description</a></p>
     </blockquote>
   </details>
@@ -1685,12 +1685,23 @@ The server URL (supports Server Variables with `{varName}`).
 - Type: `string`
 - Required: Yes
 
+```tsx
+<host url='https://{username}.example.com:{port}/v1' />
+```
+
 #### <a id="host-description">description</a>
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Host](#host) / description [↑](#host-url)
 
 Description of the host/server.
 
 - Type: `string`
+
+```tsx
+<host
+  url='https://api.example.com'
+  description='Production server'
+/>
+```
 
 ## Variable
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Host](#host) / Variable

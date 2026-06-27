@@ -174,7 +174,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <summary>&nbsp;🧩 <a href="./ELEMENTS.md#host">&lt;host&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="./ELEMENTS.md#host-url">url</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#host-url">url</a>*</p>
                   <p>├  🏷️ <a href="./ELEMENTS.md#host-description">description</a></p>
                   <details>
                     <summary>&nbsp;🧩 <a href="./ELEMENTS.md#variable">&lt;variable&gt;</a></summary>

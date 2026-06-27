@@ -8,6 +8,14 @@ export interface HostProps {
   /**
    * An optional string describing the host designated by the URL.
    * [CommonMark syntax](https://spec.commonmark.org/) MAY be used for rich text representation.
+   *
+   * @example
+   * ```tsx
+   * <host
+   *   url='https://api.example.com'
+   *   description='Production server'
+   * />
+   * ```
    * */
   description?: string
 
@@ -16,6 +24,11 @@ export interface HostProps {
    * This URL supports Server Variables and MAY be relative,
    * to indicate that the host location is relative to the location where the OpenAPI document is being served.
    * Variable substitutions will be made when a variable is named in {brackets}.
+   *
+   * @example
+   * ```tsx
+   * <host url='https://{username}.example.com:{port}/v1' />
+   * ```
    * */
   url: string
 }
