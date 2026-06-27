@@ -8,7 +8,7 @@
     <blockquote>
       <p></p>
       <details>
-        <summary>&nbsp;📁 <a href="#schemas-props">Props</a></summary>
+        <summary>&nbsp;📁 <a href="#shared-props">Shared Props</a></summary>
         <blockquote>
           <p></p>
           <p>├  🏷️ <a href="#schema-title">title</a></p>
