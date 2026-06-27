@@ -9,7 +9,9 @@ export interface ContactProps {
    * This MUST be in the form of an email address.
    *
    * @example
+   * ```tsx
    * <contact email='support@example.com' />
+   * ```
    */
   email?: string
 
@@ -17,10 +19,12 @@ export interface ContactProps {
    * The identifying name of the contact person/organization.
    *
    * @example
+   * ```tsx
    * <contact
    *   name='Support Team'
    *   email='support@example.com'
    * />
+   * ```
    */
   name?: string
 
@@ -29,7 +33,9 @@ export interface ContactProps {
    * This MUST be in the form of a URL.
    *
    * @example
+   * ```tsx
    * <contact url='https://support.example.com' />
+   * ```
    */
   url?: string
 }

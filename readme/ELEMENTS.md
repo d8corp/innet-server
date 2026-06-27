@@ -1974,15 +1974,13 @@ Additional parameters to pass to the documentation viewer. Parameters vary by vi
 - Default: empty object
 
 ```tsx
-<api>
-  <ui
-    html={uiPresets.scalar}
-    params={{
-      theme: 'moon',
-      layout: 'classic'
-    }}
-  />
-</api>
+<ui
+  html={uiPresets.scalar}
+  params={{
+    theme: 'moon',
+    layout: 'classic'
+  }}
+/>
 ```
 
 #### <a id="ui-path">path</a>
@@ -1995,9 +1993,7 @@ The URL path where the documentation UI will be served.
 - Environment variable: `INNET_UI_PATH`
 
 ```tsx
-<api>
-  <ui path='/docs' />
-</api>
+<ui path='/docs' />
 ```
 
 ## DTS
