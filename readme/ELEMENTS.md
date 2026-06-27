@@ -2445,22 +2445,25 @@ Mark the parameter as deprecated.
   </details>
 </sub>
 
-Define what your endpoint will return to clients. Specify the response status code, data structure, and fields. You can define multiple response types for different HTTP status codes. All responses are automatically validated and documented in OpenAPI.
-
-Define response structure and status:
+Define what your endpoint will return to clients.
+Specify the response status code, data structure, and fields.
+You can define multiple response types for different HTTP status codes. 
+All responses are automatically documented in OpenAPI.
 
 ```tsx
-<response status={200}>
-  <object>
-    data: <object />
-  </object>
-</response>
-
-<response status={404}>
-  <object>
-    error: <string />
-  </object>
-</response>
+<endpoint method='get' path='/users/{id}'>
+  <response status={200}>
+    <object>
+      id: <uuid />
+      name: <string />
+    </object>
+  </response>
+  <response status={404}>
+    <object>
+      error: <string />
+    </object>
+  </response>
+</endpoint>
 ```
 
 #### <a id="response-status">status</a>
@@ -2478,6 +2481,10 @@ The HTTP status code for this response.
 </response>
 ```
 
+```tsx
+<response status='created' />
+```
+
 #### <a id="response-type">type</a>
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Endpoint](#endpoint) / [Response](#response) / type [↑](#response-status)
 
@@ -2488,27 +2495,9 @@ The media type of the response.
 - Examples: `'application/json'`, `'text/html'`, `'text/plain'`
 
 ```tsx
-<response status={200} type='text/html'>
-  <string value='Hello World' />
+<response type='text/html'>
+  <string value='<html><body>Hello World!</body></html>' />
 </response>
-```
-
-Place `<response>` inside an `<endpoint>` to define multiple possible responses:
-
-```tsx
-<endpoint method='get' path='/users/{id}'>
-  <response status={200}>
-    <object>
-      id: <uuid />
-      name: <string />
-    </object>
-  </response>
-  <response status={404}>
-    <object>
-      error: <string />
-    </object>
-  </response>
-</endpoint>
 ```
 
 ---
