@@ -248,8 +248,8 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                     <summary>&nbsp;🧩 <a href="./ELEMENTS.md#param">&lt;param&gt;</a></summary>
                     <blockquote>
                       <p></p>
-                      <p>├  🏷️ <a href="./ELEMENTS.md#param-in">in</a></p>
-                      <p>├  🏷️ <a href="./ELEMENTS.md#param-name">name</a></p>
+                      <p>├  🏷️ <a href="./ELEMENTS.md#param-in">in</a>*</p>
+                      <p>├  🏷️ <a href="./ELEMENTS.md#param-name">name</a>*</p>
                       <p>├  🏷️ <a href="./ELEMENTS.md#param-description">description</a></p>
                       <p>├  🏷️ <a href="./ELEMENTS.md#param-required">required</a></p>
                       <p>╘  🏷️ <a href="./ELEMENTS.md#param-deprecated">deprecated</a></p>

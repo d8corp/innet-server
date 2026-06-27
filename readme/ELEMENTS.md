@@ -224,8 +224,8 @@
                     <summary>&nbsp;🧩 <a href="#param">&lt;param&gt;</a></summary>
                     <blockquote>
                       <p></p>
-                      <p>├  🏷️ <a href="#param-in">in</a></p>
-                      <p>├  🏷️ <a href="#param-name">name</a></p>
+                      <p>├  🏷️ <a href="#param-in">in</a>*</p>
+                      <p>├  🏷️ <a href="#param-name">name</a>*</p>
                       <p>├  🏷️ <a href="#param-description">description</a></p>
                       <p>├  🏷️ <a href="#param-required">required</a></p>
                       <p>╘  🏷️ <a href="#param-deprecated">deprecated</a></p>
@@ -532,8 +532,8 @@ Environment variable name to check.
                 <summary>&nbsp;🧩 <a href="#param">&lt;param&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#param-in">in</a></p>
-                  <p>├  🏷️ <a href="#param-name">name</a></p>
+                  <p>├  🏷️ <a href="#param-in">in</a>*</p>
+                  <p>├  🏷️ <a href="#param-name">name</a>*</p>
                   <p>├  🏷️ <a href="#param-description">description</a></p>
                   <p>├  🏷️ <a href="#param-required">required</a></p>
                   <p>╘  🏷️ <a href="#param-deprecated">deprecated</a></p>
@@ -1446,8 +1446,8 @@ Path to the file to serve.
             <summary>&nbsp;🧩 <a href="#param">&lt;param&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#param-in">in</a></p>
-              <p>├  🏷️ <a href="#param-name">name</a></p>
+              <p>├  🏷️ <a href="#param-in">in</a>*</p>
+              <p>├  🏷️ <a href="#param-name">name</a>*</p>
               <p>├  🏷️ <a href="#param-description">description</a></p>
               <p>├  🏷️ <a href="#param-required">required</a></p>
               <p>╘  🏷️ <a href="#param-deprecated">deprecated</a></p>
@@ -2170,8 +2170,8 @@ Optional group name for organizing multiple tags into logical sections in the do
         <summary>&nbsp;🧩 <a href="#param">&lt;param&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🏷️ <a href="#param-in">in</a></p>
-          <p>├  🏷️ <a href="#param-name">name</a></p>
+          <p>├  🏷️ <a href="#param-in">in</a>*</p>
+          <p>├  🏷️ <a href="#param-name">name</a>*</p>
           <p>├  🏷️ <a href="#param-description">description</a></p>
           <p>├  🏷️ <a href="#param-required">required</a></p>
           <p>╘  🏷️ <a href="#param-deprecated">deprecated</a></p>
@@ -2345,8 +2345,8 @@ The body content should be a schema type (`<object>`, `<array>`, or a primitive 
     <summary>&nbsp;🏷️ Props</summary>
     <blockquote>
       <p></p>
-      <p>├  🏷️ <a href="#param-in">in</a></p>
-      <p>├  🏷️ <a href="#param-name">name</a></p>
+      <p>├  🏷️ <a href="#param-in">in</a>*</p>
+      <p>├  🏷️ <a href="#param-name">name</a>*</p>
       <p>├  🏷️ <a href="#param-description">description</a></p>
       <p>├  🏷️ <a href="#param-required">required</a></p>
       <p>╘  🏷️ <a href="#param-deprecated">deprecated</a></p>
