@@ -192,7 +192,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <summary>&nbsp;🧩 <a href="./ELEMENTS.md#license">&lt;license&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="./ELEMENTS.md#license-name">name</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#license-name">name</a>*</p>
                   <p>├  🏷️ <a href="./ELEMENTS.md#license-identifier">identifier</a></p>
                   <p>╘  🏷️ <a href="./ELEMENTS.md#license-url">url</a></p>
                 </blockquote>

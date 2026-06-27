@@ -1806,6 +1806,7 @@ Define the license for your API.
   <license
     name='Apache 2.0'
     identifier='Apache-2.0'
+    url='https://apache.org'
   />
 </api>
 ```
@@ -1818,6 +1819,14 @@ The license name.
 - Type: `string`
 - Required: Yes
 
+```tsx
+<license
+  name='MIT'
+  identifier='MIT'
+  url='https://opensource.org/licenses/MIT'
+/>
+```
+
 #### <a id="license-identifier">identifier</a>
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [License](#license) / identifier [↑](#license-name) [↓](#license-url)
 
@@ -1825,12 +1834,28 @@ SPDX license expression (mutually exclusive with `url`).
 
 - Type: `string`
 
+```tsx
+<license
+  name='GNU GPL v3.0'
+  identifier='GPL-3.0-only'
+  url='https://gnu.org'
+/>
+```
+
 #### <a id="license-url">url</a>
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [License](#license) / url [↑](#license-identifier)
 
 URL to the license document (mutually exclusive with `identifier`).
 
 - Type: `string`
+
+```tsx
+<license
+  name='Apache 2.0'
+  identifier='Apache-2.0'
+  url='https://apache.org'
+/>
+```
 
 ## Contact
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / Contact [↑](#license) [↓](#ui)
