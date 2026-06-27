@@ -34,7 +34,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
         <summary>&nbsp;🧩 <a href="./ELEMENTS.md#env">&lt;env&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🏷️ <a href="./ELEMENTS.md#env-is">is</a></p>
+          <p>├  🏷️ <a href="./ELEMENTS.md#env-is">is</a>*</p>
           <p>╘  🏷️ <a href="./ELEMENTS.md#env-of">of</a></p>
         </blockquote>
       </details>
