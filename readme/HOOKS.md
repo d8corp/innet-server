@@ -178,7 +178,8 @@ const body = useBody()
 Returns typed request data from a specific source (params, search, or body).
 When used with the `<dts>` element, provides automatic type inference based on your API schema without manual type definitions.
 
-**Important:** The hook validates that the component is used in the correct endpoint. If you specify an endpoint parameter and use the component in a different endpoint, an error will be thrown at runtime.
+The hook validates that the component is used in the correct endpoint.
+If you specify an endpoint parameter and use the component in a different endpoint, an error will be thrown at runtime.
 
 - **Parameters:**
   - `source` - Data source: `'params'` | `'search'` | `'body'`
@@ -199,7 +200,7 @@ export function AddTodo () {
 ```
 
 **Error handling:**
-If the component is used in the wrong endpoint, you'll get a validation error with the exact location:
+If the component is used in the wrong endpoint, you'll get an error with the exact location:
 ```
     Error: Exception in <AddTodo>
     at <AddTodo> (/.../src/modules/TodoModule/TodoModule.tsx:18:11)
@@ -218,8 +219,6 @@ If the component is used in the wrong endpoint, you'll get a validation error wi
       at AddTodo (/.../src/requests/todo/AddTodo/AddTodo.tsx:6:16)
       at ... (7 more node_modules calls)
 ```
-
-This ensures type safety and prevents runtime errors from mismatched data structures.
 
 ### useClientIp
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useClientIp [↑](#usedata)
