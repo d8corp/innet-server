@@ -204,6 +204,7 @@
                 <blockquote>
                   <p></p>
                   <p>├  🏷️ <a href="#tag-name">name</a>*</p>
+                  <p>├  🏷️ <a href="#tag-description">description</a></p>
                   <p>╘  🏷️ <a href="#tag-group">group</a></p>
                 </blockquote>
               </details>
@@ -511,6 +512,7 @@ Environment variable name to check.
             <blockquote>
               <p></p>
               <p>├  🏷️ <a href="#tag-name">name</a>*</p>
+              <p>├  🏷️ <a href="#tag-description">description</a></p>
               <p>╘  🏷️ <a href="#tag-group">group</a></p>
             </blockquote>
           </details>
@@ -1424,6 +1426,7 @@ Path to the file to serve.
         <blockquote>
           <p></p>
           <p>├  🏷️ <a href="#tag-name">name</a>*</p>
+          <p>├  🏷️ <a href="#tag-description">description</a></p>
           <p>╘  🏷️ <a href="#tag-group">group</a></p>
         </blockquote>
       </details>

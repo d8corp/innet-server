@@ -228,6 +228,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <blockquote>
                   <p></p>
                   <p>├  🏷️ <a href="./ELEMENTS.md#tag-name">name</a>*</p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#tag-description">description</a></p>
                   <p>╘  🏷️ <a href="./ELEMENTS.md#tag-group">group</a></p>
                 </blockquote>
               </details>
