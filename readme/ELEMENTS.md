@@ -235,6 +235,7 @@
                     <summary>&nbsp;🧩 <a href="#response">&lt;response&gt;</a></summary>
                     <blockquote>
                       <p></p>
+                      <p>├  🏷️ <a href="#response-description">description</a></p>
                       <p>├  🏷️ <a href="#response-status">status</a></p>
                       <p>╘  🏷️ <a href="#response-type">type</a></p>
                     </blockquote>
@@ -543,6 +544,7 @@ Environment variable name to check.
                 <summary>&nbsp;🧩 <a href="#response">&lt;response&gt;</a></summary>
                 <blockquote>
                   <p></p>
+                  <p>├  🏷️ <a href="#response-description">description</a></p>
                   <p>├  🏷️ <a href="#response-status">status</a></p>
                   <p>╘  🏷️ <a href="#response-type">type</a></p>
                 </blockquote>
@@ -1457,6 +1459,7 @@ Path to the file to serve.
             <summary>&nbsp;🧩 <a href="#response">&lt;response&gt;</a></summary>
             <blockquote>
               <p></p>
+              <p>├  🏷️ <a href="#response-description">description</a></p>
               <p>├  🏷️ <a href="#response-status">status</a></p>
               <p>╘  🏷️ <a href="#response-type">type</a></p>
             </blockquote>
@@ -2181,6 +2184,7 @@ Optional group name for organizing multiple tags into logical sections in the do
         <summary>&nbsp;🧩 <a href="#response">&lt;response&gt;</a></summary>
         <blockquote>
           <p></p>
+          <p>├  🏷️ <a href="#response-description">description</a></p>
           <p>├  🏷️ <a href="#response-status">status</a></p>
           <p>╘  🏷️ <a href="#response-type">type</a></p>
         </blockquote>
@@ -2439,6 +2443,7 @@ Mark the parameter as deprecated.
     <summary>&nbsp;🏷️ Props</summary>
     <blockquote>
       <p></p>
+      <p>├  🏷️ <a href="#response-description">description</a></p>
       <p>├  🏷️ <a href="#response-status">status</a></p>
       <p>╘  🏷️ <a href="#response-type">type</a></p>
     </blockquote>

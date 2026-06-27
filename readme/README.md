@@ -259,6 +259,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                     <summary>&nbsp;🧩 <a href="./ELEMENTS.md#response">&lt;response&gt;</a></summary>
                     <blockquote>
                       <p></p>
+                      <p>├  🏷️ <a href="./ELEMENTS.md#response-description">description</a></p>
                       <p>├  🏷️ <a href="./ELEMENTS.md#response-status">status</a></p>
                       <p>╘  🏷️ <a href="./ELEMENTS.md#response-type">type</a></p>
                     </blockquote>
