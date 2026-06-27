@@ -1891,6 +1891,13 @@ Contact person or organization name.
 
 - Type: `string`
 
+```tsx
+<contact
+  name='Support Team'
+  email='support@example.com'
+/>
+```
+
 #### <a id="contact-email">email</a>
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Contact](#contact) / email [↑](#contact-name) [↓](#contact-url)
 
@@ -1898,12 +1905,20 @@ Email address (must be valid email format).
 
 - Type: `string`
 
+```tsx
+<contact email='support@example.com' />
+```
+
 #### <a id="contact-url">url</a>
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Contact](#contact) / url [↑](#contact-email)
 
 URL pointing to contact information.
 
 - Type: `string`
+
+```tsx
+<contact url='https://support.example.com' />
+```
 
 ## UI
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / UI [↑](#contact) [↓](#dts)
