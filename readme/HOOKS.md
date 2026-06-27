@@ -175,9 +175,8 @@ const body = useBody()
 ### useData
 ###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useData [↑](#usebody) [↓](#useclientip)
 
-Returns typed request data from a specific source (params, search, or body) with full TypeScript support and IDE autocomplete.
-
-When used with the `<dts>` element, this hook provides automatic type inference based on your API schema, giving you type safety and autocomplete for request data without manual type definitions.
+Returns typed request data from a specific source (params, search, or body).
+When used with the `<dts>` element, provides automatic type inference based on your API schema without manual type definitions.
 
 **Important:** The hook validates that the component is used in the correct endpoint. If you specify an endpoint parameter and use the component in a different endpoint, an error will be thrown at runtime.
 
