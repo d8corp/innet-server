@@ -17,6 +17,13 @@ export interface TagProps {
   /**
    * A description for the tag.
    * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
+   *
+   * @example
+   * ```tsx
+   * <tag name='Users' description='Endpoints for **user management**'>
+   *   <endpoint method='get' path='/users' />
+   * </tag>
+   * ```
    * */
   description?: string
 
