@@ -287,9 +287,32 @@ declare global {
       ui: UiProps
       /** Universally unique identifier in UUID format. */
       uuid: UuidProps
-      /** Define a variable used in host URLs for substitution. */
+
+      /**
+       * Define a variable used in host URLs for substitution.
+       *
+       * @example
+       * ```tsx
+       * <api>
+       *   <host url='https://api.example.com/{version}/'>
+       *     <variable key='version' values={['v1', 'v2']} />
+       *   </host>
+       * </api>
+       * */
       variable: VariableProps
-      /** Allow requests only from specific IP addresses. */
+
+      /**
+       * Allow requests only from specific IP addresses.
+       *
+       * @example
+       * ```tsx
+       * <api>
+       *   <whitelist ip='192.168.1.1,10.0.0.1'>
+       *     <error status='forbidden' />
+       *   </whitelist>
+       * </api>
+       * ```
+       * */
       whitelist: WhitelistProps
     }
   }

@@ -1740,12 +1740,20 @@ Variable name (used in `{brackets}` in host URL).
 - Type: `string`
 - Required: Yes
 
+```tsx
+<variable key='env' />
+```
+
 #### <a id="variable-value">value</a>
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Host](#host) / [Variable](#variable) / value [↑](#variable-key) [↓](#variable-values)
 
 Default value for the variable.
 
 - Type: `string`
+
+```tsx
+<variable key='env' value='dev' />
+```
 
 #### <a id="variable-values">values</a>
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Host](#host) / [Variable](#variable) / values [↑](#variable-value) [↓](#variable-description)
@@ -1754,12 +1762,27 @@ Enumeration of allowed values.
 
 - Type: `string[]`
 
+```tsx
+<variable
+  key='env'
+  value='dev'
+  values={['dev', 'prod']}
+/>
+```
+
 #### <a id="variable-description">description</a>
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Host](#host) / [Variable](#variable) / description [↑](#variable-values)
 
 Variable description.
 
 - Type: `string`
+
+```tsx
+<variable
+  key='env'
+  description='Environment'
+/>
+```
 
 ## License
 ###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / License [↑](#host) [↓](#contact)

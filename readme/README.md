@@ -180,7 +180,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                     <summary>&nbsp;🧩 <a href="./ELEMENTS.md#variable">&lt;variable&gt;</a></summary>
                     <blockquote>
                       <p></p>
-                      <p>├  🏷️ <a href="./ELEMENTS.md#variable-key">key</a></p>
+                      <p>├  🏷️ <a href="./ELEMENTS.md#variable-key">key</a>*</p>
                       <p>├  🏷️ <a href="./ELEMENTS.md#variable-value">value</a></p>
                       <p>├  🏷️ <a href="./ELEMENTS.md#variable-values">values</a></p>
                       <p>╘  🏷️ <a href="./ELEMENTS.md#variable-description">description</a></p>
