@@ -18,6 +18,7 @@
           <p>├  🪝 <a href="#useparams">useParams</a></p>
           <p>├  🪝 <a href="#usesearch">useSearch</a></p>
           <p>├  🪝 <a href="#usebody">useBody</a></p>
+          <p>├  🪝 <a href="#usedata">useData</a></p>
           <p>╘  🪝 <a href="#useclientip">useClientIp</a></p>
         </blockquote>
       </details>
@@ -74,6 +75,7 @@ export function GetUser() {
       <p>├  🪝 <a href="#useparams">useParams</a></p>
       <p>├  🪝 <a href="#usesearch">useSearch</a></p>
       <p>├  🪝 <a href="#usebody">useBody</a></p>
+      <p>├  🪝 <a href="#usedata">useData</a></p>
       <p>╘  🪝 <a href="#useclientip">useClientIp</a></p>
     </blockquote>
   </details>
@@ -160,7 +162,7 @@ const search = useSearch()
 ```
 
 ### useBody
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useBody [↑](#usesearch) [↓](#useclientip)
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useBody [↑](#usesearch) [↓](#usedata)
 
 Returns the request body.
 
@@ -170,8 +172,60 @@ Returns the request body.
 const body = useBody()
 ```
 
+### useData
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useData [↑](#usebody) [↓](#useclientip)
+
+Returns typed request data from a specific source (params, search, or body) with full TypeScript support and IDE autocomplete.
+
+When used with the `<dts>` element, this hook provides automatic type inference based on your API schema, giving you type safety and autocomplete for request data without manual type definitions.
+
+**Important:** The hook validates that the component is used in the correct endpoint. If you specify an endpoint parameter and use the component in a different endpoint, an error will be thrown at runtime.
+
+- **Parameters:**
+  - `source` - Data source: `'params'` | `'search'` | `'body'`
+  - `endpoint` - (optional) Endpoint string for automatic typing (e.g., `'POST:/todos'`)
+- **Returns:** `T` - Typed data from the specified source
+
+**Example:**
+```tsx
+import { useData } from '@innet/server'
+
+export function GetTodos() {
+  const { page, pageSize } = useData('search', 'GET:/todos')
+  // Full type inference and autocomplete for query parameters
+  
+  return <success />
+}
+```
+
+**Error handling:**
+If the component is used in the wrong endpoint, you'll get a validation error with the exact location:
+```
+    Error: Exception in <AddTodo>
+    at <AddTodo> (/.../src/modules/TodoModule/TodoModule.tsx:18:11)
+  16 |         </response>
+  17 |         <return>
+> 18 |           <AddTodo />
+     |           ^
+  19 |         </return>
+  20 |       </endpoint>
+  21 |       <endpoint method="post" path="/todos" summary="Add a todo">
+    at <TodoModule> (/.../src/app/App/App.tsx:16:9)
+    at <App> (/.../src/index.tsx:6:7)
+    at ... (8 more node_modules calls)
+      [cause]: Error: <AddTodo> MUST be in <endpoint> of POST:/todos
+      at Object.useThrow (/.../node_modules/@innet/server/hooks/useThrow/useThrow.js:10:11)
+      at Object.queueNanotask (/.../node_modules/queue-nano-task/queueNanotask.js:18:41)
+      at Object.innet (/.../node_modules/innet/innet.js:28:19) {
+      at ... (1 more node_modules calls)
+      at AddTodo (/.../src/requests/todo/AddTodo/AddTodo.tsx:6:16)
+      at ... (7 more node_modules calls)
+```
+
+This ensures type safety and prevents runtime errors from mismatched data structures.
+
 ### useClientIp
-###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useClientIp [↑](#usebody)
+###### [🏠︎](./README.md) / [Hooks](#hooks) / [Runtime](#runtime) / useClientIp [↑](#usedata)
 
 Returns the client IP address.
 

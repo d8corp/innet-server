@@ -404,6 +404,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
           <p>├  🪝 <a href="./HOOKS.md#useparams">useParams</a></p>
           <p>├  🪝 <a href="./HOOKS.md#usesearch">useSearch</a></p>
           <p>├  🪝 <a href="./HOOKS.md#usebody">useBody</a></p>
+          <p>├  🪝 <a href="./HOOKS.md#usedata">useData</a></p>
           <p>╘  🪝 <a href="./HOOKS.md#useclientip">useClientIp</a></p>
         </blockquote>
       </details>
