@@ -2079,6 +2079,7 @@ Global namespace name for generated types.
     <blockquote>
       <p></p>
       <p>├  🏷️ <a href="#tag-name">name</a>*</p>
+      <p>├  🏷️ <a href="#tag-description">description</a></p>
       <p>╘  🏷️ <a href="#tag-group">group</a></p>
     </blockquote>
   </details>
@@ -2098,7 +2099,7 @@ Tags allow you to group related endpoints together in the API documentation, mak
 ```
 
 #### <a id="tag-name">name</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Tag](#tag) / name [↓](#tag-group)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Tag](#tag) / name [↓](#tag-description)
 
 The name of the `tag` used to group endpoints.
 
@@ -2112,8 +2113,22 @@ The name of the `tag` used to group endpoints.
 </tag>
 ```
 
+#### <a id="tag-description">description</a>
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Tag](#tag) / description [↑](#tag-name) [↓](#tag-group)
+
+A description for the tag. CommonMark (Markdown) syntax is supported.
+
+- Type: `string`
+
+```tsx
+<tag name='Users' description='Endpoints for **user management**'>
+  <endpoint method='get' path='/users' />
+  <endpoint method='get' path='/users/{userId}' />
+</tag>
+```
+
 #### <a id="tag-group">group</a>
-###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Tag](#tag) / group [↑](#tag-name)
+###### [🏠︎](./README.md) / [Elements](#elements) / [Server](#server) / [API](#api) / [Tag](#tag) / group [↑](#tag-description)
 
 Optional group name for organizing multiple tags into logical sections in the documentation.
 
