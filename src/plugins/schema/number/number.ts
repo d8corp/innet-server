@@ -45,6 +45,11 @@ export type NumberProps = SchemaProps<number> & {
   /**
    * An optional format modifier serves as a hint at the contents and format of the string.
    * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
+   *
+   * @example
+   * ```tsx
+   * <number format='float' />
+   * ```
    * */
   format?: 'double' | 'float' | (string & {})
 
