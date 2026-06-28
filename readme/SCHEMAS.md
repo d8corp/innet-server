@@ -33,6 +33,7 @@
             <summary>&nbsp;🧩 <a href="#object">&lt;object&gt;</a></summary>
             <blockquote>
               <p></p>
+              <p>├  🏷️ <a href="#shared-props">Shared Props</a></p>
               <details>
                 <summary>&nbsp;🧩 <a href="#field">&lt;field&gt;</a></summary>
                 <blockquote>
