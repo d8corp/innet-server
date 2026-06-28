@@ -20,20 +20,25 @@ import {
 export type NumberProps = SchemaProps<number> & {
   /**
    * The `exclusiveMaximum` keyword is used to restrict the value to be less than the specified number.
+   *
+   * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
+   *
    * @example For example, the following value is valid:
    * ```tsx
    * <number exclusiveMaximum={10} />
    * ```
-   * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
    * */
   exclusiveMaximum?: boolean
+
   /**
    * The `exclusiveMinimum` keyword is used to restrict the value to be greater than the specified number.
+   *
+   * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
+   *
    * @example For example, the following value is valid:
    * ```tsx
    * <number exclusiveMinimum={10} />
    * ```
-   * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
    * */
   exclusiveMinimum?: boolean
 
@@ -43,19 +48,35 @@ export type NumberProps = SchemaProps<number> & {
    * */
   format?: 'double' | 'float' | (string & {})
 
-  /** Validate the number value by maximum. */
+  /**
+   * Validate the number value by maximum.
+   *
+   * @example
+   * ```tsx
+   * <number max={100} />
+   * ```
+   * */
   max?: number
 
-  /** Validate the number value by minimum. */
+  /**
+   * Validate the number value by minimum.
+   *
+   * @example
+   * ```tsx
+   * <number min={100} />
+   * ```
+   * */
   min?: number
 
   /**
    * The `multipleOf` keyword is used to restrict the value to be a multiple of the specified number.
+   *
+   * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
+   *
    * @example For example, the following value is valid:
    * ```tsx
    * <number multipleOf={2} />
    * ```
-   * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
    * */
   multipleOf?: number
 }

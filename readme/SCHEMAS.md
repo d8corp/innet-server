@@ -77,7 +77,8 @@
               <p>├  🏷️ <a href="#num-max">max</a></p>
               <p>├  🏷️ <a href="#num-exclusivemin">exclusiveMin</a></p>
               <p>├  🏷️ <a href="#num-exclusivemax">exclusiveMax</a></p>
-              <p>╘  🏷️ <a href="#num-multipleof">multipleOf</a></p>
+              <p>├  🏷️ <a href="#num-multipleof">multipleOf</a></p>
+              <p>╘  🏷️ <a href="#num-format">format</a></p>
             </blockquote>
           </details>
           <details>
@@ -590,7 +591,8 @@ A fixed-length array with specific types for each position.
           <p>├  🏷️ <a href="#num-max">max</a></p>
           <p>├  🏷️ <a href="#num-exclusivemin">exclusiveMin</a></p>
           <p>├  🏷️ <a href="#num-exclusivemax">exclusiveMax</a></p>
-          <p>╘  🏷️ <a href="#num-multipleof">multipleOf</a></p>
+          <p>├  🏷️ <a href="#num-multipleof">multipleOf</a></p>
+          <p>╘  🏷️ <a href="#num-format">format</a></p>
         </blockquote>
       </details>
       <details>
@@ -718,7 +720,8 @@ Pattern identifier for error messages.
       <p>├  🏷️ <a href="#num-max">max</a></p>
       <p>├  🏷️ <a href="#num-exclusivemin">exclusiveMin</a></p>
       <p>├  🏷️ <a href="#num-exclusivemax">exclusiveMax</a></p>
-      <p>╘  🏷️ <a href="#num-multipleof">multipleOf</a></p>
+      <p>├  🏷️ <a href="#num-multipleof">multipleOf</a></p>
+      <p>╘  🏷️ <a href="#num-format">format</a></p>
     </blockquote>
   </details>
 </sub>
@@ -780,7 +783,7 @@ Value must be less than (not equal to) the maximum.
 ```
 
 #### multipleOf
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Number](#number) / multipleOf [↑](#num-exclusivemax)
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Number](#number) / multipleOf [↑](#num-exclusivemax) [↓](#num-format)
 
 Value must be a multiple of the specified number.
 
@@ -789,6 +792,18 @@ Value must be a multiple of the specified number.
 
 ```tsx
 <number multipleOf={0.01} />
+```
+
+#### format
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Number](#number) / format [↑](#num-multipleof)
+
+An optional format modifier serves as a hint at the contents and format of the string.
+
+- **Type:** `'double' | 'float'`
+- **Default:** -
+
+```tsx
+<number format='float' />
 ```
 
 ### Integer

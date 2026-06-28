@@ -349,7 +349,8 @@ For a quick overview and introduction, see the [main README](../README.md) in th
               <p>├  🏷️ <a href="./SCHEMAS.md#num-max">max</a></p>
               <p>├  🏷️ <a href="./SCHEMAS.md#num-exclusivemin">exclusiveMin</a></p>
               <p>├  🏷️ <a href="./SCHEMAS.md#num-exclusivemax">exclusiveMax</a></p>
-              <p>╘  🏷️ <a href="./SCHEMAS.md#num-multipleof">multipleOf</a></p>
+              <p>├  🏷️ <a href="#num-multipleof">multipleOf</a></p>
+              <p>╘  🏷️ <a href="#num-format">format</a></p>
             </blockquote>
           </details>
           <details>
