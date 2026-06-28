@@ -33,16 +33,12 @@
             <summary>&nbsp;🧩 <a href="#object">&lt;object&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#shared-props">Shared Props</a></p>
               <details>
                 <summary>&nbsp;🧩 <a href="#field">&lt;field&gt;</a></summary>
                 <blockquote>
                   <p></p>
                   <p>├  🏷️ <a href="#field-key">key</a></p>
-                  <p>├  🏷️ <a href="#field-optional">optional</a></p>
-                  <p>├  🏷️ <a href="#field-deprecated">deprecated</a></p>
-                  <p>├  🏷️ <a href="#field-readonly">readOnly</a></p>
-                  <p>╘  🏷️ <a href="#field-writeonly">writeOnly</a></p>
+                  <p>╘  🏷️ <a href="#field-optional">optional</a></p>
                 </blockquote>
               </details>
             </blockquote>
