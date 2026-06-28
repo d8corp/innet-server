@@ -657,7 +657,7 @@ Text data with optional validation.
 </param>
 ```
 
-#### min
+#### <a id="string-min">min</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [String](#string) / min [↓](#string-max)
 
 Minimum length of the string.
@@ -669,7 +669,7 @@ Minimum length of the string.
 <string min={1} />
 ```
 
-#### max
+#### <a id="string-max">max</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [String](#string) / max [↑](#string-min) [↓](#string-pattern)
 
 Maximum length of the string.
@@ -681,7 +681,7 @@ Maximum length of the string.
 <string max={255} />
 ```
 
-#### pattern
+#### <a id="string-pattern">pattern</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [String](#string) / pattern [↑](#string-max) [↓](#string-patternid)
 
 Regex pattern for validation.
@@ -693,7 +693,7 @@ Regex pattern for validation.
 <string pattern='^[A-Z]{3}$' />
 ```
 
-#### patternId
+#### <a id="string-patternid">patternId</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [String](#string) / patternId [↑](#string-pattern)
 
 Pattern identifier for error messages.
