@@ -53,10 +53,17 @@
               <p></p>
               <p>├  🏷️ <a href="#array-min">min</a></p>
               <p>├  🏷️ <a href="#array-max">max</a></p>
-              <p>╘  🏷️ <a href="#array-unique">unique</a></p>
+              <p>├  🏷️ <a href="#array-unique">unique</a></p>
+              <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
             </blockquote>
           </details>
-          <p>╘  🧩 <a href="#tuple">&lt;tuple&gt;</a></p>
+          <details>
+            <summary>&nbsp;🧩 <a href="#tuple">&lt;tuple&gt;</a></summary>
+            <blockquote>
+              <p></p>
+              <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
+            </blockquote>
+          </details>
         </blockquote>
       </details>
       <details>
@@ -70,7 +77,8 @@
               <p>├  🏷️ <a href="#string-min">min</a></p>
               <p>├  🏷️ <a href="#string-max">max</a></p>
               <p>├  🏷️ <a href="#string-pattern">pattern</a></p>
-              <p>╘  🏷️ <a href="#string-patternid">patternId</a></p>
+              <p>├  🏷️ <a href="#string-patternid">patternId</a></p>
+              <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
             </blockquote>
           </details>
           <details>
@@ -82,6 +90,7 @@
               <p>├  🏷️ <a href="#num-exclusivemin">exclusiveMin</a></p>
               <p>├  🏷️ <a href="#num-exclusivemax">exclusiveMax</a></p>
               <p>╘  🏷️ <a href="#num-multipleof">multipleOf</a></p>
+              <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
             </blockquote>
           </details>
           <details>
@@ -94,6 +103,7 @@
               <p>├  🏷️ <a href="#int-exclusivemin">exclusiveMin</a></p>
               <p>├  🏷️ <a href="#int-exclusivemax">exclusiveMax</a></p>
               <p>╘  🏷️ <a href="#int-multipleof">multipleOf</a></p>
+              <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
             </blockquote>
           </details>
           <details>
@@ -102,6 +112,7 @@
               <p></p>
               <p>├  🏷️ <a href="#date-min">min</a></p>
               <p>╘  🏷️ <a href="#date-max">max</a></p>
+              <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
             </blockquote>
           </details>
           <details>
@@ -111,12 +122,37 @@
               <p>├  🏷️ <a href="#binary-accept">accept</a></p>
               <p>├  🏷️ <a href="#binary-min">min</a></p>
               <p>╘  🏷️ <a href="#binary-max">max</a></p>
+              <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
             </blockquote>
           </details>
-          <p>├  🧩 <a href="#uuid">&lt;uuid&gt;</a></p>
-          <p>├  🧩 <a href="#boolean">&lt;boolean&gt;</a></p>
-          <p>├  🧩 <a href="#null">&lt;null&gt;</a></p>
-          <p>╘  🧩 <a href="#any">&lt;any&gt;</a></p>
+          <details>
+            <summary>&nbsp;🧩 <a href="#uuid">&lt;uuid&gt;</a></summary>
+            <blockquote>
+              <p></p>
+              <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
+            </blockquote>
+          </details>
+          <details>
+            <summary>&nbsp;🧩 <a href="#boolean">&lt;boolean&gt;</a></summary>
+            <blockquote>
+              <p></p>
+              <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
+            </blockquote>
+          </details>
+          <details>
+            <summary>&nbsp;🧩 <a href="#null">&lt;null&gt;</a></summary>
+            <blockquote>
+              <p></p>
+              <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
+            </blockquote>
+          </details>
+          <details>
+            <summary>&nbsp;🧩 <a href="#any">&lt;any&gt;</a></summary>
+            <blockquote>
+              <p></p>
+              <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
+            </blockquote>
+          </details>
         </blockquote>
       </details>
     </blockquote>
@@ -583,7 +619,8 @@ A fixed-length array with specific types for each position.
           <p>├  🏷️ <a href="#string-min">min</a></p>
           <p>├  🏷️ <a href="#string-max">max</a></p>
           <p>├  🏷️ <a href="#string-pattern">pattern</a></p>
-          <p>╘  🏷️ <a href="#string-patternid">patternId</a></p>
+          <p>├  🏷️ <a href="#string-patternid">patternId</a></p>
+          <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
         </blockquote>
       </details>
       <details>
@@ -594,7 +631,8 @@ A fixed-length array with specific types for each position.
           <p>├  🏷️ <a href="#num-max">max</a></p>
           <p>├  🏷️ <a href="#num-exclusivemin">exclusiveMin</a></p>
           <p>├  🏷️ <a href="#num-exclusivemax">exclusiveMax</a></p>
-          <p>╘  🏷️ <a href="#num-multipleof">multipleOf</a></p>
+          <p>├  🏷️ <a href="#num-multipleof">multipleOf</a></p>
+          <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
         </blockquote>
       </details>
       <details>
@@ -606,7 +644,8 @@ A fixed-length array with specific types for each position.
           <p>├  🏷️ <a href="#int-max">max</a></p>
           <p>├  🏷️ <a href="#int-exclusivemin">exclusiveMin</a></p>
           <p>├  🏷️ <a href="#int-exclusivemax">exclusiveMax</a></p>
-          <p>╘  🏷️ <a href="#int-multipleof">multipleOf</a></p>
+          <p>├  🏷️ <a href="#int-multipleof">multipleOf</a></p>
+          <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
         </blockquote>
       </details>
       <details>
@@ -614,7 +653,8 @@ A fixed-length array with specific types for each position.
         <blockquote>
           <p></p>
           <p>├  🏷️ <a href="#date-min">min</a></p>
-          <p>╘  🏷️ <a href="#date-max">max</a></p>
+          <p>├  🏷️ <a href="#date-max">max</a></p>
+          <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
         </blockquote>
       </details>
       <details>
@@ -623,13 +663,38 @@ A fixed-length array with specific types for each position.
           <p></p>
           <p>├  🏷️ <a href="#binary-accept">accept</a></p>
           <p>├  🏷️ <a href="#binary-min">min</a></p>
-          <p>╘  🏷️ <a href="#binary-max">max</a></p>
+          <p>├  🏷️ <a href="#binary-max">max</a></p>
+          <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
         </blockquote>
       </details>
-      <p>├ 🧩 <a href="#uuid">&lt;uuid&gt;</a></p>
-      <p>├ 🧩 <a href="#boolean">&lt;boolean&gt;</a></p>
-      <p>├ 🧩 <a href="#null">&lt;null&gt;</a></p>
-      <p>╘ 🧩 <a href="#any">&lt;any&gt;</a></p>
+      <details>
+        <summary>&nbsp;🧩 <a href="#uuid">&lt;uuid&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#boolean">&lt;boolean&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#null">&lt;null&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
+        </blockquote>
+      </details>
+      <details>
+        <summary>&nbsp;🧩 <a href="#any">&lt;any&gt;</a></summary>
+        <blockquote>
+          <p></p>
+          <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
+        </blockquote>
+      </details>
     </blockquote>
   </details>
 </sub>
@@ -649,7 +714,8 @@ All primitives support: `title`, `description`, `deprecated`, `readOnly`, `write
       <p>├  🏷️ <a href="#string-min">min</a></p>
       <p>├  🏷️ <a href="#string-max">max</a></p>
       <p>├  🏷️ <a href="#string-pattern">pattern</a></p>
-      <p>╘  🏷️ <a href="#string-patternid">patternId</a></p>
+      <p>├  🏷️ <a href="#string-patternid">patternId</a></p>
+      <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
     </blockquote>
   </details>
 </sub>
@@ -722,7 +788,8 @@ Pattern identifier for error messages.
       <p>├  🏷️ <a href="#num-max">max</a></p>
       <p>├  🏷️ <a href="#num-exclusivemin">exclusiveMin</a></p>
       <p>├  🏷️ <a href="#num-exclusivemax">exclusiveMax</a></p>
-      <p>╘  🏷️ <a href="#num-multipleof">multipleOf</a></p>
+      <p>├  🏷️ <a href="#num-multipleof">multipleOf</a></p>
+      <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
     </blockquote>
   </details>
 </sub>
@@ -808,7 +875,8 @@ Value must be a multiple of the specified number.
       <p>├  🏷️ <a href="#int-max">max</a></p>
       <p>├  🏷️ <a href="#int-exclusivemin">exclusiveMin</a></p>
       <p>├  🏷️ <a href="#int-exclusivemax">exclusiveMax</a></p>
-      <p>╘  🏷️ <a href="#int-multipleof">multipleOf</a></p>
+      <p>├  🏷️ <a href="#int-multipleof">multipleOf</a></p>
+      <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
     </blockquote>
   </details>
 </sub>
@@ -902,7 +970,8 @@ Value must be a multiple of the specified number.
     <blockquote>
       <p></p>
       <p>├  🏷️ <a href="#date-min">min</a></p>
-      <p>╘  🏷️ <a href="#date-max">max</a></p>
+      <p>├  🏷️ <a href="#date-max">max</a></p>
+      <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
     </blockquote>
   </details>
 </sub>
@@ -949,7 +1018,8 @@ Maximum date.
       <p></p>
       <p>├  🏷️ <a href="#binary-accept">accept</a></p>
       <p>├  🏷️ <a href="#binary-min">min</a></p>
-      <p>╘  🏷️ <a href="#binary-max">max</a></p>
+      <p>├  🏷️ <a href="#binary-max">max</a></p>
+      <p>╘  🏷️ <a href="#shared-props">Shared Props</a></p>
     </blockquote>
   </details>
 </sub>
@@ -1002,6 +1072,7 @@ Maximum file size in bytes.
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / UUID [↑](#binary) [↓](#boolean)
 
 Universally unique identifier in UUID format.
+Supports [Shared Props](#shared-props).
 
 ```tsx
 <param in='cookie' name='sessionId'>
@@ -1013,6 +1084,7 @@ Universally unique identifier in UUID format.
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / Boolean [↑](#uuid) [↓](#null)
 
 True or false value.
+Supports [Shared Props](#shared-props).
 
 ```tsx
 <param in='query' name='active'>
@@ -1024,6 +1096,7 @@ True or false value.
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / Null [↑](#boolean) [↓](#any)
 
 Represents a null value explicitly.
+Supports [Shared Props](#shared-props).
 
 ```tsx
 <param in='query' name='nothing'>
@@ -1034,7 +1107,9 @@ Represents a null value explicitly.
 ### Any
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / Any [↑](#null)
 
-Accepts any value type. Useful when you want to allow flexible input without strict type validation.
+Accepts any value type.
+Useful when you want to allow flexible input without strict type validation.
+Supports [Shared Props](#shared-props).
 
 ```tsx
 <param in='query' name='data'>
