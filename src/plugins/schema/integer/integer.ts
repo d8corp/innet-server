@@ -20,47 +20,69 @@ import {
 type IntProps<T extends bigint | number> = SchemaProps<T> & {
   /**
    * The `exclusiveMaximum` keyword is used to restrict the value to be less than the specified number.
+   *
+   * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
+   *
    * @example For example, the following value is valid:
    * ```tsx
    * <integer exclusiveMaximum={10} />
    * ```
-   * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
    * */
   exclusiveMaximum?: T | boolean
 
   /**
    * The `exclusiveMinimum` keyword is used to restrict the value to be greater than the specified number.
+   *
+   * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
+   *
    * @example For example, the following value is valid:
    * ```tsx
    * <integer exclusiveMinimum={10} />
    * ```
-   * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
    * */
   exclusiveMinimum?: T | boolean
 
   /**
    * An optional format modifier serves as a hint at the contents and format of the string.
+   *
+   * @see https://swagger.io/docs/specification/data-models/data-types/#numbers
+   *
    * @example For example, the following value is valid:
    * ```tsx
    * <integer format='int64' />
    * ```
-   * @see https://swagger.io/docs/specification/data-models/data-types/#numbers
    * */
   format?: T extends bigint ? 'int64' : 'int32'
 
-  /** Validate the integer number value by maximum. */
+  /**
+   * Validate the integer number value by maximum.
+   *
+   * @example
+   * ```tsx
+   * <integer max={100} />
+   * ```
+   * */
   max?: T
 
-  /** Validate the integer number value by minimum. */
+  /**
+   * Validate the integer number value by minimum.
+   *
+   * @example
+   * ```tsx
+   * <integer min={100} />
+   * ```
+   * */
   min?: T
 
   /**
    * The `multipleOf` keyword is used to restrict the value to be a multiple of the specified number.
+   *
+   * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
+   *
    * @example For example, the following value is valid:
    * ```tsx
    * <number multipleOf={2} />
    * ```
-   * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
    * */
   multipleOf?: T
 }
