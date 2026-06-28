@@ -37,7 +37,7 @@
                 <summary>&nbsp;🧩 <a href="#field">&lt;field&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#field-key">key</a></p>
+                  <p>├  🏷️ <a href="#field-key">key</a>*</p>
                   <p>╘  🏷️ <a href="#field-optional">optional</a></p>
                 </blockquote>
               </details>
@@ -341,7 +341,7 @@ Or dictionary of values with descriptions:
             <summary>&nbsp;🧩 <a href="#field">&lt;field&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#field-key">key</a></p>
+              <p>├  🏷️ <a href="#field-key">key</a>*</p>
               <p>╘  🏷️ <a href="#field-optional">optional</a></p>
             </blockquote>
           </details>
@@ -375,7 +375,7 @@ Collection types for building complex, structured schemas. Use these to define o
         <summary>&nbsp;🧩 <a href="#field">&lt;field&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🏷️ <a href="#field-key">key</a></p>
+          <p>├  🏷️ <a href="#field-key">key</a>*</p>
           <p>╘  🏷️ <a href="#field-optional">optional</a></p>
         </blockquote>
       </details>
@@ -433,7 +433,7 @@ You can also mix both syntaxes in the same object for maximum flexibility.
     <summary>&nbsp;🏷 Props</summary>
     <blockquote>
       <p></p>
-      <p>├  🏷️ <a href="#field-key">key</a></p>
+      <p>├  🏷️ <a href="#field-key">key</a>*</p>
       <p>╘  🏷️ <a href="#field-optional">optional</a></p>
     </blockquote>
   </details>

@@ -306,7 +306,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <summary>&nbsp;🧩 <a href="./SCHEMAS.md#field">&lt;field&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="./SCHEMAS.md#field-key">key</a></p>
+                  <p>├  🏷️ <a href="./SCHEMAS.md#field-key">key</a>*</p>
                   <p>├  🏷️ <a href="./SCHEMAS.md#field-optional">optional</a></p>
                   <p>├  🏷️ <a href="./SCHEMAS.md#field-deprecated">deprecated</a></p>
                   <p>├  🏷️ <a href="./SCHEMAS.md#field-readonly">readOnly</a></p>
