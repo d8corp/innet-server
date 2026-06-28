@@ -456,8 +456,8 @@ Defines a single field within an `<object>`.
 </object>
 ```
 
-#### key
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Field](#field) / key [↓](#optional)
+#### <a id="field-key">key</a>
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Field](#field) / key [↓](#field-optional)
 
 Field name (required).
 
@@ -470,8 +470,8 @@ Field name (required).
 </field>
 ```
 
-#### optional
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Field](#field) / optional [↑](#key)
+#### <a id="field-optional">optional</a>
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Field](#field) / optional [↑](#field-key)
 
 Mark field as optional (not required).
 
@@ -507,8 +507,7 @@ Arrays represent collections of items of the same type. Use `<array>` to define 
 </array>
 ```
 
-<h4 id="array-min">min</h4>
-
+#### <a id="array-min">min</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / min [↓](#array-max)
 
 Minimum number of items in the array.
@@ -522,8 +521,7 @@ Minimum number of items in the array.
 </array>
 ```
 
-<h4 id="array-max">max</h4>
-
+#### <a id="array-max">max</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / max [↑](#array-min) [↓](#array-unique)
 
 Maximum number of items in the array.
@@ -537,8 +535,7 @@ Maximum number of items in the array.
 </array>
 ```
 
-<h4 id="array-unique">unique</h4>
-
+#### <a id="array-unique">unique</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Collections](#collections) / [Array](#array) / unique [↑](#array-max)
 
 All items must be unique.
@@ -734,7 +731,7 @@ Decimal number with optional validation.
 </param>
 ```
 
-#### min
+#### <a id="num-min">min</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Number](#number) / min [↓](#num-max)
 
 Minimum value.
@@ -746,7 +743,7 @@ Minimum value.
 <number min={0} />
 ```
 
-#### max
+#### <a id="num-max">max</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Number](#number) / max [↑](#num-min) [↓](#num-exclusivemin)
 
 Maximum value.
@@ -758,7 +755,7 @@ Maximum value.
 <number max={100} />
 ```
 
-#### exclusiveMin
+#### <a id="num-exclusivemin">exclusiveMin</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Number](#number) / exclusiveMin [↑](#num-max) [↓](#num-exclusivemax)
 
 Value must be greater than (not equal to) the minimum.
@@ -770,7 +767,7 @@ Value must be greater than (not equal to) the minimum.
 <number min={0} exclusiveMin />
 ```
 
-#### exclusiveMax
+#### <a id="num-exclusivemax">exclusiveMax</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Number](#number) / exclusiveMax [↑](#num-exclusivemin) [↓](#num-multipleof)
 
 Value must be less than (not equal to) the maximum.
@@ -782,7 +779,7 @@ Value must be less than (not equal to) the maximum.
 <number max={100} exclusiveMax />
 ```
 
-#### multipleOf
+#### <a id="num-multipleof">multipleOf</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Number](#number) / multipleOf [↑](#num-exclusivemax) [↓](#num-format)
 
 Value must be a multiple of the specified number.
@@ -794,7 +791,7 @@ Value must be a multiple of the specified number.
 <number multipleOf={0.01} />
 ```
 
-#### format
+#### <a id="num-format">format</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Number](#number) / format [↑](#num-multipleof)
 
 An optional format modifier serves as a hint at the contents and format of the string.
