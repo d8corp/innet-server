@@ -347,8 +347,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
               <p></p>
               <p>├  🏷️ <a href="./SCHEMAS.md#num-min">min</a></p>
               <p>├  🏷️ <a href="./SCHEMAS.md#num-max">max</a></p>
-              <p>├  🏷️ <a href="./SCHEMAS.md#num-exclusivemin">exclusiveMin</a></p>
-              <p>├  🏷️ <a href="./SCHEMAS.md#num-exclusivemax">exclusiveMax</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#num-exclusive">exclusive</a></p>
               <p>├  🏷️ <a href="#num-multipleof">multipleOf</a></p>
               <p>╘  🏷️ <a href="#num-format">format</a></p>
             </blockquote>
@@ -360,8 +359,7 @@ For a quick overview and introduction, see the [main README](../README.md) in th
               <p>├  🏷️ <a href="./SCHEMAS.md#int-format">format</a></p>
               <p>├  🏷️ <a href="./SCHEMAS.md#int-min">min</a></p>
               <p>├  🏷️ <a href="./SCHEMAS.md#int-max">max</a></p>
-              <p>├  🏷️ <a href="./SCHEMAS.md#int-exclusivemin">exclusiveMin</a></p>
-              <p>├  🏷️ <a href="./SCHEMAS.md#int-exclusivemax">exclusiveMax</a></p>
+              <p>├  🏷️ <a href="./SCHEMAS.md#int-exclusive">exclusive</a></p>
               <p>╘  🏷️ <a href="./SCHEMAS.md#int-multipleof">multipleOf</a></p>
             </blockquote>
           </details>

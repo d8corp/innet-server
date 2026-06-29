@@ -19,77 +19,95 @@ import {
 
 export type NumberProps = SchemaProps<number> & {
   /**
-   * The `exclusiveMaximum` keyword is used to restrict the value to be less than the specified number.
+   * Controls whether the `min` and `max` boundaries are exclusive (strict) or inclusive.
+   *
+   * - `true` — both `min` and `max` are exclusive
+   * - `'min'` — only `min` is exclusive, `max` remains inclusive
+   * - `'max'` — only `max` is exclusive, `min` remains inclusive
+   *
+   * When a boundary is exclusive, the validated value must be **strictly**
+   * greater (for `min`) or strictly less (for `max`) than the given limit.
    *
    * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
    *
-   * @example For example, the following value is valid:
+   * @example
    * ```tsx
-   * <number exclusiveMaximum={10} />
+   * // Value must be strictly less than 10 (9.99 is OK, 10 is not)
+   * <number exclusive='max' max={10} />
+   *
+   * // Value must be strictly greater than 0 (0.01 is OK, 0 is not)
+   * <number exclusive='min' min={0} />
+   *
+   * // Both boundaries are exclusive: 0 < value < 100
+   * <number exclusive min={0} max={100} />
    * ```
-   * */
-  exclusiveMaximum?: boolean
+   */
+  exclusive?: 'max' | 'min' | boolean
 
   /**
-   * The `exclusiveMinimum` keyword is used to restrict the value to be greater than the specified number.
+   * Number format hint for OpenAPI documentation.
    *
-   * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
+   * - `'float'` — IEEE 754 single-precision floating-point number
+   * - `'double'` — IEEE 754 double-precision floating-point number
    *
-   * @example For example, the following value is valid:
-   * ```tsx
-   * <number exclusiveMinimum={10} />
-   * ```
-   * */
-  exclusiveMinimum?: boolean
-
-  /**
-   * An optional format modifier serves as a hint at the contents and format of the string.
    * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
    *
    * @example
    * ```tsx
    * <number format='float' />
+   * <number format='double' />
    * ```
-   * */
+   */
   format?: 'double' | 'float' | (string & {})
 
   /**
-   * Validate the number value by maximum.
+   * Maximum allowed value (inclusive by default). Use with `exclusive` to make it strict.
    *
    * @example
    * ```tsx
+   * // Value must be <= 100
    * <number max={100} />
+   *
+   * // Value must be < 100
+   * <number exclusive='max' max={100} />
    * ```
-   * */
+   */
   max?: number
 
   /**
-   * Validate the number value by minimum.
+   * Minimum allowed value (inclusive by default). Use with `exclusive` to make it strict.
    *
    * @example
    * ```tsx
-   * <number min={100} />
+   * // Value must be >= 0
+   * <number min={0} />
+   *
+   * // Value must be > 0
+   * <number exclusive='min' min={0} />
    * ```
-   * */
+   */
   min?: number
 
   /**
-   * The `multipleOf` keyword is used to restrict the value to be a multiple of the specified number.
+   * The value must be a multiple of the specified number.
    *
    * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
    *
-   * @example For example, the following value is valid:
+   * @example
    * ```tsx
+   * // Allowed: ..., -2, 0, 2, 4, 6, ...
    * <number multipleOf={2} />
+   *
+   * // Allowed: ..., -0.05, 0, 0.05, 0.10, ...
+   * <number multipleOf={0.05} />
    * ```
-   * */
+   */
   multipleOf?: number
 }
 
 export const number: HandlerPlugin = () => {
   const {
-    exclusiveMaximum,
-    exclusiveMinimum,
+    exclusive,
     format,
     max,
     min,
@@ -98,6 +116,8 @@ export const number: HandlerPlugin = () => {
   } = useProps<NumberProps>() || {}
   const isBody = Boolean(useContext(bodyContext))
   const hasRules = !isBody || !props.readOnly
+  const exclusiveMinimum = exclusive && ['min', true].includes(exclusive)
+  const exclusiveMaximum = exclusive && ['max', true].includes(exclusive)
 
   const schema = useSchemaType('number', props)
 
@@ -115,11 +135,11 @@ export const number: HandlerPlugin = () => {
     }
 
     if (exclusiveMinimum) {
-      schema.exclusiveMinimum = typeof exclusiveMinimum === 'boolean' ? exclusiveMinimum : Number(exclusiveMinimum)
+      schema.exclusiveMinimum = true
     }
 
     if (exclusiveMaximum) {
-      schema.exclusiveMaximum = typeof exclusiveMaximum === 'boolean' ? exclusiveMaximum : Number(exclusiveMaximum)
+      schema.exclusiveMaximum = true
     }
 
     if (multipleOf !== undefined) {
@@ -142,11 +162,11 @@ export const number: HandlerPlugin = () => {
   }
 
   if (min !== undefined) {
-    rules.push(minimum(min))
+    rules.push(minimum(min, exclusiveMinimum))
   }
 
   if (max !== undefined) {
-    rules.push(maximum(max))
+    rules.push(maximum(max, exclusiveMaximum))
   }
 
   const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules)

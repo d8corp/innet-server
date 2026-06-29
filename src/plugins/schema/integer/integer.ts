@@ -19,71 +19,89 @@ import {
 
 type IntProps<T extends bigint | number> = SchemaProps<T> & {
   /**
-   * The `exclusiveMaximum` keyword is used to restrict the value to be less than the specified number.
+   * Controls whether the `min` and `max` boundaries are exclusive (strict) or inclusive.
+   *
+   * - `true` — both `min` and `max` are exclusive
+   * - `'min'` — only `min` is exclusive, `max` remains inclusive
+   * - `'max'` — only `max` is exclusive, `min` remains inclusive
+   *
+   * When a boundary is exclusive, the validated value must be **strictly**
+   * greater (for `min`) or strictly less (for `max`) than the given limit.
    *
    * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
    *
-   * @example For example, the following value is valid:
+   * @example
    * ```tsx
-   * <integer exclusiveMaximum={10} />
+   * // Value must be strictly less than 10 (9 is OK, 10 is not)
+   * <integer exclusive='max' max={10} />
+   *
+   * // Value must be strictly greater than 0 (1 is OK, 0 is not)
+   * <integer exclusive='min' min={0} />
+   *
+   * // Both boundaries are exclusive: 0 < value < 100
+   * <integer exclusive min={0} max={100} />
    * ```
-   * */
-  exclusiveMaximum?: T | boolean
+   */
+  exclusive?: 'max' | 'min' | boolean
 
   /**
-   * The `exclusiveMinimum` keyword is used to restrict the value to be greater than the specified number.
+   * Integer format. Defines the bit width and the resulting JavaScript type.
    *
-   * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
-   *
-   * @example For example, the following value is valid:
-   * ```tsx
-   * <integer exclusiveMinimum={10} />
-   * ```
-   * */
-  exclusiveMinimum?: T | boolean
-
-  /**
-   * An optional format modifier serves as a hint at the contents and format of the string.
+   * - `'int32'` (default) — 32-bit signed integer, results in JS `number`
+   * - `'int64'` — 64-bit signed integer, results in JS `bigint`
    *
    * @see https://swagger.io/docs/specification/data-models/data-types/#numbers
    *
-   * @example For example, the following value is valid:
+   * @example
    * ```tsx
+   * // 32-bit integer (default)
+   * <integer format='int32' />
+   *
+   * // 64-bit integer, converted to BigInt in JS
    * <integer format='int64' />
    * ```
-   * */
+   */
   format?: T extends bigint ? 'int64' : 'int32'
 
   /**
-   * Validate the integer number value by maximum.
+   * Maximum allowed value (inclusive by default). Use with `exclusive` to make it strict.
    *
    * @example
    * ```tsx
+   * // Value must be <= 100
    * <integer max={100} />
+   *
+   * // Value must be < 100
+   * <integer exclusive='max' max={100} />
    * ```
-   * */
+   */
   max?: T
 
   /**
-   * Validate the integer number value by minimum.
+   * Minimum allowed value (inclusive by default). Use with `exclusive` to make it strict.
    *
    * @example
    * ```tsx
-   * <integer min={100} />
+   * // Value must be >= 0
+   * <integer min={0} />
+   *
+   * // Value must be > 0
+   * <integer exclusive='min' min={0} />
    * ```
-   * */
+   */
   min?: T
 
   /**
-   * The `multipleOf` keyword is used to restrict the value to be a multiple of the specified number.
+   * The value must be a multiple of the specified number.
    *
    * @see https://swagger.io/docs/specification/v3_0/data-models/data-types/#numbers
    *
-   * @example For example, the following value is valid:
+   * @example
    * ```tsx
-   * <number multipleOf={2} />
+   * // Allowed: ..., -10, -5, 0, 5, 10, 15, ...
+   * <integer multipleOf={5} />
    * ```
-   * */
+   */
   multipleOf?: T
 }
 
@@ -93,8 +111,7 @@ export const integer: HandlerPlugin = () => {
     default: defaultValue,
     example,
     examples,
-    exclusiveMaximum,
-    exclusiveMinimum,
+    exclusive,
     format = 'int32',
     max,
     min,
@@ -104,6 +121,8 @@ export const integer: HandlerPlugin = () => {
   } = useProps<IntegerProps>() || {}
   const isBody = Boolean(useContext(bodyContext))
   const hasRules = !isBody || !props.readOnly
+  const exclusiveMinimum = exclusive && ['min', true].includes(exclusive)
+  const exclusiveMaximum = exclusive && ['max', true].includes(exclusive)
 
   const schema = useSchemaType('integer', {
     ...props,
@@ -128,11 +147,11 @@ export const integer: HandlerPlugin = () => {
     }
 
     if (exclusiveMinimum) {
-      schema.exclusiveMinimum = typeof exclusiveMinimum === 'boolean' ? exclusiveMinimum : Number(exclusiveMinimum)
+      schema.exclusiveMinimum = true
     }
 
     if (exclusiveMaximum) {
-      schema.exclusiveMaximum = typeof exclusiveMaximum === 'boolean' ? exclusiveMaximum : Number(exclusiveMaximum)
+      schema.exclusiveMaximum = true
     }
 
     if (multipleOf !== undefined) {
@@ -155,11 +174,11 @@ export const integer: HandlerPlugin = () => {
   }
 
   if (min !== undefined) {
-    rules.push(minimum(min))
+    rules.push(minimum(min, exclusiveMinimum))
   }
 
   if (max !== undefined) {
-    rules.push(maximum(max))
+    rules.push(maximum(max, exclusiveMaximum))
   }
 
   const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules)

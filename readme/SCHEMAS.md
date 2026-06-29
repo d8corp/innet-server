@@ -75,8 +75,7 @@
               <p></p>
               <p>├  🏷️ <a href="#num-min">min</a></p>
               <p>├  🏷️ <a href="#num-max">max</a></p>
-              <p>├  🏷️ <a href="#num-exclusivemin">exclusiveMin</a></p>
-              <p>├  🏷️ <a href="#num-exclusivemax">exclusiveMax</a></p>
+              <p>├  🏷️ <a href="#num-exclusive">exclusive</a></p>
               <p>├  🏷️ <a href="#num-multipleof">multipleOf</a></p>
               <p>╘  🏷️ <a href="#num-format">format</a></p>
             </blockquote>
@@ -88,8 +87,7 @@
               <p>├  🏷️ <a href="#int-format">format</a></p>
               <p>├  🏷️ <a href="#int-min">min</a></p>
               <p>├  🏷️ <a href="#int-max">max</a></p>
-              <p>├  🏷️ <a href="#int-exclusivemin">exclusiveMin</a></p>
-              <p>├  🏷️ <a href="#int-exclusivemax">exclusiveMax</a></p>
+              <p>├  🏷️ <a href="#int-exclusive">exclusive</a></p>
               <p>╘  🏷️ <a href="#int-multipleof">multipleOf</a></p>
             </blockquote>
           </details>
@@ -586,8 +584,7 @@ A fixed-length array with specific types for each position.
           <p></p>
           <p>├  🏷️ <a href="#num-min">min</a></p>
           <p>├  🏷️ <a href="#num-max">max</a></p>
-          <p>├  🏷️ <a href="#num-exclusivemin">exclusiveMin</a></p>
-          <p>├  🏷️ <a href="#num-exclusivemax">exclusiveMax</a></p>
+          <p>├  🏷️ <a href="#num-exclusive">exclusive</a></p>
           <p>├  🏷️ <a href="#num-multipleof">multipleOf</a></p>
           <p>╘  🏷️ <a href="#num-format">format</a></p>
         </blockquote>
@@ -599,8 +596,7 @@ A fixed-length array with specific types for each position.
           <p>├  🏷️ <a href="#int-format">format</a></p>
           <p>├  🏷️ <a href="#int-min">min</a></p>
           <p>├  🏷️ <a href="#int-max">max</a></p>
-          <p>├  🏷️ <a href="#int-exclusivemin">exclusiveMin</a></p>
-          <p>├  🏷️ <a href="#int-exclusivemax">exclusiveMax</a></p>
+          <p>├  🏷️ <a href="#int-exclusive">exclusive</a></p>
           <p>╘  🏷️ <a href="#int-multipleof">multipleOf</a></p>
         </blockquote>
       </details>
@@ -715,8 +711,7 @@ Pattern identifier for error messages.
       <p></p>
       <p>├  🏷️ <a href="#num-min">min</a></p>
       <p>├  🏷️ <a href="#num-max">max</a></p>
-      <p>├  🏷️ <a href="#num-exclusivemin">exclusiveMin</a></p>
-      <p>├  🏷️ <a href="#num-exclusivemax">exclusiveMax</a></p>
+      <p>├  🏷️ <a href="#num-exclusive">exclusive</a></p>
       <p>├  🏷️ <a href="#num-multipleof">multipleOf</a></p>
       <p>╘  🏷️ <a href="#num-format">format</a></p>
     </blockquote>
@@ -755,52 +750,60 @@ Maximum value.
 <number max={100} />
 ```
 
-#### <a id="num-exclusivemin">exclusiveMin</a>
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Number](#number) / exclusiveMin [↑](#num-max) [↓](#num-exclusivemax)
+#### <a id="num-exclusive">exclusive</a>
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Number](#number) / exclusiveMin [↑](#num-max) [↓](#num-multipleof)
 
-Value must be greater than (not equal to) the minimum.
+Controls whether the `min` and `max` boundaries are exclusive (strict) or inclusive.
 
-- **Type:** `boolean`
+- **Type:** `'max' | 'min' | boolean`
 - **Default:** `false`
 
-```tsx
-<number min={0} exclusiveMin />
-```
+- `true` — both `min` and `max` are exclusive
+- `'min'` — only `min` is exclusive, `max` remains inclusive
+- `'max'` — only `max` is exclusive, `min` remains inclusive
 
-#### <a id="num-exclusivemax">exclusiveMax</a>
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Number](#number) / exclusiveMax [↑](#num-exclusivemin) [↓](#num-multipleof)
-
-Value must be less than (not equal to) the maximum.
-
-- **Type:** `boolean`
-- **Default:** `false`
+When a boundary is exclusive, the validated value must be **strictly**
+greater (for `min`) or strictly less (for `max`) than the given limit.
 
 ```tsx
-<number max={100} exclusiveMax />
+// Value must be strictly less than 10 (9.99 is OK, 10 is not)
+<number exclusive='max' max={10} />
+
+// Value must be strictly greater than 0 (0.01 is OK, 0 is not)
+<number exclusive='min' min={0} />
+
+// Both boundaries are exclusive: 0 < value < 100
+<number exclusive min={0} max={100} />
 ```
 
 #### <a id="num-multipleof">multipleOf</a>
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Number](#number) / multipleOf [↑](#num-exclusivemax) [↓](#num-format)
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Number](#number) / multipleOf [↑](#num-exclusive) [↓](#num-format)
 
-Value must be a multiple of the specified number.
+The value must be a multiple of the specified number.
 
 - **Type:** `number`
-- **Default:** -
 
 ```tsx
-<number multipleOf={0.01} />
+// Allowed: ..., -2, 0, 2, 4, 6, ...
+<number multipleOf={2} />
+
+// Allowed: ..., -0.05, 0, 0.05, 0.10, ...
+<number multipleOf={0.05} />
 ```
 
 #### <a id="num-format">format</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Number](#number) / format [↑](#num-multipleof)
 
-An optional format modifier serves as a hint at the contents and format of the string.
+Number format hint for OpenAPI documentation.
 
 - **Type:** `'double' | 'float'`
-- **Default:** -
+
+- `'float'` — IEEE 754 single-precision floating-point number
+- `'double'` — IEEE 754 double-precision floating-point number
 
 ```tsx
 <number format='float' />
+<number format='double' />
 ```
 
 ### Integer
@@ -814,14 +817,14 @@ An optional format modifier serves as a hint at the contents and format of the s
       <p>├  🏷️ <a href="#int-format">format</a></p>
       <p>├  🏷️ <a href="#int-min">min</a></p>
       <p>├  🏷️ <a href="#int-max">max</a></p>
-      <p>├  🏷️ <a href="#int-exclusivemin">exclusiveMin</a></p>
-      <p>├  🏷️ <a href="#int-exclusivemax">exclusiveMax</a></p>
+      <p>├  🏷️ <a href="#int-exclusive">exclusive</a></p>
       <p>╘  🏷️ <a href="#int-multipleof">multipleOf</a></p>
     </blockquote>
   </details>
 </sub>
 
-Whole number with optional validation.
+Integer data type.
+In OpenAPI it is described as `type: integer`, and the incoming value is automatically converted to JavaScript `number` (or `bigint` when using `int64` format).
 
 ```tsx
 <param in='query' name='age'>
@@ -832,10 +835,15 @@ Whole number with optional validation.
 #### <a id="int-format">format</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Integer](#integer) / format [↓](#int-min)
 
-Integer format: `'int32'` (default) or `'int64'` for BigInt.
+Integer format. Affects the range of allowed values and the resulting JavaScript type.
 
 - **Type:** `'int32' | 'int64'`
 - **Default:** `'int32'`
+
+| Value   | Range                                                  | JS Type  |
+| ------- | ------------------------------------------------------ | -------- |
+| `int32` | −2,147,483,648 … 2,147,483,647                         | `number` |
+| `int64` | −9,223,372,036,854,775,808 … 9,223,372,036,854,775,807 | `bigint` |
 
 ```tsx
 <integer format='int64' />
@@ -844,7 +852,7 @@ Integer format: `'int32'` (default) or `'int64'` for BigInt.
 #### <a id="int-min">min</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Integer](#integer) / min [↑](#int-format) [↓](#int-max)
 
-Minimum value.
+Minimum allowed value (inclusive).
 
 - **Type:** `number`
 - **Default:** -
@@ -856,7 +864,7 @@ Minimum value.
 #### <a id="int-max">max</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Integer](#integer) / max [↑](#int-min) [↓](#int-exclusivemin)
 
-Maximum value.
+Maximum allowed value (inclusive).
 
 - **Type:** `number`
 - **Default:** -
@@ -865,32 +873,34 @@ Maximum value.
 <integer max={150} />
 ```
 
-#### <a id="int-exclusivemin">exclusiveMin</a>
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Integer](#integer) / exclusiveMin [↑](#int-max) [↓](#int-exclusivemax)
+#### <a id="int-exclusive">exclusive</a>
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Integer](#integer) / exclusive [↑](#int-max) [↓](#int-multipleof)
 
-Value must be greater than (not equal to) the minimum.
+Controls whether the `min` and `max` boundaries are exclusive (strict) or inclusive.
 
-- **Type:** `boolean`
+- **Type:** `'max' | 'min' | boolean`
 - **Default:** `false`
 
-```tsx
-<integer min={0} exclusiveMin />
-```
+- `true` — both `min` and `max` are exclusive
+- `'min'` — only `min` is exclusive, `max` remains inclusive
+- `'max'` — only `max` is exclusive, `min` remains inclusive
 
-#### <a id="int-exclusivemax">exclusiveMax</a>
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Integer](#integer) / exclusiveMax [↑](#int-exclusivemin) [↓](#int-multipleof)
-
-Value must be less than (not equal to) the maximum.
-
-- **Type:** `boolean`
-- **Default:** `false`
+When a boundary is exclusive, the validated value must be **strictly**
+greater (for `min`) or strictly less (for `max`) than the given limit.
 
 ```tsx
-<integer max={100} exclusiveMax />
+// Value must be strictly less than 10 (9 is OK, 10 is not)
+<integer exclusive='max' max={10} />
+
+// Value must be strictly greater than 0 (1 is OK, 0 is not)
+<integer exclusive='min' min={0} />
+
+// Both boundaries are exclusive: 0 < value < 100
+<integer exclusive min={0} max={100} />
 ```
 
 #### <a id="int-multipleof">multipleOf</a>
-###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Integer](#integer) / multipleOf [↑](#int-exclusivemax)
+###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Integer](#integer) / multipleOf [↑](#int-exclusive)
 
 Value must be a multiple of the specified number.
 
