@@ -245,21 +245,141 @@ declare global {
        * */
       blacklist: BlacklistProps
 
-      /** Define the structure and validation rules for the request body that your endpoint accepts. */
+      /**
+       * Define the structure and validation rules for the request body that your endpoint accepts.
+       *
+       * @example
+       * ```tsx
+       * <body>
+       *   <object>
+       *     name: <string min={1} max={100} />
+       *     email: <string format='email' />
+       *     age?: <integer min={0} max={150} />
+       *   </object>
+       * </body>
+       * ```
+       * */
       body: BodyProps
-      /** True or false value. */
+
+      /**
+       * True or false value.
+       *
+       * @example
+       * ```tsx
+       * <param in='query' name='active'>
+       *   <boolean default={true} />
+       * </param>
+       * ```
+       * */
       boolean: BooleanProps
-      /** Serve static files from a directory. */
+
+      /**
+       * Serve static files from a directory.
+       *
+       * @example
+       * ```tsx
+       * <return>
+       *   <cms dir='public' />
+       * </return>
+       * ```
+       * */
       cms: CmsProps
-      /** Define contact information for the API. */
+
+      /**
+       * Define contact information for the API.
+       *
+       * @example
+       * ```tsx
+       * <api>
+       *   <contact
+       *     name='Support Team'
+       *     email='support@example.com'
+       *     url='https://support.example.com'
+       *   />
+       * </api>
+       * ```
+       * */
       contact: ContactProps
-      /** Set HTTP cookies in the response. */
+
+      /**
+       * Set HTTP cookies in the response.
+       *
+       * @example
+       * ```tsx
+       * <return>
+       *   <cookie
+       *     key='sessionId'
+       *     value='abc123'
+       *     httpOnly
+       *     secure
+       *     sameSite
+       *     maxAge={86400}
+       *   />
+       *   <success />
+       * </return>
+       * ```
+       * */
       cookie: CookieProps
-      /** ISO 8601 date format. */
+
+      /**
+       * ISO 8601 date format.
+       *
+       * @example
+       * ```tsx
+       * <param in='query' name='birthDate'>
+       *   <date min='1900-01-01' max='now' />
+       * </param>
+       * ```
+       * */
       date: DateProps
-      /** Automatically generate TypeScript type definitions for your entire API. */
+
+      /**
+       * Automatically generate TypeScript type definitions for your entire API.
+       *
+       * @example
+       * ```tsx
+       * <api>
+       *   <dts
+       *     path='src/api.d.ts'
+       *     namespace='Api'
+       *   />
+       * </api>
+       * ```
+       * */
       dts: DtsProps
-      /** Defines a REST API endpoint with request/response specifications. */
+
+      /**
+       * Defines a REST API endpoint with request/response specifications.
+       *
+       * @example
+       * ```tsx
+       * <endpoint operationId='getTodos' method='get' path='/todos' summary='Get list of todos'>
+       *   <param in='query' name='done'><boolean /></param>
+       *   <param in='query' name='page'><number default={1} /></param>
+       *   <param in='query' name='pageSize'><number default={12} /></param>
+       *   <response description='Response Description'>
+       *     <object>
+       *       page: <number default={1} />
+       *       pageSize: <number example={10} />
+       *       count: <number default={11} />
+       *       todos:
+       *         <array>
+       *           <object>
+       *             id: <uuid />
+       *             created: <date />
+       *             changed: <date nullable />
+       *             title: <string example='Check @innet/dom librarry' />
+       *             done: <boolean />
+       *           </object>
+       *         </array>
+       *     </object>
+       *   </response>
+       *   <return>
+       *     <success>{{ page: 1, pageSize: 10, count: 0, todos: [] }}</success>
+       *   </return>
+       * </endpoint>
+       * ```
+       * */
       endpoint: EndpointProps
 
       /**
@@ -275,6 +395,7 @@ declare global {
        * ```
        * */
       env: EnvProps
+
       /** Return an error response. */
       error: ErrorProps
       /** Defines a single field within an `<object>`. */
