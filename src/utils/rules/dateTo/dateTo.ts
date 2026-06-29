@@ -8,7 +8,7 @@ export type DefaultDateFormat = 'now' | DateFormat
 export function dateTo (value: any, data?: object) {
   const result = new Date(value)
 
-  if (isNaN(result as any)) {
+  if (Number.isNaN(result)) {
     throw new RulesError('date', {
       value,
       ...data,

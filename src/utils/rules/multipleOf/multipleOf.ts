@@ -9,7 +9,7 @@ export function multipleOf (multiple: bigint | number) {
       })
     }
 
-    if (value % (multiple as any) !== 0) {
+    if (value % (multiple as any)) {
       throw new RulesError('multipleOf', {
         ...data,
         multiple,

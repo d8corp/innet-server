@@ -21,7 +21,7 @@ export function int (format: IntegerFormats) {
       }
     }
 
-    if (isNaN(result as number)) {
+    if (Number.isNaN(result)) {
       throw new RulesError('integer', {
         format,
         value,
