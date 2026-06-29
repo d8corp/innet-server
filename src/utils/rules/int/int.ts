@@ -8,13 +8,11 @@ const sizes: Record<IntegerFormats, bigint | number> = {
 }
 
 export function int (format: IntegerFormats) {
-  const validator: (val: any) => any = format === 'int32' ? isNaN : (value: any) => isNaN(parseInt(value))
-
   return (value: any, data?: object) => {
     let result: bigint | number
 
     if (format === 'int32') {
-      result = Number(value)
+      result = parseInt(value)
     } else {
       try {
         result = BigInt(value)
@@ -23,7 +21,7 @@ export function int (format: IntegerFormats) {
       }
     }
 
-    if (validator(result)) {
+    if (isNaN(result as number)) {
       throw new RulesError('integer', {
         format,
         value,
