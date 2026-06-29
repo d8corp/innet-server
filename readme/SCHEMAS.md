@@ -829,7 +829,7 @@ Whole number with optional validation.
 </param>
 ```
 
-#### format
+#### <a id="int-format">format</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Integer](#integer) / format [↓](#int-min)
 
 Integer format: `'int32'` (default) or `'int64'` for BigInt.
@@ -841,7 +841,7 @@ Integer format: `'int32'` (default) or `'int64'` for BigInt.
 <integer format='int64' />
 ```
 
-#### min
+#### <a id="int-min">min</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Integer](#integer) / min [↑](#int-format) [↓](#int-max)
 
 Minimum value.
@@ -853,7 +853,7 @@ Minimum value.
 <integer min={0} />
 ```
 
-#### max
+#### <a id="int-max">max</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Integer](#integer) / max [↑](#int-min) [↓](#int-exclusivemin)
 
 Maximum value.
@@ -865,7 +865,7 @@ Maximum value.
 <integer max={150} />
 ```
 
-#### exclusiveMin
+#### <a id="int-exclusivemin">exclusiveMin</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Integer](#integer) / exclusiveMin [↑](#int-max) [↓](#int-exclusivemax)
 
 Value must be greater than (not equal to) the minimum.
@@ -877,7 +877,7 @@ Value must be greater than (not equal to) the minimum.
 <integer min={0} exclusiveMin />
 ```
 
-#### exclusiveMax
+#### <a id="int-exclusivemax">exclusiveMax</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Integer](#integer) / exclusiveMax [↑](#int-exclusivemin) [↓](#int-multipleof)
 
 Value must be less than (not equal to) the maximum.
@@ -889,7 +889,7 @@ Value must be less than (not equal to) the maximum.
 <integer max={100} exclusiveMax />
 ```
 
-#### multipleOf
+#### <a id="int-multipleof">multipleOf</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Integer](#integer) / multipleOf [↑](#int-exclusivemax)
 
 Value must be a multiple of the specified number.
@@ -923,7 +923,7 @@ ISO 8601 date format.
 </param>
 ```
 
-#### min
+#### <a id="date-min">min</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Date](#date) / min [↓](#date-max)
 
 Minimum date.
@@ -935,7 +935,7 @@ Minimum date.
 <date min='1900-01-01' />
 ```
 
-#### max
+#### <a id="date-max">max</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Date](#date) / max [↑](#date-min)
 
 Maximum date.
@@ -970,7 +970,7 @@ File upload or binary data. Typically used with multipart/form-data.
 </field>
 ```
 
-#### accept
+#### <a id="binary-accept">accept</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Binary](#binary) / accept [↓](#binary-min)
 
 File type filter (MIME types).
@@ -982,7 +982,7 @@ File type filter (MIME types).
 <binary accept='image/*' />
 ```
 
-#### min
+#### <a id="binary-min">min</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Binary](#binary) / min [↑](#binary-accept) [↓](#binary-max)
 
 Minimum file size in bytes.
@@ -994,7 +994,7 @@ Minimum file size in bytes.
 <binary min={1024} />
 ```
 
-#### max
+#### <a id="binary-max">max</a>
 ###### [🏠︎](https://github.com/d8corp/innet-server/blob/2.0/README.md) / [Schemas](#schemas) / [Primitives](#primitives) / [Binary](#binary) / max [↑](#binary-min)
 
 Maximum file size in bytes.
