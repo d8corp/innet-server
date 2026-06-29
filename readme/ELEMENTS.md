@@ -212,8 +212,8 @@
                 <summary>&nbsp;🧩 <a href="#endpoint">&lt;endpoint&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="#endpoint-method">method</a></p>
-                  <p>├  🏷️ <a href="#endpoint-path">path</a></p>
+                  <p>├  🏷️ <a href="#endpoint-method">method</a>*</p>
+                  <p>├  🏷️ <a href="#endpoint-path">path</a>*</p>
                   <p>├  🏷️ <a href="#endpoint-summary">summary</a></p>
                   <p>├  🏷️ <a href="#endpoint-description">description</a></p>
                   <p>├  🏷️ <a href="#endpoint-deprecated">deprecated</a></p>
@@ -521,8 +521,8 @@ Environment variable name to check.
             <summary>&nbsp;🧩 <a href="#endpoint">&lt;endpoint&gt;</a></summary>
             <blockquote>
               <p></p>
-              <p>├  🏷️ <a href="#endpoint-method">method</a></p>
-              <p>├  🏷️ <a href="#endpoint-path">path</a></p>
+              <p>├  🏷️ <a href="#endpoint-method">method</a>*</p>
+              <p>├  🏷️ <a href="#endpoint-path">path</a>*</p>
               <p>├  🏷️ <a href="#endpoint-summary">summary</a></p>
               <p>├  🏷️ <a href="#endpoint-description">description</a></p>
               <p>├  🏷️ <a href="#endpoint-deprecated">deprecated</a></p>
@@ -1436,8 +1436,8 @@ Path to the file to serve.
         <summary>&nbsp;🧩 <a href="#endpoint">&lt;endpoint&gt;</a></summary>
         <blockquote>
           <p></p>
-          <p>├  🏷️ <a href="#endpoint-method">method</a></p>
-          <p>├  🏷️ <a href="#endpoint-path">path</a></p>
+          <p>├  🏷️ <a href="#endpoint-method">method</a>*</p>
+          <p>├  🏷️ <a href="#endpoint-path">path</a>*</p>
           <p>├  🏷️ <a href="#endpoint-summary">summary</a></p>
           <p>├  🏷️ <a href="#endpoint-description">description</a></p>
           <p>├  🏷️ <a href="#endpoint-deprecated">deprecated</a></p>
@@ -2155,8 +2155,8 @@ Optional group name for organizing multiple tags into logical sections in the do
     <summary>&nbsp;🏷️ Props</summary>
     <blockquote>
       <p></p>
-      <p>├  🏷️ <a href="#endpoint-method">method</a></p>
-      <p>├  🏷️ <a href="#endpoint-path">path</a></p>
+      <p>├  🏷️ <a href="#endpoint-method">method</a>*</p>
+      <p>├  🏷️ <a href="#endpoint-path">path</a>*</p>
       <p>├  🏷️ <a href="#endpoint-summary">summary</a></p>
       <p>├  🏷️ <a href="#endpoint-description">description</a></p>
       <p>├  🏷️ <a href="#endpoint-deprecated">deprecated</a></p>

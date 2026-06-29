@@ -236,8 +236,8 @@ For a quick overview and introduction, see the [main README](../README.md) in th
                 <summary>&nbsp;🧩 <a href="./ELEMENTS.md#endpoint">&lt;endpoint&gt;</a></summary>
                 <blockquote>
                   <p></p>
-                  <p>├  🏷️ <a href="./ELEMENTS.md#endpoint-method">method</a></p>
-                  <p>├  🏷️ <a href="./ELEMENTS.md#endpoint-path">path</a></p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#endpoint-method">method</a>*</p>
+                  <p>├  🏷️ <a href="./ELEMENTS.md#endpoint-path">path</a>*</p>
                   <p>├  🏷️ <a href="./ELEMENTS.md#endpoint-summary">summary</a></p>
                   <p>├  🏷️ <a href="./ELEMENTS.md#endpoint-description">description</a></p>
                   <p>├  🏷️ <a href="./ELEMENTS.md#endpoint-deprecated">deprecated</a></p>
