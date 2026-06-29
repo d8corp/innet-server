@@ -690,11 +690,11 @@ Callback function executed when the server closes.
 Block requests from specific IP addresses.
 
 ```tsx
-<api>
+<server>
   <blacklist ip='192.168.1.1,10.0.0.1'>
     <error status='forbidden' />
   </blacklist>
-</api>
+</server>
 ```
 
 #### <a id="blacklist-ip">ip</a>
@@ -721,11 +721,11 @@ Comma-separated list of IP addresses to block.
 Allow requests only from specific IP addresses.
 
 ```tsx
-<api>
+<server>
   <whitelist ip='192.168.1.1,10.0.0.1'>
     <error status='forbidden' />
   </whitelist>
-</api>
+</server>
 ```
 
 #### <a id="whitelist-ip">ip</a>
@@ -756,11 +756,11 @@ Comma-separated list of IP addresses to allow.
 Protect your API with a secret value that must be provided by clients.
 
 ```tsx
-<api>
+<server>
   <protection>
     <error status='forbidden' />
   </protection>
-</api>
+</server>
 ```
 
 #### <a id="protection-value">value</a>
@@ -847,15 +847,14 @@ The `<preset>` element configures request scope without interrupting execution.
 Use it to set up headers, cookies, and other metadata that apply to multiple endpoints within an API or globally.
 
 ```tsx
-<api prefix='/api'>
+<server>
   <preset>
     <header
       key='Cache-Control'
       value='no-cache, no-store, must-revalidate'
     />
   </preset>
-  {/* endpoints */}
-</api>
+</server>
 ```
 
 ## Header
@@ -879,17 +878,14 @@ Use inside `<preset>` to apply headers to multiple endpoints, or inside `<return
 <server>
   <preset>
     <header key='Cache-Control' value='no-cache' />
-    {/* For any response */}
   </preset>
   <api>
     <preset>
       <header key='Cache-Control' value='no-cache' />
-      {/* For api response */}
     </preset>
     <endpoint method='get' path='/todos'>
       <return>
         <header key='Cache-Control' value='private, no-store' />
-        {/* For todos response */}
         <success>{[]}</success>
       </return>
     </endpoint>

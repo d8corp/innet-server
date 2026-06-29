@@ -177,16 +177,74 @@ declare global {
       children: {}
     }
     interface IntrinsicElements {
-      /** Accepts any value type. Useful when you want to allow flexible input without strict type validation. */
+      /**
+       * Accepts any value type. Useful when you want to allow flexible input without strict type validation.
+       *
+       * @example
+       * ```tsx
+       * <param in='query' name='data'>
+       *   <any />
+       * </param>
+       * ```
+       * */
       any: AnyProps
-      /** Defines a REST API with OpenAPI documentation. Place inside `<server>` to register endpoints and configure OpenAPI settings. */
+
+      /**
+       * Defines a REST API with OpenAPI documentation. Place inside `<server>` to register endpoints and configure OpenAPI settings.
+       *
+       * @example
+       * ```tsx
+       * <server>
+       *   <api
+       *     title='My API'
+       *     description='API description in **Markdown**'
+       *     version='1.0.0'
+       *     prefix='/api'
+       *   />
+       * </server>
+       * ```
+       * */
       api: ApiProps
-      /** Arrays represent collections of items of the same type. Control the number of items with `min` and `max`, and ensure uniqueness with `unique`. */
+
+      /**
+       * Arrays represent collections of items of the same type.
+       * Control the number of items with `min` and `max`, and ensure uniqueness with `unique`.
+       *
+       * @example
+       * ```tsx
+       * <array min={1} max={10} unique>
+       *   <string />
+       * </array>
+       * ```
+       * */
       array: ArrayProps
-      /** File upload or binary data. Typically used with multipart/form-data. */
+
+      /**
+       * File upload or binary data. Typically used with multipart/form-data.
+       *
+       * @example
+       * ```tsx
+       * <field key='avatar'>
+       *   <binary accept='image/*' min={1024} max={5242880} />
+       * </field>
+       * ```
+       * */
       binary: BinaryProps
-      /** Block requests from specific IP addresses. */
+
+      /**
+       * Block requests from specific IP addresses.
+       *
+       * @example
+       * ```tsx
+       * <server>
+       *   <blacklist ip='192.168.1.1,10.0.0.1'>
+       *     <error status='forbidden' />
+       *   </blacklist>
+       * </server>
+       * ```
+       * */
       blacklist: BlacklistProps
+
       /** Define the structure and validation rules for the request body that your endpoint accepts. */
       body: BodyProps
       /** True or false value. */
