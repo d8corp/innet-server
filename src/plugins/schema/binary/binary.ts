@@ -7,8 +7,34 @@ import type { SchemaProps } from '../../../types'
 import { bin, binaryAccept, maxBin, minBin, nullable, oneOf, pipe, type Rule } from '../../../utils'
 
 export type BinaryProps = SchemaProps<string> & {
+  /**
+   * File type filter (MIME types).
+   *
+   * @example
+   * ```tsx
+   * <binary accept='image/*' />
+   * ```
+   */
   accept?: string
+
+  /**
+   * Maximum file size in bytes.
+   *
+   * @example
+   * ```tsx
+   * <binary max={5242880} />
+   * ```
+   */
   max?: number
+
+  /**
+   * Minimum file size in bytes.
+   *
+   * @example
+   * ```tsx
+   * <binary min={1024} />
+   * ```
+   */
   min?: number
 }
 
