@@ -128,6 +128,12 @@ declare global {
             'error': string
             'in': string
             'key'?: string
+            'multiple': number
+            'value': any
+          } | {
+            'error': string
+            'in': string
+            'key'?: string
           } | {
             'error': string
             'in': string

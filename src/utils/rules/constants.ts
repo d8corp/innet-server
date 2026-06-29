@@ -34,6 +34,7 @@ export const rulesErrors = [
   'unique',
   'minItems',
   'maxItems',
+  'multipleOf',
 ] as const
 
 export const rulesErrorSchemas: Record<RulesErrors, OpenAPIV3_1.ReferenceObject | OpenAPIV3_1.SchemaObject> = {
@@ -420,6 +421,29 @@ export const rulesErrorSchemas: Record<RulesErrors, OpenAPIV3_1.ReferenceObject 
     },
     required: ['error', 'in', 'min', 'value'],
     title: 'minLength',
+    type: 'object',
+  },
+  multipleOf: {
+    description: 'The value must be a multiple of the specified number',
+    properties: {
+      error: {
+        const: 'multipleOf',
+        type: 'string',
+      },
+      in: {
+        enum: inValidationValues,
+        type: 'string',
+      },
+      key: {
+        type: 'string',
+      },
+      multiple: {
+        type: 'number',
+      },
+      value: {},
+    },
+    required: ['error', 'in', 'value', 'multiple'],
+    title: 'maximum',
     type: 'object',
   },
   null: {

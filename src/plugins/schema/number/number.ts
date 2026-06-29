@@ -9,6 +9,7 @@ import {
   getArrayValues,
   max as maximum,
   min as minimum,
+  multipleOf as mpl,
   nullable,
   num,
   oneOf,
@@ -142,7 +143,7 @@ export const number: HandlerPlugin = () => {
       schema.exclusiveMaximum = true
     }
 
-    if (multipleOf !== undefined) {
+    if (multipleOf) {
       schema.multipleOf = Number(multipleOf)
     }
   }
@@ -167,6 +168,10 @@ export const number: HandlerPlugin = () => {
 
   if (max !== undefined) {
     rules.push(maximum(max, exclusiveMaximum))
+  }
+
+  if (multipleOf) {
+    rules.push(mpl(multipleOf))
   }
 
   const rule = props.nullable ? oneOf([nullable, pipe(...rules)]) : pipe(...rules)
