@@ -74,6 +74,12 @@ export function generateSchemaTypes (schema: SchemaObject, spaces: number = 2, l
     }
 
     if (type === 'array') {
+      if (schema.type === 'array' && 'prefixItems' in schema) {
+        const value = (schema.prefixItems as any[]).map(item => generateSchemaTypes(item, spaces + 2, '')).join(', ')
+        scope += `${operator}[${value}]`
+        continue
+      }
+
       if (schema.type !== 'array' || !schema.items) {
         scope += `${operator}any[]`
         continue
