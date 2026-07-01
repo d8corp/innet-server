@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generateTypes should works 1`] = `
+"import '@innet/server'
+
+declare global {
+  namespace Api {
+    export interface Schemas {
+      TodoSchema: {
+        'done': boolean
+        'id': string
+        'title': string
+      }
+      TodoSchemaAdd: {
+        'done': boolean
+        'id': string
+        'title': string
+      }
+    }
+    export interface Endpoints {
+      'GET:/todos': {
+        search: {
+          'done'?: boolean
+          'page': number
+          'pageSize': number
+        }
+        response: {
+          'default': {
+            'count': number
+            'page': number
+            'pageSize': number
+            'todos': Array<Schemas['TodoSchema']>
+          }
+        }
+      }
+      'POST:/todos': {
+        body: Schemas['TodoSchemaAdd']
+        response: {
+        }
+      }
+      'DELETE:/todos/{todoId}': {
+        params: {
+          'todoId': string
+        }
+        response: {
+        }
+      }
+      'GET:/todos/{todoId}': {
+        params: {
+          'todoId': string
+        }
+        response: {
+          'default': Schemas['TodoSchema']
+        }
+      }
+      'PATCH:/todos/{todoId}': {
+        params: {
+          'todoId': string
+        }
+        body: {
+        'done'?: boolean
+        'title'?: string
+      }
+        response: {
+        }
+      }
+    }
+  }
+}
+
+declare module '@innet/server' {
+  interface ApiEndpoints extends Api.Endpoints {}
+  interface ApiSchemas extends Api.Schemas {}
+}
+"
+`;
