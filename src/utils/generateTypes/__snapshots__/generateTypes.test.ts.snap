@@ -1,6 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`generateTypes should works 1`] = `
+exports[`generateTypes Elements tuple should works with base tuple 1`] = `
+"import '@innet/server'
+
+declare global {
+  namespace Api {
+      export interface Endpoints {
+      'POST:/todos': {
+        body: [string, number]
+        response: {
+        }
+      }
+    }
+  }
+}
+
+declare module '@innet/server' {
+  interface ApiEndpoints extends Api.Endpoints {}
+  interface ApiSchemas extends Api.Schemas {}
+}
+"
+`;
+
+exports[`generateTypes should works with TODO example 1`] = `
 "import '@innet/server'
 
 declare global {

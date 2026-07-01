@@ -1,7 +1,7 @@
 import { generateTypes } from './generateTypes'
 
 describe('generateTypes', () => {
-  it('should works', () => {
+  it('should works with TODO example', () => {
     expect(generateTypes({
       components: {
         schemas: {
@@ -169,5 +169,37 @@ describe('generateTypes', () => {
       },
       tags: [{ description: 'Todo API', name: 'todo' }],
     })).toMatchSnapshot()
+  })
+  describe('Elements', () => {
+    describe('tuple', () => {
+      it('should works with base tuple', () => {
+        expect(generateTypes({
+          info: {
+            title: '',
+            version: '0.0.0',
+          },
+          openapi: '3.1.0',
+          paths: {
+            '/todos': {
+              post: {
+                requestBody: {
+                  content: {
+                    'multipart/form-data': {
+                      schema: {
+                        items: {},
+                        // @ts-expect-error TODO
+                        prefixItems: [{ type: 'string' }, { type: 'number' }],
+                        type: 'array',
+                      },
+                    },
+                  },
+                },
+                responses: {},
+              },
+            },
+          },
+        })).toMatchSnapshot()
+      })
+    })
   })
 })
