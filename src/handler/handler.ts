@@ -396,48 +396,282 @@ declare global {
        * */
       env: EnvProps
 
-      /** Return an error response. */
-      error: ErrorProps
-      /** Defines a single field within an `<object>`. */
-      field: FieldProps
-      /** Serve a single file. */
-      file: FileProps
-      /** Configure HTTP response headers that will be sent to clients. */
-      header: HeaderProps
-      /** Define a server URL/host for the API. Useful for documenting multiple deployment environments. */
-      host: HostProps
-      /** Whole number with optional validation. */
-      integer: IntegerProps
-      /** Define the license for your API. */
-      license: LicenseProps
-      /** Represents a null value explicitly. */
-      null: NullProps
-      /** Decimal number with optional validation. */
-      number: NumberProps
       /**
-       * Objects represent structured data with named fields. Use to define complex schemas with multiple properties.
+       * Return an error response.
+       *
        * @example
+       * ```tsx
+       * <return>
+       *   <error status='notFound' code='userNotFound'>
+       *     {{ message: 'User not found' }}
+       *   </error>
+       * </return>
+       * ```
+       * */
+      error: ErrorProps
+
+      /**
+       * Defines a single field within an `<object>`.
+       *
+       * @example
+       * ```tsx
+       * <object>
+       *   <field key='id' readOnly>
+       *     <uuid />
+       *   </field>
+       *   <field key='password' writeOnly>
+       *     <string min={8} />
+       *   </field>
+       *   <field key='nickname' optional>
+       *     <string />
+       *   </field>
+       * </object>
+       * ```
+       * */
+      field: FieldProps
+
+      /**
+       * Serve a single file.
+       *
+       * @example
+       * ```tsx
+       * <return>
+       *   <file path='package.json' />
+       * </return>
+       * ```
+       * */
+      file: FileProps
+
+      /**
+       * Configure HTTP response headers that will be sent to clients.
+       *
+       * @example
+       * ```tsx
+       * <server>
+       *   <preset>
+       *     <header key='Cache-Control' value='no-cache' />
+       *   </preset>
+       *   <api>
+       *     <preset>
+       *       <header key='Cache-Control' value='no-cache' />
+       *     </preset>
+       *     <endpoint method='get' path='/todos'>
+       *       <return>
+       *         <header key='Cache-Control' value='private, no-store' />
+       *         <success>{[]}</success>
+       *       </return>
+       *     </endpoint>
+       *   </api>
+       * </server>
+       * ```
+       * */
+      header: HeaderProps
+
+      /**
+       * Define a server URL/host for the API. Useful for documenting multiple deployment environments.
+       *
+       * @example
+       * ```tsx
+       * <api>
+       *   <host
+       *     url='https://api.example.com'
+       *     description='Production server'
+       *   />
+       *   <host
+       *     url='https://staging-api.example.com'
+       *     description='Staging server'
+       *   />
+       * </api>
+       * ```
+       * */
+      host: HostProps
+
+      /**
+       * Whole number with optional validation.
+       *
+       * @example
+       * ```tsx
+       * <param in='query' name='age'>
+       *   <integer min={0} max={150} />
+       * </param>
+       * ```
+       * */
+      integer: IntegerProps
+
+      /**
+       * Define the license for your API.
+       *
+       * @example
+       * ```tsx
+       * <api>
+       *   <license
+       *     name='Apache 2.0'
+       *     identifier='Apache-2.0'
+       *     url='https://apache.org'
+       *   />
+       * </api>
+       * ```
+       * */
+      license: LicenseProps
+
+      /**
+       * Represents a null value explicitly.
+       *
+       * @example
+       * ```tsx
+       * <param in='query' name='age'>
+       *   <null title='Users without age' />
+       *   <number title='Users with exact the age' />
+       *   <tuple>
+       *     <number title='Users from the age' />
+       *     <number title='Users to the age' />
+       *   </tuple>
+       * </param>
+       * ```
+       * */
+      null: NullProps
+
+      /**
+       * Decimal number with optional validation.
+       *
+       * @example
+       * ```tsx
+       * <param in='query' name='price'>
+       *   <number min={0} max={10000} multipleOf={0.01} />
+       * </param>
+       * ```
+       * */
+      number: NumberProps
+
+      /**
+       * Objects represent structured data with named fields.
+       * Use to define complex schemas with multiple properties.
+       *
+       * @example
+       * ```tsx
        * <object description='User object'>
        *   id: <uuid readOnly />
        *   name: <string min={1} max={100} />
        *   email: <string format='email' />
        *   role: <string default='user' values={['admin', 'user', 'guest']} />
        * </object>
+       * ```
        * */
       object: ObjectProps
-      /** Specify query parameters, path parameters, headers, and cookies that your endpoint accepts. */
+
+      /**
+       * Specify query parameters, path parameters, headers, and cookies that your endpoint accepts.
+       *
+       * @example
+       * ```tsx
+       * <endpoint method='get' path='/users/{id}'>
+       *   <param in='path' name='id'><uuid /></param>
+       *   <param in='query' name='format'>
+       *     <string default='json' values={['json', 'xml']} />
+       *   </param>
+       *   <param in='header' name='authorization'>
+       *     <string />
+       *   </param>
+       * </endpoint>
+       * ```
+       * */
       param: ParamProps
-      /** Configure request scope without interrupting execution. Use to set up headers, cookies, and other metadata. */
+
+      /**
+       * Configure request scope without interrupting execution.
+       * Use to set up headers, cookies, and other metadata.
+       *
+       * @example
+       * ```tsx
+       * <server>
+       *   <preset>
+       *     <header
+       *       key='Cache-Control'
+       *       value='no-cache, no-store, must-revalidate'
+       *     />
+       *   </preset>
+       * </server>
+       * ```
+       * */
       preset: PresetProps
-      /** Protect your API with a secret value that must be provided by clients. */
+
+      /**
+       * Protect your API with a secret value that must be provided by clients.
+       *
+       * @example
+       * ```tsx
+       * <server>
+       *   <protection>
+       *     <error status='forbidden' />
+       *   </protection>
+       * </server>
+       * ```
+       * */
       protection: ProtectionProps
-      /** Forward requests to another server. */
+
+      /**
+       * Forward requests to another server.
+       *
+       * @example
+       * ```tsx
+       * <endpoint method='get' path='/external'>
+       *   <return>
+       *     <proxy to='https://api.example.com' />
+       *   </return>
+       * </endpoint>
+       * ```
+       * */
       proxy: ProxyProps
-      /** Redirect requests to another URL. */
+
+      /**
+       * Redirect requests to another URL.
+       *
+       * @example
+       * ```tsx
+       * <return>
+       *   <redirect to='https://example.com' />
+       * </return>
+       * ```
+       * */
       redirect: RedirectProps
-      /** Define what your endpoint will return to clients. Specify response status code and data structure. */
+
+      /**
+       * Define what your endpoint will return to clients.
+       * Specify response status code and data structure.
+       *
+       * @example
+       * ```tsx
+       * <endpoint method='get' path='/users/{id}'>
+       *   <response status={200}>
+       *     <object>
+       *       id: <uuid />
+       *       name: <string />
+       *     </object>
+       *   </response>
+       *   <response status={404}>
+       *     <object>
+       *       error: <string />
+       *     </object>
+       *   </response>
+       * </endpoint>
+       * ```
+       * */
       response: ResponseProps
-      /** Handles endpoint responses and works like a `return` statement in functions. Only one can execute per scope. */
+
+      /**
+       * The `<return>` element handles endpoint responses and works like a `return` statement in functions.
+       * Only one `<return>` can execute per scope.
+       * Use it to respond with success/error, set headers, cookies, and conditionally control the request flow.
+       *
+       * @example
+       * ```tsx
+       * <endpoint method='get' path='/users'>
+       *   <return>
+       *     <success>{{ users: [] }}</success>
+       *   </return>
+       * </endpoint>
+       * ```
+       * */
       return: ReturnProps
 
       /**
@@ -454,17 +688,85 @@ declare global {
        * */
       server: ServerProps
 
-      /** Text data with optional validation. */
+      /**
+       * Text data with optional validation.
+       *
+       * @example
+       * ```tsx
+       * <param in='query' name='email'>
+       *   <string format='email' />
+       * </param>
+       * ```
+       * */
       string: StringProps
-      /** Return a successful response with optional data. */
+
+      /**
+       * Return a successful response with optional data.
+       *
+       * @example
+       * ```tsx
+       * <return>
+       *   <success status='created'>
+       *     {{ id: 1, name: 'John' }}
+       *   </success>
+       * </return>
+       * ```
+       * */
       success: SuccessProps
-      /** Organize and categorize API endpoints using tags. Group related endpoints together in documentation. */
+
+      /**
+       * Organize and categorize API endpoints using tags. Group related endpoints together in documentation.
+       *
+       * @example
+       * ```tsx
+       * <api>
+       *   <tag name='Users' group='Management'>
+       *     <endpoint method='get' path='/users' />
+       *     <endpoint method='get' path='/users/{userId}' />
+       *     <endpoint method='post' path='/users' />
+       *   </tag>
+       * </api>
+       * ```
+       * */
       tag: TagProps
-      /** A fixed-length array with specific types for each position. */
+
+      /**
+       * A fixed-length array with specific types for each position.
+       *
+       * @example
+       * ```tsx
+       * <tuple>
+       *   <string />
+       *   <number />
+       *   <boolean />
+       * </tuple>
+       * ```
+       * */
       tuple: TupleProps
-      /** Add interactive API documentation. Choose from Swagger UI, Scalar, RapiDoc, or ReDoc. */
+
+      /**
+       * Add interactive API documentation.
+       * Choose from Swagger UI, Scalar, RapiDoc, or ReDoc.
+       *
+       * @example
+       * ```tsx
+       * <api>
+       *   <ui />
+       * </api>
+       * ```
+       * */
       ui: UiProps
-      /** Universally unique identifier in UUID format. */
+
+      /**
+       * Universally unique identifier in UUID format.
+       *
+       * @example
+       * ```tsx
+       * <param in='cookie' name='sessionId'>
+       *   <uuid default='new' />
+       * </param>
+       * ```
+       * */
       uuid: UuidProps
 
       /**
@@ -472,11 +774,15 @@ declare global {
        *
        * @example
        * ```tsx
-       * <api>
-       *   <host url='https://api.example.com/{version}/'>
-       *     <variable key='version' values={['v1', 'v2']} />
-       *   </host>
-       * </api>
+       * <host url='https://{env}.example.com' description='Test servers'>
+       *   <variable
+       *     key='env'
+       *     values={['dev', 'staging', 'prod']}
+       *     value='staging'
+       *     description='Environment name'
+       *   />
+       * </host>
+       * ```
        * */
       variable: VariableProps
 
@@ -485,11 +791,11 @@ declare global {
        *
        * @example
        * ```tsx
-       * <api>
+       * <server>
        *   <whitelist ip='192.168.1.1,10.0.0.1'>
        *     <error status='forbidden' />
        *   </whitelist>
-       * </api>
+       * </server>
        * ```
        * */
       whitelist: WhitelistProps

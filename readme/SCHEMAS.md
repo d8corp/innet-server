@@ -649,7 +649,7 @@ Text data with optional validation.
 
 ```tsx
 <param in='query' name='email'>
-  <string format='email' min={1} max={255} />
+  <string format='email' />
 </param>
 ```
 
@@ -1044,8 +1044,13 @@ True or false value.
 Represents a null value explicitly.
 
 ```tsx
-<param in='query' name='nothing'>
-  <null />
+<param in='query' name='age'>
+  <null title='Users without age' />
+  <number title='Users with exact the age' />
+  <tuple>
+    <number title='Users from the age' />
+    <number title='Users to the age' />
+  </tuple>
 </param>
 ```
 
