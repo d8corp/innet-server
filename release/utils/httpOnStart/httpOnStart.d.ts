@@ -1,2 +1,2 @@
 import { type ServerStartParams } from '../../types';
-export declare function httpOnStart({ https, port, }: ServerStartParams): void;
+export declare function httpOnStart({ apiPaths, https, port, }: ServerStartParams): void;

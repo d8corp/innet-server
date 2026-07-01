@@ -56,6 +56,7 @@ export interface SSL {
     key: string;
 }
 export interface ServerStartParams {
+    apiPaths: string[];
     https: boolean;
     port: number;
 }
@@ -63,17 +64,134 @@ export type ApiErrorSchema = Record<ApiErrorValue, OpenAPIV3_1.ReferenceObject |
 export type ApiErrorSchemaRefs = Record<ApiErrorValue, string>;
 export type SchemaValues<T> = (T extends (number | string) ? Record<T, string> : never) | T[];
 export interface BaseSchemaProps<T, D = T> {
+    /**
+     * Default value for the schema.
+     *
+     * @example
+     * ```tsx
+     * <number default={1} />
+     * ```
+     */
     default?: D;
+    /**
+     * Indicates that the schema is deprecated.
+     *
+     * @example
+     * ```tsx
+     * <string deprecated />
+     * ```
+     */
     deprecated?: boolean;
+    /**
+     * Schema description in CommonMark format.
+     *
+     * @example
+     * ```tsx
+     * <string description='User email address in format `name@domain.com`' />
+     * ```
+     */
     description?: string;
+    /**
+     * Example value.
+     *
+     * @example
+     * ```tsx
+     * <string example='user@example.com' />
+     * ```
+     */
     example?: T;
+    /**
+     * Array of example values.
+     *
+     * @example
+     * ```tsx
+     * <string examples={['john@example.com', 'jane@test.com']} />
+     * ```
+     */
     examples?: T[];
+    /**
+     * Indicates that the value can be null.
+     *
+     * @example
+     * ```tsx
+     * <string nullable />
+     * ```
+     */
     nullable?: false;
+    /**
+     * Indicates that the value is read-only.
+     *
+     * @example
+     * ```tsx
+     * <object ref='Todo'>
+     *   id: <uuid readOnly />
+     *   title: <string />
+     *   done: <boolean />
+     * </object>
+     * ```
+     */
     readOnly?: boolean;
+    /**
+     * Reference to a schema component in OpenAPI.
+     *
+     * @example
+     * ```tsx
+     * <object ref='Todo'>
+     *   id: <uuid />
+     *   title: <string />
+     *   done: <boolean />
+     * </object>
+     * ```
+     */
     ref?: string;
+    /**
+     * Schema title.
+     *
+     * @example
+     * ```tsx
+     * <string title='User Email' />
+     * ```
+     */
     title?: string;
+    /**
+     * Specific value.
+     *
+     * @example
+     * ```tsx
+     * <string value='active' />
+     * ```
+     */
     value?: T;
+    /**
+     * Allowed values (array) or dictionary of values with descriptions.
+     *
+     * @example
+     * ```tsx
+     * <string values={['active', 'inactive', 'pending']} />
+     * ```
+     * @example
+     * ```tsx
+     * <string
+     *   values={{
+     *     active: 'Main status',
+     *     inactive: 'Deleted',
+     *     pending: 'Waiting for result',
+     *   }}
+     * />
+     */
     values?: SchemaValues<T>;
+    /**
+     * Indicates that the value is write-only.
+     *
+     * @example
+     * ```tsx
+     * <object ref='User'>
+     *   id: <uuid readOnly />
+     *   name: <string />
+     *   password: <string writeOnly />
+     * </object>
+     * ```
+     */
     writeOnly?: boolean;
 }
 export interface NullableSchemaProps<T, D = T> extends Omit<BaseSchemaProps<T | null, D | null>, 'nullable'> {

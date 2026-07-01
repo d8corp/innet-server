@@ -14,6 +14,9 @@ var useBodyContext = require('../../../hooks/useBodyContext/useBodyContext.js');
 var useSchemaContext = require('../../../hooks/useSchemaContext/useSchemaContext.js');
 var useParentRule = require('../../../hooks/useParentRule/useParentRule.js');
 var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
+var unique = require('../../../utils/rules/unique/unique.js');
+var minItems = require('../../../utils/rules/minItems/minItems.js');
+var maxItems = require('../../../utils/rules/maxItems/maxItems.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
 var arrayOf = require('../../../utils/rules/arrayOf/arrayOf.js');
 var oneOf = require('../../../utils/rules/oneOf/oneOf.js');
@@ -24,28 +27,37 @@ const array = () => {
     useBlock.useBlock('path');
     const setRule = jsx.useContext(useRule.ruleContext);
     const handler = innet.useNewHandler();
-    const { children, maxItems, minItems, uniqueItems, ...props } = jsx.useProps();
+    const { children, max, min, unique: unique$1, ...props } = jsx.useProps();
     const schema = useSchemaType.useSchemaType('array', props);
     const isBody = Boolean(jsx.useContext(useBodyContext.bodyContext));
     const hasRules = !isBody || !props.readOnly;
     const fieldSchema = {};
     handler[useSchemaContext.schemaContext.key] = fieldSchema;
     schema.items = fieldSchema;
-    if (maxItems) {
-        schema.maxItems = maxItems;
+    if (max) {
+        schema.maxItems = max;
     }
-    if (minItems) {
-        schema.minItems = minItems;
+    if (min) {
+        schema.minItems = min;
     }
-    if (uniqueItems) {
-        schema.uniqueItems = uniqueItems;
+    if (unique$1) {
+        schema.uniqueItems = unique$1;
     }
     if (setRule && hasRules) {
         let oneOfRulesMap;
         const rules = [];
         const parentRule = useParentRule.useParentRule();
-        if ((props === null || props === void 0 ? void 0 : props.default) !== undefined) {
+        if (props.default !== undefined) {
             rules.push(defaultTo.defaultTo(props.default));
+        }
+        if (unique$1) {
+            rules.push(unique.unique);
+        }
+        if (min) {
+            rules.push(minItems.minItems(min));
+        }
+        if (max) {
+            rules.push(maxItems.maxItems(max));
         }
         const rootRule = (props === null || props === void 0 ? void 0 : props.default) === undefined
             ? (rule) => parentRule(pipe.pipe(...rules, arrayOf.arrayOf(rule)))

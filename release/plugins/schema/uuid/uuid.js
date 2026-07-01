@@ -8,13 +8,13 @@ require('../../../hooks/index.js');
 require('../../../utils/index.js');
 var useBodyContext = require('../../../hooks/useBodyContext/useBodyContext.js');
 var useSchemaType = require('../../../hooks/useSchemaType/useSchemaType.js');
+var useRule = require('../../../hooks/useRule/useRule.js');
 var defaultTo = require('../../../utils/rules/defaultTo/defaultTo.js');
 var uuidTo = require('../../../utils/rules/uuidTo/uuidTo.js');
 var values = require('../../../utils/rules/values/values.js');
 var oneOf = require('../../../utils/rules/oneOf/oneOf.js');
 var nullable = require('../../../utils/rules/nullable/nullable.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
-var useRule = require('../../../hooks/useRule/useRule.js');
 var optional = require('../../../utils/rules/optional/optional.js');
 
 const uuid = () => {
@@ -28,14 +28,19 @@ const uuid = () => {
         params.default = defaultValue;
     }
     const schema = useSchemaType.useSchemaType('string', params);
-    // @ts-expect-error: FIXME
-    schema.format = 'uuid';
-    if (defaultValue === 'new') {
-        // @ts-expect-error: FIXME
-        schema['x-default'] = defaultValue;
+    if (schema) {
+        schema.format = 'uuid';
+        if (defaultValue === 'new') {
+            // @ts-expect-error: FIXME
+            schema['x-default'] = defaultValue;
+        }
     }
-    if (!hasRules)
+    if (!hasRules) {
+        if (defaultValue !== undefined) {
+            useRule.useRule(defaultTo.defaultTo(defaultValue === 'new' ? uuid$1.v4 : defaultValue));
+        }
         return;
+    }
     const rules = [];
     if (defaultValue !== undefined) {
         rules.push(defaultTo.defaultTo(defaultValue === 'new' ? uuid$1.v4 : defaultValue));

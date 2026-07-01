@@ -12,7 +12,7 @@ var useRule = require('../../../hooks/useRule/useRule.js');
 var nullable = require('../../../utils/rules/nullable/nullable.js');
 
 const nullPlugin = () => {
-    useBlock.useBlock('path', 'query', 'cookie', 'header');
+    useBlock.useBlock('path', 'cookie', 'header');
     const props = jsx.useProps();
     useSchemaType.useSchemaType('null', props);
     const isBody = Boolean(jsx.useContext(useBodyContext.bodyContext));

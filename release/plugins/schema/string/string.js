@@ -38,9 +38,6 @@ const string = () => {
         if (props.values) {
             rules.push(values.values(values.getArrayValues(props.values)));
         }
-        if (format !== undefined) {
-            schema.format = format;
-        }
         if (min !== undefined) {
             schema.minLength = min;
             rules.push(minLength.minLength(min));

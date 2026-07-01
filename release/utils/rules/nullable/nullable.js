@@ -5,7 +5,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var helpers = require('../helpers.js');
 
 function nullable(value, data) {
-    if (value !== null) {
+    if (value !== null && value !== 'null') {
         throw new helpers.RulesError('null', data);
     }
     return null;

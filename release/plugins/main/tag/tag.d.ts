@@ -9,11 +9,38 @@ export interface TagProps {
     /**
      * A description for the tag.
      * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
+     *
+     * @example
+     * ```tsx
+     * <tag name='Users' description='Endpoints for **user management**'>
+     *   <endpoint method='get' path='/users' />
+     * </tag>
+     * ```
      * */
     description?: string;
-    /** A name of the tag group. */
+    /**
+     * Optional group name for organizing multiple tags into logical sections in the documentation.
+     *
+     * @example
+     * ```tsx
+     * <tag name='Users' group='Management'>
+     *   <endpoint method='get' path='/users' />
+     *   <endpoint method='get' path='/users/{userId}' />
+     * </tag>
+     * ```
+     */
     group?: string;
-    /** A name of the tag. */
+    /**
+     * The name of the tag used to group endpoints.
+     *
+     * @example
+     * ```tsx
+     * <tag name='Users'>
+     *   <endpoint method='get' path='/users' />
+     *   <endpoint method='get' path='/users/{userId}' />
+     * </tag>
+     * ```
+     */
     name: string;
 }
 export declare const tag: HandlerPlugin;

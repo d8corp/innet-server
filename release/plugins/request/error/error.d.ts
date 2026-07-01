@@ -54,8 +54,44 @@ export declare const errorStatuses: {
 };
 export type ErrorStatuses = keyof typeof errorStatuses;
 export interface ErrorProps {
+    /**
+     * Error data to send to the client.
+     *
+     * @example
+     * ```tsx
+     * <error status="notFound" code="userNotFound">
+     *   {{ message: 'User not found' }}
+     * </error>
+     * ```
+     */
     children?: any;
+    /**
+     * Unique error code identifier.
+     *
+     * @default 'undefined'
+     *
+     * @example
+     * ```tsx
+     * <error status="badRequest" code="invalidEmail">
+     *   {{ message: 'Invalid email format' }}
+     * </error>
+     * ```
+     */
     code?: string;
+    /**
+     * HTTP status code for the error response.
+     *
+     * @default 520 (unknownError)
+     *
+     * @example
+     * ```tsx
+     * <error status="notFound" />
+     * ```
+     * @example
+     * ```tsx
+     * <error status={404} code="resourceNotFound" />
+     * ```
+     */
     status?: ErrorStatuses | number;
 }
 export declare const error: HandlerPlugin;

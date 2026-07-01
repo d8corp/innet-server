@@ -28,6 +28,10 @@ const rulesErrors = [
     'binaryAccept',
     'minBin',
     'maxBin',
+    'unique',
+    'minItems',
+    'maxItems',
+    'multipleOf',
 ];
 const rulesErrorSchemas = {
     array: {
@@ -237,6 +241,32 @@ const rulesErrorSchemas = {
         title: 'maximum',
         type: 'object',
     },
+    maxItems: {
+        description: 'The array should not exceed the maximum limit',
+        properties: {
+            error: {
+                const: 'maxItems',
+                type: 'string',
+            },
+            in: {
+                enum: inValidationValues,
+                type: 'string',
+            },
+            key: {
+                type: 'string',
+            },
+            max: {
+                type: 'number',
+            },
+            value: {
+                items: {},
+                type: 'array',
+            },
+        },
+        required: ['error', 'in', 'key', 'value', 'max'],
+        title: 'maxItems',
+        type: 'object',
+    },
     maxLength: {
         description: 'The string length should not exceed the maximum limit',
         properties: {
@@ -338,6 +368,32 @@ const rulesErrorSchemas = {
         title: 'minimum',
         type: 'object',
     },
+    minItems: {
+        description: 'The array should not be earlier than the minimum limit',
+        properties: {
+            error: {
+                const: 'minItems',
+                type: 'string',
+            },
+            in: {
+                enum: inValidationValues,
+                type: 'string',
+            },
+            key: {
+                type: 'string',
+            },
+            min: {
+                type: 'number',
+            },
+            value: {
+                items: {},
+                type: 'array',
+            },
+        },
+        required: ['error', 'in', 'key', 'value', 'min'],
+        title: 'minItems',
+        type: 'object',
+    },
     minLength: {
         description: 'The string length should meet the minimum limit',
         properties: {
@@ -361,6 +417,29 @@ const rulesErrorSchemas = {
         },
         required: ['error', 'in', 'min', 'value'],
         title: 'minLength',
+        type: 'object',
+    },
+    multipleOf: {
+        description: 'The value must be a multiple of the specified number',
+        properties: {
+            error: {
+                const: 'multipleOf',
+                type: 'string',
+            },
+            in: {
+                enum: inValidationValues,
+                type: 'string',
+            },
+            key: {
+                type: 'string',
+            },
+            multiple: {
+                type: 'number',
+            },
+            value: {},
+        },
+        required: ['error', 'in', 'value', 'multiple'],
+        title: 'maximum',
         type: 'object',
     },
     null: {
@@ -528,6 +607,29 @@ const rulesErrorSchemas = {
         },
         required: ['error', 'in'],
         title: 'tuple',
+        type: 'object',
+    },
+    unique: {
+        description: 'Values in the array should be unique',
+        properties: {
+            error: {
+                const: 'unique',
+                type: 'string',
+            },
+            in: {
+                enum: inValidationValues,
+                type: 'string',
+            },
+            key: {
+                type: 'string',
+            },
+            value: {
+                items: {},
+                type: 'array',
+            },
+        },
+        required: ['error', 'in', 'key', 'value'],
+        title: 'unique',
         type: 'object',
     },
     uuid: {

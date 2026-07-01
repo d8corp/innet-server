@@ -1,0 +1,19 @@
+import { RulesError } from '../helpers.mjs';
+
+function maxLength(max) {
+    return (value, data) => {
+        if (typeof value !== 'string') {
+            throw new RulesError('string', data);
+        }
+        if (value.length > max) {
+            throw new RulesError('maxLength', {
+                ...data,
+                max,
+                value,
+            });
+        }
+        return value;
+    };
+}
+
+export { maxLength };

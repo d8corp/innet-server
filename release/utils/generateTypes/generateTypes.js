@@ -60,6 +60,11 @@ function generateSchemaTypes(schema, spaces = 2, lastChar = '\n') {
             continue;
         }
         if (type === 'array') {
+            if (schema.type === 'array' && 'prefixItems' in schema) {
+                const value = schema.prefixItems.map(item => generateSchemaTypes(item, spaces + 2, '')).join(', ');
+                scope += `${operator}[${value}]`;
+                continue;
+            }
             if (schema.type !== 'array' || !schema.items) {
                 scope += `${operator}any[]`;
                 continue;
@@ -86,7 +91,7 @@ function generateSchemaTypes(schema, spaces = 2, lastChar = '\n') {
                 if ('deprecated' in prop && prop.deprecated) {
                     result += `${space}/** @deprecated */\n`;
                 }
-                result += `${space}${key}${splitter} ${generateSchemaTypes(prop, spaces + 2)}`;
+                result += `${space}'${key}'${splitter} ${generateSchemaTypes(prop, spaces + 2)}`;
             }
         }
         if (hasRestProps) {
@@ -107,11 +112,11 @@ function generateTypes(docs, namespace = 'Api') {
     if (schemas) {
         result += '  export interface Schemas {\n';
         for (const name in schemas) {
-            result += `    ${name}: ${generateSchemaTypes(schemas[name], 6)}`;
+            result += `      ${name}: ${generateSchemaTypes(schemas[name], 8)}`;
         }
-        result += '  }\n';
+        result += '    }\n';
     }
-    result += '  export interface Endpoints {\n';
+    result += '    export interface Endpoints {\n';
     for (const path in paths) {
         const pathObject = paths[path];
         for (const method in pathObject) {
@@ -121,9 +126,9 @@ function generateTypes(docs, namespace = 'Api') {
             const requestBody = endpoint.requestBody;
             const responses = endpoint.responses;
             if (endpoint.deprecated) {
-                result += '    /** @deprecated */\n';
+                result += '      /** @deprecated */\n';
             }
-            result += `    ['${method.toUpperCase()}:${path}']: {\n`;
+            result += `      '${method.toUpperCase()}:${path}': {\n`;
             if (parameters) {
                 const params = {
                     cookie: '',
@@ -133,30 +138,30 @@ function generateTypes(docs, namespace = 'Api') {
                 };
                 for (const param of parameters) {
                     const splitter = param.in === 'path' || hasDefault(getElement(docs, param.schema)) || param.required ? ':' : '?:';
-                    params[param.in] += `        ${param.name}${splitter} ${generateSchemaTypes(param.schema)}`;
+                    params[param.in] += `          '${param.name}'${splitter} ${generateSchemaTypes(param.schema)}`;
                 }
                 if (params.path) {
-                    result += `      params: {\n${params.path}      }\n`;
+                    result += `        params: {\n${params.path}        }\n`;
                 }
                 if (params.query) {
-                    result += `      search: {\n${params.query}      }\n`;
+                    result += `        search: {\n${params.query}        }\n`;
                 }
                 if (params.header) {
-                    result += `      headers: {\n${params.header}      }\n`;
+                    result += `        headers: {\n${params.header}        }\n`;
                 }
                 if (params.cookie) {
-                    result += `      cookies: {\n${params.cookie}      }\n`;
+                    result += `        cookies: {\n${params.cookie}        }\n`;
                 }
             }
             if (requestBody) {
-                result += `      body: ${generateSchemaTypes(requestBody.content['multipart/form-data'].schema, 8)}`;
+                result += `        body: ${generateSchemaTypes(requestBody.content['multipart/form-data'].schema, 8)}`;
             }
             if (responses) {
-                result += '      response: {\n';
+                result += '        response: {\n';
                 for (const key in responses) {
                     let multiple = false;
                     const response = responses[key];
-                    result += `        ['${key}']: `;
+                    result += `          '${key}': `;
                     if (!response.content) {
                         result += 'void';
                     }
@@ -165,18 +170,18 @@ function generateTypes(docs, namespace = 'Api') {
                             if (multiple) {
                                 result += ' | ';
                             }
-                            result += generateSchemaTypes(response.content[type].schema, 10, '');
+                            result += generateSchemaTypes(response.content[type].schema, 12, '');
                             multiple = true;
                         }
                     }
                     result += '\n';
                 }
-                result += '     }\n';
+                result += '        }\n';
             }
-            result += '    }\n';
+            result += '      }\n';
         }
     }
-    const body = result + '  }';
+    const body = result + '    }';
     return `import '@innet/server'
 ${body.includes('Bin') ? 'import { Bin } from \'@innet/server\'\n' : ''}
 declare global {

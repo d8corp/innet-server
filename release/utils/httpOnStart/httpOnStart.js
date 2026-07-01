@@ -2,8 +2,10 @@
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function httpOnStart({ https, port, }) {
-    console.log(`http${https ? 's' : ''}://localhost:${port}`);
+function httpOnStart({ apiPaths, https, port, }) {
+    apiPaths.forEach(path => {
+        console.log(`http${https ? 's' : ''}://localhost:${port}${path}`);
+    });
 }
 
 exports.httpOnStart = httpOnStart;

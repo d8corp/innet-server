@@ -9,11 +9,10 @@ const sizes = {
     int64: BigInt('9223372036854775807'),
 };
 function int(format) {
-    const validator = format === 'int32' ? isNaN : (value) => isNaN(parseInt(value));
     return (value, data) => {
         let result;
         if (format === 'int32') {
-            result = Number(value);
+            result = parseInt(value);
         }
         else {
             try {
@@ -23,7 +22,7 @@ function int(format) {
                 result = NaN;
             }
         }
-        if (validator(result)) {
+        if (Number.isNaN(result)) {
             throw new helpers.RulesError('integer', {
                 format,
                 value,

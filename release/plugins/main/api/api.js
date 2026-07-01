@@ -7,6 +7,7 @@ var jsx = require('@innet/jsx');
 require('../../../hooks/index.js');
 require('../../../utils/index.js');
 require('../../../utils/rules/index.js');
+var useServer = require('../../../hooks/useServer/useServer.js');
 var useServerPlugins = require('../../../hooks/useServerPlugins/useServerPlugins.js');
 var useApi = require('../../../hooks/useApi/useApi.js');
 var useServerPlugin = require('../../../hooks/useServerPlugin/useServerPlugin.js');
@@ -18,7 +19,9 @@ var useParams = require('../../../hooks/useParams/useParams.js');
 const api = () => {
     const handler = innet.useNewHandler();
     const props = jsx.useProps();
-    const { children, errorShema, errorShemaRefs, exclude, include, prefix = process.env.INNET_API_PREFIX || '', schemaGeneration, title = '', version = process.env.INNET_API_VERSION || '0.0.0', ...rest } = props;
+    const server = useServer.useServer();
+    const { children, errorSchema, errorSchemaRefs, exclude, include, prefix = process.env.INNET_API_PREFIX || '', schemaGeneration, title = '', version = process.env.INNET_API_VERSION || '0.0.0', ...rest } = props;
+    server.initAPI(props);
     const info = { ...rest, title, version };
     const endpoints = {};
     const docs = {

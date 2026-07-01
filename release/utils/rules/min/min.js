@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var helpers = require('../helpers.js');
 
-function min(min) {
+function min(min, exclusive) {
     return (value, data) => {
         if (!['bigint', 'number'].includes(typeof value)) {
             throw new helpers.RulesError('number', {
@@ -12,7 +12,7 @@ function min(min) {
                 value,
             });
         }
-        if (value < min) {
+        if ((exclusive && value === min) || value < min) {
             throw new helpers.RulesError('minimum', {
                 ...data,
                 min,

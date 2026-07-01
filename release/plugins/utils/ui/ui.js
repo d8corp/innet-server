@@ -9,6 +9,7 @@ var rapidoc = require('./rapidoc.html.js');
 var redoc = require('./redoc.html.js');
 var scalar = require('./scalar.html.js');
 var swagger = require('./swagger.html.js');
+var useServer = require('../../../hooks/useServer/useServer.js');
 var useApi = require('../../../hooks/useApi/useApi.js');
 var useServerPlugin = require('../../../hooks/useServerPlugin/useServerPlugin.js');
 var useAction = require('../../../hooks/useAction/useAction.js');
@@ -18,7 +19,10 @@ function camelToDash(str) {
 }
 const uiPresets = { rapidoc: rapidoc["default"], redoc: redoc["default"], scalar: scalar["default"], swagger: swagger["default"] };
 const ui = () => {
-    const { html = uiPresets.swagger, params = {}, path = process.env.INNET_UI_PATH || '/ui', } = jsx.useProps() || {};
+    const { initUI } = useServer.useServer();
+    const props = jsx.useProps() || {};
+    const { html = uiPresets.swagger, params = {}, path = process.env.INNET_UI_PATH || '/ui', } = props;
+    initUI(props);
     const { docs, prefix, } = useApi.useApi();
     let cache = '';
     useServerPlugin.useServerPlugin(() => {

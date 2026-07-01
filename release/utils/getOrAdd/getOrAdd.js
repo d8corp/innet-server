@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 function getOrAdd(target, path, defaultValues) {
-    const pathKeys = String(path).split('.').map(value => isNaN(Number(value)) ? value : Number(value));
+    const pathKeys = String(path).split('.').map(value => Number.isNaN(Number(value)) ? value : Number(value));
     let currentTarget = target;
     for (let i = 0; i < pathKeys.length; i++) {
         const key = pathKeys[i];

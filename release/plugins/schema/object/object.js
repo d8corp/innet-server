@@ -4,6 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var innet = require('innet');
 var jsx = require('@innet/jsx');
+var helpers = require('./helpers.js');
 require('../../../hooks/index.js');
 require('../../../hooks/useParentRule/index.js');
 require('../../../utils/index.js');
@@ -69,7 +70,7 @@ const object = () => {
             });
             useParentRule.parentRuleContext.reset(handler);
         }
-        innet.innet(children, handler);
+        innet.innet(helpers.formatObjectChildren(children), handler);
     }
     else if (props.ref && hasRules) {
         useRule.useRule(refRules[props.ref]);

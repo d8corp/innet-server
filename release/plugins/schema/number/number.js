@@ -13,6 +13,7 @@ var num = require('../../../utils/rules/num/num.js');
 var values = require('../../../utils/rules/values/values.js');
 var min = require('../../../utils/rules/min/min.js');
 var max = require('../../../utils/rules/max/max.js');
+var multipleOf = require('../../../utils/rules/multipleOf/multipleOf.js');
 var oneOf = require('../../../utils/rules/oneOf/oneOf.js');
 var nullable = require('../../../utils/rules/nullable/nullable.js');
 var pipe = require('../../../utils/rules/pipe/pipe.js');
@@ -20,9 +21,11 @@ var useParentRule = require('../../../hooks/useParentRule/useParentRule.js');
 var useRule = require('../../../hooks/useRule/useRule.js');
 
 const number = () => {
-    const { exclusiveMaximum, exclusiveMinimum, format, max: max$1, min: min$1, multipleOf, ...props } = jsx.useProps() || {};
+    const { exclusive, format, max: max$1, min: min$1, multipleOf: multipleOf$1, ...props } = jsx.useProps() || {};
     const isBody = Boolean(jsx.useContext(useBodyContext.bodyContext));
     const hasRules = !isBody || !props.readOnly;
+    const exclusiveMinimum = exclusive && ['min', true].includes(exclusive);
+    const exclusiveMaximum = exclusive && ['max', true].includes(exclusive);
     const schema = useSchemaType.useSchemaType('number', props);
     if (schema) {
         if (format !== undefined) {
@@ -35,13 +38,13 @@ const number = () => {
             schema.maximum = max$1;
         }
         if (exclusiveMinimum) {
-            schema.exclusiveMinimum = typeof exclusiveMinimum === 'boolean' ? exclusiveMinimum : Number(exclusiveMinimum);
+            schema.exclusiveMinimum = true;
         }
         if (exclusiveMaximum) {
-            schema.exclusiveMaximum = typeof exclusiveMaximum === 'boolean' ? exclusiveMaximum : Number(exclusiveMaximum);
+            schema.exclusiveMaximum = true;
         }
-        if (multipleOf !== undefined) {
-            schema.multipleOf = Number(multipleOf);
+        if (multipleOf$1) {
+            schema.multipleOf = Number(multipleOf$1);
         }
     }
     if (!hasRules)
@@ -55,10 +58,13 @@ const number = () => {
         rules.push(values.values(values.getArrayValues(props.values).map(Number)));
     }
     if (min$1 !== undefined) {
-        rules.push(min.min(min$1));
+        rules.push(min.min(min$1, exclusiveMinimum));
     }
     if (max$1 !== undefined) {
-        rules.push(max.max(max$1));
+        rules.push(max.max(max$1, exclusiveMaximum));
+    }
+    if (multipleOf$1) {
+        rules.push(multipleOf.multipleOf(multipleOf$1));
     }
     const rule = props.nullable ? oneOf.oneOf([nullable.nullable, pipe.pipe(...rules)]) : pipe.pipe(...rules);
     if (props.default === undefined) {

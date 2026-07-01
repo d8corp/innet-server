@@ -6,7 +6,7 @@ var helpers = require('../helpers.js');
 
 function dateTo(value, data) {
     const result = new Date(value);
-    if (isNaN(result)) {
+    if (Number.isNaN(result)) {
         throw new helpers.RulesError('date', {
             value,
             ...data,

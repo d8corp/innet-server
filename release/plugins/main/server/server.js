@@ -10,6 +10,7 @@ var http2 = require('node:https');
 var watchState = require('watch-state');
 require('../../../hooks/index.js');
 require('../../../utils/index.js');
+var useApi = require('../../../hooks/useApi/useApi.js');
 var useServer = require('../../../hooks/useServer/useServer.js');
 var useServerPlugins = require('../../../hooks/useServerPlugins/useServerPlugins.js');
 var useServerPort = require('../../../hooks/useServerPort/useServerPort.js');
@@ -44,8 +45,22 @@ const server = () => {
     const https = Boolean(key && cert);
     const { onClose, onError, onRequest, onStart, port = Number((_c = env.INNET_PORT) !== null && _c !== void 0 ? _c : (https ? 443 : 80)), } = props;
     const plugins = new Map();
+    const apiPaths = [];
     const server = https ? http2__default["default"].createServer({ cert, key }) : http__default["default"].createServer();
-    useServer.serverContext.set(handler, { port, props, server });
+    const context = {
+        initAPI: (props) => {
+            apiPaths.push(props.prefix || '');
+        },
+        initUI: (props) => {
+            var _a;
+            const { prefix } = useApi.useApi();
+            apiPaths.push(`${prefix}${(_a = props.path) !== null && _a !== void 0 ? _a : (process.env.INNET_UI_PATH || '/ui')}`);
+        },
+        port,
+        props,
+        server,
+    };
+    useServer.serverContext.set(handler, context);
     useServerPlugins.serverPlugins.set(handler, plugins);
     useServerPort.serverPortContext.set(handler, port);
     useIsServerHttps.serverHttpsContext.set(handler, https);
@@ -78,7 +93,7 @@ const server = () => {
     });
     innet.innet(props.children, handler);
     server.listen(port, () => {
-        onStart === null || onStart === void 0 ? void 0 : onStart({ https, port });
+        onStart === null || onStart === void 0 ? void 0 : onStart({ apiPaths, https, port });
     });
 };
 

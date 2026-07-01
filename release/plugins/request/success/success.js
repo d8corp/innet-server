@@ -29,19 +29,12 @@ const success = () => {
     if (children) {
         const child = children;
         const contentType = type || (['bigint', 'boolean', 'number', 'string'].includes(typeof child)
-            ? 'text/plain'
+            ? 'text/plain; charset=utf-8'
             : 'application/json');
-        const content = contentType === 'application/json' ? JSONString.JSONString(child) : String(child);
-        res.setHeader('Content-Type', contentType === 'application/json'
-            ? 'application/json; charset=utf-8'
-            : contentType);
+        const content = contentType.startsWith('application/json') ? JSONString.JSONString(child) : String(child);
+        res.setHeader('Content-Type', contentType);
         res.setHeader('Content-Length', Buffer.byteLength(content));
-        if (contentType === 'application/json') {
-            res.write(content, 'utf-8');
-        }
-        else {
-            res.write(content);
-        }
+        res.write(content, 'utf-8');
     }
     res.end();
 };

@@ -99,9 +99,9 @@ const endpoint = () => {
                 if (!docs.components.schemas) {
                     docs.components.schemas = {};
                 }
-                const ref = (_c = (_b = apiProps.errorShemaRefs) === null || _b === void 0 ? void 0 : _b.requestValidation) !== null && _c !== void 0 ? _c : 'ApiValidationError';
+                const ref = (_c = (_b = apiProps.errorSchemaRefs) === null || _b === void 0 ? void 0 : _b.requestValidation) !== null && _c !== void 0 ? _c : 'ApiValidationError';
                 if (!(ref in docs.components.schemas)) {
-                    docs.components.schemas[ref] = (_e = (_d = apiProps.errorShema) === null || _d === void 0 ? void 0 : _d.requestValidation) !== null && _e !== void 0 ? _e : constants.defaultRequestValidationSchema;
+                    docs.components.schemas[ref] = (_e = (_d = apiProps.errorSchema) === null || _d === void 0 ? void 0 : _d.requestValidation) !== null && _e !== void 0 ? _e : constants.defaultRequestValidationSchema;
                 }
                 operation.responses[400] = addErrorRequest({ $ref: `#/components/schemas/${ref}` }, operation.responses[400]);
             }
@@ -118,9 +118,9 @@ const endpoint = () => {
                 if (!docs.components.schemas) {
                     docs.components.schemas = {};
                 }
-                const ref = (_b = (_a = apiProps.errorShemaRefs) === null || _a === void 0 ? void 0 : _a.requestValidation) !== null && _b !== void 0 ? _b : 'ApiRequestBodyContentTypeError';
+                const ref = (_b = (_a = apiProps.errorSchemaRefs) === null || _a === void 0 ? void 0 : _a.requestBodyContentType) !== null && _b !== void 0 ? _b : 'ApiRequestBodyContentTypeError';
                 if (!(ref in docs.components.schemas)) {
-                    docs.components.schemas[ref] = (_d = (_c = apiProps.errorShema) === null || _c === void 0 ? void 0 : _c.requestBodyContentType) !== null && _d !== void 0 ? _d : constants.defaultRequestBodyContentTypeSchema;
+                    docs.components.schemas[ref] = (_d = (_c = apiProps.errorSchema) === null || _c === void 0 ? void 0 : _c.requestBodyContentType) !== null && _d !== void 0 ? _d : constants.defaultRequestBodyContentTypeSchema;
                 }
                 operation.responses[400] = addErrorRequest({ $ref: `#/components/schemas/${ref}` }, operation.responses[400]);
             }

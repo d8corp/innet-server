@@ -1,1 +1,1 @@
-export declare function min(min: bigint | number): (value: any, data?: object) => any;
+export declare function min(min: bigint | number, exclusive?: boolean): (value: any, data?: object) => any;

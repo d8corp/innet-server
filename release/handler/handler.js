@@ -40,7 +40,6 @@ var _return = require('../plugins/main/return/return.js');
 var server = require('../plugins/main/server/server.js');
 var string = require('../plugins/schema/string/string.js');
 var success = require('../plugins/request/success/success.js');
-var swagger = require('../plugins/utils/swagger/swagger.js');
 var tag = require('../plugins/main/tag/tag.js');
 var tuple = require('../plugins/schema/tuple/tuple.js');
 var ui = require('../plugins/utils/ui/ui.js');
@@ -87,7 +86,6 @@ const JSXPlugins = {
     server: server.server,
     string: string.string,
     success: success.success,
-    swagger: swagger.swagger,
     tag: tag.tag,
     tuple: tuple.tuple,
     ui: ui.ui,

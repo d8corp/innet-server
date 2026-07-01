@@ -7,6 +7,11 @@ export interface ResponseProps {
     /**
      * A description of the response.
      * [CommonMark syntax](https://spec.commonmark.org) MAY be used for rich text representation.
+     *
+     * @example
+     * ```tsx
+     * <response description='Empty response' />
+     * ```
      * */
     description?: string;
     /**
@@ -14,8 +19,31 @@ export interface ResponseProps {
      * To define a range of response codes, this field MAY contain the uppercase wildcard character X.
      * For example, 2XX represents all response codes between [200-299].
      * Only the following range definitions are allowed: 1XX, 2XX, 3XX, 4XX, and 5XX.
+     *
+     * @example
+     * ```tsx
+     * <response status={200}>
+     *   <object />
+     * </response>
+     * ```
+     *
+     * @example
+     * ```tsx
+     * <response status='created' />
+     * ```
      * */
     status?: ResponseStatus;
+    /**
+     * The media type of the response.
+     * Default value is `'application/json'`.
+     *
+     * @example
+     * ```tsx
+     * <response type='text/html'>
+     *   <string value='<html><body>Hello World!</body></html>' />
+     * </response>
+     * ```
+     * */
     type?: string;
 }
 export declare const statuses: Record<StatusKey, number>;
