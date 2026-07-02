@@ -60,7 +60,7 @@ Built on top of [innet](https://www.npmjs.com/package/innet).
 [![stars](https://img.shields.io/github/stars/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/stargazers)
 [![watchers](https://img.shields.io/github/watchers/d8corp/innet-server?style=social)](https://github.com/d8corp/innet-server/watchers)
 
-- [Documentation](https://github.com/d8corp/innet-server/blob/2.0/readme/README.md) — Documentation for `@innet/server`
+- [Documentation](https://github.com/d8corp/innet-server/blob/main/readme/README.md) — Documentation for `@innet/server`
 - [Example](https://github.com/d8corp/innet-server/tree/2.0/src/example) — TODO Example for `@innet/server`
 - [innet](https://www.npmjs.com/package/innet) — Core innet framework
 - [innetjs](https://www.npmjs.com/package/innetjs) — CLI tool
