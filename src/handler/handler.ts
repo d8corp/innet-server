@@ -1,4 +1,4 @@
-import { createHandler } from 'innet'
+import { createHandler, type Plugin } from 'innet'
 import { jsxComponent, type JSXElement, jsxPlugins } from '@innet/jsx'
 import { array as isArray, arraySync, async, fn, nullish, object as isObject, promise } from '@innet/utils'
 
@@ -86,7 +86,7 @@ import {
   type WhitelistProps,
 } from '../plugins'
 
-export const arrayPlugins = [
+export const arrayPlugins: Plugin[] = [
   arraySync,
 ]
 
@@ -133,16 +133,16 @@ export const JSXPlugins = {
   whitelist,
 }
 
-export const fnPlugins = [
+export const fnPlugins: Plugin[] = [
   serverFn,
 ]
 
-export const objectPlugins = [
+export const objectPlugins: Plugin[] = [
   jsxPlugins(JSXPlugins as any),
   jsxComponent,
 ]
 
-export const promisePlugins = [
+export const promisePlugins: Plugin[] = [
   async,
 ]
 
