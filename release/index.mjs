@@ -4,7 +4,7 @@ import './plugins/index.mjs';
 import './testing/index.mjs';
 import './types/index.mjs';
 import './utils/index.mjs';
-export { JSXPlugins, arrayPlugins, handler as default, fnPlugins, handler, objectPlugins, promisePlugins } from './handler/handler.mjs';
+export { JSXPlugins, handler as default, handler, objectPlugins } from './handler/handler.mjs';
 export { actionContext, useAction } from './hooks/useAction/useAction.mjs';
 export { apiContext, useApi } from './hooks/useApi/useApi.mjs';
 export { useBlock } from './hooks/useBlock/useBlock.mjs';

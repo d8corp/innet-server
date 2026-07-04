@@ -133,12 +133,9 @@ var stringifySearch = require('./utils/stringifySearch/stringifySearch.js');
 
 
 exports.JSXPlugins = handler.JSXPlugins;
-exports.arrayPlugins = handler.arrayPlugins;
 exports["default"] = handler.handler;
-exports.fnPlugins = handler.fnPlugins;
 exports.handler = handler.handler;
 exports.objectPlugins = handler.objectPlugins;
-exports.promisePlugins = handler.promisePlugins;
 exports.actionContext = useAction.actionContext;
 exports.useAction = useAction.useAction;
 exports.apiContext = useApi.apiContext;

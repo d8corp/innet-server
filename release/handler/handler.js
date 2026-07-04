@@ -4,6 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var innet = require('innet');
 var jsx = require('@innet/jsx');
+var node = require('@innet/node');
 var utils = require('@innet/utils');
 require('../plugins/index.js');
 var any = require('../plugins/schema/any/any.js');
@@ -46,11 +47,7 @@ var ui = require('../plugins/utils/ui/ui.js');
 var uuid = require('../plugins/schema/uuid/uuid.js');
 var variable = require('../plugins/main/variable/variable.js');
 var whitelist = require('../plugins/utils/whitelist/whitelist.js');
-var serverFn = require('../plugins/handler/serverFn/serverFn.js');
 
-const arrayPlugins = [
-    utils.arraySync,
-];
 const JSXPlugins = {
     any: any.any,
     api: api.api,
@@ -93,27 +90,13 @@ const JSXPlugins = {
     variable: variable.variable,
     whitelist: whitelist.whitelist,
 };
-const fnPlugins = [
-    serverFn.serverFn,
-];
 const objectPlugins = [
     jsx.jsxPlugins(JSXPlugins),
-    jsx.jsxComponent,
-];
-const promisePlugins = [
-    utils.async,
 ];
 const handler = innet.createHandler([
-    utils.promise(promisePlugins),
-    utils.array(arrayPlugins),
-    utils.nullish([]),
     utils.object(objectPlugins),
-    utils.fn(fnPlugins),
-]);
+], node.handler);
 
 exports.JSXPlugins = JSXPlugins;
-exports.arrayPlugins = arrayPlugins;
-exports.fnPlugins = fnPlugins;
 exports.handler = handler;
 exports.objectPlugins = objectPlugins;
-exports.promisePlugins = promisePlugins;

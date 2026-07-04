@@ -1,6 +1,7 @@
 import { createHandler } from 'innet';
-import { jsxPlugins, jsxComponent } from '@innet/jsx';
-import { arraySync, async, promise, array as array$1, nullish, object as object$1, fn } from '@innet/utils';
+import { jsxPlugins } from '@innet/jsx';
+import { handler as handler$1 } from '@innet/node';
+import { object as object$1 } from '@innet/utils';
 import '../plugins/index.mjs';
 import { any } from '../plugins/schema/any/any.mjs';
 import { api } from '../plugins/main/api/api.mjs';
@@ -42,11 +43,7 @@ import { ui } from '../plugins/utils/ui/ui.mjs';
 import { uuid } from '../plugins/schema/uuid/uuid.mjs';
 import { variable } from '../plugins/main/variable/variable.mjs';
 import { whitelist } from '../plugins/utils/whitelist/whitelist.mjs';
-import { serverFn } from '../plugins/handler/serverFn/serverFn.mjs';
 
-const arrayPlugins = [
-    arraySync,
-];
 const JSXPlugins = {
     any,
     api,
@@ -89,22 +86,11 @@ const JSXPlugins = {
     variable,
     whitelist,
 };
-const fnPlugins = [
-    serverFn,
-];
 const objectPlugins = [
     jsxPlugins(JSXPlugins),
-    jsxComponent,
-];
-const promisePlugins = [
-    async,
 ];
 const handler = createHandler([
-    promise(promisePlugins),
-    array$1(arrayPlugins),
-    nullish([]),
     object$1(objectPlugins),
-    fn(fnPlugins),
-]);
+], handler$1);
 
-export { JSXPlugins, arrayPlugins, fnPlugins, handler, objectPlugins, promisePlugins };
+export { JSXPlugins, handler, objectPlugins };

@@ -1,6 +1,7 @@
 import { createHandler, type Plugin } from 'innet'
-import { jsxComponent, type JSXElement, jsxPlugins } from '@innet/jsx'
-import { array as isArray, arraySync, async, fn, nullish, object as isObject, promise } from '@innet/utils'
+import { type JSXElement, jsxPlugins } from '@innet/jsx'
+import { handler as nodeHandler } from '@innet/node'
+import { object as isObject } from '@innet/utils'
 
 import {
   any,
@@ -66,7 +67,6 @@ import {
   returnPlugin,
   type ReturnProps,
   server,
-  serverFn,
   type ServerProps,
   string,
   type StringProps,
@@ -85,10 +85,6 @@ import {
   whitelist,
   type WhitelistProps,
 } from '../plugins'
-
-export const arrayPlugins: Plugin[] = [
-  arraySync,
-]
 
 export const JSXPlugins = {
   any,
@@ -133,26 +129,13 @@ export const JSXPlugins = {
   whitelist,
 }
 
-export const fnPlugins: Plugin[] = [
-  serverFn,
-]
-
 export const objectPlugins: Plugin[] = [
   jsxPlugins(JSXPlugins as any),
-  jsxComponent,
-]
-
-export const promisePlugins: Plugin[] = [
-  async,
 ]
 
 export const handler = createHandler([
-  promise(promisePlugins),
-  isArray(arrayPlugins),
-  nullish([]),
   isObject(objectPlugins),
-  fn(fnPlugins),
-])
+], nodeHandler)
 
 declare global {
   namespace JSX {

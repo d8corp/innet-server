@@ -9,8 +9,8 @@ const serverFn = () => {
     return () => {
         const handler = innet.useHandler();
         const fn = innet.useApp();
-        new watchState.Watch((update) => {
-            innet.innet(fn(update), handler);
+        new watchState.Watch(() => {
+            innet.innet(fn(), handler);
         });
     };
 };

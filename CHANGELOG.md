@@ -2,6 +2,12 @@
 
 ## v2.0
 
+### v2.0.1 [![04.07.2026](https://img.shields.io/date/1783157490)](https://github.com/d8corp/innet-server/tree/v2.0.1)
+
+- Add `@innet/node`
+
+### v2.0.0 [![01.07.2026](https://img.shields.io/date/1782898127)](https://github.com/d8corp/innet-server/tree/v2.0.0)
+
 ### Features
 
 - **Tag Groups**: Added `group` property for `<tag>` element to organize tags into groups in OpenAPI documentation

@@ -1,1 +1,1 @@
-export { JSXPlugins, arrayPlugins, fnPlugins, handler, objectPlugins, promisePlugins } from './handler.mjs';
+export { JSXPlugins, handler, objectPlugins } from './handler.mjs';

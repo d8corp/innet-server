@@ -5,8 +5,8 @@ const serverFn = () => {
     return () => {
         const handler = useHandler();
         const fn = useApp();
-        new Watch((update) => {
-            innet(fn(update), handler);
+        new Watch(() => {
+            innet(fn(), handler);
         });
     };
 };
