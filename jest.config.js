@@ -8,6 +8,8 @@ module.exports = {
     '^.+\\.[jt]sx?$': 'ts-jest',
     '^.+\\.html$': '<rootDir>/html-transform.js',
   },
+  modulePathIgnorePatterns: ['<rootDir>/release/'],
+  testPathIgnorePatterns: ['/node_modules/', '<rootDir>/release/'],
   transformIgnorePatterns: [
     '/node_modules/(?!mime|uuid/)',
   ],
