@@ -13,7 +13,7 @@ describe('string', () => {
     }
 
     const stop = await runTest((onStart, onEnd) => (
-      <server onClose={onEnd} onStart={onStart}>
+      <server onClose={onEnd} onStart={onStart} port={3000}>
         <api>
           <endpoint method='post' path='/test'>
             <body>
@@ -30,7 +30,7 @@ describe('string', () => {
       </server>),
     )
 
-    const res = await fetch('http://localhost/test', {
+    const res = await fetch('http://localhost:3000/test', {
       body: JSON.stringify({
         name: 123,
       }),

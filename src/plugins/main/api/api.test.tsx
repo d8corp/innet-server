@@ -3,12 +3,12 @@ import { runTest } from '../../../testing'
 describe('api', () => {
   it('Should return base OpenAPI', async () => {
     const stop = await runTest((onStart, onEnd) => (
-      <server onClose={onEnd} onStart={onStart}>
+      <server onClose={onEnd} onStart={onStart} port={3000}>
         <api />
       </server>),
     )
 
-    const res = await fetch('http://localhost')
+    const res = await fetch('http://localhost:3000')
     const json = await res.json()
 
     await stop()
@@ -26,12 +26,12 @@ describe('api', () => {
     describe('prefix', () => {
       it('Should use prefix', async () => {
         const stop = await runTest((onStart, onEnd) => (
-          <server onClose={onEnd} onStart={onStart}>
+          <server onClose={onEnd} onStart={onStart} port={3000}>
             <api prefix='/api' />
           </server>),
         )
 
-        const res = await fetch('http://localhost/api')
+        const res = await fetch('http://localhost:3000/api')
         const json = await res.json()
 
         await stop()
@@ -49,12 +49,12 @@ describe('api', () => {
     describe('title', () => {
       it('Should return title', async () => {
         const stop = await runTest((onStart, onEnd) => (
-          <server onClose={onEnd} onStart={onStart}>
+          <server onClose={onEnd} onStart={onStart} port={3000}>
             <api title='Test' />
           </server>),
         )
 
-        const res = await fetch('http://localhost')
+        const res = await fetch('http://localhost:3000')
         const json = await res.json()
 
         await stop()
@@ -72,12 +72,12 @@ describe('api', () => {
     describe('version', () => {
       it('Should return version', async () => {
         const stop = await runTest((onStart, onEnd) => (
-          <server onClose={onEnd} onStart={onStart}>
+          <server onClose={onEnd} onStart={onStart} port={3000}>
             <api version='1.0.0' />
           </server>),
         )
 
-        const res = await fetch('http://localhost')
+        const res = await fetch('http://localhost:3000')
         const json = await res.json()
 
         await stop()
@@ -95,12 +95,12 @@ describe('api', () => {
     describe('description', () => {
       it('Should return description', async () => {
         const stop = await runTest((onStart, onEnd) => (
-          <server onClose={onEnd} onStart={onStart}>
+          <server onClose={onEnd} onStart={onStart} port={3000}>
             <api description='Test' />
           </server>),
         )
 
-        const res = await fetch('http://localhost')
+        const res = await fetch('http://localhost:3000')
         const json = await res.json()
 
         await stop()
@@ -119,12 +119,12 @@ describe('api', () => {
     describe('summary', () => {
       it('Should return summary', async () => {
         const stop = await runTest((onStart, onEnd) => (
-          <server onClose={onEnd} onStart={onStart}>
+          <server onClose={onEnd} onStart={onStart} port={3000}>
             <api summary='Test' />
           </server>),
         )
 
-        const res = await fetch('http://localhost')
+        const res = await fetch('http://localhost:3000')
         const json = await res.json()
 
         await stop()
@@ -143,12 +143,12 @@ describe('api', () => {
     describe('termsOfService', () => {
       it('Should return termsOfService', async () => {
         const stop = await runTest((onStart, onEnd) => (
-          <server onClose={onEnd} onStart={onStart}>
+          <server onClose={onEnd} onStart={onStart} port={3000}>
             <api termsOfService='Test' />
           </server>),
         )
 
-        const res = await fetch('http://localhost')
+        const res = await fetch('http://localhost:3000')
         const json = await res.json()
 
         await stop()

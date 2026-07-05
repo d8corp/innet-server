@@ -3,14 +3,14 @@ import { runTest } from '../../../testing'
 describe('return', () => {
   it('Should return string', async () => {
     const stop = await runTest((onStart, onEnd) => (
-      <server onClose={onEnd} onStart={onStart}>
+      <server onClose={onEnd} onStart={onStart} port={3000}>
         <return>
           <success>Hello World!</success>
         </return>
       </server>),
     )
 
-    const res = await fetch('http://localhost')
+    const res = await fetch('http://localhost:3000')
     const text = await res.text()
 
     await stop()
@@ -22,14 +22,14 @@ describe('return', () => {
 
   it('Should return json', async () => {
     const stop = await runTest((onStart, onEnd) => (
-      <server onClose={onEnd} onStart={onStart}>
+      <server onClose={onEnd} onStart={onStart} port={3000}>
         <return>
           <success>{{ data: 'Hello World!', success: true }}</success>
         </return>
       </server>),
     )
 
-    const res = await fetch('http://localhost')
+    const res = await fetch('http://localhost:3000')
     const json = await res.json()
 
     await stop()

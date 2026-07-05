@@ -3,7 +3,7 @@ import { runTest } from '../../../testing'
 describe('server', () => {
   it('Should return success', async () => {
     const stop = await runTest((onStart, onEnd) => (
-      <server onClose={onEnd} onStart={onStart}>
+      <server onClose={onEnd} onStart={onStart} port={3000}>
         <return>
           <success>
             Hello World!
@@ -12,7 +12,7 @@ describe('server', () => {
       </server>
     ))
 
-    const res = await fetch('http://localhost')
+    const res = await fetch('http://localhost:3000')
     const text = await res.text()
 
     await stop()
@@ -23,14 +23,14 @@ describe('server', () => {
 
   it('Should return error', async () => {
     const stop = await runTest((onStart, onEnd) => (
-      <server onClose={onEnd} onStart={onStart}>
+      <server onClose={onEnd} onStart={onStart} port={3000}>
         <return>
           <error />
         </return>
       </server>
     ))
 
-    const res = await fetch('http://localhost')
+    const res = await fetch('http://localhost:3000')
     const json = await res.json()
 
     await stop()
@@ -69,14 +69,15 @@ describe('server', () => {
               error,
             }) => JSON.stringify({ data, err: error })}
             onClose={onEnd}
-            onStart={onStart}>
+            onStart={onStart}
+            port={3000}>
             <return>
               <error code='test' />
             </return>
           </server>
         ))
 
-        const res = await fetch('http://localhost')
+        const res = await fetch('http://localhost:3000')
         const json = await res.json()
 
         await stop()
@@ -91,7 +92,7 @@ describe('server', () => {
         const fn = jest.fn()
 
         const stop = await runTest((onStart, onEnd) => (
-          <server onClose={onEnd} onRequest={fn} onStart={onStart}>
+          <server onClose={onEnd} onRequest={fn} onStart={onStart} port={3000}>
             <return>
               <error code='test' />
             </return>
@@ -100,7 +101,7 @@ describe('server', () => {
 
         expect(fn).not.toHaveBeenCalled()
 
-        await fetch('http://localhost')
+        await fetch('http://localhost:3000')
 
         await stop()
 
