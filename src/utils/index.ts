@@ -1,7 +1,6 @@
 export * from './FileData'
 export * from './JSONString'
 export * from './action'
-export * from './decorators'
 export * from './generateTypes'
 export * from './getEndpoint'
 export * from './getOrAdd'

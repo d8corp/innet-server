@@ -3,7 +3,6 @@ import { type IncomingHttpHeaders, type IncomingMessage, type ServerResponse } f
 import { type ParsedQs } from 'qs'
 import { getClientIp } from 'request-ip'
 
-import { once } from '../decorators'
 import { parseBody } from '../parseBody'
 import { parseFormBody } from '../parseFormBody'
 import { parseSearch } from '../parseSearch'
@@ -19,10 +18,14 @@ export interface ParsedUrl {
 }
 
 export class Action {
+  #bodyType: BodyType | null | undefined = null
+  #clientIp: null | string | undefined
   #cookie: Cookies = {}
-
   #headers: IncomingHttpHeaders = {}
-
+  #originCookies: Cookies | undefined
+  #originSearch: ParsedQs | undefined
+  #parsedBody = false
+  #parsedUrl: ParsedUrl | undefined
   #search: ParsedQs | undefined
 
   body?: object
@@ -32,8 +35,9 @@ export class Action {
     readonly res: ServerResponse,
   ) {}
 
-  @once async parseBody (): Promise<void> {
-    if (!this.bodyType) {
+  async parseBody (): Promise<void> {
+    if (this.#parsedBody || !this.bodyType) {
+      this.#parsedBody = true
       return
     }
 
@@ -48,6 +52,8 @@ export class Action {
     if (this.bodyType === 'application/json') {
       this.body = JSON.parse(await parseBody(this.req))
     }
+
+    this.#parsedBody = true
   }
 
   setCookie (name: string, value?: string, options?: SerializeOptions) {
@@ -68,20 +74,31 @@ export class Action {
     this.res.setHeader('Set-Cookie', cookies)
   }
 
-  @once get bodyType (): BodyType | undefined {
+  get bodyType (): BodyType | undefined {
+    if (this.#bodyType !== null) return this.#bodyType
+
     const headerType = this.req.headers['content-type']
 
-    if (!headerType) return
+    if (!headerType) {
+      this.#bodyType = undefined
+      return
+    }
 
     for (const bodyType of allBodyTypes) {
       if (headerType.startsWith(bodyType)) {
-        return bodyType
+        return (this.#bodyType = bodyType)
       }
     }
+
+    this.#bodyType = undefined
   }
 
-  @once get clientIp () {
-    return getClientIp(this.req)
+  get clientIp () {
+    if (this.#clientIp === undefined) {
+      this.#clientIp = getClientIp(this.req)
+    }
+
+    return this.#clientIp
   }
 
   get cookies (): Cookies {
@@ -104,26 +121,40 @@ export class Action {
     this.#headers = value
   }
 
-  @once get originCookies (): Cookies {
-    return cookieLib.parse(this.req.headers.cookie ?? '')
+  get originCookies (): Cookies {
+    if (!this.#originCookies) {
+      this.#originCookies = cookieLib.parse(this.req.headers.cookie ?? '')
+    }
+
+    return this.#originCookies
   }
 
   get originHeaders (): IncomingHttpHeaders {
     return this.req.headers
   }
 
-  @once get originSearch (): ParsedQs {
-    return parseSearch(this.parsedUrl.search)
+  get originSearch (): ParsedQs {
+    if (!this.#originSearch) {
+      this.#originSearch = parseSearch(this.parsedUrl.search)
+    }
+
+    return this.#originSearch
   }
 
-  @once get parsedUrl (): ParsedUrl {
-    const match = this.req.url?.match(URL_PARSER)
-    if (!match) throw Error('cannot parse url')
-    const result = match.groups as unknown as ParsedUrl
-    result.path = result.path
-      .replaceAll(/\/\.\.\//g, '/')
-      .replaceAll(/\/+/g, '/')
-    return result
+  get parsedUrl (): ParsedUrl {
+    if (!this.#parsedUrl) {
+      const match = this.req.url?.match(URL_PARSER)
+      if (!match) throw Error('cannot parse url')
+      const result = match.groups as unknown as ParsedUrl
+
+      result.path = result.path
+        .replaceAll(/\/\.\.\//g, '/')
+        .replaceAll(/\/+/g, '/')
+
+      this.#parsedUrl = result
+    }
+
+    return this.#parsedUrl
   }
 
   get path (): string {
